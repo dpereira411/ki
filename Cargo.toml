@@ -1,0 +1,12 @@
+[package]
+name = "ki"
+version = "0.1.0"
+edition = "2021"
+
+[[bin]]
+name = "ki"
+path = "src/main.rs"
+
+[dependencies]
+clap = { version = "4", features = ["derive"] }
+kicad-ipc-rs = { git = "https://github.com/dpereira411/kicad-ipc-rs.git", rev = "2edb83a", features = ["blocking"] }

@@ -1,0 +1,10 @@
+# Rust build output
+/target/
+
+# macOS filesystem metadata
+.DS_Store
+
+# Editor swap and backup files
+*.swp
+*.swo
+*~
