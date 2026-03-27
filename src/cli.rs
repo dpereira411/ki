@@ -1,37 +1,149 @@
-use clap::{Parser, Subcommand, ValueEnum};
+use clap::{Args as ClapArgs, Parser, Subcommand, ValueEnum};
 use kicad_ipc_rs::{DocumentType, EditorFrameType};
 
+const ROOT_AFTER_HELP: &str = "Examples:\n  ki refresh --frame pcb\n  ki schematic inspect board.kicad_sch --json\n  ki pcb add-trace board.kicad_pcb 10 10 20 10 0.25 F.Cu 1\n  ki project validate project.kicad_pro --json";
+const ROOT_USAGE_TEXT: &str = "ki - KiCad CLI for IPC refresh and file editing
+
+USAGE:
+  ki refresh [--socket <SOCKET>] [--token <TOKEN>] [--client-name <CLIENT_NAME>] [--timeout-ms <TIMEOUT_MS>] [--frame <FRAME>] [--silent]
+  ki project <action> [args] [flags]
+  ki schematic <action> [args] [flags]
+  ki symbol-lib <action> [args] [flags]
+  ki pcb <action> [args] [flags]
+  ki lib-table <action> [args] [flags]
+
+COMMANDS:
+  refresh
+    Refresh a KiCad editor frame through IPC.
+
+  project
+    open <path.kicad_pro>
+    validate <path.kicad_pro>
+
+  schematic
+    inspect <path.kicad_sch>
+    set-property <path.kicad_sch> <reference> <key> <value>
+    remove-property <path.kicad_sch> <reference> <key>
+    add-symbol <path.kicad_sch> <lib_id> <reference> <value> <x> <y>
+    remove-symbol <path.kicad_sch> <reference>
+    rename <path.kicad_sch> <reference> <new_lib_id>
+    add-wire <path.kicad_sch> <x1> <y1> <x2> <y2>
+    remove-wire <path.kicad_sch> <x1> <y1> <x2> <y2>
+    add-label <path.kicad_sch> <text> <x> <y> <angle>
+    add-global-label <path.kicad_sch> <text> <shape> <x> <y> <angle>
+    add-junction <path.kicad_sch> <x> <y>
+    add-no-connect <path.kicad_sch> <x> <y>
+    fork-symbol <path.kicad_sch> <reference> <library_name> <target_symbol_name> [--override]
+    push-to-lib <path.kicad_sch> <reference> <library_name>
+    replace-from-lib <path.kicad_sch> <reference> <library_name> <symbol_name> [--override-value]
+    update-from-lib <path.kicad_sch> <library_name> <reference> [--override-value]
+    update-from-lib <path.kicad_sch> <library_name> --all [--override-value]
+    query component <path.kicad_sch> <reference>
+    query net <path.kicad_sch> <net_name> [--hierarchical]
+    query unconnected <path.kicad_sch> [--hierarchical]
+    check-intent <path.kicad_sch> --intent <file.json>
+
+  symbol-lib
+    inspect <path.kicad_sym> [symbol]
+    set-property <path.kicad_sym> <symbol> <key> <value>
+    remove-property <path.kicad_sym> <symbol> <key>
+    rename <path.kicad_sym> <from> <to>
+
+  pcb
+    inspect <path.kicad_pcb>
+    query footprint <path.kicad_pcb> <reference>
+    set-property <path.kicad_pcb> <key> <value>
+    add-trace <path.kicad_pcb> <x1> <y1> <x2> <y2> <width> <layer> <net>
+    remove-trace <path.kicad_pcb> <x1> <y1> <x2> <y2>
+    add-via <path.kicad_pcb> <x> <y> <size> <drill> <net>
+    add-footprint <path.kicad_pcb> <lib_ref> <x> <y> <layer> <reference> <value>
+    move-footprint <path.kicad_pcb> <reference> <x> <y> [rotation]
+    remove-footprint <path.kicad_pcb> <reference>
+
+  lib-table
+    inspect <path>
+    add <path> <name> <uri>
+    rename <path> <from> <to>
+
+FLAGS:
+  --json            Machine-readable JSON to stdout
+  --diagnostics     Emit diagnostics as JSON array to stderr
+  --hierarchical    Load all sub-sheets and merge nets via global labels
+
+REFRESH FLAGS:
+  --socket <SOCKET>            Override the KiCad IPC socket URI/path
+  --token <TOKEN>              Override the KiCad instance token
+  --client-name <CLIENT_NAME>  Set the client name sent to KiCad
+  --timeout-ms <TIMEOUT_MS>    IPC request timeout in milliseconds
+  --frame <FRAME>              Target editor frame
+  --silent                     Suppress refresh output and return success on refresh errors
+
+EXIT CODES:
+  0   success
+  1   validation warnings or errors found, or IPC refresh failure
+  2   parse or IO error";
+
+const SCHEMATIC_AFTER_LONG_HELP: &str = "Actions:\n  inspect <path.kicad_sch>\n  set-property <path.kicad_sch> <reference> <key> <value>\n  remove-property <path.kicad_sch> <reference> <key>\n  add-symbol <path.kicad_sch> <lib_id> <reference> <value> <x> <y>\n  remove-symbol <path.kicad_sch> <reference>\n  rename <path.kicad_sch> <reference> <new_lib_id>\n  add-wire <path.kicad_sch> <x1> <y1> <x2> <y2>\n  remove-wire <path.kicad_sch> <x1> <y1> <x2> <y2>\n  add-label <path.kicad_sch> <text> <x> <y> <angle>\n  add-global-label <path.kicad_sch> <text> <shape> <x> <y> <angle>\n  add-junction <path.kicad_sch> <x> <y>\n  add-no-connect <path.kicad_sch> <x> <y>\n  fork-symbol <path.kicad_sch> <reference> <library_name> <target_symbol_name> [--override]\n  push-to-lib <path.kicad_sch> <reference> <library_name>\n  replace-from-lib <path.kicad_sch> <reference> <library_name> <symbol_name> [--override-value]\n  update-from-lib <path.kicad_sch> <library_name> <reference> [--override-value]\n  update-from-lib <path.kicad_sch> <library_name> --all [--override-value]\n  query component <path.kicad_sch> <reference>\n  query net <path.kicad_sch> <net_name> [--hierarchical]\n  query unconnected <path.kicad_sch> [--hierarchical]\n  check-intent <path.kicad_sch> --intent <file.json>\n\nFlags:\n  --json            Machine-readable JSON to stdout\n  --diagnostics     Emit diagnostics as JSON array to stderr";
+
+const PCB_AFTER_LONG_HELP: &str = "Actions:\n  inspect <path.kicad_pcb>\n  query footprint <path.kicad_pcb> <reference>\n  set-property <path.kicad_pcb> <key> <value>\n  add-trace <path.kicad_pcb> <x1> <y1> <x2> <y2> <width> <layer> <net>\n  remove-trace <path.kicad_pcb> <x1> <y1> <x2> <y2>\n  add-via <path.kicad_pcb> <x> <y> <size> <drill> <net>\n  add-footprint <path.kicad_pcb> <lib_ref> <x> <y> <layer> <reference> <value>\n  move-footprint <path.kicad_pcb> <reference> <x> <y> [rotation]\n  remove-footprint <path.kicad_pcb> <reference>\n\nFlags:\n  --json            Machine-readable JSON to stdout\n  --diagnostics     Emit diagnostics as JSON array to stderr";
+
+const PROJECT_AFTER_LONG_HELP: &str = "Actions:\n  open <path.kicad_pro>\n  validate <path.kicad_pro>\n\nFlags:\n  --json            Machine-readable JSON to stdout\n  --diagnostics     Emit diagnostics as JSON array to stderr";
+
+const SYMBOL_LIB_AFTER_LONG_HELP: &str = "Actions:\n  inspect <path.kicad_sym> [symbol]\n  set-property <path.kicad_sym> <symbol> <key> <value>\n  remove-property <path.kicad_sym> <symbol> <key>\n  rename <path.kicad_sym> <from> <to>\n\nFlags:\n  --json            Machine-readable JSON to stdout\n  --diagnostics     Emit diagnostics as JSON array to stderr";
+
+const LIB_TABLE_AFTER_LONG_HELP: &str = "Actions:\n  inspect <path>\n  add <path> <name> <uri>\n  rename <path> <from> <to>\n\nFlags:\n  --json            Machine-readable JSON to stdout\n  --diagnostics     Emit diagnostics as JSON array to stderr";
+
 #[derive(Debug, Parser)]
-#[command(name = "ki", about = "KiCad IPC CLI")]
+#[command(
+    name = "ki",
+    about = "KiCad CLI for IPC refresh and file editing",
+    after_help = ROOT_AFTER_HELP
+)]
 pub struct Args {
-    /// Override the KiCad IPC socket URI/path.
-    #[arg(long, global = true)]
-    pub socket: Option<String>,
-
-    /// Override the KiCad instance token.
-    #[arg(long, global = true)]
-    pub token: Option<String>,
-
-    /// Set the client name sent to KiCad.
-    #[arg(long, global = true)]
-    pub client_name: Option<String>,
-
-    /// IPC request timeout in milliseconds.
-    #[arg(long, global = true, default_value_t = 3_000)]
-    pub timeout_ms: u64,
-
     #[command(subcommand)]
     pub command: Command,
+}
+
+pub fn print_root_usage() {
+    println!("{ROOT_USAGE_TEXT}");
 }
 
 #[derive(Debug, Subcommand)]
 pub enum Command {
     /// Refresh a KiCad editor frame.
     Refresh(RefreshArgs),
+    /// Open or validate a KiCad project.
+    Project(ProjectCommand),
+    /// Inspect or edit a schematic.
+    Schematic(SchematicCommand),
+    /// Inspect or edit a symbol library.
+    #[command(name = "symbol-lib")]
+    SymbolLib(SymbolLibCommand),
+    /// Inspect or edit a PCB.
+    Pcb(PcbCommand),
+    /// Inspect or edit a library table.
+    #[command(name = "lib-table")]
+    LibTable(LibTableCommand),
 }
 
 #[derive(Debug, clap::Args)]
 pub struct RefreshArgs {
+    /// Override the KiCad IPC socket URI/path.
+    #[arg(long)]
+    pub socket: Option<String>,
+
+    /// Override the KiCad instance token.
+    #[arg(long)]
+    pub token: Option<String>,
+
+    /// Set the client name sent to KiCad.
+    #[arg(long)]
+    pub client_name: Option<String>,
+
+    /// IPC request timeout in milliseconds.
+    #[arg(long, default_value_t = 3_000)]
+    pub timeout_ms: u64,
+
     /// Frame/editor to refresh.
     #[arg(long, value_enum, default_value_t = FrameArg::Schematic)]
     pub frame: FrameArg,
@@ -85,6 +197,434 @@ impl FrameArg {
     }
 }
 
+#[derive(Debug, Clone, ClapArgs)]
+pub struct OutputArgs {
+    #[arg(long)]
+    pub json: bool,
+
+    #[arg(long)]
+    pub diagnostics: bool,
+}
+
+#[derive(Debug, Subcommand)]
+pub enum ProjectAction {
+    /// Open a KiCad project and summarize its contents.
+    Open {
+        path: String,
+        #[command(flatten)]
+        output: OutputArgs,
+    },
+    /// Validate a KiCad project against its library tables.
+    Validate {
+        path: String,
+        #[command(flatten)]
+        output: OutputArgs,
+    },
+}
+
+#[derive(Debug, ClapArgs)]
+#[command(about = "Open or validate a KiCad project", after_long_help = PROJECT_AFTER_LONG_HELP)]
+pub struct ProjectCommand {
+    #[command(subcommand)]
+    pub action: ProjectAction,
+}
+
+#[derive(Debug, Subcommand)]
+pub enum SchematicAction {
+    /// Inspect a schematic.
+    Inspect {
+        path: String,
+        #[command(flatten)]
+        output: OutputArgs,
+    },
+    /// Set a component property in a schematic.
+    SetProperty {
+        path: String,
+        reference: String,
+        key: String,
+        value: String,
+        #[command(flatten)]
+        output: OutputArgs,
+    },
+    /// Remove a component property in a schematic.
+    RemoveProperty {
+        path: String,
+        reference: String,
+        key: String,
+        #[command(flatten)]
+        output: OutputArgs,
+    },
+    /// Add a symbol instance to a schematic.
+    AddSymbol {
+        path: String,
+        lib_id: String,
+        reference: String,
+        value: String,
+        x: String,
+        y: String,
+        #[command(flatten)]
+        output: OutputArgs,
+    },
+    /// Remove a symbol instance from a schematic.
+    RemoveSymbol {
+        path: String,
+        reference: String,
+        #[command(flatten)]
+        output: OutputArgs,
+    },
+    #[command(alias = "set-lib-id")]
+    /// Change the library symbol used by a schematic reference.
+    Rename {
+        path: String,
+        reference: String,
+        new_lib_id: String,
+        #[command(flatten)]
+        output: OutputArgs,
+    },
+    /// Add a wire segment.
+    AddWire {
+        path: String,
+        x1: String,
+        y1: String,
+        x2: String,
+        y2: String,
+        #[command(flatten)]
+        output: OutputArgs,
+    },
+    /// Remove a wire segment.
+    RemoveWire {
+        path: String,
+        x1: String,
+        y1: String,
+        x2: String,
+        y2: String,
+        #[command(flatten)]
+        output: OutputArgs,
+    },
+    /// Add a local label.
+    AddLabel {
+        path: String,
+        text: String,
+        x: String,
+        y: String,
+        angle: String,
+        #[command(flatten)]
+        output: OutputArgs,
+    },
+    /// Add a global label.
+    AddGlobalLabel {
+        path: String,
+        text: String,
+        shape: String,
+        x: String,
+        y: String,
+        angle: String,
+        #[command(flatten)]
+        output: OutputArgs,
+    },
+    /// Add a junction marker.
+    AddJunction {
+        path: String,
+        x: String,
+        y: String,
+        #[command(flatten)]
+        output: OutputArgs,
+    },
+    /// Add a no-connect marker.
+    AddNoConnect {
+        path: String,
+        x: String,
+        y: String,
+        #[command(flatten)]
+        output: OutputArgs,
+    },
+    /// Fork a schematic symbol into a project library.
+    ForkSymbol {
+        path: String,
+        reference: String,
+        library_name: String,
+        target_symbol_name: String,
+        #[arg(long = "override")]
+        overwrite: bool,
+        #[command(flatten)]
+        output: OutputArgs,
+    },
+    /// Push a schematic symbol into a project library.
+    PushToLib {
+        path: String,
+        reference: String,
+        library_name: String,
+        #[command(flatten)]
+        output: OutputArgs,
+    },
+    /// Replace a schematic symbol from a library symbol.
+    ReplaceFromLib {
+        path: String,
+        reference: String,
+        library_name: String,
+        symbol_name: String,
+        #[arg(long)]
+        override_value: bool,
+        #[command(flatten)]
+        output: OutputArgs,
+    },
+    /// Update one or more embedded schematic symbols from a library.
+    UpdateFromLib {
+        path: String,
+        library_name: String,
+        reference: Option<String>,
+        #[arg(long, conflicts_with = "reference")]
+        all: bool,
+        #[arg(long)]
+        override_value: bool,
+        #[command(flatten)]
+        output: OutputArgs,
+    },
+    /// Query schematic components or nets.
+    Query(SchematicQueryCommand),
+    /// Check a schematic against a JSON intent file.
+    CheckIntent {
+        path: String,
+        #[arg(long)]
+        intent: String,
+        #[command(flatten)]
+        output: OutputArgs,
+    },
+}
+
+#[derive(Debug, ClapArgs)]
+#[command(
+    about = "Inspect or edit a schematic",
+    after_long_help = SCHEMATIC_AFTER_LONG_HELP
+)]
+pub struct SchematicCommand {
+    #[command(subcommand)]
+    pub action: SchematicAction,
+}
+
+#[derive(Debug, Subcommand)]
+pub enum SchematicQueryAction {
+    /// Query a component by reference.
+    Component {
+        path: String,
+        reference: String,
+        #[command(flatten)]
+        output: OutputArgs,
+    },
+    /// Query a named net.
+    Net {
+        path: String,
+        net_name: String,
+        #[arg(long)]
+        hierarchical: bool,
+        #[command(flatten)]
+        output: OutputArgs,
+    },
+    /// Count unconnected net segments.
+    Unconnected {
+        path: String,
+        #[arg(long)]
+        hierarchical: bool,
+        #[command(flatten)]
+        output: OutputArgs,
+    },
+}
+
+#[derive(Debug, ClapArgs)]
+pub struct SchematicQueryCommand {
+    #[command(subcommand)]
+    pub action: SchematicQueryAction,
+}
+
+#[derive(Debug, Subcommand)]
+pub enum SymbolLibAction {
+    /// Inspect a symbol library or a single symbol within it.
+    Inspect {
+        path: String,
+        symbol: Option<String>,
+        #[command(flatten)]
+        output: OutputArgs,
+    },
+    /// Set a symbol property in a symbol library.
+    SetProperty {
+        path: String,
+        symbol: String,
+        key: String,
+        value: String,
+        #[command(flatten)]
+        output: OutputArgs,
+    },
+    /// Remove a symbol property from a symbol library.
+    RemoveProperty {
+        path: String,
+        symbol: String,
+        key: String,
+        #[command(flatten)]
+        output: OutputArgs,
+    },
+    /// Rename a symbol in a symbol library.
+    Rename {
+        path: String,
+        from: String,
+        to: String,
+        #[command(flatten)]
+        output: OutputArgs,
+    },
+}
+
+#[derive(Debug, ClapArgs)]
+#[command(
+    about = "Inspect or edit a symbol library",
+    after_long_help = SYMBOL_LIB_AFTER_LONG_HELP
+)]
+pub struct SymbolLibCommand {
+    #[command(subcommand)]
+    pub action: SymbolLibAction,
+}
+
+#[derive(Debug, Subcommand)]
+pub enum PcbAction {
+    /// Inspect a PCB.
+    Inspect {
+        path: String,
+        #[command(flatten)]
+        output: OutputArgs,
+    },
+    /// Query PCB objects.
+    Query(PcbQueryCommand),
+    /// Set a board property.
+    SetProperty {
+        path: String,
+        key: String,
+        value: String,
+        #[command(flatten)]
+        output: OutputArgs,
+    },
+    /// Add a PCB trace segment.
+    AddTrace {
+        path: String,
+        x1: String,
+        y1: String,
+        x2: String,
+        y2: String,
+        width: String,
+        layer: String,
+        net: String,
+        #[command(flatten)]
+        output: OutputArgs,
+    },
+    /// Remove a PCB trace segment.
+    RemoveTrace {
+        path: String,
+        x1: String,
+        y1: String,
+        x2: String,
+        y2: String,
+        #[command(flatten)]
+        output: OutputArgs,
+    },
+    /// Add a via.
+    AddVia {
+        path: String,
+        x: String,
+        y: String,
+        size: String,
+        drill: String,
+        net: String,
+        #[command(flatten)]
+        output: OutputArgs,
+    },
+    /// Add a footprint.
+    AddFootprint {
+        path: String,
+        lib_ref: String,
+        x: String,
+        y: String,
+        layer: String,
+        reference: String,
+        value: String,
+        #[command(flatten)]
+        output: OutputArgs,
+    },
+    /// Move a footprint.
+    MoveFootprint {
+        path: String,
+        reference: String,
+        x: String,
+        y: String,
+        rotation: Option<String>,
+        #[command(flatten)]
+        output: OutputArgs,
+    },
+    /// Remove a footprint.
+    RemoveFootprint {
+        path: String,
+        reference: String,
+        #[command(flatten)]
+        output: OutputArgs,
+    },
+}
+
+#[derive(Debug, ClapArgs)]
+#[command(about = "Inspect or edit a PCB", after_long_help = PCB_AFTER_LONG_HELP)]
+pub struct PcbCommand {
+    #[command(subcommand)]
+    pub action: PcbAction,
+}
+
+#[derive(Debug, Subcommand)]
+pub enum PcbQueryAction {
+    /// Query a footprint by reference.
+    Footprint {
+        path: String,
+        reference: String,
+        #[command(flatten)]
+        output: OutputArgs,
+    },
+}
+
+#[derive(Debug, ClapArgs)]
+pub struct PcbQueryCommand {
+    #[command(subcommand)]
+    pub action: PcbQueryAction,
+}
+
+#[derive(Debug, Subcommand)]
+pub enum LibTableAction {
+    /// Inspect a library table.
+    Inspect {
+        path: String,
+        #[command(flatten)]
+        output: OutputArgs,
+    },
+    /// Add a library entry.
+    Add {
+        path: String,
+        name: String,
+        uri: String,
+        #[command(flatten)]
+        output: OutputArgs,
+    },
+    /// Rename a library entry.
+    Rename {
+        path: String,
+        from: String,
+        to: String,
+        #[command(flatten)]
+        output: OutputArgs,
+    },
+}
+
+#[derive(Debug, ClapArgs)]
+#[command(
+    about = "Inspect or edit a library table",
+    after_long_help = LIB_TABLE_AFTER_LONG_HELP
+)]
+pub struct LibTableCommand {
+    #[command(subcommand)]
+    pub action: LibTableAction,
+}
+
 #[cfg(test)]
 mod tests {
     use super::*;
@@ -94,9 +634,8 @@ mod tests {
         let args = Args::try_parse_from(["ki", "refresh"]).expect("refresh args should parse");
 
         match args.command {
-            Command::Refresh(refresh) => {
-                assert_eq!(refresh.frame, FrameArg::Schematic);
-            }
+            Command::Refresh(refresh) => assert_eq!(refresh.frame, FrameArg::Schematic),
+            _ => panic!("expected refresh"),
         }
     }
 
@@ -106,9 +645,8 @@ mod tests {
             Args::try_parse_from(["ki", "refresh", "--frame", "pcb"]).expect("pcb should parse");
 
         match args.command {
-            Command::Refresh(refresh) => {
-                assert_eq!(refresh.frame, FrameArg::Pcb);
-            }
+            Command::Refresh(refresh) => assert_eq!(refresh.frame, FrameArg::Pcb),
+            _ => panic!("expected refresh"),
         }
     }
 
@@ -126,12 +664,106 @@ mod tests {
     }
 
     #[test]
-    fn parses_silent_flag() {
-        let args =
-            Args::try_parse_from(["ki", "refresh", "--silent"]).expect("silent should parse");
+    fn parses_schematic_inspect() {
+        let args = Args::try_parse_from(["ki", "schematic", "inspect", "a.kicad_sch", "--json"])
+            .expect("schematic inspect should parse");
+        assert!(matches!(
+            args.command,
+            Command::Schematic(SchematicCommand {
+                action: SchematicAction::Inspect { .. }
+            })
+        ));
+    }
 
-        match args.command {
-            Command::Refresh(refresh) => assert!(refresh.silent),
-        }
+    #[test]
+    fn parses_query_net_hierarchical() {
+        let args = Args::try_parse_from([
+            "ki",
+            "schematic",
+            "query",
+            "net",
+            "a.kicad_sch",
+            "VCC",
+            "--hierarchical",
+        ])
+        .expect("query net should parse");
+        assert!(matches!(
+            args.command,
+            Command::Schematic(SchematicCommand {
+                action: SchematicAction::Query(_)
+            })
+        ));
+    }
+
+    #[test]
+    fn parses_update_from_lib_reference() {
+        let args = Args::try_parse_from([
+            "ki",
+            "schematic",
+            "update-from-lib",
+            "a.kicad_sch",
+            "Device",
+            "R1",
+        ])
+        .expect("update-from-lib should parse");
+        assert!(matches!(
+            args.command,
+            Command::Schematic(SchematicCommand {
+                action: SchematicAction::UpdateFromLib { .. }
+            })
+        ));
+    }
+
+    #[test]
+    fn parses_update_from_lib_all() {
+        let args = Args::try_parse_from([
+            "ki",
+            "schematic",
+            "update-from-lib",
+            "a.kicad_sch",
+            "Device",
+            "--all",
+        ])
+        .expect("update-from-lib --all should parse");
+        assert!(matches!(
+            args.command,
+            Command::Schematic(SchematicCommand {
+                action: SchematicAction::UpdateFromLib { all: true, .. }
+            })
+        ));
+    }
+
+    #[test]
+    fn parses_symbol_lib_optional_symbol() {
+        let args =
+            Args::try_parse_from(["ki", "symbol-lib", "inspect", "lib.kicad_sym", "Amplifier"])
+                .expect("symbol inspect should parse");
+        assert!(matches!(
+            args.command,
+            Command::SymbolLib(SymbolLibCommand {
+                action: SymbolLibAction::Inspect { .. }
+            })
+        ));
+    }
+
+    #[test]
+    fn parses_move_footprint_rotation() {
+        let args = Args::try_parse_from([
+            "ki",
+            "pcb",
+            "move-footprint",
+            "board.kicad_pcb",
+            "U1",
+            "10",
+            "20",
+            "90",
+        ])
+        .expect("move-footprint should parse");
+        assert!(matches!(
+            args.command,
+            Command::Pcb(PcbCommand {
+                action: PcbAction::MoveFootprint { .. }
+            })
+        ));
     }
 }

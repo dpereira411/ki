@@ -1,22 +1,27 @@
 # ki
 
-An agentic-first, zero-dependency Rust CLI for direct KiCad file editing, designed to bring most KiCad functionality to the command line.
+Rust CLI for KiCad IPC refresh operations and direct KiCad file editing.
 
-## Current scope
+## Scope
 
-The first command is `refresh`, which asks KiCad to refresh a specific editor frame.
+`ki` now combines:
 
-Default target:
-- `schematic`
+- IPC refresh support via `kicad-ipc-rs`
+- file editing commands backed by the sibling `kiutils-rs` library
 
-Supported frames:
-- `schematic`
-- `pcb`
-- `project-manager`
-- `spice`
-- `symbol`
-- `footprint`
-- `drawing-sheet`
+Current top-level commands:
+
+- `ki refresh`
+- `ki project ...`
+- `ki schematic ...`
+- `ki symbol-lib ...`
+- `ki pcb ...`
+- `ki lib-table ...`
+
+## Development dependency
+
+This repo depends on the local sibling checkout at `../kiutils-rs/crates/kiutils`.
+That repo is treated as the library source of truth and is not modified by this CLI.
 
 ## Build
 
@@ -24,11 +29,53 @@ Supported frames:
 just build
 ```
 
-This tool uses the remote `kicad-ipc-rs` library pinned to a specific Git revision.
+## Examples
+
+Refresh the PCB editor through KiCad IPC:
+
+```bash
+just run refresh --frame pcb
+```
+
+Inspect a schematic as JSON:
+
+```bash
+just run schematic inspect path/to/file.kicad_sch --json
+```
+
+Add a PCB trace:
+
+```bash
+just run pcb add-trace board.kicad_pcb 10 10 20 10 0.25 F.Cu 1
+```
+
+Validate a project:
+
+```bash
+just run project validate project.kicad_pro --json
+```
+
+## Output and exit codes
+
+File-editing commands support:
+
+- `--json` for machine-readable stdout
+- `--diagnostics` for JSON diagnostics on stderr
+- `--hierarchical` on schematic net/unconnected queries
+
+File-editing exit codes:
+
+- `0` success
+- `1` validation warnings or errors found
+- `2` parse or IO error
+
+Refresh exit behavior:
+
+- `0` on success
+- `1` on KiCad IPC connection failures or API errors
+- `refresh --silent` suppresses refresh output and returns `0` even on refresh errors
 
 ## Justfile
-
-Common development commands:
 
 ```bash
 just build
@@ -37,62 +84,6 @@ just test
 just check
 just fmt
 just run refresh --frame pcb
+just run schematic inspect ../kiutils-rs/crates/kiutils_kicad/tests/fixtures/sample.kicad_sch --json
 just install
 ```
-
-`just install` builds the release binary and installs it to `/usr/local/bin/ki` by default.
-
-You can override the install location with:
-
-```bash
-INSTALL_DIR=/custom/bin just install
-INSTALL_PATH=/custom/bin/ki just install
-```
-
-## Usage
-
-Refresh the open schematic editor:
-
-```bash
-just run refresh
-```
-
-Refresh the PCB editor:
-
-```bash
-just run refresh --frame pcb
-```
-
-Suppress all output and always return success:
-
-```bash
-just run refresh --frame pcb --silent
-```
-
-Override KiCad IPC connection settings:
-
-```bash
-just run \
-  --socket <uri> \
-  --token <token> \
-  --client-name ki \
-  --timeout-ms 5000 \
-  refresh --silent
-```
-
-## Exit behavior
-
-- Exit `0` on success
-- Exit `1` on KiCad IPC connection failures or API errors
-- `refresh --silent` suppresses all refresh output and always exits `0`
-
-## Compatibility note
-
-`ki refresh` first tries `RefreshEditor` through `kicad-ipc-rs`.
-
-If KiCad returns `AS_UNHANDLED` for `RefreshEditor`, `ki` falls back to `RevertDocument` for document-backed frames.
-
-In practice:
-
-- `pcb` can fall back successfully on KiCad builds where board reload is exposed through IPC
-- non-PCB frames may still fail because KiCad IPC refresh/reload support is effectively PCB-focused as of KiCad 10

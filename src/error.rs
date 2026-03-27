@@ -94,8 +94,9 @@ mod tests {
     fn renders_non_pcb_support_hint_for_revert_document() {
         let lines = render_kicad_error(&KiCadError::ApiStatus {
             code: "AS_UNHANDLED".to_string(),
-            message: "no handler available for request of type kiapi.common.commands.RevertDocument"
-                .to_string(),
+            message:
+                "no handler available for request of type kiapi.common.commands.RevertDocument"
+                    .to_string(),
         });
 
         assert!(lines.iter().any(|line| line.contains("KiCad 10")));

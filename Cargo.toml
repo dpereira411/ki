@@ -10,3 +10,10 @@ path = "src/main.rs"
 [dependencies]
 clap = { version = "4", features = ["derive"] }
 kicad-ipc-rs = { git = "https://github.com/dpereira411/kicad-ipc-rs.git", rev = "2edb83a", features = ["blocking"] }
+kiutils-rs = { package = "kiutils-rs", path = "../kiutils-rs/crates/kiutils", features = ["serde"] }
+serde = { version = "1", features = ["derive"] }
+serde_json = "1"
+
+[dev-dependencies]
+assert_cmd = "2"
+tempfile = "3"
