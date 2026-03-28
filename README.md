@@ -12,6 +12,7 @@ Rust CLI for KiCad IPC refresh operations and direct KiCad file editing.
 Current top-level commands:
 
 - `ki refresh`
+- `ki extract ...`
 - `ki project ...`
 - `ki schematic ...`
 - `ki symbol-lib ...`
@@ -43,6 +44,12 @@ Inspect a schematic as JSON:
 just run schematic inspect path/to/file.kicad_sch --json
 ```
 
+Extract a schematic netlist/topology as JSON:
+
+```bash
+just run extract path/to/file.kicad_sch --pretty
+```
+
 Add a PCB trace:
 
 ```bash
@@ -68,6 +75,11 @@ File-editing exit codes:
 - `0` success
 - `1` validation warnings or errors found
 - `2` parse or IO error
+
+Project behavior:
+
+- `project open` is informational and still exits `0` when library-table diagnostics are present
+- `project validate` is the command that promotes diagnostics/load errors to exit `1`
 
 Refresh exit behavior:
 

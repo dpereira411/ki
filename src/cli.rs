@@ -1,11 +1,12 @@
 use clap::{Args as ClapArgs, Parser, Subcommand, ValueEnum};
 use kicad_ipc_rs::{DocumentType, EditorFrameType};
 
-const ROOT_AFTER_HELP: &str = "Examples:\n  ki refresh --frame pcb\n  ki schematic inspect board.kicad_sch --json\n  ki pcb add-trace board.kicad_pcb 10 10 20 10 0.25 F.Cu 1\n  ki project validate project.kicad_pro --json";
+const ROOT_AFTER_HELP: &str = "Examples:\n  ki refresh --frame pcb\n  ki extract board.kicad_sch --pretty\n  ki schematic inspect board.kicad_sch --json\n  ki pcb add-trace board.kicad_pcb 10 10 20 10 0.25 F.Cu 1\n  ki project validate project.kicad_pro --json";
 const ROOT_USAGE_TEXT: &str = "ki - KiCad CLI for IPC refresh and file editing
 
 USAGE:
   ki refresh [--socket <SOCKET>] [--token <TOKEN>] [--client-name <CLIENT_NAME>] [--timeout-ms <TIMEOUT_MS>] [--frame <FRAME>] [--silent]
+  ki extract [--pretty] [--output <FILE>] [--include-nets] [--include-diagnostics] [--sym-lib <FILE>] <INPUT>
   ki project <action> [args] [flags]
   ki schematic <action> [args] [flags]
   ki symbol-lib <action> [args] [flags]
@@ -15,6 +16,9 @@ USAGE:
 COMMANDS:
   refresh
     Refresh a KiCad editor frame through IPC.
+
+  extract
+    Extract netlist/topology JSON from <path.kicad_sch>
 
   project
     open <path.kicad_pro>
@@ -70,6 +74,13 @@ FLAGS:
   --diagnostics     Emit diagnostics as JSON array to stderr
   --hierarchical    Load all sub-sheets and merge nets via global labels
 
+EXTRACT FLAGS:
+  --pretty                    Pretty-print JSON output
+  --output <FILE>             Write output JSON to FILE
+  --include-nets              Include top-level net connectivity in output
+  --include-diagnostics       Include extract diagnostics in output
+  --sym-lib <FILE>            Enrich lib_parts from a .kicad_sym file (repeatable)
+
 REFRESH FLAGS:
   --socket <SOCKET>            Override the KiCad IPC socket URI/path
   --token <TOKEN>              Override the KiCad instance token
@@ -92,6 +103,7 @@ const PROJECT_AFTER_LONG_HELP: &str = "Actions:\n  open <path.kicad_pro>\n  vali
 const SYMBOL_LIB_AFTER_LONG_HELP: &str = "Actions:\n  inspect <path.kicad_sym> [symbol]\n  set-property <path.kicad_sym> <symbol> <key> <value>\n  remove-property <path.kicad_sym> <symbol> <key>\n  rename <path.kicad_sym> <from> <to>\n\nFlags:\n  --json            Machine-readable JSON to stdout\n  --diagnostics     Emit diagnostics as JSON array to stderr";
 
 const LIB_TABLE_AFTER_LONG_HELP: &str = "Actions:\n  inspect <path>\n  add <path> <name> <uri>\n  rename <path> <from> <to>\n\nFlags:\n  --json            Machine-readable JSON to stdout\n  --diagnostics     Emit diagnostics as JSON array to stderr";
+const EXTRACT_AFTER_LONG_HELP: &str = "Arguments:\n  <INPUT>                      .kicad_sch schematic file\n\nFlags:\n  -p, --pretty                 Pretty-print JSON output\n  -o, --output <FILE>          Write output JSON to FILE (default: stdout)\n      --include-nets           Include top-level net connectivity in output\n      --include-diagnostics    Include extract diagnostics in output\n      --sym-lib <FILE>         Path to a .kicad_sym file for pin/lib-part enrichment (repeatable)\n      --verbose                Emit verbose enrichment logs to stderr";
 
 #[derive(Debug, Parser)]
 #[command(
@@ -112,6 +124,8 @@ pub fn print_root_usage() {
 pub enum Command {
     /// Refresh a KiCad editor frame.
     Refresh(RefreshArgs),
+    /// Extract netlist/topology JSON from a schematic.
+    Extract(ExtractArgs),
     /// Open or validate a KiCad project.
     Project(ProjectCommand),
     /// Inspect or edit a schematic.
@@ -124,6 +138,40 @@ pub enum Command {
     /// Inspect or edit a library table.
     #[command(name = "lib-table")]
     LibTable(LibTableCommand),
+}
+
+#[derive(Debug, Clone, ClapArgs)]
+#[command(
+    about = "Extract netlist/topology JSON from a schematic",
+    after_long_help = EXTRACT_AFTER_LONG_HELP
+)]
+pub struct ExtractArgs {
+    /// .kicad_sch schematic file.
+    pub input: String,
+
+    /// Pretty-print JSON output.
+    #[arg(short, long)]
+    pub pretty: bool,
+
+    /// Write output JSON to FILE (default: stdout).
+    #[arg(short, long)]
+    pub output: Option<String>,
+
+    /// Include top-level net connectivity in output.
+    #[arg(long)]
+    pub include_nets: bool,
+
+    /// Include extract diagnostics in output.
+    #[arg(long)]
+    pub include_diagnostics: bool,
+
+    /// Path to a .kicad_sym file for pin/lib-part enrichment (repeatable).
+    #[arg(long = "sym-lib")]
+    pub sym_lib: Vec<String>,
+
+    /// Emit verbose enrichment logs to stderr.
+    #[arg(long)]
+    pub verbose: bool,
 }
 
 #[derive(Debug, clap::Args)]

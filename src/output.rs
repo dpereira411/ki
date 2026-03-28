@@ -1,4 +1,6 @@
+use crate::error::KiError;
 use kiutils_rs::Diagnostic;
+use serde_json::{json, Value};
 
 pub const SCHEMA_VERSION: u32 = 1;
 
@@ -29,32 +31,32 @@ impl Flags {
     }
 }
 
-pub fn print_json<T: serde::Serialize>(value: &T) {
-    match serde_json::to_string_pretty(value) {
-        Ok(s) => println!("{s}"),
-        Err(e) => {
-            eprintln!("error: JSON serialization failed: {e}");
-            std::process::exit(2);
-        }
-    }
+pub fn print_json<T: serde::Serialize>(value: &T) -> Result<(), KiError> {
+    let s = serde_json::to_string_pretty(value)?;
+    println!("{s}");
+    Ok(())
 }
 
 pub fn emit_diagnostics_stderr(diagnostics: &[Diagnostic]) {
-    let arr: Vec<serde_json::Value> = diagnostics
+    let arr = diagnostics_json(diagnostics);
+    match serde_json::to_string_pretty(&arr) {
+        Ok(s) => eprintln!("{s}"),
+        Err(e) => eprintln!("warning: could not serialize diagnostics: {e}"),
+    }
+}
+
+pub fn diagnostics_json(diagnostics: &[Diagnostic]) -> Vec<Value> {
+    diagnostics
         .iter()
         .map(|d| {
-            serde_json::json!({
+            json!({
                 "severity": format!("{:?}", d.severity).to_lowercase(),
                 "code": d.code,
                 "message": d.message,
                 "hint": d.hint,
             })
         })
-        .collect();
-    match serde_json::to_string_pretty(&arr) {
-        Ok(s) => eprintln!("{s}"),
-        Err(e) => eprintln!("warning: could not serialize diagnostics: {e}"),
-    }
+        .collect()
 }
 
 pub fn print_diagnostics_text(diagnostics: &[Diagnostic]) {
@@ -77,13 +79,4 @@ pub fn handle_diagnostics(diagnostics: &[Diagnostic], flags: &Flags) -> bool {
         print_diagnostics_text(diagnostics);
     }
     true
-}
-
-pub fn fatal_error(msg: impl std::fmt::Display) -> ! {
-    eprintln!("error: {msg}");
-    std::process::exit(2);
-}
-
-pub fn exit_validation() -> ! {
-    std::process::exit(1);
 }

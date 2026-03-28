@@ -1,6 +1,56 @@
 use kicad_ipc_rs::KiCadError;
+use std::fmt;
 
-pub fn render_kicad_error(err: &KiCadError) -> Vec<String> {
+#[derive(Debug)]
+pub enum KiError {
+    KiCad(KiCadError),
+    Validation,
+    Message(String),
+    Io(std::io::Error),
+    Json(serde_json::Error),
+}
+
+impl From<KiCadError> for KiError {
+    fn from(err: KiCadError) -> Self {
+        Self::KiCad(err)
+    }
+}
+
+impl From<std::io::Error> for KiError {
+    fn from(err: std::io::Error) -> Self {
+        Self::Io(err)
+    }
+}
+
+impl From<serde_json::Error> for KiError {
+    fn from(err: serde_json::Error) -> Self {
+        Self::Json(err)
+    }
+}
+
+impl fmt::Display for KiError {
+    fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result {
+        match self {
+            Self::KiCad(err) => write!(f, "{err}"),
+            Self::Validation => write!(f, "validation failed"),
+            Self::Message(msg) => write!(f, "{msg}"),
+            Self::Io(err) => write!(f, "io error: {err}"),
+            Self::Json(err) => write!(f, "json error: {err}"),
+        }
+    }
+}
+
+pub fn render_error(err: &KiError) -> Vec<String> {
+    match err {
+        KiError::KiCad(kicad_err) => render_kicad_error(kicad_err),
+        KiError::Validation => vec!["error: validation failed".to_string()],
+        KiError::Message(msg) => vec![format!("error: {msg}")],
+        KiError::Io(err) => vec![format!("error: io error: {err}")],
+        KiError::Json(err) => vec![format!("error: json error: {err}")],
+    }
+}
+
+fn render_kicad_error(err: &KiCadError) -> Vec<String> {
     let mut lines = vec![format!("error: {err}")];
 
     match err {
