@@ -1,0 +1,203 @@
+{
+    "$schema": "https://schemas.kicad.org/erc.v1.json",
+    "coordinate_units": "mm",
+    "date": "2026-03-29T23:07:01",
+    "ignored_checks": [
+        {
+            "description": "Global label only appears once in the schematic",
+            "key": "single_global_label"
+        },
+        {
+            "description": "Four connection points are joined together",
+            "key": "four_way_junction"
+        },
+        {
+            "description": "SPICE model issue",
+            "key": "simulation_model_issue"
+        },
+        {
+            "description": "Assigned footprint doesn't match footprint filters",
+            "key": "footprint_filter"
+        }
+    ],
+    "included_severities": [
+        "error",
+        "warning"
+    ],
+    "kicad_version": "10.0.0",
+    "sheets": [
+        {
+            "path": "/",
+            "uuid_path": "/353d7b93-4531-47b7-9ce6-9e89ee5284eb",
+            "violations": [
+                {
+                    "description": "Unconnected wire endpoint",
+                    "items": [
+                        {
+                            "description": "Horizontal Wire, length 0.2286 mm",
+                            "pos": {
+                                "x": 1.4732,
+                                "y": 0.6096
+                            },
+                            "uuid": "df6fcebd-4cb8-4e5b-ac44-3bea88bf18ad"
+                        }
+                    ],
+                    "severity": "warning",
+                    "type": "unconnected_wire_endpoint"
+                },
+                {
+                    "description": "Label connected to only one pin",
+                    "items": [
+                        {
+                            "description": "Label 'aaa'",
+                            "pos": {
+                                "x": 1.4986,
+                                "y": 0.6096
+                            },
+                            "uuid": "6b84cfd8-b183-40f5-bace-bcd99786c9bb"
+                        }
+                    ],
+                    "severity": "warning",
+                    "type": "isolated_pin_label"
+                },
+                {
+                    "description": "Label connected to only one pin",
+                    "items": [
+                        {
+                            "description": "Label 'aaa'",
+                            "pos": {
+                                "x": 1.778,
+                                "y": 0.4699
+                            },
+                            "uuid": "f240868b-7e8f-4366-90d1-ea069f0af40d"
+                        }
+                    ],
+                    "severity": "warning",
+                    "type": "isolated_pin_label"
+                },
+                {
+                    "description": "Label connected to only one pin",
+                    "items": [
+                        {
+                            "description": "Label 'bbb'",
+                            "pos": {
+                                "x": 1.778,
+                                "y": 0.508
+                            },
+                            "uuid": "a2d8b1bb-2ee8-4775-a1e6-7207766ac256"
+                        }
+                    ],
+                    "severity": "warning",
+                    "type": "isolated_pin_label"
+                },
+                {
+                    "description": "Label connected to only one pin",
+                    "items": [
+                        {
+                            "description": "Label 'bbb'",
+                            "pos": {
+                                "x": 1.8161,
+                                "y": 0.6096
+                            },
+                            "uuid": "59fcf13d-1cff-44c5-9565-ea95800d4f0e"
+                        }
+                    ],
+                    "severity": "warning",
+                    "type": "isolated_pin_label"
+                },
+                {
+                    "description": "Label connected to only one pin",
+                    "items": [
+                        {
+                            "description": "Global Label 'aaa'",
+                            "pos": {
+                                "x": 1.905,
+                                "y": 0.4699
+                            },
+                            "uuid": "4412f3be-70f3-4d40-ab97-7340e9580045"
+                        }
+                    ],
+                    "severity": "warning",
+                    "type": "isolated_pin_label"
+                },
+                {
+                    "description": "Local and global labels have same name",
+                    "items": [
+                        {
+                            "description": "Global Label 'aaa'",
+                            "pos": {
+                                "x": 1.905,
+                                "y": 0.4699
+                            },
+                            "uuid": "4412f3be-70f3-4d40-ab97-7340e9580045"
+                        },
+                        {
+                            "description": "Label 'aaa'",
+                            "pos": {
+                                "x": 1.4986,
+                                "y": 0.6096
+                            },
+                            "uuid": "6b84cfd8-b183-40f5-bace-bcd99786c9bb"
+                        }
+                    ],
+                    "severity": "warning",
+                    "type": "same_local_global_label"
+                },
+                {
+                    "description": "Label connected to only one pin",
+                    "items": [
+                        {
+                            "description": "Global Label 'bbb'",
+                            "pos": {
+                                "x": 1.905,
+                                "y": 0.508
+                            },
+                            "uuid": "44eeac8c-1611-4008-95c7-ca0df9ea09c0"
+                        }
+                    ],
+                    "severity": "warning",
+                    "type": "isolated_pin_label"
+                },
+                {
+                    "description": "Local and global labels have same name",
+                    "items": [
+                        {
+                            "description": "Global Label 'bbb'",
+                            "pos": {
+                                "x": 1.905,
+                                "y": 0.508
+                            },
+                            "uuid": "44eeac8c-1611-4008-95c7-ca0df9ea09c0"
+                        },
+                        {
+                            "description": "Label 'bbb'",
+                            "pos": {
+                                "x": 1.8161,
+                                "y": 0.6096
+                            },
+                            "uuid": "59fcf13d-1cff-44c5-9565-ea95800d4f0e"
+                        }
+                    ],
+                    "severity": "warning",
+                    "type": "same_local_global_label"
+                },
+                {
+                    "description": "Unconnected wire endpoint",
+                    "items": [
+                        {
+                            "description": "Horizontal Wire, length 0.1270 mm",
+                            "pos": {
+                                "x": 1.778,
+                                "y": 0.6096
+                            },
+                            "uuid": "21569090-6672-4c92-bf82-4cf9ba0308f1"
+                        }
+                    ],
+                    "severity": "warning",
+                    "type": "unconnected_wire_endpoint"
+                }
+            ]
+        }
+    ],
+    "source": "untitled.kicad_sch"
+}

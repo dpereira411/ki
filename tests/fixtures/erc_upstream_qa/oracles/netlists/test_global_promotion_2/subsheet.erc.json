@@ -1,0 +1,112 @@
+{
+    "$schema": "https://schemas.kicad.org/erc.v1.json",
+    "coordinate_units": "mm",
+    "date": "2026-03-29T23:07:18",
+    "ignored_checks": [
+        {
+            "description": "Global label only appears once in the schematic",
+            "key": "single_global_label"
+        },
+        {
+            "description": "Four connection points are joined together",
+            "key": "four_way_junction"
+        },
+        {
+            "description": "SPICE model issue",
+            "key": "simulation_model_issue"
+        },
+        {
+            "description": "Assigned footprint doesn't match footprint filters",
+            "key": "footprint_filter"
+        }
+    ],
+    "included_severities": [
+        "error",
+        "warning"
+    ],
+    "kicad_version": "10.0.0",
+    "sheets": [
+        {
+            "path": "/",
+            "uuid_path": "/373cab61-0c14-4d0b-a573-3a8007ce37e5",
+            "violations": [
+                {
+                    "description": "Hierarchical label 'LIVE' in root sheet cannot be connected to non-existent parent sheet",
+                    "items": [
+                        {
+                            "description": "Hierarchical Label 'LIVE'",
+                            "pos": {
+                                "x": 0.9652,
+                                "y": 0.6096
+                            },
+                            "uuid": "410731e4-8393-4d80-b25e-2fd80d4e3ded"
+                        }
+                    ],
+                    "severity": "error",
+                    "type": "pin_not_connected"
+                },
+                {
+                    "description": "Hierarchical label 'NEUTRAL' in root sheet cannot be connected to non-existent parent sheet",
+                    "items": [
+                        {
+                            "description": "Hierarchical Label 'NEUTRAL'",
+                            "pos": {
+                                "x": 0.9652,
+                                "y": 0.7112
+                            },
+                            "uuid": "ac038a56-40c3-419b-baab-107cad22f3af"
+                        }
+                    ],
+                    "severity": "error",
+                    "type": "pin_not_connected"
+                },
+                {
+                    "description": "Hierarchical label 'LIVE_1' in root sheet cannot be connected to non-existent parent sheet",
+                    "items": [
+                        {
+                            "description": "Hierarchical Label 'LIVE_1'",
+                            "pos": {
+                                "x": 0.9652,
+                                "y": 0.762
+                            },
+                            "uuid": "3c8517da-1024-4d69-9027-12c4cd845546"
+                        }
+                    ],
+                    "severity": "error",
+                    "type": "pin_not_connected"
+                },
+                {
+                    "description": "Label connected to only one pin",
+                    "items": [
+                        {
+                            "description": "Hierarchical Label 'NEUTRAL'",
+                            "pos": {
+                                "x": 0.9652,
+                                "y": 0.7112
+                            },
+                            "uuid": "ac038a56-40c3-419b-baab-107cad22f3af"
+                        }
+                    ],
+                    "severity": "warning",
+                    "type": "isolated_pin_label"
+                },
+                {
+                    "description": "Label connected to only one pin",
+                    "items": [
+                        {
+                            "description": "Hierarchical Label 'LIVE_1'",
+                            "pos": {
+                                "x": 0.9652,
+                                "y": 0.762
+                            },
+                            "uuid": "3c8517da-1024-4d69-9027-12c4cd845546"
+                        }
+                    ],
+                    "severity": "warning",
+                    "type": "isolated_pin_label"
+                }
+            ]
+        }
+    ],
+    "source": "subsheet.kicad_sch"
+}

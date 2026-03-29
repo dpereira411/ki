@@ -1,0 +1,8 @@
+(kicad_sch
+  (version 20260101)
+  (generator "eeschema")
+  (uuid "root-uuid")
+  (paper "A4")
+  (no_connect (at 10 10) (uuid (x)))
+  (sheet_instances
+    (path "/" (page "1"))))

@@ -1,0 +1,7 @@
+(kicad_sch
+  (version 20260101)
+  (generator "eeschema")
+  (uuid "invalid-page-type-root")
+  (paper "NOT_A_PAGE_SIZE")
+  (sheet_instances
+    (path "/" (page "1"))))

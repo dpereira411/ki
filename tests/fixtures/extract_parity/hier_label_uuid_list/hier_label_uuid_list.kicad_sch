@@ -1,0 +1,12 @@
+(kicad_sch
+  (version 20260101)
+  (generator "eeschema")
+  (uuid "root-uuid")
+  (paper "A4")
+  (hierarchical_label "NET"
+    (shape input)
+    (at 10 10 0)
+    (uuid (bad))
+    (effects (font (size 1.27 1.27))))
+  (sheet_instances
+    (path "/" (page "1"))))

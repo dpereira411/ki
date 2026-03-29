@@ -1,0 +1,97 @@
+{
+    "$schema": "https://schemas.kicad.org/erc.v1.json",
+    "coordinate_units": "mm",
+    "date": "2026-03-29T23:05:56",
+    "ignored_checks": [
+        {
+            "description": "Global label only appears once in the schematic",
+            "key": "single_global_label"
+        },
+        {
+            "description": "Four connection points are joined together",
+            "key": "four_way_junction"
+        },
+        {
+            "description": "SPICE model issue",
+            "key": "simulation_model_issue"
+        },
+        {
+            "description": "Assigned footprint doesn't match footprint filters",
+            "key": "footprint_filter"
+        }
+    ],
+    "included_severities": [
+        "error",
+        "warning"
+    ],
+    "kicad_version": "10.0.0",
+    "sheets": [
+        {
+            "path": "/",
+            "uuid_path": "/a0430ec0-779e-485a-815a-9819eac4b79a",
+            "violations": [
+                {
+                    "description": "Label not connected",
+                    "items": [
+                        {
+                            "description": "Hierarchical Label 'Pin1'",
+                            "pos": {
+                                "x": 1.397,
+                                "y": 1.0668
+                            },
+                            "uuid": "11ef11a3-f753-4581-8ee8-4bf6eda9df04"
+                        }
+                    ],
+                    "severity": "error",
+                    "type": "label_dangling"
+                },
+                {
+                    "description": "Hierarchical label 'Pin1' in root sheet cannot be connected to non-existent parent sheet",
+                    "items": [
+                        {
+                            "description": "Hierarchical Label 'Pin1'",
+                            "pos": {
+                                "x": 1.397,
+                                "y": 1.0668
+                            },
+                            "uuid": "11ef11a3-f753-4581-8ee8-4bf6eda9df04"
+                        }
+                    ],
+                    "severity": "error",
+                    "type": "pin_not_connected"
+                },
+                {
+                    "description": "Label not connected",
+                    "items": [
+                        {
+                            "description": "Hierarchical Label 'Pin2'",
+                            "pos": {
+                                "x": 1.397,
+                                "y": 1.0922
+                            },
+                            "uuid": "4502b5af-3cef-4777-b471-e303174db36e"
+                        }
+                    ],
+                    "severity": "error",
+                    "type": "label_dangling"
+                },
+                {
+                    "description": "Hierarchical label 'Pin2' in root sheet cannot be connected to non-existent parent sheet",
+                    "items": [
+                        {
+                            "description": "Hierarchical Label 'Pin2'",
+                            "pos": {
+                                "x": 1.397,
+                                "y": 1.0922
+                            },
+                            "uuid": "4502b5af-3cef-4777-b471-e303174db36e"
+                        }
+                    ],
+                    "severity": "error",
+                    "type": "pin_not_connected"
+                }
+            ]
+        }
+    ],
+    "source": "sheet2.kicad_sch"
+}

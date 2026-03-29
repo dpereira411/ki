@@ -1,0 +1,157 @@
+{
+    "$schema": "https://schemas.kicad.org/erc.v1.json",
+    "coordinate_units": "mm",
+    "date": "2026-03-29T23:04:55",
+    "ignored_checks": [
+        {
+            "description": "Global label only appears once in the schematic",
+            "key": "single_global_label"
+        },
+        {
+            "description": "Four connection points are joined together",
+            "key": "four_way_junction"
+        },
+        {
+            "description": "SPICE model issue",
+            "key": "simulation_model_issue"
+        },
+        {
+            "description": "Assigned footprint doesn't match footprint filters",
+            "key": "footprint_filter"
+        }
+    ],
+    "included_severities": [
+        "error",
+        "warning"
+    ],
+    "kicad_version": "10.0.0",
+    "sheets": [
+        {
+            "path": "/",
+            "uuid_path": "/0d9df0c3-3213-4fa9-aab7-5d0bde758ba4",
+            "violations": [
+                {
+                    "description": "Input Power pin not driven by any Output Power pins",
+                    "items": [
+                        {
+                            "description": "Symbol U1 Pin 5 [IN, Power input, Line]",
+                            "pos": {
+                                "x": 1.1049,
+                                "y": 0.8128
+                            },
+                            "uuid": "45161e74-209a-44f0-883a-8772637eaa18"
+                        }
+                    ],
+                    "severity": "error",
+                    "type": "power_pin_not_driven"
+                },
+                {
+                    "description": "Pin not connected",
+                    "items": [
+                        {
+                            "description": "Symbol U1 Pin 4 [~{EN}, Input, Line]",
+                            "pos": {
+                                "x": 1.1049,
+                                "y": 0.8636
+                            },
+                            "uuid": "20ae559a-da06-4c00-8ab0-a096170650fa"
+                        }
+                    ],
+                    "severity": "error",
+                    "type": "pin_not_connected"
+                },
+                {
+                    "description": "Input pin not driven by any Output pins",
+                    "items": [
+                        {
+                            "description": "Symbol U1 Pin 4 [~{EN}, Input, Line]",
+                            "pos": {
+                                "x": 1.1049,
+                                "y": 0.8636
+                            },
+                            "uuid": "20ae559a-da06-4c00-8ab0-a096170650fa"
+                        }
+                    ],
+                    "severity": "error",
+                    "type": "pin_not_driven"
+                },
+                {
+                    "description": "Pin not connected",
+                    "items": [
+                        {
+                            "description": "Symbol U1 Pin 2 [GND, Power input, Line]",
+                            "pos": {
+                                "x": 1.2065,
+                                "y": 0.9144
+                            },
+                            "uuid": "4cf15f9e-c6cf-4e57-b1f2-9278d309f7fa"
+                        }
+                    ],
+                    "severity": "error",
+                    "type": "pin_not_connected"
+                },
+                {
+                    "description": "Input Power pin not driven by any Output Power pins",
+                    "items": [
+                        {
+                            "description": "Symbol U1 Pin 2 [GND, Power input, Line]",
+                            "pos": {
+                                "x": 1.2065,
+                                "y": 0.9144
+                            },
+                            "uuid": "4cf15f9e-c6cf-4e57-b1f2-9278d309f7fa"
+                        }
+                    ],
+                    "severity": "error",
+                    "type": "power_pin_not_driven"
+                },
+                {
+                    "description": "Pin not connected",
+                    "items": [
+                        {
+                            "description": "Symbol U1 Pin 1 [OUT, Power output, Line]",
+                            "pos": {
+                                "x": 1.3081,
+                                "y": 0.8128
+                            },
+                            "uuid": "8da52586-4dd8-4be2-a9d0-d1dbf5f066a6"
+                        }
+                    ],
+                    "severity": "error",
+                    "type": "pin_not_connected"
+                },
+                {
+                    "description": "Pin not connected",
+                    "items": [
+                        {
+                            "description": "Symbol U1 Pin 3 [~{FLG}, Open collector, Line]",
+                            "pos": {
+                                "x": 1.3081,
+                                "y": 0.8636
+                            },
+                            "uuid": "18d8174e-8ab1-40d9-a248-237a8d20c852"
+                        }
+                    ],
+                    "severity": "error",
+                    "type": "pin_not_connected"
+                },
+                {
+                    "description": "Label connected to only one pin",
+                    "items": [
+                        {
+                            "description": "Label 'input_label'",
+                            "pos": {
+                                "x": 0.8509,
+                                "y": 0.8128
+                            },
+                            "uuid": "7c5bf4a6-f820-4e5e-b50c-798993d688fe"
+                        }
+                    ],
+                    "severity": "warning",
+                    "type": "isolated_pin_label"
+                }
+            ]
+        }
+    ],
+    "source": "issue10430.kicad_sch"
+}

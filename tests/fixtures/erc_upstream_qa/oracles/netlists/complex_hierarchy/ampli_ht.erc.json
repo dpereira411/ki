@@ -1,0 +1,1107 @@
+{
+    "$schema": "https://schemas.kicad.org/erc.v1.json",
+    "coordinate_units": "mm",
+    "date": "2026-03-29T23:06:31",
+    "ignored_checks": [
+        {
+            "description": "Global label only appears once in the schematic",
+            "key": "single_global_label"
+        },
+        {
+            "description": "Four connection points are joined together",
+            "key": "four_way_junction"
+        },
+        {
+            "description": "SPICE model issue",
+            "key": "simulation_model_issue"
+        },
+        {
+            "description": "Assigned footprint doesn't match footprint filters",
+            "key": "footprint_filter"
+        }
+    ],
+    "included_severities": [
+        "error",
+        "warning"
+    ],
+    "kicad_version": "10.0.0",
+    "sheets": [
+        {
+            "path": "/",
+            "uuid_path": "/56f428a7-a7b2-4985-bf0c-cb7b10cb375a",
+            "violations": [
+                {
+                    "description": "Wires not connected to anything",
+                    "items": [
+                        {
+                            "description": "Horizontal Wire, length 0.0635 mm",
+                            "pos": {
+                                "x": 0.6604,
+                                "y": 0.508
+                            },
+                            "uuid": "effae58d-714a-4b05-b33e-723ee71f9659"
+                        },
+                        {
+                            "description": "Horizontal Wire, length 0.0635 mm",
+                            "pos": {
+                                "x": 0.7239,
+                                "y": 0.508
+                            },
+                            "uuid": "35fbbc7d-eefa-4566-bd83-3ebada361cb6"
+                        }
+                    ],
+                    "severity": "error",
+                    "type": "wire_dangling"
+                },
+                {
+                    "description": "Wires not connected to anything",
+                    "items": [
+                        {
+                            "description": "Horizontal Wire, length 0.0508 mm",
+                            "pos": {
+                                "x": 0.8636,
+                                "y": 0.508
+                            },
+                            "uuid": "f63bf7a2-a658-4c14-9c59-b609018e9b2f"
+                        },
+                        {
+                            "description": "Vertical Wire, length 0.1016 mm",
+                            "pos": {
+                                "x": 0.9144,
+                                "y": 0.4064
+                            },
+                            "uuid": "06ec0109-2cb6-4959-ba25-8389e61e6c68"
+                        }
+                    ],
+                    "severity": "error",
+                    "type": "wire_dangling"
+                },
+                {
+                    "description": "Wires not connected to anything",
+                    "items": [
+                        {
+                            "description": "Vertical Wire, length 0.0508 mm",
+                            "pos": {
+                                "x": 1.016,
+                                "y": 0.5588
+                            },
+                            "uuid": "ed5e1c1b-f889-4461-87c4-32fad1d057e8"
+                        },
+                        {
+                            "description": "Horizontal Wire, length 0.0635 mm",
+                            "pos": {
+                                "x": 1.1049,
+                                "y": 0.508
+                            },
+                            "uuid": "19f28e82-3fc9-4df7-880c-fe5dcac34dec"
+                        }
+                    ],
+                    "severity": "error",
+                    "type": "wire_dangling"
+                },
+                {
+                    "description": "Input Power pin not driven by any Output Power pins",
+                    "items": [
+                        {
+                            "description": "Symbol U4 Pin 8 [V+, Power input, Line]",
+                            "pos": {
+                                "x": 1.2065,
+                                "y": 0.508
+                            },
+                            "uuid": "aed76bde-f80c-4e55-a22c-a5dc8d2012dc"
+                        }
+                    ],
+                    "severity": "error",
+                    "type": "power_pin_not_driven"
+                },
+                {
+                    "description": "Input Power pin not driven by any Output Power pins",
+                    "items": [
+                        {
+                            "description": "Symbol U4 Pin 4 [V-, Power input, Line]",
+                            "pos": {
+                                "x": 1.2065,
+                                "y": 0.7112
+                            },
+                            "uuid": "7f921e5f-5c24-4310-9769-11be9d6dd13e"
+                        }
+                    ],
+                    "severity": "error",
+                    "type": "power_pin_not_driven"
+                },
+                {
+                    "description": "Input Power pin not driven by any Output Power pins",
+                    "items": [
+                        {
+                            "description": "Symbol #PWR031 Hidden pin 1 [HT, Power input, Line]",
+                            "pos": {
+                                "x": 1.8542,
+                                "y": 0.6731
+                            },
+                            "uuid": "d86d1086-0d38-49a8-afc5-ff2f426eae5c"
+                        }
+                    ],
+                    "severity": "error",
+                    "type": "power_pin_not_driven"
+                },
+                {
+                    "description": "Wires not connected to anything",
+                    "items": [
+                        {
+                            "description": "Vertical Wire, length 0.0254 mm",
+                            "pos": {
+                                "x": 1.8542,
+                                "y": 0.762
+                            },
+                            "uuid": "b1ea5c60-2d20-4559-ab79-b92ab8eea7de"
+                        }
+                    ],
+                    "severity": "error",
+                    "type": "wire_dangling"
+                },
+                {
+                    "description": "Wires not connected to anything",
+                    "items": [
+                        {
+                            "description": "Vertical Wire, length 0.0254 mm",
+                            "pos": {
+                                "x": 1.8542,
+                                "y": 0.8128
+                            },
+                            "uuid": "afea6baf-0005-473b-9e4a-074104f815be"
+                        },
+                        {
+                            "description": "Vertical Wire, length 0.0381 mm",
+                            "pos": {
+                                "x": 1.8542,
+                                "y": 0.8382
+                            },
+                            "uuid": "4bd95056-30b3-4629-9131-eee267f6adac"
+                        }
+                    ],
+                    "severity": "error",
+                    "type": "wire_dangling"
+                },
+                {
+                    "description": "Wires not connected to anything",
+                    "items": [
+                        {
+                            "description": "Horizontal Wire, length 0.0127 mm",
+                            "pos": {
+                                "x": 1.4859,
+                                "y": 1.397
+                            },
+                            "uuid": "67c73ff9-9660-4bf9-978a-18b4f7763c0f"
+                        },
+                        {
+                            "description": "Vertical Wire, length 0.1905 mm",
+                            "pos": {
+                                "x": 1.4859,
+                                "y": 1.5875
+                            },
+                            "uuid": "71cea4b8-15a2-4644-a53f-c185f3598aa2"
+                        }
+                    ],
+                    "severity": "error",
+                    "type": "wire_dangling"
+                },
+                {
+                    "description": "Wires not connected to anything",
+                    "items": [
+                        {
+                            "description": "Horizontal Wire, length 0.0508 mm",
+                            "pos": {
+                                "x": 1.3716,
+                                "y": 1.6256
+                            },
+                            "uuid": "3de0445a-e2a8-4a87-afd1-4a716e80bdcb"
+                        }
+                    ],
+                    "severity": "error",
+                    "type": "wire_dangling"
+                },
+                {
+                    "description": "Wires not connected to anything",
+                    "items": [
+                        {
+                            "description": "Vertical Wire, length 0.0508 mm",
+                            "pos": {
+                                "x": 2.0066,
+                                "y": 0.7366
+                            },
+                            "uuid": "3b9c79ce-dfb1-4792-8cbe-17a1796830b2"
+                        }
+                    ],
+                    "severity": "error",
+                    "type": "wire_dangling"
+                },
+                {
+                    "description": "Wires not connected to anything",
+                    "items": [
+                        {
+                            "description": "Vertical Wire, length 0.0508 mm",
+                            "pos": {
+                                "x": 2.0066,
+                                "y": 0.889
+                            },
+                            "uuid": "402f7b1c-4495-422b-9a7a-58de125cac00"
+                        },
+                        {
+                            "description": "Vertical Wire, length 0.0508 mm",
+                            "pos": {
+                                "x": 2.0066,
+                                "y": 0.9398
+                            },
+                            "uuid": "ecacff54-a598-46df-a104-1b8dabd18c1a"
+                        }
+                    ],
+                    "severity": "error",
+                    "type": "wire_dangling"
+                },
+                {
+                    "description": "Wires not connected to anything",
+                    "items": [
+                        {
+                            "description": "Horizontal Wire, length 0.0889 mm",
+                            "pos": {
+                                "x": 1.7526,
+                                "y": 1.3716
+                            },
+                            "uuid": "cde79bb0-cd94-4ebb-9033-8634825beb3d"
+                        }
+                    ],
+                    "severity": "error",
+                    "type": "wire_dangling"
+                },
+                {
+                    "description": "Wires not connected to anything",
+                    "items": [
+                        {
+                            "description": "Vertical Wire, length 0.0762 mm",
+                            "pos": {
+                                "x": 2.0066,
+                                "y": 1.0414
+                            },
+                            "uuid": "78d41452-5785-4006-9bca-ce43a81cd636"
+                        }
+                    ],
+                    "severity": "error",
+                    "type": "wire_dangling"
+                },
+                {
+                    "description": "Wires not connected to anything",
+                    "items": [
+                        {
+                            "description": "Horizontal Wire, length 0.0508 mm",
+                            "pos": {
+                                "x": 1.8796,
+                                "y": 1.2954
+                            },
+                            "uuid": "38bb5314-3ceb-4ed7-ad79-e9dd70bd0e74"
+                        }
+                    ],
+                    "severity": "error",
+                    "type": "wire_dangling"
+                },
+                {
+                    "description": "Wires not connected to anything",
+                    "items": [
+                        {
+                            "description": "Vertical Wire, length 0.0508 mm",
+                            "pos": {
+                                "x": 2.0066,
+                                "y": 1.1684
+                            },
+                            "uuid": "c1dbbb09-08db-4036-a44c-46ba6eda25f7"
+                        },
+                        {
+                            "description": "Vertical Wire, length 0.0254 mm",
+                            "pos": {
+                                "x": 2.0066,
+                                "y": 1.2192
+                            },
+                            "uuid": "7aadbd4b-95b0-42e9-8a05-2cae1e43ca02"
+                        }
+                    ],
+                    "severity": "error",
+                    "type": "wire_dangling"
+                },
+                {
+                    "description": "Wires not connected to anything",
+                    "items": [
+                        {
+                            "description": "Vertical Wire, length 0.0254 mm",
+                            "pos": {
+                                "x": 2.0066,
+                                "y": 1.3462
+                            },
+                            "uuid": "a92d5b15-f8b4-4323-a65c-4cbc59983185"
+                        },
+                        {
+                            "description": "Horizontal Wire, length 0.0889 mm",
+                            "pos": {
+                                "x": 2.0066,
+                                "y": 1.3716
+                            },
+                            "uuid": "8ddef8bf-3317-4411-a2db-6082fea417af"
+                        }
+                    ],
+                    "severity": "error",
+                    "type": "wire_dangling"
+                },
+                {
+                    "description": "Wires not connected to anything",
+                    "items": [
+                        {
+                            "description": "Vertical Wire, length 0.0635 mm",
+                            "pos": {
+                                "x": 2.1844,
+                                "y": 1.0541
+                            },
+                            "uuid": "d5069a42-966b-4f62-827f-2eda33334024"
+                        },
+                        {
+                            "description": "Horizontal Wire, length 0.1270 mm",
+                            "pos": {
+                                "x": 2.1844,
+                                "y": 1.0541
+                            },
+                            "uuid": "cd4211c0-53ba-44d4-8b12-c48ed99d7bbd"
+                        }
+                    ],
+                    "severity": "error",
+                    "type": "wire_dangling"
+                },
+                {
+                    "description": "Wires not connected to anything",
+                    "items": [
+                        {
+                            "description": "Vertical Wire, length 0.0381 mm",
+                            "pos": {
+                                "x": 2.1844,
+                                "y": 1.1303
+                            },
+                            "uuid": "1aa35787-4b8a-4e87-8d26-358e8f6f6878"
+                        },
+                        {
+                            "description": "Horizontal Wire, length 0.0762 mm",
+                            "pos": {
+                                "x": 2.1844,
+                                "y": 1.1303
+                            },
+                            "uuid": "f7472f67-659a-45e3-b0c6-bafb9956791a"
+                        }
+                    ],
+                    "severity": "error",
+                    "type": "wire_dangling"
+                },
+                {
+                    "description": "Wires not connected to anything",
+                    "items": [
+                        {
+                            "description": "Vertical Wire, length 0.0508 mm",
+                            "pos": {
+                                "x": 2.0574,
+                                "y": 1.3716
+                            },
+                            "uuid": "8574c6c4-30e4-4226-ad1b-fc59ce79c7af"
+                        }
+                    ],
+                    "severity": "error",
+                    "type": "wire_dangling"
+                },
+                {
+                    "description": "Input Power pin not driven by any Output Power pins",
+                    "items": [
+                        {
+                            "description": "Symbol #PWR019 Hidden pin 1 [GND, Power input, Line]",
+                            "pos": {
+                                "x": 2.0574,
+                                "y": 1.5113
+                            },
+                            "uuid": "849a4e6e-a9fb-465b-83cc-422edcc84bee"
+                        }
+                    ],
+                    "severity": "error",
+                    "type": "power_pin_not_driven"
+                },
+                {
+                    "description": "The current configuration does not include the symbol library 'complex_hierarchy_schlib'",
+                    "items": [
+                        {
+                            "description": "Symbol P6 [CONN_2]",
+                            "pos": {
+                                "x": 0.3429,
+                                "y": 0.5334
+                            },
+                            "uuid": "00000000-0000-0000-0000-00004b3a1367"
+                        }
+                    ],
+                    "severity": "warning",
+                    "type": "lib_symbol_issues"
+                },
+                {
+                    "description": "The current configuration does not include the symbol library 'complex_hierarchy_schlib'",
+                    "items": [
+                        {
+                            "description": "Symbol #PWR027 [GND]",
+                            "pos": {
+                                "x": 0.4572,
+                                "y": 0.5715
+                            },
+                            "uuid": "00000000-0000-0000-0000-00004b3a136a"
+                        }
+                    ],
+                    "severity": "warning",
+                    "type": "lib_symbol_issues"
+                },
+                {
+                    "description": "The current configuration does not include the symbol library 'complex_hierarchy_schlib'",
+                    "items": [
+                        {
+                            "description": "Symbol R24 [R]",
+                            "pos": {
+                                "x": 0.6223,
+                                "y": 0.508
+                            },
+                            "uuid": "00000000-0000-0000-0000-00004b4f363e"
+                        }
+                    ],
+                    "severity": "warning",
+                    "type": "lib_symbol_issues"
+                },
+                {
+                    "description": "The current configuration does not include the symbol library 'complex_hierarchy_schlib'",
+                    "items": [
+                        {
+                            "description": "Symbol C14 [C]",
+                            "pos": {
+                                "x": 0.7239,
+                                "y": 0.5715
+                            },
+                            "uuid": "00000000-0000-0000-0000-00004b4f3641"
+                        }
+                    ],
+                    "severity": "warning",
+                    "type": "lib_symbol_issues"
+                },
+                {
+                    "description": "The current configuration does not include the symbol library 'complex_hierarchy_schlib'",
+                    "items": [
+                        {
+                            "description": "Symbol #PWR020 [GND]",
+                            "pos": {
+                                "x": 0.7239,
+                                "y": 0.6223
+                            },
+                            "uuid": "00000000-0000-0000-0000-00004b4f364a"
+                        }
+                    ],
+                    "severity": "warning",
+                    "type": "lib_symbol_issues"
+                },
+                {
+                    "description": "The current configuration does not include the symbol library 'complex_hierarchy_schlib'",
+                    "items": [
+                        {
+                            "description": "Symbol R16 [R]",
+                            "pos": {
+                                "x": 0.8255,
+                                "y": 0.508
+                            },
+                            "uuid": "00000000-0000-0000-0000-00004b3a136b"
+                        }
+                    ],
+                    "severity": "warning",
+                    "type": "lib_symbol_issues"
+                },
+                {
+                    "description": "The current configuration does not include the symbol library 'complex_hierarchy_schlib'",
+                    "items": [
+                        {
+                            "description": "Symbol R17 [R]",
+                            "pos": {
+                                "x": 1.0033,
+                                "y": 0.508
+                            },
+                            "uuid": "00000000-0000-0000-0000-00004b3a1359"
+                        }
+                    ],
+                    "severity": "warning",
+                    "type": "lib_symbol_issues"
+                },
+                {
+                    "description": "The current configuration does not include the symbol library 'complex_hierarchy_schlib'",
+                    "items": [
+                        {
+                            "description": "Symbol C6 [C]",
+                            "pos": {
+                                "x": 1.1049,
+                                "y": 0.4064
+                            },
+                            "uuid": "00000000-0000-0000-0000-00004b3a1358"
+                        }
+                    ],
+                    "severity": "warning",
+                    "type": "lib_symbol_issues"
+                },
+                {
+                    "description": "The current configuration does not include the symbol library 'complex_hierarchy_schlib'",
+                    "items": [
+                        {
+                            "description": "Symbol C7 [C]",
+                            "pos": {
+                                "x": 1.016,
+                                "y": 0.6477
+                            },
+                            "uuid": "00000000-0000-0000-0000-00004b3a1366"
+                        }
+                    ],
+                    "severity": "warning",
+                    "type": "lib_symbol_issues"
+                },
+                {
+                    "description": "The current configuration does not include the symbol library 'complex_hierarchy_schlib'",
+                    "items": [
+                        {
+                            "description": "Symbol #PWR028 [GND]",
+                            "pos": {
+                                "x": 1.016,
+                                "y": 0.6985
+                            },
+                            "uuid": "00000000-0000-0000-0000-00004b3a1369"
+                        }
+                    ],
+                    "severity": "warning",
+                    "type": "lib_symbol_issues"
+                },
+                {
+                    "description": "The current configuration does not include the symbol library 'complex_hierarchy_schlib'",
+                    "items": [
+                        {
+                            "description": "Symbol #U034 [+12V]",
+                            "pos": {
+                                "x": 1.2065,
+                                "y": 0.4953
+                            },
+                            "uuid": "00000000-0000-0000-0000-00004b3a135b"
+                        }
+                    ],
+                    "severity": "warning",
+                    "type": "lib_symbol_issues"
+                },
+                {
+                    "description": "The current configuration does not include the symbol library 'complex_hierarchy_schlib'",
+                    "items": [
+                        {
+                            "description": "Symbol U4 [LM358N]",
+                            "pos": {
+                                "x": 1.2319,
+                                "y": 0.6096
+                            },
+                            "uuid": "00000000-0000-0000-0000-00004b3a135c"
+                        }
+                    ],
+                    "severity": "warning",
+                    "type": "lib_symbol_issues"
+                },
+                {
+                    "description": "The current configuration does not include the symbol library 'complex_hierarchy_schlib'",
+                    "items": [
+                        {
+                            "description": "Symbol #PWR022 [-VAA]",
+                            "pos": {
+                                "x": 1.2065,
+                                "y": 0.7239
+                            },
+                            "uuid": "00000000-0000-0000-0000-00004b4b1080"
+                        }
+                    ],
+                    "severity": "warning",
+                    "type": "lib_symbol_issues"
+                },
+                {
+                    "description": "The current configuration does not include the symbol library 'complex_hierarchy_schlib'",
+                    "items": [
+                        {
+                            "description": "Symbol #PWR031 [HT]",
+                            "pos": {
+                                "x": 1.8542,
+                                "y": 0.6731
+                            },
+                            "uuid": "00000000-0000-0000-0000-00004b3a135f"
+                        }
+                    ],
+                    "severity": "warning",
+                    "type": "lib_symbol_issues"
+                },
+                {
+                    "description": "The current configuration does not include the symbol library 'complex_hierarchy_schlib'",
+                    "items": [
+                        {
+                            "description": "Symbol D5 [D_Small]",
+                            "pos": {
+                                "x": 1.8542,
+                                "y": 0.7112
+                            },
+                            "uuid": "00000000-0000-0000-0000-00004b3a1375"
+                        }
+                    ],
+                    "severity": "warning",
+                    "type": "lib_symbol_issues"
+                },
+                {
+                    "description": "The current configuration does not include the symbol library 'complex_hierarchy_schlib'",
+                    "items": [
+                        {
+                            "description": "Symbol D6 [D_Small]",
+                            "pos": {
+                                "x": 1.8542,
+                                "y": 0.7874
+                            },
+                            "uuid": "00000000-0000-0000-0000-00004b3a1377"
+                        }
+                    ],
+                    "severity": "warning",
+                    "type": "lib_symbol_issues"
+                },
+                {
+                    "description": "The current configuration does not include the symbol library 'complex_hierarchy_schlib'",
+                    "items": [
+                        {
+                            "description": "Symbol #U026 [+12V]",
+                            "pos": {
+                                "x": 1.6002,
+                                "y": 1.2573
+                            },
+                            "uuid": "00000000-0000-0000-0000-00004b3a136f"
+                        }
+                    ],
+                    "severity": "warning",
+                    "type": "lib_symbol_issues"
+                },
+                {
+                    "description": "The current configuration does not include the symbol library 'complex_hierarchy_schlib'",
+                    "items": [
+                        {
+                            "description": "Symbol R14 [R]",
+                            "pos": {
+                                "x": 1.8542,
+                                "y": 0.9144
+                            },
+                            "uuid": "00000000-0000-0000-0000-00004b3a1374"
+                        }
+                    ],
+                    "severity": "warning",
+                    "type": "lib_symbol_issues"
+                },
+                {
+                    "description": "The current configuration does not include the symbol library 'complex_hierarchy_schlib'",
+                    "items": [
+                        {
+                            "description": "Symbol #PWR030 [GND]",
+                            "pos": {
+                                "x": 1.2827,
+                                "y": 1.6256
+                            },
+                            "uuid": "00000000-0000-0000-0000-00004b3a1361"
+                        }
+                    ],
+                    "severity": "warning",
+                    "type": "lib_symbol_issues"
+                },
+                {
+                    "description": "The current configuration does not include the symbol library 'complex_hierarchy_schlib'",
+                    "items": [
+                        {
+                            "description": "Symbol #PWR025 [GND]",
+                            "pos": {
+                                "x": 1.8542,
+                                "y": 0.9779
+                            },
+                            "uuid": "00000000-0000-0000-0000-00004b3a1373"
+                        }
+                    ],
+                    "severity": "warning",
+                    "type": "lib_symbol_issues"
+                },
+                {
+                    "description": "The current configuration does not include the symbol library 'complex_hierarchy_schlib'",
+                    "items": [
+                        {
+                            "description": "Symbol R21 [R]",
+                            "pos": {
+                                "x": 1.3335,
+                                "y": 1.6256
+                            },
+                            "uuid": "00000000-0000-0000-0000-00004b3a1362"
+                        }
+                    ],
+                    "severity": "warning",
+                    "type": "lib_symbol_issues"
+                },
+                {
+                    "description": "The current configuration does not include the symbol library 'complex_hierarchy_schlib'",
+                    "items": [
+                        {
+                            "description": "Symbol #PWR032 [HT]",
+                            "pos": {
+                                "x": 2.0066,
+                                "y": 0.6477
+                            },
+                            "uuid": "00000000-0000-0000-0000-00004b3a135e"
+                        }
+                    ],
+                    "severity": "warning",
+                    "type": "lib_symbol_issues"
+                },
+                {
+                    "description": "The current configuration does not include the symbol library 'complex_hierarchy_schlib'",
+                    "items": [
+                        {
+                            "description": "Symbol R13 [R]",
+                            "pos": {
+                                "x": 2.0066,
+                                "y": 0.6985
+                            },
+                            "uuid": "00000000-0000-0000-0000-00004b3a1376"
+                        }
+                    ],
+                    "severity": "warning",
+                    "type": "lib_symbol_issues"
+                },
+                {
+                    "description": "The current configuration does not include the symbol library 'complex_hierarchy_schlib'",
+                    "items": [
+                        {
+                            "description": "Symbol Q5 [MPSA92]",
+                            "pos": {
+                                "x": 1.9812,
+                                "y": 0.8382
+                            },
+                            "uuid": "00000000-0000-0000-0000-00004b3a1360"
+                        }
+                    ],
+                    "severity": "warning",
+                    "type": "lib_symbol_issues"
+                },
+                {
+                    "description": "The current configuration does not include the symbol library 'complex_hierarchy_schlib'",
+                    "items": [
+                        {
+                            "description": "Symbol #PWR021 [-VAA]",
+                            "pos": {
+                                "x": 1.6002,
+                                "y": 1.4859
+                            },
+                            "uuid": "00000000-0000-0000-0000-00004b4b1086"
+                        }
+                    ],
+                    "severity": "warning",
+                    "type": "lib_symbol_issues"
+                },
+                {
+                    "description": "The current configuration does not include the symbol library 'complex_hierarchy_schlib'",
+                    "items": [
+                        {
+                            "description": "Symbol RV2 [POT]",
+                            "pos": {
+                                "x": 1.4859,
+                                "y": 1.6256
+                            },
+                            "uuid": "00000000-0000-0000-0000-00004b3a1357"
+                        }
+                    ],
+                    "severity": "warning",
+                    "type": "lib_symbol_issues"
+                },
+                {
+                    "description": "The current configuration does not include the symbol library 'complex_hierarchy_schlib'",
+                    "items": [
+                        {
+                            "description": "Symbol #PWR024 [GND]",
+                            "pos": {
+                                "x": 1.778,
+                                "y": 1.3208
+                            },
+                            "uuid": "00000000-0000-0000-0000-00004b3a1378"
+                        }
+                    ],
+                    "severity": "warning",
+                    "type": "lib_symbol_issues"
+                },
+                {
+                    "description": "The current configuration does not include the symbol library 'complex_hierarchy_schlib'",
+                    "items": [
+                        {
+                            "description": "Symbol D9 [D_Small]",
+                            "pos": {
+                                "x": 2.0066,
+                                "y": 1.016
+                            },
+                            "uuid": "00000000-0000-0000-0000-00004b616afa"
+                        }
+                    ],
+                    "severity": "warning",
+                    "type": "lib_symbol_issues"
+                },
+                {
+                    "description": "The current configuration does not include the symbol library 'complex_hierarchy_schlib'",
+                    "items": [
+                        {
+                            "description": "Symbol R18 [R]",
+                            "pos": {
+                                "x": 1.8415,
+                                "y": 1.2954
+                            },
+                            "uuid": "00000000-0000-0000-0000-00004b3a1371"
+                        }
+                    ],
+                    "severity": "warning",
+                    "type": "lib_symbol_issues"
+                },
+                {
+                    "description": "The current configuration does not include the symbol library 'complex_hierarchy_schlib'",
+                    "items": [
+                        {
+                            "description": "Symbol D7 [D_Small]",
+                            "pos": {
+                                "x": 2.0066,
+                                "y": 1.143
+                            },
+                            "uuid": "00000000-0000-0000-0000-00004b3a137b"
+                        }
+                    ],
+                    "severity": "warning",
+                    "type": "lib_symbol_issues"
+                },
+                {
+                    "description": "The current configuration does not include the symbol library 'complex_hierarchy_schlib'",
+                    "items": [
+                        {
+                            "description": "Symbol R19 [R]",
+                            "pos": {
+                                "x": 1.8796,
+                                "y": 1.3716
+                            },
+                            "uuid": "00000000-0000-0000-0000-00004b3a136d"
+                        }
+                    ],
+                    "severity": "warning",
+                    "type": "lib_symbol_issues"
+                },
+                {
+                    "description": "The current configuration does not include the symbol library 'complex_hierarchy_schlib'",
+                    "items": [
+                        {
+                            "description": "Symbol #PWR033 [HT]",
+                            "pos": {
+                                "x": 2.1844,
+                                "y": 0.8382
+                            },
+                            "uuid": "00000000-0000-0000-0000-00004b3a135d"
+                        }
+                    ],
+                    "severity": "warning",
+                    "type": "lib_symbol_issues"
+                },
+                {
+                    "description": "The current configuration does not include the symbol library 'complex_hierarchy_schlib'",
+                    "items": [
+                        {
+                            "description": "Symbol Q6 [MPSA42]",
+                            "pos": {
+                                "x": 2.159,
+                                "y": 0.9398
+                            },
+                            "uuid": "00000000-0000-0000-0000-00004b3a137d"
+                        }
+                    ],
+                    "severity": "warning",
+                    "type": "lib_symbol_issues"
+                },
+                {
+                    "description": "The current configuration does not include the symbol library 'complex_hierarchy_schlib'",
+                    "items": [
+                        {
+                            "description": "Symbol Q8 [MPSA42]",
+                            "pos": {
+                                "x": 1.9812,
+                                "y": 1.2954
+                            },
+                            "uuid": "00000000-0000-0000-0000-00004b3a1379"
+                        }
+                    ],
+                    "severity": "warning",
+                    "type": "lib_symbol_issues"
+                },
+                {
+                    "description": "The current configuration does not include the symbol library 'complex_hierarchy_schlib'",
+                    "items": [
+                        {
+                            "description": "Symbol R20 [R]",
+                            "pos": {
+                                "x": 2.0574,
+                                "y": 1.3335
+                            },
+                            "uuid": "00000000-0000-0000-0000-00004b61688c"
+                        }
+                    ],
+                    "severity": "warning",
+                    "type": "lib_symbol_issues"
+                },
+                {
+                    "description": "The current configuration does not include the symbol library 'complex_hierarchy_schlib'",
+                    "items": [
+                        {
+                            "description": "Symbol Q7 [MPSA92]",
+                            "pos": {
+                                "x": 2.159,
+                                "y": 1.2192
+                            },
+                            "uuid": "00000000-0000-0000-0000-00004b3a137c"
+                        }
+                    ],
+                    "severity": "warning",
+                    "type": "lib_symbol_issues"
+                },
+                {
+                    "description": "The current configuration does not include the symbol library 'complex_hierarchy_schlib'",
+                    "items": [
+                        {
+                            "description": "Symbol C8 [C]",
+                            "pos": {
+                                "x": 2.0574,
+                                "y": 1.4605
+                            },
+                            "uuid": "00000000-0000-0000-0000-00004b3a1365"
+                        }
+                    ],
+                    "severity": "warning",
+                    "type": "lib_symbol_issues"
+                },
+                {
+                    "description": "The current configuration does not include the symbol library 'complex_hierarchy_schlib'",
+                    "items": [
+                        {
+                            "description": "Symbol #PWR019 [GND]",
+                            "pos": {
+                                "x": 2.0574,
+                                "y": 1.5113
+                            },
+                            "uuid": "00000000-0000-0000-0000-00004b6168a3"
+                        }
+                    ],
+                    "severity": "warning",
+                    "type": "lib_symbol_issues"
+                },
+                {
+                    "description": "The current configuration does not include the symbol library 'complex_hierarchy_schlib'",
+                    "items": [
+                        {
+                            "description": "Symbol #PWR023 [GND]",
+                            "pos": {
+                                "x": 2.1844,
+                                "y": 1.3462
+                            },
+                            "uuid": "00000000-0000-0000-0000-00004b3a137a"
+                        }
+                    ],
+                    "severity": "warning",
+                    "type": "lib_symbol_issues"
+                },
+                {
+                    "description": "The current configuration does not include the symbol library 'complex_hierarchy_schlib'",
+                    "items": [
+                        {
+                            "description": "Symbol R22 [R]",
+                            "pos": {
+                                "x": 2.2606,
+                                "y": 1.2954
+                            },
+                            "uuid": "00000000-0000-0000-0000-00004b3a1370"
+                        }
+                    ],
+                    "severity": "warning",
+                    "type": "lib_symbol_issues"
+                },
+                {
+                    "description": "The current configuration does not include the symbol library 'complex_hierarchy_schlib'",
+                    "items": [
+                        {
+                            "description": "Symbol R15 [R]",
+                            "pos": {
+                                "x": 2.4003,
+                                "y": 1.0541
+                            },
+                            "uuid": "00000000-0000-0000-0000-00004b3a1364"
+                        }
+                    ],
+                    "severity": "warning",
+                    "type": "lib_symbol_issues"
+                },
+                {
+                    "description": "The current configuration does not include the symbol library 'complex_hierarchy_schlib'",
+                    "items": [
+                        {
+                            "description": "Symbol R28 [R]",
+                            "pos": {
+                                "x": 2.3114,
+                                "y": 1.2954
+                            },
+                            "uuid": "00000000-0000-0000-0000-00004b617b88"
+                        }
+                    ],
+                    "severity": "warning",
+                    "type": "lib_symbol_issues"
+                },
+                {
+                    "description": "The current configuration does not include the symbol library 'complex_hierarchy_schlib'",
+                    "items": [
+                        {
+                            "description": "Symbol R27 [R]",
+                            "pos": {
+                                "x": 2.4003,
+                                "y": 1.1303
+                            },
+                            "uuid": "00000000-0000-0000-0000-00004b616b96"
+                        }
+                    ],
+                    "severity": "warning",
+                    "type": "lib_symbol_issues"
+                },
+                {
+                    "description": "The current configuration does not include the symbol library 'complex_hierarchy_schlib'",
+                    "items": [
+                        {
+                            "description": "Symbol #PWR029 [GND]",
+                            "pos": {
+                                "x": 2.6035,
+                                "y": 1.1557
+                            },
+                            "uuid": "00000000-0000-0000-0000-00004b3a1363"
+                        }
+                    ],
+                    "severity": "warning",
+                    "type": "lib_symbol_issues"
+                },
+                {
+                    "description": "The current configuration does not include the symbol library 'complex_hierarchy_schlib'",
+                    "items": [
+                        {
+                            "description": "Symbol P5 [CONN_2]",
+                            "pos": {
+                                "x": 2.7305,
+                                "y": 1.1176
+                            },
+                            "uuid": "00000000-0000-0000-0000-00004b3a136c"
+                        }
+                    ],
+                    "severity": "warning",
+                    "type": "lib_symbol_issues"
+                }
+            ]
+        }
+    ],
+    "source": "ampli_ht.kicad_sch"
+}

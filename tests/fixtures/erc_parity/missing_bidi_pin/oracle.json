@@ -1,0 +1,82 @@
+{
+    "$schema": "https://schemas.kicad.org/erc.v1.json",
+    "coordinate_units": "mm",
+    "date": "2026-03-28T23:52:46",
+    "ignored_checks": [
+        {
+            "description": "Global label only appears once in the schematic",
+            "key": "single_global_label"
+        },
+        {
+            "description": "Four connection points are joined together",
+            "key": "four_way_junction"
+        },
+        {
+            "description": "SPICE model issue",
+            "key": "simulation_model_issue"
+        },
+        {
+            "description": "Assigned footprint doesn't match footprint filters",
+            "key": "footprint_filter"
+        }
+    ],
+    "included_severities": [
+        "error",
+        "warning"
+    ],
+    "kicad_version": "10.0.0",
+    "sheets": [
+        {
+            "path": "/",
+            "uuid_path": "/99dd4608-8646-4c1f-a178-5051a18ae19c",
+            "violations": [
+                {
+                    "description": "The current configuration does not include the symbol library 'MissingLib'",
+                    "items": [
+                        {
+                            "description": "Symbol U1 [DualBidi]",
+                            "pos": {
+                                "x": 0.508,
+                                "y": 0.508
+                            },
+                            "uuid": "a8893385-4a66-4e8c-82c2-14a8aa91f736"
+                        }
+                    ],
+                    "severity": "warning",
+                    "type": "lib_symbol_issues"
+                },
+                {
+                    "description": "Symbol U1 has bidirectional pins in units [ B ] that are not placed",
+                    "items": [
+                        {
+                            "description": "Symbol U1 [DualBidi]",
+                            "pos": {
+                                "x": 0.508,
+                                "y": 0.508
+                            },
+                            "uuid": "a8893385-4a66-4e8c-82c2-14a8aa91f736"
+                        }
+                    ],
+                    "severity": "warning",
+                    "type": "missing_bidi_pin"
+                },
+                {
+                    "description": "Symbol U1 has unplaced units [ B ]",
+                    "items": [
+                        {
+                            "description": "Symbol U1 [DualBidi]",
+                            "pos": {
+                                "x": 0.508,
+                                "y": 0.508
+                            },
+                            "uuid": "a8893385-4a66-4e8c-82c2-14a8aa91f736"
+                        }
+                    ],
+                    "severity": "warning",
+                    "type": "missing_unit"
+                }
+            ]
+        }
+    ],
+    "source": "missing_bidi_pin.kicad_sch"
+}

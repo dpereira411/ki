@@ -1,0 +1,6 @@
+(kicad_sch
+  (version 20260101)
+  (generator "eeschema")
+  (uuid "root-uuid")
+  (paper "A4")
+  (symbol_instances (path "/abc" (reference "R1") foo)))

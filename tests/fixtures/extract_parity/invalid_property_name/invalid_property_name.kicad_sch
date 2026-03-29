@@ -1,0 +1,18 @@
+(kicad_sch
+  (version 20260101)
+  (generator "eeschema")
+  (uuid "invalid-prop-root")
+  (paper "A4")
+  (lib_symbols
+    (symbol "Device:R"
+      (property "Reference" "R" (at 0 0 0) (effects (font (size 1.27 1.27))))
+      (property "Value" "R" (at 0 0 0) (effects (font (size 1.27 1.27))))
+      (symbol "R_1_1"
+        (pin passive line (at 0 3.81 270) (length 1.27) (name "" (effects (font (size 1.27 1.27)))) (number "1" (effects (font (size 1.27 1.27)))))
+        (pin passive line (at 0 -3.81 90) (length 1.27) (name "" (effects (font (size 1.27 1.27)))) (number "2" (effects (font (size 1.27 1.27)))))))
+  (symbol (lib_id "Device:R") (at 20 20 0) (unit 1) (body_style 1) (uuid "sym-a")
+    (property "" "bad" (at 20 18 0) (effects (font (size 1.27 1.27))))
+    (property "Reference" "R1" (at 20 16 0) (effects (font (size 1.27 1.27))))
+    (property "Value" "10k" (at 20 22 0) (effects (font (size 1.27 1.27)))))
+  (sheet_instances
+    (path "/" (page "1"))))

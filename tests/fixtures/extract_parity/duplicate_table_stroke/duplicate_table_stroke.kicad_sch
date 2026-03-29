@@ -1,0 +1,13 @@
+(kicad_sch
+  (version 20260101)
+  (generator "eeschema")
+  (uuid "duplicate-table-stroke-root")
+  (paper "A4")
+  (table
+    (column_count 1)
+    (row_count 1)
+    (stroke (width 0.254) (type default))
+    (stroke (width 0.3) (type default))
+    (cells (cell (at 0 0) (span 1 1) (text "A"))))
+  (sheet_instances
+    (path "/" (page "1"))))

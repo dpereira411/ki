@@ -1,0 +1,7 @@
+(kicad_sch
+  (version 20260101)
+  (generator "eeschema")
+  (uuid "sheet-inst-num-path")
+  (paper "A4")
+  (sheet_instances
+    (path 123 (page "1"))))

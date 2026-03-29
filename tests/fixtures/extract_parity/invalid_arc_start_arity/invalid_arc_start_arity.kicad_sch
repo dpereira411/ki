@@ -1,0 +1,8 @@
+(kicad_sch
+  (version 20260101)
+  (generator "eeschema")
+  (uuid "invalid-arc-root")
+  (paper "A4")
+  (arc (start 0 0 0) (mid 5 5) (end 10 0) (stroke (width 0) (type default)) (uuid "a1"))
+  (sheet_instances
+    (path "/" (page "1"))))

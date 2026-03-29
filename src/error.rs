@@ -6,6 +6,7 @@ pub enum KiError {
     KiCad(KiCadError),
     Validation,
     Message(String),
+    Lines(Vec<String>),
     Io(std::io::Error),
     Json(serde_json::Error),
 }
@@ -34,6 +35,7 @@ impl fmt::Display for KiError {
             Self::KiCad(err) => write!(f, "{err}"),
             Self::Validation => write!(f, "validation failed"),
             Self::Message(msg) => write!(f, "{msg}"),
+            Self::Lines(lines) => write!(f, "{}", lines.join("\n")),
             Self::Io(err) => write!(f, "io error: {err}"),
             Self::Json(err) => write!(f, "json error: {err}"),
         }
@@ -44,6 +46,15 @@ pub fn render_error(err: &KiError) -> Vec<String> {
     match err {
         KiError::KiCad(kicad_err) => render_kicad_error(kicad_err),
         KiError::Validation => vec!["error: validation failed".to_string()],
+        KiError::Lines(lines) => lines.clone(),
+        KiError::Message(msg)
+            if matches!(
+                msg.as_str(),
+                "Failed to load schematic" | "Schematic file does not exist or is not accessible"
+            ) =>
+        {
+            vec![msg.clone()]
+        }
         KiError::Message(msg) => vec![format!("error: {msg}")],
         KiError::Io(err) => vec![format!("error: io error: {err}")],
         KiError::Json(err) => vec![format!("error: json error: {err}")],

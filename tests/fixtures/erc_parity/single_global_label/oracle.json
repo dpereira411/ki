@@ -1,0 +1,78 @@
+{
+    "$schema": "https://schemas.kicad.org/erc.v1.json",
+    "coordinate_units": "mm",
+    "date": "2026-03-28T22:22:21",
+    "ignored_checks": [
+        {
+            "description": "Four connection points are joined together",
+            "key": "four_way_junction"
+        },
+        {
+            "description": "SPICE model issue",
+            "key": "simulation_model_issue"
+        },
+        {
+            "description": "Assigned footprint doesn't match footprint filters",
+            "key": "footprint_filter"
+        }
+    ],
+    "included_severities": [
+        "error",
+        "warning"
+    ],
+    "kicad_version": "10.0.0",
+    "sheets": [
+        {
+            "path": "/",
+            "uuid_path": "/23fcfd31-4d57-4561-bad7-a07cb2cb384d",
+            "violations": [
+                {
+                    "description": "The current configuration does not include the symbol library 'MissingLib'",
+                    "items": [
+                        {
+                            "description": "Symbol TP1 [Probe]",
+                            "pos": {
+                                "x": 0.508,
+                                "y": 0.508
+                            },
+                            "uuid": "c3fc0f67-1a89-4e10-8933-1a71e1d60616"
+                        }
+                    ],
+                    "severity": "warning",
+                    "type": "lib_symbol_issues"
+                },
+                {
+                    "description": "Global label only appears once in the schematic",
+                    "items": [
+                        {
+                            "description": "Global Label 'SIG'",
+                            "pos": {
+                                "x": 0.5334,
+                                "y": 0.508
+                            },
+                            "uuid": "7f275d95-dd9d-48c6-a260-7025964f9acb"
+                        }
+                    ],
+                    "severity": "warning",
+                    "type": "single_global_label"
+                },
+                {
+                    "description": "The current configuration does not include the symbol library 'MissingLib'",
+                    "items": [
+                        {
+                            "description": "Symbol TP2 [Probe]",
+                            "pos": {
+                                "x": 0.5588,
+                                "y": 0.508
+                            },
+                            "uuid": "e0e2fb7b-2201-4e74-80e3-bb15b50525cb"
+                        }
+                    ],
+                    "severity": "warning",
+                    "type": "lib_symbol_issues"
+                }
+            ]
+        }
+    ],
+    "source": "single_global_label.kicad_sch"
+}

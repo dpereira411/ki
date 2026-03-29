@@ -1,0 +1,13 @@
+(kicad_sch
+  (version 20260101)
+  (generator "eeschema")
+  (uuid "duplicate-effects-color-root")
+  (paper "A4")
+  (text "hello"
+    (at 10 10 0)
+    (effects
+      (color 0 0 0 1)
+      (color 255 0 0 1)
+      (font (size 1.27 1.27))))
+  (sheet_instances
+    (path "/" (page "1"))))

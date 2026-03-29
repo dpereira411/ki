@@ -1,0 +1,5810 @@
+[
+  {
+    "id": "missing_input_file",
+    "fixture_dir": null,
+    "kicad_source": [
+      "/Users/Daniel/Desktop/kicad/kicad/cli/command_sch_export_netlist.cpp:52"
+    ],
+    "expected_exit_code": 3,
+    "expected_messages": [
+      "Schematic file does not exist or is not accessible"
+    ]
+  },
+  {
+    "id": "failed_to_load_schematic",
+    "fixture_dir": "tests/fixtures/extract_parity/duplicate_references",
+    "kicad_source": [
+      "/Users/Daniel/Desktop/kicad/eeschema/eeschema_jobs_handler.cpp:210",
+      "/Users/Daniel/Desktop/kicad/eeschema/eeschema_helpers.cpp:115"
+    ],
+    "expected_exit_code": 3,
+    "expected_messages": [
+      "Failed to load schematic"
+    ]
+  },
+  {
+    "id": "duplicate_references",
+    "fixture_dir": "tests/fixtures/extract_parity/duplicate_references",
+    "kicad_source": [
+      "/Users/Daniel/Desktop/kicad/eeschema/eeschema_jobs_handler.cpp:210",
+      "/Users/Daniel/Desktop/kicad/eeschema/eeschema_helpers.cpp:115"
+    ],
+    "expected_exit_code": 3,
+    "expected_messages": [
+      "Failed to load schematic"
+    ]
+  },
+  {
+    "id": "invalid_property_name",
+    "fixture_dir": "tests/fixtures/extract_parity/invalid_property_name",
+    "kicad_source": [
+      "/Users/Daniel/Desktop/kicad/eeschema/sch_io/kicad_sexpr/sch_io_kicad_sexpr_parser.cpp:1077"
+    ],
+    "expected_exit_code": 3,
+    "expected_messages": [
+      "Failed to load schematic"
+    ]
+  },
+  {
+    "id": "invalid_title_block_property_name",
+    "fixture_dir": "tests/fixtures/extract_parity/invalid_title_block_property_name",
+    "kicad_source": [
+      "/Users/Daniel/Desktop/kicad/eeschema/sch_io/kicad_sexpr/sch_io_kicad_sexpr_parser.cpp:2305"
+    ],
+    "expected_exit_code": 3,
+    "expected_messages": [
+      "Failed to load schematic"
+    ]
+  },
+  {
+    "id": "invalid_property_value",
+    "fixture_dir": "tests/fixtures/extract_parity/invalid_property_value",
+    "kicad_source": [
+      "/Users/Daniel/Desktop/kicad/eeschema/sch_io/kicad_sexpr/sch_io_kicad_sexpr_parser.cpp:1099"
+    ],
+    "expected_exit_code": 3,
+    "expected_messages": [
+      "Failed to load schematic"
+    ]
+  },
+  {
+    "id": "invalid_text_string",
+    "fixture_dir": "tests/fixtures/extract_parity/invalid_text_string",
+    "kicad_source": [
+      "/Users/Daniel/Desktop/kicad/eeschema/sch_io/kicad_sexpr/sch_io_kicad_sexpr_parser.cpp:1962"
+    ],
+    "expected_exit_code": 3,
+    "expected_messages": [
+      "Failed to load schematic"
+    ]
+  },
+  {
+    "id": "invalid_global_label_shape",
+    "fixture_dir": "tests/fixtures/extract_parity/invalid_global_label_shape",
+    "kicad_source": [
+      "/Users/Daniel/Desktop/kicad/eeschema/sch_io/kicad_sexpr/sch_io_kicad_sexpr_parser.cpp:4687"
+    ],
+    "expected_exit_code": 3,
+    "expected_messages": [
+      "Failed to load schematic"
+    ]
+  },
+  {
+    "id": "invalid_global_label_at_arity",
+    "fixture_dir": "tests/fixtures/extract_parity/invalid_global_label_at_arity",
+    "kicad_source": [
+      "/Users/Daniel/Desktop/kicad/eeschema/sch_io/kicad_sexpr/sch_io_kicad_sexpr_parser.cpp:4648",
+      "/Users/Daniel/Desktop/kicad/eeschema/sch_io/kicad_sexpr/sch_io_kicad_sexpr_parser.h:169"
+    ],
+    "expected_exit_code": 3,
+    "expected_messages": [
+      "Failed to load schematic"
+    ]
+  },
+  {
+    "id": "invalid_hierarchical_label_shape",
+    "fixture_dir": "tests/fixtures/extract_parity/invalid_hierarchical_label_shape",
+    "kicad_source": [
+      "/Users/Daniel/Desktop/kicad/eeschema/sch_io/kicad_sexpr/sch_io_kicad_sexpr_parser.cpp:4687"
+    ],
+    "expected_exit_code": 3,
+    "expected_messages": [
+      "Failed to load schematic"
+    ]
+  },
+  {
+    "id": "invalid_directive_label_shape",
+    "fixture_dir": "tests/fixtures/extract_parity/invalid_directive_label_shape",
+    "kicad_source": [
+      "/Users/Daniel/Desktop/kicad/eeschema/sch_io/kicad_sexpr/sch_io_kicad_sexpr_parser.cpp:4687"
+    ],
+    "expected_exit_code": 3,
+    "expected_messages": [
+      "Failed to load schematic"
+    ]
+  },
+  {
+    "id": "invalid_label_at_arity",
+    "fixture_dir": "tests/fixtures/extract_parity/invalid_label_at_arity",
+    "kicad_source": [
+      "/Users/Daniel/Desktop/kicad/eeschema/sch_io/kicad_sexpr/sch_io_kicad_sexpr_parser.cpp:4648",
+      "/Users/Daniel/Desktop/kicad/eeschema/sch_io/kicad_sexpr/sch_io_kicad_sexpr_parser.h:169"
+    ],
+    "expected_exit_code": 3,
+    "expected_messages": [
+      "Failed to load schematic"
+    ]
+  },
+  {
+    "id": "invalid_hyperlink_url",
+    "fixture_dir": "tests/fixtures/extract_parity/invalid_hyperlink_url",
+    "kicad_source": [
+      "/Users/Daniel/Desktop/kicad/eeschema/sch_io/kicad_sexpr/sch_io_kicad_sexpr_parser.cpp:877"
+    ],
+    "expected_exit_code": 3,
+    "expected_messages": [
+      "Failed to load schematic"
+    ]
+  },
+  {
+    "id": "cannot_parse_header",
+    "fixture_dir": "tests/fixtures/extract_parity/cannot_parse_header",
+    "kicad_source": [
+      "/Users/Daniel/Desktop/kicad/eeschema/sch_io/kicad_sexpr/sch_io_kicad_sexpr_parser.cpp:907"
+    ],
+    "expected_exit_code": 3,
+    "expected_messages": [
+      "Failed to load schematic"
+    ]
+  },
+  {
+    "id": "bus_alias_weird_members",
+    "fixture_dir": "tests/fixtures/extract_parity/bus_alias_weird_members",
+    "kicad_source": [
+      "/Users/Daniel/Desktop/kicad/eeschema/sch_io/kicad_sexpr/sch_io_kicad_sexpr_parser.cpp:5164"
+    ],
+    "expected_exit_code": 3,
+    "expected_messages": [
+      "Failed to load schematic"
+    ]
+  },
+  {
+    "id": "invalid_pin_name",
+    "fixture_dir": "tests/fixtures/extract_parity/invalid_pin_name",
+    "kicad_source": [
+      "/Users/Daniel/Desktop/kicad/eeschema/sch_io/kicad_sexpr/sch_io_kicad_sexpr_parser.cpp:1698"
+    ],
+    "expected_exit_code": 3,
+    "expected_messages": [
+      "Failed to load schematic"
+    ]
+  },
+  {
+    "id": "invalid_pin_number",
+    "fixture_dir": "tests/fixtures/extract_parity/invalid_pin_number",
+    "kicad_source": [
+      "/Users/Daniel/Desktop/kicad/eeschema/sch_io/kicad_sexpr/sch_io_kicad_sexpr_parser.cpp:1738"
+    ],
+    "expected_exit_code": 3,
+    "expected_messages": [
+      "Failed to load schematic"
+    ]
+  },
+  {
+    "id": "invalid_alternate_pin_name",
+    "fixture_dir": "tests/fixtures/extract_parity/invalid_alternate_pin_name",
+    "kicad_source": [
+      "/Users/Daniel/Desktop/kicad/eeschema/sch_io/kicad_sexpr/sch_io_kicad_sexpr_parser.cpp:1781"
+    ],
+    "expected_exit_code": 3,
+    "expected_messages": [
+      "Failed to load schematic"
+    ]
+  },
+  {
+    "id": "invalid_pin_type",
+    "fixture_dir": "tests/fixtures/extract_parity/invalid_pin_type",
+    "kicad_source": [
+      "/Users/Daniel/Desktop/kicad/eeschema/sch_io/kicad_sexpr/sch_io_kicad_sexpr_parser.cpp:1646"
+    ],
+    "expected_exit_code": 3,
+    "expected_messages": [
+      "Failed to load schematic"
+    ]
+  },
+  {
+    "id": "invalid_pin_shape",
+    "fixture_dir": "tests/fixtures/extract_parity/invalid_pin_shape",
+    "kicad_source": [
+      "/Users/Daniel/Desktop/kicad/eeschema/sch_io/kicad_sexpr/sch_io_kicad_sexpr_parser.cpp:1650"
+    ],
+    "expected_exit_code": 3,
+    "expected_messages": [
+      "Failed to load schematic"
+    ]
+  },
+  {
+    "id": "invalid_alternate_pin_type",
+    "fixture_dir": "tests/fixtures/extract_parity/invalid_alternate_pin_type",
+    "kicad_source": [
+      "/Users/Daniel/Desktop/kicad/eeschema/sch_io/kicad_sexpr/sch_io_kicad_sexpr_parser.cpp:1788"
+    ],
+    "expected_exit_code": 3,
+    "expected_messages": [
+      "Failed to load schematic"
+    ]
+  },
+  {
+    "id": "invalid_alternate_pin_shape",
+    "fixture_dir": "tests/fixtures/extract_parity/invalid_alternate_pin_shape",
+    "kicad_source": [
+      "/Users/Daniel/Desktop/kicad/eeschema/sch_io/kicad_sexpr/sch_io_kicad_sexpr_parser.cpp:1791"
+    ],
+    "expected_exit_code": 3,
+    "expected_messages": [
+      "Failed to load schematic"
+    ]
+  },
+  {
+    "id": "invalid_table_no_cells",
+    "fixture_dir": "tests/fixtures/extract_parity/invalid_table_no_cells",
+    "kicad_source": [
+      "/Users/Daniel/Desktop/kicad/eeschema/sch_io/kicad_sexpr/sch_io_kicad_sexpr_parser.cpp:5072"
+    ],
+    "expected_exit_code": 3,
+    "expected_messages": [
+      "Failed to load schematic"
+    ]
+  },
+  {
+    "id": "invalid_text_box_string",
+    "fixture_dir": "tests/fixtures/extract_parity/invalid_text_box_string",
+    "kicad_source": [
+      "/Users/Daniel/Desktop/kicad/eeschema/sch_io/kicad_sexpr/sch_io_kicad_sexpr_parser.cpp:2034"
+    ],
+    "expected_exit_code": 3,
+    "expected_messages": [
+      "Failed to load schematic"
+    ]
+  },
+  {
+    "id": "invalid_text_box_size_arity",
+    "fixture_dir": "tests/fixtures/extract_parity/invalid_text_box_size_arity",
+    "kicad_source": [
+      "/Users/Daniel/Desktop/kicad/eeschema/sch_io/kicad_sexpr/sch_io_kicad_sexpr_parser.cpp:2067",
+      "/Users/Daniel/Desktop/kicad/eeschema/sch_io/kicad_sexpr/sch_io_kicad_sexpr_parser.h:169"
+    ],
+    "expected_exit_code": 3,
+    "expected_messages": [
+      "Failed to load schematic"
+    ]
+  },
+  {
+    "id": "invalid_text_effects_font_size_arity",
+    "fixture_dir": "tests/fixtures/extract_parity/invalid_text_effects_font_size_arity",
+    "kicad_source": [
+      "/Users/Daniel/Desktop/kicad/eeschema/sch_io/kicad_sexpr/sch_io_kicad_sexpr_parser.cpp",
+      "/Users/Daniel/Desktop/kicad/common/eda_text.cpp"
+    ],
+    "expected_exit_code": 3,
+    "expected_messages": [
+      "Failed to load schematic"
+    ]
+  },
+  {
+    "id": "invalid_text_effects_font_size_token",
+    "fixture_dir": "tests/fixtures/extract_parity/invalid_text_effects_font_size_token",
+    "kicad_source": [
+      "/Users/Daniel/Desktop/kicad/common/eda_text.cpp"
+    ],
+    "expected_exit_code": 3,
+    "expected_messages": [
+      "Failed to load schematic"
+    ]
+  },
+  {
+    "id": "invalid_text_effects_color_arity",
+    "fixture_dir": "tests/fixtures/extract_parity/invalid_text_effects_color_arity",
+    "kicad_source": [
+      "/Users/Daniel/Desktop/kicad/common/eda_text.cpp"
+    ],
+    "expected_exit_code": 3,
+    "expected_messages": [
+      "Failed to load schematic"
+    ]
+  },
+  {
+    "id": "invalid_text_effects_color_token",
+    "fixture_dir": "tests/fixtures/extract_parity/invalid_text_effects_color_token",
+    "kicad_source": [
+      "/Users/Daniel/Desktop/kicad/common/eda_text.cpp"
+    ],
+    "expected_exit_code": 3,
+    "expected_messages": [
+      "Failed to load schematic"
+    ]
+  },
+  {
+    "id": "invalid_effects_justify_token",
+    "fixture_dir": "tests/fixtures/extract_parity/invalid_effects_justify_token",
+    "kicad_source": [
+      "/Users/Daniel/Desktop/kicad/common/eda_text.cpp"
+    ],
+    "expected_exit_code": 3,
+    "expected_messages": [
+      "Failed to load schematic"
+    ]
+  },
+  {
+    "id": "invalid_effects_bold_token",
+    "fixture_dir": "tests/fixtures/extract_parity/invalid_effects_bold_token",
+    "kicad_source": [
+      "/Users/Daniel/Desktop/kicad/common/eda_text.cpp"
+    ],
+    "expected_exit_code": 3,
+    "expected_messages": [
+      "Failed to load schematic"
+    ]
+  },
+  {
+    "id": "invalid_effects_italic_token",
+    "fixture_dir": "tests/fixtures/extract_parity/invalid_effects_italic_token",
+    "kicad_source": [
+      "/Users/Daniel/Desktop/kicad/common/eda_text.cpp"
+    ],
+    "expected_exit_code": 3,
+    "expected_messages": [
+      "Failed to load schematic"
+    ]
+  },
+  {
+    "id": "invalid_text_at_arity",
+    "fixture_dir": "tests/fixtures/extract_parity/invalid_text_at_arity",
+    "kicad_source": [
+      "/Users/Daniel/Desktop/kicad/eeschema/sch_io/kicad_sexpr/sch_io_kicad_sexpr_parser.cpp:1978",
+      "/Users/Daniel/Desktop/kicad/eeschema/sch_io/kicad_sexpr/sch_io_kicad_sexpr_parser.cpp:1979",
+      "/Users/Daniel/Desktop/kicad/eeschema/sch_io/kicad_sexpr/sch_io_kicad_sexpr_parser.h:169"
+    ],
+    "expected_exit_code": 3,
+    "expected_messages": [
+      "Failed to load schematic"
+    ]
+  },
+  {
+    "id": "invalid_sheet_pin_name",
+    "fixture_dir": "tests/fixtures/extract_parity/invalid_sheet_pin_name",
+    "kicad_source": [
+      "/Users/Daniel/Desktop/kicad/eeschema/sch_io/kicad_sexpr/sch_io_kicad_sexpr_parser.cpp:2443"
+    ],
+    "expected_exit_code": 3,
+    "expected_messages": [
+      "Failed to load schematic"
+    ]
+  },
+  {
+    "id": "invalid_sheet_pin_type",
+    "fixture_dir": "tests/fixtures/extract_parity/invalid_sheet_pin_type",
+    "kicad_source": [
+      "/Users/Daniel/Desktop/kicad/eeschema/sch_io/kicad_sexpr/sch_io_kicad_sexpr_parser.cpp:2458"
+    ],
+    "expected_exit_code": 3,
+    "expected_messages": [
+      "Failed to load schematic"
+    ]
+  },
+  {
+    "id": "invalid_sheet_pin_position_arity",
+    "fixture_dir": "tests/fixtures/extract_parity/invalid_sheet_pin_position_arity",
+    "kicad_source": [
+      "/Users/Daniel/Desktop/kicad/eeschema/sch_io/kicad_sexpr/sch_io_kicad_sexpr_parser.cpp:2479",
+      "/Users/Daniel/Desktop/kicad/eeschema/sch_io/kicad_sexpr/sch_io_kicad_sexpr_parser.h:169"
+    ],
+    "expected_exit_code": 3,
+    "expected_messages": [
+      "Failed to load schematic"
+    ]
+  },
+  {
+    "id": "invalid_sheet_pin_orientation",
+    "fixture_dir": "tests/fixtures/extract_parity/invalid_sheet_pin_orientation",
+    "kicad_source": [
+      "/Users/Daniel/Desktop/kicad/eeschema/sch_io/kicad_sexpr/sch_io_kicad_sexpr_parser.cpp:2483"
+    ],
+    "expected_exit_code": 3,
+    "expected_messages": [
+      "Failed to load schematic"
+    ]
+  },
+  {
+    "id": "invalid_sheet_at_angle",
+    "fixture_dir": "tests/fixtures/extract_parity/invalid_sheet_at_angle",
+    "kicad_source": [
+      "/Users/Daniel/Desktop/kicad/eeschema/sch_io/kicad_sexpr/sch_io_kicad_sexpr_parser.cpp:3701",
+      "/Users/Daniel/Desktop/kicad/eeschema/sch_io/kicad_sexpr/sch_io_kicad_sexpr_parser.h:169"
+    ],
+    "expected_exit_code": 3,
+    "expected_messages": [
+      "Failed to load schematic"
+    ]
+  },
+  {
+    "id": "invalid_junction_at_arity",
+    "fixture_dir": "tests/fixtures/extract_parity/invalid_junction_at_arity",
+    "kicad_source": [
+      "/Users/Daniel/Desktop/kicad/eeschema/sch_io/kicad_sexpr/sch_io_kicad_sexpr_parser.cpp:4004",
+      "/Users/Daniel/Desktop/kicad/eeschema/sch_io/kicad_sexpr/sch_io_kicad_sexpr_parser.h:169"
+    ],
+    "expected_exit_code": 3,
+    "expected_messages": [
+      "Failed to load schematic"
+    ]
+  },
+  {
+    "id": "invalid_no_connect_at_arity",
+    "fixture_dir": "tests/fixtures/extract_parity/invalid_no_connect_at_arity",
+    "kicad_source": [
+      "/Users/Daniel/Desktop/kicad/eeschema/sch_io/kicad_sexpr/sch_io_kicad_sexpr_parser.cpp:4060",
+      "/Users/Daniel/Desktop/kicad/eeschema/sch_io/kicad_sexpr/sch_io_kicad_sexpr_parser.h:169"
+    ],
+    "expected_exit_code": 3,
+    "expected_messages": [
+      "Failed to load schematic"
+    ]
+  },
+  {
+    "id": "invalid_bus_entry_at_arity",
+    "fixture_dir": "tests/fixtures/extract_parity/invalid_bus_entry_at_arity",
+    "kicad_source": [
+      "/Users/Daniel/Desktop/kicad/eeschema/sch_io/kicad_sexpr/sch_io_kicad_sexpr_parser.cpp:4098",
+      "/Users/Daniel/Desktop/kicad/eeschema/sch_io/kicad_sexpr/sch_io_kicad_sexpr_parser.h:169"
+    ],
+    "expected_exit_code": 3,
+    "expected_messages": [
+      "Failed to load schematic"
+    ]
+  },
+  {
+    "id": "invalid_bus_entry_size_arity",
+    "fixture_dir": "tests/fixtures/extract_parity/invalid_bus_entry_size_arity",
+    "kicad_source": [
+      "/Users/Daniel/Desktop/kicad/eeschema/sch_io/kicad_sexpr/sch_io_kicad_sexpr_parser.cpp:4103",
+      "/Users/Daniel/Desktop/kicad/eeschema/sch_io/kicad_sexpr/sch_io_kicad_sexpr_parser.h:169"
+    ],
+    "expected_exit_code": 3,
+    "expected_messages": [
+      "Failed to load schematic"
+    ]
+  },
+  {
+    "id": "invalid_rectangle_start_arity",
+    "fixture_dir": "tests/fixtures/extract_parity/invalid_rectangle_start_arity",
+    "kicad_source": [
+      "/Users/Daniel/Desktop/kicad/eeschema/sch_io/kicad_sexpr/sch_io_kicad_sexpr_parser.cpp:4425",
+      "/Users/Daniel/Desktop/kicad/eeschema/sch_io/kicad_sexpr/sch_io_kicad_sexpr_parser.h:169"
+    ],
+    "expected_exit_code": 3,
+    "expected_messages": [
+      "Failed to load schematic"
+    ]
+  },
+  {
+    "id": "invalid_rectangle_fill_color_arity",
+    "fixture_dir": "tests/fixtures/extract_parity/invalid_rectangle_fill_color_arity",
+    "kicad_source": [
+      "/Users/Daniel/Desktop/kicad/eeschema/sch_io/kicad_sexpr/sch_io_kicad_sexpr_parser.cpp",
+      "/Users/Daniel/Desktop/kicad/eeschema/sch_io/kicad_sexpr/sch_io_kicad_sexpr_parser.h"
+    ],
+    "expected_exit_code": 3,
+    "expected_messages": [
+      "Failed to load schematic"
+    ]
+  },
+  {
+    "id": "invalid_fill_color_token",
+    "fixture_dir": "tests/fixtures/extract_parity/invalid_fill_color_token",
+    "kicad_source": [
+      "/Users/Daniel/Desktop/kicad/eeschema/sch_io/kicad_sexpr/sch_io_kicad_sexpr_parser.cpp"
+    ],
+    "expected_exit_code": 3,
+    "expected_messages": [
+      "Failed to load schematic"
+    ]
+  },
+  {
+    "id": "invalid_stroke_width_token",
+    "fixture_dir": "tests/fixtures/extract_parity/invalid_stroke_width_token",
+    "kicad_source": [
+      "/Users/Daniel/Desktop/kicad/eeschema/sch_io/kicad_sexpr/sch_io_kicad_sexpr_parser.cpp"
+    ],
+    "expected_exit_code": 3,
+    "expected_messages": [
+      "Failed to load schematic"
+    ]
+  },
+  {
+    "id": "invalid_stroke_type_token",
+    "fixture_dir": "tests/fixtures/extract_parity/invalid_stroke_type_token",
+    "kicad_source": [
+      "/Users/Daniel/Desktop/kicad/eeschema/sch_io/kicad_sexpr/sch_io_kicad_sexpr_parser.cpp"
+    ],
+    "expected_exit_code": 3,
+    "expected_messages": [
+      "Failed to load schematic"
+    ]
+  },
+  {
+    "id": "invalid_stroke_color_arity",
+    "fixture_dir": "tests/fixtures/extract_parity/invalid_stroke_color_arity",
+    "kicad_source": [
+      "/Users/Daniel/Desktop/kicad/eeschema/sch_io/kicad_sexpr/sch_io_kicad_sexpr_parser.cpp"
+    ],
+    "expected_exit_code": 3,
+    "expected_messages": [
+      "Failed to load schematic"
+    ]
+  },
+  {
+    "id": "invalid_fill_type_token",
+    "fixture_dir": "tests/fixtures/extract_parity/invalid_fill_type_token",
+    "kicad_source": [
+      "/Users/Daniel/Desktop/kicad/eeschema/sch_io/kicad_sexpr/sch_io_kicad_sexpr_parser.cpp"
+    ],
+    "expected_exit_code": 3,
+    "expected_messages": [
+      "Failed to load schematic"
+    ]
+  },
+  {
+    "id": "invalid_circle_center_arity",
+    "fixture_dir": "tests/fixtures/extract_parity/invalid_circle_center_arity",
+    "kicad_source": [
+      "/Users/Daniel/Desktop/kicad/eeschema/sch_io/kicad_sexpr/sch_io_kicad_sexpr_parser.cpp:4366",
+      "/Users/Daniel/Desktop/kicad/eeschema/sch_io/kicad_sexpr/sch_io_kicad_sexpr_parser.h:169"
+    ],
+    "expected_exit_code": 3,
+    "expected_messages": [
+      "Failed to load schematic"
+    ]
+  },
+  {
+    "id": "invalid_circle_radius_token",
+    "fixture_dir": "tests/fixtures/extract_parity/invalid_circle_radius_token",
+    "kicad_source": [
+      "/Users/Daniel/Desktop/kicad/eeschema/sch_io/kicad_sexpr/sch_io_kicad_sexpr_parser.cpp:4367"
+    ],
+    "expected_exit_code": 3,
+    "expected_messages": [
+      "Failed to load schematic"
+    ]
+  },
+  {
+    "id": "invalid_arc_start_arity",
+    "fixture_dir": "tests/fixtures/extract_parity/invalid_arc_start_arity",
+    "kicad_source": [
+      "/Users/Daniel/Desktop/kicad/eeschema/sch_io/kicad_sexpr/sch_io_kicad_sexpr_parser.cpp:4301",
+      "/Users/Daniel/Desktop/kicad/eeschema/sch_io/kicad_sexpr/sch_io_kicad_sexpr_parser.h:169"
+    ],
+    "expected_exit_code": 3,
+    "expected_messages": [
+      "Failed to load schematic"
+    ]
+  },
+  {
+    "id": "invalid_bezier_point_arity",
+    "fixture_dir": "tests/fixtures/extract_parity/invalid_bezier_point_arity",
+    "kicad_source": [
+      "/Users/Daniel/Desktop/kicad/eeschema/sch_io/kicad_sexpr/sch_io_kicad_sexpr_parser.cpp:4568",
+      "/Users/Daniel/Desktop/kicad/eeschema/sch_io/kicad_sexpr/sch_io_kicad_sexpr_parser.h:169"
+    ],
+    "expected_exit_code": 3,
+    "expected_messages": [
+      "Failed to load schematic"
+    ]
+  },
+  {
+    "id": "invalid_wire_pts_arity",
+    "fixture_dir": "tests/fixtures/extract_parity/invalid_wire_pts_arity",
+    "kicad_source": [
+      "/Users/Daniel/Desktop/kicad/eeschema/sch_io/kicad_sexpr/sch_io_kicad_sexpr_parser.cpp:4171",
+      "/Users/Daniel/Desktop/kicad/eeschema/sch_io/kicad_sexpr/sch_io_kicad_sexpr_parser.h:169"
+    ],
+    "expected_exit_code": 3,
+    "expected_messages": [
+      "Failed to load schematic"
+    ]
+  },
+  {
+    "id": "invalid_polyline_pts_arity",
+    "fixture_dir": "tests/fixtures/extract_parity/invalid_polyline_pts_arity",
+    "kicad_source": [
+      "/Users/Daniel/Desktop/kicad/eeschema/sch_io/kicad_sexpr/sch_io_kicad_sexpr_parser.cpp:4171",
+      "/Users/Daniel/Desktop/kicad/eeschema/sch_io/kicad_sexpr/sch_io_kicad_sexpr_parser.h:169"
+    ],
+    "expected_exit_code": 3,
+    "expected_messages": [
+      "Failed to load schematic"
+    ]
+  },
+  {
+    "id": "invalid_bus_pts_arity",
+    "fixture_dir": "tests/fixtures/extract_parity/invalid_bus_pts_arity",
+    "kicad_source": [
+      "/Users/Daniel/Desktop/kicad/eeschema/sch_io/kicad_sexpr/sch_io_kicad_sexpr_parser.cpp:4171",
+      "/Users/Daniel/Desktop/kicad/eeschema/sch_io/kicad_sexpr/sch_io_kicad_sexpr_parser.h:169"
+    ],
+    "expected_exit_code": 3,
+    "expected_messages": [
+      "Failed to load schematic"
+    ]
+  },
+  {
+    "id": "invalid_rule_area_pt_arity",
+    "fixture_dir": "tests/fixtures/extract_parity/invalid_rule_area_pt_arity",
+    "kicad_source": [
+      "/Users/Daniel/Desktop/kicad/eeschema/sch_io/kicad_sexpr/sch_io_kicad_sexpr_parser.cpp:4171",
+      "/Users/Daniel/Desktop/kicad/eeschema/sch_io/kicad_sexpr/sch_io_kicad_sexpr_parser.h:169"
+    ],
+    "expected_exit_code": 3,
+    "expected_messages": [
+      "Failed to load schematic"
+    ]
+  },
+  {
+    "id": "invalid_title_block_comment_number",
+    "fixture_dir": "tests/fixtures/extract_parity/invalid_title_block_comment_number",
+    "kicad_source": [
+      "/Users/Daniel/Desktop/kicad/eeschema/sch_io/kicad_sexpr/sch_io_kicad_sexpr_parser.cpp:2264"
+    ],
+    "expected_exit_code": 3,
+    "expected_messages": [
+      "Failed to load schematic"
+    ]
+  },
+  {
+    "id": "invalid_title_block_property_value",
+    "fixture_dir": "tests/fixtures/extract_parity/invalid_title_block_property_value",
+    "kicad_source": [
+      "/Users/Daniel/Desktop/kicad/eeschema/sch_io/kicad_sexpr/sch_io_kicad_sexpr_parser.cpp:2313"
+    ],
+    "expected_exit_code": 3,
+    "expected_messages": [
+      "Failed to load schematic"
+    ]
+  },
+  {
+    "id": "invalid_group_library_id",
+    "fixture_dir": "tests/fixtures/extract_parity/invalid_group_library_id",
+    "kicad_source": [
+      "/Users/Daniel/Desktop/kicad/eeschema/sch_io/kicad_sexpr/sch_io_kicad_sexpr_parser.cpp:5203"
+    ],
+    "expected_exit_code": 0,
+    "expected_messages": []
+  },
+  {
+    "id": "invalid_group_name",
+    "fixture_dir": "tests/fixtures/extract_parity/invalid_group_name",
+    "kicad_source": [
+      "/Users/Daniel/Desktop/kicad/eeschema/sch_io/kicad_sexpr/sch_io_kicad_sexpr_parser.cpp:5103"
+    ],
+    "expected_exit_code": 0,
+    "expected_messages": []
+  },
+  {
+    "id": "no_schematic_object_embedded_files",
+    "fixture_dir": "tests/fixtures/extract_parity/no_schematic_object_embedded_files",
+    "kicad_source": [
+      "/Users/Daniel/Desktop/kicad/eeschema/sch_io/kicad_sexpr/sch_io_kicad_sexpr_parser.cpp:3036"
+    ],
+    "expected_exit_code": 0,
+    "expected_messages": []
+  },
+  {
+    "id": "no_schematic_object_embedded_fonts",
+    "fixture_dir": "tests/fixtures/extract_parity/no_schematic_object_embedded_fonts",
+    "kicad_source": [
+      "/Users/Daniel/Desktop/kicad/eeschema/sch_io/kicad_sexpr/sch_io_kicad_sexpr_parser.cpp:3023"
+    ],
+    "expected_exit_code": 0,
+    "expected_messages": []
+  },
+  {
+    "id": "invalid_parent_symbol_name",
+    "fixture_dir": "tests/fixtures/extract_parity/invalid_parent_symbol_name",
+    "kicad_source": [
+      "/Users/Daniel/Desktop/kicad/eeschema/sch_io/kicad_sexpr/sch_io_kicad_sexpr_parser.cpp:468"
+    ],
+    "expected_exit_code": 3,
+    "expected_messages": [
+      "Failed to load schematic"
+    ]
+  },
+  {
+    "id": "invalid_symbol_unit_name",
+    "fixture_dir": "tests/fixtures/extract_parity/invalid_symbol_unit_name",
+    "kicad_source": [
+      "/Users/Daniel/Desktop/kicad/eeschema/sch_io/kicad_sexpr/sch_io_kicad_sexpr_parser.cpp:490",
+      "/Users/Daniel/Desktop/kicad/eeschema/sch_io/kicad_sexpr/sch_io_kicad_sexpr_parser.cpp:504",
+      "/Users/Daniel/Desktop/kicad/eeschema/sch_io/kicad_sexpr/sch_io_kicad_sexpr_parser.cpp:514",
+      "/Users/Daniel/Desktop/kicad/eeschema/sch_io/kicad_sexpr/sch_io_kicad_sexpr_parser.cpp:520",
+      "/Users/Daniel/Desktop/kicad/eeschema/sch_io/kicad_sexpr/sch_io_kicad_sexpr_parser.cpp:528"
+    ],
+    "expected_exit_code": 3,
+    "expected_messages": [
+      "Failed to load schematic"
+    ]
+  },
+  {
+    "id": "invalid_symbol_unit_number",
+    "fixture_dir": "tests/fixtures/extract_parity/invalid_symbol_unit_number",
+    "kicad_source": [
+      "/Users/Daniel/Desktop/kicad/eeschema/sch_io/kicad_sexpr/sch_io_kicad_sexpr_parser.cpp:514"
+    ],
+    "expected_exit_code": 3,
+    "expected_messages": [
+      "Failed to load schematic"
+    ]
+  },
+  {
+    "id": "invalid_symbol_body_style_number",
+    "fixture_dir": "tests/fixtures/extract_parity/invalid_symbol_body_style_number",
+    "kicad_source": [
+      "/Users/Daniel/Desktop/kicad/eeschema/sch_io/kicad_sexpr/sch_io_kicad_sexpr_parser.cpp:520"
+    ],
+    "expected_exit_code": 3,
+    "expected_messages": [
+      "Failed to load schematic"
+    ]
+  },
+  {
+    "id": "invalid_symbol_unit_suffix",
+    "fixture_dir": "tests/fixtures/extract_parity/invalid_symbol_unit_suffix",
+    "kicad_source": [
+      "/Users/Daniel/Desktop/kicad/eeschema/sch_io/kicad_sexpr/sch_io_kicad_sexpr_parser.cpp:504"
+    ],
+    "expected_exit_code": 3,
+    "expected_messages": [
+      "Failed to load schematic"
+    ]
+  },
+  {
+    "id": "missing_reference",
+    "fixture_dir": "tests/fixtures/extract_parity/missing_reference",
+    "kicad_source": [
+      "/Users/Daniel/Desktop/kicad/eeschema/sch_io/kicad_sexpr/sch_io_kicad_sexpr.cpp",
+      "/Users/Daniel/Desktop/kicad/eeschema/sch_io/kicad_sexpr/sch_io_kicad_sexpr_parser.cpp"
+    ],
+    "expected_exit_code": 3,
+    "expected_messages": [
+      "Failed to load schematic"
+    ]
+  },
+  {
+    "id": "missing_uuid",
+    "fixture_dir": "tests/fixtures/extract_parity/missing_uuid",
+    "kicad_source": [
+      "/Users/Daniel/Desktop/kicad/eeschema/sch_io/kicad_sexpr/sch_io_kicad_sexpr_parser.cpp"
+    ],
+    "expected_exit_code": 3,
+    "expected_messages": [
+      "Failed to load schematic"
+    ]
+  },
+  {
+    "id": "annotation_errors",
+    "fixture_dir": "tests/fixtures/extract_parity/annotation_errors",
+    "kicad_source": [
+      "/Users/Daniel/Desktop/kicad/eeschema/eeschema_jobs_handler.cpp:430"
+    ],
+    "expected_exit_code": 0,
+    "expected_messages": [
+      "Warning: schematic has annotation errors, please use the schematic editor to fix them"
+    ]
+  },
+  {
+    "id": "duplicate_sheet_names",
+    "fixture_dir": "tests/fixtures/extract_parity/duplicate_sheet_names",
+    "kicad_source": [
+      "/Users/Daniel/Desktop/kicad/eeschema/eeschema_jobs_handler.cpp:456"
+    ],
+    "expected_exit_code": 0,
+    "expected_messages": [
+      "Warning: duplicate sheet names."
+    ]
+  },
+  {
+    "id": "recursive_sheet",
+    "fixture_dir": "tests/fixtures/extract_parity/recursive_sheet",
+    "kicad_source": [
+      "/Users/Daniel/Desktop/kicad/eeschema/sch_sheet_path.cpp"
+    ],
+    "expected_exit_code": 0,
+    "expected_messages": []
+  },
+  {
+    "id": "invalid_lib_id",
+    "fixture_dir": "tests/fixtures/extract_parity/invalid_lib_id",
+    "kicad_source": [
+      "/Users/Daniel/Desktop/kicad/eeschema/sch_io/kicad_sexpr/sch_io_kicad_sexpr_parser.cpp",
+      "/Users/Daniel/Desktop/kicad/eeschema/sch_screen.cpp"
+    ],
+    "expected_exit_code": 0,
+    "expected_messages": []
+  },
+  {
+    "id": "invalid_symbol_name",
+    "fixture_dir": "tests/fixtures/extract_parity/invalid_symbol_name",
+    "kicad_source": [
+      "/Users/Daniel/Desktop/kicad/eeschema/sch_io/kicad_sexpr/sch_io_kicad_sexpr_parser.cpp:336"
+    ],
+    "expected_exit_code": 0,
+    "expected_messages": []
+  },
+  {
+    "id": "invalid_symbol_library_id",
+    "fixture_dir": "tests/fixtures/extract_parity/invalid_symbol_library_id",
+    "kicad_source": [
+      "/Users/Daniel/Desktop/kicad/eeschema/sch_io/kicad_sexpr/sch_io_kicad_sexpr_parser.cpp:3166"
+    ],
+    "expected_exit_code": 0,
+    "expected_messages": []
+  },
+  {
+    "id": "invalid_symbol_library_name",
+    "fixture_dir": "tests/fixtures/extract_parity/invalid_symbol_library_name",
+    "kicad_source": [
+      "/Users/Daniel/Desktop/kicad/eeschema/sch_io/kicad_sexpr/sch_io_kicad_sexpr_parser.cpp:3125"
+    ],
+    "expected_exit_code": 3,
+    "expected_messages": [
+      "Failed to load schematic"
+    ]
+  },
+  {
+    "id": "symbol_uuid_missing_value",
+    "fixture_dir": "tests/fixtures/extract_parity/symbol_uuid_missing_value",
+    "kicad_source": [
+      "/Users/Daniel/Desktop/kicad/eeschema/sch_io/kicad_sexpr/sch_io_kicad_sexpr_parser.cpp:3247"
+    ],
+    "expected_exit_code": 3,
+    "expected_messages": [
+      "Failed to load schematic"
+    ]
+  },
+  {
+    "id": "symbol_unit_missing_value",
+    "fixture_dir": "tests/fixtures/extract_parity/symbol_unit_missing_value",
+    "kicad_source": [
+      "/Users/Daniel/Desktop/kicad/eeschema/sch_io/kicad_sexpr/sch_io_kicad_sexpr_parser.cpp:3198"
+    ],
+    "expected_exit_code": 3,
+    "expected_messages": [
+      "Failed to load schematic"
+    ]
+  },
+  {
+    "id": "symbol_body_style_missing_value",
+    "fixture_dir": "tests/fixtures/extract_parity/symbol_body_style_missing_value",
+    "kicad_source": [
+      "/Users/Daniel/Desktop/kicad/eeschema/sch_io/kicad_sexpr/sch_io_kicad_sexpr_parser.cpp:3204"
+    ],
+    "expected_exit_code": 3,
+    "expected_messages": [
+      "Failed to load schematic"
+    ]
+  },
+  {
+    "id": "invalid_symbol_at_orientation",
+    "fixture_dir": "tests/fixtures/extract_parity/invalid_symbol_at_orientation",
+    "kicad_source": [
+      "/Users/Daniel/Desktop/kicad/eeschema/sch_io/kicad_sexpr/sch_io_kicad_sexpr_parser.cpp:3176",
+      "/Users/Daniel/Desktop/kicad/eeschema/sch_io/kicad_sexpr/sch_io_kicad_sexpr_parser.cpp:3184"
+    ],
+    "expected_exit_code": 3,
+    "expected_messages": [
+      "Failed to load schematic"
+    ]
+  },
+  {
+    "id": "invalid_symbol_mirror_token",
+    "fixture_dir": "tests/fixtures/extract_parity/invalid_symbol_mirror_token",
+    "kicad_source": [
+      "/Users/Daniel/Desktop/kicad/eeschema/sch_io/kicad_sexpr/sch_io_kicad_sexpr_parser.cpp:3191"
+    ],
+    "expected_exit_code": 3,
+    "expected_messages": [
+      "Failed to load schematic"
+    ]
+  },
+  {
+    "id": "symbol_pin_missing_number",
+    "fixture_dir": "tests/fixtures/extract_parity/symbol_pin_missing_number",
+    "kicad_source": [
+      "/Users/Daniel/Desktop/kicad/eeschema/sch_io/kicad_sexpr/sch_io_kicad_sexpr_parser.cpp:3541"
+    ],
+    "expected_exit_code": 3,
+    "expected_messages": [
+      "Failed to load schematic"
+    ]
+  },
+  {
+    "id": "symbol_pin_uuid_missing_value",
+    "fixture_dir": "tests/fixtures/extract_parity/symbol_pin_uuid_missing_value",
+    "kicad_source": [
+      "/Users/Daniel/Desktop/kicad/eeschema/sch_io/kicad_sexpr/sch_io_kicad_sexpr_parser.cpp:3553"
+    ],
+    "expected_exit_code": 3,
+    "expected_messages": [
+      "Failed to load schematic"
+    ]
+  },
+  {
+    "id": "symbol_pin_unknown_child",
+    "fixture_dir": "tests/fixtures/extract_parity/symbol_pin_unknown_child",
+    "kicad_source": [
+      "/Users/Daniel/Desktop/kicad/eeschema/sch_io/kicad_sexpr/sch_io_kicad_sexpr_parser.cpp:3568"
+    ],
+    "expected_exit_code": 3,
+    "expected_messages": [
+      "Failed to load schematic"
+    ]
+  },
+  {
+    "id": "symbol_pin_uuid_numeric",
+    "fixture_dir": "tests/fixtures/extract_parity/symbol_pin_uuid_numeric",
+    "kicad_source": [
+      "/Users/Daniel/Desktop/kicad/eeschema/sch_io/kicad_sexpr/sch_io_kicad_sexpr_parser.cpp:3553"
+    ],
+    "expected_exit_code": 3,
+    "expected_messages": [
+      "Failed to load schematic"
+    ]
+  },
+  {
+    "id": "variant_field_numeric_name",
+    "fixture_dir": "tests/fixtures/extract_parity/variant_field_numeric_name",
+    "kicad_source": [
+      "/Users/Daniel/Desktop/kicad/eeschema/sch_io/kicad_sexpr/sch_io_kicad_sexpr_parser.cpp:3450"
+    ],
+    "expected_exit_code": 3,
+    "expected_messages": [
+      "Failed to load schematic"
+    ]
+  },
+  {
+    "id": "variant_field_numeric_value",
+    "fixture_dir": "tests/fixtures/extract_parity/variant_field_numeric_value",
+    "kicad_source": [
+      "/Users/Daniel/Desktop/kicad/eeschema/sch_io/kicad_sexpr/sch_io_kicad_sexpr_parser.cpp:3455"
+    ],
+    "expected_exit_code": 3,
+    "expected_messages": [
+      "Failed to load schematic"
+    ]
+  },
+  {
+    "id": "variant_unknown_child",
+    "fixture_dir": "tests/fixtures/extract_parity/variant_unknown_child",
+    "kicad_source": [
+      "/Users/Daniel/Desktop/kicad/eeschema/sch_io/kicad_sexpr/sch_io_kicad_sexpr_parser.cpp:3461"
+    ],
+    "expected_exit_code": 3,
+    "expected_messages": [
+      "Failed to load schematic"
+    ]
+  },
+  {
+    "id": "nested_instance_numeric_reference",
+    "fixture_dir": "tests/fixtures/extract_parity/nested_instance_numeric_reference",
+    "kicad_source": [
+      "/Users/Daniel/Desktop/kicad/eeschema/sch_io/kicad_sexpr/sch_io_kicad_sexpr_parser.cpp:3350"
+    ],
+    "expected_exit_code": 3,
+    "expected_messages": [
+      "Failed to load schematic"
+    ]
+  },
+  {
+    "id": "nested_instance_unknown_child",
+    "fixture_dir": "tests/fixtures/extract_parity/nested_instance_unknown_child",
+    "kicad_source": [
+      "/Users/Daniel/Desktop/kicad/eeschema/sch_io/kicad_sexpr/sch_io_kicad_sexpr_parser.cpp:3480"
+    ],
+    "expected_exit_code": 3,
+    "expected_messages": [
+      "Failed to load schematic"
+    ]
+  },
+  {
+    "id": "nested_instance_value_missing_value",
+    "fixture_dir": "tests/fixtures/extract_parity/nested_instance_value_missing_value",
+    "kicad_source": [
+      "/Users/Daniel/Desktop/kicad/eeschema/sch_io/kicad_sexpr/sch_io_kicad_sexpr_parser.cpp:3360"
+    ],
+    "expected_exit_code": 3,
+    "expected_messages": [
+      "Failed to load schematic"
+    ]
+  },
+  {
+    "id": "nested_instance_footprint_missing_value",
+    "fixture_dir": "tests/fixtures/extract_parity/nested_instance_footprint_missing_value",
+    "kicad_source": [
+      "/Users/Daniel/Desktop/kicad/eeschema/sch_io/kicad_sexpr/sch_io_kicad_sexpr_parser.cpp:3369"
+    ],
+    "expected_exit_code": 3,
+    "expected_messages": [
+      "Failed to load schematic"
+    ]
+  },
+  {
+    "id": "nested_instance_unit_numeric_float",
+    "fixture_dir": "tests/fixtures/extract_parity/nested_instance_unit_numeric_float",
+    "kicad_source": [
+      "/Users/Daniel/Desktop/kicad/eeschema/sch_io/kicad_sexpr/sch_io_kicad_sexpr_parser.cpp:3355"
+    ],
+    "expected_exit_code": 0,
+    "expected_messages": []
+  },
+  {
+    "id": "nested_instance_value_tilde",
+    "fixture_dir": "tests/fixtures/extract_parity/nested_instance_value_tilde",
+    "kicad_source": [
+      "/Users/Daniel/Desktop/kicad/eeschema/sch_io/kicad_sexpr/sch_io_kicad_sexpr_parser.cpp:3360"
+    ],
+    "expected_exit_code": 0,
+    "expected_messages": []
+  },
+  {
+    "id": "nested_instance_footprint_tilde",
+    "fixture_dir": "tests/fixtures/extract_parity/nested_instance_footprint_tilde",
+    "kicad_source": [
+      "/Users/Daniel/Desktop/kicad/eeschema/sch_io/kicad_sexpr/sch_io_kicad_sexpr_parser.cpp:3369"
+    ],
+    "expected_exit_code": 0,
+    "expected_messages": []
+  },
+  {
+    "id": "default_instance_value_tilde",
+    "fixture_dir": "tests/fixtures/extract_parity/default_instance_value_tilde",
+    "kicad_source": [
+      "/Users/Daniel/Desktop/kicad/eeschema/sch_io/kicad_sexpr/sch_io_kicad_sexpr_parser.cpp:3277"
+    ],
+    "expected_exit_code": 0,
+    "expected_messages": []
+  },
+  {
+    "id": "default_instance_footprint_tilde",
+    "fixture_dir": "tests/fixtures/extract_parity/default_instance_footprint_tilde",
+    "kicad_source": [
+      "/Users/Daniel/Desktop/kicad/eeschema/sch_io/kicad_sexpr/sch_io_kicad_sexpr_parser.cpp:3286"
+    ],
+    "expected_exit_code": 0,
+    "expected_messages": []
+  },
+  {
+    "id": "default_instance_reference_tilde",
+    "fixture_dir": "tests/fixtures/extract_parity/default_instance_reference_tilde",
+    "kicad_source": [
+      "/Users/Daniel/Desktop/kicad/eeschema/sch_io/kicad_sexpr/sch_io_kicad_sexpr_parser.cpp:3268"
+    ],
+    "expected_exit_code": 0,
+    "expected_messages": []
+  },
+  {
+    "id": "default_instance_unknown_child",
+    "fixture_dir": "tests/fixtures/extract_parity/default_instance_unknown_child",
+    "kicad_source": [
+      "/Users/Daniel/Desktop/kicad/eeschema/sch_io/kicad_sexpr/sch_io_kicad_sexpr_parser.cpp:3299"
+    ],
+    "expected_exit_code": 3,
+    "expected_messages": [
+      "Failed to load schematic"
+    ]
+  },
+  {
+    "id": "symbol_duplicate_uuid_child",
+    "fixture_dir": "tests/fixtures/extract_parity/symbol_duplicate_uuid_child",
+    "kicad_source": [
+      "/Users/Daniel/Desktop/kicad/eeschema/sch_io/kicad_sexpr/sch_io_kicad_sexpr_parser.cpp:3247"
+    ],
+    "expected_exit_code": 0,
+    "expected_messages": []
+  },
+  {
+    "id": "symbol_unknown_top_child",
+    "fixture_dir": "tests/fixtures/extract_parity/symbol_unknown_top_child",
+    "kicad_source": [
+      "/Users/Daniel/Desktop/kicad/eeschema/sch_io/kicad_sexpr/sch_io_kicad_sexpr_parser.cpp:3578"
+    ],
+    "expected_exit_code": 3,
+    "expected_messages": [
+      "Failed to load schematic"
+    ]
+  },
+  {
+    "id": "valid_image_fixture",
+    "fixture_dir": "tests/fixtures/extract_parity/valid_image_fixture",
+    "kicad_source": [
+      "/Users/Daniel/Desktop/kicad/eeschema/sch_io/kicad_sexpr/sch_io_kicad_sexpr_parser.cpp:3593"
+    ],
+    "expected_exit_code": 0,
+    "expected_messages": []
+  },
+  {
+    "id": "image_invalid_data_payload",
+    "fixture_dir": "tests/fixtures/extract_parity/image_invalid_data_payload",
+    "kicad_source": [
+      "/Users/Daniel/Desktop/kicad/eeschema/sch_io/kicad_sexpr/sch_io_kicad_sexpr_parser.cpp:3643",
+      "/Users/Daniel/Desktop/kicad/eeschema/sch_io/kicad_sexpr/sch_io_kicad_sexpr_parser.cpp:3652"
+    ],
+    "expected_exit_code": 3,
+    "expected_messages": [
+      "Warning: Unknown image data format.",
+      "Failed to load schematic"
+    ]
+  },
+  {
+    "id": "missing_library_symbol",
+    "fixture_dir": "tests/fixtures/extract_parity/missing_library_symbol",
+    "kicad_source": [
+      "/Users/Daniel/Desktop/kicad/eeschema/sch_screen.cpp"
+    ],
+    "expected_exit_code": 0,
+    "expected_messages": []
+  },
+  {
+    "id": "missing_child_sheet",
+    "fixture_dir": "tests/fixtures/extract_parity/missing_child_sheet",
+    "kicad_source": [
+      "/Users/Daniel/Desktop/kicad/eeschema/eeschema_helpers.cpp"
+    ],
+    "expected_exit_code": 0,
+    "expected_messages": []
+  },
+  {
+    "id": "missing_sheet_name",
+    "fixture_dir": "tests/fixtures/extract_parity/missing_sheet_name",
+    "kicad_source": [
+      "/Users/Daniel/Desktop/kicad/eeschema/sch_io/kicad_sexpr/sch_io_kicad_sexpr_parser.cpp:3972"
+    ],
+    "expected_exit_code": 0,
+    "expected_messages": []
+  },
+  {
+    "id": "missing_sheet_file",
+    "fixture_dir": "tests/fixtures/extract_parity/missing_sheet_file",
+    "kicad_source": [
+      "/Users/Daniel/Desktop/kicad/eeschema/sch_io/kicad_sexpr/sch_io_kicad_sexpr_parser.cpp:3978"
+    ],
+    "expected_exit_code": 0,
+    "expected_messages": []
+  },
+  {
+    "id": "invalid_sheet_instances_page",
+    "fixture_dir": "tests/fixtures/extract_parity/invalid_sheet_instances_page",
+    "kicad_source": [
+      "/Users/Daniel/Desktop/kicad/eeschema/sch_io/kicad_sexpr/sch_io_kicad_sexpr_parser.cpp:3813"
+    ],
+    "expected_exit_code": 3,
+    "expected_messages": [
+      "Failed to load schematic"
+    ]
+  },
+  {
+    "id": "invalid_sheet_instances_path",
+    "fixture_dir": "tests/fixtures/extract_parity/invalid_sheet_instances_path",
+    "kicad_source": [
+      "/Users/Daniel/Desktop/kicad/eeschema/sch_io/kicad_sexpr/sch_io_kicad_sexpr_parser.cpp:3795"
+    ],
+    "expected_exit_code": 3,
+    "expected_messages": [
+      "Failed to load schematic"
+    ]
+  },
+  {
+    "id": "invalid_sheet_instances_numeric_path",
+    "fixture_dir": "tests/fixtures/extract_parity/invalid_sheet_instances_numeric_path",
+    "kicad_source": [
+      "/Users/Daniel/Desktop/kicad/eeschema/sch_io/kicad_sexpr/sch_io_kicad_sexpr_parser.cpp:3795"
+    ],
+    "expected_exit_code": 3,
+    "expected_messages": [
+      "Failed to load schematic"
+    ]
+  },
+  {
+    "id": "invalid_sheet_instances_numeric_page",
+    "fixture_dir": "tests/fixtures/extract_parity/invalid_sheet_instances_numeric_page",
+    "kicad_source": [
+      "/Users/Daniel/Desktop/kicad/eeschema/sch_io/kicad_sexpr/sch_io_kicad_sexpr_parser.cpp:3813"
+    ],
+    "expected_exit_code": 3,
+    "expected_messages": [
+      "Failed to load schematic"
+    ]
+  },
+  {
+    "id": "invalid_symbol_instances_numeric_path",
+    "fixture_dir": "tests/fixtures/extract_parity/invalid_symbol_instances_numeric_path",
+    "kicad_source": [
+      "/Users/Daniel/Desktop/kicad/eeschema/sch_io/kicad_sexpr/sch_io_kicad_sexpr_parser.cpp:2648"
+    ],
+    "expected_exit_code": 3,
+    "expected_messages": [
+      "Failed to load schematic"
+    ]
+  },
+  {
+    "id": "invalid_symbol_instances_reference",
+    "fixture_dir": "tests/fixtures/extract_parity/invalid_symbol_instances_reference",
+    "kicad_source": [
+      "/Users/Daniel/Desktop/kicad/eeschema/sch_io/kicad_sexpr/sch_io_kicad_sexpr_parser.cpp:2655"
+    ],
+    "expected_exit_code": 3,
+    "expected_messages": [
+      "Failed to load schematic"
+    ]
+  },
+  {
+    "id": "invalid_symbol_instances_numeric_footprint",
+    "fixture_dir": "tests/fixtures/extract_parity/invalid_symbol_instances_numeric_footprint",
+    "kicad_source": [
+      "/Users/Daniel/Desktop/kicad/eeschema/sch_io/kicad_sexpr/sch_io_kicad_sexpr_parser.cpp:2677"
+    ],
+    "expected_exit_code": 3,
+    "expected_messages": [
+      "Failed to load schematic"
+    ]
+  },
+  {
+    "id": "invalid_symbol_instances_numeric_reference",
+    "fixture_dir": "tests/fixtures/extract_parity/invalid_symbol_instances_numeric_reference",
+    "kicad_source": [
+      "/Users/Daniel/Desktop/kicad/eeschema/sch_io/kicad_sexpr/sch_io_kicad_sexpr_parser.cpp:2655"
+    ],
+    "expected_exit_code": 3,
+    "expected_messages": [
+      "Failed to load schematic"
+    ]
+  },
+  {
+    "id": "invalid_symbol_instances_unit",
+    "fixture_dir": "tests/fixtures/extract_parity/invalid_symbol_instances_unit",
+    "kicad_source": [
+      "/Users/Daniel/Desktop/kicad/eeschema/sch_io/kicad_sexpr/sch_io_kicad_sexpr_parser.cpp:2661"
+    ],
+    "expected_exit_code": 3,
+    "expected_messages": [
+      "Failed to load schematic"
+    ]
+  },
+  {
+    "id": "invalid_symbol_instances_numeric_value",
+    "fixture_dir": "tests/fixtures/extract_parity/invalid_symbol_instances_numeric_value",
+    "kicad_source": [
+      "/Users/Daniel/Desktop/kicad/eeschema/sch_io/kicad_sexpr/sch_io_kicad_sexpr_parser.cpp:2666"
+    ],
+    "expected_exit_code": 3,
+    "expected_messages": [
+      "Failed to load schematic"
+    ]
+  },
+  {
+    "id": "invalid_symbol_instances_value",
+    "fixture_dir": "tests/fixtures/extract_parity/invalid_symbol_instances_value",
+    "kicad_source": [
+      "/Users/Daniel/Desktop/kicad/eeschema/sch_io/kicad_sexpr/sch_io_kicad_sexpr_parser.cpp:2666"
+    ],
+    "expected_exit_code": 3,
+    "expected_messages": [
+      "Failed to load schematic"
+    ]
+  },
+  {
+    "id": "default_instance_invalid_reference",
+    "fixture_dir": "tests/fixtures/extract_parity/default_instance_invalid_reference",
+    "kicad_source": [
+      "/Users/Daniel/Desktop/kicad/eeschema/sch_io/kicad_sexpr/sch_io_kicad_sexpr_parser.cpp:3266"
+    ],
+    "expected_exit_code": 3,
+    "expected_messages": [
+      "Failed to load schematic"
+    ]
+  },
+  {
+    "id": "default_instance_numeric_reference",
+    "fixture_dir": "tests/fixtures/extract_parity/default_instance_numeric_reference",
+    "kicad_source": [
+      "/Users/Daniel/Desktop/kicad/eeschema/sch_io/kicad_sexpr/sch_io_kicad_sexpr_parser.cpp:3266"
+    ],
+    "expected_exit_code": 3,
+    "expected_messages": [
+      "Failed to load schematic"
+    ]
+  },
+  {
+    "id": "default_instance_invalid_unit",
+    "fixture_dir": "tests/fixtures/extract_parity/default_instance_invalid_unit",
+    "kicad_source": [
+      "/Users/Daniel/Desktop/kicad/eeschema/sch_io/kicad_sexpr/sch_io_kicad_sexpr_parser.cpp:3272"
+    ],
+    "expected_exit_code": 3,
+    "expected_messages": [
+      "Failed to load schematic"
+    ]
+  },
+  {
+    "id": "default_instance_invalid_value",
+    "fixture_dir": "tests/fixtures/extract_parity/default_instance_invalid_value",
+    "kicad_source": [
+      "/Users/Daniel/Desktop/kicad/eeschema/sch_io/kicad_sexpr/sch_io_kicad_sexpr_parser.cpp:3277"
+    ],
+    "expected_exit_code": 3,
+    "expected_messages": [
+      "Failed to load schematic"
+    ]
+  },
+  {
+    "id": "default_instance_numeric_value",
+    "fixture_dir": "tests/fixtures/extract_parity/default_instance_numeric_value",
+    "kicad_source": [
+      "/Users/Daniel/Desktop/kicad/eeschema/sch_io/kicad_sexpr/sch_io_kicad_sexpr_parser.cpp:3277"
+    ],
+    "expected_exit_code": 3,
+    "expected_messages": [
+      "Failed to load schematic"
+    ]
+  },
+  {
+    "id": "default_instance_numeric_footprint",
+    "fixture_dir": "tests/fixtures/extract_parity/default_instance_numeric_footprint",
+    "kicad_source": [
+      "/Users/Daniel/Desktop/kicad/eeschema/sch_io/kicad_sexpr/sch_io_kicad_sexpr_parser.cpp:3288"
+    ],
+    "expected_exit_code": 3,
+    "expected_messages": [
+      "Failed to load schematic"
+    ]
+  },
+  {
+    "id": "symbol_instances_missing_project_name",
+    "fixture_dir": "tests/fixtures/extract_parity/symbol_instances_missing_project_name",
+    "kicad_source": [
+      "/Users/Daniel/Desktop/kicad/eeschema/sch_io/kicad_sexpr/sch_io_kicad_sexpr_parser.cpp:3336"
+    ],
+    "expected_exit_code": 3,
+    "expected_messages": [
+      "Failed to load schematic"
+    ]
+  },
+  {
+    "id": "symbol_instances_numeric_project",
+    "fixture_dir": "tests/fixtures/extract_parity/symbol_instances_numeric_project",
+    "kicad_source": [
+      "/Users/Daniel/Desktop/kicad/eeschema/sch_io/kicad_sexpr/sch_io_kicad_sexpr_parser.cpp:3336"
+    ],
+    "expected_exit_code": 3,
+    "expected_messages": [
+      "Failed to load schematic"
+    ]
+  },
+  {
+    "id": "symbol_instances_missing_path_value",
+    "fixture_dir": "tests/fixtures/extract_parity/symbol_instances_missing_path_value",
+    "kicad_source": [
+      "/Users/Daniel/Desktop/kicad/eeschema/sch_io/kicad_sexpr/sch_io_kicad_sexpr_parser.cpp:3349"
+    ],
+    "expected_exit_code": 3,
+    "expected_messages": [
+      "Failed to load schematic"
+    ]
+  },
+  {
+    "id": "symbol_instances_numeric_path",
+    "fixture_dir": "tests/fixtures/extract_parity/symbol_instances_numeric_path",
+    "kicad_source": [
+      "/Users/Daniel/Desktop/kicad/eeschema/sch_io/kicad_sexpr/sch_io_kicad_sexpr_parser.cpp:3349"
+    ],
+    "expected_exit_code": 3,
+    "expected_messages": [
+      "Failed to load schematic"
+    ]
+  },
+  {
+    "id": "invalid_page_type",
+    "fixture_dir": "tests/fixtures/extract_parity/invalid_page_type",
+    "kicad_source": [
+      "/Users/Daniel/Desktop/kicad/eeschema/sch_io/kicad_sexpr/sch_io_kicad_sexpr_parser.cpp:2137"
+    ],
+    "expected_exit_code": 3,
+    "expected_messages": [
+      "Failed to load schematic"
+    ]
+  },
+  {
+    "id": "empty_sheet_pin_name",
+    "fixture_dir": "tests/fixtures/extract_parity/empty_sheet_pin_name",
+    "kicad_source": [
+      "/Users/Daniel/Desktop/kicad/eeschema/sch_io/kicad_sexpr/sch_io_kicad_sexpr_parser.cpp:2451"
+    ],
+    "expected_exit_code": 3,
+    "expected_messages": [
+      "Failed to load schematic"
+    ]
+  },
+  {
+    "id": "invalid_font_color_token",
+    "fixture_dir": "tests/fixtures/extract_parity/invalid_font_color_token",
+    "kicad_source": [
+      "/Users/Daniel/Desktop/kicad/eeschema/sch_io/kicad_sexpr/sch_io_kicad_sexpr_parser.cpp:832"
+    ],
+    "expected_exit_code": 3,
+    "expected_messages": [
+      "Failed to load schematic"
+    ]
+  },
+  {
+    "id": "invalid_font_color_arity",
+    "fixture_dir": "tests/fixtures/extract_parity/invalid_font_color_arity",
+    "kicad_source": [
+      "/Users/Daniel/Desktop/kicad/eeschema/sch_io/kicad_sexpr/sch_io_kicad_sexpr_parser.cpp:832"
+    ],
+    "expected_exit_code": 3,
+    "expected_messages": [
+      "Failed to load schematic"
+    ]
+  },
+  {
+    "id": "invalid_font_thickness_token",
+    "fixture_dir": "tests/fixtures/extract_parity/invalid_font_thickness_token",
+    "kicad_source": [
+      "/Users/Daniel/Desktop/kicad/eeschema/sch_io/kicad_sexpr/sch_io_kicad_sexpr_parser.cpp:817"
+    ],
+    "expected_exit_code": 3,
+    "expected_messages": [
+      "Failed to load schematic"
+    ]
+  },
+  {
+    "id": "invalid_font_line_spacing_token",
+    "fixture_dir": "tests/fixtures/extract_parity/invalid_font_line_spacing_token",
+    "kicad_source": [
+      "/Users/Daniel/Desktop/kicad/eeschema/sch_io/kicad_sexpr/sch_io_kicad_sexpr_parser.cpp:841"
+    ],
+    "expected_exit_code": 3,
+    "expected_messages": [
+      "Failed to load schematic"
+    ]
+  },
+  {
+    "id": "invalid_font_face_payload",
+    "fixture_dir": "tests/fixtures/extract_parity/invalid_font_face_payload",
+    "kicad_source": [
+      "/Users/Daniel/Desktop/kicad/eeschema/sch_io/kicad_sexpr/sch_io_kicad_sexpr_parser.cpp:801"
+    ],
+    "expected_exit_code": 3,
+    "expected_messages": [
+      "Failed to load schematic"
+    ]
+  },
+  {
+    "id": "invalid_hide_token",
+    "fixture_dir": "tests/fixtures/extract_parity/invalid_hide_token",
+    "kicad_source": [
+      "/Users/Daniel/Desktop/kicad/eeschema/sch_io/kicad_sexpr/sch_io_kicad_sexpr_parser.cpp:889"
+    ],
+    "expected_exit_code": 3,
+    "expected_messages": [
+      "Failed to load schematic"
+    ]
+  },
+  {
+    "id": "invalid_junction_diameter_token",
+    "fixture_dir": "tests/fixtures/extract_parity/invalid_junction_diameter_token",
+    "kicad_source": [
+      "/Users/Daniel/Desktop/kicad/eeschema/sch_io/kicad_sexpr/sch_io_kicad_sexpr_parser.cpp:4009"
+    ],
+    "expected_exit_code": 3,
+    "expected_messages": [
+      "Failed to load schematic"
+    ]
+  },
+  {
+    "id": "invalid_junction_color_token",
+    "fixture_dir": "tests/fixtures/extract_parity/invalid_junction_color_token",
+    "kicad_source": [
+      "/Users/Daniel/Desktop/kicad/eeschema/sch_io/kicad_sexpr/sch_io_kicad_sexpr_parser.cpp:4015"
+    ],
+    "expected_exit_code": 3,
+    "expected_messages": [
+      "Failed to load schematic"
+    ]
+  },
+  {
+    "id": "invalid_junction_color_arity",
+    "fixture_dir": "tests/fixtures/extract_parity/invalid_junction_color_arity",
+    "kicad_source": [
+      "/Users/Daniel/Desktop/kicad/eeschema/sch_io/kicad_sexpr/sch_io_kicad_sexpr_parser.cpp:4015"
+    ],
+    "expected_exit_code": 3,
+    "expected_messages": [
+      "Failed to load schematic"
+    ]
+  },
+  {
+    "id": "invalid_directive_length_token",
+    "fixture_dir": "tests/fixtures/extract_parity/invalid_directive_length_token",
+    "kicad_source": [
+      "/Users/Daniel/Desktop/kicad/eeschema/sch_io/kicad_sexpr/sch_io_kicad_sexpr_parser.cpp:4698"
+    ],
+    "expected_exit_code": 3,
+    "expected_messages": [
+      "Failed to load schematic"
+    ]
+  },
+  {
+    "id": "invalid_text_box_margins_token",
+    "fixture_dir": "tests/fixtures/extract_parity/invalid_text_box_margins_token",
+    "kicad_source": [
+      "/Users/Daniel/Desktop/kicad/eeschema/sch_io/kicad_sexpr/sch_io_kicad_sexpr_parser.cpp:4878"
+    ],
+    "expected_exit_code": 3,
+    "expected_messages": [
+      "Failed to load schematic"
+    ]
+  },
+  {
+    "id": "invalid_text_box_exclude_from_sim_token",
+    "fixture_dir": "tests/fixtures/extract_parity/invalid_text_box_exclude_from_sim_token",
+    "kicad_source": [
+      "/Users/Daniel/Desktop/kicad/eeschema/sch_io/kicad_sexpr/sch_io_kicad_sexpr_parser.cpp:4828"
+    ],
+    "expected_exit_code": 3,
+    "expected_messages": [
+      "Failed to load schematic"
+    ]
+  },
+  {
+    "id": "invalid_directive_fields_autoplaced_token",
+    "fixture_dir": "tests/fixtures/extract_parity/invalid_directive_fields_autoplaced_token",
+    "kicad_source": [
+      "/Users/Daniel/Desktop/kicad/eeschema/sch_io/kicad_sexpr/sch_io_kicad_sexpr_parser.cpp:4708"
+    ],
+    "expected_exit_code": 3,
+    "expected_messages": [
+      "Failed to load schematic"
+    ]
+  },
+  {
+    "id": "invalid_directive_exclude_from_sim_token",
+    "fixture_dir": "tests/fixtures/extract_parity/invalid_directive_exclude_from_sim_token",
+    "kicad_source": [
+      "/Users/Daniel/Desktop/kicad/eeschema/sch_io/kicad_sexpr/sch_io_kicad_sexpr_parser.cpp:4643"
+    ],
+    "expected_exit_code": 3,
+    "expected_messages": [
+      "Failed to load schematic"
+    ]
+  },
+  {
+    "id": "label_invalid_exclude_from_sim_token",
+    "fixture_dir": "tests/fixtures/extract_parity/label_invalid_exclude_from_sim_token",
+    "kicad_source": [
+      "/Users/Daniel/Desktop/kicad/eeschema/sch_io/kicad_sexpr/sch_io_kicad_sexpr_parser.cpp:4643"
+    ],
+    "expected_exit_code": 3,
+    "expected_messages": [
+      "Failed to load schematic"
+    ]
+  },
+  {
+    "id": "global_label_invalid_exclude_from_sim_token",
+    "fixture_dir": "tests/fixtures/extract_parity/global_label_invalid_exclude_from_sim_token",
+    "kicad_source": [
+      "/Users/Daniel/Desktop/kicad/eeschema/sch_io/kicad_sexpr/sch_io_kicad_sexpr_parser.cpp:4643"
+    ],
+    "expected_exit_code": 3,
+    "expected_messages": [
+      "Failed to load schematic"
+    ]
+  },
+  {
+    "id": "hier_label_invalid_exclude_from_sim_token",
+    "fixture_dir": "tests/fixtures/extract_parity/hier_label_invalid_exclude_from_sim_token",
+    "kicad_source": [
+      "/Users/Daniel/Desktop/kicad/eeschema/sch_io/kicad_sexpr/sch_io_kicad_sexpr_parser.cpp:4643"
+    ],
+    "expected_exit_code": 3,
+    "expected_messages": [
+      "Failed to load schematic"
+    ]
+  },
+  {
+    "id": "bare_directive_fields_autoplaced",
+    "fixture_dir": "tests/fixtures/extract_parity/bare_directive_fields_autoplaced",
+    "kicad_source": [
+      "/Users/Daniel/Desktop/kicad/eeschema/sch_io/kicad_sexpr/sch_io_kicad_sexpr_parser.cpp:4708"
+    ],
+    "expected_exit_code": 0,
+    "expected_messages": []
+  },
+  {
+    "id": "invalid_text_box_span_token",
+    "fixture_dir": "tests/fixtures/extract_parity/invalid_text_box_span_token",
+    "kicad_source": [
+      "/Users/Daniel/Desktop/kicad/eeschema/sch_io/kicad_sexpr/sch_io_kicad_sexpr_parser.cpp:4861"
+    ],
+    "expected_exit_code": 3,
+    "expected_messages": [
+      "Failed to load schematic"
+    ]
+  },
+  {
+    "id": "invalid_table_column_token",
+    "fixture_dir": "tests/fixtures/extract_parity/invalid_table_column_token",
+    "kicad_source": [
+      "/Users/Daniel/Desktop/kicad/eeschema/sch_io/kicad_sexpr/sch_io_kicad_sexpr_parser.cpp:5042"
+    ],
+    "expected_exit_code": 3,
+    "expected_messages": [
+      "Failed to load schematic"
+    ]
+  },
+  {
+    "id": "invalid_table_header_token",
+    "fixture_dir": "tests/fixtures/extract_parity/invalid_table_header_token",
+    "kicad_source": [
+      "/Users/Daniel/Desktop/kicad/eeschema/sch_io/kicad_sexpr/sch_io_kicad_sexpr_parser.cpp:5059"
+    ],
+    "expected_exit_code": 3,
+    "expected_messages": [
+      "Failed to load schematic"
+    ]
+  },
+  {
+    "id": "invalid_table_border_external_token",
+    "fixture_dir": "tests/fixtures/extract_parity/invalid_table_border_external_token",
+    "kicad_source": [
+      "/Users/Daniel/Desktop/kicad/eeschema/sch_io/kicad_sexpr/sch_io_kicad_sexpr_parser.cpp:5008"
+    ],
+    "expected_exit_code": 3,
+    "expected_messages": [
+      "Failed to load schematic"
+    ]
+  },
+  {
+    "id": "invalid_table_border_header_token",
+    "fixture_dir": "tests/fixtures/extract_parity/invalid_table_border_header_token",
+    "kicad_source": [
+      "/Users/Daniel/Desktop/kicad/eeschema/sch_io/kicad_sexpr/sch_io_kicad_sexpr_parser.cpp:5012"
+    ],
+    "expected_exit_code": 3,
+    "expected_messages": [
+      "Failed to load schematic"
+    ]
+  },
+  {
+    "id": "invalid_table_col_widths_token",
+    "fixture_dir": "tests/fixtures/extract_parity/invalid_table_col_widths_token",
+    "kicad_source": [
+      "/Users/Daniel/Desktop/kicad/eeschema/sch_io/kicad_sexpr/sch_io_kicad_sexpr_parser.cpp:5034"
+    ],
+    "expected_exit_code": 3,
+    "expected_messages": [
+      "Failed to load schematic"
+    ]
+  },
+  {
+    "id": "invalid_table_row_token",
+    "fixture_dir": "tests/fixtures/extract_parity/invalid_table_row_token",
+    "kicad_source": [
+      "/Users/Daniel/Desktop/kicad/eeschema/sch_io/kicad_sexpr/sch_io_kicad_sexpr_parser.cpp:5046"
+    ],
+    "expected_exit_code": 3,
+    "expected_messages": [
+      "Failed to load schematic"
+    ]
+  },
+  {
+    "id": "invalid_table_row_heights_token",
+    "fixture_dir": "tests/fixtures/extract_parity/invalid_table_row_heights_token",
+    "kicad_source": [
+      "/Users/Daniel/Desktop/kicad/eeschema/sch_io/kicad_sexpr/sch_io_kicad_sexpr_parser.cpp:5038"
+    ],
+    "expected_exit_code": 3,
+    "expected_messages": [
+      "Failed to load schematic"
+    ]
+  },
+  {
+    "id": "invalid_table_separators_token",
+    "fixture_dir": "tests/fixtures/extract_parity/invalid_table_separators_token",
+    "kicad_source": [
+      "/Users/Daniel/Desktop/kicad/eeschema/sch_io/kicad_sexpr/sch_io_kicad_sexpr_parser.cpp:5050"
+    ],
+    "expected_exit_code": 3,
+    "expected_messages": [
+      "Failed to load schematic"
+    ]
+  },
+  {
+    "id": "invalid_sheet_size_token",
+    "fixture_dir": "tests/fixtures/extract_parity/invalid_sheet_size_token",
+    "kicad_source": [
+      "/Users/Daniel/Desktop/kicad/eeschema/sch_io/kicad_sexpr/sch_io_kicad_sexpr_parser.cpp:3701"
+    ],
+    "expected_exit_code": 3,
+    "expected_messages": [
+      "Failed to load schematic"
+    ]
+  },
+  {
+    "id": "invalid_sheet_dnp_token",
+    "fixture_dir": "tests/fixtures/extract_parity/invalid_sheet_dnp_token",
+    "kicad_source": [
+      "/Users/Daniel/Desktop/kicad/eeschema/sch_io/kicad_sexpr/sch_io_kicad_sexpr_parser.cpp:3720"
+    ],
+    "expected_exit_code": 3,
+    "expected_messages": [
+      "Failed to load schematic"
+    ]
+  },
+  {
+    "id": "invalid_sheet_fields_autoplaced_token",
+    "fixture_dir": "tests/fixtures/extract_parity/invalid_sheet_fields_autoplaced_token",
+    "kicad_source": [
+      "/Users/Daniel/Desktop/kicad/eeschema/sch_io/kicad_sexpr/sch_io_kicad_sexpr_parser.cpp:3724"
+    ],
+    "expected_exit_code": 3,
+    "expected_messages": [
+      "Failed to load schematic"
+    ]
+  },
+  {
+    "id": "invalid_sheet_exclude_from_sim_token",
+    "fixture_dir": "tests/fixtures/extract_parity/invalid_sheet_exclude_from_sim_token",
+    "kicad_source": [
+      "/Users/Daniel/Desktop/kicad/eeschema/sch_io/kicad_sexpr/sch_io_kicad_sexpr_parser.cpp:3709"
+    ],
+    "expected_exit_code": 3,
+    "expected_messages": [
+      "Failed to load schematic"
+    ]
+  },
+  {
+    "id": "invalid_sheet_variant_exclude_from_sim_token",
+    "fixture_dir": "tests/fixtures/extract_parity/invalid_sheet_variant_exclude_from_sim_token",
+    "kicad_source": [
+      "/Users/Daniel/Desktop/kicad/eeschema/sch_io/kicad_sexpr/sch_io_kicad_sexpr_parser.cpp:3878"
+    ],
+    "expected_exit_code": 3,
+    "expected_messages": [
+      "Failed to load schematic"
+    ]
+  },
+  {
+    "id": "bare_sheet_variant_exclude_from_sim",
+    "fixture_dir": "tests/fixtures/extract_parity/bare_sheet_variant_exclude_from_sim",
+    "kicad_source": [
+      "/Users/Daniel/Desktop/kicad/eeschema/sch_io/kicad_sexpr/sch_io_kicad_sexpr_parser.cpp:3878"
+    ],
+    "expected_exit_code": 3,
+    "expected_messages": [
+      "Failed to load schematic"
+    ]
+  },
+  {
+    "id": "invalid_sheet_in_bom_token",
+    "fixture_dir": "tests/fixtures/extract_parity/invalid_sheet_in_bom_token",
+    "kicad_source": [
+      "/Users/Daniel/Desktop/kicad/eeschema/sch_io/kicad_sexpr/sch_io_kicad_sexpr_parser.cpp:3713"
+    ],
+    "expected_exit_code": 3,
+    "expected_messages": [
+      "Failed to load schematic"
+    ]
+  },
+  {
+    "id": "invalid_sheet_on_board_token",
+    "fixture_dir": "tests/fixtures/extract_parity/invalid_sheet_on_board_token",
+    "kicad_source": [
+      "/Users/Daniel/Desktop/kicad/eeschema/sch_io/kicad_sexpr/sch_io_kicad_sexpr_parser.cpp:3717"
+    ],
+    "expected_exit_code": 3,
+    "expected_messages": [
+      "Failed to load schematic"
+    ]
+  },
+  {
+    "id": "bare_sheet_fields_autoplaced",
+    "fixture_dir": "tests/fixtures/extract_parity/bare_sheet_fields_autoplaced",
+    "kicad_source": [
+      "/Users/Daniel/Desktop/kicad/eeschema/sch_io/kicad_sexpr/sch_io_kicad_sexpr_parser.cpp:3724"
+    ],
+    "expected_exit_code": 0,
+    "expected_messages": []
+  },
+  {
+    "id": "invalid_symbol_dnp_token",
+    "fixture_dir": "tests/fixtures/extract_parity/invalid_symbol_dnp_token",
+    "kicad_source": [
+      "/Users/Daniel/Desktop/kicad/eeschema/sch_io/kicad_sexpr/sch_io_kicad_sexpr_parser.cpp:3237"
+    ],
+    "expected_exit_code": 3,
+    "expected_messages": [
+      "Failed to load schematic"
+    ]
+  },
+  {
+    "id": "invalid_symbol_exclude_from_sim_token",
+    "fixture_dir": "tests/fixtures/extract_parity/invalid_symbol_exclude_from_sim_token",
+    "kicad_source": [
+      "/Users/Daniel/Desktop/kicad/eeschema/sch_io/kicad_sexpr/sch_io_kicad_sexpr_parser.cpp:3216"
+    ],
+    "expected_exit_code": 3,
+    "expected_messages": [
+      "Failed to load schematic"
+    ]
+  },
+  {
+    "id": "invalid_symbol_in_bom_token",
+    "fixture_dir": "tests/fixtures/extract_parity/invalid_symbol_in_bom_token",
+    "kicad_source": [
+      "/Users/Daniel/Desktop/kicad/eeschema/sch_io/kicad_sexpr/sch_io_kicad_sexpr_parser.cpp:3229"
+    ],
+    "expected_exit_code": 3,
+    "expected_messages": [
+      "Failed to load schematic"
+    ]
+  },
+  {
+    "id": "invalid_symbol_on_board_token",
+    "fixture_dir": "tests/fixtures/extract_parity/invalid_symbol_on_board_token",
+    "kicad_source": [
+      "/Users/Daniel/Desktop/kicad/eeschema/sch_io/kicad_sexpr/sch_io_kicad_sexpr_parser.cpp:3233"
+    ],
+    "expected_exit_code": 3,
+    "expected_messages": [
+      "Failed to load schematic"
+    ]
+  },
+  {
+    "id": "invalid_symbol_in_pos_files_token",
+    "fixture_dir": "tests/fixtures/extract_parity/invalid_symbol_in_pos_files_token",
+    "kicad_source": [
+      "/Users/Daniel/Desktop/kicad/eeschema/sch_io/kicad_sexpr/sch_io_kicad_sexpr_parser.cpp:3225"
+    ],
+    "expected_exit_code": 3,
+    "expected_messages": [
+      "Failed to load schematic"
+    ]
+  },
+  {
+    "id": "invalid_symbol_fields_autoplaced_token",
+    "fixture_dir": "tests/fixtures/extract_parity/invalid_symbol_fields_autoplaced_token",
+    "kicad_source": [
+      "/Users/Daniel/Desktop/kicad/eeschema/sch_io/kicad_sexpr/sch_io_kicad_sexpr_parser.cpp:3241"
+    ],
+    "expected_exit_code": 3,
+    "expected_messages": [
+      "Failed to load schematic"
+    ]
+  },
+  {
+    "id": "invalid_rule_area_exclude_from_sim_token",
+    "fixture_dir": "tests/fixtures/extract_parity/invalid_rule_area_exclude_from_sim_token",
+    "kicad_source": [
+      "/Users/Daniel/Desktop/kicad/eeschema/sch_io/kicad_sexpr/sch_io_kicad_sexpr_parser.cpp:4505"
+    ],
+    "expected_exit_code": 3,
+    "expected_messages": [
+      "Failed to load schematic"
+    ]
+  },
+  {
+    "id": "invalid_rule_area_dnp_token",
+    "fixture_dir": "tests/fixtures/extract_parity/invalid_rule_area_dnp_token",
+    "kicad_source": [
+      "/Users/Daniel/Desktop/kicad/eeschema/sch_io/kicad_sexpr/sch_io_kicad_sexpr_parser.cpp:4520"
+    ],
+    "expected_exit_code": 3,
+    "expected_messages": [
+      "Failed to load schematic"
+    ]
+  },
+  {
+    "id": "invalid_lib_symbol_exclude_from_sim_token",
+    "fixture_dir": "tests/fixtures/extract_parity/invalid_lib_symbol_exclude_from_sim_token",
+    "kicad_source": [
+      "/Users/Daniel/Desktop/kicad/eeschema/sch_io/kicad_sexpr/sch_io_kicad_sexpr_parser.cpp:405"
+    ],
+    "expected_exit_code": 3,
+    "expected_messages": [
+      "Failed to load schematic"
+    ]
+  },
+  {
+    "id": "invalid_lib_symbol_fonts_embedded_token",
+    "fixture_dir": "tests/fixtures/extract_parity/invalid_lib_symbol_fonts_embedded_token",
+    "kicad_source": [
+      "/Users/Daniel/Desktop/kicad/eeschema/sch_io/kicad_sexpr/sch_io_kicad_sexpr_parser.cpp:601"
+    ],
+    "expected_exit_code": 3,
+    "expected_messages": [
+      "Failed to load schematic"
+    ]
+  },
+  {
+    "id": "invalid_lib_symbol_jumpers_token",
+    "fixture_dir": "tests/fixtures/extract_parity/invalid_lib_symbol_jumpers_token",
+    "kicad_source": [
+      "/Users/Daniel/Desktop/kicad/eeschema/sch_io/kicad_sexpr/sch_io_kicad_sexpr_parser.cpp:425"
+    ],
+    "expected_exit_code": 3,
+    "expected_messages": [
+      "Failed to load schematic"
+    ]
+  },
+  {
+    "id": "bare_symbol_fields_autoplaced",
+    "fixture_dir": "tests/fixtures/extract_parity/bare_symbol_fields_autoplaced",
+    "kicad_source": [
+      "/Users/Daniel/Desktop/kicad/eeschema/sch_io/kicad_sexpr/sch_io_kicad_sexpr_parser.cpp:3241"
+    ],
+    "expected_exit_code": 0,
+    "expected_messages": []
+  },
+  {
+    "id": "invalid_pin_names_offset_token",
+    "fixture_dir": "tests/fixtures/extract_parity/invalid_pin_names_offset_token",
+    "kicad_source": [
+      "/Users/Daniel/Desktop/kicad/eeschema/sch_io/kicad_sexpr/sch_io_kicad_sexpr_parser.cpp:982"
+    ],
+    "expected_exit_code": 3,
+    "expected_messages": [
+      "Failed to load schematic"
+    ]
+  },
+  {
+    "id": "invalid_pin_names_hide_token",
+    "fixture_dir": "tests/fixtures/extract_parity/invalid_pin_names_hide_token",
+    "kicad_source": [
+      "/Users/Daniel/Desktop/kicad/eeschema/sch_io/kicad_sexpr/sch_io_kicad_sexpr_parser.cpp:986"
+    ],
+    "expected_exit_code": 3,
+    "expected_messages": [
+      "Failed to load schematic"
+    ]
+  },
+  {
+    "id": "invalid_pin_numbers_hide_token",
+    "fixture_dir": "tests/fixtures/extract_parity/invalid_pin_numbers_hide_token",
+    "kicad_source": [
+      "/Users/Daniel/Desktop/kicad/eeschema/sch_io/kicad_sexpr/sch_io_kicad_sexpr_parser.cpp:1034"
+    ],
+    "expected_exit_code": 3,
+    "expected_messages": [
+      "Failed to load schematic"
+    ]
+  },
+  {
+    "id": "invalid_pin_hide_token",
+    "fixture_dir": "tests/fixtures/extract_parity/invalid_pin_hide_token",
+    "kicad_source": [
+      "/Users/Daniel/Desktop/kicad/eeschema/sch_io/kicad_sexpr/sch_io_kicad_sexpr_parser.cpp:1689"
+    ],
+    "expected_exit_code": 3,
+    "expected_messages": [
+      "Failed to load schematic"
+    ]
+  },
+  {
+    "id": "bare_pin_names_hide",
+    "fixture_dir": "tests/fixtures/extract_parity/bare_pin_names_hide",
+    "kicad_source": [
+      "/Users/Daniel/Desktop/kicad/eeschema/sch_io/kicad_sexpr/sch_io_kicad_sexpr_parser.cpp:971"
+    ],
+    "expected_exit_code": 0,
+    "expected_messages": []
+  },
+  {
+    "id": "bare_pin_numbers_hide",
+    "fixture_dir": "tests/fixtures/extract_parity/bare_pin_numbers_hide",
+    "kicad_source": [
+      "/Users/Daniel/Desktop/kicad/eeschema/sch_io/kicad_sexpr/sch_io_kicad_sexpr_parser.cpp:1018"
+    ],
+    "expected_exit_code": 0,
+    "expected_messages": []
+  },
+  {
+    "id": "bare_pin_hide",
+    "fixture_dir": "tests/fixtures/extract_parity/bare_pin_hide",
+    "kicad_source": [
+      "/Users/Daniel/Desktop/kicad/eeschema/sch_io/kicad_sexpr/sch_io_kicad_sexpr_parser.cpp:1689"
+    ],
+    "expected_exit_code": 3,
+    "expected_messages": [
+      "Failed to load schematic"
+    ]
+  },
+  {
+    "id": "bare_bold",
+    "fixture_dir": "tests/fixtures/extract_parity/bare_bold",
+    "kicad_source": [
+      "/Users/Daniel/Desktop/kicad/eeschema/sch_io/kicad_sexpr/sch_io_kicad_sexpr_parser.cpp:821"
+    ],
+    "expected_exit_code": 0,
+    "expected_messages": []
+  },
+  {
+    "id": "bare_italic",
+    "fixture_dir": "tests/fixtures/extract_parity/bare_italic",
+    "kicad_source": [
+      "/Users/Daniel/Desktop/kicad/eeschema/sch_io/kicad_sexpr/sch_io_kicad_sexpr_parser.cpp:826"
+    ],
+    "expected_exit_code": 0,
+    "expected_messages": []
+  },
+  {
+    "id": "bare_hide",
+    "fixture_dir": "tests/fixtures/extract_parity/bare_hide",
+    "kicad_source": [
+      "/Users/Daniel/Desktop/kicad/eeschema/sch_io/kicad_sexpr/sch_io_kicad_sexpr_parser.cpp:889"
+    ],
+    "expected_exit_code": 0,
+    "expected_messages": []
+  },
+  {
+    "id": "invalid_show_name_token",
+    "fixture_dir": "tests/fixtures/extract_parity/invalid_show_name_token",
+    "kicad_source": [
+      "/Users/Daniel/Desktop/kicad/eeschema/sch_io/kicad_sexpr/sch_io_kicad_sexpr_parser.cpp:1143",
+      "/Users/Daniel/Desktop/kicad/eeschema/sch_io/kicad_sexpr/sch_io_kicad_sexpr_parser.cpp:2411"
+    ],
+    "expected_exit_code": 3,
+    "expected_messages": [
+      "Failed to load schematic"
+    ]
+  },
+  {
+    "id": "invalid_do_not_autoplace_token",
+    "fixture_dir": "tests/fixtures/extract_parity/invalid_do_not_autoplace_token",
+    "kicad_source": [
+      "/Users/Daniel/Desktop/kicad/eeschema/sch_io/kicad_sexpr/sch_io_kicad_sexpr_parser.cpp:1150",
+      "/Users/Daniel/Desktop/kicad/eeschema/sch_io/kicad_sexpr/sch_io_kicad_sexpr_parser.cpp:2418"
+    ],
+    "expected_exit_code": 3,
+    "expected_messages": [
+      "Failed to load schematic"
+    ]
+  },
+  {
+    "id": "invalid_text_exclude_from_sim_token",
+    "fixture_dir": "tests/fixtures/extract_parity/invalid_text_exclude_from_sim_token",
+    "kicad_source": [
+      "/Users/Daniel/Desktop/kicad/eeschema/sch_io/kicad_sexpr/sch_io_kicad_sexpr_parser.cpp:4643"
+    ],
+    "expected_exit_code": 3,
+    "expected_messages": [
+      "Failed to load schematic"
+    ]
+  },
+  {
+    "id": "bare_text_exclude_from_sim",
+    "fixture_dir": "tests/fixtures/extract_parity/bare_text_exclude_from_sim",
+    "kicad_source": [
+      "/Users/Daniel/Desktop/kicad/eeschema/sch_io/kicad_sexpr/sch_io_kicad_sexpr_parser.cpp:4643"
+    ],
+    "expected_exit_code": 3,
+    "expected_messages": [
+      "Failed to load schematic"
+    ]
+  },
+  {
+    "id": "label_bare_exclude_from_sim",
+    "fixture_dir": "tests/fixtures/extract_parity/label_bare_exclude_from_sim",
+    "kicad_source": [
+      "/Users/Daniel/Desktop/kicad/eeschema/sch_io/kicad_sexpr/sch_io_kicad_sexpr_parser.cpp:4643"
+    ],
+    "expected_exit_code": 3,
+    "expected_messages": [
+      "Failed to load schematic"
+    ]
+  },
+  {
+    "id": "global_label_bare_exclude_from_sim",
+    "fixture_dir": "tests/fixtures/extract_parity/global_label_bare_exclude_from_sim",
+    "kicad_source": [
+      "/Users/Daniel/Desktop/kicad/eeschema/sch_io/kicad_sexpr/sch_io_kicad_sexpr_parser.cpp:4643"
+    ],
+    "expected_exit_code": 3,
+    "expected_messages": [
+      "Failed to load schematic"
+    ]
+  },
+  {
+    "id": "hier_label_bare_exclude_from_sim",
+    "fixture_dir": "tests/fixtures/extract_parity/hier_label_bare_exclude_from_sim",
+    "kicad_source": [
+      "/Users/Daniel/Desktop/kicad/eeschema/sch_io/kicad_sexpr/sch_io_kicad_sexpr_parser.cpp:4643"
+    ],
+    "expected_exit_code": 3,
+    "expected_messages": [
+      "Failed to load schematic"
+    ]
+  },
+  {
+    "id": "directive_label_bare_exclude_from_sim",
+    "fixture_dir": "tests/fixtures/extract_parity/directive_label_bare_exclude_from_sim",
+    "kicad_source": [
+      "/Users/Daniel/Desktop/kicad/eeschema/sch_io/kicad_sexpr/sch_io_kicad_sexpr_parser.cpp:4643"
+    ],
+    "expected_exit_code": 3,
+    "expected_messages": [
+      "Failed to load schematic"
+    ]
+  },
+  {
+    "id": "invalid_text_fields_autoplaced_token",
+    "fixture_dir": "tests/fixtures/extract_parity/invalid_text_fields_autoplaced_token",
+    "kicad_source": [
+      "/Users/Daniel/Desktop/kicad/eeschema/sch_io/kicad_sexpr/sch_io_kicad_sexpr_parser.cpp:4708"
+    ],
+    "expected_exit_code": 3,
+    "expected_messages": [
+      "Failed to load schematic"
+    ]
+  },
+  {
+    "id": "label_invalid_fields_autoplaced_token",
+    "fixture_dir": "tests/fixtures/extract_parity/label_invalid_fields_autoplaced_token",
+    "kicad_source": [
+      "/Users/Daniel/Desktop/kicad/eeschema/sch_io/kicad_sexpr/sch_io_kicad_sexpr_parser.cpp:4708"
+    ],
+    "expected_exit_code": 3,
+    "expected_messages": [
+      "Failed to load schematic"
+    ]
+  },
+  {
+    "id": "global_label_invalid_fields_autoplaced_token",
+    "fixture_dir": "tests/fixtures/extract_parity/global_label_invalid_fields_autoplaced_token",
+    "kicad_source": [
+      "/Users/Daniel/Desktop/kicad/eeschema/sch_io/kicad_sexpr/sch_io_kicad_sexpr_parser.cpp:4708"
+    ],
+    "expected_exit_code": 3,
+    "expected_messages": [
+      "Failed to load schematic"
+    ]
+  },
+  {
+    "id": "hier_label_invalid_fields_autoplaced_token",
+    "fixture_dir": "tests/fixtures/extract_parity/hier_label_invalid_fields_autoplaced_token",
+    "kicad_source": [
+      "/Users/Daniel/Desktop/kicad/eeschema/sch_io/kicad_sexpr/sch_io_kicad_sexpr_parser.cpp:4708"
+    ],
+    "expected_exit_code": 3,
+    "expected_messages": [
+      "Failed to load schematic"
+    ]
+  },
+  {
+    "id": "invalid_top_embedded_fonts_token",
+    "fixture_dir": "tests/fixtures/extract_parity/invalid_top_embedded_fonts_token",
+    "kicad_source": [
+      "/Users/Daniel/Desktop/kicad/eeschema/sch_io/kicad_sexpr/sch_io_kicad_sexpr_parser.cpp:3026"
+    ],
+    "expected_exit_code": 3,
+    "expected_messages": [
+      "Failed to load schematic"
+    ]
+  },
+  {
+    "id": "bare_top_embedded_fonts",
+    "fixture_dir": "tests/fixtures/extract_parity/bare_top_embedded_fonts",
+    "kicad_source": [
+      "/Users/Daniel/Desktop/kicad/eeschema/sch_io/kicad_sexpr/sch_io_kicad_sexpr_parser.cpp:3026"
+    ],
+    "expected_exit_code": 3,
+    "expected_messages": [
+      "Failed to load schematic"
+    ]
+  },
+  {
+    "id": "invalid_variant_dnp_token",
+    "fixture_dir": "tests/fixtures/extract_parity/invalid_variant_dnp_token",
+    "kicad_source": [
+      "/Users/Daniel/Desktop/kicad/eeschema/sch_io/kicad_sexpr/sch_io_kicad_sexpr_parser.cpp:3402",
+      "/Users/Daniel/Desktop/kicad/eeschema/sch_io/kicad_sexpr/sch_io_kicad_sexpr_parser.cpp:3873"
+    ],
+    "expected_exit_code": 3,
+    "expected_messages": [
+      "Failed to load schematic"
+    ]
+  },
+  {
+    "id": "invalid_variant_in_bom_token",
+    "fixture_dir": "tests/fixtures/extract_parity/invalid_variant_in_bom_token",
+    "kicad_source": [
+      "/Users/Daniel/Desktop/kicad/eeschema/sch_io/kicad_sexpr/sch_io_kicad_sexpr_parser.cpp:3412",
+      "/Users/Daniel/Desktop/kicad/eeschema/sch_io/kicad_sexpr/sch_io_kicad_sexpr_parser.cpp:3883"
+    ],
+    "expected_exit_code": 3,
+    "expected_messages": [
+      "Failed to load schematic"
+    ]
+  },
+  {
+    "id": "invalid_variant_name",
+    "fixture_dir": "tests/fixtures/extract_parity/invalid_variant_name",
+    "kicad_source": [
+      "/Users/Daniel/Desktop/kicad/eeschema/sch_io/kicad_sexpr/sch_io_kicad_sexpr_parser.cpp:3397",
+      "/Users/Daniel/Desktop/kicad/eeschema/sch_io/kicad_sexpr/sch_io_kicad_sexpr_parser.cpp:3868"
+    ],
+    "expected_exit_code": 3,
+    "expected_messages": [
+      "Failed to load schematic"
+    ]
+  },
+  {
+    "id": "invalid_variant_field_name",
+    "fixture_dir": "tests/fixtures/extract_parity/invalid_variant_field_name",
+    "kicad_source": [
+      "/Users/Daniel/Desktop/kicad/eeschema/sch_io/kicad_sexpr/sch_io_kicad_sexpr_parser.cpp:3444",
+      "/Users/Daniel/Desktop/kicad/eeschema/sch_io/kicad_sexpr/sch_io_kicad_sexpr_parser.cpp:3915"
+    ],
+    "expected_exit_code": 3,
+    "expected_messages": [
+      "Failed to load schematic"
+    ]
+  },
+  {
+    "id": "polyline_too_few_points",
+    "fixture_dir": "tests/fixtures/extract_parity/polyline_too_few_points",
+    "kicad_source": [
+      "/Users/Daniel/Desktop/kicad/eeschema/sch_io/kicad_sexpr/sch_io_kicad_sexpr_parser.cpp:2934"
+    ],
+    "expected_exit_code": 0,
+    "expected_messages": []
+  },
+  {
+    "id": "invalid_lib_symbol_power_scope_token",
+    "fixture_dir": "tests/fixtures/extract_parity/invalid_lib_symbol_power_scope_token",
+    "kicad_source": [
+      "/Users/Daniel/Desktop/kicad/eeschema/sch_io/kicad_sexpr/sch_io_kicad_sexpr_parser.cpp:387"
+    ],
+    "expected_exit_code": 3,
+    "expected_messages": [
+      "Failed to load schematic"
+    ]
+  },
+  {
+    "id": "invalid_jumper_pin_group_member",
+    "fixture_dir": "tests/fixtures/extract_parity/invalid_jumper_pin_group_member",
+    "kicad_source": [
+      "/Users/Daniel/Desktop/kicad/eeschema/sch_io/kicad_sexpr/sch_io_kicad_sexpr_parser.cpp:451"
+    ],
+    "expected_exit_code": 3,
+    "expected_messages": [
+      "Failed to load schematic"
+    ]
+  },
+  {
+    "id": "invalid_lib_symbols_child",
+    "fixture_dir": "tests/fixtures/extract_parity/invalid_lib_symbols_child",
+    "kicad_source": [
+      "/Users/Daniel/Desktop/kicad/eeschema/sch_io/kicad_sexpr/sch_io_kicad_sexpr_parser.cpp:273"
+    ],
+    "expected_exit_code": 3,
+    "expected_messages": [
+      "Failed to load schematic"
+    ]
+  },
+  {
+    "id": "invalid_pin_names_child",
+    "fixture_dir": "tests/fixtures/extract_parity/invalid_pin_names_child",
+    "kicad_source": [
+      "/Users/Daniel/Desktop/kicad/eeschema/sch_io/kicad_sexpr/sch_io_kicad_sexpr_parser.cpp:998"
+    ],
+    "expected_exit_code": 3,
+    "expected_messages": [
+      "Failed to load schematic"
+    ]
+  },
+  {
+    "id": "bus_alias_missing_members",
+    "fixture_dir": "tests/fixtures/extract_parity/bus_alias_missing_members",
+    "kicad_source": [
+      "/Users/Daniel/Desktop/kicad/eeschema/sch_io/kicad_sexpr/sch_io_kicad_sexpr_parser.cpp:5104"
+    ],
+    "expected_exit_code": 3,
+    "expected_messages": [
+      "Failed to load schematic"
+    ]
+  },
+  {
+    "id": "bus_alias_numeric_member",
+    "fixture_dir": "tests/fixtures/extract_parity/bus_alias_numeric_member",
+    "kicad_source": [
+      "/Users/Daniel/Desktop/kicad/eeschema/sch_io/kicad_sexpr/sch_io_kicad_sexpr_parser.cpp:5111"
+    ],
+    "expected_exit_code": 3,
+    "expected_messages": [
+      "Failed to load schematic"
+    ]
+  },
+  {
+    "id": "invalid_group_header_token",
+    "fixture_dir": "tests/fixtures/extract_parity/invalid_group_header_token",
+    "kicad_source": [
+      "/Users/Daniel/Desktop/kicad/eeschema/sch_io/kicad_sexpr/sch_io_kicad_sexpr_parser.cpp:5159"
+    ],
+    "expected_exit_code": 3,
+    "expected_messages": [
+      "Failed to load schematic"
+    ]
+  },
+  {
+    "id": "invalid_group_child_token",
+    "fixture_dir": "tests/fixtures/extract_parity/invalid_group_child_token",
+    "kicad_source": [
+      "/Users/Daniel/Desktop/kicad/eeschema/sch_io/kicad_sexpr/sch_io_kicad_sexpr_parser.cpp:5217"
+    ],
+    "expected_exit_code": 3,
+    "expected_messages": [
+      "Failed to load schematic"
+    ]
+  },
+  {
+    "id": "invalid_symbol_library_name_numeric",
+    "fixture_dir": "tests/fixtures/extract_parity/invalid_symbol_library_name_numeric",
+    "kicad_source": [
+      "/Users/Daniel/Desktop/kicad/eeschema/sch_io/kicad_sexpr/sch_io_kicad_sexpr_parser.cpp:3125"
+    ],
+    "expected_exit_code": 3,
+    "expected_messages": [
+      "Failed to load schematic"
+    ]
+  },
+  {
+    "id": "symbol_uuid_numeric",
+    "fixture_dir": "tests/fixtures/extract_parity/symbol_uuid_numeric",
+    "kicad_source": [
+      "/Users/Daniel/Desktop/kicad/eeschema/sch_io/kicad_sexpr/sch_io_kicad_sexpr_parser.cpp:3247"
+    ],
+    "expected_exit_code": 3,
+    "expected_messages": [
+      "Failed to load schematic"
+    ]
+  },
+  {
+    "id": "default_instance_unit_quoted_numeric",
+    "fixture_dir": "tests/fixtures/extract_parity/default_instance_unit_quoted_numeric",
+    "kicad_source": [
+      "/Users/Daniel/Desktop/kicad/eeschema/sch_io/kicad_sexpr/sch_io_kicad_sexpr_parser.cpp:3272"
+    ],
+    "expected_exit_code": 3,
+    "expected_messages": [
+      "Failed to load schematic"
+    ]
+  },
+  {
+    "id": "nested_instance_unit_quoted_numeric",
+    "fixture_dir": "tests/fixtures/extract_parity/nested_instance_unit_quoted_numeric",
+    "kicad_source": [
+      "/Users/Daniel/Desktop/kicad/eeschema/sch_io/kicad_sexpr/sch_io_kicad_sexpr_parser.cpp:3355"
+    ],
+    "expected_exit_code": 3,
+    "expected_messages": [
+      "Failed to load schematic"
+    ]
+  },
+  {
+    "id": "symbol_unit_quoted_numeric",
+    "fixture_dir": "tests/fixtures/extract_parity/symbol_unit_quoted_numeric",
+    "kicad_source": [
+      "/Users/Daniel/Desktop/kicad/eeschema/sch_io/kicad_sexpr/sch_io_kicad_sexpr_parser.cpp:3205"
+    ],
+    "expected_exit_code": 3,
+    "expected_messages": [
+      "Failed to load schematic"
+    ]
+  },
+  {
+    "id": "symbol_unit_float",
+    "fixture_dir": "tests/fixtures/extract_parity/symbol_unit_float",
+    "kicad_source": [
+      "/Users/Daniel/Desktop/kicad/eeschema/sch_io/kicad_sexpr/sch_io_kicad_sexpr_parser.cpp:3205"
+    ],
+    "expected_exit_code": 0,
+    "expected_messages": []
+  },
+  {
+    "id": "symbol_body_style_quoted_numeric",
+    "fixture_dir": "tests/fixtures/extract_parity/symbol_body_style_quoted_numeric",
+    "kicad_source": [
+      "/Users/Daniel/Desktop/kicad/eeschema/sch_io/kicad_sexpr/sch_io_kicad_sexpr_parser.cpp:3211"
+    ],
+    "expected_exit_code": 3,
+    "expected_messages": [
+      "Failed to load schematic"
+    ]
+  },
+  {
+    "id": "symbol_body_style_float",
+    "fixture_dir": "tests/fixtures/extract_parity/symbol_body_style_float",
+    "kicad_source": [
+      "/Users/Daniel/Desktop/kicad/eeschema/sch_io/kicad_sexpr/sch_io_kicad_sexpr_parser.cpp:3211"
+    ],
+    "expected_exit_code": 0,
+    "expected_messages": []
+  },
+  {
+    "id": "symbol_instances_unit_float",
+    "fixture_dir": "tests/fixtures/extract_parity/symbol_instances_unit_float",
+    "kicad_source": [
+      "/Users/Daniel/Desktop/kicad/eeschema/sch_io/kicad_sexpr/sch_io_kicad_sexpr_parser.cpp:2661"
+    ],
+    "expected_exit_code": 0,
+    "expected_messages": []
+  },
+  {
+    "id": "title_block_comment_float",
+    "fixture_dir": "tests/fixtures/extract_parity/title_block_comment_float",
+    "kicad_source": [
+      "/Users/Daniel/Desktop/kicad/eeschema/sch_io/kicad_sexpr/sch_io_kicad_sexpr_parser.cpp:2214"
+    ],
+    "expected_exit_code": 0,
+    "expected_messages": []
+  },
+  {
+    "id": "title_block_comment_quoted_numeric",
+    "fixture_dir": "tests/fixtures/extract_parity/title_block_comment_quoted_numeric",
+    "kicad_source": [
+      "/Users/Daniel/Desktop/kicad/eeschema/sch_io/kicad_sexpr/sch_io_kicad_sexpr_parser.cpp:2214"
+    ],
+    "expected_exit_code": 3,
+    "expected_messages": [
+      "Failed to load schematic"
+    ]
+  },
+  {
+    "id": "symbol_at_quoted_angle",
+    "fixture_dir": "tests/fixtures/extract_parity/symbol_at_quoted_angle",
+    "kicad_source": [
+      "/Users/Daniel/Desktop/kicad/eeschema/sch_io/kicad_sexpr/sch_io_kicad_sexpr_parser.cpp:3176",
+      "/Users/Daniel/Desktop/kicad/eeschema/sch_io/kicad_sexpr/sch_io_kicad_sexpr_parser.cpp:3184"
+    ],
+    "expected_exit_code": 3,
+    "expected_messages": [
+      "Failed to load schematic"
+    ]
+  },
+  {
+    "id": "pin_length_quoted_numeric",
+    "fixture_dir": "tests/fixtures/extract_parity/pin_length_quoted_numeric",
+    "kicad_source": [
+      "/Users/Daniel/Desktop/kicad/eeschema/sch_io/kicad_sexpr/sch_io_kicad_sexpr_parser.cpp:1684"
+    ],
+    "expected_exit_code": 3,
+    "expected_messages": [
+      "Failed to load schematic"
+    ]
+  },
+  {
+    "id": "pin_names_offset_quoted_numeric",
+    "fixture_dir": "tests/fixtures/extract_parity/pin_names_offset_quoted_numeric",
+    "kicad_source": [
+      "/Users/Daniel/Desktop/kicad/eeschema/sch_io/kicad_sexpr/sch_io_kicad_sexpr_parser.cpp:982"
+    ],
+    "expected_exit_code": 3,
+    "expected_messages": [
+      "Failed to load schematic"
+    ]
+  },
+  {
+    "id": "stroke_width_quoted_numeric",
+    "fixture_dir": "tests/fixtures/extract_parity/stroke_width_quoted_numeric",
+    "kicad_source": [
+      "/Users/Daniel/Desktop/kicad/eeschema/sch_io/kicad_sexpr/sch_io_kicad_sexpr_parser.cpp:696"
+    ],
+    "expected_exit_code": 3,
+    "expected_messages": [
+      "Failed to load schematic"
+    ]
+  },
+  {
+    "id": "text_effects_font_size_quoted_numeric",
+    "fixture_dir": "tests/fixtures/extract_parity/text_effects_font_size_quoted_numeric",
+    "kicad_source": [
+      "/Users/Daniel/Desktop/kicad/common/eda_text.cpp"
+    ],
+    "expected_exit_code": 3,
+    "expected_messages": [
+      "Failed to load schematic"
+    ]
+  },
+  {
+    "id": "junction_diameter_quoted_numeric",
+    "fixture_dir": "tests/fixtures/extract_parity/junction_diameter_quoted_numeric",
+    "kicad_source": [
+      "/Users/Daniel/Desktop/kicad/eeschema/sch_io/kicad_sexpr/sch_io_kicad_sexpr_parser.cpp:4009"
+    ],
+    "expected_exit_code": 3,
+    "expected_messages": [
+      "Failed to load schematic"
+    ]
+  },
+  {
+    "id": "duplicate_effects_color",
+    "fixture_dir": "tests/fixtures/extract_parity/duplicate_effects_color",
+    "kicad_source": [
+      "/Users/Daniel/Desktop/kicad/common/eda_text.cpp"
+    ],
+    "expected_exit_code": 3,
+    "expected_messages": [
+      "Failed to load schematic"
+    ]
+  },
+  {
+    "id": "root_uuid_list",
+    "fixture_dir": "tests/fixtures/extract_parity/root_uuid_list",
+    "kicad_source": [
+      "/Users/Daniel/Desktop/kicad/eeschema/sch_io/kicad_sexpr/sch_io_kicad_sexpr_parser.cpp:942"
+    ],
+    "expected_exit_code": 3,
+    "expected_messages": [
+      "Failed to load schematic"
+    ]
+  },
+  {
+    "id": "root_uuid_numeric",
+    "fixture_dir": "tests/fixtures/extract_parity/root_uuid_numeric",
+    "kicad_source": [
+      "/Users/Daniel/Desktop/kicad/eeschema/sch_io/kicad_sexpr/sch_io_kicad_sexpr_parser.cpp:942"
+    ],
+    "expected_exit_code": 3,
+    "expected_messages": [
+      "Failed to load schematic"
+    ]
+  },
+  {
+    "id": "duplicate_table_header",
+    "fixture_dir": "tests/fixtures/extract_parity/duplicate_table_header",
+    "kicad_source": [
+      "/Users/Daniel/Desktop/kicad/eeschema/sch_io/kicad_sexpr/sch_io_kicad_sexpr_parser.cpp:4999"
+    ],
+    "expected_exit_code": 3,
+    "expected_messages": [
+      "Failed to load schematic"
+    ]
+  },
+  {
+    "id": "duplicate_table_stroke",
+    "fixture_dir": "tests/fixtures/extract_parity/duplicate_table_stroke",
+    "kicad_source": [
+      "/Users/Daniel/Desktop/kicad/eeschema/sch_io/kicad_sexpr/sch_io_kicad_sexpr_parser.cpp:5014"
+    ],
+    "expected_exit_code": 3,
+    "expected_messages": [
+      "Failed to load schematic"
+    ]
+  },
+  {
+    "id": "empty_pts_then_valid",
+    "fixture_dir": "tests/fixtures/extract_parity/empty_pts_then_valid",
+    "kicad_source": [
+      "/Users/Daniel/Desktop/kicad/eeschema/sch_io/kicad_sexpr/sch_io_kicad_sexpr_parser.cpp:4171"
+    ],
+    "expected_exit_code": 3,
+    "expected_messages": [
+      "Failed to load schematic"
+    ]
+  },
+  {
+    "id": "valid_pts_then_empty",
+    "fixture_dir": "tests/fixtures/extract_parity/valid_pts_then_empty",
+    "kicad_source": [
+      "/Users/Daniel/Desktop/kicad/eeschema/sch_io/kicad_sexpr/sch_io_kicad_sexpr_parser.cpp:4171"
+    ],
+    "expected_exit_code": 3,
+    "expected_messages": [
+      "Failed to load schematic"
+    ]
+  },
+  {
+    "id": "duplicate_nested_variant",
+    "fixture_dir": "tests/fixtures/extract_parity/duplicate_nested_variant",
+    "kicad_source": [
+      "/Users/Daniel/Desktop/kicad/eeschema/sch_io/kicad_sexpr/sch_io_kicad_sexpr_parser.cpp:3461"
+    ],
+    "expected_exit_code": 0,
+    "expected_messages": []
+  },
+  {
+    "id": "global_label_with_directive_length",
+    "fixture_dir": "tests/fixtures/extract_parity/global_label_with_directive_length",
+    "kicad_source": [
+      "/Users/Daniel/Desktop/kicad/eeschema/sch_io/kicad_sexpr/sch_io_kicad_sexpr_parser.cpp:4702"
+    ],
+    "expected_exit_code": 3,
+    "expected_messages": [
+      "Failed to load schematic"
+    ]
+  },
+  {
+    "id": "hier_label_with_directive_length",
+    "fixture_dir": "tests/fixtures/extract_parity/hier_label_with_directive_length",
+    "kicad_source": [
+      "/Users/Daniel/Desktop/kicad/eeschema/sch_io/kicad_sexpr/sch_io_kicad_sexpr_parser.cpp:4702"
+    ],
+    "expected_exit_code": 3,
+    "expected_messages": [
+      "Failed to load schematic"
+    ]
+  },
+  {
+    "id": "text_with_label_shape",
+    "fixture_dir": "tests/fixtures/extract_parity/text_with_label_shape",
+    "kicad_source": [
+      "/Users/Daniel/Desktop/kicad/eeschema/sch_io/kicad_sexpr/sch_io_kicad_sexpr_parser.cpp:1962",
+      "/Users/Daniel/Desktop/kicad/eeschema/sch_io/kicad_sexpr/sch_io_kicad_sexpr_parser.cpp:4687"
+    ],
+    "expected_exit_code": 3,
+    "expected_messages": [
+      "Failed to load schematic"
+    ]
+  },
+  {
+    "id": "duplicate_text_href",
+    "fixture_dir": "tests/fixtures/extract_parity/duplicate_text_href",
+    "kicad_source": [
+      "/Users/Daniel/Desktop/kicad/eeschema/sch_io/kicad_sexpr/sch_io_kicad_sexpr_parser.cpp:877"
+    ],
+    "expected_exit_code": 3,
+    "expected_messages": [
+      "Failed to load schematic"
+    ]
+  },
+  {
+    "id": "label_with_uuid_and_href",
+    "fixture_dir": "tests/fixtures/extract_parity/label_with_uuid_and_href",
+    "kicad_source": [
+      "/Users/Daniel/Desktop/kicad/eeschema/sch_io/kicad_sexpr/sch_io_kicad_sexpr_parser.cpp:1962",
+      "/Users/Daniel/Desktop/kicad/eeschema/sch_io/kicad_sexpr/sch_io_kicad_sexpr_parser.cpp:877"
+    ],
+    "expected_exit_code": 3,
+    "expected_messages": [
+      "Failed to load schematic"
+    ]
+  },
+  {
+    "id": "text_box_with_shape",
+    "fixture_dir": "tests/fixtures/extract_parity/text_box_with_shape",
+    "kicad_source": [
+      "/Users/Daniel/Desktop/kicad/eeschema/sch_io/kicad_sexpr/sch_io_kicad_sexpr_parser.cpp:4687",
+      "/Users/Daniel/Desktop/kicad/eeschema/sch_io/kicad_sexpr/sch_io_kicad_sexpr_parser.cpp:4903"
+    ],
+    "expected_exit_code": 3,
+    "expected_messages": [
+      "Failed to load schematic"
+    ]
+  },
+  {
+    "id": "junction_uuid_list",
+    "fixture_dir": "tests/fixtures/extract_parity/junction_uuid_list",
+    "kicad_source": [
+      "/Users/Daniel/Desktop/kicad/eeschema/sch_io/kicad_sexpr/sch_io_kicad_sexpr_parser.cpp:4029"
+    ],
+    "expected_exit_code": 3,
+    "expected_messages": [
+      "Failed to load schematic"
+    ]
+  },
+  {
+    "id": "junction_uuid_numeric",
+    "fixture_dir": "tests/fixtures/extract_parity/junction_uuid_numeric",
+    "kicad_source": [
+      "/Users/Daniel/Desktop/kicad/eeschema/sch_io/kicad_sexpr/sch_io_kicad_sexpr_parser.cpp:4029"
+    ],
+    "expected_exit_code": 3,
+    "expected_messages": [
+      "Failed to load schematic"
+    ]
+  },
+  {
+    "id": "no_connect_uuid_list",
+    "fixture_dir": "tests/fixtures/extract_parity/no_connect_uuid_list",
+    "kicad_source": [
+      "/Users/Daniel/Desktop/kicad/eeschema/sch_io/kicad_sexpr/sch_io_kicad_sexpr_parser.cpp:4066"
+    ],
+    "expected_exit_code": 3,
+    "expected_messages": [
+      "Failed to load schematic"
+    ]
+  },
+  {
+    "id": "no_connect_uuid_numeric",
+    "fixture_dir": "tests/fixtures/extract_parity/no_connect_uuid_numeric",
+    "kicad_source": [
+      "/Users/Daniel/Desktop/kicad/eeschema/sch_io/kicad_sexpr/sch_io_kicad_sexpr_parser.cpp:4066"
+    ],
+    "expected_exit_code": 3,
+    "expected_messages": [
+      "Failed to load schematic"
+    ]
+  },
+  {
+    "id": "bus_entry_uuid_list",
+    "fixture_dir": "tests/fixtures/extract_parity/bus_entry_uuid_list",
+    "kicad_source": [
+      "/Users/Daniel/Desktop/kicad/eeschema/sch_io/kicad_sexpr/sch_io_kicad_sexpr_parser.cpp:4120"
+    ],
+    "expected_exit_code": 3,
+    "expected_messages": [
+      "Failed to load schematic"
+    ]
+  },
+  {
+    "id": "bus_entry_uuid_numeric",
+    "fixture_dir": "tests/fixtures/extract_parity/bus_entry_uuid_numeric",
+    "kicad_source": [
+      "/Users/Daniel/Desktop/kicad/eeschema/sch_io/kicad_sexpr/sch_io_kicad_sexpr_parser.cpp:4120"
+    ],
+    "expected_exit_code": 3,
+    "expected_messages": [
+      "Failed to load schematic"
+    ]
+  },
+  {
+    "id": "wire_uuid_list",
+    "fixture_dir": "tests/fixtures/extract_parity/wire_uuid_list",
+    "kicad_source": [
+      "/Users/Daniel/Desktop/kicad/eeschema/sch_io/kicad_sexpr/sch_io_kicad_sexpr_parser.cpp:4265"
+    ],
+    "expected_exit_code": 3,
+    "expected_messages": [
+      "Failed to load schematic"
+    ]
+  },
+  {
+    "id": "wire_uuid_numeric",
+    "fixture_dir": "tests/fixtures/extract_parity/wire_uuid_numeric",
+    "kicad_source": [
+      "/Users/Daniel/Desktop/kicad/eeschema/sch_io/kicad_sexpr/sch_io_kicad_sexpr_parser.cpp:4265"
+    ],
+    "expected_exit_code": 3,
+    "expected_messages": [
+      "Failed to load schematic"
+    ]
+  },
+  {
+    "id": "polyline_uuid_list",
+    "fixture_dir": "tests/fixtures/extract_parity/polyline_uuid_list",
+    "kicad_source": [
+      "/Users/Daniel/Desktop/kicad/eeschema/sch_io/kicad_sexpr/sch_io_kicad_sexpr_parser.cpp:4196"
+    ],
+    "expected_exit_code": 3,
+    "expected_messages": [
+      "Failed to load schematic"
+    ]
+  },
+  {
+    "id": "polyline_uuid_numeric",
+    "fixture_dir": "tests/fixtures/extract_parity/polyline_uuid_numeric",
+    "kicad_source": [
+      "/Users/Daniel/Desktop/kicad/eeschema/sch_io/kicad_sexpr/sch_io_kicad_sexpr_parser.cpp:4196"
+    ],
+    "expected_exit_code": 3,
+    "expected_messages": [
+      "Failed to load schematic"
+    ]
+  },
+  {
+    "id": "bus_uuid_list",
+    "fixture_dir": "tests/fixtures/extract_parity/bus_uuid_list",
+    "kicad_source": [
+      "/Users/Daniel/Desktop/kicad/eeschema/sch_io/kicad_sexpr/sch_io_kicad_sexpr_parser.cpp:4265"
+    ],
+    "expected_exit_code": 3,
+    "expected_messages": [
+      "Failed to load schematic"
+    ]
+  },
+  {
+    "id": "bus_uuid_numeric",
+    "fixture_dir": "tests/fixtures/extract_parity/bus_uuid_numeric",
+    "kicad_source": [
+      "/Users/Daniel/Desktop/kicad/eeschema/sch_io/kicad_sexpr/sch_io_kicad_sexpr_parser.cpp:4265"
+    ],
+    "expected_exit_code": 3,
+    "expected_messages": [
+      "Failed to load schematic"
+    ]
+  },
+  {
+    "id": "arc_uuid_list",
+    "fixture_dir": "tests/fixtures/extract_parity/arc_uuid_list",
+    "kicad_source": [
+      "/Users/Daniel/Desktop/kicad/eeschema/sch_io/kicad_sexpr/sch_io_kicad_sexpr_parser.cpp:4329"
+    ],
+    "expected_exit_code": 3,
+    "expected_messages": [
+      "Failed to load schematic"
+    ]
+  },
+  {
+    "id": "arc_uuid_numeric",
+    "fixture_dir": "tests/fixtures/extract_parity/arc_uuid_numeric",
+    "kicad_source": [
+      "/Users/Daniel/Desktop/kicad/eeschema/sch_io/kicad_sexpr/sch_io_kicad_sexpr_parser.cpp:4329"
+    ],
+    "expected_exit_code": 3,
+    "expected_messages": [
+      "Failed to load schematic"
+    ]
+  },
+  {
+    "id": "circle_uuid_list",
+    "fixture_dir": "tests/fixtures/extract_parity/circle_uuid_list",
+    "kicad_source": [
+      "/Users/Daniel/Desktop/kicad/eeschema/sch_io/kicad_sexpr/sch_io_kicad_sexpr_parser.cpp:4389"
+    ],
+    "expected_exit_code": 3,
+    "expected_messages": [
+      "Failed to load schematic"
+    ]
+  },
+  {
+    "id": "circle_uuid_numeric",
+    "fixture_dir": "tests/fixtures/extract_parity/circle_uuid_numeric",
+    "kicad_source": [
+      "/Users/Daniel/Desktop/kicad/eeschema/sch_io/kicad_sexpr/sch_io_kicad_sexpr_parser.cpp:4389"
+    ],
+    "expected_exit_code": 3,
+    "expected_messages": [
+      "Failed to load schematic"
+    ]
+  },
+  {
+    "id": "rectangle_uuid_list",
+    "fixture_dir": "tests/fixtures/extract_parity/rectangle_uuid_list",
+    "kicad_source": [
+      "/Users/Daniel/Desktop/kicad/eeschema/sch_io/kicad_sexpr/sch_io_kicad_sexpr_parser.cpp:4453"
+    ],
+    "expected_exit_code": 3,
+    "expected_messages": [
+      "Failed to load schematic"
+    ]
+  },
+  {
+    "id": "rectangle_uuid_numeric",
+    "fixture_dir": "tests/fixtures/extract_parity/rectangle_uuid_numeric",
+    "kicad_source": [
+      "/Users/Daniel/Desktop/kicad/eeschema/sch_io/kicad_sexpr/sch_io_kicad_sexpr_parser.cpp:4453"
+    ],
+    "expected_exit_code": 3,
+    "expected_messages": [
+      "Failed to load schematic"
+    ]
+  },
+  {
+    "id": "bezier_uuid_list",
+    "fixture_dir": "tests/fixtures/extract_parity/bezier_uuid_list",
+    "kicad_source": [
+      "/Users/Daniel/Desktop/kicad/eeschema/sch_io/kicad_sexpr/sch_io_kicad_sexpr_parser.cpp:4594"
+    ],
+    "expected_exit_code": 3,
+    "expected_messages": [
+      "Failed to load schematic"
+    ]
+  },
+  {
+    "id": "bezier_uuid_numeric",
+    "fixture_dir": "tests/fixtures/extract_parity/bezier_uuid_numeric",
+    "kicad_source": [
+      "/Users/Daniel/Desktop/kicad/eeschema/sch_io/kicad_sexpr/sch_io_kicad_sexpr_parser.cpp:4594"
+    ],
+    "expected_exit_code": 3,
+    "expected_messages": [
+      "Failed to load schematic"
+    ]
+  },
+  {
+    "id": "text_uuid_list",
+    "fixture_dir": "tests/fixtures/extract_parity/text_uuid_list",
+    "kicad_source": [
+      "/Users/Daniel/Desktop/kicad/eeschema/sch_io/kicad_sexpr/sch_io_kicad_sexpr_parser.cpp:4735"
+    ],
+    "expected_exit_code": 3,
+    "expected_messages": [
+      "Failed to load schematic"
+    ]
+  },
+  {
+    "id": "text_uuid_numeric",
+    "fixture_dir": "tests/fixtures/extract_parity/text_uuid_numeric",
+    "kicad_source": [
+      "/Users/Daniel/Desktop/kicad/eeschema/sch_io/kicad_sexpr/sch_io_kicad_sexpr_parser.cpp:4735"
+    ],
+    "expected_exit_code": 3,
+    "expected_messages": [
+      "Failed to load schematic"
+    ]
+  },
+  {
+    "id": "text_box_with_href",
+    "fixture_dir": "tests/fixtures/extract_parity/text_box_with_href",
+    "kicad_source": [
+      "/Users/Daniel/Desktop/kicad/eeschema/sch_io/kicad_sexpr/sch_io_kicad_sexpr_parser.cpp:768",
+      "/Users/Daniel/Desktop/kicad/eeschema/sch_io/kicad_sexpr/sch_io_kicad_sexpr_parser.cpp:4903"
+    ],
+    "expected_exit_code": 3,
+    "expected_messages": [
+      "Failed to load schematic"
+    ]
+  },
+  {
+    "id": "image_uuid_numeric",
+    "fixture_dir": "tests/fixtures/extract_parity/image_uuid_numeric",
+    "kicad_source": [
+      "/Users/Daniel/Desktop/kicad/eeschema/sch_io/kicad_sexpr/sch_io_kicad_sexpr_parser.cpp:3624"
+    ],
+    "expected_exit_code": 3,
+    "expected_messages": [
+      "Failed to load schematic"
+    ]
+  },
+  {
+    "id": "image_uuid_list",
+    "fixture_dir": "tests/fixtures/extract_parity/image_uuid_list",
+    "kicad_source": [
+      "/Users/Daniel/Desktop/kicad/eeschema/sch_io/kicad_sexpr/sch_io_kicad_sexpr_parser.cpp:3626"
+    ],
+    "expected_exit_code": 3,
+    "expected_messages": [
+      "Failed to load schematic"
+    ]
+  },
+  {
+    "id": "symbol_uuid_list",
+    "fixture_dir": "tests/fixtures/extract_parity/symbol_uuid_list",
+    "kicad_source": [
+      "/Users/Daniel/Desktop/kicad/eeschema/sch_io/kicad_sexpr/sch_io_kicad_sexpr_parser.cpp:3248"
+    ],
+    "expected_exit_code": 3,
+    "expected_messages": [
+      "Failed to load schematic"
+    ]
+  },
+  {
+    "id": "image_with_href",
+    "fixture_dir": "tests/fixtures/extract_parity/image_with_href",
+    "kicad_source": [
+      "/Users/Daniel/Desktop/kicad/eeschema/sch_io/kicad_sexpr/sch_io_kicad_sexpr_parser.cpp:3658"
+    ],
+    "expected_exit_code": 3,
+    "expected_messages": [
+      "Failed to load schematic"
+    ]
+  },
+  {
+    "id": "symbol_property_with_href",
+    "fixture_dir": "tests/fixtures/extract_parity/symbol_property_with_href",
+    "kicad_source": [
+      "/Users/Daniel/Desktop/kicad/eeschema/sch_io/kicad_sexpr/sch_io_kicad_sexpr_parser.cpp:2425"
+    ],
+    "expected_exit_code": 3,
+    "expected_messages": [
+      "Failed to load schematic"
+    ]
+  },
+  {
+    "id": "sheet_property_with_href",
+    "fixture_dir": "tests/fixtures/extract_parity/sheet_property_with_href",
+    "kicad_source": [
+      "/Users/Daniel/Desktop/kicad/eeschema/sch_io/kicad_sexpr/sch_io_kicad_sexpr_parser.cpp:2425"
+    ],
+    "expected_exit_code": 3,
+    "expected_messages": [
+      "Failed to load schematic"
+    ]
+  },
+  {
+    "id": "lib_symbol_property_with_href",
+    "fixture_dir": "tests/fixtures/extract_parity/lib_symbol_property_with_href",
+    "kicad_source": [
+      "/Users/Daniel/Desktop/kicad/eeschema/sch_io/kicad_sexpr/sch_io_kicad_sexpr_parser.cpp:2425"
+    ],
+    "expected_exit_code": 3,
+    "expected_messages": [
+      "Failed to load schematic"
+    ]
+  },
+  {
+    "id": "lib_pin_name_with_href",
+    "fixture_dir": "tests/fixtures/extract_parity/lib_pin_name_with_href",
+    "kicad_source": [
+      "/Users/Daniel/Desktop/kicad/eeschema/sch_io/kicad_sexpr/sch_io_kicad_sexpr_parser.cpp:1727"
+    ],
+    "expected_exit_code": 3,
+    "expected_messages": [
+      "Failed to load schematic"
+    ]
+  },
+  {
+    "id": "lib_pin_number_with_href",
+    "fixture_dir": "tests/fixtures/extract_parity/lib_pin_number_with_href",
+    "kicad_source": [
+      "/Users/Daniel/Desktop/kicad/eeschema/sch_io/kicad_sexpr/sch_io_kicad_sexpr_parser.cpp:1767"
+    ],
+    "expected_exit_code": 3,
+    "expected_messages": [
+      "Failed to load schematic"
+    ]
+  },
+  {
+    "id": "text_with_href",
+    "fixture_dir": "tests/fixtures/extract_parity/text_with_href",
+    "kicad_source": [
+      "/Users/Daniel/Desktop/kicad/eeschema/sch_io/kicad_sexpr/sch_io_kicad_sexpr_parser.cpp:4762"
+    ],
+    "expected_exit_code": 3,
+    "expected_messages": [
+      "Failed to load schematic"
+    ]
+  },
+  {
+    "id": "label_with_href",
+    "fixture_dir": "tests/fixtures/extract_parity/label_with_href",
+    "kicad_source": [
+      "/Users/Daniel/Desktop/kicad/eeschema/sch_io/kicad_sexpr/sch_io_kicad_sexpr_parser.cpp:4762"
+    ],
+    "expected_exit_code": 3,
+    "expected_messages": [
+      "Failed to load schematic"
+    ]
+  },
+  {
+    "id": "global_label_with_href",
+    "fixture_dir": "tests/fixtures/extract_parity/global_label_with_href",
+    "kicad_source": [
+      "/Users/Daniel/Desktop/kicad/eeschema/sch_io/kicad_sexpr/sch_io_kicad_sexpr_parser.cpp:4762"
+    ],
+    "expected_exit_code": 3,
+    "expected_messages": [
+      "Failed to load schematic"
+    ]
+  },
+  {
+    "id": "hier_label_with_href",
+    "fixture_dir": "tests/fixtures/extract_parity/hier_label_with_href",
+    "kicad_source": [
+      "/Users/Daniel/Desktop/kicad/eeschema/sch_io/kicad_sexpr/sch_io_kicad_sexpr_parser.cpp:4762"
+    ],
+    "expected_exit_code": 3,
+    "expected_messages": [
+      "Failed to load schematic"
+    ]
+  },
+  {
+    "id": "directive_label_with_href",
+    "fixture_dir": "tests/fixtures/extract_parity/directive_label_with_href",
+    "kicad_source": [
+      "/Users/Daniel/Desktop/kicad/eeschema/sch_io/kicad_sexpr/sch_io_kicad_sexpr_parser.cpp:4762"
+    ],
+    "expected_exit_code": 3,
+    "expected_messages": [
+      "Failed to load schematic"
+    ]
+  },
+  {
+    "id": "text_box_effects_href",
+    "fixture_dir": "tests/fixtures/extract_parity/text_box_effects_href",
+    "kicad_source": [
+      "/Users/Daniel/Desktop/kicad/eeschema/sch_io/kicad_sexpr/sch_io_kicad_sexpr_parser.cpp:768",
+      "/Users/Daniel/Desktop/kicad/eeschema/sch_io/kicad_sexpr/sch_io_kicad_sexpr_parser.cpp:4894"
+    ],
+    "expected_exit_code": 3,
+    "expected_messages": [
+      "Failed to load schematic"
+    ]
+  },
+  {
+    "id": "text_box_effects_duplicate_href",
+    "fixture_dir": "tests/fixtures/extract_parity/text_box_effects_duplicate_href",
+    "kicad_source": [
+      "/Users/Daniel/Desktop/kicad/eeschema/sch_io/kicad_sexpr/sch_io_kicad_sexpr_parser.cpp:768",
+      "/Users/Daniel/Desktop/kicad/eeschema/sch_io/kicad_sexpr/sch_io_kicad_sexpr_parser.cpp:4894"
+    ],
+    "expected_exit_code": 3,
+    "expected_messages": [
+      "Failed to load schematic"
+    ]
+  },
+  {
+    "id": "text_box_uuid_numeric",
+    "fixture_dir": "tests/fixtures/extract_parity/text_box_uuid_numeric",
+    "kicad_source": [
+      "/Users/Daniel/Desktop/kicad/eeschema/sch_io/kicad_sexpr/sch_io_kicad_sexpr_parser.cpp:4898"
+    ],
+    "expected_exit_code": 3,
+    "expected_messages": [
+      "Failed to load schematic"
+    ]
+  },
+  {
+    "id": "text_box_uuid_list",
+    "fixture_dir": "tests/fixtures/extract_parity/text_box_uuid_list",
+    "kicad_source": [
+      "/Users/Daniel/Desktop/kicad/eeschema/sch_io/kicad_sexpr/sch_io_kicad_sexpr_parser.cpp:4898"
+    ],
+    "expected_exit_code": 3,
+    "expected_messages": [
+      "Failed to load schematic"
+    ]
+  },
+  {
+    "id": "table_cell_with_href",
+    "fixture_dir": "tests/fixtures/extract_parity/table_cell_with_href",
+    "kicad_source": [
+      "/Users/Daniel/Desktop/kicad/eeschema/sch_io/kicad_sexpr/sch_io_kicad_sexpr_parser.cpp:4903"
+    ],
+    "expected_exit_code": 3,
+    "expected_messages": [
+      "Failed to load schematic"
+    ]
+  },
+  {
+    "id": "table_cell_effects_href",
+    "fixture_dir": "tests/fixtures/extract_parity/table_cell_effects_href",
+    "kicad_source": [
+      "/Users/Daniel/Desktop/kicad/eeschema/sch_io/kicad_sexpr/sch_io_kicad_sexpr_parser.cpp:768",
+      "/Users/Daniel/Desktop/kicad/eeschema/sch_io/kicad_sexpr/sch_io_kicad_sexpr_parser.cpp:4894"
+    ],
+    "expected_exit_code": 3,
+    "expected_messages": [
+      "Failed to load schematic"
+    ]
+  },
+  {
+    "id": "table_cell_effects_duplicate_href",
+    "fixture_dir": "tests/fixtures/extract_parity/table_cell_effects_duplicate_href",
+    "kicad_source": [
+      "/Users/Daniel/Desktop/kicad/eeschema/sch_io/kicad_sexpr/sch_io_kicad_sexpr_parser.cpp:768",
+      "/Users/Daniel/Desktop/kicad/eeschema/sch_io/kicad_sexpr/sch_io_kicad_sexpr_parser.cpp:4894"
+    ],
+    "expected_exit_code": 3,
+    "expected_messages": [
+      "Failed to load schematic"
+    ]
+  },
+  {
+    "id": "table_cell_with_shape",
+    "fixture_dir": "tests/fixtures/extract_parity/table_cell_with_shape",
+    "kicad_source": [
+      "/Users/Daniel/Desktop/kicad/eeschema/sch_io/kicad_sexpr/sch_io_kicad_sexpr_parser.cpp:4906"
+    ],
+    "expected_exit_code": 3,
+    "expected_messages": [
+      "Failed to load schematic"
+    ]
+  },
+  {
+    "id": "table_cell_uuid_numeric",
+    "fixture_dir": "tests/fixtures/extract_parity/table_cell_uuid_numeric",
+    "kicad_source": [
+      "/Users/Daniel/Desktop/kicad/eeschema/sch_io/kicad_sexpr/sch_io_kicad_sexpr_parser.cpp:4898"
+    ],
+    "expected_exit_code": 3,
+    "expected_messages": [
+      "Failed to load schematic"
+    ]
+  },
+  {
+    "id": "table_cell_uuid_list",
+    "fixture_dir": "tests/fixtures/extract_parity/table_cell_uuid_list",
+    "kicad_source": [
+      "/Users/Daniel/Desktop/kicad/eeschema/sch_io/kicad_sexpr/sch_io_kicad_sexpr_parser.cpp:4898"
+    ],
+    "expected_exit_code": 3,
+    "expected_messages": [
+      "Failed to load schematic"
+    ]
+  },
+  {
+    "id": "group_uuid_list",
+    "fixture_dir": "tests/fixtures/extract_parity/group_uuid_list",
+    "kicad_source": [
+      "/Users/Daniel/Desktop/kicad/eeschema/sch_io/kicad_sexpr/sch_io_kicad_sexpr_parser.cpp:5173"
+    ],
+    "expected_exit_code": 3,
+    "expected_messages": [
+      "Failed to load schematic"
+    ]
+  },
+  {
+    "id": "rule_area_uuid_numeric",
+    "fixture_dir": "tests/fixtures/extract_parity/rule_area_uuid_numeric",
+    "kicad_source": [
+      "/Users/Daniel/Desktop/kicad/eeschema/sch_io/kicad_sexpr/sch_io_kicad_sexpr_parser.cpp:4593"
+    ],
+    "expected_exit_code": 3,
+    "expected_messages": [
+      "Failed to load schematic"
+    ]
+  },
+  {
+    "id": "rule_area_uuid_list",
+    "fixture_dir": "tests/fixtures/extract_parity/rule_area_uuid_list",
+    "kicad_source": [
+      "/Users/Daniel/Desktop/kicad/eeschema/sch_io/kicad_sexpr/sch_io_kicad_sexpr_parser.cpp:4593"
+    ],
+    "expected_exit_code": 3,
+    "expected_messages": [
+      "Failed to load schematic"
+    ]
+  },
+  {
+    "id": "table_uuid_numeric",
+    "fixture_dir": "tests/fixtures/extract_parity/table_uuid_numeric",
+    "kicad_source": [
+      "/Users/Daniel/Desktop/kicad/eeschema/sch_io/kicad_sexpr/sch_io_kicad_sexpr_parser.cpp:5059"
+    ],
+    "expected_exit_code": 3,
+    "expected_messages": [
+      "Failed to load schematic"
+    ]
+  },
+  {
+    "id": "table_uuid_list",
+    "fixture_dir": "tests/fixtures/extract_parity/table_uuid_list",
+    "kicad_source": [
+      "/Users/Daniel/Desktop/kicad/eeschema/sch_io/kicad_sexpr/sch_io_kicad_sexpr_parser.cpp:5059"
+    ],
+    "expected_exit_code": 3,
+    "expected_messages": [
+      "Failed to load schematic"
+    ]
+  },
+  {
+    "id": "sheet_uuid_numeric",
+    "fixture_dir": "tests/fixtures/extract_parity/sheet_uuid_numeric",
+    "kicad_source": [
+      "/Users/Daniel/Desktop/kicad/eeschema/sch_io/kicad_sexpr/sch_io_kicad_sexpr_parser.cpp:3752"
+    ],
+    "expected_exit_code": 3,
+    "expected_messages": [
+      "Failed to load schematic"
+    ]
+  },
+  {
+    "id": "sheet_uuid_list",
+    "fixture_dir": "tests/fixtures/extract_parity/sheet_uuid_list",
+    "kicad_source": [
+      "/Users/Daniel/Desktop/kicad/eeschema/sch_io/kicad_sexpr/sch_io_kicad_sexpr_parser.cpp:3752"
+    ],
+    "expected_exit_code": 3,
+    "expected_messages": [
+      "Failed to load schematic"
+    ]
+  },
+  {
+    "id": "sheet_pin_uuid_numeric",
+    "fixture_dir": "tests/fixtures/extract_parity/sheet_pin_uuid_numeric",
+    "kicad_source": [
+      "/Users/Daniel/Desktop/kicad/eeschema/sch_io/kicad_sexpr/sch_io_kicad_sexpr_parser.cpp:2504"
+    ],
+    "expected_exit_code": 3,
+    "expected_messages": [
+      "Failed to load schematic"
+    ]
+  },
+  {
+    "id": "sheet_pin_uuid_list",
+    "fixture_dir": "tests/fixtures/extract_parity/sheet_pin_uuid_list",
+    "kicad_source": [
+      "/Users/Daniel/Desktop/kicad/eeschema/sch_io/kicad_sexpr/sch_io_kicad_sexpr_parser.cpp:2504"
+    ],
+    "expected_exit_code": 3,
+    "expected_messages": [
+      "Failed to load schematic"
+    ]
+  },
+  {
+    "id": "sheet_pin_with_href",
+    "fixture_dir": "tests/fixtures/extract_parity/sheet_pin_with_href",
+    "kicad_source": [
+      "/Users/Daniel/Desktop/kicad/eeschema/sch_io/kicad_sexpr/sch_io_kicad_sexpr_parser.cpp:2510"
+    ],
+    "expected_exit_code": 3,
+    "expected_messages": [
+      "Failed to load schematic"
+    ]
+  },
+  {
+    "id": "sheet_pin_effects_href",
+    "fixture_dir": "tests/fixtures/extract_parity/sheet_pin_effects_href",
+    "kicad_source": [
+      "/Users/Daniel/Desktop/kicad/eeschema/sch_io/kicad_sexpr/sch_io_kicad_sexpr_parser.cpp:768",
+      "/Users/Daniel/Desktop/kicad/eeschema/sch_io/kicad_sexpr/sch_io_kicad_sexpr_parser.cpp:2501"
+    ],
+    "expected_exit_code": 3,
+    "expected_messages": [
+      "Failed to load schematic"
+    ]
+  },
+  {
+    "id": "label_uuid_numeric",
+    "fixture_dir": "tests/fixtures/extract_parity/label_uuid_numeric",
+    "kicad_source": [
+      "/Users/Daniel/Desktop/kicad/eeschema/sch_io/kicad_sexpr/sch_io_kicad_sexpr_parser.cpp:4733"
+    ],
+    "expected_exit_code": 3,
+    "expected_messages": [
+      "Failed to load schematic"
+    ]
+  },
+  {
+    "id": "label_uuid_list",
+    "fixture_dir": "tests/fixtures/extract_parity/label_uuid_list",
+    "kicad_source": [
+      "/Users/Daniel/Desktop/kicad/eeschema/sch_io/kicad_sexpr/sch_io_kicad_sexpr_parser.cpp:4733"
+    ],
+    "expected_exit_code": 3,
+    "expected_messages": [
+      "Failed to load schematic"
+    ]
+  },
+  {
+    "id": "global_label_uuid_numeric",
+    "fixture_dir": "tests/fixtures/extract_parity/global_label_uuid_numeric",
+    "kicad_source": [
+      "/Users/Daniel/Desktop/kicad/eeschema/sch_io/kicad_sexpr/sch_io_kicad_sexpr_parser.cpp:4733"
+    ],
+    "expected_exit_code": 3,
+    "expected_messages": [
+      "Failed to load schematic"
+    ]
+  },
+  {
+    "id": "global_label_uuid_list",
+    "fixture_dir": "tests/fixtures/extract_parity/global_label_uuid_list",
+    "kicad_source": [
+      "/Users/Daniel/Desktop/kicad/eeschema/sch_io/kicad_sexpr/sch_io_kicad_sexpr_parser.cpp:4733"
+    ],
+    "expected_exit_code": 3,
+    "expected_messages": [
+      "Failed to load schematic"
+    ]
+  },
+  {
+    "id": "hier_label_uuid_numeric",
+    "fixture_dir": "tests/fixtures/extract_parity/hier_label_uuid_numeric",
+    "kicad_source": [
+      "/Users/Daniel/Desktop/kicad/eeschema/sch_io/kicad_sexpr/sch_io_kicad_sexpr_parser.cpp:4733"
+    ],
+    "expected_exit_code": 3,
+    "expected_messages": [
+      "Failed to load schematic"
+    ]
+  },
+  {
+    "id": "hier_label_uuid_list",
+    "fixture_dir": "tests/fixtures/extract_parity/hier_label_uuid_list",
+    "kicad_source": [
+      "/Users/Daniel/Desktop/kicad/eeschema/sch_io/kicad_sexpr/sch_io_kicad_sexpr_parser.cpp:4733"
+    ],
+    "expected_exit_code": 3,
+    "expected_messages": [
+      "Failed to load schematic"
+    ]
+  },
+  {
+    "id": "directive_label_uuid_numeric",
+    "fixture_dir": "tests/fixtures/extract_parity/directive_label_uuid_numeric",
+    "kicad_source": [
+      "/Users/Daniel/Desktop/kicad/eeschema/sch_io/kicad_sexpr/sch_io_kicad_sexpr_parser.cpp:4733"
+    ],
+    "expected_exit_code": 3,
+    "expected_messages": [
+      "Failed to load schematic"
+    ]
+  },
+  {
+    "id": "directive_label_uuid_list",
+    "fixture_dir": "tests/fixtures/extract_parity/directive_label_uuid_list",
+    "kicad_source": [
+      "/Users/Daniel/Desktop/kicad/eeschema/sch_io/kicad_sexpr/sch_io_kicad_sexpr_parser.cpp:4733"
+    ],
+    "expected_exit_code": 3,
+    "expected_messages": [
+      "Failed to load schematic"
+    ]
+  },
+  {
+    "id": "label_effects_href",
+    "fixture_dir": "tests/fixtures/extract_parity/label_effects_href",
+    "kicad_source": [
+      "/Users/Daniel/Desktop/kicad/eeschema/sch_io/kicad_sexpr/sch_io_kicad_sexpr_parser.cpp:768",
+      "/Users/Daniel/Desktop/kicad/eeschema/sch_io/kicad_sexpr/sch_io_kicad_sexpr_parser.cpp:4714"
+    ],
+    "expected_exit_code": 3,
+    "expected_messages": [
+      "Failed to load schematic"
+    ]
+  },
+  {
+    "id": "global_label_effects_href",
+    "fixture_dir": "tests/fixtures/extract_parity/global_label_effects_href",
+    "kicad_source": [
+      "/Users/Daniel/Desktop/kicad/eeschema/sch_io/kicad_sexpr/sch_io_kicad_sexpr_parser.cpp:768",
+      "/Users/Daniel/Desktop/kicad/eeschema/sch_io/kicad_sexpr/sch_io_kicad_sexpr_parser.cpp:4714"
+    ],
+    "expected_exit_code": 3,
+    "expected_messages": [
+      "Failed to load schematic"
+    ]
+  },
+  {
+    "id": "hier_label_effects_href",
+    "fixture_dir": "tests/fixtures/extract_parity/hier_label_effects_href",
+    "kicad_source": [
+      "/Users/Daniel/Desktop/kicad/eeschema/sch_io/kicad_sexpr/sch_io_kicad_sexpr_parser.cpp:768",
+      "/Users/Daniel/Desktop/kicad/eeschema/sch_io/kicad_sexpr/sch_io_kicad_sexpr_parser.cpp:4714"
+    ],
+    "expected_exit_code": 3,
+    "expected_messages": [
+      "Failed to load schematic"
+    ]
+  },
+  {
+    "id": "directive_label_effects_href",
+    "fixture_dir": "tests/fixtures/extract_parity/directive_label_effects_href",
+    "kicad_source": [
+      "/Users/Daniel/Desktop/kicad/eeschema/sch_io/kicad_sexpr/sch_io_kicad_sexpr_parser.cpp:768",
+      "/Users/Daniel/Desktop/kicad/eeschema/sch_io/kicad_sexpr/sch_io_kicad_sexpr_parser.cpp:4714"
+    ],
+    "expected_exit_code": 3,
+    "expected_messages": [
+      "Failed to load schematic"
+    ]
+  },
+  {
+    "id": "symbol_property_effects_href",
+    "fixture_dir": "tests/fixtures/extract_parity/symbol_property_effects_href",
+    "kicad_source": [
+      "/Users/Daniel/Desktop/kicad/eeschema/sch_io/kicad_sexpr/sch_io_kicad_sexpr_parser.cpp:2406",
+      "/Users/Daniel/Desktop/kicad/eeschema/sch_io/kicad_sexpr/sch_io_kicad_sexpr_parser.cpp:768"
+    ],
+    "expected_exit_code": 3,
+    "expected_messages": [
+      "Failed to load schematic"
+    ]
+  },
+  {
+    "id": "lib_symbol_property_effects_href",
+    "fixture_dir": "tests/fixtures/extract_parity/lib_symbol_property_effects_href",
+    "kicad_source": [
+      "/Users/Daniel/Desktop/kicad/eeschema/sch_io/kicad_sexpr/sch_io_kicad_sexpr_parser.cpp:1138",
+      "/Users/Daniel/Desktop/kicad/eeschema/sch_io/kicad_sexpr/sch_io_kicad_sexpr_parser.cpp:768"
+    ],
+    "expected_exit_code": 3,
+    "expected_messages": [
+      "Failed to load schematic"
+    ]
+  },
+  {
+    "id": "lib_symbol_text_href_direct",
+    "fixture_dir": "tests/fixtures/extract_parity/lib_symbol_text_href_direct",
+    "kicad_source": [
+      "/Users/Daniel/Desktop/kicad/eeschema/sch_io/kicad_sexpr/sch_io_kicad_sexpr_parser.cpp:1941"
+    ],
+    "expected_exit_code": 3,
+    "expected_messages": [
+      "Failed to load schematic"
+    ]
+  },
+  {
+    "id": "lib_symbol_text_effects_href",
+    "fixture_dir": "tests/fixtures/extract_parity/lib_symbol_text_effects_href",
+    "kicad_source": [
+      "/Users/Daniel/Desktop/kicad/eeschema/sch_io/kicad_sexpr/sch_io_kicad_sexpr_parser.cpp:1985",
+      "/Users/Daniel/Desktop/kicad/eeschema/sch_io/kicad_sexpr/sch_io_kicad_sexpr_parser.cpp:768"
+    ],
+    "expected_exit_code": 3,
+    "expected_messages": [
+      "Failed to load schematic"
+    ]
+  },
+  {
+    "id": "lib_pin_name_effects_href",
+    "fixture_dir": "tests/fixtures/extract_parity/lib_pin_name_effects_href",
+    "kicad_source": [
+      "/Users/Daniel/Desktop/kicad/eeschema/sch_io/kicad_sexpr/sch_io_kicad_sexpr_parser.cpp:1721",
+      "/Users/Daniel/Desktop/kicad/eeschema/sch_io/kicad_sexpr/sch_io_kicad_sexpr_parser.cpp:768"
+    ],
+    "expected_exit_code": 3,
+    "expected_messages": [
+      "Failed to load schematic"
+    ]
+  },
+  {
+    "id": "lib_pin_number_effects_href",
+    "fixture_dir": "tests/fixtures/extract_parity/lib_pin_number_effects_href",
+    "kicad_source": [
+      "/Users/Daniel/Desktop/kicad/eeschema/sch_io/kicad_sexpr/sch_io_kicad_sexpr_parser.cpp:1761",
+      "/Users/Daniel/Desktop/kicad/eeschema/sch_io/kicad_sexpr/sch_io_kicad_sexpr_parser.cpp:768"
+    ],
+    "expected_exit_code": 3,
+    "expected_messages": [
+      "Failed to load schematic"
+    ]
+  },
+  {
+    "id": "table_cell_duplicate_effects",
+    "fixture_dir": "tests/fixtures/extract_parity/table_cell_duplicate_effects",
+    "kicad_source": [
+      "/Users/Daniel/Desktop/kicad/eeschema/sch_io/kicad_sexpr/sch_io_kicad_sexpr_parser.cpp:4895"
+    ],
+    "expected_exit_code": 3,
+    "expected_messages": [
+      "Failed to load schematic"
+    ]
+  },
+  {
+    "id": "table_cell_duplicate_uuid",
+    "fixture_dir": "tests/fixtures/extract_parity/table_cell_duplicate_uuid",
+    "kicad_source": [
+      "/Users/Daniel/Desktop/kicad/eeschema/sch_io/kicad_sexpr/sch_io_kicad_sexpr_parser.cpp:4898"
+    ],
+    "expected_exit_code": 3,
+    "expected_messages": [
+      "Failed to load schematic"
+    ]
+  },
+  {
+    "id": "table_duplicate_cells_block",
+    "fixture_dir": "tests/fixtures/extract_parity/table_duplicate_cells_block",
+    "kicad_source": [
+      "/Users/Daniel/Desktop/kicad/eeschema/sch_io/kicad_sexpr/sch_io_kicad_sexpr_parser.cpp:4995"
+    ],
+    "expected_exit_code": 3,
+    "expected_messages": [
+      "Failed to load schematic"
+    ]
+  },
+  {
+    "id": "table_duplicate_rows",
+    "fixture_dir": "tests/fixtures/extract_parity/table_duplicate_rows",
+    "kicad_source": [
+      "/Users/Daniel/Desktop/kicad/eeschema/sch_io/kicad_sexpr/sch_io_kicad_sexpr_parser.cpp:5066"
+    ],
+    "expected_exit_code": 3,
+    "expected_messages": [
+      "Failed to load schematic"
+    ]
+  },
+  {
+    "id": "table_duplicate_columns",
+    "fixture_dir": "tests/fixtures/extract_parity/table_duplicate_columns",
+    "kicad_source": [
+      "/Users/Daniel/Desktop/kicad/eeschema/sch_io/kicad_sexpr/sch_io_kicad_sexpr_parser.cpp:5066"
+    ],
+    "expected_exit_code": 3,
+    "expected_messages": [
+      "Failed to load schematic"
+    ]
+  },
+  {
+    "id": "table_duplicate_row_heights",
+    "fixture_dir": "tests/fixtures/extract_parity/table_duplicate_row_heights",
+    "kicad_source": [
+      "/Users/Daniel/Desktop/kicad/eeschema/sch_io/kicad_sexpr/sch_io_kicad_sexpr_parser.cpp:4967"
+    ],
+    "expected_exit_code": 3,
+    "expected_messages": [
+      "Failed to load schematic"
+    ]
+  },
+  {
+    "id": "table_duplicate_col_widths",
+    "fixture_dir": "tests/fixtures/extract_parity/table_duplicate_col_widths",
+    "kicad_source": [
+      "/Users/Daniel/Desktop/kicad/eeschema/sch_io/kicad_sexpr/sch_io_kicad_sexpr_parser.cpp:4957"
+    ],
+    "expected_exit_code": 3,
+    "expected_messages": [
+      "Failed to load schematic"
+    ]
+  },
+  {
+    "id": "table_duplicate_border",
+    "fixture_dir": "tests/fixtures/extract_parity/table_duplicate_border",
+    "kicad_source": [
+      "/Users/Daniel/Desktop/kicad/eeschema/sch_io/kicad_sexpr/sch_io_kicad_sexpr_parser.cpp:4993"
+    ],
+    "expected_exit_code": 3,
+    "expected_messages": [
+      "Failed to load schematic"
+    ]
+  },
+  {
+    "id": "table_duplicate_separators",
+    "fixture_dir": "tests/fixtures/extract_parity/table_duplicate_separators",
+    "kicad_source": [
+      "/Users/Daniel/Desktop/kicad/eeschema/sch_io/kicad_sexpr/sch_io_kicad_sexpr_parser.cpp:5026"
+    ],
+    "expected_exit_code": 3,
+    "expected_messages": [
+      "Failed to load schematic"
+    ]
+  },
+  {
+    "id": "lib_symbol_textbox_href_direct",
+    "fixture_dir": "tests/fixtures/extract_parity/lib_symbol_textbox_href_direct",
+    "kicad_source": [
+      "/Users/Daniel/Desktop/kicad/eeschema/sch_io/kicad_sexpr/sch_io_kicad_sexpr_parser.cpp:2001"
+    ],
+    "expected_exit_code": 3,
+    "expected_messages": [
+      "Failed to load schematic"
+    ]
+  },
+  {
+    "id": "sheet_property_effects_href",
+    "fixture_dir": "tests/fixtures/extract_parity/sheet_property_effects_href",
+    "kicad_source": [
+      "/Users/Daniel/Desktop/kicad/eeschema/sch_io/kicad_sexpr/sch_io_kicad_sexpr_parser.cpp:2406",
+      "/Users/Daniel/Desktop/kicad/eeschema/sch_io/kicad_sexpr/sch_io_kicad_sexpr_parser.cpp:768"
+    ],
+    "expected_exit_code": 3,
+    "expected_messages": [
+      "Failed to load schematic"
+    ]
+  },
+  {
+    "id": "lib_symbol_textbox_effects_href",
+    "fixture_dir": "tests/fixtures/extract_parity/lib_symbol_textbox_effects_href",
+    "kicad_source": [
+      "/Users/Daniel/Desktop/kicad/eeschema/sch_io/kicad_sexpr/sch_io_kicad_sexpr_parser.cpp:2094",
+      "/Users/Daniel/Desktop/kicad/eeschema/sch_io/kicad_sexpr/sch_io_kicad_sexpr_parser.cpp:768"
+    ],
+    "expected_exit_code": 3,
+    "expected_messages": [
+      "Failed to load schematic"
+    ]
+  },
+  {
+    "id": "symbol_property_effects_duplicate_href",
+    "fixture_dir": "tests/fixtures/extract_parity/symbol_property_effects_duplicate_href",
+    "kicad_source": [
+      "/Users/Daniel/Desktop/kicad/eeschema/sch_io/kicad_sexpr/sch_io_kicad_sexpr_parser.cpp:2406",
+      "/Users/Daniel/Desktop/kicad/eeschema/sch_io/kicad_sexpr/sch_io_kicad_sexpr_parser.cpp:768"
+    ],
+    "expected_exit_code": 3,
+    "expected_messages": [
+      "Failed to load schematic"
+    ]
+  },
+  {
+    "id": "sheet_property_effects_duplicate_href",
+    "fixture_dir": "tests/fixtures/extract_parity/sheet_property_effects_duplicate_href",
+    "kicad_source": [
+      "/Users/Daniel/Desktop/kicad/eeschema/sch_io/kicad_sexpr/sch_io_kicad_sexpr_parser.cpp:2406",
+      "/Users/Daniel/Desktop/kicad/eeschema/sch_io/kicad_sexpr/sch_io_kicad_sexpr_parser.cpp:768"
+    ],
+    "expected_exit_code": 3,
+    "expected_messages": [
+      "Failed to load schematic"
+    ]
+  },
+  {
+    "id": "lib_symbol_property_effects_duplicate_href",
+    "fixture_dir": "tests/fixtures/extract_parity/lib_symbol_property_effects_duplicate_href",
+    "kicad_source": [
+      "/Users/Daniel/Desktop/kicad/eeschema/sch_io/kicad_sexpr/sch_io_kicad_sexpr_parser.cpp:1987",
+      "/Users/Daniel/Desktop/kicad/eeschema/sch_io/kicad_sexpr/sch_io_kicad_sexpr_parser.cpp:768"
+    ],
+    "expected_exit_code": 3,
+    "expected_messages": [
+      "Failed to load schematic"
+    ]
+  },
+  {
+    "id": "lib_pin_name_effects_duplicate_href",
+    "fixture_dir": "tests/fixtures/extract_parity/lib_pin_name_effects_duplicate_href",
+    "kicad_source": [
+      "/Users/Daniel/Desktop/kicad/eeschema/sch_io/kicad_sexpr/sch_io_kicad_sexpr_parser.cpp:2171",
+      "/Users/Daniel/Desktop/kicad/eeschema/sch_io/kicad_sexpr/sch_io_kicad_sexpr_parser.cpp:768"
+    ],
+    "expected_exit_code": 3,
+    "expected_messages": [
+      "Failed to load schematic"
+    ]
+  },
+  {
+    "id": "lib_pin_number_effects_duplicate_href",
+    "fixture_dir": "tests/fixtures/extract_parity/lib_pin_number_effects_duplicate_href",
+    "kicad_source": [
+      "/Users/Daniel/Desktop/kicad/eeschema/sch_io/kicad_sexpr/sch_io_kicad_sexpr_parser.cpp:2190",
+      "/Users/Daniel/Desktop/kicad/eeschema/sch_io/kicad_sexpr/sch_io_kicad_sexpr_parser.cpp:768"
+    ],
+    "expected_exit_code": 3,
+    "expected_messages": [
+      "Failed to load schematic"
+    ]
+  },
+  {
+    "id": "lib_symbol_textbox_effects_duplicate_href",
+    "fixture_dir": "tests/fixtures/extract_parity/lib_symbol_textbox_effects_duplicate_href",
+    "kicad_source": [
+      "/Users/Daniel/Desktop/kicad/eeschema/sch_io/kicad_sexpr/sch_io_kicad_sexpr_parser.cpp:2094",
+      "/Users/Daniel/Desktop/kicad/eeschema/sch_io/kicad_sexpr/sch_io_kicad_sexpr_parser.cpp:768"
+    ],
+    "expected_exit_code": 3,
+    "expected_messages": [
+      "Failed to load schematic"
+    ]
+  },
+  {
+    "id": "sheet_pin_effects_duplicate_href",
+    "fixture_dir": "tests/fixtures/extract_parity/sheet_pin_effects_duplicate_href",
+    "kicad_source": [
+      "/Users/Daniel/Desktop/kicad/eeschema/sch_io/kicad_sexpr/sch_io_kicad_sexpr_parser.cpp:1201",
+      "/Users/Daniel/Desktop/kicad/eeschema/sch_io/kicad_sexpr/sch_io_kicad_sexpr_parser.cpp:768"
+    ],
+    "expected_exit_code": 3,
+    "expected_messages": [
+      "Failed to load schematic"
+    ]
+  },
+  {
+    "id": "text_box_duplicate_fill",
+    "fixture_dir": "tests/fixtures/extract_parity/text_box_duplicate_fill",
+    "kicad_source": [
+      "/Users/Daniel/Desktop/kicad/eeschema/sch_io/kicad_sexpr/sch_io_kicad_sexpr_parser.cpp:4877"
+    ],
+    "expected_exit_code": 3,
+    "expected_messages": [
+      "Failed to load schematic"
+    ]
+  },
+  {
+    "id": "text_box_duplicate_span",
+    "fixture_dir": "tests/fixtures/extract_parity/text_box_duplicate_span",
+    "kicad_source": [
+      "/Users/Daniel/Desktop/kicad/eeschema/sch_io/kicad_sexpr/sch_io_kicad_sexpr_parser.cpp:4858",
+      "/Users/Daniel/Desktop/kicad/eeschema/sch_io/kicad_sexpr/sch_io_kicad_sexpr_parser.cpp:4866"
+    ],
+    "expected_exit_code": 3,
+    "expected_messages": [
+      "Failed to load schematic"
+    ]
+  },
+  {
+    "id": "text_box_duplicate_stroke",
+    "fixture_dir": "tests/fixtures/extract_parity/text_box_duplicate_stroke",
+    "kicad_source": [
+      "/Users/Daniel/Desktop/kicad/eeschema/sch_io/kicad_sexpr/sch_io_kicad_sexpr_parser.cpp:4872"
+    ],
+    "expected_exit_code": 3,
+    "expected_messages": [
+      "Failed to load schematic"
+    ]
+  },
+  {
+    "id": "text_box_duplicate_margins",
+    "fixture_dir": "tests/fixtures/extract_parity/text_box_duplicate_margins",
+    "kicad_source": [
+      "/Users/Daniel/Desktop/kicad/eeschema/sch_io/kicad_sexpr/sch_io_kicad_sexpr_parser.cpp:4884"
+    ],
+    "expected_exit_code": 3,
+    "expected_messages": [
+      "Failed to load schematic"
+    ]
+  },
+  {
+    "id": "text_box_duplicate_exclude_from_sim",
+    "fixture_dir": "tests/fixtures/extract_parity/text_box_duplicate_exclude_from_sim",
+    "kicad_source": [
+      "/Users/Daniel/Desktop/kicad/eeschema/sch_io/kicad_sexpr/sch_io_kicad_sexpr_parser.cpp:4830"
+    ],
+    "expected_exit_code": 3,
+    "expected_messages": [
+      "Failed to load schematic"
+    ]
+  },
+  {
+    "id": "table_cell_duplicate_at",
+    "fixture_dir": "tests/fixtures/extract_parity/table_cell_duplicate_at",
+    "kicad_source": [
+      "/Users/Daniel/Desktop/kicad/eeschema/sch_io/kicad_sexpr/sch_io_kicad_sexpr_parser.cpp:4846",
+      "/Users/Daniel/Desktop/kicad/eeschema/sch_io/kicad_sexpr/sch_io_kicad_sexpr_parser.cpp:4905"
+    ],
+    "expected_exit_code": 3,
+    "expected_messages": [
+      "Failed to load schematic"
+    ]
+  },
+  {
+    "id": "table_cell_duplicate_fill",
+    "fixture_dir": "tests/fixtures/extract_parity/table_cell_duplicate_fill",
+    "kicad_source": [
+      "/Users/Daniel/Desktop/kicad/eeschema/sch_io/kicad_sexpr/sch_io_kicad_sexpr_parser.cpp:4877",
+      "/Users/Daniel/Desktop/kicad/eeschema/sch_io/kicad_sexpr/sch_io_kicad_sexpr_parser.cpp:4905"
+    ],
+    "expected_exit_code": 3,
+    "expected_messages": [
+      "Failed to load schematic"
+    ]
+  },
+  {
+    "id": "table_cell_duplicate_size",
+    "fixture_dir": "tests/fixtures/extract_parity/table_cell_duplicate_size",
+    "kicad_source": [
+      "/Users/Daniel/Desktop/kicad/eeschema/sch_io/kicad_sexpr/sch_io_kicad_sexpr_parser.cpp:4852",
+      "/Users/Daniel/Desktop/kicad/eeschema/sch_io/kicad_sexpr/sch_io_kicad_sexpr_parser.cpp:4905"
+    ],
+    "expected_exit_code": 3,
+    "expected_messages": [
+      "Failed to load schematic"
+    ]
+  },
+  {
+    "id": "table_cell_duplicate_span",
+    "fixture_dir": "tests/fixtures/extract_parity/table_cell_duplicate_span",
+    "kicad_source": [
+      "/Users/Daniel/Desktop/kicad/eeschema/sch_io/kicad_sexpr/sch_io_kicad_sexpr_parser.cpp:4858",
+      "/Users/Daniel/Desktop/kicad/eeschema/sch_io/kicad_sexpr/sch_io_kicad_sexpr_parser.cpp:4905"
+    ],
+    "expected_exit_code": 3,
+    "expected_messages": [
+      "Failed to load schematic"
+    ]
+  },
+  {
+    "id": "table_cell_duplicate_stroke",
+    "fixture_dir": "tests/fixtures/extract_parity/table_cell_duplicate_stroke",
+    "kicad_source": [
+      "/Users/Daniel/Desktop/kicad/eeschema/sch_io/kicad_sexpr/sch_io_kicad_sexpr_parser.cpp:4872",
+      "/Users/Daniel/Desktop/kicad/eeschema/sch_io/kicad_sexpr/sch_io_kicad_sexpr_parser.cpp:4905"
+    ],
+    "expected_exit_code": 3,
+    "expected_messages": [
+      "Failed to load schematic"
+    ]
+  },
+  {
+    "id": "table_border_duplicate_external",
+    "fixture_dir": "tests/fixtures/extract_parity/table_border_duplicate_external",
+    "kicad_source": [
+      "/Users/Daniel/Desktop/kicad/eeschema/sch_io/kicad_sexpr/sch_io_kicad_sexpr_parser.cpp:4993",
+      "/Users/Daniel/Desktop/kicad/eeschema/sch_io/kicad_sexpr/sch_io_kicad_sexpr_parser.cpp:5003"
+    ],
+    "expected_exit_code": 3,
+    "expected_messages": [
+      "Failed to load schematic"
+    ]
+  },
+  {
+    "id": "table_border_duplicate_stroke",
+    "fixture_dir": "tests/fixtures/extract_parity/table_border_duplicate_stroke",
+    "kicad_source": [
+      "/Users/Daniel/Desktop/kicad/eeschema/sch_io/kicad_sexpr/sch_io_kicad_sexpr_parser.cpp:4993",
+      "/Users/Daniel/Desktop/kicad/eeschema/sch_io/kicad_sexpr/sch_io_kicad_sexpr_parser.cpp:5013"
+    ],
+    "expected_exit_code": 3,
+    "expected_messages": [
+      "Failed to load schematic"
+    ]
+  },
+  {
+    "id": "table_duplicate_uuid",
+    "fixture_dir": "tests/fixtures/extract_parity/table_duplicate_uuid",
+    "kicad_source": [
+      "/Users/Daniel/Desktop/kicad/eeschema/sch_io/kicad_sexpr/sch_io_kicad_sexpr_parser.cpp:5059"
+    ],
+    "expected_exit_code": 3,
+    "expected_messages": [
+      "Failed to load schematic"
+    ]
+  },
+  {
+    "id": "table_separators_duplicate_stroke",
+    "fixture_dir": "tests/fixtures/extract_parity/table_separators_duplicate_stroke",
+    "kicad_source": [
+      "/Users/Daniel/Desktop/kicad/eeschema/sch_io/kicad_sexpr/sch_io_kicad_sexpr_parser.cpp:5026",
+      "/Users/Daniel/Desktop/kicad/eeschema/sch_io/kicad_sexpr/sch_io_kicad_sexpr_parser.cpp:5046"
+    ],
+    "expected_exit_code": 3,
+    "expected_messages": [
+      "Failed to load schematic"
+    ]
+  },
+  {
+    "id": "invalid_table_cell_at_arity",
+    "fixture_dir": "tests/fixtures/extract_parity/invalid_table_cell_at_arity",
+    "kicad_source": [
+      "/Users/Daniel/Desktop/kicad/eeschema/sch_io/kicad_sexpr/sch_io_kicad_sexpr_parser.cpp:4846"
+    ],
+    "expected_exit_code": 3,
+    "expected_messages": [
+      "Failed to load schematic"
+    ]
+  },
+  {
+    "id": "invalid_table_cell_margins_token",
+    "fixture_dir": "tests/fixtures/extract_parity/invalid_table_cell_margins_token",
+    "kicad_source": [
+      "/Users/Daniel/Desktop/kicad/eeschema/sch_io/kicad_sexpr/sch_io_kicad_sexpr_parser.cpp:4884"
+    ],
+    "expected_exit_code": 3,
+    "expected_messages": [
+      "Failed to load schematic"
+    ]
+  },
+  {
+    "id": "invalid_table_cell_size_arity",
+    "fixture_dir": "tests/fixtures/extract_parity/invalid_table_cell_size_arity",
+    "kicad_source": [
+      "/Users/Daniel/Desktop/kicad/eeschema/sch_io/kicad_sexpr/sch_io_kicad_sexpr_parser.cpp:4852"
+    ],
+    "expected_exit_code": 3,
+    "expected_messages": [
+      "Failed to load schematic"
+    ]
+  },
+  {
+    "id": "invalid_table_cell_span_token",
+    "fixture_dir": "tests/fixtures/extract_parity/invalid_table_cell_span_token",
+    "kicad_source": [
+      "/Users/Daniel/Desktop/kicad/eeschema/sch_io/kicad_sexpr/sch_io_kicad_sexpr_parser.cpp:4858"
+    ],
+    "expected_exit_code": 3,
+    "expected_messages": [
+      "Failed to load schematic"
+    ]
+  },
+  {
+    "id": "invalid_text_box_at_arity",
+    "fixture_dir": "tests/fixtures/extract_parity/invalid_text_box_at_arity",
+    "kicad_source": [
+      "/Users/Daniel/Desktop/kicad/eeschema/sch_io/kicad_sexpr/sch_io_kicad_sexpr_parser.cpp:4846"
+    ],
+    "expected_exit_code": 3,
+    "expected_messages": [
+      "Failed to load schematic"
+    ]
+  },
+  {
+    "id": "text_box_duplicate_start",
+    "fixture_dir": "tests/fixtures/extract_parity/text_box_duplicate_start",
+    "kicad_source": [
+      "/Users/Daniel/Desktop/kicad/eeschema/sch_io/kicad_sexpr/sch_io_kicad_sexpr_parser.cpp:4835"
+    ],
+    "expected_exit_code": 3,
+    "expected_messages": [
+      "Failed to load schematic"
+    ]
+  },
+  {
+    "id": "text_box_start_arity",
+    "fixture_dir": "tests/fixtures/extract_parity/text_box_start_arity",
+    "kicad_source": [
+      "/Users/Daniel/Desktop/kicad/eeschema/sch_io/kicad_sexpr/sch_io_kicad_sexpr_parser.cpp:4835"
+    ],
+    "expected_exit_code": 3,
+    "expected_messages": [
+      "Failed to load schematic"
+    ]
+  },
+  {
+    "id": "text_box_end_arity",
+    "fixture_dir": "tests/fixtures/extract_parity/text_box_end_arity",
+    "kicad_source": [
+      "/Users/Daniel/Desktop/kicad/eeschema/sch_io/kicad_sexpr/sch_io_kicad_sexpr_parser.cpp:4840"
+    ],
+    "expected_exit_code": 3,
+    "expected_messages": [
+      "Failed to load schematic"
+    ]
+  },
+  {
+    "id": "table_cell_duplicate_start",
+    "fixture_dir": "tests/fixtures/extract_parity/table_cell_duplicate_start",
+    "kicad_source": [
+      "/Users/Daniel/Desktop/kicad/eeschema/sch_io/kicad_sexpr/sch_io_kicad_sexpr_parser.cpp:4835"
+    ],
+    "expected_exit_code": 3,
+    "expected_messages": [
+      "Failed to load schematic"
+    ]
+  },
+  {
+    "id": "table_cell_start_arity",
+    "fixture_dir": "tests/fixtures/extract_parity/table_cell_start_arity",
+    "kicad_source": [
+      "/Users/Daniel/Desktop/kicad/eeschema/sch_io/kicad_sexpr/sch_io_kicad_sexpr_parser.cpp:4835"
+    ],
+    "expected_exit_code": 3,
+    "expected_messages": [
+      "Failed to load schematic"
+    ]
+  },
+  {
+    "id": "table_cell_end_arity",
+    "fixture_dir": "tests/fixtures/extract_parity/table_cell_end_arity",
+    "kicad_source": [
+      "/Users/Daniel/Desktop/kicad/eeschema/sch_io/kicad_sexpr/sch_io_kicad_sexpr_parser.cpp:4840"
+    ],
+    "expected_exit_code": 3,
+    "expected_messages": [
+      "Failed to load schematic"
+    ]
+  },
+  {
+    "id": "global_label_iref_arity",
+    "fixture_dir": "tests/fixtures/extract_parity/global_label_iref_arity",
+    "kicad_source": [
+      "/Users/Daniel/Desktop/kicad/eeschema/sch_io/kicad_sexpr/sch_io_kicad_sexpr_parser.cpp:4720"
+    ],
+    "expected_exit_code": 3,
+    "expected_messages": [
+      "Failed to load schematic"
+    ]
+  },
+  {
+    "id": "global_label_iref_token",
+    "fixture_dir": "tests/fixtures/extract_parity/global_label_iref_token",
+    "kicad_source": [
+      "/Users/Daniel/Desktop/kicad/eeschema/sch_io/kicad_sexpr/sch_io_kicad_sexpr_parser.cpp:4720"
+    ],
+    "expected_exit_code": 3,
+    "expected_messages": [
+      "Failed to load schematic"
+    ]
+  },
+  {
+    "id": "global_label_duplicate_intersheetrefs",
+    "fixture_dir": "tests/fixtures/extract_parity/global_label_duplicate_intersheetrefs",
+    "kicad_source": [
+      "/Users/Daniel/Desktop/kicad/eeschema/sch_io/kicad_sexpr/sch_io_kicad_sexpr_parser.cpp:4744",
+      "/Users/Daniel/Desktop/kicad/eeschema/sch_io/kicad_sexpr/sch_io_kicad_sexpr_parser.cpp:4747"
+    ],
+    "expected_exit_code": 3,
+    "expected_messages": [
+      "Failed to load schematic"
+    ]
+  },
+  {
+    "id": "invalid_image_at_arity",
+    "fixture_dir": "tests/fixtures/extract_parity/invalid_image_at_arity",
+    "kicad_source": [
+      "/Users/Daniel/Desktop/kicad/eeschema/sch_io/kicad_sexpr/sch_io_kicad_sexpr_parser.cpp:3611"
+    ],
+    "expected_exit_code": 3,
+    "expected_messages": [
+      "Failed to load schematic"
+    ]
+  },
+  {
+    "id": "invalid_image_scale_token",
+    "fixture_dir": "tests/fixtures/extract_parity/invalid_image_scale_token",
+    "kicad_source": [
+      "/Users/Daniel/Desktop/kicad/eeschema/sch_io/kicad_sexpr/sch_io_kicad_sexpr_parser.cpp:3616"
+    ],
+    "expected_exit_code": 3,
+    "expected_messages": [
+      "Failed to load schematic"
+    ]
+  },
+  {
+    "id": "image_scale_quoted_numeric",
+    "fixture_dir": "tests/fixtures/extract_parity/image_scale_quoted_numeric",
+    "kicad_source": [
+      "/Users/Daniel/Desktop/kicad/eeschema/sch_io/kicad_sexpr/sch_io_kicad_sexpr_parser.cpp:3616"
+    ],
+    "expected_exit_code": 3,
+    "expected_messages": [
+      "Failed to load schematic"
+    ]
+  },
+  {
+    "id": "global_legacy_intersheetrefs_duplicate",
+    "fixture_dir": "tests/fixtures/extract_parity/global_legacy_intersheetrefs_duplicate",
+    "kicad_source": [
+      "/Users/Daniel/Desktop/kicad/eeschema/sch_io/kicad_sexpr/sch_io_kicad_sexpr_parser.cpp:2370",
+      "/Users/Daniel/Desktop/kicad/eeschema/sch_io/kicad_sexpr/sch_io_kicad_sexpr_parser.cpp:4744",
+      "/Users/Daniel/Desktop/kicad/eeschema/sch_io/kicad_sexpr/sch_io_kicad_sexpr_parser.cpp:4747"
+    ],
+    "expected_exit_code": 3,
+    "expected_messages": [
+      "Failed to load schematic"
+    ]
+  },
+  {
+    "id": "sheet_legacy_sheet_name_at_arity",
+    "fixture_dir": "tests/fixtures/extract_parity/sheet_legacy_sheet_name_at_arity",
+    "kicad_source": [
+      "/Users/Daniel/Desktop/kicad/eeschema/sch_io/kicad_sexpr/sch_io_kicad_sexpr_parser.cpp:2353",
+      "/Users/Daniel/Desktop/kicad/eeschema/sch_io/kicad_sexpr/sch_io_kicad_sexpr_parser.cpp:2394"
+    ],
+    "expected_exit_code": 3,
+    "expected_messages": [
+      "Failed to load schematic"
+    ]
+  },
+  {
+    "id": "global_legacy_intersheetrefs_hide_token",
+    "fixture_dir": "tests/fixtures/extract_parity/global_legacy_intersheetrefs_hide_token",
+    "kicad_source": [
+      "/Users/Daniel/Desktop/kicad/eeschema/sch_io/kicad_sexpr/sch_io_kicad_sexpr_parser.cpp:2370",
+      "/Users/Daniel/Desktop/kicad/eeschema/sch_io/kicad_sexpr/sch_io_kicad_sexpr_parser.cpp:2400"
+    ],
+    "expected_exit_code": 3,
+    "expected_messages": [
+      "Failed to load schematic"
+    ]
+  },
+  {
+    "id": "global_legacy_intersheetrefs_show_name_token",
+    "fixture_dir": "tests/fixtures/extract_parity/global_legacy_intersheetrefs_show_name_token",
+    "kicad_source": [
+      "/Users/Daniel/Desktop/kicad/eeschema/sch_io/kicad_sexpr/sch_io_kicad_sexpr_parser.cpp:2370",
+      "/Users/Daniel/Desktop/kicad/eeschema/sch_io/kicad_sexpr/sch_io_kicad_sexpr_parser.cpp:2410"
+    ],
+    "expected_exit_code": 3,
+    "expected_messages": [
+      "Failed to load schematic"
+    ]
+  },
+  {
+    "id": "sheet_legacy_sheet_name_hide_token",
+    "fixture_dir": "tests/fixtures/extract_parity/sheet_legacy_sheet_name_hide_token",
+    "kicad_source": [
+      "/Users/Daniel/Desktop/kicad/eeschema/sch_io/kicad_sexpr/sch_io_kicad_sexpr_parser.cpp:2353",
+      "/Users/Daniel/Desktop/kicad/eeschema/sch_io/kicad_sexpr/sch_io_kicad_sexpr_parser.cpp:2400"
+    ],
+    "expected_exit_code": 3,
+    "expected_messages": [
+      "Failed to load schematic"
+    ]
+  },
+  {
+    "id": "sheet_legacy_sheet_name_show_name_token",
+    "fixture_dir": "tests/fixtures/extract_parity/sheet_legacy_sheet_name_show_name_token",
+    "kicad_source": [
+      "/Users/Daniel/Desktop/kicad/eeschema/sch_io/kicad_sexpr/sch_io_kicad_sexpr_parser.cpp:2353",
+      "/Users/Daniel/Desktop/kicad/eeschema/sch_io/kicad_sexpr/sch_io_kicad_sexpr_parser.cpp:2410"
+    ],
+    "expected_exit_code": 3,
+    "expected_messages": [
+      "Failed to load schematic"
+    ]
+  },
+  {
+    "id": "global_legacy_intersheetrefs_do_not_autoplace_token",
+    "fixture_dir": "tests/fixtures/extract_parity/global_legacy_intersheetrefs_do_not_autoplace_token",
+    "kicad_source": [
+      "/Users/Daniel/Desktop/kicad/eeschema/sch_io/kicad_sexpr/sch_io_kicad_sexpr_parser.cpp:2370",
+      "/Users/Daniel/Desktop/kicad/eeschema/sch_io/kicad_sexpr/sch_io_kicad_sexpr_parser.cpp:2417"
+    ],
+    "expected_exit_code": 3,
+    "expected_messages": [
+      "Failed to load schematic"
+    ]
+  },
+  {
+    "id": "sheet_legacy_sheet_file_hide_token",
+    "fixture_dir": "tests/fixtures/extract_parity/sheet_legacy_sheet_file_hide_token",
+    "kicad_source": [
+      "/Users/Daniel/Desktop/kicad/eeschema/sch_io/kicad_sexpr/sch_io_kicad_sexpr_parser.cpp:2355",
+      "/Users/Daniel/Desktop/kicad/eeschema/sch_io/kicad_sexpr/sch_io_kicad_sexpr_parser.cpp:2400"
+    ],
+    "expected_exit_code": 3,
+    "expected_messages": [
+      "Failed to load schematic"
+    ]
+  },
+  {
+    "id": "sheet_legacy_sheet_file_show_name_token",
+    "fixture_dir": "tests/fixtures/extract_parity/sheet_legacy_sheet_file_show_name_token",
+    "kicad_source": [
+      "/Users/Daniel/Desktop/kicad/eeschema/sch_io/kicad_sexpr/sch_io_kicad_sexpr_parser.cpp:2355",
+      "/Users/Daniel/Desktop/kicad/eeschema/sch_io/kicad_sexpr/sch_io_kicad_sexpr_parser.cpp:2410"
+    ],
+    "expected_exit_code": 3,
+    "expected_messages": [
+      "Failed to load schematic"
+    ]
+  },
+  {
+    "id": "sheet_legacy_sheet_name_do_not_autoplace_token",
+    "fixture_dir": "tests/fixtures/extract_parity/sheet_legacy_sheet_name_do_not_autoplace_token",
+    "kicad_source": [
+      "/Users/Daniel/Desktop/kicad/eeschema/sch_io/kicad_sexpr/sch_io_kicad_sexpr_parser.cpp:2353",
+      "/Users/Daniel/Desktop/kicad/eeschema/sch_io/kicad_sexpr/sch_io_kicad_sexpr_parser.cpp:2417"
+    ],
+    "expected_exit_code": 3,
+    "expected_messages": [
+      "Failed to load schematic"
+    ]
+  },
+  {
+    "id": "global_legacy_intersheetrefs_id_token",
+    "fixture_dir": "tests/fixtures/extract_parity/global_legacy_intersheetrefs_id_token",
+    "kicad_source": [
+      "/Users/Daniel/Desktop/kicad/eeschema/sch_io/kicad_sexpr/sch_io_kicad_sexpr_parser.cpp:2370",
+      "/Users/Daniel/Desktop/kicad/eeschema/sch_io/kicad_sexpr/sch_io_kicad_sexpr_parser.cpp:2389"
+    ],
+    "expected_exit_code": 3,
+    "expected_messages": [
+      "Failed to load schematic"
+    ]
+  },
+  {
+    "id": "sheet_legacy_sheet_file_do_not_autoplace_token",
+    "fixture_dir": "tests/fixtures/extract_parity/sheet_legacy_sheet_file_do_not_autoplace_token",
+    "kicad_source": [
+      "/Users/Daniel/Desktop/kicad/eeschema/sch_io/kicad_sexpr/sch_io_kicad_sexpr_parser.cpp:2355",
+      "/Users/Daniel/Desktop/kicad/eeschema/sch_io/kicad_sexpr/sch_io_kicad_sexpr_parser.cpp:2417"
+    ],
+    "expected_exit_code": 3,
+    "expected_messages": [
+      "Failed to load schematic"
+    ]
+  },
+  {
+    "id": "sheet_legacy_sheet_file_id_token",
+    "fixture_dir": "tests/fixtures/extract_parity/sheet_legacy_sheet_file_id_token",
+    "kicad_source": [
+      "/Users/Daniel/Desktop/kicad/eeschema/sch_io/kicad_sexpr/sch_io_kicad_sexpr_parser.cpp:2355",
+      "/Users/Daniel/Desktop/kicad/eeschema/sch_io/kicad_sexpr/sch_io_kicad_sexpr_parser.cpp:2389"
+    ],
+    "expected_exit_code": 3,
+    "expected_messages": [
+      "Failed to load schematic"
+    ]
+  },
+  {
+    "id": "bus_alias_empty_members",
+    "fixture_dir": "tests/fixtures/extract_parity/bus_alias_empty_members",
+    "kicad_source": [
+      "/Users/Daniel/Desktop/kicad/eeschema/sch_io/kicad_sexpr/sch_io_kicad_sexpr_parser.cpp:5108"
+    ],
+    "expected_exit_code": 3,
+    "expected_messages": [
+      "Failed to load schematic"
+    ]
+  },
+  {
+    "id": "bus_alias_duplicate_member",
+    "fixture_dir": "tests/fixtures/extract_parity/bus_alias_duplicate_member",
+    "kicad_source": [
+      "/Users/Daniel/Desktop/kicad/eeschema/sch_io/kicad_sexpr/sch_io_kicad_sexpr_parser.cpp:5108"
+    ],
+    "expected_exit_code": 3,
+    "expected_messages": [
+      "Failed to load schematic"
+    ]
+  },
+  {
+    "id": "bus_alias_extra_child",
+    "fixture_dir": "tests/fixtures/extract_parity/bus_alias_extra_child",
+    "kicad_source": [
+      "/Users/Daniel/Desktop/kicad/eeschema/sch_io/kicad_sexpr/sch_io_kicad_sexpr_parser.cpp:5123"
+    ],
+    "expected_exit_code": 3,
+    "expected_messages": [
+      "Failed to load schematic"
+    ]
+  },
+  {
+    "id": "group_duplicate_member",
+    "fixture_dir": "tests/fixtures/extract_parity/group_duplicate_member",
+    "kicad_source": [
+      "/Users/Daniel/Desktop/kicad/eeschema/sch_io/kicad_sexpr/sch_io_kicad_sexpr_parser.cpp:5129"
+    ],
+    "expected_exit_code": 3,
+    "expected_messages": [
+      "Failed to load schematic"
+    ]
+  },
+  {
+    "id": "group_empty_members",
+    "fixture_dir": "tests/fixtures/extract_parity/group_empty_members",
+    "kicad_source": [
+      "/Users/Daniel/Desktop/kicad/eeschema/sch_io/kicad_sexpr/sch_io_kicad_sexpr_parser.cpp:5129"
+    ],
+    "expected_exit_code": 3,
+    "expected_messages": [
+      "Failed to load schematic"
+    ]
+  },
+  {
+    "id": "group_missing_member_uuid",
+    "fixture_dir": "tests/fixtures/extract_parity/group_missing_member_uuid",
+    "kicad_source": [
+      "/Users/Daniel/Desktop/kicad/eeschema/sch_io/kicad_sexpr/sch_io_kicad_sexpr_parser.cpp:5129",
+      "/Users/Daniel/Desktop/kicad/eeschema/sch_io/kicad_sexpr/sch_io_kicad_sexpr_parser.cpp:5266"
+    ],
+    "expected_exit_code": 3,
+    "expected_messages": [
+      "Failed to load schematic"
+    ]
+  },
+  {
+    "id": "bus_entry_extra_child",
+    "fixture_dir": "tests/fixtures/extract_parity/bus_entry_extra_child",
+    "kicad_source": [
+      "/Users/Daniel/Desktop/kicad/eeschema/sch_io/kicad_sexpr/sch_io_kicad_sexpr_parser.cpp:4124"
+    ],
+    "expected_exit_code": 3,
+    "expected_messages": [
+      "Failed to load schematic"
+    ]
+  },
+  {
+    "id": "arc_extra_child",
+    "fixture_dir": "tests/fixtures/extract_parity/arc_extra_child",
+    "kicad_source": [
+      "/Users/Daniel/Desktop/kicad/eeschema/sch_io/kicad_sexpr/sch_io_kicad_sexpr_parser.cpp:4333"
+    ],
+    "expected_exit_code": 3,
+    "expected_messages": [
+      "Failed to load schematic"
+    ]
+  },
+  {
+    "id": "bezier_extra_child",
+    "fixture_dir": "tests/fixtures/extract_parity/bezier_extra_child",
+    "kicad_source": [
+      "/Users/Daniel/Desktop/kicad/eeschema/sch_io/kicad_sexpr/sch_io_kicad_sexpr_parser.cpp:4598"
+    ],
+    "expected_exit_code": 3,
+    "expected_messages": [
+      "Failed to load schematic"
+    ]
+  },
+  {
+    "id": "bus_extra_child",
+    "fixture_dir": "tests/fixtures/extract_parity/bus_extra_child",
+    "kicad_source": [
+      "/Users/Daniel/Desktop/kicad/eeschema/sch_io/kicad_sexpr/sch_io_kicad_sexpr_parser.cpp:4269"
+    ],
+    "expected_exit_code": 3,
+    "expected_messages": [
+      "Failed to load schematic"
+    ]
+  },
+  {
+    "id": "circle_extra_child",
+    "fixture_dir": "tests/fixtures/extract_parity/circle_extra_child",
+    "kicad_source": [
+      "/Users/Daniel/Desktop/kicad/eeschema/sch_io/kicad_sexpr/sch_io_kicad_sexpr_parser.cpp:4393"
+    ],
+    "expected_exit_code": 3,
+    "expected_messages": [
+      "Failed to load schematic"
+    ]
+  },
+  {
+    "id": "polyline_extra_child",
+    "fixture_dir": "tests/fixtures/extract_parity/polyline_extra_child",
+    "kicad_source": [
+      "/Users/Daniel/Desktop/kicad/eeschema/sch_io/kicad_sexpr/sch_io_kicad_sexpr_parser.cpp:4200"
+    ],
+    "expected_exit_code": 3,
+    "expected_messages": [
+      "Failed to load schematic"
+    ]
+  },
+  {
+    "id": "rect_extra_child",
+    "fixture_dir": "tests/fixtures/extract_parity/rect_extra_child",
+    "kicad_source": [
+      "/Users/Daniel/Desktop/kicad/eeschema/sch_io/kicad_sexpr/sch_io_kicad_sexpr_parser.cpp:4457"
+    ],
+    "expected_exit_code": 3,
+    "expected_messages": [
+      "Failed to load schematic"
+    ]
+  },
+  {
+    "id": "wire_extra_child",
+    "fixture_dir": "tests/fixtures/extract_parity/wire_extra_child",
+    "kicad_source": [
+      "/Users/Daniel/Desktop/kicad/eeschema/sch_io/kicad_sexpr/sch_io_kicad_sexpr_parser.cpp:4269"
+    ],
+    "expected_exit_code": 3,
+    "expected_messages": [
+      "Failed to load schematic"
+    ]
+  },
+  {
+    "id": "junction_extra_child",
+    "fixture_dir": "tests/fixtures/extract_parity/junction_extra_child",
+    "kicad_source": [
+      "/Users/Daniel/Desktop/kicad/eeschema/sch_io/kicad_sexpr/sch_io_kicad_sexpr_parser.cpp:4033"
+    ],
+    "expected_exit_code": 3,
+    "expected_messages": [
+      "Failed to load schematic"
+    ]
+  },
+  {
+    "id": "no_connect_extra_child",
+    "fixture_dir": "tests/fixtures/extract_parity/no_connect_extra_child",
+    "kicad_source": [
+      "/Users/Daniel/Desktop/kicad/eeschema/sch_io/kicad_sexpr/sch_io_kicad_sexpr_parser.cpp:4070"
+    ],
+    "expected_exit_code": 3,
+    "expected_messages": [
+      "Failed to load schematic"
+    ]
+  },
+  {
+    "id": "image_extra_child",
+    "fixture_dir": "tests/fixtures/extract_parity/image_extra_child",
+    "kicad_source": [
+      "/Users/Daniel/Desktop/kicad/eeschema/sch_io/kicad_sexpr/sch_io_kicad_sexpr_parser.cpp:3657"
+    ],
+    "expected_exit_code": 3,
+    "expected_messages": [
+      "Failed to load schematic"
+    ]
+  },
+  {
+    "id": "sheet_extra_child",
+    "fixture_dir": "tests/fixtures/extract_parity/sheet_extra_child",
+    "kicad_source": [
+      "/Users/Daniel/Desktop/kicad/eeschema/sch_io/kicad_sexpr/sch_io_kicad_sexpr_parser.cpp:3964"
+    ],
+    "expected_exit_code": 3,
+    "expected_messages": [
+      "Failed to load schematic"
+    ]
+  },
+  {
+    "id": "symbol_extra_child",
+    "fixture_dir": "tests/fixtures/extract_parity/symbol_extra_child",
+    "kicad_source": [
+      "/Users/Daniel/Desktop/kicad/eeschema/sch_io/kicad_sexpr/sch_io_kicad_sexpr_parser.cpp:3578"
+    ],
+    "expected_exit_code": 3,
+    "expected_messages": [
+      "Failed to load schematic"
+    ]
+  },
+  {
+    "id": "sheet_pin_extra_child",
+    "fixture_dir": "tests/fixtures/extract_parity/sheet_pin_extra_child",
+    "kicad_source": [
+      "/Users/Daniel/Desktop/kicad/eeschema/sch_io/kicad_sexpr/sch_io_kicad_sexpr_parser.cpp:2511"
+    ],
+    "expected_exit_code": 3,
+    "expected_messages": [
+      "Failed to load schematic"
+    ]
+  },
+  {
+    "id": "rule_area_extra_child",
+    "fixture_dir": "tests/fixtures/extract_parity/rule_area_extra_child",
+    "kicad_source": [
+      "/Users/Daniel/Desktop/kicad/eeschema/sch_io/kicad_sexpr/sch_io_kicad_sexpr_parser.cpp:4525"
+    ],
+    "expected_exit_code": 3,
+    "expected_messages": [
+      "Failed to load schematic"
+    ]
+  },
+  {
+    "id": "text_extra_child",
+    "fixture_dir": "tests/fixtures/extract_parity/text_extra_child",
+    "kicad_source": [
+      "/Users/Daniel/Desktop/kicad/eeschema/sch_io/kicad_sexpr/sch_io_kicad_sexpr_parser.cpp:4762"
+    ],
+    "expected_exit_code": 3,
+    "expected_messages": [
+      "Failed to load schematic"
+    ]
+  },
+  {
+    "id": "label_extra_child",
+    "fixture_dir": "tests/fixtures/extract_parity/label_extra_child",
+    "kicad_source": [
+      "/Users/Daniel/Desktop/kicad/eeschema/sch_io/kicad_sexpr/sch_io_kicad_sexpr_parser.cpp:4762"
+    ],
+    "expected_exit_code": 3,
+    "expected_messages": [
+      "Failed to load schematic"
+    ]
+  },
+  {
+    "id": "global_label_extra_child",
+    "fixture_dir": "tests/fixtures/extract_parity/global_label_extra_child",
+    "kicad_source": [
+      "/Users/Daniel/Desktop/kicad/eeschema/sch_io/kicad_sexpr/sch_io_kicad_sexpr_parser.cpp:4762"
+    ],
+    "expected_exit_code": 3,
+    "expected_messages": [
+      "Failed to load schematic"
+    ]
+  },
+  {
+    "id": "hier_label_extra_child",
+    "fixture_dir": "tests/fixtures/extract_parity/hier_label_extra_child",
+    "kicad_source": [
+      "/Users/Daniel/Desktop/kicad/eeschema/sch_io/kicad_sexpr/sch_io_kicad_sexpr_parser.cpp:4762"
+    ],
+    "expected_exit_code": 3,
+    "expected_messages": [
+      "Failed to load schematic"
+    ]
+  },
+  {
+    "id": "directive_label_extra_child",
+    "fixture_dir": "tests/fixtures/extract_parity/directive_label_extra_child",
+    "kicad_source": [
+      "/Users/Daniel/Desktop/kicad/eeschema/sch_io/kicad_sexpr/sch_io_kicad_sexpr_parser.cpp:4762"
+    ],
+    "expected_exit_code": 3,
+    "expected_messages": [
+      "Failed to load schematic"
+    ]
+  },
+  {
+    "id": "text_box_extra_child",
+    "fixture_dir": "tests/fixtures/extract_parity/text_box_extra_child",
+    "kicad_source": [
+      "/Users/Daniel/Desktop/kicad/eeschema/sch_io/kicad_sexpr/sch_io_kicad_sexpr_parser.cpp:4908"
+    ],
+    "expected_exit_code": 3,
+    "expected_messages": [
+      "Failed to load schematic"
+    ]
+  },
+  {
+    "id": "table_extra_child",
+    "fixture_dir": "tests/fixtures/extract_parity/table_extra_child",
+    "kicad_source": [
+      "/Users/Daniel/Desktop/kicad/eeschema/sch_io/kicad_sexpr/sch_io_kicad_sexpr_parser.cpp:5066"
+    ],
+    "expected_exit_code": 3,
+    "expected_messages": [
+      "Failed to load schematic"
+    ]
+  },
+  {
+    "id": "title_block_extra_child",
+    "fixture_dir": "tests/fixtures/extract_parity/title_block_extra_child",
+    "kicad_source": [
+      "/Users/Daniel/Desktop/kicad/eeschema/sch_io/kicad_sexpr/sch_io_kicad_sexpr_parser.cpp:2272"
+    ],
+    "expected_exit_code": 3,
+    "expected_messages": [
+      "Failed to load schematic"
+    ]
+  },
+  {
+    "id": "paper_extra_child",
+    "fixture_dir": "tests/fixtures/extract_parity/paper_extra_child",
+    "kicad_source": [
+      "/Users/Daniel/Desktop/kicad/eeschema/sch_io/kicad_sexpr/sch_io_kicad_sexpr_parser.cpp:2171"
+    ],
+    "expected_exit_code": 3,
+    "expected_messages": [
+      "Failed to load schematic"
+    ]
+  },
+  {
+    "id": "sheet_instances_root_extra_child",
+    "fixture_dir": "tests/fixtures/extract_parity/sheet_instances_root_extra_child",
+    "kicad_source": [
+      "/Users/Daniel/Desktop/kicad/eeschema/sch_io/kicad_sexpr/sch_io_kicad_sexpr_parser.cpp:2610"
+    ],
+    "expected_exit_code": 3,
+    "expected_messages": [
+      "Failed to load schematic"
+    ]
+  },
+  {
+    "id": "sheet_instances_path_extra_child",
+    "fixture_dir": "tests/fixtures/extract_parity/sheet_instances_path_extra_child",
+    "kicad_source": [
+      "/Users/Daniel/Desktop/kicad/eeschema/sch_io/kicad_sexpr/sch_io_kicad_sexpr_parser.cpp:2589"
+    ],
+    "expected_exit_code": 3,
+    "expected_messages": [
+      "Failed to load schematic"
+    ]
+  },
+  {
+    "id": "symbol_instances_root_extra_child",
+    "fixture_dir": "tests/fixtures/extract_parity/symbol_instances_root_extra_child",
+    "kicad_source": [
+      "/Users/Daniel/Desktop/kicad/eeschema/sch_io/kicad_sexpr/sch_io_kicad_sexpr_parser.cpp:2697"
+    ],
+    "expected_exit_code": 3,
+    "expected_messages": [
+      "Failed to load schematic"
+    ]
+  },
+  {
+    "id": "symbol_instances_path_extra_child",
+    "fixture_dir": "tests/fixtures/extract_parity/symbol_instances_path_extra_child",
+    "kicad_source": [
+      "/Users/Daniel/Desktop/kicad/eeschema/sch_io/kicad_sexpr/sch_io_kicad_sexpr_parser.cpp:2688"
+    ],
+    "expected_exit_code": 3,
+    "expected_messages": [
+      "Failed to load schematic"
+    ]
+  },
+  {
+    "id": "nested_instance_project_extra_child",
+    "fixture_dir": "tests/fixtures/extract_parity/nested_instance_project_extra_child",
+    "kicad_source": [
+      "/Users/Daniel/Desktop/kicad/eeschema/sch_io/kicad_sexpr/sch_io_kicad_sexpr_parser.cpp:3330"
+    ],
+    "expected_exit_code": 3,
+    "expected_messages": [
+      "Failed to load schematic"
+    ]
+  },
+  {
+    "id": "nested_instance_path_extra_child",
+    "fixture_dir": "tests/fixtures/extract_parity/nested_instance_path_extra_child",
+    "kicad_source": [
+      "/Users/Daniel/Desktop/kicad/eeschema/sch_io/kicad_sexpr/sch_io_kicad_sexpr_parser.cpp:3480"
+    ],
+    "expected_exit_code": 3,
+    "expected_messages": [
+      "Failed to load schematic"
+    ]
+  },
+  {
+    "id": "embedded_fonts_extra_child",
+    "fixture_dir": "tests/fixtures/extract_parity/embedded_fonts_extra_child",
+    "kicad_source": [
+      "/Users/Daniel/Desktop/kicad/eeschema/sch_io/kicad_sexpr/sch_io_kicad_sexpr_parser.cpp:3026"
+    ],
+    "expected_exit_code": 3,
+    "expected_messages": [
+      "Failed to load schematic"
+    ]
+  },
+  {
+    "id": "netclass_flag_no_visible_diagnostics",
+    "fixture_dir": "tests/fixtures/extract_parity/netclass_flag_no_visible_diagnostics",
+    "kicad_source": [
+      "/Users/Daniel/Desktop/kicad/eeschema/sch_io/kicad_sexpr/sch_io_kicad_sexpr_parser.cpp:4620",
+      "/Users/Daniel/Desktop/kicad/eeschema/sch_io/kicad_sexpr/sch_io_kicad_sexpr_parser.cpp:4698"
+    ],
+    "expected_exit_code": 0,
+    "expected_messages": []
+  },
+  {
+    "id": "netclass_flag_extra_child",
+    "fixture_dir": "tests/fixtures/extract_parity/netclass_flag_extra_child",
+    "kicad_source": [
+      "/Users/Daniel/Desktop/kicad/eeschema/sch_io/kicad_sexpr/sch_io_kicad_sexpr_parser.cpp:4762"
+    ],
+    "expected_exit_code": 3,
+    "expected_messages": [
+      "Failed to load schematic"
+    ]
+  },
+  {
+    "id": "paper_landscape_token",
+    "fixture_dir": "tests/fixtures/extract_parity/paper_landscape_token",
+    "kicad_source": [
+      "/Users/Daniel/Desktop/kicad/eeschema/sch_io/kicad_sexpr/sch_io_kicad_sexpr_parser.cpp:2171"
+    ],
+    "expected_exit_code": 3,
+    "expected_messages": [
+      "Failed to load schematic"
+    ]
+  },
+  {
+    "id": "text_with_property",
+    "fixture_dir": "tests/fixtures/extract_parity/text_with_property",
+    "kicad_source": [
+      "/Users/Daniel/Desktop/kicad/eeschema/sch_io/kicad_sexpr/sch_io_kicad_sexpr_parser.cpp:4742"
+    ],
+    "expected_exit_code": 3,
+    "expected_messages": [
+      "Failed to load schematic"
+    ]
+  },
+  {
+    "id": "text_box_with_property",
+    "fixture_dir": "tests/fixtures/extract_parity/text_box_with_property",
+    "kicad_source": [
+      "/Users/Daniel/Desktop/kicad/eeschema/sch_io/kicad_sexpr/sch_io_kicad_sexpr_parser.cpp:4908"
+    ],
+    "expected_exit_code": 3,
+    "expected_messages": [
+      "Failed to load schematic"
+    ]
+  },
+  {
+    "id": "label_with_iref",
+    "fixture_dir": "tests/fixtures/extract_parity/label_with_iref",
+    "kicad_source": [
+      "/Users/Daniel/Desktop/kicad/eeschema/sch_io/kicad_sexpr/sch_io_kicad_sexpr_parser.cpp:4720"
+    ],
+    "expected_exit_code": 3,
+    "expected_messages": [
+      "Failed to load schematic"
+    ]
+  },
+  {
+    "id": "label_with_property",
+    "fixture_dir": "tests/fixtures/extract_parity/label_with_property",
+    "kicad_source": [
+      "/Users/Daniel/Desktop/kicad/eeschema/sch_io/kicad_sexpr/sch_io_kicad_sexpr_parser.cpp:4742"
+    ],
+    "expected_exit_code": 3,
+    "expected_messages": [
+      "Failed to load schematic"
+    ]
+  },
+  {
+    "id": "global_label_with_property",
+    "fixture_dir": "tests/fixtures/extract_parity/global_label_with_property",
+    "kicad_source": [
+      "/Users/Daniel/Desktop/kicad/eeschema/sch_io/kicad_sexpr/sch_io_kicad_sexpr_parser.cpp:4742"
+    ],
+    "expected_exit_code": 3,
+    "expected_messages": [
+      "Failed to load schematic"
+    ]
+  },
+  {
+    "id": "hier_label_with_property",
+    "fixture_dir": "tests/fixtures/extract_parity/hier_label_with_property",
+    "kicad_source": [
+      "/Users/Daniel/Desktop/kicad/eeschema/sch_io/kicad_sexpr/sch_io_kicad_sexpr_parser.cpp:4742"
+    ],
+    "expected_exit_code": 3,
+    "expected_messages": [
+      "Failed to load schematic"
+    ]
+  },
+  {
+    "id": "directive_label_with_property",
+    "fixture_dir": "tests/fixtures/extract_parity/directive_label_with_property",
+    "kicad_source": [
+      "/Users/Daniel/Desktop/kicad/eeschema/sch_io/kicad_sexpr/sch_io_kicad_sexpr_parser.cpp:4742"
+    ],
+    "expected_exit_code": 3,
+    "expected_messages": [
+      "Failed to load schematic"
+    ]
+  },
+  {
+    "id": "label_property_name_list_child",
+    "fixture_dir": "tests/fixtures/extract_parity/label_property_name_list_child",
+    "kicad_source": [
+      "/Users/Daniel/Desktop/kicad/eeschema/sch_io/kicad_sexpr/sch_io_kicad_sexpr_parser.cpp:2295"
+    ],
+    "expected_exit_code": 3,
+    "expected_messages": [
+      "Failed to load schematic"
+    ]
+  },
+  {
+    "id": "label_property_value_list_child",
+    "fixture_dir": "tests/fixtures/extract_parity/label_property_value_list_child",
+    "kicad_source": [
+      "/Users/Daniel/Desktop/kicad/eeschema/sch_io/kicad_sexpr/sch_io_kicad_sexpr_parser.cpp:2311"
+    ],
+    "expected_exit_code": 3,
+    "expected_messages": [
+      "Failed to load schematic"
+    ]
+  },
+  {
+    "id": "global_label_property_name_list_child",
+    "fixture_dir": "tests/fixtures/extract_parity/global_label_property_name_list_child",
+    "kicad_source": [
+      "/Users/Daniel/Desktop/kicad/eeschema/sch_io/kicad_sexpr/sch_io_kicad_sexpr_parser.cpp:2295"
+    ],
+    "expected_exit_code": 3,
+    "expected_messages": [
+      "Failed to load schematic"
+    ]
+  },
+  {
+    "id": "global_label_property_value_list_child",
+    "fixture_dir": "tests/fixtures/extract_parity/global_label_property_value_list_child",
+    "kicad_source": [
+      "/Users/Daniel/Desktop/kicad/eeschema/sch_io/kicad_sexpr/sch_io_kicad_sexpr_parser.cpp:2311"
+    ],
+    "expected_exit_code": 3,
+    "expected_messages": [
+      "Failed to load schematic"
+    ]
+  },
+  {
+    "id": "hier_label_property_name_list_child",
+    "fixture_dir": "tests/fixtures/extract_parity/hier_label_property_name_list_child",
+    "kicad_source": [
+      "/Users/Daniel/Desktop/kicad/eeschema/sch_io/kicad_sexpr/sch_io_kicad_sexpr_parser.cpp:2295"
+    ],
+    "expected_exit_code": 3,
+    "expected_messages": [
+      "Failed to load schematic"
+    ]
+  },
+  {
+    "id": "hier_label_property_value_list_child",
+    "fixture_dir": "tests/fixtures/extract_parity/hier_label_property_value_list_child",
+    "kicad_source": [
+      "/Users/Daniel/Desktop/kicad/eeschema/sch_io/kicad_sexpr/sch_io_kicad_sexpr_parser.cpp:2311"
+    ],
+    "expected_exit_code": 3,
+    "expected_messages": [
+      "Failed to load schematic"
+    ]
+  },
+  {
+    "id": "directive_label_property_name_list_child",
+    "fixture_dir": "tests/fixtures/extract_parity/directive_label_property_name_list_child",
+    "kicad_source": [
+      "/Users/Daniel/Desktop/kicad/eeschema/sch_io/kicad_sexpr/sch_io_kicad_sexpr_parser.cpp:2295"
+    ],
+    "expected_exit_code": 3,
+    "expected_messages": [
+      "Failed to load schematic"
+    ]
+  },
+  {
+    "id": "directive_label_property_value_list_child",
+    "fixture_dir": "tests/fixtures/extract_parity/directive_label_property_value_list_child",
+    "kicad_source": [
+      "/Users/Daniel/Desktop/kicad/eeschema/sch_io/kicad_sexpr/sch_io_kicad_sexpr_parser.cpp:2311"
+    ],
+    "expected_exit_code": 3,
+    "expected_messages": [
+      "Failed to load schematic"
+    ]
+  },
+  {
+    "id": "label_with_length",
+    "fixture_dir": "tests/fixtures/extract_parity/label_with_length",
+    "kicad_source": [
+      "/Users/Daniel/Desktop/kicad/eeschema/sch_io/kicad_sexpr/sch_io_kicad_sexpr_parser.cpp:4698"
+    ],
+    "expected_exit_code": 3,
+    "expected_messages": [
+      "Failed to load schematic"
+    ]
+  },
+  {
+    "id": "directive_label_with_iref",
+    "fixture_dir": "tests/fixtures/extract_parity/directive_label_with_iref",
+    "kicad_source": [
+      "/Users/Daniel/Desktop/kicad/eeschema/sch_io/kicad_sexpr/sch_io_kicad_sexpr_parser.cpp:4762"
+    ],
+    "expected_exit_code": 3,
+    "expected_messages": [
+      "Failed to load schematic"
+    ]
+  },
+  {
+    "id": "hier_label_with_iref",
+    "fixture_dir": "tests/fixtures/extract_parity/hier_label_with_iref",
+    "kicad_source": [
+      "/Users/Daniel/Desktop/kicad/eeschema/sch_io/kicad_sexpr/sch_io_kicad_sexpr_parser.cpp:4762"
+    ],
+    "expected_exit_code": 3,
+    "expected_messages": [
+      "Failed to load schematic"
+    ]
+  },
+  {
+    "id": "netclass_flag_with_iref",
+    "fixture_dir": "tests/fixtures/extract_parity/netclass_flag_with_iref",
+    "kicad_source": [
+      "/Users/Daniel/Desktop/kicad/eeschema/sch_io/kicad_sexpr/sch_io_kicad_sexpr_parser.cpp:4762"
+    ],
+    "expected_exit_code": 3,
+    "expected_messages": [
+      "Failed to load schematic"
+    ]
+  },
+  {
+    "id": "netclass_flag_with_href",
+    "fixture_dir": "tests/fixtures/extract_parity/netclass_flag_with_href",
+    "kicad_source": [
+      "/Users/Daniel/Desktop/kicad/eeschema/sch_io/kicad_sexpr/sch_io_kicad_sexpr_parser.cpp:4762"
+    ],
+    "expected_exit_code": 3,
+    "expected_messages": [
+      "Failed to load schematic"
+    ]
+  },
+  {
+    "id": "netclass_flag_effects_href",
+    "fixture_dir": "tests/fixtures/extract_parity/netclass_flag_effects_href",
+    "kicad_source": [
+      "/Users/Daniel/Desktop/kicad/eeschema/sch_io/kicad_sexpr/sch_io_kicad_sexpr_parser.cpp:4714"
+    ],
+    "expected_exit_code": 3,
+    "expected_messages": [
+      "Failed to load schematic"
+    ]
+  },
+  {
+    "id": "netclass_flag_uuid_numeric",
+    "fixture_dir": "tests/fixtures/extract_parity/netclass_flag_uuid_numeric",
+    "kicad_source": [
+      "/Users/Daniel/Desktop/kicad/eeschema/sch_io/kicad_sexpr/sch_io_kicad_sexpr_parser.cpp:4733"
+    ],
+    "expected_exit_code": 3,
+    "expected_messages": [
+      "Failed to load schematic"
+    ]
+  },
+  {
+    "id": "netclass_flag_uuid_list",
+    "fixture_dir": "tests/fixtures/extract_parity/netclass_flag_uuid_list",
+    "kicad_source": [
+      "/Users/Daniel/Desktop/kicad/eeschema/sch_io/kicad_sexpr/sch_io_kicad_sexpr_parser.cpp:4733"
+    ],
+    "expected_exit_code": 3,
+    "expected_messages": [
+      "Failed to load schematic"
+    ]
+  },
+  {
+    "id": "netclass_flag_invalid_shape",
+    "fixture_dir": "tests/fixtures/extract_parity/netclass_flag_invalid_shape",
+    "kicad_source": [
+      "/Users/Daniel/Desktop/kicad/eeschema/sch_io/kicad_sexpr/sch_io_kicad_sexpr_parser.cpp:4687"
+    ],
+    "expected_exit_code": 3,
+    "expected_messages": [
+      "Failed to load schematic"
+    ]
+  },
+  {
+    "id": "netclass_flag_invalid_length_token",
+    "fixture_dir": "tests/fixtures/extract_parity/netclass_flag_invalid_length_token",
+    "kicad_source": [
+      "/Users/Daniel/Desktop/kicad/eeschema/sch_io/kicad_sexpr/sch_io_kicad_sexpr_parser.cpp:4698"
+    ],
+    "expected_exit_code": 3,
+    "expected_messages": [
+      "Failed to load schematic"
+    ]
+  },
+  {
+    "id": "netclass_flag_fields_autoplaced_token",
+    "fixture_dir": "tests/fixtures/extract_parity/netclass_flag_fields_autoplaced_token",
+    "kicad_source": [
+      "/Users/Daniel/Desktop/kicad/eeschema/sch_io/kicad_sexpr/sch_io_kicad_sexpr_parser.cpp:4707",
+      "/Users/Daniel/Desktop/kicad/eeschema/sch_io/kicad_sexpr/sch_io_kicad_sexpr_parser.cpp:164"
+    ],
+    "expected_exit_code": 3,
+    "expected_messages": [
+      "Failed to load schematic"
+    ]
+  },
+  {
+    "id": "netclass_flag_exclude_from_sim_token",
+    "fixture_dir": "tests/fixtures/extract_parity/netclass_flag_exclude_from_sim_token",
+    "kicad_source": [
+      "/Users/Daniel/Desktop/kicad/eeschema/sch_io/kicad_sexpr/sch_io_kicad_sexpr_parser.cpp:4642",
+      "/Users/Daniel/Desktop/kicad/eeschema/sch_io/kicad_sexpr/sch_io_kicad_sexpr_parser.cpp:138"
+    ],
+    "expected_exit_code": 3,
+    "expected_messages": [
+      "Failed to load schematic"
+    ]
+  },
+  {
+    "id": "bezier_too_many_points",
+    "fixture_dir": "tests/fixtures/extract_parity/bezier_too_many_points",
+    "kicad_source": [
+      "/Users/Daniel/Desktop/kicad/eeschema/sch_io/kicad_sexpr/sch_io_kicad_sexpr_parser.cpp:4572"
+    ],
+    "expected_exit_code": 3,
+    "expected_messages": [
+      "Failed to load schematic"
+    ]
+  },
+  {
+    "id": "symbol_bezier_too_many_points",
+    "fixture_dir": "tests/fixtures/extract_parity/symbol_bezier_too_many_points",
+    "kicad_source": [
+      "/Users/Daniel/Desktop/kicad/eeschema/sch_io/kicad_sexpr/sch_io_kicad_sexpr_parser.cpp:1488"
+    ],
+    "expected_exit_code": 3,
+    "expected_messages": [
+      "Failed to load schematic"
+    ]
+  },
+  {
+    "id": "wire_too_many_points",
+    "fixture_dir": "tests/fixtures/extract_parity/wire_too_many_points",
+    "kicad_source": [
+      "/Users/Daniel/Desktop/kicad/eeschema/sch_io/kicad_sexpr/sch_io_kicad_sexpr_parser.cpp:4243"
+    ],
+    "expected_exit_code": 3,
+    "expected_messages": [
+      "Failed to load schematic"
+    ]
+  },
+  {
+    "id": "bus_too_many_points",
+    "fixture_dir": "tests/fixtures/extract_parity/bus_too_many_points",
+    "kicad_source": [
+      "/Users/Daniel/Desktop/kicad/eeschema/sch_io/kicad_sexpr/sch_io_kicad_sexpr_parser.cpp:4243"
+    ],
+    "expected_exit_code": 3,
+    "expected_messages": [
+      "Failed to load schematic"
+    ]
+  },
+  {
+    "id": "polyline_empty_pts",
+    "fixture_dir": "tests/fixtures/extract_parity/polyline_empty_pts",
+    "kicad_source": [
+      "/Users/Daniel/Desktop/kicad/eeschema/sch_io/kicad_sexpr/sch_io_kicad_sexpr_parser.cpp:4194"
+    ],
+    "expected_exit_code": 3,
+    "expected_messages": [
+      "Failed to load schematic"
+    ]
+  },
+  {
+    "id": "paper_user_missing_height",
+    "fixture_dir": "tests/fixtures/extract_parity/paper_user_missing_height",
+    "kicad_source": [
+      "/Users/Daniel/Desktop/kicad/eeschema/sch_io/kicad_sexpr/sch_io_kicad_sexpr_parser.cpp:2143"
+    ],
+    "expected_exit_code": 3,
+    "expected_messages": [
+      "Failed to load schematic"
+    ]
+  },
+  {
+    "id": "page_user_missing_height_no_visible_diagnostics",
+    "fixture_dir": "tests/fixtures/extract_parity/page_user_missing_height_no_visible_diagnostics",
+    "kicad_source": [
+      "/Users/Daniel/Desktop/kicad/eeschema/sch_io/kicad_sexpr/sch_io_kicad_sexpr_parser.cpp:2832"
+    ],
+    "expected_exit_code": 0,
+    "expected_messages": []
+  },
+  {
+    "id": "page_user_portrait_token",
+    "fixture_dir": "tests/fixtures/extract_parity/page_user_portrait_token",
+    "kicad_source": [
+      "/Users/Daniel/Desktop/kicad/eeschema/sch_io/kicad_sexpr/sch_io_kicad_sexpr_parser.cpp:2832"
+    ],
+    "expected_exit_code": 3,
+    "expected_messages": [
+      "Failed to load schematic"
+    ]
+  },
+  {
+    "id": "symbol_circle_extra_child",
+    "fixture_dir": "tests/fixtures/extract_parity/symbol_circle_extra_child",
+    "kicad_source": [
+      "/Users/Daniel/Desktop/kicad/eeschema/sch_io/kicad_sexpr/sch_io_kicad_sexpr_parser.cpp:1573"
+    ],
+    "expected_exit_code": 3,
+    "expected_messages": [
+      "Failed to load schematic"
+    ]
+  },
+  {
+    "id": "symbol_rectangle_extra_child",
+    "fixture_dir": "tests/fixtures/extract_parity/symbol_rectangle_extra_child",
+    "kicad_source": [
+      "/Users/Daniel/Desktop/kicad/eeschema/sch_io/kicad_sexpr/sch_io_kicad_sexpr_parser.cpp:1933"
+    ],
+    "expected_exit_code": 3,
+    "expected_messages": [
+      "Failed to load schematic"
+    ]
+  },
+  {
+    "id": "symbol_polyline_extra_child",
+    "fixture_dir": "tests/fixtures/extract_parity/symbol_polyline_extra_child",
+    "kicad_source": [
+      "/Users/Daniel/Desktop/kicad/eeschema/sch_io/kicad_sexpr/sch_io_kicad_sexpr_parser.cpp:1868"
+    ],
+    "expected_exit_code": 3,
+    "expected_messages": [
+      "Failed to load schematic"
+    ]
+  },
+  {
+    "id": "symbol_text_extra_child",
+    "fixture_dir": "tests/fixtures/extract_parity/symbol_text_extra_child",
+    "kicad_source": [
+      "/Users/Daniel/Desktop/kicad/eeschema/sch_io/kicad_sexpr/sch_io_kicad_sexpr_parser.cpp:1989"
+    ],
+    "expected_exit_code": 3,
+    "expected_messages": [
+      "Failed to load schematic"
+    ]
+  },
+  {
+    "id": "symbol_text_box_extra_child",
+    "fixture_dir": "tests/fixtures/extract_parity/symbol_text_box_extra_child",
+    "kicad_source": [
+      "/Users/Daniel/Desktop/kicad/eeschema/sch_io/kicad_sexpr/sch_io_kicad_sexpr_parser.cpp:2098"
+    ],
+    "expected_exit_code": 3,
+    "expected_messages": [
+      "Failed to load schematic"
+    ]
+  },
+  {
+    "id": "embedded_files_file_missing_name",
+    "fixture_dir": "tests/fixtures/extract_parity/embedded_files_file_missing_name",
+    "kicad_source": [
+      "/Users/Daniel/Desktop/kicad/common/embedded_files.cpp:427"
+    ],
+    "expected_exit_code": 3,
+    "expected_messages": [
+      "Failed to load schematic"
+    ]
+  },
+  {
+    "id": "embedded_files_file_checksum_before_name",
+    "fixture_dir": "tests/fixtures/extract_parity/embedded_files_file_checksum_before_name",
+    "kicad_source": [
+      "/Users/Daniel/Desktop/kicad/common/embedded_files.cpp:427"
+    ],
+    "expected_exit_code": 3,
+    "expected_messages": [
+      "Failed to load schematic"
+    ]
+  },
+  {
+    "id": "embedded_files_file_type_before_name",
+    "fixture_dir": "tests/fixtures/extract_parity/embedded_files_file_type_before_name",
+    "kicad_source": [
+      "/Users/Daniel/Desktop/kicad/common/embedded_files.cpp:461"
+    ],
+    "expected_exit_code": 3,
+    "expected_messages": [
+      "Failed to load schematic"
+    ]
+  },
+  {
+    "id": "embedded_files_file_data_before_name",
+    "fixture_dir": "tests/fixtures/extract_parity/embedded_files_file_data_before_name",
+    "kicad_source": [
+      "/Users/Daniel/Desktop/kicad/common/embedded_files.cpp:440"
+    ],
+    "expected_exit_code": 3,
+    "expected_messages": [
+      "Failed to load schematic"
+    ]
+  },
+  {
+    "id": "embedded_files_unknown_child_payload",
+    "fixture_dir": "tests/fixtures/extract_parity/embedded_files_unknown_child_payload",
+    "kicad_source": [
+      "/Users/Daniel/Desktop/kicad/common/embedded_files.cpp:407"
+    ],
+    "expected_exit_code": 3,
+    "expected_messages": [
+      "Failed to load schematic"
+    ]
+  },
+  {
+    "id": "embedded_files_file_unknown_after_name",
+    "fixture_dir": "tests/fixtures/extract_parity/embedded_files_file_unknown_after_name",
+    "kicad_source": [
+      "/Users/Daniel/Desktop/kicad/common/embedded_files.cpp:482"
+    ],
+    "expected_exit_code": 3,
+    "expected_messages": [
+      "Failed to load schematic"
+    ]
+  },
+  {
+    "id": "embedded_files_file_unknown_before_name",
+    "fixture_dir": "tests/fixtures/extract_parity/embedded_files_file_unknown_before_name",
+    "kicad_source": [
+      "/Users/Daniel/Desktop/kicad/common/embedded_files.cpp:482"
+    ],
+    "expected_exit_code": 3,
+    "expected_messages": [
+      "Failed to load schematic"
+    ]
+  },
+  {
+    "id": "future_sch_bare",
+    "fixture_dir": "tests/fixtures/extract_parity/future_sch_bare",
+    "kicad_source": [
+      "/Users/Daniel/Desktop/kicad/eeschema/sch_io/kicad_sexpr/sch_io_kicad_sexpr_parser.cpp:3057"
+    ],
+    "expected_exit_code": 3,
+    "expected_messages": [
+      "Failed to load schematic"
+    ]
+  },
+  {
+    "id": "text_box_background",
+    "fixture_dir": "tests/fixtures/extract_parity/text_box_background",
+    "kicad_source": [
+      "/Users/Daniel/Desktop/kicad/eeschema/sch_io/kicad_sexpr/sch_io_kicad_sexpr_parser.cpp:4866"
+    ],
+    "expected_exit_code": 3,
+    "expected_messages": [
+      "Failed to load schematic"
+    ]
+  },
+  {
+    "id": "text_box_length",
+    "fixture_dir": "tests/fixtures/extract_parity/text_box_length",
+    "kicad_source": [
+      "/Users/Daniel/Desktop/kicad/eeschema/sch_io/kicad_sexpr/sch_io_kicad_sexpr_parser.cpp:4866"
+    ],
+    "expected_exit_code": 3,
+    "expected_messages": [
+      "Failed to load schematic"
+    ]
+  },
+  {
+    "id": "text_box_fields_autoplaced",
+    "fixture_dir": "tests/fixtures/extract_parity/text_box_fields_autoplaced",
+    "kicad_source": [
+      "/Users/Daniel/Desktop/kicad/eeschema/sch_io/kicad_sexpr/sch_io_kicad_sexpr_parser.cpp:4866"
+    ],
+    "expected_exit_code": 3,
+    "expected_messages": [
+      "Failed to load schematic"
+    ]
+  },
+  {
+    "id": "text_box_iref",
+    "fixture_dir": "tests/fixtures/extract_parity/text_box_iref",
+    "kicad_source": [
+      "/Users/Daniel/Desktop/kicad/eeschema/sch_io/kicad_sexpr/sch_io_kicad_sexpr_parser.cpp:4866"
+    ],
+    "expected_exit_code": 3,
+    "expected_messages": [
+      "Failed to load schematic"
+    ]
+  },
+  {
+    "id": "effects_unknown_child",
+    "fixture_dir": "tests/fixtures/extract_parity/effects_unknown_child",
+    "kicad_source": [
+      "/Users/Daniel/Desktop/kicad/eeschema/sch_io/kicad_sexpr/sch_io_kicad_sexpr_parser.cpp:897"
+    ],
+    "expected_exit_code": 3,
+    "expected_messages": [
+      "Failed to load schematic"
+    ]
+  },
+  {
+    "id": "fill_unknown_child",
+    "fixture_dir": "tests/fixtures/extract_parity/fill_unknown_child",
+    "kicad_source": [
+      "/Users/Daniel/Desktop/kicad/eeschema/sch_io/kicad_sexpr/sch_io_kicad_sexpr_parser.cpp:759"
+    ],
+    "expected_exit_code": 3,
+    "expected_messages": [
+      "Failed to load schematic"
+    ]
+  },
+  {
+    "id": "stroke_unknown_child",
+    "fixture_dir": "tests/fixtures/extract_parity/stroke_unknown_child",
+    "kicad_source": [
+      "/Users/Daniel/Desktop/kicad/eeschema/sch_io/kicad_sexpr/sch_io_kicad_sexpr_parser.cpp:737"
+    ],
+    "expected_exit_code": 3,
+    "expected_messages": [
+      "Failed to load schematic"
+    ]
+  },
+  {
+    "id": "fill_bare_atom",
+    "fixture_dir": "tests/fixtures/extract_parity/fill_bare_atom",
+    "kicad_source": [
+      "/Users/Daniel/Desktop/kicad/eeschema/sch_io/kicad_sexpr/sch_io_kicad_sexpr_parser.cpp:718"
+    ],
+    "expected_exit_code": 3,
+    "expected_messages": [
+      "Failed to load schematic"
+    ]
+  },
+  {
+    "id": "stroke_bare_atom",
+    "fixture_dir": "tests/fixtures/extract_parity/stroke_bare_atom",
+    "kicad_source": [
+      "/Users/Daniel/Desktop/kicad/eeschema/sch_io/kicad_sexpr/sch_io_kicad_sexpr_parser.cpp:798"
+    ],
+    "expected_exit_code": 3,
+    "expected_messages": [
+      "Failed to load schematic"
+    ]
+  },
+  {
+    "id": "effects_font_bare_atom",
+    "fixture_dir": "tests/fixtures/extract_parity/effects_font_bare_atom",
+    "kicad_source": [
+      "/Users/Daniel/Desktop/kicad/eeschema/sch_io/kicad_sexpr/sch_io_kicad_sexpr_parser.cpp:847"
+    ],
+    "expected_exit_code": 3,
+    "expected_messages": [
+      "Failed to load schematic"
+    ]
+  },
+  {
+    "id": "effects_font_unknown_child",
+    "fixture_dir": "tests/fixtures/extract_parity/effects_font_unknown_child",
+    "kicad_source": [
+      "/Users/Daniel/Desktop/kicad/eeschema/sch_io/kicad_sexpr/sch_io_kicad_sexpr_parser.cpp:847"
+    ],
+    "expected_exit_code": 3,
+    "expected_messages": [
+      "Failed to load schematic"
+    ]
+  },
+  {
+    "id": "symbol_property_unknown_child",
+    "fixture_dir": "tests/fixtures/extract_parity/symbol_property_unknown_child",
+    "kicad_source": [
+      "/Users/Daniel/Desktop/kicad/eeschema/sch_io/kicad_sexpr/sch_io_kicad_sexpr_parser.cpp:1157"
+    ],
+    "expected_exit_code": 3,
+    "expected_messages": [
+      "Failed to load schematic"
+    ]
+  },
+  {
+    "id": "fill_color_bare_atom",
+    "fixture_dir": "tests/fixtures/extract_parity/fill_color_bare_atom",
+    "kicad_source": [
+      "/Users/Daniel/Desktop/kicad/eeschema/sch_io/kicad_sexpr/sch_io_kicad_sexpr_parser.cpp:718"
+    ],
+    "expected_exit_code": 3,
+    "expected_messages": [
+      "Failed to load schematic"
+    ]
+  },
+  {
+    "id": "stroke_color_bare_atom",
+    "fixture_dir": "tests/fixtures/extract_parity/stroke_color_bare_atom",
+    "kicad_source": [
+      "/Users/Daniel/Desktop/kicad/eeschema/sch_io/kicad_sexpr/sch_io_kicad_sexpr_parser.cpp:798"
+    ],
+    "expected_exit_code": 3,
+    "expected_messages": [
+      "Failed to load schematic"
+    ]
+  },
+  {
+    "id": "property_bare_atom_child",
+    "fixture_dir": "tests/fixtures/extract_parity/property_bare_atom_child",
+    "kicad_source": [
+      "/Users/Daniel/Desktop/kicad/eeschema/sch_io/kicad_sexpr/sch_io_kicad_sexpr_parser.cpp:1157"
+    ],
+    "expected_exit_code": 3,
+    "expected_messages": [
+      "Failed to load schematic"
+    ]
+  },
+  {
+    "id": "text_box_margins_bare_atom",
+    "fixture_dir": "tests/fixtures/extract_parity/text_box_margins_bare_atom",
+    "kicad_source": [
+      "/Users/Daniel/Desktop/kicad/eeschema/sch_io/kicad_sexpr/sch_io_kicad_sexpr_parser.cpp:4824"
+    ],
+    "expected_exit_code": 3,
+    "expected_messages": [
+      "Failed to load schematic"
+    ]
+  },
+  {
+    "id": "table_border_bare_atom",
+    "fixture_dir": "tests/fixtures/extract_parity/table_border_bare_atom",
+    "kicad_source": [
+      "/Users/Daniel/Desktop/kicad/eeschema/sch_io/kicad_sexpr/sch_io_kicad_sexpr_parser.cpp:5019"
+    ],
+    "expected_exit_code": 3,
+    "expected_messages": [
+      "Failed to load schematic"
+    ]
+  },
+  {
+    "id": "table_separators_bare_atom",
+    "fixture_dir": "tests/fixtures/extract_parity/table_separators_bare_atom",
+    "kicad_source": [
+      "/Users/Daniel/Desktop/kicad/eeschema/sch_io/kicad_sexpr/sch_io_kicad_sexpr_parser.cpp:5052"
+    ],
+    "expected_exit_code": 3,
+    "expected_messages": [
+      "Failed to load schematic"
+    ]
+  },
+  {
+    "id": "table_cells_bare_atom",
+    "fixture_dir": "tests/fixtures/extract_parity/table_cells_bare_atom",
+    "kicad_source": [
+      "/Users/Daniel/Desktop/kicad/eeschema/sch_io/kicad_sexpr/sch_io_kicad_sexpr_parser.cpp:4986"
+    ],
+    "expected_exit_code": 3,
+    "expected_messages": [
+      "Failed to load schematic"
+    ]
+  },
+  {
+    "id": "table_row_heights_bare_atom",
+    "fixture_dir": "tests/fixtures/extract_parity/table_row_heights_bare_atom",
+    "kicad_source": [
+      "/Users/Daniel/Desktop/kicad/eeschema/sch_io/kicad_sexpr/sch_io_kicad_sexpr_parser.cpp:5066"
+    ],
+    "expected_exit_code": 3,
+    "expected_messages": [
+      "Failed to load schematic"
+    ]
+  },
+  {
+    "id": "table_col_widths_bare_atom",
+    "fixture_dir": "tests/fixtures/extract_parity/table_col_widths_bare_atom",
+    "kicad_source": [
+      "/Users/Daniel/Desktop/kicad/eeschema/sch_io/kicad_sexpr/sch_io_kicad_sexpr_parser.cpp:5066"
+    ],
+    "expected_exit_code": 3,
+    "expected_messages": [
+      "Failed to load schematic"
+    ]
+  },
+  {
+    "id": "table_columns_bare_atom",
+    "fixture_dir": "tests/fixtures/extract_parity/table_columns_bare_atom",
+    "kicad_source": [
+      "/Users/Daniel/Desktop/kicad/eeschema/sch_io/kicad_sexpr/sch_io_kicad_sexpr_parser.cpp:5066"
+    ],
+    "expected_exit_code": 3,
+    "expected_messages": [
+      "Failed to load schematic"
+    ]
+  },
+  {
+    "id": "table_rows_bare_atom",
+    "fixture_dir": "tests/fixtures/extract_parity/table_rows_bare_atom",
+    "kicad_source": [
+      "/Users/Daniel/Desktop/kicad/eeschema/sch_io/kicad_sexpr/sch_io_kicad_sexpr_parser.cpp:5066"
+    ],
+    "expected_exit_code": 3,
+    "expected_messages": [
+      "Failed to load schematic"
+    ]
+  },
+  {
+    "id": "table_header_bare_atom",
+    "fixture_dir": "tests/fixtures/extract_parity/table_header_bare_atom",
+    "kicad_source": [
+      "/Users/Daniel/Desktop/kicad/eeschema/sch_io/kicad_sexpr/sch_io_kicad_sexpr_parser.cpp:5066"
+    ],
+    "expected_exit_code": 3,
+    "expected_messages": [
+      "Failed to load schematic"
+    ]
+  },
+  {
+    "id": "table_border_external_bare_atom",
+    "fixture_dir": "tests/fixtures/extract_parity/table_border_external_bare_atom",
+    "kicad_source": [
+      "/Users/Daniel/Desktop/kicad/eeschema/sch_io/kicad_sexpr/sch_io_kicad_sexpr_parser.cpp:5019"
+    ],
+    "expected_exit_code": 3,
+    "expected_messages": [
+      "Failed to load schematic"
+    ]
+  },
+  {
+    "id": "table_separators_rows_bare_atom",
+    "fixture_dir": "tests/fixtures/extract_parity/table_separators_rows_bare_atom",
+    "kicad_source": [
+      "/Users/Daniel/Desktop/kicad/eeschema/sch_io/kicad_sexpr/sch_io_kicad_sexpr_parser.cpp:5052"
+    ],
+    "expected_exit_code": 3,
+    "expected_messages": [
+      "Failed to load schematic"
+    ]
+  },
+  {
+    "id": "table_separators_cols_bare_atom",
+    "fixture_dir": "tests/fixtures/extract_parity/table_separators_cols_bare_atom",
+    "kicad_source": [
+      "/Users/Daniel/Desktop/kicad/eeschema/sch_io/kicad_sexpr/sch_io_kicad_sexpr_parser.cpp:5052"
+    ],
+    "expected_exit_code": 3,
+    "expected_messages": [
+      "Failed to load schematic"
+    ]
+  },
+  {
+    "id": "table_border_header_bare_atom",
+    "fixture_dir": "tests/fixtures/extract_parity/table_border_header_bare_atom",
+    "kicad_source": [
+      "/Users/Daniel/Desktop/kicad/eeschema/sch_io/kicad_sexpr/sch_io_kicad_sexpr_parser.cpp:5019"
+    ],
+    "expected_exit_code": 3,
+    "expected_messages": [
+      "Failed to load schematic"
+    ]
+  },
+  {
+    "id": "table_border_stroke_bare_atom",
+    "fixture_dir": "tests/fixtures/extract_parity/table_border_stroke_bare_atom",
+    "kicad_source": [
+      "/Users/Daniel/Desktop/kicad/eeschema/sch_io/kicad_sexpr/sch_io_kicad_sexpr_parser.cpp:5019"
+    ],
+    "expected_exit_code": 3,
+    "expected_messages": [
+      "Failed to load schematic"
+    ]
+  },
+  {
+    "id": "table_separators_stroke_bare_atom",
+    "fixture_dir": "tests/fixtures/extract_parity/table_separators_stroke_bare_atom",
+    "kicad_source": [
+      "/Users/Daniel/Desktop/kicad/eeschema/sch_io/kicad_sexpr/sch_io_kicad_sexpr_parser.cpp:5052"
+    ],
+    "expected_exit_code": 3,
+    "expected_messages": [
+      "Failed to load schematic"
+    ]
+  },
+  {
+    "id": "bus_alias_members_list_child",
+    "fixture_dir": "tests/fixtures/extract_parity/bus_alias_members_list_child",
+    "kicad_source": [
+      "/Users/Daniel/Desktop/kicad/eeschema/sch_io/kicad_sexpr/sch_io_kicad_sexpr_parser.cpp:5104"
+    ],
+    "expected_exit_code": 3,
+    "expected_messages": [
+      "Failed to load schematic"
+    ]
+  },
+  {
+    "id": "sheet_instances_extra_bare_atom",
+    "fixture_dir": "tests/fixtures/extract_parity/sheet_instances_extra_bare_atom",
+    "kicad_source": [
+      "/Users/Daniel/Desktop/kicad/eeschema/sch_io/kicad_sexpr/sch_io_kicad_sexpr_parser.cpp:2589"
+    ],
+    "expected_exit_code": 3,
+    "expected_messages": [
+      "Failed to load schematic"
+    ]
+  },
+  {
+    "id": "symbol_instances_extra_bare_atom",
+    "fixture_dir": "tests/fixtures/extract_parity/symbol_instances_extra_bare_atom",
+    "kicad_source": [
+      "/Users/Daniel/Desktop/kicad/eeschema/sch_io/kicad_sexpr/sch_io_kicad_sexpr_parser.cpp:2688"
+    ],
+    "expected_exit_code": 3,
+    "expected_messages": [
+      "Failed to load schematic"
+    ]
+  },
+  {
+    "id": "default_instance_extra_bare_atom",
+    "fixture_dir": "tests/fixtures/extract_parity/default_instance_extra_bare_atom",
+    "kicad_source": [
+      "/Users/Daniel/Desktop/kicad/eeschema/sch_io/kicad_sexpr/sch_io_kicad_sexpr_parser.cpp:3480"
+    ],
+    "expected_exit_code": 3,
+    "expected_messages": [
+      "Failed to load schematic"
+    ]
+  },
+  {
+    "id": "variant_extra_bare_atom",
+    "fixture_dir": "tests/fixtures/extract_parity/variant_extra_bare_atom",
+    "kicad_source": [
+      "/Users/Daniel/Desktop/kicad/eeschema/sch_io/kicad_sexpr/sch_io_kicad_sexpr_parser.cpp:3470"
+    ],
+    "expected_exit_code": 3,
+    "expected_messages": [
+      "Failed to load schematic"
+    ]
+  },
+  {
+    "id": "nested_instance_project_extra_bare_atom",
+    "fixture_dir": "tests/fixtures/extract_parity/nested_instance_project_extra_bare_atom",
+    "kicad_source": [
+      "/Users/Daniel/Desktop/kicad/eeschema/sch_io/kicad_sexpr/sch_io_kicad_sexpr_parser.cpp:3330"
+    ],
+    "expected_exit_code": 3,
+    "expected_messages": [
+      "Failed to load schematic"
+    ]
+  },
+  {
+    "id": "group_extra_bare_atom",
+    "fixture_dir": "tests/fixtures/extract_parity/group_extra_bare_atom",
+    "kicad_source": [
+      "/Users/Daniel/Desktop/kicad/eeschema/sch_io/kicad_sexpr/sch_io_kicad_sexpr_parser.cpp:5159"
+    ],
+    "expected_exit_code": 3,
+    "expected_messages": [
+      "Failed to load schematic"
+    ]
+  },
+  {
+    "id": "sheet_property_bare_atom_child",
+    "fixture_dir": "tests/fixtures/extract_parity/sheet_property_bare_atom_child",
+    "kicad_source": [
+      "/Users/Daniel/Desktop/kicad/eeschema/sch_io/kicad_sexpr/sch_io_kicad_sexpr_parser.cpp:1157"
+    ],
+    "expected_exit_code": 3,
+    "expected_messages": [
+      "Failed to load schematic"
+    ]
+  },
+  {
+    "id": "image_data_list_child",
+    "fixture_dir": "tests/fixtures/extract_parity/image_data_list_child",
+    "kicad_source": [
+      "/Users/Daniel/Desktop/kicad/eeschema/sch_io/kicad_sexpr/sch_io_kicad_sexpr_parser.cpp:3643"
+    ],
+    "expected_exit_code": 3,
+    "expected_messages": [
+      "Failed to load schematic"
+    ]
+  },
+  {
+    "id": "group_locked_bare_atom",
+    "fixture_dir": "tests/fixtures/extract_parity/group_locked_bare_atom",
+    "kicad_source": [
+      "/Users/Daniel/Desktop/kicad/eeschema/sch_io/kicad_sexpr/sch_io_kicad_sexpr_parser.cpp:5159"
+    ],
+    "expected_exit_code": 3,
+    "expected_messages": [
+      "Failed to load schematic"
+    ]
+  },
+  {
+    "id": "group_name_list_child",
+    "fixture_dir": "tests/fixtures/extract_parity/group_name_list_child",
+    "kicad_source": [
+      "/Users/Daniel/Desktop/kicad/eeschema/sch_io/kicad_sexpr/sch_io_kicad_sexpr_parser.cpp:5111"
+    ],
+    "expected_exit_code": 3,
+    "expected_messages": [
+      "Failed to load schematic"
+    ]
+  },
+  {
+    "id": "bus_alias_name_list_child",
+    "fixture_dir": "tests/fixtures/extract_parity/bus_alias_name_list_child",
+    "kicad_source": [
+      "/Users/Daniel/Desktop/kicad/eeschema/sch_io/kicad_sexpr/sch_io_kicad_sexpr_parser.cpp:5111"
+    ],
+    "expected_exit_code": 3,
+    "expected_messages": [
+      "Failed to load schematic"
+    ]
+  },
+  {
+    "id": "embedded_files_file_name_list_child",
+    "fixture_dir": "tests/fixtures/extract_parity/embedded_files_file_name_list_child",
+    "kicad_source": [
+      "/Users/Daniel/Desktop/kicad/common/embedded_files.cpp:452"
+    ],
+    "expected_exit_code": 3,
+    "expected_messages": [
+      "Failed to load schematic"
+    ]
+  },
+  {
+    "id": "class_label_bare",
+    "fixture_dir": "tests/fixtures/extract_parity/class_label_bare",
+    "kicad_source": [
+      "/Users/Daniel/Desktop/kicad/eeschema/sch_io/kicad_sexpr/sch_io_kicad_sexpr_parser.cpp:3057"
+    ],
+    "expected_exit_code": 3,
+    "expected_messages": [
+      "Failed to load schematic"
+    ]
+  },
+  {
+    "id": "bitmap_data_list_child",
+    "fixture_dir": "tests/fixtures/extract_parity/bitmap_data_list_child",
+    "kicad_source": [
+      "/Users/Daniel/Desktop/kicad/eeschema/sch_io/kicad_sexpr/sch_io_kicad_sexpr_parser.cpp:3057"
+    ],
+    "expected_exit_code": 3,
+    "expected_messages": [
+      "Failed to load schematic"
+    ]
+  },
+  {
+    "id": "symbol_pin_alternate_bare_atom",
+    "fixture_dir": "tests/fixtures/extract_parity/symbol_pin_alternate_bare_atom",
+    "kicad_source": [
+      "/Users/Daniel/Desktop/kicad/eeschema/sch_io/kicad_sexpr/sch_io_kicad_sexpr_parser.cpp:1800"
+    ],
+    "expected_exit_code": 3,
+    "expected_messages": [
+      "Failed to load schematic"
+    ]
+  },
+  {
+    "id": "symbol_pin_name_extra_bare_atom",
+    "fixture_dir": "tests/fixtures/extract_parity/symbol_pin_name_extra_bare_atom",
+    "kicad_source": [
+      "/Users/Daniel/Desktop/kicad/eeschema/sch_io/kicad_sexpr/sch_io_kicad_sexpr_parser.cpp:1727"
+    ],
+    "expected_exit_code": 3,
+    "expected_messages": [
+      "Failed to load schematic"
+    ]
+  },
+  {
+    "id": "symbol_pin_number_extra_bare_atom",
+    "fixture_dir": "tests/fixtures/extract_parity/symbol_pin_number_extra_bare_atom",
+    "kicad_source": [
+      "/Users/Daniel/Desktop/kicad/eeschema/sch_io/kicad_sexpr/sch_io_kicad_sexpr_parser.cpp:1767"
+    ],
+    "expected_exit_code": 3,
+    "expected_messages": [
+      "Failed to load schematic"
+    ]
+  },
+  {
+    "id": "schematic_symbol_pin_extra_bare_atom",
+    "fixture_dir": "tests/fixtures/extract_parity/schematic_symbol_pin_extra_bare_atom",
+    "kicad_source": [
+      "/Users/Daniel/Desktop/kicad/eeschema/sch_io/kicad_sexpr/sch_io_kicad_sexpr_parser.cpp:3568"
+    ],
+    "expected_exit_code": 3,
+    "expected_messages": [
+      "Failed to load schematic"
+    ]
+  },
+  {
+    "id": "effects_justify_list_child",
+    "fixture_dir": "tests/fixtures/extract_parity/effects_justify_list_child",
+    "kicad_source": [
+      "/Users/Daniel/Desktop/kicad/eeschema/sch_io/kicad_sexpr/sch_io_kicad_sexpr_parser.cpp:864"
+    ],
+    "expected_exit_code": 3,
+    "expected_messages": [
+      "Failed to load schematic"
+    ]
+  },
+  {
+    "id": "pin_angles_bare_atom",
+    "fixture_dir": "tests/fixtures/extract_parity/pin_angles_bare_atom",
+    "kicad_source": [
+      "/Users/Daniel/Desktop/kicad/eeschema/sch_io/kicad_sexpr/sch_io_kicad_sexpr_parser.cpp:1333"
+    ],
+    "expected_exit_code": 3,
+    "expected_messages": [
+      "Failed to load schematic"
+    ]
+  },
+  {
+    "id": "variant_field_name_list_child",
+    "fixture_dir": "tests/fixtures/extract_parity/variant_field_name_list_child",
+    "kicad_source": [
+      "/Users/Daniel/Desktop/kicad/eeschema/sch_io/kicad_sexpr/sch_io_kicad_sexpr_parser.cpp:3461"
+    ],
+    "expected_exit_code": 3,
+    "expected_messages": [
+      "Failed to load schematic"
+    ]
+  }
+]

@@ -1,0 +1,13 @@
+(kicad_sch
+  (version 20260101)
+  (generator "eeschema")
+  (generator_version "10.0")
+  (uuid "f57b26b1-dafd-4837-bd58-2e34ff751005")
+  (paper "A4")
+  (label "SIG" (at 50.8 50.8 0) (fields_autoplaced yes) (uuid "label-upper")
+    (effects (font (size 1.27 1.27))))
+  (label "sig" (at 60.96 50.8 0) (fields_autoplaced yes) (uuid "label-lower")
+    (effects (font (size 1.27 1.27))))
+  (sheet_instances
+    (path "/" (page "1")))
+  (embedded_fonts no))

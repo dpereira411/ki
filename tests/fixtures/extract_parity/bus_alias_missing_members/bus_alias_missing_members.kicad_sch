@@ -1,0 +1,9 @@
+(kicad_sch
+  (version 20260101)
+  (generator "eeschema")
+  (uuid "bus-alias-missing-members-root")
+  (paper "A4")
+  (bus_alias DATA
+    (bogus A0))
+  (sheet_instances
+    (path "/" (page "1"))))

@@ -11,19 +11,14 @@ pub fn run(lib_table_cmd: LibTableCommand) -> Result<(), KiError> {
             name,
             uri,
             output,
-        } => {
-            super::super::lib_table::add(&path, &name, &uri, &super::output_flags(&output, false))
-        }
+        } => super::super::lib_table::add(&path, &name, &uri, &super::output_flags(&output, false)),
         LibTableAction::Rename {
             path,
             from,
             to,
             output,
-        } => super::super::lib_table::rename(
-            &path,
-            &from,
-            &to,
-            &super::output_flags(&output, false),
-        ),
+        } => {
+            super::super::lib_table::rename(&path, &from, &to, &super::output_flags(&output, false))
+        }
     }
 }

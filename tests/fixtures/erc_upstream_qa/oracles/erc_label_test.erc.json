@@ -1,0 +1,142 @@
+{
+    "$schema": "https://schemas.kicad.org/erc.v1.json",
+    "coordinate_units": "mm",
+    "date": "2026-03-29T23:04:42",
+    "ignored_checks": [
+        {
+            "description": "Global label only appears once in the schematic",
+            "key": "single_global_label"
+        },
+        {
+            "description": "Four connection points are joined together",
+            "key": "four_way_junction"
+        },
+        {
+            "description": "SPICE model issue",
+            "key": "simulation_model_issue"
+        },
+        {
+            "description": "Assigned footprint doesn't match footprint filters",
+            "key": "footprint_filter"
+        }
+    ],
+    "included_severities": [
+        "error",
+        "warning"
+    ],
+    "kicad_version": "10.0.0",
+    "sheets": [
+        {
+            "path": "/",
+            "uuid_path": "/942a3088-eb03-48aa-816e-fbc33f0effe3",
+            "violations": [
+                {
+                    "description": "Label not connected",
+                    "items": [
+                        {
+                            "description": "Global Label 'LABEL0'",
+                            "pos": {
+                                "x": 0.5715,
+                                "y": 0.3429
+                            },
+                            "uuid": "e5142a1b-15a9-4909-8d91-7c0066c18b41"
+                        }
+                    ],
+                    "severity": "error",
+                    "type": "label_dangling"
+                },
+                {
+                    "description": "Label not connected",
+                    "items": [
+                        {
+                            "description": "Global Label 'LABEL1'",
+                            "pos": {
+                                "x": 0.6223,
+                                "y": 0.3429
+                            },
+                            "uuid": "4f51b7a1-99d8-4d6d-a021-01cb8986f065"
+                        }
+                    ],
+                    "severity": "error",
+                    "type": "label_dangling"
+                },
+                {
+                    "description": "Label not connected",
+                    "items": [
+                        {
+                            "description": "Label 'LABEL2'",
+                            "pos": {
+                                "x": 0.6858,
+                                "y": 0.3429
+                            },
+                            "uuid": "7b304836-912c-4573-a2b5-bbbe2454e73a"
+                        }
+                    ],
+                    "severity": "error",
+                    "type": "label_dangling"
+                },
+                {
+                    "description": "Unconnected wire endpoint",
+                    "items": [
+                        {
+                            "description": "Vertical Wire, length 0.1143 mm",
+                            "pos": {
+                                "x": 0.6223,
+                                "y": 0.3429
+                            },
+                            "uuid": "9a3ea013-3a03-4d0f-b5a1-0833e12e37a0"
+                        }
+                    ],
+                    "severity": "warning",
+                    "type": "unconnected_wire_endpoint"
+                },
+                {
+                    "description": "Unconnected wire endpoint",
+                    "items": [
+                        {
+                            "description": "Vertical Wire, length 0.1143 mm",
+                            "pos": {
+                                "x": 0.6858,
+                                "y": 0.3429
+                            },
+                            "uuid": "a7f3ad27-c2c9-4323-8907-2e9aa8b3eec5"
+                        }
+                    ],
+                    "severity": "warning",
+                    "type": "unconnected_wire_endpoint"
+                },
+                {
+                    "description": "Label connected to only one pin",
+                    "items": [
+                        {
+                            "description": "Label 'LABEL3'",
+                            "pos": {
+                                "x": 0.7747,
+                                "y": 0.3429
+                            },
+                            "uuid": "d208dc6d-4ecf-44df-9d6a-38de2810ab81"
+                        }
+                    ],
+                    "severity": "warning",
+                    "type": "isolated_pin_label"
+                },
+                {
+                    "description": "Label connected to only one pin",
+                    "items": [
+                        {
+                            "description": "Global Label 'LABEL4'",
+                            "pos": {
+                                "x": 0.8636,
+                                "y": 0.4191
+                            },
+                            "uuid": "44660598-a763-4788-bc0c-17f4c643845b"
+                        }
+                    ],
+                    "severity": "warning",
+                    "type": "isolated_pin_label"
+                }
+            ]
+        }
+    ],
+    "source": "erc_label_test.kicad_sch"
+}

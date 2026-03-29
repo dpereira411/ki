@@ -1,0 +1,8 @@
+(kicad_sch
+  (version 20260101)
+  (generator "eeschema")
+  (uuid "invalid-bezier-root")
+  (paper "A4")
+  (bezier (pts (xy 0 0 0) (xy 1 1) (xy 2 2) (xy 3 3)) (stroke (width 0) (type default)) (uuid "b1"))
+  (sheet_instances
+    (path "/" (page "1"))))

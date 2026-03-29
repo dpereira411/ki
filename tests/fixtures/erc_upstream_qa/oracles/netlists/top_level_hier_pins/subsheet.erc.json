@@ -1,0 +1,178 @@
+{
+    "$schema": "https://schemas.kicad.org/erc.v1.json",
+    "coordinate_units": "mm",
+    "date": "2026-03-29T23:07:36",
+    "ignored_checks": [
+        {
+            "description": "Global label only appears once in the schematic",
+            "key": "single_global_label"
+        },
+        {
+            "description": "Four connection points are joined together",
+            "key": "four_way_junction"
+        },
+        {
+            "description": "SPICE model issue",
+            "key": "simulation_model_issue"
+        },
+        {
+            "description": "Assigned footprint doesn't match footprint filters",
+            "key": "footprint_filter"
+        }
+    ],
+    "included_severities": [
+        "error",
+        "warning"
+    ],
+    "kicad_version": "10.0.0",
+    "sheets": [
+        {
+            "path": "/",
+            "uuid_path": "/60c507a6-849f-4288-aba3-1905085b3f33",
+            "violations": [
+                {
+                    "description": "Hierarchical label 'SUB_INPUT' in root sheet cannot be connected to non-existent parent sheet",
+                    "items": [
+                        {
+                            "description": "Hierarchical Label 'SUB_INPUT'",
+                            "pos": {
+                                "x": 1.27,
+                                "y": 0.889
+                            },
+                            "uuid": "68cc449a-24e7-4f61-9ffd-00b79f144118"
+                        }
+                    ],
+                    "severity": "error",
+                    "type": "pin_not_connected"
+                },
+                {
+                    "description": "Hierarchical label 'SUB_OUTPUT' in root sheet cannot be connected to non-existent parent sheet",
+                    "items": [
+                        {
+                            "description": "Hierarchical Label 'SUB_OUTPUT'",
+                            "pos": {
+                                "x": 2.032,
+                                "y": 0.889
+                            },
+                            "uuid": "64241e40-ccc2-4fea-8000-ffa243d18897"
+                        }
+                    ],
+                    "severity": "error",
+                    "type": "pin_not_connected"
+                },
+                {
+                    "description": "Label connected to only one pin",
+                    "items": [
+                        {
+                            "description": "Hierarchical Label 'SUB_INPUT'",
+                            "pos": {
+                                "x": 1.27,
+                                "y": 0.889
+                            },
+                            "uuid": "68cc449a-24e7-4f61-9ffd-00b79f144118"
+                        }
+                    ],
+                    "severity": "warning",
+                    "type": "isolated_pin_label"
+                },
+                {
+                    "description": "Label connected to only one pin",
+                    "items": [
+                        {
+                            "description": "Hierarchical Label 'SUB_OUTPUT'",
+                            "pos": {
+                                "x": 2.032,
+                                "y": 0.889
+                            },
+                            "uuid": "64241e40-ccc2-4fea-8000-ffa243d18897"
+                        }
+                    ],
+                    "severity": "warning",
+                    "type": "isolated_pin_label"
+                },
+                {
+                    "description": "Label connected to only one pin",
+                    "items": [
+                        {
+                            "description": "Hierarchical Label 'SUBSUB_INPUT'",
+                            "pos": {
+                                "x": 1.27,
+                                "y": 0.889
+                            },
+                            "uuid": "3d0f6256-cfd4-480d-91be-ab31f51a22ad"
+                        }
+                    ],
+                    "severity": "warning",
+                    "type": "isolated_pin_label"
+                },
+                {
+                    "description": "Symbol 'GND' doesn't match copy in library 'power'",
+                    "items": [
+                        {
+                            "description": "Symbol #PWR? [GND]",
+                            "pos": {
+                                "x": 1.4351,
+                                "y": 0.9271
+                            },
+                            "uuid": "285c0e97-7e2b-456e-b955-a3bac708cdc4"
+                        }
+                    ],
+                    "severity": "warning",
+                    "type": "lib_symbol_mismatch"
+                },
+                {
+                    "description": "Symbol 'GND' doesn't match copy in library 'power'",
+                    "items": [
+                        {
+                            "description": "Symbol #PWR? [GND]",
+                            "pos": {
+                                "x": 1.651,
+                                "y": 0.9271
+                            },
+                            "uuid": "5d60735e-17ab-412e-acd7-0b8752e14c64"
+                        }
+                    ],
+                    "severity": "warning",
+                    "type": "lib_symbol_mismatch"
+                },
+                {
+                    "description": "Label connected to only one pin",
+                    "items": [
+                        {
+                            "description": "Hierarchical Label 'SUBSUB_OUTPUT'",
+                            "pos": {
+                                "x": 1.8161,
+                                "y": 0.889
+                            },
+                            "uuid": "d69d78d7-eabd-46e1-a003-ce4aba0f199f"
+                        }
+                    ],
+                    "severity": "warning",
+                    "type": "isolated_pin_label"
+                }
+            ]
+        },
+        {
+            "path": "/SubSubSheet/",
+            "uuid_path": "/60c507a6-849f-4288-aba3-1905085b3f33/d1e0bb44-07da-4574-92bf-3f9adc5e8751",
+            "violations": [
+                {
+                    "description": "Input Power pin not driven by any Output Power pins",
+                    "items": [
+                        {
+                            "description": "Symbol #PWR? Hidden pin 1 [GND, Power input, Line]",
+                            "pos": {
+                                "x": 1.4351,
+                                "y": 0.9271
+                            },
+                            "uuid": "f78a2fc8-2d45-4b4d-abf1-6aed599cfda9"
+                        }
+                    ],
+                    "severity": "error",
+                    "type": "power_pin_not_driven"
+                }
+            ]
+        }
+    ],
+    "source": "subsheet.kicad_sch"
+}

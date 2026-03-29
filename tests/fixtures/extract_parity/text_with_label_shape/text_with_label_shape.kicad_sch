@@ -1,0 +1,11 @@
+(kicad_sch
+  (version 20260101)
+  (generator "eeschema")
+  (uuid "text-with-label-shape-root")
+  (paper "A4")
+  (text "X"
+    (at 10 10 0)
+    (shape input)
+    (effects (font (size 1.27 1.27))))
+  (sheet_instances
+    (path "/" (page "1"))))

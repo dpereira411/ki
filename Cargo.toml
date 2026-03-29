@@ -8,9 +8,12 @@ name = "ki"
 path = "src/main.rs"
 
 [dependencies]
+base64 = "0.22"
 clap = { version = "4", features = ["derive"] }
+image = { version = "0.25", default-features = false, features = ["png", "jpeg", "gif", "bmp"] }
 kicad-ipc-rs = { git = "https://github.com/dpereira411/kicad-ipc-rs.git", rev = "2edb83a", features = ["blocking"] }
 kiutils-rs = { package = "kiutils-rs", path = "../kiutils-rs/crates/kiutils", features = ["serde"] }
+kiutils_kicad = { path = "../kiutils-rs/crates/kiutils_kicad", features = ["serde"] }
 kiutils_sexpr = { path = "../kiutils-rs/crates/kiutils_sexpr" }
 serde = { version = "1", features = ["derive"] }
 serde_json = "1"

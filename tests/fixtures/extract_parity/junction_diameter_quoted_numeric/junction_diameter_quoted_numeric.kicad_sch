@@ -1,0 +1,10 @@
+(kicad_sch
+  (version 20260101)
+  (generator "eeschema")
+  (uuid "junction-diameter-quoted-root")
+  (paper "A4")
+  (junction
+    (at 10 20)
+    (diameter "1.27"))
+  (sheet_instances
+    (path "/" (page "1"))))

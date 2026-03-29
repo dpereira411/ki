@@ -1,0 +1,12 @@
+(kicad_sch
+  (version 20260101)
+  (generator "eeschema")
+  (uuid "invalid-table-root")
+  (paper "A4")
+  (table
+    (column_count 1)
+    (row_count 1)
+    (cells)
+    (uuid "table-1"))
+  (sheet_instances
+    (path "/" (page "1"))))

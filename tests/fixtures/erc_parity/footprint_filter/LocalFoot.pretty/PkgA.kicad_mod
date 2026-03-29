@@ -1,0 +1,11 @@
+(footprint "PkgA"
+  (version 20240108)
+  (generator "pcbnew")
+  (layer "F.Cu")
+  (attr through_hole)
+  (fp_text reference "REF**" (at 0 -2 0) (layer "F.SilkS") hide
+    (effects (font (size 1 1) (thickness 0.15))))
+  (fp_text value "PkgA" (at 0 2 0) (layer "F.Fab")
+    (effects (font (size 1 1) (thickness 0.15))))
+  (pad "1" thru_hole circle (at 0 0) (size 1.5 1.5) (drill 0.8) (layers "*.Cu" "*.Mask"))
+)

@@ -1,0 +1,25 @@
+(kicad_sch
+  (version 20260101)
+  (generator "eeschema")
+  (uuid "root-uuid")
+  (paper "A4")
+  (lib_symbols
+    (symbol "Device:R"
+      (pin_numbers (hide yes))
+      (pin_names (offset 0))
+      (exclude_from_sim no)
+      (in_bom yes)
+      (on_board yes)
+      (in_pos_files yes)
+      (property "Reference" "R" (at 0 0 0) (effects (font (size 1.27 1.27))))
+      (property "Value" "R" (at 0 0 0) (effects (font (size 1.27 1.27))))
+      (symbol "R_0_1"
+        (rectangle (start -1 -1) (end 1 1) (stroke (width 0.1) (type default)) (fill (type none))))
+      (symbol "R_1_1")
+      (embedded_fonts no)))
+  (symbol (lib_id "Device:R") (at 10 10 0) (unit 1) (body_style 1) (exclude_from_sim no) (in_bom yes) (on_board yes) (dnp no) (fields_autoplaced yes) (uuid (x))
+    (property "Reference" "R1" (at 10 10 0) (effects (font (size 1.27 1.27))))
+    (property "Value" "R" (at 10 10 0) (effects (font (size 1.27 1.27))))
+    (instances (project "p" (path "/root-uuid" (reference "R1") (unit 1)))))
+  (sheet_instances
+    (path "/" (page "1"))))

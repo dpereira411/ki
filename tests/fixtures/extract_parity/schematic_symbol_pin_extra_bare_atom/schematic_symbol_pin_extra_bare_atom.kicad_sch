@@ -1,0 +1,20 @@
+(kicad_sch
+  (version 20260101)
+  (generator "eeschema")
+  (uuid "root-uuid")
+  (paper "A4")
+  (lib_symbols
+    (symbol "X:Y"
+      (pin_names (offset 0))
+      (pin_numbers hide)
+      (property "Reference" "U" (at 0 0 0) (effects (font (size 1.27 1.27))))
+      (property "Value" "Y" (at 0 0 0) (effects (font (size 1.27 1.27))))
+      (symbol "Y_1_1"
+        (pin input line (at 0 0 0) (length 1.27)
+          (name "A" (effects (font (size 1.27 1.27))))
+          (number "1" (effects (font (size 1.27 1.27)))))))
+  (symbol (lib_id "X:Y") (at 10 10 0) (unit 1) (body_style 1) (uuid "u1")
+    (property "Reference" "U1" (at 0 0 0) (effects (font (size 1.27 1.27))))
+    (property "Value" "Y" (at 0 0 0) (effects (font (size 1.27 1.27))))
+    (pin "1" foo))
+  (sheet_instances (path "/" (page "1"))))

@@ -1,0 +1,10 @@
+(kicad_sch
+  (version 20260101)
+  (generator "eeschema")
+  (uuid "empty-pts-then-valid-root")
+  (paper "A4")
+  (wire
+    (pts)
+    (pts (xy 0 0) (xy 10 0)))
+  (sheet_instances
+    (path "/" (page "1"))))

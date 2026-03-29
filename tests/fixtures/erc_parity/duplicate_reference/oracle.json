@@ -1,0 +1,97 @@
+{
+    "$schema": "https://schemas.kicad.org/erc.v1.json",
+    "coordinate_units": "mm",
+    "date": "2026-03-28T23:21:18",
+    "ignored_checks": [
+        {
+            "description": "Global label only appears once in the schematic",
+            "key": "single_global_label"
+        },
+        {
+            "description": "Four connection points are joined together",
+            "key": "four_way_junction"
+        },
+        {
+            "description": "SPICE model issue",
+            "key": "simulation_model_issue"
+        },
+        {
+            "description": "Assigned footprint doesn't match footprint filters",
+            "key": "footprint_filter"
+        }
+    ],
+    "included_severities": [
+        "error",
+        "warning"
+    ],
+    "kicad_version": "10.0.0",
+    "sheets": [
+        {
+            "path": "/",
+            "uuid_path": "/f7f3242e-0106-4ca2-8e13-d4d5bded1006",
+            "violations": [
+                {
+                    "description": "Pin not connected",
+                    "items": [
+                        {
+                            "description": "Symbol TP1 Pin 1 [Passive, Line]",
+                            "pos": {
+                                "x": 0.508,
+                                "y": 0.508
+                            },
+                            "uuid": "45b1ab46-c2b6-4719-888e-d9dd83e50998"
+                        }
+                    ],
+                    "severity": "error",
+                    "type": "pin_not_connected"
+                },
+                {
+                    "description": "Pin not connected",
+                    "items": [
+                        {
+                            "description": "Symbol TP1 Pin 1 [Passive, Line]",
+                            "pos": {
+                                "x": 0.6096,
+                                "y": 0.508
+                            },
+                            "uuid": "ced3bbb1-13ec-4ab3-a7c5-63ac6d08abd7"
+                        }
+                    ],
+                    "severity": "error",
+                    "type": "pin_not_connected"
+                },
+                {
+                    "description": "The current configuration does not include the symbol library 'MissingLib'",
+                    "items": [
+                        {
+                            "description": "Symbol TP1 [Probe]",
+                            "pos": {
+                                "x": 0.508,
+                                "y": 0.508
+                            },
+                            "uuid": "f0877686-8013-486f-a1aa-4d62fd391414"
+                        }
+                    ],
+                    "severity": "warning",
+                    "type": "lib_symbol_issues"
+                },
+                {
+                    "description": "The current configuration does not include the symbol library 'MissingLib'",
+                    "items": [
+                        {
+                            "description": "Symbol TP1 [Probe]",
+                            "pos": {
+                                "x": 0.6096,
+                                "y": 0.508
+                            },
+                            "uuid": "58e9f0b4-0e54-4202-ac03-a960df713018"
+                        }
+                    ],
+                    "severity": "warning",
+                    "type": "lib_symbol_issues"
+                }
+            ]
+        }
+    ],
+    "source": "duplicate_reference.kicad_sch"
+}

@@ -1,0 +1,13 @@
+(kicad_sch
+  (version 20260101)
+  (generator "eeschema")
+  (uuid "dup-root")
+  (paper "A4")
+  (sheet (at 20 20) (size 20 10) (uuid "sheet-a")
+    (property "Sheetname" "Block" (at 20 18 0) (effects (font (size 1.27 1.27))))
+    (property "Sheetfile" "child_a.kicad_sch" (at 20 31 0) (effects (font (size 1.27 1.27)))))
+  (sheet (at 60 20) (size 20 10) (uuid "sheet-b")
+    (property "Sheetname" "Block" (at 60 18 0) (effects (font (size 1.27 1.27))))
+    (property "Sheetfile" "child_b.kicad_sch" (at 60 31 0) (effects (font (size 1.27 1.27)))))
+  (sheet_instances
+    (path "/" (page "1"))))

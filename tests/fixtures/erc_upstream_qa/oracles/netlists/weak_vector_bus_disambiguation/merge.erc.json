@@ -1,0 +1,127 @@
+{
+    "$schema": "https://schemas.kicad.org/erc.v1.json",
+    "coordinate_units": "mm",
+    "date": "2026-03-29T23:07:52",
+    "ignored_checks": [
+        {
+            "description": "Global label only appears once in the schematic",
+            "key": "single_global_label"
+        },
+        {
+            "description": "Four connection points are joined together",
+            "key": "four_way_junction"
+        },
+        {
+            "description": "SPICE model issue",
+            "key": "simulation_model_issue"
+        },
+        {
+            "description": "Assigned footprint doesn't match footprint filters",
+            "key": "footprint_filter"
+        }
+    ],
+    "included_severities": [
+        "error",
+        "warning"
+    ],
+    "kicad_version": "10.0.0",
+    "sheets": [
+        {
+            "path": "/",
+            "uuid_path": "/a284369e-cc87-4c8d-8d32-9fb86fe769dc",
+            "violations": [
+                {
+                    "description": "Hierarchical label 'A[10..0]' in root sheet cannot be connected to non-existent parent sheet",
+                    "items": [
+                        {
+                            "description": "Hierarchical Label 'A[10..0]'",
+                            "pos": {
+                                "x": 1.2827,
+                                "y": 0.6477
+                            },
+                            "uuid": "a676e4f0-0e0f-4781-b2d8-afa402546be4"
+                        }
+                    ],
+                    "severity": "error",
+                    "type": "pin_not_connected"
+                },
+                {
+                    "description": "Hierarchical label 'D[10..0]' in root sheet cannot be connected to non-existent parent sheet",
+                    "items": [
+                        {
+                            "description": "Hierarchical Label 'D[10..0]'",
+                            "pos": {
+                                "x": 1.2827,
+                                "y": 0.9017
+                            },
+                            "uuid": "2c20dc65-1b6b-400b-9e69-112c3f8d4251"
+                        }
+                    ],
+                    "severity": "error",
+                    "type": "pin_not_connected"
+                },
+                {
+                    "description": "Label connected to only one pin",
+                    "items": [
+                        {
+                            "description": "Label 'A1'",
+                            "pos": {
+                                "x": 1.524,
+                                "y": 0.6985
+                            },
+                            "uuid": "2041094b-7971-42c5-bb5b-858b586de0f4"
+                        }
+                    ],
+                    "severity": "warning",
+                    "type": "isolated_pin_label"
+                },
+                {
+                    "description": "Label connected to only one pin",
+                    "items": [
+                        {
+                            "description": "Label 'A2'",
+                            "pos": {
+                                "x": 1.524,
+                                "y": 0.8001
+                            },
+                            "uuid": "41b9b1f7-b180-4f55-bec6-00d729d38068"
+                        }
+                    ],
+                    "severity": "warning",
+                    "type": "isolated_pin_label"
+                },
+                {
+                    "description": "Label connected to only one pin",
+                    "items": [
+                        {
+                            "description": "Label 'D1'",
+                            "pos": {
+                                "x": 1.524,
+                                "y": 0.9525
+                            },
+                            "uuid": "0dc895cc-5885-411c-b29d-c07aa8a0e4ab"
+                        }
+                    ],
+                    "severity": "warning",
+                    "type": "isolated_pin_label"
+                },
+                {
+                    "description": "Label connected to only one pin",
+                    "items": [
+                        {
+                            "description": "Label 'D2'",
+                            "pos": {
+                                "x": 1.524,
+                                "y": 1.0541
+                            },
+                            "uuid": "cb93a65d-31ec-442b-b55b-5ae721b8e72e"
+                        }
+                    ],
+                    "severity": "warning",
+                    "type": "isolated_pin_label"
+                }
+            ]
+        }
+    ],
+    "source": "merge.kicad_sch"
+}

@@ -1,0 +1,172 @@
+{
+    "$schema": "https://schemas.kicad.org/erc.v1.json",
+    "coordinate_units": "mm",
+    "date": "2026-03-29T23:08:06",
+    "ignored_checks": [
+        {
+            "description": "Global label only appears once in the schematic",
+            "key": "single_global_label"
+        },
+        {
+            "description": "Four connection points are joined together",
+            "key": "four_way_junction"
+        },
+        {
+            "description": "SPICE model issue",
+            "key": "simulation_model_issue"
+        },
+        {
+            "description": "Assigned footprint doesn't match footprint filters",
+            "key": "footprint_filter"
+        }
+    ],
+    "included_severities": [
+        "error",
+        "warning"
+    ],
+    "kicad_version": "10.0.0",
+    "sheets": [
+        {
+            "path": "/",
+            "uuid_path": "/a442c838-4dd5-4486-8afe-ccab26ad4148",
+            "violations": [
+                {
+                    "description": "Input Power pin not driven by any Output Power pins",
+                    "items": [
+                        {
+                            "description": "Symbol #PWR01 Hidden pin 1 [GND, Power input, Line]",
+                            "pos": {
+                                "x": 1.143,
+                                "y": 0.889
+                            },
+                            "uuid": "4504f1bf-35c5-490f-a53a-2a5a9d73ed5b"
+                        }
+                    ],
+                    "severity": "error",
+                    "type": "power_pin_not_driven"
+                },
+                {
+                    "description": "Symbol 'VSIN' doesn't match copy in library 'Simulation_SPICE'",
+                    "items": [
+                        {
+                            "description": "Symbol V1 [VSIN]",
+                            "pos": {
+                                "x": 1.143,
+                                "y": 0.8255
+                            },
+                            "uuid": "b317d6a2-96aa-490a-abf8-a92f528701f9"
+                        }
+                    ],
+                    "severity": "warning",
+                    "type": "lib_symbol_mismatch"
+                },
+                {
+                    "description": "Symbol 'GND' doesn't match copy in library 'power'",
+                    "items": [
+                        {
+                            "description": "Symbol #PWR01 [GND]",
+                            "pos": {
+                                "x": 1.143,
+                                "y": 0.889
+                            },
+                            "uuid": "fc591c2b-c8ca-4c4e-a219-4f95f5b3758b"
+                        }
+                    ],
+                    "severity": "warning",
+                    "type": "lib_symbol_mismatch"
+                },
+                {
+                    "description": "Symbol 'VDC' doesn't match copy in library 'Simulation_SPICE'",
+                    "items": [
+                        {
+                            "description": "Symbol VDC1 [VDC]",
+                            "pos": {
+                                "x": 1.143,
+                                "y": 1.0795
+                            },
+                            "uuid": "1f2d1f32-eb72-4d63-8edf-d6a2e8fc8f39"
+                        }
+                    ],
+                    "severity": "warning",
+                    "type": "lib_symbol_mismatch"
+                },
+                {
+                    "description": "Symbol 'GND' doesn't match copy in library 'power'",
+                    "items": [
+                        {
+                            "description": "Symbol #PWR02 [GND]",
+                            "pos": {
+                                "x": 1.143,
+                                "y": 1.143
+                            },
+                            "uuid": "32975750-2ee4-414a-ab38-ad86d3acaf7c"
+                        }
+                    ],
+                    "severity": "warning",
+                    "type": "lib_symbol_mismatch"
+                },
+                {
+                    "description": "Symbol 'GND' doesn't match copy in library 'power'",
+                    "items": [
+                        {
+                            "description": "Symbol #PWR04 [GND]",
+                            "pos": {
+                                "x": 1.397,
+                                "y": 0.889
+                            },
+                            "uuid": "d367ca1e-7a90-4b07-9f85-44b10ccbde65"
+                        }
+                    ],
+                    "severity": "warning",
+                    "type": "lib_symbol_mismatch"
+                },
+                {
+                    "description": "Symbol 'GND' doesn't match copy in library 'power'",
+                    "items": [
+                        {
+                            "description": "Symbol #PWR03 [GND]",
+                            "pos": {
+                                "x": 1.27,
+                                "y": 1.143
+                            },
+                            "uuid": "66d72bad-f51a-46b8-adf0-26524f8bf90e"
+                        }
+                    ],
+                    "severity": "warning",
+                    "type": "lib_symbol_mismatch"
+                },
+                {
+                    "description": "Symbol 'GND' doesn't match copy in library 'power'",
+                    "items": [
+                        {
+                            "description": "Symbol #PWR05 [GND]",
+                            "pos": {
+                                "x": 1.524,
+                                "y": 0.889
+                            },
+                            "uuid": "694b98ef-b765-4df7-b4f4-dd7f1f1abd95"
+                        }
+                    ],
+                    "severity": "warning",
+                    "type": "lib_symbol_mismatch"
+                },
+                {
+                    "description": "Symbol 'GND' doesn't match copy in library 'power'",
+                    "items": [
+                        {
+                            "description": "Symbol #PWR06 [GND]",
+                            "pos": {
+                                "x": 1.651,
+                                "y": 0.889
+                            },
+                            "uuid": "09a419c4-55ec-4f63-883d-ac849651dd08"
+                        }
+                    ],
+                    "severity": "warning",
+                    "type": "lib_symbol_mismatch"
+                }
+            ]
+        }
+    ],
+    "source": "directives.kicad_sch"
+}

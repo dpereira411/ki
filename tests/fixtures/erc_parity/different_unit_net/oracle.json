@@ -1,0 +1,150 @@
+{
+    "$schema": "https://schemas.kicad.org/erc.v1.json",
+    "coordinate_units": "mm",
+    "date": "2026-03-29T02:39:31",
+    "ignored_checks": [
+        {
+            "description": "Global label only appears once in the schematic",
+            "key": "single_global_label"
+        },
+        {
+            "description": "Four connection points are joined together",
+            "key": "four_way_junction"
+        },
+        {
+            "description": "SPICE model issue",
+            "key": "simulation_model_issue"
+        },
+        {
+            "description": "Assigned footprint doesn't match footprint filters",
+            "key": "footprint_filter"
+        }
+    ],
+    "included_severities": [
+        "error",
+        "warning"
+    ],
+    "kicad_version": "10.0.0",
+    "sheets": [
+        {
+            "path": "/",
+            "uuid_path": "/f316faf0-a761-4189-a0f5-b7e713bdd18b",
+            "violations": [
+                {
+                    "description": "Pin 1 is connected to both /NET_A and /NET_B",
+                    "items": [
+                        {
+                            "description": "Symbol U1 Pin 1 [A, Passive, Line]",
+                            "pos": {
+                                "x": 0.4572,
+                                "y": 0.508
+                            },
+                            "uuid": "57162d43-863a-435c-808d-8d983a2918ec"
+                        },
+                        {
+                            "description": "Symbol U1 Pin 1 [B, Passive, Line]",
+                            "pos": {
+                                "x": 0.4572,
+                                "y": 0.635
+                            },
+                            "uuid": "574334ed-c084-4e6d-b705-933c0a155d22"
+                        }
+                    ],
+                    "severity": "error",
+                    "type": "different_unit_net"
+                },
+                {
+                    "description": "Label connected to only one pin",
+                    "items": [
+                        {
+                            "description": "Label 'NET_A'",
+                            "pos": {
+                                "x": 0.4572,
+                                "y": 0.508
+                            },
+                            "uuid": "4e688a2c-8a20-48f0-89f1-4fb5719f1971"
+                        }
+                    ],
+                    "severity": "warning",
+                    "type": "isolated_pin_label"
+                },
+                {
+                    "description": "The current configuration does not include the symbol library 'MissingLib'",
+                    "items": [
+                        {
+                            "description": "Symbol U1 [SharedPinDualUnit]",
+                            "pos": {
+                                "x": 0.508,
+                                "y": 0.508
+                            },
+                            "uuid": "17717167-a1f8-4880-9769-7ee203892618"
+                        }
+                    ],
+                    "severity": "warning",
+                    "type": "lib_symbol_issues"
+                },
+                {
+                    "description": "Unconnected wire endpoint",
+                    "items": [
+                        {
+                            "description": "Horizontal Wire, length 0.0508 mm",
+                            "pos": {
+                                "x": 0.4572,
+                                "y": 0.508
+                            },
+                            "uuid": "9cb35715-a7a7-4c7e-bf2d-38972b3e8ab6"
+                        }
+                    ],
+                    "severity": "warning",
+                    "type": "unconnected_wire_endpoint"
+                },
+                {
+                    "description": "Label connected to only one pin",
+                    "items": [
+                        {
+                            "description": "Label 'NET_B'",
+                            "pos": {
+                                "x": 0.4572,
+                                "y": 0.635
+                            },
+                            "uuid": "af7eb5e1-8c3a-4887-8570-8b7d316fb4ed"
+                        }
+                    ],
+                    "severity": "warning",
+                    "type": "isolated_pin_label"
+                },
+                {
+                    "description": "The current configuration does not include the symbol library 'MissingLib'",
+                    "items": [
+                        {
+                            "description": "Symbol U1 [SharedPinDualUnit]",
+                            "pos": {
+                                "x": 0.508,
+                                "y": 0.635
+                            },
+                            "uuid": "bf4f4f79-75ca-4cf8-9f33-1ab61de2529d"
+                        }
+                    ],
+                    "severity": "warning",
+                    "type": "lib_symbol_issues"
+                },
+                {
+                    "description": "Unconnected wire endpoint",
+                    "items": [
+                        {
+                            "description": "Horizontal Wire, length 0.0508 mm",
+                            "pos": {
+                                "x": 0.4572,
+                                "y": 0.635
+                            },
+                            "uuid": "171c2b5f-881a-4cfb-9527-a321dc81380e"
+                        }
+                    ],
+                    "severity": "warning",
+                    "type": "unconnected_wire_endpoint"
+                }
+            ]
+        }
+    ],
+    "source": "different_unit_net.kicad_sch"
+}

@@ -1,0 +1,127 @@
+{
+    "$schema": "https://schemas.kicad.org/erc.v1.json",
+    "coordinate_units": "mm",
+    "date": "2026-03-29T23:04:59",
+    "ignored_checks": [
+        {
+            "description": "Global label only appears once in the schematic",
+            "key": "single_global_label"
+        },
+        {
+            "description": "Four connection points are joined together",
+            "key": "four_way_junction"
+        },
+        {
+            "description": "SPICE model issue",
+            "key": "simulation_model_issue"
+        },
+        {
+            "description": "Assigned footprint doesn't match footprint filters",
+            "key": "footprint_filter"
+        }
+    ],
+    "included_severities": [
+        "error",
+        "warning"
+    ],
+    "kicad_version": "10.0.0",
+    "sheets": [
+        {
+            "path": "/",
+            "uuid_path": "/45062e6c-d9e3-47ef-9773-cf9ed241f3ea",
+            "violations": [
+                {
+                    "description": "Hierarchical label 'IN_A' in root sheet cannot be connected to non-existent parent sheet",
+                    "items": [
+                        {
+                            "description": "Hierarchical Label 'IN_A'",
+                            "pos": {
+                                "x": 0.9144,
+                                "y": 0.4699
+                            },
+                            "uuid": "829b3ae8-cd09-4eec-8fb1-2248807b71c5"
+                        }
+                    ],
+                    "severity": "error",
+                    "type": "pin_not_connected"
+                },
+                {
+                    "description": "Input pin not driven by any Output pins",
+                    "items": [
+                        {
+                            "description": "Symbol U? Pin 1 [IN, Input, Line]",
+                            "pos": {
+                                "x": 0.9144,
+                                "y": 0.4699
+                            },
+                            "uuid": "add2ba25-6d53-4e93-8c77-301f68c1eb6d"
+                        }
+                    ],
+                    "severity": "error",
+                    "type": "pin_not_driven"
+                },
+                {
+                    "description": "Hierarchical label 'OUT_A' in root sheet cannot be connected to non-existent parent sheet",
+                    "items": [
+                        {
+                            "description": "Hierarchical Label 'OUT_A'",
+                            "pos": {
+                                "x": 1.0541,
+                                "y": 0.4699
+                            },
+                            "uuid": "13b0c889-1ff2-41ce-b523-62a03c25b660"
+                        }
+                    ],
+                    "severity": "error",
+                    "type": "pin_not_connected"
+                },
+                {
+                    "description": "Label connected to only one pin",
+                    "items": [
+                        {
+                            "description": "Hierarchical Label 'IN_A'",
+                            "pos": {
+                                "x": 0.9144,
+                                "y": 0.4699
+                            },
+                            "uuid": "829b3ae8-cd09-4eec-8fb1-2248807b71c5"
+                        }
+                    ],
+                    "severity": "warning",
+                    "type": "isolated_pin_label"
+                },
+                {
+                    "description": "The current configuration does not include the symbol library 'Test-Library'",
+                    "items": [
+                        {
+                            "description": "Symbol U? [TEST]",
+                            "pos": {
+                                "x": 0.9779,
+                                "y": 0.4445
+                            },
+                            "uuid": "ad556e4a-3e61-4db6-b04a-45e4e2ee1dfb"
+                        }
+                    ],
+                    "severity": "warning",
+                    "type": "lib_symbol_issues"
+                },
+                {
+                    "description": "Label connected to only one pin",
+                    "items": [
+                        {
+                            "description": "Hierarchical Label 'OUT_A'",
+                            "pos": {
+                                "x": 1.0541,
+                                "y": 0.4699
+                            },
+                            "uuid": "13b0c889-1ff2-41ce-b523-62a03c25b660"
+                        }
+                    ],
+                    "severity": "warning",
+                    "type": "isolated_pin_label"
+                }
+            ]
+        }
+    ],
+    "source": "issue10926_1_subsheet_1_1.kicad_sch"
+}

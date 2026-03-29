@@ -1,0 +1,23 @@
+(kicad_sch
+  (version 20260101)
+  (generator "eeschema")
+  (uuid "root-uuid")
+  (paper "A4")
+  (lib_symbols
+    (symbol "X:Y"
+      (symbol "Y_1_1"
+        (rectangle
+          (start 0 0)
+          (end 10 10)
+          (stroke (width 0.15) (type default))
+          (fill (type none))
+          (bogus)))))
+  (symbol
+    (lib_id "X:Y")
+    (at 10 10 0)
+    (unit 1)
+    (body_style 1)
+    (uuid "s1")
+    (property "Reference" "U?" (at 0 0 0) (effects (font (size 1.27 1.27))))
+    (property "Value" "Y" (at 0 0 0) (effects (font (size 1.27 1.27)))))
+  (sheet_instances (path "/" (page "1"))))

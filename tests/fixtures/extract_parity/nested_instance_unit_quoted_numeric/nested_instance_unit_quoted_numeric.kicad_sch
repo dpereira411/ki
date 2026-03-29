@@ -1,0 +1,27 @@
+(kicad_sch
+  (version 20260101)
+  (generator "eeschema")
+  (uuid "nested-instance-unit-quoted-root")
+  (paper "A4")
+  (lib_symbols
+    (symbol "Device:R"
+      (pin_numbers (hide yes))
+      (pin_names (offset 0))
+      (exclude_from_sim no)
+      (in_bom yes)
+      (on_board yes)
+      (in_pos_files yes)
+      (duplicate_pin_numbers_are_jumpers no)
+      (property "Reference" "R" (at 2.032 0 90) (show_name no) (do_not_autoplace no) (effects (font (size 1.27 1.27))))
+      (property "Value" "R" (at 0 0 90) (show_name no) (do_not_autoplace no) (effects (font (size 1.27 1.27))))
+      (symbol "R_1_1"
+        (pin passive line (at 0 3.81 270) (length 1.27) (name "" (effects (font (size 1.27 1.27)))) (number "1" (effects (font (size 1.27 1.27)))))
+        (pin passive line (at 0 -3.81 90) (length 1.27) (name "" (effects (font (size 1.27 1.27)))) (number "2" (effects (font (size 1.27 1.27))))))))
+  (symbol (lib_id "Device:R") (at 50 50 0) (unit 1) (body_style 1) (exclude_from_sim no) (in_bom yes) (on_board yes) (in_pos_files yes) (dnp no) (fields_autoplaced yes) (uuid "sym-rq")
+    (property "Reference" "R?" (at 47.968 50 90) (show_name no) (do_not_autoplace no) (effects (font (size 1.27 1.27))))
+    (property "Value" "10k" (at 50 50 90) (show_name no) (do_not_autoplace no) (effects (font (size 1.27 1.27))))
+    (pin "1" (uuid "rq-pin1"))
+    (pin "2" (uuid "rq-pin2"))
+    (instances (project "nested_instance_unit_quoted_numeric" (path "/nested-instance-unit-quoted-root" (reference "R?") (unit "1")))))
+  (sheet_instances
+    (path "/" (page "1"))))

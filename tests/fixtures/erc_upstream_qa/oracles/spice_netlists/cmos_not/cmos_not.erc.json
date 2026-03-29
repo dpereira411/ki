@@ -1,0 +1,217 @@
+{
+    "$schema": "https://schemas.kicad.org/erc.v1.json",
+    "coordinate_units": "mm",
+    "date": "2026-03-29T23:08:04",
+    "ignored_checks": [
+        {
+            "description": "Global label only appears once in the schematic",
+            "key": "single_global_label"
+        },
+        {
+            "description": "Four connection points are joined together",
+            "key": "four_way_junction"
+        },
+        {
+            "description": "SPICE model issue",
+            "key": "simulation_model_issue"
+        },
+        {
+            "description": "Assigned footprint doesn't match footprint filters",
+            "key": "footprint_filter"
+        }
+    ],
+    "included_severities": [
+        "error",
+        "warning"
+    ],
+    "kicad_version": "10.0.0",
+    "sheets": [
+        {
+            "path": "/",
+            "uuid_path": "/569fb493-5024-4abd-9aba-73198e12c7f2",
+            "violations": [
+                {
+                    "description": "Input Power pin not driven by any Output Power pins",
+                    "items": [
+                        {
+                            "description": "Symbol M1 Pin 4 [B, Input, Line]",
+                            "pos": {
+                                "x": 1.5494,
+                                "y": 0.9017
+                            },
+                            "uuid": "9919be22-f896-4ed1-b26a-976e7ad5e210"
+                        }
+                    ],
+                    "severity": "error",
+                    "type": "power_pin_not_driven"
+                },
+                {
+                    "description": "Input Power pin not driven by any Output Power pins",
+                    "items": [
+                        {
+                            "description": "Symbol M2 Pin 4 [B, Input, Line]",
+                            "pos": {
+                                "x": 1.5494,
+                                "y": 1.1303
+                            },
+                            "uuid": "b8798492-7b64-4fef-8620-8f6c1d58dc74"
+                        }
+                    ],
+                    "severity": "error",
+                    "type": "power_pin_not_driven"
+                },
+                {
+                    "description": "Symbol '+5V' doesn't match copy in library 'power'",
+                    "items": [
+                        {
+                            "description": "Symbol #PWR01 [+5V]",
+                            "pos": {
+                                "x": 0.889,
+                                "y": 1.016
+                            },
+                            "uuid": "ac3a72ae-3363-4210-a491-3b73cc72153f"
+                        }
+                    ],
+                    "severity": "warning",
+                    "type": "lib_symbol_mismatch"
+                },
+                {
+                    "description": "Symbol 'VDC' doesn't match copy in library 'Simulation_SPICE'",
+                    "items": [
+                        {
+                            "description": "Symbol VPWR1 [VDC]",
+                            "pos": {
+                                "x": 0.889,
+                                "y": 1.0795
+                            },
+                            "uuid": "9d0dbe0b-bffe-4850-bca8-ea409a0c68f9"
+                        }
+                    ],
+                    "severity": "warning",
+                    "type": "lib_symbol_mismatch"
+                },
+                {
+                    "description": "Symbol 'GND' doesn't match copy in library 'power'",
+                    "items": [
+                        {
+                            "description": "Symbol #PWR02 [GND]",
+                            "pos": {
+                                "x": 0.889,
+                                "y": 1.143
+                            },
+                            "uuid": "b2a35254-63de-4740-881f-adff693564f5"
+                        }
+                    ],
+                    "severity": "warning",
+                    "type": "lib_symbol_mismatch"
+                },
+                {
+                    "description": "Symbol 'VSIN' doesn't match copy in library 'Simulation_SPICE'",
+                    "items": [
+                        {
+                            "description": "Symbol VIN1 [VSIN]",
+                            "pos": {
+                                "x": 1.143,
+                                "y": 1.0795
+                            },
+                            "uuid": "3a1b7444-3efb-420b-9894-dd518dacb8d6"
+                        }
+                    ],
+                    "severity": "warning",
+                    "type": "lib_symbol_mismatch"
+                },
+                {
+                    "description": "Symbol 'GND' doesn't match copy in library 'power'",
+                    "items": [
+                        {
+                            "description": "Symbol #PWR03 [GND]",
+                            "pos": {
+                                "x": 1.143,
+                                "y": 1.143
+                            },
+                            "uuid": "44524c5a-8811-406b-9c1e-5bfbdede6dc2"
+                        }
+                    ],
+                    "severity": "warning",
+                    "type": "lib_symbol_mismatch"
+                },
+                {
+                    "description": "Symbol '+5V' doesn't match copy in library 'power'",
+                    "items": [
+                        {
+                            "description": "Symbol #PWR04 [+5V]",
+                            "pos": {
+                                "x": 1.524,
+                                "y": 0.889
+                            },
+                            "uuid": "cdba6f47-7af5-49cd-bffb-3a4d3be46299"
+                        }
+                    ],
+                    "severity": "warning",
+                    "type": "lib_symbol_mismatch"
+                },
+                {
+                    "description": "The current configuration does not include the symbol library 'pspice'",
+                    "items": [
+                        {
+                            "description": "Symbol M1 [MPMOS]",
+                            "pos": {
+                                "x": 1.4986,
+                                "y": 0.9525
+                            },
+                            "uuid": "c027df38-6423-4d76-b056-ff104cd95f06"
+                        }
+                    ],
+                    "severity": "warning",
+                    "type": "lib_symbol_issues"
+                },
+                {
+                    "description": "The current configuration does not include the symbol library 'pspice'",
+                    "items": [
+                        {
+                            "description": "Symbol M2 [MNMOS]",
+                            "pos": {
+                                "x": 1.4986,
+                                "y": 1.0795
+                            },
+                            "uuid": "ee873f1d-104f-442b-8e2a-a39c5a935c08"
+                        }
+                    ],
+                    "severity": "warning",
+                    "type": "lib_symbol_issues"
+                },
+                {
+                    "description": "Symbol 'GND' doesn't match copy in library 'power'",
+                    "items": [
+                        {
+                            "description": "Symbol #PWR05 [GND]",
+                            "pos": {
+                                "x": 1.524,
+                                "y": 1.143
+                            },
+                            "uuid": "cd10bce4-35cc-4c52-81ad-dd3a953af38e"
+                        }
+                    ],
+                    "severity": "warning",
+                    "type": "lib_symbol_mismatch"
+                },
+                {
+                    "description": "Symbol 'GND' doesn't match copy in library 'power'",
+                    "items": [
+                        {
+                            "description": "Symbol #PWR06 [GND]",
+                            "pos": {
+                                "x": 1.651,
+                                "y": 1.143
+                            },
+                            "uuid": "309f5b6c-5522-46e6-beb8-0f66078434e8"
+                        }
+                    ],
+                    "severity": "warning",
+                    "type": "lib_symbol_mismatch"
+                }
+            ]
+        }
+    ],
+    "source": "cmos_not.kicad_sch"
+}

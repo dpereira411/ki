@@ -1,0 +1,143 @@
+{
+    "$schema": "https://schemas.kicad.org/erc.v1.json",
+    "coordinate_units": "mm",
+    "date": "2026-03-29T23:06:50",
+    "ignored_checks": [
+        {
+            "description": "Global label only appears once in the schematic",
+            "key": "single_global_label"
+        },
+        {
+            "description": "Four connection points are joined together",
+            "key": "four_way_junction"
+        },
+        {
+            "description": "SPICE model issue",
+            "key": "simulation_model_issue"
+        },
+        {
+            "description": "Assigned footprint doesn't match footprint filters",
+            "key": "footprint_filter"
+        }
+    ],
+    "included_severities": [
+        "error",
+        "warning"
+    ],
+    "kicad_version": "10.0.0",
+    "sheets": [
+        {
+            "path": "/",
+            "uuid_path": "/a7b3b286-b728-491e-aed0-894d55ae08c8",
+            "violations": [
+                {
+                    "description": "Hierarchical label '{ALIAS2}' in root sheet cannot be connected to non-existent parent sheet",
+                    "items": [
+                        {
+                            "description": "Hierarchical Label '{ALIAS2}'",
+                            "pos": {
+                                "x": 1.0287,
+                                "y": 0.8255
+                            },
+                            "uuid": "18cd2c5e-4dca-462d-b3ed-ec8f6634b91a"
+                        }
+                    ],
+                    "severity": "error",
+                    "type": "pin_not_connected"
+                },
+                {
+                    "description": "Input Power pin not driven by any Output Power pins",
+                    "items": [
+                        {
+                            "description": "Symbol #PWR0101 Hidden pin 1 [GND, Power input, Line]",
+                            "pos": {
+                                "x": 1.4859,
+                                "y": 1.1049
+                            },
+                            "uuid": "d0c0b4c6-a855-4ffc-8dff-292d4908ad69"
+                        }
+                    ],
+                    "severity": "error",
+                    "type": "power_pin_not_driven"
+                },
+                {
+                    "description": "Label connected to only one pin",
+                    "items": [
+                        {
+                            "description": "Label 'SDA'",
+                            "pos": {
+                                "x": 1.7145,
+                                "y": 1.1049
+                            },
+                            "uuid": "5d0ec16a-814f-4e24-86ff-1f6d6123c082"
+                        }
+                    ],
+                    "severity": "warning",
+                    "type": "isolated_pin_label"
+                },
+                {
+                    "description": "Label connected to only one pin",
+                    "items": [
+                        {
+                            "description": "Label 'SCL'",
+                            "pos": {
+                                "x": 1.7145,
+                                "y": 1.1938
+                            },
+                            "uuid": "d4c629f7-ca26-40b6-996b-efe52c8ca0ab"
+                        }
+                    ],
+                    "severity": "warning",
+                    "type": "isolated_pin_label"
+                },
+                {
+                    "description": "Net /SDA is graphically connected to bus /{ALIAS2} but is not a member of that bus",
+                    "items": [
+                        {
+                            "description": "Bus to wire entry",
+                            "pos": {
+                                "x": 1.8288,
+                                "y": 1.0795
+                            },
+                            "uuid": "5c3d2d94-de4f-4f92-ae19-0c6f71ac5969"
+                        },
+                        {
+                            "description": "Vertical Bus, length 0.2540 mm",
+                            "pos": {
+                                "x": 1.8288,
+                                "y": 0.8255
+                            },
+                            "uuid": "4dc1a694-49d8-46b5-973d-fd8471be1e9e"
+                        }
+                    ],
+                    "severity": "warning",
+                    "type": "net_not_bus_member"
+                },
+                {
+                    "description": "Net /SCL is graphically connected to bus /{ALIAS2} but is not a member of that bus",
+                    "items": [
+                        {
+                            "description": "Bus to wire entry",
+                            "pos": {
+                                "x": 1.8288,
+                                "y": 1.1684
+                            },
+                            "uuid": "700be89b-6cb0-4405-a7f4-901352643ac7"
+                        },
+                        {
+                            "description": "Vertical Bus, length 0.0254 mm",
+                            "pos": {
+                                "x": 1.8288,
+                                "y": 1.1684
+                            },
+                            "uuid": "2e425e94-7ec7-4251-8273-da09796b6647"
+                        }
+                    ],
+                    "severity": "warning",
+                    "type": "net_not_bus_member"
+                }
+            ]
+        }
+    ],
+    "source": "sub2.kicad_sch"
+}

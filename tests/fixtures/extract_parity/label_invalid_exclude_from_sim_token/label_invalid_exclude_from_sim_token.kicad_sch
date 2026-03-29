@@ -1,0 +1,10 @@
+(kicad_sch
+  (version 20260101)
+  (generator "eeschema")
+  (uuid "root-uuid")
+  (paper "A4")
+  (label "NET"
+    (at 10 10 0)
+    (exclude_from_sim maybe)
+    (effects (font (size 1.27 1.27))))
+  (sheet_instances (path "/" (page "1"))))

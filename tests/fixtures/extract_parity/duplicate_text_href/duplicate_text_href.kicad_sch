@@ -1,0 +1,12 @@
+(kicad_sch
+  (version 20260101)
+  (generator "eeschema")
+  (uuid "duplicate-text-href-root")
+  (paper "A4")
+  (text "hello"
+    (at 10 10 0)
+    (href "a")
+    (href "b")
+    (effects (font (size 1.27 1.27))))
+  (sheet_instances
+    (path "/" (page "1"))))

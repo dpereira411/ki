@@ -1,0 +1,13 @@
+(kicad_sch
+  (version 20260101)
+  (generator "eeschema")
+  (uuid "root-uuid")
+  (paper "A4")
+  (netclass_flag "" (length 2.54) (shape round) (at 134.62 50.8 0) (fields_autoplaced)
+    (effects (font (size 1.27 1.27)) (justify left bottom))
+    (uuid 0267b22e-f0f5-4503-afd3-8b8f8c8a2238)
+    (property "Netclass" "90Ohm-diff_USB_2.0" (at 135.3185 48.26 0)
+      (effects (font (size 1.27 1.27) italic) (justify left))
+    )
+  )
+  (sheet_instances (path "/" (page "1"))))

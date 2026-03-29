@@ -1,0 +1,133 @@
+{
+    "$schema": "https://schemas.kicad.org/erc.v1.json",
+    "coordinate_units": "mm",
+    "date": "2026-03-29T02:44:12",
+    "ignored_checks": [
+        {
+            "description": "Global label only appears once in the schematic",
+            "key": "single_global_label"
+        },
+        {
+            "description": "Four connection points are joined together",
+            "key": "four_way_junction"
+        },
+        {
+            "description": "SPICE model issue",
+            "key": "simulation_model_issue"
+        },
+        {
+            "description": "Assigned footprint doesn't match footprint filters",
+            "key": "footprint_filter"
+        }
+    ],
+    "included_severities": [
+        "error",
+        "warning"
+    ],
+    "kicad_version": "10.0.0",
+    "sheets": [
+        {
+            "path": "/",
+            "uuid_path": "/9f36d609-2aef-4d18-96af-87784dbdfcf7",
+            "violations": [
+                {
+                    "description": "Label not connected",
+                    "items": [
+                        {
+                            "description": "Hierarchical Label 'IN'",
+                            "pos": {
+                                "x": 1.27,
+                                "y": 0.889
+                            },
+                            "uuid": "24861db2-f854-4c16-92bc-f433a0c54b5d"
+                        }
+                    ],
+                    "severity": "error",
+                    "type": "label_dangling"
+                },
+                {
+                    "description": "Label not connected",
+                    "items": [
+                        {
+                            "description": "Hierarchical Label 'OUT'",
+                            "pos": {
+                                "x": 2.032,
+                                "y": 0.889
+                            },
+                            "uuid": "ef096fe6-fcd9-4121-9c3b-6216b720aed3"
+                        }
+                    ],
+                    "severity": "error",
+                    "type": "label_dangling"
+                },
+                {
+                    "description": "Unconnected wire endpoint",
+                    "items": [
+                        {
+                            "description": "Horizontal Wire, length 0.1270 mm",
+                            "pos": {
+                                "x": 1.016,
+                                "y": 0.762
+                            },
+                            "uuid": "71ef9e41-d61b-448f-a223-2fcda89c37c9"
+                        }
+                    ],
+                    "severity": "warning",
+                    "type": "unconnected_wire_endpoint"
+                },
+                {
+                    "description": "Unconnected wire endpoint",
+                    "items": [
+                        {
+                            "description": "Horizontal Wire, length 0.1270 mm",
+                            "pos": {
+                                "x": 1.27,
+                                "y": 0.889
+                            },
+                            "uuid": "c194a6ed-838a-42ad-85e7-dc383ee2a2a9"
+                        }
+                    ],
+                    "severity": "warning",
+                    "type": "unconnected_wire_endpoint"
+                },
+                {
+                    "description": "Unconnected wire endpoint",
+                    "items": [
+                        {
+                            "description": "Horizontal Wire, length 0.1270 mm",
+                            "pos": {
+                                "x": 1.905,
+                                "y": 0.889
+                            },
+                            "uuid": "a9041e16-6984-46a2-999e-675002e5ecc7"
+                        }
+                    ],
+                    "severity": "warning",
+                    "type": "unconnected_wire_endpoint"
+                }
+            ]
+        },
+        {
+            "path": "/Child/",
+            "uuid_path": "/9f36d609-2aef-4d18-96af-87784dbdfcf7/933f31af-532c-41bc-ac70-0030b41e9813",
+            "violations": [
+                {
+                    "description": "Hierarchical label OUT has no matching sheet pin in the parent sheet",
+                    "items": [
+                        {
+                            "description": "Hierarchical Label 'OUT'",
+                            "pos": {
+                                "x": 2.032,
+                                "y": 0.889
+                            },
+                            "uuid": "ef096fe6-fcd9-4121-9c3b-6216b720aed3"
+                        }
+                    ],
+                    "severity": "error",
+                    "type": "hier_label_mismatch"
+                }
+            ]
+        }
+    ],
+    "source": "hier_label_mismatch.kicad_sch"
+}

@@ -1,0 +1,9 @@
+(kicad_sch
+  (version 20260101)
+  (generator "eeschema")
+  (uuid "root-uuid")
+  (paper "A4")
+  (symbol (lib_id "Device:R") (at 10 10 0) (unit 1)
+    (instances (project "proj"
+      (path "/abc" (reference "R1") (variant (name "v") foo)))))
+  (sheet_instances (path "/" (page "1"))))

@@ -1,0 +1,787 @@
+{
+    "$schema": "https://schemas.kicad.org/erc.v1.json",
+    "coordinate_units": "mm",
+    "date": "2026-03-29T23:07:26",
+    "ignored_checks": [
+        {
+            "description": "Global label only appears once in the schematic",
+            "key": "single_global_label"
+        },
+        {
+            "description": "Four connection points are joined together",
+            "key": "four_way_junction"
+        },
+        {
+            "description": "SPICE model issue",
+            "key": "simulation_model_issue"
+        },
+        {
+            "description": "Assigned footprint doesn't match footprint filters",
+            "key": "footprint_filter"
+        }
+    ],
+    "included_severities": [
+        "error",
+        "warning"
+    ],
+    "kicad_version": "10.0.0",
+    "sheets": [
+        {
+            "path": "/",
+            "uuid_path": "/3449d9a7-4ce1-4e49-aa55-a41193a7e928",
+            "violations": [
+                {
+                    "description": "Pin not connected",
+                    "items": [
+                        {
+                            "description": "Symbol DS2 Pin 17 [COL1R, Passive, Line]",
+                            "pos": {
+                                "x": 1.9558,
+                                "y": 0.4318
+                            },
+                            "uuid": "d5e89a15-9465-4ae5-9e8e-928bb7d388ca"
+                        }
+                    ],
+                    "severity": "error",
+                    "type": "pin_not_connected"
+                },
+                {
+                    "description": "Pin not connected",
+                    "items": [
+                        {
+                            "description": "Symbol DS2 Pin 18 [COL2R, Passive, Line]",
+                            "pos": {
+                                "x": 1.9812,
+                                "y": 0.4318
+                            },
+                            "uuid": "6ae6c77b-361e-49df-8d5f-a8fb00679562"
+                        }
+                    ],
+                    "severity": "error",
+                    "type": "pin_not_connected"
+                },
+                {
+                    "description": "Pin not connected",
+                    "items": [
+                        {
+                            "description": "Symbol DS2 Pin 19 [COL3R, Passive, Line]",
+                            "pos": {
+                                "x": 2.0066,
+                                "y": 0.4318
+                            },
+                            "uuid": "57a7d6c5-ccea-437d-a1e9-e22c6647508c"
+                        }
+                    ],
+                    "severity": "error",
+                    "type": "pin_not_connected"
+                },
+                {
+                    "description": "Pin not connected",
+                    "items": [
+                        {
+                            "description": "Symbol DS2 Pin 20 [COL4R, Passive, Line]",
+                            "pos": {
+                                "x": 2.032,
+                                "y": 0.4318
+                            },
+                            "uuid": "d73a7431-1e77-4318-ac9a-b2fdeb880062"
+                        }
+                    ],
+                    "severity": "error",
+                    "type": "pin_not_connected"
+                },
+                {
+                    "description": "Pin not connected",
+                    "items": [
+                        {
+                            "description": "Symbol DS2 Pin 21 [COL5R, Passive, Line]",
+                            "pos": {
+                                "x": 2.0574,
+                                "y": 0.4318
+                            },
+                            "uuid": "5c4541f6-2f55-4893-853c-3c9b4c9d1c00"
+                        }
+                    ],
+                    "severity": "error",
+                    "type": "pin_not_connected"
+                },
+                {
+                    "description": "Pin not connected",
+                    "items": [
+                        {
+                            "description": "Symbol DS2 Pin 1 [COL1G, Passive, Line]",
+                            "pos": {
+                                "x": 1.9558,
+                                "y": 0.8128
+                            },
+                            "uuid": "8d3d0f97-9a0a-4044-8b1e-8b8beb6e188f"
+                        }
+                    ],
+                    "severity": "error",
+                    "type": "pin_not_connected"
+                },
+                {
+                    "description": "Pin not connected",
+                    "items": [
+                        {
+                            "description": "Symbol DS2 Pin 22 [COL6R, Passive, Line]",
+                            "pos": {
+                                "x": 2.0828,
+                                "y": 0.4318
+                            },
+                            "uuid": "724eb56b-1726-4d90-a35b-3c751e279350"
+                        }
+                    ],
+                    "severity": "error",
+                    "type": "pin_not_connected"
+                },
+                {
+                    "description": "Pin not connected",
+                    "items": [
+                        {
+                            "description": "Symbol DS2 Pin 2 [COL2G, Passive, Line]",
+                            "pos": {
+                                "x": 1.9812,
+                                "y": 0.8128
+                            },
+                            "uuid": "b0488b19-411a-45d6-8e83-ddd6a35fad98"
+                        }
+                    ],
+                    "severity": "error",
+                    "type": "pin_not_connected"
+                },
+                {
+                    "description": "Pin not connected",
+                    "items": [
+                        {
+                            "description": "Symbol DS2 Pin 23 [COL7R, Passive, Line]",
+                            "pos": {
+                                "x": 2.1082,
+                                "y": 0.4318
+                            },
+                            "uuid": "308adabe-f833-43b1-824c-d223714253e8"
+                        }
+                    ],
+                    "severity": "error",
+                    "type": "pin_not_connected"
+                },
+                {
+                    "description": "Pin not connected",
+                    "items": [
+                        {
+                            "description": "Symbol DS2 Pin 3 [COL3G, Passive, Line]",
+                            "pos": {
+                                "x": 2.0066,
+                                "y": 0.8128
+                            },
+                            "uuid": "76268404-3a6d-4219-8764-6f932f9353bc"
+                        }
+                    ],
+                    "severity": "error",
+                    "type": "pin_not_connected"
+                },
+                {
+                    "description": "Pin not connected",
+                    "items": [
+                        {
+                            "description": "Symbol DS2 Pin 24 [COL8R, Passive, Line]",
+                            "pos": {
+                                "x": 2.1336,
+                                "y": 0.4318
+                            },
+                            "uuid": "fc58a138-e240-489f-abe8-9addf9ea7361"
+                        }
+                    ],
+                    "severity": "error",
+                    "type": "pin_not_connected"
+                },
+                {
+                    "description": "Pin not connected",
+                    "items": [
+                        {
+                            "description": "Symbol DS2 Pin 4 [COL4G, Passive, Line]",
+                            "pos": {
+                                "x": 2.032,
+                                "y": 0.8128
+                            },
+                            "uuid": "f1a13aee-ae87-4c1f-85ed-e1d81e46a5a3"
+                        }
+                    ],
+                    "severity": "error",
+                    "type": "pin_not_connected"
+                },
+                {
+                    "description": "Pin not connected",
+                    "items": [
+                        {
+                            "description": "Symbol DS2 Pin 5 [COL5G, Passive, Line]",
+                            "pos": {
+                                "x": 2.0574,
+                                "y": 0.8128
+                            },
+                            "uuid": "e446c1ad-7d79-429c-9d1a-2b494b1c2987"
+                        }
+                    ],
+                    "severity": "error",
+                    "type": "pin_not_connected"
+                },
+                {
+                    "description": "Pin not connected",
+                    "items": [
+                        {
+                            "description": "Symbol DS2 Pin 6 [COL6G, Passive, Line]",
+                            "pos": {
+                                "x": 2.0828,
+                                "y": 0.8128
+                            },
+                            "uuid": "ef548bf0-e828-4a3f-a2db-dbffb71eb883"
+                        }
+                    ],
+                    "severity": "error",
+                    "type": "pin_not_connected"
+                },
+                {
+                    "description": "Pin not connected",
+                    "items": [
+                        {
+                            "description": "Symbol DS2 Pin 7 [COL7G, Passive, Line]",
+                            "pos": {
+                                "x": 2.1082,
+                                "y": 0.8128
+                            },
+                            "uuid": "135c041a-7727-4639-be14-43e7c038e43d"
+                        }
+                    ],
+                    "severity": "error",
+                    "type": "pin_not_connected"
+                },
+                {
+                    "description": "Pin not connected",
+                    "items": [
+                        {
+                            "description": "Symbol DS2 Pin 8 [COL8G, Passive, Line]",
+                            "pos": {
+                                "x": 2.1336,
+                                "y": 0.8128
+                            },
+                            "uuid": "ce9ac3dd-488e-4f05-a08b-1e3358c541d4"
+                        }
+                    ],
+                    "severity": "error",
+                    "type": "pin_not_connected"
+                },
+                {
+                    "description": "Hierarchical label 'ROW0' in root sheet cannot be connected to non-existent parent sheet",
+                    "items": [
+                        {
+                            "description": "Hierarchical Label 'ROW0'",
+                            "pos": {
+                                "x": 3.8227,
+                                "y": 1.4605
+                            },
+                            "uuid": "e6d18ec2-fbbd-43fa-af39-1d1ca95fd6b1"
+                        }
+                    ],
+                    "severity": "error",
+                    "type": "pin_not_connected"
+                },
+                {
+                    "description": "Hierarchical label 'ROW1' in root sheet cannot be connected to non-existent parent sheet",
+                    "items": [
+                        {
+                            "description": "Hierarchical Label 'ROW1'",
+                            "pos": {
+                                "x": 3.8227,
+                                "y": 1.4859
+                            },
+                            "uuid": "0a93e637-47c4-41bb-9a14-7a9d4d7451ed"
+                        }
+                    ],
+                    "severity": "error",
+                    "type": "pin_not_connected"
+                },
+                {
+                    "description": "Hierarchical label 'ROW2' in root sheet cannot be connected to non-existent parent sheet",
+                    "items": [
+                        {
+                            "description": "Hierarchical Label 'ROW2'",
+                            "pos": {
+                                "x": 3.8227,
+                                "y": 1.5113
+                            },
+                            "uuid": "fee61bc0-6a3d-41d1-8662-530af1e1dd8e"
+                        }
+                    ],
+                    "severity": "error",
+                    "type": "pin_not_connected"
+                },
+                {
+                    "description": "Hierarchical label 'ROW3' in root sheet cannot be connected to non-existent parent sheet",
+                    "items": [
+                        {
+                            "description": "Hierarchical Label 'ROW3'",
+                            "pos": {
+                                "x": 3.8227,
+                                "y": 1.5367
+                            },
+                            "uuid": "d026e92e-07d0-47c7-b109-46538360778d"
+                        }
+                    ],
+                    "severity": "error",
+                    "type": "pin_not_connected"
+                },
+                {
+                    "description": "Hierarchical label 'ROW4' in root sheet cannot be connected to non-existent parent sheet",
+                    "items": [
+                        {
+                            "description": "Hierarchical Label 'ROW4'",
+                            "pos": {
+                                "x": 3.8227,
+                                "y": 1.5621
+                            },
+                            "uuid": "62fc5ee8-b224-44e4-9917-a95a78ac148c"
+                        }
+                    ],
+                    "severity": "error",
+                    "type": "pin_not_connected"
+                },
+                {
+                    "description": "Hierarchical label 'ROW5' in root sheet cannot be connected to non-existent parent sheet",
+                    "items": [
+                        {
+                            "description": "Hierarchical Label 'ROW5'",
+                            "pos": {
+                                "x": 3.8227,
+                                "y": 1.5875
+                            },
+                            "uuid": "a4c196cc-31e4-4ef5-8822-014948399437"
+                        }
+                    ],
+                    "severity": "error",
+                    "type": "pin_not_connected"
+                },
+                {
+                    "description": "Hierarchical label 'ROW6' in root sheet cannot be connected to non-existent parent sheet",
+                    "items": [
+                        {
+                            "description": "Hierarchical Label 'ROW6'",
+                            "pos": {
+                                "x": 3.8227,
+                                "y": 1.6129
+                            },
+                            "uuid": "126bb78d-152a-4259-b22e-c9bada0460e5"
+                        }
+                    ],
+                    "severity": "error",
+                    "type": "pin_not_connected"
+                },
+                {
+                    "description": "Hierarchical label 'ROW7' in root sheet cannot be connected to non-existent parent sheet",
+                    "items": [
+                        {
+                            "description": "Hierarchical Label 'ROW7'",
+                            "pos": {
+                                "x": 3.8227,
+                                "y": 1.6383
+                            },
+                            "uuid": "b34d7d35-6fb6-46a2-8fef-d3fe3d5657d8"
+                        }
+                    ],
+                    "severity": "error",
+                    "type": "pin_not_connected"
+                },
+                {
+                    "description": "Label connected to only one pin",
+                    "items": [
+                        {
+                            "description": "Label 'ROW0'",
+                            "pos": {
+                                "x": 1.7907,
+                                "y": 0.5334
+                            },
+                            "uuid": "7e1824f6-f8d6-428c-a683-b2a763eae208"
+                        }
+                    ],
+                    "severity": "warning",
+                    "type": "isolated_pin_label"
+                },
+                {
+                    "description": "Label connected to only one pin",
+                    "items": [
+                        {
+                            "description": "Label 'ROW1'",
+                            "pos": {
+                                "x": 1.7907,
+                                "y": 0.5588
+                            },
+                            "uuid": "1ca98dac-a1d5-4d75-83d2-74d30e189014"
+                        }
+                    ],
+                    "severity": "warning",
+                    "type": "isolated_pin_label"
+                },
+                {
+                    "description": "Label connected to only one pin",
+                    "items": [
+                        {
+                            "description": "Label 'ROW2'",
+                            "pos": {
+                                "x": 1.7907,
+                                "y": 0.5842
+                            },
+                            "uuid": "a8fd0646-4e0e-4b07-9b97-66d70026baf2"
+                        }
+                    ],
+                    "severity": "warning",
+                    "type": "isolated_pin_label"
+                },
+                {
+                    "description": "Label connected to only one pin",
+                    "items": [
+                        {
+                            "description": "Label 'ROW3'",
+                            "pos": {
+                                "x": 1.7907,
+                                "y": 0.6096
+                            },
+                            "uuid": "cb0392e2-7a9c-4045-8b1e-d78f925027ed"
+                        }
+                    ],
+                    "severity": "warning",
+                    "type": "isolated_pin_label"
+                },
+                {
+                    "description": "Label connected to only one pin",
+                    "items": [
+                        {
+                            "description": "Label 'ROW4'",
+                            "pos": {
+                                "x": 1.7907,
+                                "y": 0.635
+                            },
+                            "uuid": "bd722c51-f699-4163-9153-6282eafd29b3"
+                        }
+                    ],
+                    "severity": "warning",
+                    "type": "isolated_pin_label"
+                },
+                {
+                    "description": "Label connected to only one pin",
+                    "items": [
+                        {
+                            "description": "Label 'ROW5'",
+                            "pos": {
+                                "x": 1.7907,
+                                "y": 0.6604
+                            },
+                            "uuid": "9095a4a6-1abc-4f91-a891-9f18c6cac4c7"
+                        }
+                    ],
+                    "severity": "warning",
+                    "type": "isolated_pin_label"
+                },
+                {
+                    "description": "Label connected to only one pin",
+                    "items": [
+                        {
+                            "description": "Label 'ROW6'",
+                            "pos": {
+                                "x": 1.7907,
+                                "y": 0.6858
+                            },
+                            "uuid": "073a1cb1-d7fe-4605-a8a8-9c8f9ff45363"
+                        }
+                    ],
+                    "severity": "warning",
+                    "type": "isolated_pin_label"
+                },
+                {
+                    "description": "Label connected to only one pin",
+                    "items": [
+                        {
+                            "description": "Label 'ROW7'",
+                            "pos": {
+                                "x": 1.7907,
+                                "y": 0.7112
+                            },
+                            "uuid": "39c2661c-a883-483f-9cf9-cf771f183854"
+                        }
+                    ],
+                    "severity": "warning",
+                    "type": "isolated_pin_label"
+                },
+                {
+                    "description": "Footprint '788xHG' not found in library 'Display'",
+                    "items": [
+                        {
+                            "description": "Symbol DS2 [788xHG]",
+                            "pos": {
+                                "x": 2.032,
+                                "y": 0.6096
+                            },
+                            "uuid": "e63356eb-7345-434d-8464-3fa9dc47789a"
+                        }
+                    ],
+                    "severity": "warning",
+                    "type": "footprint_link_issues"
+                },
+                {
+                    "description": "Symbol '788xHG' not found in symbol library 'Display_Graphic'",
+                    "items": [
+                        {
+                            "description": "Symbol DS2 [788xHG]",
+                            "pos": {
+                                "x": 2.032,
+                                "y": 0.6096
+                            },
+                            "uuid": "e63356eb-7345-434d-8464-3fa9dc47789a"
+                        }
+                    ],
+                    "severity": "warning",
+                    "type": "lib_symbol_issues"
+                },
+                {
+                    "description": "Label connected to only one pin",
+                    "items": [
+                        {
+                            "description": "Label 'ROW0'",
+                            "pos": {
+                                "x": 3.81,
+                                "y": 1.4605
+                            },
+                            "uuid": "27df3496-254d-4530-a96d-4b1f28e92e17"
+                        }
+                    ],
+                    "severity": "warning",
+                    "type": "isolated_pin_label"
+                },
+                {
+                    "description": "Label connected to only one pin",
+                    "items": [
+                        {
+                            "description": "Label 'ROW1'",
+                            "pos": {
+                                "x": 3.81,
+                                "y": 1.4859
+                            },
+                            "uuid": "c1020f6c-704b-410a-bfc2-f5c70b31bc01"
+                        }
+                    ],
+                    "severity": "warning",
+                    "type": "isolated_pin_label"
+                },
+                {
+                    "description": "Label connected to only one pin",
+                    "items": [
+                        {
+                            "description": "Hierarchical Label 'ROW0'",
+                            "pos": {
+                                "x": 3.8227,
+                                "y": 1.4605
+                            },
+                            "uuid": "e6d18ec2-fbbd-43fa-af39-1d1ca95fd6b1"
+                        }
+                    ],
+                    "severity": "warning",
+                    "type": "isolated_pin_label"
+                },
+                {
+                    "description": "Label connected to only one pin",
+                    "items": [
+                        {
+                            "description": "Label 'ROW2'",
+                            "pos": {
+                                "x": 3.81,
+                                "y": 1.5113
+                            },
+                            "uuid": "73730010-6911-4ee0-9a23-eddc7bde8ec3"
+                        }
+                    ],
+                    "severity": "warning",
+                    "type": "isolated_pin_label"
+                },
+                {
+                    "description": "Label connected to only one pin",
+                    "items": [
+                        {
+                            "description": "Hierarchical Label 'ROW1'",
+                            "pos": {
+                                "x": 3.8227,
+                                "y": 1.4859
+                            },
+                            "uuid": "0a93e637-47c4-41bb-9a14-7a9d4d7451ed"
+                        }
+                    ],
+                    "severity": "warning",
+                    "type": "isolated_pin_label"
+                },
+                {
+                    "description": "Label connected to only one pin",
+                    "items": [
+                        {
+                            "description": "Label 'ROW3'",
+                            "pos": {
+                                "x": 3.81,
+                                "y": 1.5367
+                            },
+                            "uuid": "fb1f1d7b-d905-46f0-9f51-d0139cd945f2"
+                        }
+                    ],
+                    "severity": "warning",
+                    "type": "isolated_pin_label"
+                },
+                {
+                    "description": "Label connected to only one pin",
+                    "items": [
+                        {
+                            "description": "Hierarchical Label 'ROW2'",
+                            "pos": {
+                                "x": 3.8227,
+                                "y": 1.5113
+                            },
+                            "uuid": "fee61bc0-6a3d-41d1-8662-530af1e1dd8e"
+                        }
+                    ],
+                    "severity": "warning",
+                    "type": "isolated_pin_label"
+                },
+                {
+                    "description": "Label connected to only one pin",
+                    "items": [
+                        {
+                            "description": "Label 'ROW4'",
+                            "pos": {
+                                "x": 3.81,
+                                "y": 1.5621
+                            },
+                            "uuid": "7596bdea-38a2-4995-ae67-7063402b9570"
+                        }
+                    ],
+                    "severity": "warning",
+                    "type": "isolated_pin_label"
+                },
+                {
+                    "description": "Label connected to only one pin",
+                    "items": [
+                        {
+                            "description": "Hierarchical Label 'ROW3'",
+                            "pos": {
+                                "x": 3.8227,
+                                "y": 1.5367
+                            },
+                            "uuid": "d026e92e-07d0-47c7-b109-46538360778d"
+                        }
+                    ],
+                    "severity": "warning",
+                    "type": "isolated_pin_label"
+                },
+                {
+                    "description": "Label connected to only one pin",
+                    "items": [
+                        {
+                            "description": "Label 'ROW5'",
+                            "pos": {
+                                "x": 3.81,
+                                "y": 1.5875
+                            },
+                            "uuid": "d8e8a0ac-bff1-4250-bd12-cbe4fb45f6df"
+                        }
+                    ],
+                    "severity": "warning",
+                    "type": "isolated_pin_label"
+                },
+                {
+                    "description": "Label connected to only one pin",
+                    "items": [
+                        {
+                            "description": "Hierarchical Label 'ROW4'",
+                            "pos": {
+                                "x": 3.8227,
+                                "y": 1.5621
+                            },
+                            "uuid": "62fc5ee8-b224-44e4-9917-a95a78ac148c"
+                        }
+                    ],
+                    "severity": "warning",
+                    "type": "isolated_pin_label"
+                },
+                {
+                    "description": "Label connected to only one pin",
+                    "items": [
+                        {
+                            "description": "Label 'ROW6'",
+                            "pos": {
+                                "x": 3.81,
+                                "y": 1.6129
+                            },
+                            "uuid": "8e9cda31-3036-45e6-b826-376df3a69c9b"
+                        }
+                    ],
+                    "severity": "warning",
+                    "type": "isolated_pin_label"
+                },
+                {
+                    "description": "Label connected to only one pin",
+                    "items": [
+                        {
+                            "description": "Hierarchical Label 'ROW5'",
+                            "pos": {
+                                "x": 3.8227,
+                                "y": 1.5875
+                            },
+                            "uuid": "a4c196cc-31e4-4ef5-8822-014948399437"
+                        }
+                    ],
+                    "severity": "warning",
+                    "type": "isolated_pin_label"
+                },
+                {
+                    "description": "Label connected to only one pin",
+                    "items": [
+                        {
+                            "description": "Label 'ROW7'",
+                            "pos": {
+                                "x": 3.81,
+                                "y": 1.6383
+                            },
+                            "uuid": "82ee98a0-3db9-4bc8-b4ad-e769d81f2c0e"
+                        }
+                    ],
+                    "severity": "warning",
+                    "type": "isolated_pin_label"
+                },
+                {
+                    "description": "Label connected to only one pin",
+                    "items": [
+                        {
+                            "description": "Hierarchical Label 'ROW6'",
+                            "pos": {
+                                "x": 3.8227,
+                                "y": 1.6129
+                            },
+                            "uuid": "126bb78d-152a-4259-b22e-c9bada0460e5"
+                        }
+                    ],
+                    "severity": "warning",
+                    "type": "isolated_pin_label"
+                },
+                {
+                    "description": "Label connected to only one pin",
+                    "items": [
+                        {
+                            "description": "Hierarchical Label 'ROW7'",
+                            "pos": {
+                                "x": 3.8227,
+                                "y": 1.6383
+                            },
+                            "uuid": "b34d7d35-6fb6-46a2-8fef-d3fe3d5657d8"
+                        }
+                    ],
+                    "severity": "warning",
+                    "type": "isolated_pin_label"
+                }
+            ]
+        }
+    ],
+    "source": "LED_matrix_x6.kicad_sch"
+}

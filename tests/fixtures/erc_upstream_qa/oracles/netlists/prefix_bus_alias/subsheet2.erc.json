@@ -1,0 +1,432 @@
+{
+    "$schema": "https://schemas.kicad.org/erc.v1.json",
+    "coordinate_units": "mm",
+    "date": "2026-03-29T23:07:14",
+    "ignored_checks": [
+        {
+            "description": "Global label only appears once in the schematic",
+            "key": "single_global_label"
+        },
+        {
+            "description": "Four connection points are joined together",
+            "key": "four_way_junction"
+        },
+        {
+            "description": "SPICE model issue",
+            "key": "simulation_model_issue"
+        },
+        {
+            "description": "Assigned footprint doesn't match footprint filters",
+            "key": "footprint_filter"
+        }
+    ],
+    "included_severities": [
+        "error",
+        "warning"
+    ],
+    "kicad_version": "10.0.0",
+    "sheets": [
+        {
+            "path": "/",
+            "uuid_path": "/0eb0735b-ad59-4f50-b0ef-87e11e6b17eb",
+            "violations": [
+                {
+                    "description": "Hierarchical label 'Bar{Bus1}' in root sheet cannot be connected to non-existent parent sheet",
+                    "items": [
+                        {
+                            "description": "Hierarchical Label 'Bar{Bus1}'",
+                            "pos": {
+                                "x": 0.3429,
+                                "y": 0.3048
+                            },
+                            "uuid": "f8a1ad11-787b-4678-8104-144fd9035a53"
+                        }
+                    ],
+                    "severity": "error",
+                    "type": "pin_not_connected"
+                },
+                {
+                    "description": "Net /Bar.D0 is graphically connected to bus /Bar{Bus1} but is not a member of that bus",
+                    "items": [
+                        {
+                            "description": "Bus to wire entry",
+                            "pos": {
+                                "x": 0.3683,
+                                "y": 0.381
+                            },
+                            "uuid": "e938b73c-bce1-402f-a1f8-a1fd779c5aaa"
+                        },
+                        {
+                            "description": "Vertical Bus, length 0.0254 mm",
+                            "pos": {
+                                "x": 0.3683,
+                                "y": 0.381
+                            },
+                            "uuid": "922fcf27-cbe6-4a20-8209-64481ae7a809"
+                        }
+                    ],
+                    "severity": "warning",
+                    "type": "net_not_bus_member"
+                },
+                {
+                    "description": "Net /Bar.D1 is graphically connected to bus /Bar{Bus1} but is not a member of that bus",
+                    "items": [
+                        {
+                            "description": "Bus to wire entry",
+                            "pos": {
+                                "x": 0.3683,
+                                "y": 0.4064
+                            },
+                            "uuid": "3084be82-55b1-44c8-a762-4c5eee7c16f4"
+                        },
+                        {
+                            "description": "Vertical Bus, length 0.0254 mm",
+                            "pos": {
+                                "x": 0.3683,
+                                "y": 0.4064
+                            },
+                            "uuid": "d5ff0899-7ac2-4bb0-a032-2c8564f4a557"
+                        }
+                    ],
+                    "severity": "warning",
+                    "type": "net_not_bus_member"
+                },
+                {
+                    "description": "Net /Bar.D2 is graphically connected to bus /Bar{Bus1} but is not a member of that bus",
+                    "items": [
+                        {
+                            "description": "Bus to wire entry",
+                            "pos": {
+                                "x": 0.3683,
+                                "y": 0.4318
+                            },
+                            "uuid": "2bca8d52-540b-4387-b266-e362783ee3a6"
+                        },
+                        {
+                            "description": "Vertical Bus, length 0.0254 mm",
+                            "pos": {
+                                "x": 0.3683,
+                                "y": 0.4318
+                            },
+                            "uuid": "73175aad-e725-4f5a-9599-86268342aacc"
+                        }
+                    ],
+                    "severity": "warning",
+                    "type": "net_not_bus_member"
+                },
+                {
+                    "description": "Net /Bar.D3 is graphically connected to bus /Bar{Bus1} but is not a member of that bus",
+                    "items": [
+                        {
+                            "description": "Bus to wire entry",
+                            "pos": {
+                                "x": 0.3683,
+                                "y": 0.4572
+                            },
+                            "uuid": "e963d295-6998-4533-bf10-ab6d044ef051"
+                        },
+                        {
+                            "description": "Vertical Bus, length 0.0254 mm",
+                            "pos": {
+                                "x": 0.3683,
+                                "y": 0.4572
+                            },
+                            "uuid": "32834738-6ee0-44cf-85de-69107d83fc45"
+                        }
+                    ],
+                    "severity": "warning",
+                    "type": "net_not_bus_member"
+                },
+                {
+                    "description": "Net /Bar.D4 is graphically connected to bus /Bar{Bus1} but is not a member of that bus",
+                    "items": [
+                        {
+                            "description": "Bus to wire entry",
+                            "pos": {
+                                "x": 0.3683,
+                                "y": 0.4826
+                            },
+                            "uuid": "c3896561-947f-4f7c-a7ea-797b44f4d0cf"
+                        },
+                        {
+                            "description": "Vertical Bus, length 0.0254 mm",
+                            "pos": {
+                                "x": 0.3683,
+                                "y": 0.4572
+                            },
+                            "uuid": "32834738-6ee0-44cf-85de-69107d83fc45"
+                        }
+                    ],
+                    "severity": "warning",
+                    "type": "net_not_bus_member"
+                },
+                {
+                    "description": "Label connected to only one pin",
+                    "items": [
+                        {
+                            "description": "Label 'Bar.D0'",
+                            "pos": {
+                                "x": 0.4699,
+                                "y": 0.4064
+                            },
+                            "uuid": "1d14dc04-c832-4eb2-95c2-f7a5dd6f0032"
+                        }
+                    ],
+                    "severity": "warning",
+                    "type": "isolated_pin_label"
+                },
+                {
+                    "description": "Label connected to only one pin",
+                    "items": [
+                        {
+                            "description": "Label 'Bar.D1'",
+                            "pos": {
+                                "x": 0.4699,
+                                "y": 0.4318
+                            },
+                            "uuid": "61b4c014-f819-4f4c-a825-ae6b195aebe9"
+                        }
+                    ],
+                    "severity": "warning",
+                    "type": "isolated_pin_label"
+                },
+                {
+                    "description": "Label connected to only one pin",
+                    "items": [
+                        {
+                            "description": "Label 'Bar.D2'",
+                            "pos": {
+                                "x": 0.4699,
+                                "y": 0.4572
+                            },
+                            "uuid": "79e1f558-07dc-4025-9318-f89ee0886fff"
+                        }
+                    ],
+                    "severity": "warning",
+                    "type": "isolated_pin_label"
+                },
+                {
+                    "description": "Label connected to only one pin",
+                    "items": [
+                        {
+                            "description": "Label 'Bar.D3'",
+                            "pos": {
+                                "x": 0.4699,
+                                "y": 0.4826
+                            },
+                            "uuid": "e78b3769-ab79-42a1-af85-8a45f160df84"
+                        }
+                    ],
+                    "severity": "warning",
+                    "type": "isolated_pin_label"
+                },
+                {
+                    "description": "Label connected to only one pin",
+                    "items": [
+                        {
+                            "description": "Label 'Bar.D4'",
+                            "pos": {
+                                "x": 0.4699,
+                                "y": 0.508
+                            },
+                            "uuid": "c6b8d189-0eb1-40f7-a361-94fdc512c05b"
+                        }
+                    ],
+                    "severity": "warning",
+                    "type": "isolated_pin_label"
+                },
+                {
+                    "description": "Label connected to only one pin",
+                    "items": [
+                        {
+                            "description": "Label 'Bar.D5'",
+                            "pos": {
+                                "x": 0.5969,
+                                "y": 0.4064
+                            },
+                            "uuid": "0c716e5a-faaf-4972-a84a-8153de99e2c1"
+                        }
+                    ],
+                    "severity": "warning",
+                    "type": "isolated_pin_label"
+                },
+                {
+                    "description": "Label connected to only one pin",
+                    "items": [
+                        {
+                            "description": "Label 'Bar.D6'",
+                            "pos": {
+                                "x": 0.5969,
+                                "y": 0.4318
+                            },
+                            "uuid": "212e8e58-addb-4737-93e4-78dc7320ae0f"
+                        }
+                    ],
+                    "severity": "warning",
+                    "type": "isolated_pin_label"
+                },
+                {
+                    "description": "Label connected to only one pin",
+                    "items": [
+                        {
+                            "description": "Label 'Bar.D7'",
+                            "pos": {
+                                "x": 0.5969,
+                                "y": 0.4572
+                            },
+                            "uuid": "bafe506c-9bc3-43e3-a493-d32ad5a68c74"
+                        }
+                    ],
+                    "severity": "warning",
+                    "type": "isolated_pin_label"
+                },
+                {
+                    "description": "Label connected to only one pin",
+                    "items": [
+                        {
+                            "description": "Label 'Bar.CTL1'",
+                            "pos": {
+                                "x": 0.5969,
+                                "y": 0.4826
+                            },
+                            "uuid": "81ab5368-4c82-42bb-aa20-083d9fd687cb"
+                        }
+                    ],
+                    "severity": "warning",
+                    "type": "isolated_pin_label"
+                },
+                {
+                    "description": "Label connected to only one pin",
+                    "items": [
+                        {
+                            "description": "Label 'Bar.CTL2'",
+                            "pos": {
+                                "x": 0.5969,
+                                "y": 0.508
+                            },
+                            "uuid": "11331747-f3bd-4e29-b518-2e222ec8be6a"
+                        }
+                    ],
+                    "severity": "warning",
+                    "type": "isolated_pin_label"
+                },
+                {
+                    "description": "Net /Bar.D5 is graphically connected to bus /Bar{Bus1} but is not a member of that bus",
+                    "items": [
+                        {
+                            "description": "Bus to wire entry",
+                            "pos": {
+                                "x": 0.7239,
+                                "y": 0.381
+                            },
+                            "uuid": "5179fd8c-3f9e-45b2-bd75-e1b98c476be9"
+                        },
+                        {
+                            "description": "Vertical Bus, length 0.0254 mm",
+                            "pos": {
+                                "x": 0.7239,
+                                "y": 0.381
+                            },
+                            "uuid": "7eb23cc5-4d61-451b-bd02-392a3c659676"
+                        }
+                    ],
+                    "severity": "warning",
+                    "type": "net_not_bus_member"
+                },
+                {
+                    "description": "Net /Bar.D6 is graphically connected to bus /Bar{Bus1} but is not a member of that bus",
+                    "items": [
+                        {
+                            "description": "Bus to wire entry",
+                            "pos": {
+                                "x": 0.7239,
+                                "y": 0.4064
+                            },
+                            "uuid": "11c967d3-a654-4999-80f6-137de0834ce5"
+                        },
+                        {
+                            "description": "Vertical Bus, length 0.0254 mm",
+                            "pos": {
+                                "x": 0.7239,
+                                "y": 0.4064
+                            },
+                            "uuid": "67eba7bf-08fd-48d1-a92b-948006fee103"
+                        }
+                    ],
+                    "severity": "warning",
+                    "type": "net_not_bus_member"
+                },
+                {
+                    "description": "Net /Bar.D7 is graphically connected to bus /Bar{Bus1} but is not a member of that bus",
+                    "items": [
+                        {
+                            "description": "Bus to wire entry",
+                            "pos": {
+                                "x": 0.7239,
+                                "y": 0.4318
+                            },
+                            "uuid": "d9e16562-84f9-47dd-bef8-db5cff8b6910"
+                        },
+                        {
+                            "description": "Vertical Bus, length 0.0254 mm",
+                            "pos": {
+                                "x": 0.7239,
+                                "y": 0.4318
+                            },
+                            "uuid": "90f0673f-851d-4905-af54-4b20befcb6b4"
+                        }
+                    ],
+                    "severity": "warning",
+                    "type": "net_not_bus_member"
+                },
+                {
+                    "description": "Net /Bar.CTL1 is graphically connected to bus /Bar{Bus1} but is not a member of that bus",
+                    "items": [
+                        {
+                            "description": "Bus to wire entry",
+                            "pos": {
+                                "x": 0.7239,
+                                "y": 0.4572
+                            },
+                            "uuid": "777d70bd-31e6-4720-a991-ef28818bceb4"
+                        },
+                        {
+                            "description": "Vertical Bus, length 0.0254 mm",
+                            "pos": {
+                                "x": 0.7239,
+                                "y": 0.4572
+                            },
+                            "uuid": "6364e9e0-0e2b-4256-b55a-fd2d47b0420b"
+                        }
+                    ],
+                    "severity": "warning",
+                    "type": "net_not_bus_member"
+                },
+                {
+                    "description": "Net /Bar.CTL2 is graphically connected to bus /Bar{Bus1} but is not a member of that bus",
+                    "items": [
+                        {
+                            "description": "Bus to wire entry",
+                            "pos": {
+                                "x": 0.7239,
+                                "y": 0.4826
+                            },
+                            "uuid": "a2e1407a-d08c-4193-9b59-ec6ecbc42a46"
+                        },
+                        {
+                            "description": "Vertical Bus, length 0.0254 mm",
+                            "pos": {
+                                "x": 0.7239,
+                                "y": 0.4572
+                            },
+                            "uuid": "6364e9e0-0e2b-4256-b55a-fd2d47b0420b"
+                        }
+                    ],
+                    "severity": "warning",
+                    "type": "net_not_bus_member"
+                }
+            ]
+        }
+    ],
+    "source": "subsheet2.kicad_sch"
+}

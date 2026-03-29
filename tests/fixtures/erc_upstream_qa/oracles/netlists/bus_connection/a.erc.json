@@ -1,0 +1,271 @@
+{
+    "$schema": "https://schemas.kicad.org/erc.v1.json",
+    "coordinate_units": "mm",
+    "date": "2026-03-29T23:06:23",
+    "ignored_checks": [
+        {
+            "description": "Global label only appears once in the schematic",
+            "key": "single_global_label"
+        },
+        {
+            "description": "Four connection points are joined together",
+            "key": "four_way_junction"
+        },
+        {
+            "description": "SPICE model issue",
+            "key": "simulation_model_issue"
+        },
+        {
+            "description": "Assigned footprint doesn't match footprint filters",
+            "key": "footprint_filter"
+        }
+    ],
+    "included_severities": [
+        "error",
+        "warning"
+    ],
+    "kicad_version": "10.0.0",
+    "sheets": [
+        {
+            "path": "/",
+            "uuid_path": "/30edb06d-0398-4b73-a0e5-4a4fb8ab4463",
+            "violations": [
+                {
+                    "description": "Hierarchical label '{a_xyz}' in root sheet cannot be connected to non-existent parent sheet",
+                    "items": [
+                        {
+                            "description": "Hierarchical Label '{a_xyz}'",
+                            "pos": {
+                                "x": 1.14935,
+                                "y": 0.4445
+                            },
+                            "uuid": "7a76ade4-916b-44d8-bd14-1cdd87bc3758"
+                        }
+                    ],
+                    "severity": "error",
+                    "type": "pin_not_connected"
+                },
+                {
+                    "description": "The current configuration does not include the symbol library '~ Connector_Generic'",
+                    "items": [
+                        {
+                            "description": "Symbol J1 [Conn_01x03]",
+                            "pos": {
+                                "x": 0.69215,
+                                "y": 0.4953
+                            },
+                            "uuid": "b606574e-10df-4dfe-9667-bc4a052fb03b"
+                        }
+                    ],
+                    "severity": "warning",
+                    "type": "lib_symbol_issues"
+                },
+                {
+                    "description": "Symbol pin or wire end off connection grid",
+                    "items": [
+                        {
+                            "description": "Symbol J1 Pin 1 [Pin_1, Passive, Line]",
+                            "pos": {
+                                "x": 0.74295,
+                                "y": 0.4699
+                            },
+                            "uuid": "54680977-9c2b-43fe-96e3-95cd1de0091b"
+                        }
+                    ],
+                    "severity": "warning",
+                    "type": "endpoint_off_grid"
+                },
+                {
+                    "description": "Symbol pin or wire end off connection grid",
+                    "items": [
+                        {
+                            "description": "Horizontal Wire, length 0.1968 mm",
+                            "pos": {
+                                "x": 0.74295,
+                                "y": 0.4699
+                            },
+                            "uuid": "5630bc71-58d3-4869-a158-8f363547975f"
+                        }
+                    ],
+                    "severity": "warning",
+                    "type": "endpoint_off_grid"
+                },
+                {
+                    "description": "Symbol pin or wire end off connection grid",
+                    "items": [
+                        {
+                            "description": "Horizontal Wire, length 0.2349 mm",
+                            "pos": {
+                                "x": 0.74295,
+                                "y": 0.4953
+                            },
+                            "uuid": "0794b1de-3f74-42d6-8eec-5e4f7d432643"
+                        }
+                    ],
+                    "severity": "warning",
+                    "type": "endpoint_off_grid"
+                },
+                {
+                    "description": "Symbol pin or wire end off connection grid",
+                    "items": [
+                        {
+                            "description": "Horizontal Bus, length 0.1842 mm",
+                            "pos": {
+                                "x": 0.9652,
+                                "y": 0.4445
+                            },
+                            "uuid": "0dfc5bc1-999f-4a77-9576-ff0db5ad0680"
+                        }
+                    ],
+                    "severity": "warning",
+                    "type": "endpoint_off_grid"
+                },
+                {
+                    "description": "Symbol pin or wire end off connection grid",
+                    "items": [
+                        {
+                            "description": "Horizontal Wire, length 0.3239 mm",
+                            "pos": {
+                                "x": 0.74295,
+                                "y": 0.5207
+                            },
+                            "uuid": "f8e1eb65-4c18-4582-8471-178984b3b373"
+                        }
+                    ],
+                    "severity": "warning",
+                    "type": "endpoint_off_grid"
+                },
+                {
+                    "description": "Label connected to only one pin",
+                    "items": [
+                        {
+                            "description": "Label 'x'",
+                            "pos": {
+                                "x": 0.8382,
+                                "y": 0.4699
+                            },
+                            "uuid": "47e30a02-cde0-4086-b28d-ab9fe93f63dd"
+                        }
+                    ],
+                    "severity": "warning",
+                    "type": "isolated_pin_label"
+                },
+                {
+                    "description": "Label connected to only one pin",
+                    "items": [
+                        {
+                            "description": "Label 'y'",
+                            "pos": {
+                                "x": 0.8382,
+                                "y": 0.4953
+                            },
+                            "uuid": "5bd0a741-c441-41e3-9f70-0283739d5646"
+                        }
+                    ],
+                    "severity": "warning",
+                    "type": "isolated_pin_label"
+                },
+                {
+                    "description": "Label connected to only one pin",
+                    "items": [
+                        {
+                            "description": "Label 'z'",
+                            "pos": {
+                                "x": 0.8382,
+                                "y": 0.5207
+                            },
+                            "uuid": "0b652e90-2f82-45c2-9d01-0e4e7248afb8"
+                        }
+                    ],
+                    "severity": "warning",
+                    "type": "isolated_pin_label"
+                },
+                {
+                    "description": "Net /x is graphically connected to bus /{a_xyz} but is not a member of that bus",
+                    "items": [
+                        {
+                            "description": "Bus to wire entry",
+                            "pos": {
+                                "x": 0.9652,
+                                "y": 0.4445
+                            },
+                            "uuid": "cc1f5d51-2d54-4ea2-b1c3-c8bba22126a2"
+                        },
+                        {
+                            "description": "Horizontal Bus, length 0.0381 mm",
+                            "pos": {
+                                "x": 1.0033,
+                                "y": 0.4445
+                            },
+                            "uuid": "c6ff4f7f-1274-4425-ae92-d843cc7b63a2"
+                        }
+                    ],
+                    "severity": "warning",
+                    "type": "net_not_bus_member"
+                },
+                {
+                    "description": "Net /y is graphically connected to bus /{a_xyz} but is not a member of that bus",
+                    "items": [
+                        {
+                            "description": "Bus to wire entry",
+                            "pos": {
+                                "x": 1.0033,
+                                "y": 0.4445
+                            },
+                            "uuid": "def8b9b5-2505-48ff-9b3b-cd8ce28b6206"
+                        },
+                        {
+                            "description": "Horizontal Bus, length 0.0381 mm",
+                            "pos": {
+                                "x": 1.0033,
+                                "y": 0.4445
+                            },
+                            "uuid": "c6ff4f7f-1274-4425-ae92-d843cc7b63a2"
+                        }
+                    ],
+                    "severity": "warning",
+                    "type": "net_not_bus_member"
+                },
+                {
+                    "description": "Net /z is graphically connected to bus /{a_xyz} but is not a member of that bus",
+                    "items": [
+                        {
+                            "description": "Bus to wire entry",
+                            "pos": {
+                                "x": 1.0922,
+                                "y": 0.4445
+                            },
+                            "uuid": "d1f02c97-da28-49e7-b9a4-dec79a488f13"
+                        },
+                        {
+                            "description": "Horizontal Bus, length 0.0571 mm",
+                            "pos": {
+                                "x": 1.14935,
+                                "y": 0.4445
+                            },
+                            "uuid": "a58ab488-7e75-430f-8acd-861726ee59ac"
+                        }
+                    ],
+                    "severity": "warning",
+                    "type": "net_not_bus_member"
+                },
+                {
+                    "description": "Symbol pin or wire end off connection grid",
+                    "items": [
+                        {
+                            "description": "Horizontal Bus, length 0.0571 mm",
+                            "pos": {
+                                "x": 1.14935,
+                                "y": 0.4445
+                            },
+                            "uuid": "a58ab488-7e75-430f-8acd-861726ee59ac"
+                        }
+                    ],
+                    "severity": "warning",
+                    "type": "endpoint_off_grid"
+                }
+            ]
+        }
+    ],
+    "source": "a.kicad_sch"
+}

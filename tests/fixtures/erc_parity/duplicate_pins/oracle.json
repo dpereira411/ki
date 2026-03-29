@@ -1,0 +1,165 @@
+{
+    "$schema": "https://schemas.kicad.org/erc.v1.json",
+    "coordinate_units": "mm",
+    "date": "2026-03-29T02:17:14",
+    "ignored_checks": [
+        {
+            "description": "Global label only appears once in the schematic",
+            "key": "single_global_label"
+        },
+        {
+            "description": "Four connection points are joined together",
+            "key": "four_way_junction"
+        },
+        {
+            "description": "SPICE model issue",
+            "key": "simulation_model_issue"
+        },
+        {
+            "description": "Assigned footprint doesn't match footprint filters",
+            "key": "footprint_filter"
+        }
+    ],
+    "included_severities": [
+        "error",
+        "warning"
+    ],
+    "kicad_version": "10.0.0",
+    "sheets": [
+        {
+            "path": "/",
+            "uuid_path": "/0fe2bdf2-55b4-463f-8d3e-0bd8ad3e2430",
+            "violations": [
+                {
+                    "description": "Label not connected",
+                    "items": [
+                        {
+                            "description": "Label 'NET_A'",
+                            "pos": {
+                                "x": 0.4572,
+                                "y": 0.5207
+                            },
+                            "uuid": "6bc5a94d-f873-4224-af00-a598f5bba2c1"
+                        }
+                    ],
+                    "severity": "error",
+                    "type": "label_dangling"
+                },
+                {
+                    "description": "Pin 1 on symbol 'U1' is connected to different nets: Net-(U1-A) and Net-(U1-B)",
+                    "items": [
+                        {
+                            "description": "Symbol U1 Pin 1 [A, Passive, Line]",
+                            "pos": {
+                                "x": 0.508,
+                                "y": 0.4953
+                            },
+                            "uuid": "cba59106-fba9-4245-9e2f-ad2d2277b6d9"
+                        },
+                        {
+                            "description": "Symbol U1 Pin 1 [B, Passive, Line]",
+                            "pos": {
+                                "x": 0.6096,
+                                "y": 0.5207
+                            },
+                            "uuid": "1a59ff17-3bf8-4c21-a5d2-476e0b1b1bc9"
+                        }
+                    ],
+                    "severity": "error",
+                    "type": "duplicate_pins"
+                },
+                {
+                    "description": "Pin not connected",
+                    "items": [
+                        {
+                            "description": "Symbol U1 Pin 1 [A, Passive, Line]",
+                            "pos": {
+                                "x": 0.508,
+                                "y": 0.4953
+                            },
+                            "uuid": "cba59106-fba9-4245-9e2f-ad2d2277b6d9"
+                        }
+                    ],
+                    "severity": "error",
+                    "type": "pin_not_connected"
+                },
+                {
+                    "description": "Pin not connected",
+                    "items": [
+                        {
+                            "description": "Symbol U1 Pin 1 [B, Passive, Line]",
+                            "pos": {
+                                "x": 0.6096,
+                                "y": 0.5207
+                            },
+                            "uuid": "1a59ff17-3bf8-4c21-a5d2-476e0b1b1bc9"
+                        }
+                    ],
+                    "severity": "error",
+                    "type": "pin_not_connected"
+                },
+                {
+                    "description": "Label not connected",
+                    "items": [
+                        {
+                            "description": "Label 'NET_B'",
+                            "pos": {
+                                "x": 0.6604,
+                                "y": 0.4953
+                            },
+                            "uuid": "fc1a5852-74be-4140-b8f7-6e2e89f51caf"
+                        }
+                    ],
+                    "severity": "error",
+                    "type": "label_dangling"
+                },
+                {
+                    "description": "Unconnected wire endpoint",
+                    "items": [
+                        {
+                            "description": "Horizontal Wire, length 0.0508 mm",
+                            "pos": {
+                                "x": 0.4572,
+                                "y": 0.5207
+                            },
+                            "uuid": "1891a384-c365-4116-a532-49ad0dbfb921"
+                        }
+                    ],
+                    "severity": "warning",
+                    "type": "unconnected_wire_endpoint"
+                },
+                {
+                    "description": "The current configuration does not include the symbol library 'MissingLib'",
+                    "items": [
+                        {
+                            "description": "Symbol U1 [DupPin]",
+                            "pos": {
+                                "x": 0.5588,
+                                "y": 0.508
+                            },
+                            "uuid": "2f79b036-b056-4b0b-9037-23ba48bdc964"
+                        }
+                    ],
+                    "severity": "warning",
+                    "type": "lib_symbol_issues"
+                },
+                {
+                    "description": "Unconnected wire endpoint",
+                    "items": [
+                        {
+                            "description": "Horizontal Wire, length 0.0508 mm",
+                            "pos": {
+                                "x": 0.6096,
+                                "y": 0.4953
+                            },
+                            "uuid": "433a16b4-344c-45cb-abc4-463786122b35"
+                        }
+                    ],
+                    "severity": "warning",
+                    "type": "unconnected_wire_endpoint"
+                }
+            ]
+        }
+    ],
+    "source": "duplicate_pins.kicad_sch"
+}

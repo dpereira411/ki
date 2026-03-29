@@ -1,0 +1,92 @@
+{
+    "$schema": "https://schemas.kicad.org/erc.v1.json",
+    "coordinate_units": "mm",
+    "date": "2026-03-29T23:05:03",
+    "ignored_checks": [
+        {
+            "description": "Global label only appears once in the schematic",
+            "key": "single_global_label"
+        },
+        {
+            "description": "Four connection points are joined together",
+            "key": "four_way_junction"
+        },
+        {
+            "description": "SPICE model issue",
+            "key": "simulation_model_issue"
+        },
+        {
+            "description": "Assigned footprint doesn't match footprint filters",
+            "key": "footprint_filter"
+        }
+    ],
+    "included_severities": [
+        "error",
+        "warning"
+    ],
+    "kicad_version": "10.0.0",
+    "sheets": [
+        {
+            "path": "/",
+            "uuid_path": "/9d9c2574-56a3-45db-8021-2a92a85311b1",
+            "violations": [
+                {
+                    "description": "Symbol 'VCC' doesn't match copy in library 'power'",
+                    "items": [
+                        {
+                            "description": "Symbol #PWR04 [VCC]",
+                            "pos": {
+                                "x": 0.3429,
+                                "y": 0.3937
+                            },
+                            "uuid": "1ff11d6c-adf9-4e61-8d6d-130577837fec"
+                        }
+                    ],
+                    "severity": "warning",
+                    "type": "lib_symbol_mismatch"
+                },
+                {
+                    "description": "Symbol 'VCC' doesn't match copy in library 'power'",
+                    "items": [
+                        {
+                            "description": "Symbol #PWR01 [VCC]",
+                            "pos": {
+                                "x": 1.2065,
+                                "y": 1.1938
+                            },
+                            "uuid": "89a482f5-b70a-4372-bd8e-0af65e503bab"
+                        }
+                    ],
+                    "severity": "warning",
+                    "type": "lib_symbol_mismatch"
+                },
+                {
+                    "description": "Symbol 'VCC' doesn't match copy in library 'power'",
+                    "items": [
+                        {
+                            "description": "Symbol #PWR05 [VCC]",
+                            "pos": {
+                                "x": 1.4605,
+                                "y": 0.8382
+                            },
+                            "uuid": "2cfafb54-44b2-4d23-8777-6a5aea97f1be"
+                        }
+                    ],
+                    "severity": "warning",
+                    "type": "lib_symbol_mismatch"
+                }
+            ]
+        },
+        {
+            "path": "/Drive/",
+            "uuid_path": "/9d9c2574-56a3-45db-8021-2a92a85311b1/9a030759-73ea-44ba-bd5b-ba78c58ff624",
+            "violations": []
+        },
+        {
+            "path": "/Usage/",
+            "uuid_path": "/9d9c2574-56a3-45db-8021-2a92a85311b1/fd81cd4d-ed06-4c80-bc4c-cba1d4bc410f",
+            "violations": []
+        }
+    ],
+    "source": "issue12814.kicad_sch"
+}

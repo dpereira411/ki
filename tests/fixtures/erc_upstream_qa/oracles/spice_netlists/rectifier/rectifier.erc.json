@@ -1,0 +1,202 @@
+{
+    "$schema": "https://schemas.kicad.org/erc.v1.json",
+    "coordinate_units": "mm",
+    "date": "2026-03-29T23:08:22",
+    "ignored_checks": [
+        {
+            "description": "Global label only appears once in the schematic",
+            "key": "single_global_label"
+        },
+        {
+            "description": "Four connection points are joined together",
+            "key": "four_way_junction"
+        },
+        {
+            "description": "SPICE model issue",
+            "key": "simulation_model_issue"
+        },
+        {
+            "description": "Assigned footprint doesn't match footprint filters",
+            "key": "footprint_filter"
+        }
+    ],
+    "included_severities": [
+        "error",
+        "warning"
+    ],
+    "kicad_version": "10.0.0",
+    "sheets": [
+        {
+            "path": "/",
+            "uuid_path": "/0c9c3a92-6a4e-4a5b-b607-2cfe0f3c4b2e",
+            "violations": [
+                {
+                    "description": "Input Power pin not driven by any Output Power pins",
+                    "items": [
+                        {
+                            "description": "Symbol #PWR0101 Hidden pin 1 [GND, Power input, Line]",
+                            "pos": {
+                                "x": 1.651,
+                                "y": 1.0414
+                            },
+                            "uuid": "280fc63a-0d9f-48b6-95f7-c5e61dae283d"
+                        }
+                    ],
+                    "severity": "error",
+                    "type": "power_pin_not_driven"
+                },
+                {
+                    "description": "Symbol 'VSIN' doesn't match copy in library 'Simulation_SPICE'",
+                    "items": [
+                        {
+                            "description": "Symbol V1 [VSIN]",
+                            "pos": {
+                                "x": 1.3462,
+                                "y": 1.016
+                            },
+                            "uuid": "2f4ce84c-7613-4135-9bc6-7662b55052cf"
+                        }
+                    ],
+                    "severity": "warning",
+                    "type": "lib_symbol_mismatch"
+                },
+                {
+                    "description": "Symbol 'GND' doesn't match copy in library 'power'",
+                    "items": [
+                        {
+                            "description": "Symbol #PWR0103 [GND]",
+                            "pos": {
+                                "x": 1.3462,
+                                "y": 1.0668
+                            },
+                            "uuid": "125bcfd6-fc91-456c-8753-fecb0425cb16"
+                        }
+                    ],
+                    "severity": "warning",
+                    "type": "lib_symbol_mismatch"
+                },
+                {
+                    "description": "Symbol pin or wire end off connection grid",
+                    "items": [
+                        {
+                            "description": "Horizontal Wire, length 0.1333 mm",
+                            "pos": {
+                                "x": 1.3462,
+                                "y": 0.9652
+                            },
+                            "uuid": "f208d8ac-c356-4e7f-8843-f10eed82b140"
+                        }
+                    ],
+                    "severity": "warning",
+                    "type": "endpoint_off_grid"
+                },
+                {
+                    "description": "Symbol 'D' doesn't match copy in library 'Device'",
+                    "items": [
+                        {
+                            "description": "Symbol D1 [D]",
+                            "pos": {
+                                "x": 1.51765,
+                                "y": 0.9652
+                            },
+                            "uuid": "37eb4620-c4e1-45b7-92da-1117151d60cc"
+                        }
+                    ],
+                    "severity": "warning",
+                    "type": "lib_symbol_mismatch"
+                },
+                {
+                    "description": "Symbol pin or wire end off connection grid",
+                    "items": [
+                        {
+                            "description": "Symbol C1 Pin 1 [Passive, Line]",
+                            "pos": {
+                                "x": 1.55575,
+                                "y": 0.9652
+                            },
+                            "uuid": "0f0333bf-611a-47ec-bd68-52c7b166c571"
+                        }
+                    ],
+                    "severity": "warning",
+                    "type": "endpoint_off_grid"
+                },
+                {
+                    "description": "Symbol pin or wire end off connection grid",
+                    "items": [
+                        {
+                            "description": "Horizontal Wire, length 0.0953 mm",
+                            "pos": {
+                                "x": 1.55575,
+                                "y": 0.9652
+                            },
+                            "uuid": "938ac8bd-5d33-45d4-a671-e203531936df"
+                        }
+                    ],
+                    "severity": "warning",
+                    "type": "endpoint_off_grid"
+                },
+                {
+                    "description": "Symbol pin or wire end off connection grid",
+                    "items": [
+                        {
+                            "description": "Symbol D1 Pin 1 [K, Passive, Line]",
+                            "pos": {
+                                "x": 1.55575,
+                                "y": 0.9652
+                            },
+                            "uuid": "cb1986eb-8b78-41be-ab05-5001090a2a65"
+                        }
+                    ],
+                    "severity": "warning",
+                    "type": "endpoint_off_grid"
+                },
+                {
+                    "description": "Symbol pin or wire end off connection grid",
+                    "items": [
+                        {
+                            "description": "Symbol #PWR0102 Hidden pin 1 [GND, Power input, Line]",
+                            "pos": {
+                                "x": 1.55575,
+                                "y": 1.0414
+                            },
+                            "uuid": "7706233c-3e24-4ca2-898e-587d4e9865df"
+                        }
+                    ],
+                    "severity": "warning",
+                    "type": "endpoint_off_grid"
+                },
+                {
+                    "description": "Symbol 'GND' doesn't match copy in library 'power'",
+                    "items": [
+                        {
+                            "description": "Symbol #PWR0102 [GND]",
+                            "pos": {
+                                "x": 1.55575,
+                                "y": 1.0414
+                            },
+                            "uuid": "c5967cbe-0914-4e7b-92aa-1bc61c11d83b"
+                        }
+                    ],
+                    "severity": "warning",
+                    "type": "lib_symbol_mismatch"
+                },
+                {
+                    "description": "Symbol 'GND' doesn't match copy in library 'power'",
+                    "items": [
+                        {
+                            "description": "Symbol #PWR0101 [GND]",
+                            "pos": {
+                                "x": 1.651,
+                                "y": 1.0414
+                            },
+                            "uuid": "2c87bb46-80f5-4e71-b72e-b1b229611c8f"
+                        }
+                    ],
+                    "severity": "warning",
+                    "type": "lib_symbol_mismatch"
+                }
+            ]
+        }
+    ],
+    "source": "rectifier.kicad_sch"
+}

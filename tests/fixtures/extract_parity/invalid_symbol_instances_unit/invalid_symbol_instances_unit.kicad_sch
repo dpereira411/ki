@@ -1,0 +1,7 @@
+(kicad_sch
+  (version 20260101)
+  (generator "eeschema")
+  (uuid "sym-inst-unit")
+  (paper "A4")
+  (symbol_instances
+    (path "/abc" (reference "R1") (unit maybe) (value "R") (footprint ""))))

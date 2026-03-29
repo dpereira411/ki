@@ -1,0 +1,127 @@
+{
+    "$schema": "https://schemas.kicad.org/erc.v1.json",
+    "coordinate_units": "mm",
+    "date": "2026-03-29T23:05:34",
+    "ignored_checks": [
+        {
+            "description": "Global label only appears once in the schematic",
+            "key": "single_global_label"
+        },
+        {
+            "description": "Four connection points are joined together",
+            "key": "four_way_junction"
+        },
+        {
+            "description": "SPICE model issue",
+            "key": "simulation_model_issue"
+        },
+        {
+            "description": "Assigned footprint doesn't match footprint filters",
+            "key": "footprint_filter"
+        }
+    ],
+    "included_severities": [
+        "error",
+        "warning"
+    ],
+    "kicad_version": "10.0.0",
+    "sheets": [
+        {
+            "path": "/",
+            "uuid_path": "/290ea578-b262-42be-95fe-3ab10a1a235b",
+            "violations": [
+                {
+                    "description": "Hierarchical label '{a}' in root sheet cannot be connected to non-existent parent sheet",
+                    "items": [
+                        {
+                            "description": "Hierarchical Label '{a}'",
+                            "pos": {
+                                "x": 0.889,
+                                "y": 0.5969
+                            },
+                            "uuid": "73832671-3211-48b3-b1bc-2ed4154a1c27"
+                        }
+                    ],
+                    "severity": "error",
+                    "type": "pin_not_connected"
+                },
+                {
+                    "description": "Label not connected",
+                    "items": [
+                        {
+                            "description": "Label 'b'",
+                            "pos": {
+                                "x": 1.0287,
+                                "y": 0.6477
+                            },
+                            "uuid": "efb544a5-4e91-4400-a43d-68a4d1a5e2f3"
+                        }
+                    ],
+                    "severity": "error",
+                    "type": "label_dangling"
+                },
+                {
+                    "description": "Label not connected",
+                    "items": [
+                        {
+                            "description": "Label 'a'",
+                            "pos": {
+                                "x": 1.1049,
+                                "y": 0.6223
+                            },
+                            "uuid": "cae16f4a-dab7-43d0-8d1f-ae9b099d0b1f"
+                        }
+                    ],
+                    "severity": "error",
+                    "type": "label_dangling"
+                },
+                {
+                    "description": "Label not connected",
+                    "items": [
+                        {
+                            "description": "Hierarchical Label 'b'",
+                            "pos": {
+                                "x": 1.143,
+                                "y": 0.6477
+                            },
+                            "uuid": "40446e11-1653-4147-8cd1-799b05933432"
+                        }
+                    ],
+                    "severity": "error",
+                    "type": "label_dangling"
+                },
+                {
+                    "description": "Hierarchical label 'b' in root sheet cannot be connected to non-existent parent sheet",
+                    "items": [
+                        {
+                            "description": "Hierarchical Label 'b'",
+                            "pos": {
+                                "x": 1.143,
+                                "y": 0.6477
+                            },
+                            "uuid": "40446e11-1653-4147-8cd1-799b05933432"
+                        }
+                    ],
+                    "severity": "error",
+                    "type": "pin_not_connected"
+                },
+                {
+                    "description": "Unconnected wire endpoint",
+                    "items": [
+                        {
+                            "description": "Horizontal Wire, length 0.0762 mm",
+                            "pos": {
+                                "x": 1.0668,
+                                "y": 0.6223
+                            },
+                            "uuid": "9bb99e82-aa01-4a17-bbec-34149751e36b"
+                        }
+                    ],
+                    "severity": "warning",
+                    "type": "unconnected_wire_endpoint"
+                }
+            ]
+        }
+    ],
+    "source": "test.kicad_sch"
+}

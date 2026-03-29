@@ -1,0 +1,36 @@
+(kicad_sch
+  (version 20260101)
+  (generator "eeschema")
+  (generator_version "10.0")
+  (uuid "ec4cda0f-1d7b-433b-84bd-ee1a5d4e82a8")
+  (paper "A4")
+  (lib_symbols
+    (symbol "OnePin:Probe"
+      (pin_numbers hide)
+      (pin_names (offset 0))
+      (exclude_from_sim no)
+      (in_bom yes)
+      (on_board yes)
+      (in_pos_files yes)
+      (property "Reference" "TP" (at 2.032 0 90) (show_name no) (do_not_autoplace no) (effects (font (size 1.27 1.27))))
+      (property "Value" "Probe" (at 0 0 90) (show_name no) (do_not_autoplace no) (effects (font (size 1.27 1.27))))
+      (property "Footprint" "" (at 0 0 0) (hide yes) (show_name no) (do_not_autoplace no) (effects (font (size 1.27 1.27))))
+      (property "Datasheet" "" (at 0 0 0) (hide yes) (show_name no) (do_not_autoplace no) (effects (font (size 1.27 1.27))))
+      (symbol "Probe_0_1"
+        (circle (center 0 0) (radius 1.27) (stroke (width 0.254) (type default)) (fill (type none))))
+      (symbol "Probe_1_1"
+        (pin passive line (at 0 0 180) (length 0)
+          (name "" (effects (font (size 1.27 1.27))))
+          (number "1" (effects (font (size 1.27 1.27))))))
+      (embedded_fonts no)))
+  (symbol (lib_id "OnePin:Probe") (at 50.8 50.8 0) (unit 1) (body_style 1) (exclude_from_sim no) (in_bom yes) (on_board yes) (in_pos_files yes) (dnp no) (fields_autoplaced yes) (uuid "sym-tp1")
+    (property "Reference" "TP1" (at 48.768 50.8 90) (show_name no) (do_not_autoplace no) (effects (font (size 1.27 1.27))))
+    (property "Value" "Probe" (at 50.8 50.8 90) (show_name no) (do_not_autoplace no) (effects (font (size 1.27 1.27))))
+    (property "Footprint" "" (at 50.8 50.8 0) (hide yes) (show_name no) (do_not_autoplace no) (effects (font (size 1.27 1.27))))
+    (property "Datasheet" "" (at 50.8 50.8 0) (hide yes) (show_name no) (do_not_autoplace no) (effects (font (size 1.27 1.27))))
+    (property "Netclass" "BogusClass" (at 50.8 53.34 0) (effects (font (size 1.27 1.27)) (justify left)))
+    (pin "1" (uuid "tp1-pin1"))
+    (instances (project "undefined_netclass" (path "/ec4cda0f-1d7b-433b-84bd-ee1a5d4e82a8" (reference "TP1") (unit 1)))))
+  (sheet_instances
+    (path "/" (page "1")))
+  (embedded_fonts no))

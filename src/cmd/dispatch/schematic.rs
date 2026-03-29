@@ -50,8 +50,8 @@ pub fn run(schematic_cmd: SchematicCommand) -> Result<(), KiError> {
                 &lib_id,
                 &reference,
                 &value,
-                &x,
-                &y,
+                x,
+                y,
                 &super::output_flags(&output, false),
             )?;
             Ok(())
@@ -92,10 +92,10 @@ pub fn run(schematic_cmd: SchematicCommand) -> Result<(), KiError> {
         } => {
             super::super::schematic::add_wire(
                 &path,
-                &x1,
-                &y1,
-                &x2,
-                &y2,
+                x1,
+                y1,
+                x2,
+                y2,
                 &super::output_flags(&output, false),
             )?;
             Ok(())
@@ -110,10 +110,10 @@ pub fn run(schematic_cmd: SchematicCommand) -> Result<(), KiError> {
         } => {
             super::super::schematic::remove_wire(
                 &path,
-                &x1,
-                &y1,
-                &x2,
-                &y2,
+                x1,
+                y1,
+                x2,
+                y2,
                 &super::output_flags(&output, false),
             )?;
             Ok(())
@@ -129,9 +129,9 @@ pub fn run(schematic_cmd: SchematicCommand) -> Result<(), KiError> {
             super::super::schematic::add_label(
                 &path,
                 &text,
-                &x,
-                &y,
-                &angle,
+                x,
+                y,
+                angle,
                 &super::output_flags(&output, false),
             )?;
             Ok(())
@@ -149,9 +149,31 @@ pub fn run(schematic_cmd: SchematicCommand) -> Result<(), KiError> {
                 &path,
                 &text,
                 &shape,
-                &x,
-                &y,
-                &angle,
+                x,
+                y,
+                angle,
+                &super::output_flags(&output, false),
+            )?;
+            Ok(())
+        }
+        SchematicAction::RemoveLabel { path, name, output } => {
+            super::super::schematic::remove_label(
+                &path,
+                &name,
+                &super::output_flags(&output, false),
+            )?;
+            Ok(())
+        }
+        SchematicAction::RenameLabel {
+            path,
+            name,
+            new_name,
+            output,
+        } => {
+            super::super::schematic::rename_label(
+                &path,
+                &name,
+                &new_name,
                 &super::output_flags(&output, false),
             )?;
             Ok(())
@@ -159,8 +181,8 @@ pub fn run(schematic_cmd: SchematicCommand) -> Result<(), KiError> {
         SchematicAction::AddJunction { path, x, y, output } => {
             super::super::schematic::add_junction(
                 &path,
-                &x,
-                &y,
+                x,
+                y,
                 &super::output_flags(&output, false),
             )?;
             Ok(())
@@ -168,8 +190,8 @@ pub fn run(schematic_cmd: SchematicCommand) -> Result<(), KiError> {
         SchematicAction::AddNoConnect { path, x, y, output } => {
             super::super::schematic::add_no_connect(
                 &path,
-                &x,
-                &y,
+                x,
+                y,
                 &super::output_flags(&output, false),
             )?;
             Ok(())
@@ -212,6 +234,7 @@ pub fn run(schematic_cmd: SchematicCommand) -> Result<(), KiError> {
             library_name,
             symbol_name,
             override_value,
+            preserve_property,
             output,
         } => {
             super::super::schematic::replace_from_lib(
@@ -220,6 +243,7 @@ pub fn run(schematic_cmd: SchematicCommand) -> Result<(), KiError> {
                 &library_name,
                 &symbol_name,
                 override_value,
+                &preserve_property,
                 &super::output_flags(&output, false),
             )?;
             Ok(())
@@ -230,6 +254,7 @@ pub fn run(schematic_cmd: SchematicCommand) -> Result<(), KiError> {
             reference,
             all,
             override_value,
+            preserve_property,
             output,
         } => {
             if !all && reference.is_none() {
@@ -243,10 +268,32 @@ pub fn run(schematic_cmd: SchematicCommand) -> Result<(), KiError> {
                 reference.as_deref(),
                 all,
                 override_value,
+                &preserve_property,
                 &super::output_flags(&output, false),
             )?;
             Ok(())
         }
+        SchematicAction::Erc {
+            path,
+            output,
+            units,
+            severity_all,
+            severity_error,
+            severity_warning,
+            severity_exclusions,
+            exit_code_violations,
+            format,
+        } => super::super::schematic::run_erc(
+            &path,
+            output.as_deref(),
+            &units,
+            severity_all,
+            severity_error,
+            severity_warning,
+            severity_exclusions,
+            exit_code_violations,
+            &super::output_flags(&format, false),
+        ),
         SchematicAction::Query(query) => match query.action {
             SchematicQueryAction::Component {
                 path,

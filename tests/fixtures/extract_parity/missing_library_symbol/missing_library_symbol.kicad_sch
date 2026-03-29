@@ -1,0 +1,13 @@
+(kicad_sch
+  (version 20260101)
+  (generator "eeschema")
+  (uuid "missing-lib-root")
+  (paper "A4")
+  (lib_symbols)
+  (symbol (lib_id "NoLib:MissingPart") (at 50 50 0) (unit 1) (body_style 1) (uuid "sym-missing")
+    (property "Reference" "U1" (at 47 50 0) (effects (font (size 1.27 1.27))))
+    (property "Value" "MissingPart" (at 50 53 0) (effects (font (size 1.27 1.27))))
+    (property "Footprint" "" (at 50 56 0) (effects (font (size 1.27 1.27)) (hide yes)))
+    (property "Datasheet" "" (at 50 59 0) (effects (font (size 1.27 1.27)) (hide yes))))
+  (sheet_instances
+    (path "/" (page "1"))))

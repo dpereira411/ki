@@ -1,0 +1,8 @@
+(kicad_sch
+  (version 20260101)
+  (generator "eeschema")
+  (uuid "invalid-font-color-token-root")
+  (paper "A4")
+  (text "X" (at 0 0 0) (effects (font (size 1.27 1.27) (color red 0 0 1))) (uuid "t1"))
+  (sheet_instances
+    (path "/" (page "1"))))

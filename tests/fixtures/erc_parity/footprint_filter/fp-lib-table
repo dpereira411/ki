@@ -1,0 +1,4 @@
+(fp_lib_table
+  (version 7)
+  (lib (name "LocalFoot") (type "KiCad") (uri "LocalFoot.pretty") (options "") (descr ""))
+)

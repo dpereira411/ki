@@ -1,0 +1,12 @@
+(kicad_sch
+  (version 20260101)
+  (generator "eeschema")
+  (uuid "invalid-text-box-span-root")
+  (paper "A4")
+  (table (at 0 0 0) (size 10 10)
+    (column 5)
+    (row 5)
+    (cells
+      (text_box "X" (at 0 0 0) (size 10 10) (span nope 1) (effects (font (size 1.27 1.27))) (uuid "tb1"))))
+  (sheet_instances
+    (path "/" (page "1"))))

@@ -1,0 +1,10 @@
+(kicad_sch
+  (version 20260101)
+  (generator "eeschema")
+  (uuid "invalid-group-header-token-root")
+  (paper "A4")
+  (group 123
+    (uuid "group-1")
+    (members))
+  (sheet_instances
+    (path "/" (page "1"))))

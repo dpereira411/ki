@@ -1,0 +1,198 @@
+{
+    "$schema": "https://schemas.kicad.org/erc.v1.json",
+    "coordinate_units": "mm",
+    "date": "2026-03-29T23:05:22",
+    "ignored_checks": [
+        {
+            "description": "Global label only appears once in the schematic",
+            "key": "single_global_label"
+        },
+        {
+            "description": "Four connection points are joined together",
+            "key": "four_way_junction"
+        },
+        {
+            "description": "SPICE model issue",
+            "key": "simulation_model_issue"
+        },
+        {
+            "description": "Assigned footprint doesn't match footprint filters",
+            "key": "footprint_filter"
+        }
+    ],
+    "included_severities": [
+        "error",
+        "warning"
+    ],
+    "kicad_version": "10.0.0",
+    "sheets": [
+        {
+            "path": "/",
+            "uuid_path": "/f0c49bd6-2e02-4b2f-930b-02eed8be70b4",
+            "violations": [
+                {
+                    "description": "Hierarchical label 'W{A}' in root sheet cannot be connected to non-existent parent sheet",
+                    "items": [
+                        {
+                            "description": "Hierarchical Label 'W{A}'",
+                            "pos": {
+                                "x": 0.2921,
+                                "y": 0.3048
+                            },
+                            "uuid": "08953d6c-47b6-49de-a15a-56a961ca498e"
+                        }
+                    ],
+                    "severity": "error",
+                    "type": "pin_not_connected"
+                },
+                {
+                    "description": "Label not connected",
+                    "items": [
+                        {
+                            "description": "Label 'W.X.Y.Z1'",
+                            "pos": {
+                                "x": 0.4064,
+                                "y": 0.4572
+                            },
+                            "uuid": "43ab9f4e-bffd-4f38-8e4c-5a8158f5dcce"
+                        }
+                    ],
+                    "severity": "error",
+                    "type": "label_dangling"
+                },
+                {
+                    "description": "Unconnected wire endpoint",
+                    "items": [
+                        {
+                            "description": "Horizontal Wire, length 0.1905 mm",
+                            "pos": {
+                                "x": 0.4064,
+                                "y": 0.4572
+                            },
+                            "uuid": "8b3f075b-384b-4c74-a276-3bab1e4416bb"
+                        }
+                    ],
+                    "severity": "warning",
+                    "type": "unconnected_wire_endpoint"
+                },
+                {
+                    "description": "Net /sub2/Y.Z1 is graphically connected to bus /W.X{B} but is not a member of that bus",
+                    "items": [
+                        {
+                            "description": "Bus to wire entry",
+                            "pos": {
+                                "x": 0.889,
+                                "y": 0.4953
+                            },
+                            "uuid": "098c4c6b-b7e8-40d7-b0e3-9b273cb99800"
+                        },
+                        {
+                            "description": "Vertical Bus, length 0.0381 mm",
+                            "pos": {
+                                "x": 0.889,
+                                "y": 0.4953
+                            },
+                            "uuid": "e404df6c-589d-4e1e-9e3d-a967947c9bad"
+                        }
+                    ],
+                    "severity": "warning",
+                    "type": "net_not_bus_member"
+                },
+                {
+                    "description": "Net /sub2/Y.Z2 is graphically connected to bus /W.X{B} but is not a member of that bus",
+                    "items": [
+                        {
+                            "description": "Bus to wire entry",
+                            "pos": {
+                                "x": 0.9144,
+                                "y": 0.5588
+                            },
+                            "uuid": "5236c7da-1da6-4a63-b271-58a8f7858284"
+                        },
+                        {
+                            "description": "Vertical Bus, length 0.0381 mm",
+                            "pos": {
+                                "x": 0.889,
+                                "y": 0.4953
+                            },
+                            "uuid": "e404df6c-589d-4e1e-9e3d-a967947c9bad"
+                        }
+                    ],
+                    "severity": "warning",
+                    "type": "net_not_bus_member"
+                },
+                {
+                    "description": "Symbol 'TST-01025' not found in symbol library 'Mechanical'",
+                    "items": [
+                        {
+                            "description": "Symbol TP301 [TST-01025]",
+                            "pos": {
+                                "x": 1.0287,
+                                "y": 0.5207
+                            },
+                            "uuid": "559c442d-219d-4fe6-8996-24c1a2d9cdcb"
+                        }
+                    ],
+                    "severity": "warning",
+                    "type": "lib_symbol_issues"
+                },
+                {
+                    "description": "Symbol 'TST-01025' not found in symbol library 'Mechanical'",
+                    "items": [
+                        {
+                            "description": "Symbol TP302 [TST-01025]",
+                            "pos": {
+                                "x": 1.0287,
+                                "y": 0.5588
+                            },
+                            "uuid": "50034e64-5ec3-4269-9ead-698c864f9807"
+                        }
+                    ],
+                    "severity": "warning",
+                    "type": "lib_symbol_issues"
+                },
+                {
+                    "description": "Symbol 'TST-01025' not found in symbol library 'Mechanical'",
+                    "items": [
+                        {
+                            "description": "Symbol TP401 [TST-01025]",
+                            "pos": {
+                                "x": 0.8128,
+                                "y": 0.5715
+                            },
+                            "uuid": "8c0ecef8-6b64-41c6-9d38-6d54bc92d084"
+                        }
+                    ],
+                    "severity": "warning",
+                    "type": "lib_symbol_issues"
+                },
+                {
+                    "description": "Symbol 'TST-01025' not found in symbol library 'Mechanical'",
+                    "items": [
+                        {
+                            "description": "Symbol TP402 [TST-01025]",
+                            "pos": {
+                                "x": 0.8128,
+                                "y": 0.5969
+                            },
+                            "uuid": "47056232-84ee-4e08-b29b-2834eeadd92b"
+                        }
+                    ],
+                    "severity": "warning",
+                    "type": "lib_symbol_issues"
+                }
+            ]
+        },
+        {
+            "path": "/sub2/",
+            "uuid_path": "/f0c49bd6-2e02-4b2f-930b-02eed8be70b4/4fea18b4-6b3d-4acc-a71b-7ee31c8961ac",
+            "violations": []
+        },
+        {
+            "path": "/sub2/sub3/",
+            "uuid_path": "/f0c49bd6-2e02-4b2f-930b-02eed8be70b4/4fea18b4-6b3d-4acc-a71b-7ee31c8961ac/38a5c293-46d2-4c74-939b-43575208aa56",
+            "violations": []
+        }
+    ],
+    "source": "sub.kicad_sch"
+}

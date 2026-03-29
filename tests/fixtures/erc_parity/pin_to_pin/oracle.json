@@ -1,0 +1,82 @@
+{
+    "$schema": "https://schemas.kicad.org/erc.v1.json",
+    "coordinate_units": "mm",
+    "date": "2026-03-29T00:50:55",
+    "ignored_checks": [
+        {
+            "description": "Global label only appears once in the schematic",
+            "key": "single_global_label"
+        },
+        {
+            "description": "Four connection points are joined together",
+            "key": "four_way_junction"
+        },
+        {
+            "description": "SPICE model issue",
+            "key": "simulation_model_issue"
+        },
+        {
+            "description": "Assigned footprint doesn't match footprint filters",
+            "key": "footprint_filter"
+        }
+    ],
+    "included_severities": [
+        "error"
+    ],
+    "kicad_version": "10.0.0",
+    "sheets": [
+        {
+            "path": "/",
+            "uuid_path": "/c9b0dfd9-0180-4a78-8afb-2260035ff793",
+            "violations": [
+                {
+                    "description": "Pins of type Unspecified and Power input are connected",
+                    "items": [
+                        {
+                            "description": "Symbol J2 Pin 1 [Pin_1, Unspecified, Line]",
+                            "pos": {
+                                "x": 1.2065,
+                                "y": 0.6858
+                            },
+                            "uuid": "41b05516-08b7-4132-9bf9-b29e6d04ae81"
+                        },
+                        {
+                            "description": "Symbol #PWR12 Pin 1 [Power input, Line]",
+                            "pos": {
+                                "x": 1.1176,
+                                "y": 0.6477
+                            },
+                            "uuid": "b4caecda-6029-40f1-b96b-3a8683ede8d7"
+                        }
+                    ],
+                    "severity": "error",
+                    "type": "pin_to_pin"
+                },
+                {
+                    "description": "Pins of type Unspecified and Power input are connected",
+                    "items": [
+                        {
+                            "description": "Symbol J1 Pin 1 [Pin_1, Unspecified, Line]",
+                            "pos": {
+                                "x": 1.2065,
+                                "y": 0.8509
+                            },
+                            "uuid": "8dd39357-b8a0-43cb-ae06-69b3802e7301"
+                        },
+                        {
+                            "description": "Symbol #PWR06 Pin 1 [Power input, Line]",
+                            "pos": {
+                                "x": 1.1176,
+                                "y": 0.889
+                            },
+                            "uuid": "c531f886-d1d8-40ae-af50-b8a34ab54e8d"
+                        }
+                    ],
+                    "severity": "error",
+                    "type": "pin_to_pin"
+                }
+            ]
+        }
+    ],
+    "source": "pin_to_pin.kicad_sch"
+}

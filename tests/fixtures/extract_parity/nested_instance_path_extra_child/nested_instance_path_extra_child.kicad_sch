@@ -1,0 +1,22 @@
+(kicad_sch
+  (version 20260101)
+  (generator "eeschema")
+  (uuid "root-uuid")
+  (paper "A4")
+  (lib_symbols
+    (symbol "Device:R"
+      (property "Reference" "R" (at 0 0 0) (effects (font (size 1.27 1.27))))
+      (property "Value" "R" (at 0 0 0) (effects (font (size 1.27 1.27))))))
+  (symbol (lib_id "Device:R") (at 50 50 0) (unit 1) (body_style 1)
+    (property "Reference" "R?" (at 0 0 0) (effects (font (size 1.27 1.27))))
+    (property "Value" "10k" (at 0 0 0) (effects (font (size 1.27 1.27))))
+    (instances
+      (project "proj"
+        (path "/"
+          (reference "R1")
+          (unit 1)
+          (value "10k")
+          (footprint "~")
+          (bogus)))))
+  (sheet_instances
+    (path "/" (page "1"))))

@@ -1,0 +1,11 @@
+(kicad_sch
+  (version 20260101)
+  (generator "eeschema")
+  (uuid "empty-sheet-pin-root")
+  (paper "A4")
+  (sheet (at 50 100) (size 20 10) (uuid "sheet-uuid-1")
+    (property "Sheetname" "PowerSection" (at 50 98 0) (effects (font (size 1.27 1.27))))
+    (property "Sheetfile" "sub_sheet.kicad_sch" (at 50 111 0) (effects (font (size 1.27 1.27))))
+    (pin "" input (at 50 102 180) (uuid "sp-uuid-1")))
+  (sheet_instances
+    (path "/" (page "1"))))

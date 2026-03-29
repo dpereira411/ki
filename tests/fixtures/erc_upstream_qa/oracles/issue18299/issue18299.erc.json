@@ -1,0 +1,137 @@
+{
+    "$schema": "https://schemas.kicad.org/erc.v1.json",
+    "coordinate_units": "mm",
+    "date": "2026-03-29T23:05:33",
+    "ignored_checks": [
+        {
+            "description": "Global label only appears once in the schematic",
+            "key": "single_global_label"
+        },
+        {
+            "description": "Four connection points are joined together",
+            "key": "four_way_junction"
+        },
+        {
+            "description": "SPICE model issue",
+            "key": "simulation_model_issue"
+        },
+        {
+            "description": "Assigned footprint doesn't match footprint filters",
+            "key": "footprint_filter"
+        }
+    ],
+    "included_severities": [
+        "error",
+        "warning"
+    ],
+    "kicad_version": "10.0.0",
+    "sheets": [
+        {
+            "path": "/",
+            "uuid_path": "/a762d6aa-3004-4a46-aea9-50946c64404d",
+            "violations": [
+                {
+                    "description": "Label not connected",
+                    "items": [
+                        {
+                            "description": "Label 'bbb'",
+                            "pos": {
+                                "x": 1.0922,
+                                "y": 0.508
+                            },
+                            "uuid": "4887ffdb-bc78-41c9-b7b2-8db2e3f486c4"
+                        }
+                    ],
+                    "severity": "error",
+                    "type": "label_dangling"
+                },
+                {
+                    "description": "Pin not connected",
+                    "items": [
+                        {
+                            "description": "Hierarchical Sheet Pin 'b'",
+                            "pos": {
+                                "x": 1.2319,
+                                "y": 0.508
+                            },
+                            "uuid": "77077e58-f680-4057-8553-24f15f9df2c9"
+                        }
+                    ],
+                    "severity": "error",
+                    "type": "pin_not_connected"
+                },
+                {
+                    "description": "Label not connected",
+                    "items": [
+                        {
+                            "description": "Label 'b'",
+                            "pos": {
+                                "x": 1.0287,
+                                "y": 0.6477
+                            },
+                            "uuid": "efb544a5-4e91-4400-a43d-68a4d1a5e2f3"
+                        }
+                    ],
+                    "severity": "error",
+                    "type": "label_dangling"
+                },
+                {
+                    "description": "Label not connected",
+                    "items": [
+                        {
+                            "description": "Label 'a'",
+                            "pos": {
+                                "x": 1.1049,
+                                "y": 0.6223
+                            },
+                            "uuid": "cae16f4a-dab7-43d0-8d1f-ae9b099d0b1f"
+                        }
+                    ],
+                    "severity": "error",
+                    "type": "label_dangling"
+                },
+                {
+                    "description": "Label not connected",
+                    "items": [
+                        {
+                            "description": "Hierarchical Label 'b'",
+                            "pos": {
+                                "x": 1.143,
+                                "y": 0.6477
+                            },
+                            "uuid": "40446e11-1653-4147-8cd1-799b05933432"
+                        }
+                    ],
+                    "severity": "error",
+                    "type": "label_dangling"
+                },
+                {
+                    "description": "Unconnected wire endpoint",
+                    "items": [
+                        {
+                            "description": "Horizontal Wire, length 0.0762 mm",
+                            "pos": {
+                                "x": 1.0668,
+                                "y": 0.6223
+                            },
+                            "uuid": "9bb99e82-aa01-4a17-bbec-34149751e36b"
+                        }
+                    ],
+                    "severity": "warning",
+                    "type": "unconnected_wire_endpoint"
+                }
+            ]
+        },
+        {
+            "path": "/test2/",
+            "uuid_path": "/a762d6aa-3004-4a46-aea9-50946c64404d/5cfd53fb-ab69-498e-a59a-b57a7797f287",
+            "violations": []
+        },
+        {
+            "path": "/test1/",
+            "uuid_path": "/a762d6aa-3004-4a46-aea9-50946c64404d/1a6e1223-e16a-4737-b06a-fab3da607b78",
+            "violations": []
+        }
+    ],
+    "source": "issue18299.kicad_sch"
+}

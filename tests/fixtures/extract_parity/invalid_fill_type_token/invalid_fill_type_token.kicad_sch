@@ -1,0 +1,8 @@
+(kicad_sch
+  (version 20260101)
+  (generator "eeschema")
+  (uuid "invalid-fill-type-root")
+  (paper "A4")
+  (rectangle (start 0 0) (end 10 10) (stroke (width 0) (type default)) (fill (type nonsense)) (uuid "r6"))
+  (sheet_instances
+    (path "/" (page "1"))))

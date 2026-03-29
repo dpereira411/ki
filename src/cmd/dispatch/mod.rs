@@ -8,8 +8,8 @@ use crate::cli::{Command, OutputArgs};
 use crate::error::KiError;
 use crate::output::Flags;
 
-fn output_flags(output: &OutputArgs, hierarchical: bool) -> Flags {
-    Flags::new(output.json, output.diagnostics, hierarchical)
+fn output_flags(output: &OutputArgs, _hierarchical: bool) -> Flags {
+    Flags::new(output.json, output.diagnostics)
 }
 
 pub fn run(command: Command) -> Result<(), KiError> {

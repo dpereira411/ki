@@ -1,0 +1,169 @@
+{
+    "$schema": "https://schemas.kicad.org/erc.v1.json",
+    "coordinate_units": "mm",
+    "date": "2026-03-29T23:04:57",
+    "ignored_checks": [
+        {
+            "description": "Global label only appears once in the schematic",
+            "key": "single_global_label"
+        },
+        {
+            "description": "Four connection points are joined together",
+            "key": "four_way_junction"
+        },
+        {
+            "description": "SPICE model issue",
+            "key": "simulation_model_issue"
+        },
+        {
+            "description": "Assigned footprint doesn't match footprint filters",
+            "key": "footprint_filter"
+        }
+    ],
+    "included_severities": [
+        "error",
+        "warning"
+    ],
+    "kicad_version": "10.0.0",
+    "sheets": [
+        {
+            "path": "/",
+            "uuid_path": "/30037e9f-fb8a-4b65-9af4-98689a2fae61",
+            "violations": [
+                {
+                    "description": "The current configuration does not include the symbol library 'Test-Library'",
+                    "items": [
+                        {
+                            "description": "Symbol U3 [TEST]",
+                            "pos": {
+                                "x": 1.3589,
+                                "y": 0.6731
+                            },
+                            "uuid": "6f4fe901-859a-4888-8767-d39c882b4837"
+                        }
+                    ],
+                    "severity": "warning",
+                    "type": "lib_symbol_issues"
+                },
+                {
+                    "description": "The current configuration does not include the symbol library 'Test-Library'",
+                    "items": [
+                        {
+                            "description": "Symbol U4 [TEST]",
+                            "pos": {
+                                "x": 0.9779,
+                                "y": 0.4445
+                            },
+                            "uuid": "ad556e4a-3e61-4db6-b04a-45e4e2ee1dfb"
+                        }
+                    ],
+                    "severity": "warning",
+                    "type": "lib_symbol_issues"
+                }
+            ]
+        },
+        {
+            "path": "/SubSheet1/Subsheet_1_2/",
+            "uuid_path": "/30037e9f-fb8a-4b65-9af4-98689a2fae61/48e5c29d-dae7-410f-a801-6c402cc42990/efd6cf1d-46e4-43a3-833d-ac2e75973904",
+            "violations": []
+        },
+        {
+            "path": "/SubSheet1/",
+            "uuid_path": "/30037e9f-fb8a-4b65-9af4-98689a2fae61/48e5c29d-dae7-410f-a801-6c402cc42990",
+            "violations": [
+                {
+                    "description": "Pins of type Output and Output are connected",
+                    "items": [
+                        {
+                            "description": "Symbol U3 Pin 2 [OUT, Output, Line]",
+                            "pos": {
+                                "x": 1.4351,
+                                "y": 0.6985
+                            },
+                            "uuid": "59429fd6-6091-44c9-9523-a8adc4ba1bbe"
+                        },
+                        {
+                            "description": "Symbol U3 Pin 2 [OUT, Output, Line]",
+                            "pos": {
+                                "x": 1.4351,
+                                "y": 0.6985
+                            },
+                            "uuid": "59429fd6-6091-44c9-9523-a8adc4ba1bbe"
+                        }
+                    ],
+                    "severity": "error",
+                    "type": "pin_to_pin"
+                }
+            ]
+        },
+        {
+            "path": "/SubSheet1/Subsheet_1_1/",
+            "uuid_path": "/30037e9f-fb8a-4b65-9af4-98689a2fae61/48e5c29d-dae7-410f-a801-6c402cc42990/0203a5e0-a22b-467e-bbd1-13728dd7050e",
+            "violations": [
+                {
+                    "description": "Pins of type Output and Output are connected",
+                    "items": [
+                        {
+                            "description": "Symbol U4 Pin 2 [OUT, Output, Line]",
+                            "pos": {
+                                "x": 1.0541,
+                                "y": 0.4699
+                            },
+                            "uuid": "e707f010-d34a-44d3-8c9b-00dd66344fb6"
+                        },
+                        {
+                            "description": "Symbol U4 Pin 2 [OUT, Output, Line]",
+                            "pos": {
+                                "x": 1.0541,
+                                "y": 0.4699
+                            },
+                            "uuid": "e707f010-d34a-44d3-8c9b-00dd66344fb6"
+                        }
+                    ],
+                    "severity": "error",
+                    "type": "pin_to_pin"
+                }
+            ]
+        },
+        {
+            "path": "/SubSheet2/",
+            "uuid_path": "/30037e9f-fb8a-4b65-9af4-98689a2fae61/745d7512-5b57-4355-bb9c-332f95478133",
+            "violations": []
+        },
+        {
+            "path": "/SubSheet2/Subsheet_1_2/",
+            "uuid_path": "/30037e9f-fb8a-4b65-9af4-98689a2fae61/745d7512-5b57-4355-bb9c-332f95478133/efd6cf1d-46e4-43a3-833d-ac2e75973904",
+            "violations": []
+        },
+        {
+            "path": "/SubSheet2/Subsheet_1_1/",
+            "uuid_path": "/30037e9f-fb8a-4b65-9af4-98689a2fae61/745d7512-5b57-4355-bb9c-332f95478133/0203a5e0-a22b-467e-bbd1-13728dd7050e",
+            "violations": [
+                {
+                    "description": "Pins of type Output and Output are connected",
+                    "items": [
+                        {
+                            "description": "Symbol U4 Pin 2 [OUT, Output, Line]",
+                            "pos": {
+                                "x": 1.0541,
+                                "y": 0.4699
+                            },
+                            "uuid": "e707f010-d34a-44d3-8c9b-00dd66344fb6"
+                        },
+                        {
+                            "description": "Symbol U4 Pin 2 [OUT, Output, Line]",
+                            "pos": {
+                                "x": 1.0541,
+                                "y": 0.4699
+                            },
+                            "uuid": "e707f010-d34a-44d3-8c9b-00dd66344fb6"
+                        }
+                    ],
+                    "severity": "error",
+                    "type": "pin_to_pin"
+                }
+            ]
+        }
+    ],
+    "source": "issue10926_1.kicad_sch"
+}

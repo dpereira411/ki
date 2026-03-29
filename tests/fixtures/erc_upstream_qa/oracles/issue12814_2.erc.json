@@ -1,0 +1,172 @@
+{
+    "$schema": "https://schemas.kicad.org/erc.v1.json",
+    "coordinate_units": "mm",
+    "date": "2026-03-29T23:05:06",
+    "ignored_checks": [
+        {
+            "description": "Global label only appears once in the schematic",
+            "key": "single_global_label"
+        },
+        {
+            "description": "Four connection points are joined together",
+            "key": "four_way_junction"
+        },
+        {
+            "description": "SPICE model issue",
+            "key": "simulation_model_issue"
+        },
+        {
+            "description": "Assigned footprint doesn't match footprint filters",
+            "key": "footprint_filter"
+        }
+    ],
+    "included_severities": [
+        "error",
+        "warning"
+    ],
+    "kicad_version": "10.0.0",
+    "sheets": [
+        {
+            "path": "/",
+            "uuid_path": "/6872e4bc-16cd-41ca-a040-4bec79014681",
+            "violations": [
+                {
+                    "description": "Hierarchical label 'A[0..2]' in root sheet cannot be connected to non-existent parent sheet",
+                    "items": [
+                        {
+                            "description": "Hierarchical Label 'A[0..2]'",
+                            "pos": {
+                                "x": 0.8636,
+                                "y": 0.6477
+                            },
+                            "uuid": "1b9b23a3-d7af-4acb-86ce-d2c3b62d2ba8"
+                        }
+                    ],
+                    "severity": "error",
+                    "type": "pin_not_connected"
+                },
+                {
+                    "description": "Input pin not driven by any Output pins",
+                    "items": [
+                        {
+                            "description": "Symbol U2 Pin 1 [A0, Input, Line]",
+                            "pos": {
+                                "x": 1.3335,
+                                "y": 0.9144
+                            },
+                            "uuid": "418f8854-e299-411f-bc00-aa978e2976f0"
+                        }
+                    ],
+                    "severity": "error",
+                    "type": "pin_not_driven"
+                },
+                {
+                    "description": "Input pin not driven by any Output pins",
+                    "items": [
+                        {
+                            "description": "Symbol U2 Pin 2 [A1, Input, Line]",
+                            "pos": {
+                                "x": 1.3335,
+                                "y": 0.9398
+                            },
+                            "uuid": "b6752884-b0a3-42ea-8c61-6b4e68d40e0b"
+                        }
+                    ],
+                    "severity": "error",
+                    "type": "pin_not_driven"
+                },
+                {
+                    "description": "Input pin not driven by any Output pins",
+                    "items": [
+                        {
+                            "description": "Symbol U2 Pin 3 [A2, Input, Line]",
+                            "pos": {
+                                "x": 1.3335,
+                                "y": 0.9652
+                            },
+                            "uuid": "ed3b1501-f406-4330-89ab-bcaa4444ad54"
+                        }
+                    ],
+                    "severity": "error",
+                    "type": "pin_not_driven"
+                },
+                {
+                    "description": "Input Power pin not driven by any Output Power pins",
+                    "items": [
+                        {
+                            "description": "Symbol U2 Pin 16 [VCC, Power input, Line]",
+                            "pos": {
+                                "x": 1.4605,
+                                "y": 0.8382
+                            },
+                            "uuid": "86fc53bf-2703-40fe-806a-871398fe76aa"
+                        }
+                    ],
+                    "severity": "error",
+                    "type": "power_pin_not_driven"
+                },
+                {
+                    "description": "Label connected to only one pin",
+                    "items": [
+                        {
+                            "description": "Label 'A0'",
+                            "pos": {
+                                "x": 1.3335,
+                                "y": 0.9144
+                            },
+                            "uuid": "e96f1529-2a0f-421f-814b-f555d9bb351d"
+                        }
+                    ],
+                    "severity": "warning",
+                    "type": "isolated_pin_label"
+                },
+                {
+                    "description": "Label connected to only one pin",
+                    "items": [
+                        {
+                            "description": "Label 'A1'",
+                            "pos": {
+                                "x": 1.3335,
+                                "y": 0.9398
+                            },
+                            "uuid": "282c151e-75dd-4c68-b308-00699e2a9d59"
+                        }
+                    ],
+                    "severity": "warning",
+                    "type": "isolated_pin_label"
+                },
+                {
+                    "description": "Label connected to only one pin",
+                    "items": [
+                        {
+                            "description": "Label 'A2'",
+                            "pos": {
+                                "x": 1.3335,
+                                "y": 0.9652
+                            },
+                            "uuid": "e3c46e1d-1eb0-4b43-b9e8-e8ed1cf471bd"
+                        }
+                    ],
+                    "severity": "warning",
+                    "type": "isolated_pin_label"
+                },
+                {
+                    "description": "Symbol 'VCC' doesn't match copy in library 'power'",
+                    "items": [
+                        {
+                            "description": "Symbol #PWR05 [VCC]",
+                            "pos": {
+                                "x": 1.4605,
+                                "y": 0.8382
+                            },
+                            "uuid": "2cfafb54-44b2-4d23-8777-6a5aea97f1be"
+                        }
+                    ],
+                    "severity": "warning",
+                    "type": "lib_symbol_mismatch"
+                }
+            ]
+        }
+    ],
+    "source": "issue12814_2.kicad_sch"
+}

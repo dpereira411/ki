@@ -1,0 +1,8 @@
+(kicad_sch
+  (version 20260101)
+  (generator "eeschema")
+  (uuid "invalid-text-box-exclude-from-sim-root")
+  (paper "A4")
+  (text_box "X" (at 0 0 0) (size 10 10) (exclude_from_sim maybe) (effects (font (size 1.27 1.27))) (uuid "tb1"))
+  (sheet_instances
+    (path "/" (page "1"))))

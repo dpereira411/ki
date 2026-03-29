@@ -1,0 +1,13 @@
+{
+  "meta": {
+    "filename": "top.kicad_pro",
+    "version": 1
+  },
+  "schematic": {
+    "erc": {
+      "severity": {
+        "duplicate_sheet_names": "warning"
+      }
+    }
+  }
+}

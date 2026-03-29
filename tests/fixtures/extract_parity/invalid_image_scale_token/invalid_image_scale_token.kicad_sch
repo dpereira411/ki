@@ -1,0 +1,17 @@
+(kicad_sch
+  (version 20260101)
+  (generator "eeschema")
+  (generator_version "10.0")
+  (uuid "c1dfbc22-7d69-4708-9f62-0a6b1cc3f001")
+  (paper "A4")
+  (image (at 246.38 33.02)
+      (scale nope)
+      (uuid bfa2aa0c-8730-4906-9ef4-dba33beae055)
+      (data
+        iVBORw0KGgoAAAANSUhEUgAAAzIAAAHcCAIAAACChgihAAAAA3NCSVQICAjb4U/gAAAgAElEQVR4
+        nOy9TY/bWJrv+bBRqwsMxov8ANNVpN02HJtaZI0Yy0bmjBQxgG6hS5sCnIoLDNW56WCgEAkkEEah
+        4AASU0JNSL2YvCIGbdlAbJSTtwJIh4SpRK0aZtysRQODMOy2yar+ArnQxd30xslZ8EWHr6L4eij9
+        fwjY0uHh4cPDw8O/nvMcHmG5XBLR9fU1AQAAAAAQHRwcZNntW/XO8N6//OHTHxdsTlnlcsiPvE9/
+        /dd/XaMdA))
+  (sheet_instances
+    (path "/" (page "1"))))

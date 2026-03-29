@@ -1,0 +1,97 @@
+{
+    "$schema": "https://schemas.kicad.org/erc.v1.json",
+    "coordinate_units": "mm",
+    "date": "2026-03-29T23:05:51",
+    "ignored_checks": [
+        {
+            "description": "Global label only appears once in the schematic",
+            "key": "single_global_label"
+        },
+        {
+            "description": "Four connection points are joined together",
+            "key": "four_way_junction"
+        },
+        {
+            "description": "SPICE model issue",
+            "key": "simulation_model_issue"
+        },
+        {
+            "description": "Assigned footprint doesn't match footprint filters",
+            "key": "footprint_filter"
+        }
+    ],
+    "included_severities": [
+        "error",
+        "warning"
+    ],
+    "kicad_version": "10.0.0",
+    "sheets": [
+        {
+            "path": "/",
+            "uuid_path": "/56911776-5665-445b-84ec-e9743211e9fd",
+            "violations": [
+                {
+                    "description": "Netclass Test is not defined",
+                    "items": [
+                        {
+                            "description": "Directive Label [Net Class Test]",
+                            "pos": {
+                                "x": 0.2794,
+                                "y": 0.254
+                            },
+                            "uuid": "a7196109-ad2d-4116-b1cb-55b95c867a55"
+                        }
+                    ],
+                    "severity": "error",
+                    "type": "undefined_netclass"
+                },
+                {
+                    "description": "Pin not connected",
+                    "items": [
+                        {
+                            "description": "Symbol J1 Pin 2 [Pin_2, Passive, Line]",
+                            "pos": {
+                                "x": 0.508,
+                                "y": 0.5334
+                            },
+                            "uuid": "d1c21d77-eef2-4cb2-8f4c-1ded3e57ae3d"
+                        }
+                    ],
+                    "severity": "error",
+                    "type": "pin_not_connected"
+                },
+                {
+                    "description": "Input Power pin not driven by any Output Power pins",
+                    "items": [
+                        {
+                            "description": "Symbol #PWR02 Pin 1 [Power input, Line]",
+                            "pos": {
+                                "x": 0.5334,
+                                "y": 0.5842
+                            },
+                            "uuid": "2978b747-0096-4ef1-8af3-a2ca330fece1"
+                        }
+                    ],
+                    "severity": "error",
+                    "type": "power_pin_not_driven"
+                },
+                {
+                    "description": "Input Power pin not driven by any Output Power pins",
+                    "items": [
+                        {
+                            "description": "Symbol #PWR01 Pin 1 [Power input, Line]",
+                            "pos": {
+                                "x": 1.016,
+                                "y": 0.2794
+                            },
+                            "uuid": "dc5d7c59-3d87-44d0-8f96-ccf01a1e6224"
+                        }
+                    ],
+                    "severity": "error",
+                    "type": "power_pin_not_driven"
+                }
+            ]
+        }
+    ],
+    "source": "test.kicad_sch"
+}

@@ -1,0 +1,7 @@
+(kicad_sch
+  (version 20260101)
+  (generator "eeschema")
+  (uuid "root-uuid")
+  (paper "A4")
+  (polyline (pts (xy 0 0) (xy 10 0)) (fill foo))
+  (sheet_instances (path "/" (page "1"))))

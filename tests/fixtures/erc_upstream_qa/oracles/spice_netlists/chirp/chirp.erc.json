@@ -1,0 +1,52 @@
+{
+    "$schema": "https://schemas.kicad.org/erc.v1.json",
+    "coordinate_units": "mm",
+    "date": "2026-03-29T23:08:03",
+    "ignored_checks": [
+        {
+            "description": "Global label only appears once in the schematic",
+            "key": "single_global_label"
+        },
+        {
+            "description": "Four connection points are joined together",
+            "key": "four_way_junction"
+        },
+        {
+            "description": "SPICE model issue",
+            "key": "simulation_model_issue"
+        },
+        {
+            "description": "Assigned footprint doesn't match footprint filters",
+            "key": "footprint_filter"
+        }
+    ],
+    "included_severities": [
+        "error",
+        "warning"
+    ],
+    "kicad_version": "10.0.0",
+    "sheets": [
+        {
+            "path": "/",
+            "uuid_path": "/eb2ce6e2-4c97-4068-82f1-b3ad4f047462",
+            "violations": [
+                {
+                    "description": "The current configuration does not include the symbol library 'pspice'",
+                    "items": [
+                        {
+                            "description": "Symbol V1 [VSOURCE]",
+                            "pos": {
+                                "x": 1.651,
+                                "y": 1.1938
+                            },
+                            "uuid": "b47ba90e-d24f-47fa-967d-97f9b9ef4e05"
+                        }
+                    ],
+                    "severity": "warning",
+                    "type": "lib_symbol_issues"
+                }
+            ]
+        }
+    ],
+    "source": "chirp.kicad_sch"
+}

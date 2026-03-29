@@ -1,0 +1,90 @@
+{
+    "$schema": "https://schemas.kicad.org/erc.v1.json",
+    "coordinate_units": "mm",
+    "date": "2026-03-28T23:21:54",
+    "ignored_checks": [
+        {
+            "description": "Global label only appears once in the schematic",
+            "key": "single_global_label"
+        },
+        {
+            "description": "Four connection points are joined together",
+            "key": "four_way_junction"
+        },
+        {
+            "description": "SPICE model issue",
+            "key": "simulation_model_issue"
+        },
+        {
+            "description": "Assigned footprint doesn't match footprint filters",
+            "key": "footprint_filter"
+        }
+    ],
+    "included_severities": [
+        "error",
+        "warning"
+    ],
+    "kicad_version": "10.0.0",
+    "sheets": [
+        {
+            "path": "/",
+            "uuid_path": "/b405af7a-f4af-42c1-af44-f0ddb44d1008",
+            "violations": [
+                {
+                    "description": "Pin not connected",
+                    "items": [
+                        {
+                            "description": "Symbol TP1 Pin 1 [Passive, Line]",
+                            "pos": {
+                                "x": 0.508,
+                                "y": 0.508
+                            },
+                            "uuid": "8985b34d-2196-469d-9043-8e9042c1bac0"
+                        }
+                    ],
+                    "severity": "error",
+                    "type": "pin_not_connected"
+                },
+                {
+                    "description": "The current configuration does not include the symbol library 'MissingLib'",
+                    "items": [
+                        {
+                            "description": "Symbol TP1 [Probe]",
+                            "pos": {
+                                "x": 0.508,
+                                "y": 0.508
+                            },
+                            "uuid": "676afc6e-72e7-469f-a3a2-298162d29518"
+                        }
+                    ],
+                    "severity": "warning",
+                    "type": "lib_symbol_issues"
+                },
+                {
+                    "description": "Field name has leading or trailing whitespace: ' Custom '",
+                    "items": [
+                        {
+                            "description": "Symbol TP1 [Probe]",
+                            "pos": {
+                                "x": 0.508,
+                                "y": 0.508
+                            },
+                            "uuid": "676afc6e-72e7-469f-a3a2-298162d29518"
+                        },
+                        {
+                            "description": "Field  Custom  'abc'",
+                            "pos": {
+                                "x": 0.508,
+                                "y": 0.5334
+                            },
+                            "uuid": "ba7c45a0-5209-4e0a-8035-f4ea58e13bb8"
+                        }
+                    ],
+                    "severity": "warning",
+                    "type": "field_name_whitespace"
+                }
+            ]
+        }
+    ],
+    "source": "field_name_whitespace.kicad_sch"
+}

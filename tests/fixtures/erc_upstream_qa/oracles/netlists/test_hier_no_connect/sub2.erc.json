@@ -1,0 +1,97 @@
+{
+    "$schema": "https://schemas.kicad.org/erc.v1.json",
+    "coordinate_units": "mm",
+    "date": "2026-03-29T23:07:22",
+    "ignored_checks": [
+        {
+            "description": "Global label only appears once in the schematic",
+            "key": "single_global_label"
+        },
+        {
+            "description": "Four connection points are joined together",
+            "key": "four_way_junction"
+        },
+        {
+            "description": "SPICE model issue",
+            "key": "simulation_model_issue"
+        },
+        {
+            "description": "Assigned footprint doesn't match footprint filters",
+            "key": "footprint_filter"
+        }
+    ],
+    "included_severities": [
+        "error",
+        "warning"
+    ],
+    "kicad_version": "10.0.0",
+    "sheets": [
+        {
+            "path": "/",
+            "uuid_path": "/5c9be1c7-6a4a-4df0-812c-39a920083d04",
+            "violations": [
+                {
+                    "description": "Hierarchical label 'PIN' in root sheet cannot be connected to non-existent parent sheet",
+                    "items": [
+                        {
+                            "description": "Hierarchical Label 'PIN'",
+                            "pos": {
+                                "x": 1.27,
+                                "y": 0.6731
+                            },
+                            "uuid": "5d1eea2c-2dae-4a71-9b12-abef5a05334a"
+                        }
+                    ],
+                    "severity": "error",
+                    "type": "pin_not_connected"
+                },
+                {
+                    "description": "Input pin not driven by any Output pins",
+                    "items": [
+                        {
+                            "description": "Symbol U1 Pin 1 [PIN, Input, Line]",
+                            "pos": {
+                                "x": 1.3081,
+                                "y": 0.6731
+                            },
+                            "uuid": "53113259-0a12-4b72-8ad5-4f1195c2f58d"
+                        }
+                    ],
+                    "severity": "error",
+                    "type": "pin_not_driven"
+                },
+                {
+                    "description": "Label connected to only one pin",
+                    "items": [
+                        {
+                            "description": "Hierarchical Label 'PIN'",
+                            "pos": {
+                                "x": 1.27,
+                                "y": 0.6731
+                            },
+                            "uuid": "5d1eea2c-2dae-4a71-9b12-abef5a05334a"
+                        }
+                    ],
+                    "severity": "warning",
+                    "type": "isolated_pin_label"
+                },
+                {
+                    "description": "The current configuration does not include the symbol library 'TEST_LIB'",
+                    "items": [
+                        {
+                            "description": "Symbol U1 [TEST_SINGLE]",
+                            "pos": {
+                                "x": 1.3081,
+                                "y": 0.635
+                            },
+                            "uuid": "4de6e629-b0b3-4928-9859-b3e6bfe3cfc6"
+                        }
+                    ],
+                    "severity": "warning",
+                    "type": "lib_symbol_issues"
+                }
+            ]
+        }
+    ],
+    "source": "sub2.kicad_sch"
+}

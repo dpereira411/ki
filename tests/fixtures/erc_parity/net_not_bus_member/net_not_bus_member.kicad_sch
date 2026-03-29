@@ -1,0 +1,33 @@
+(kicad_sch
+  (version 20241209)
+  (generator "eeschema")
+  (generator_version "9.0")
+  (uuid "58585858-5858-5858-5858-585858585858")
+  (paper "A4")
+  (bus_entry
+    (at 76.2 50.8)
+    (size 2.54 2.54)
+    (stroke (width 0) (type default))
+    (uuid "be1"))
+  (bus
+    (pts (xy 50.8 50.8) (xy 76.2 50.8))
+    (stroke (width 0) (type default))
+    (uuid "bus-1"))
+  (bus
+    (pts (xy 76.2 50.8) (xy 76.2 63.5))
+    (stroke (width 0) (type default))
+    (uuid "bus-2"))
+  (wire
+    (pts (xy 78.74 53.34) (xy 91.44 53.34))
+    (stroke (width 0) (type default))
+    (uuid "wire-1"))
+  (label "A[1..2]"
+    (at 55.88 50.8 0)
+    (effects (font (size 1.27 1.27)) (justify left bottom))
+    (uuid "label-bus"))
+  (label "SIG"
+    (at 88.9 53.34 0)
+    (effects (font (size 1.27 1.27)) (justify left bottom))
+    (uuid "label-net"))
+  (sheet_instances (path "/" (page "1")))
+  (embedded_fonts no))

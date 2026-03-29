@@ -1,0 +1,12 @@
+(kicad_sch
+  (version 20260101)
+  (generator "eeschema")
+  (uuid "root-uuid")
+  (paper "A4")
+  (text_box "hello"
+    (at 10 10 0)
+    (size 5 5)
+    (start 10 10 5)
+    (effects (font (size 1.27 1.27))))
+  (sheet_instances
+    (path "/" (page "1"))))

@@ -1,0 +1,143 @@
+{
+    "$schema": "https://schemas.kicad.org/erc.v1.json",
+    "coordinate_units": "mm",
+    "date": "2026-03-29T23:06:16",
+    "ignored_checks": [
+        {
+            "description": "Global label only appears once in the schematic",
+            "key": "single_global_label"
+        },
+        {
+            "description": "Four connection points are joined together",
+            "key": "four_way_junction"
+        },
+        {
+            "description": "SPICE model issue",
+            "key": "simulation_model_issue"
+        },
+        {
+            "description": "Assigned footprint doesn't match footprint filters",
+            "key": "footprint_filter"
+        }
+    ],
+    "included_severities": [
+        "error",
+        "warning"
+    ],
+    "kicad_version": "10.0.0",
+    "sheets": [
+        {
+            "path": "/",
+            "uuid_path": "/776ab682-a66a-485f-8b01-1127e87612ac",
+            "violations": [
+                {
+                    "description": "Pin not connected",
+                    "items": [
+                        {
+                            "description": "Symbol U1 Hidden pin 4 [OUT, Power output, Line]",
+                            "pos": {
+                                "x": 1.3208,
+                                "y": 0.6096
+                            },
+                            "uuid": "76070fa9-9db9-488d-bb5e-f9c620bc3165"
+                        }
+                    ],
+                    "severity": "error",
+                    "type": "pin_not_connected"
+                },
+                {
+                    "description": "Pins of type Power output and Power output are connected",
+                    "items": [
+                        {
+                            "description": "Symbol U2 Pin 1 [OUT, Power output, Line]",
+                            "pos": {
+                                "x": 1.8034,
+                                "y": 0.6477
+                            },
+                            "uuid": "499c3ce2-8623-4702-8d3d-ba22dca99abe"
+                        },
+                        {
+                            "description": "Symbol U3 Pin 1 [OUT, Power output, Line]",
+                            "pos": {
+                                "x": 1.8034,
+                                "y": 0.6477
+                            },
+                            "uuid": "8979fc38-5fcb-4c8b-b8ff-5d8aea89a5bf"
+                        }
+                    ],
+                    "severity": "error",
+                    "type": "pin_to_pin"
+                },
+                {
+                    "description": "Pins of type Power output and Power output are connected",
+                    "items": [
+                        {
+                            "description": "Symbol U2 Hidden pin 4 [OUT, Power output, Line]",
+                            "pos": {
+                                "x": 1.8034,
+                                "y": 0.6477
+                            },
+                            "uuid": "b4e07af1-94f6-4b5a-b35b-9f31fd85273f"
+                        },
+                        {
+                            "description": "Symbol U3 Pin 1 [OUT, Power output, Line]",
+                            "pos": {
+                                "x": 1.8034,
+                                "y": 0.6477
+                            },
+                            "uuid": "8979fc38-5fcb-4c8b-b8ff-5d8aea89a5bf"
+                        }
+                    ],
+                    "severity": "error",
+                    "type": "pin_to_pin"
+                },
+                {
+                    "description": "Symbol 'LP3982ILD-3.3' doesn't match copy in library 'Regulator_Linear'",
+                    "items": [
+                        {
+                            "description": "Symbol U1 [LP3982ILD-3.3]",
+                            "pos": {
+                                "x": 1.2192,
+                                "y": 0.635
+                            },
+                            "uuid": "98cdeafb-9fec-4cb2-b0e0-dd01c8d9a0e6"
+                        }
+                    ],
+                    "severity": "warning",
+                    "type": "lib_symbol_mismatch"
+                },
+                {
+                    "description": "Symbol 'LP3982ILD-3.3' doesn't match copy in library 'Regulator_Linear'",
+                    "items": [
+                        {
+                            "description": "Symbol U2 [LP3982ILD-3.3]",
+                            "pos": {
+                                "x": 1.7018,
+                                "y": 0.6731
+                            },
+                            "uuid": "91b2a5ec-3c62-4238-9d23-edd2113e4ace"
+                        }
+                    ],
+                    "severity": "warning",
+                    "type": "lib_symbol_mismatch"
+                },
+                {
+                    "description": "Symbol 'LP3982ILD-3.3' doesn't match copy in library 'Regulator_Linear'",
+                    "items": [
+                        {
+                            "description": "Symbol U3 [LP3982ILD-3.3]",
+                            "pos": {
+                                "x": 1.905,
+                                "y": 0.6223
+                            },
+                            "uuid": "ec75eb37-1e9e-4445-af6e-4e1214099824"
+                        }
+                    ],
+                    "severity": "warning",
+                    "type": "lib_symbol_mismatch"
+                }
+            ]
+        }
+    ],
+    "source": "issue6588.kicad_sch"
+}

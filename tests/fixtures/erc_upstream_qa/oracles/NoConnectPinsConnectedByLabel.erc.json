@@ -1,0 +1,60 @@
+{
+    "$schema": "https://schemas.kicad.org/erc.v1.json",
+    "coordinate_units": "mm",
+    "date": "2026-03-29T23:04:38",
+    "ignored_checks": [
+        {
+            "description": "Global label only appears once in the schematic",
+            "key": "single_global_label"
+        },
+        {
+            "description": "Four connection points are joined together",
+            "key": "four_way_junction"
+        },
+        {
+            "description": "SPICE model issue",
+            "key": "simulation_model_issue"
+        },
+        {
+            "description": "Assigned footprint doesn't match footprint filters",
+            "key": "footprint_filter"
+        }
+    ],
+    "included_severities": [
+        "error",
+        "warning"
+    ],
+    "kicad_version": "10.0.0",
+    "sheets": [
+        {
+            "path": "/",
+            "uuid_path": "/0f9e1d66-b8ed-495e-9f18-8de0c9aeaa30",
+            "violations": [
+                {
+                    "description": "A pin with a \"no connection\" flag is connected",
+                    "items": [
+                        {
+                            "description": "Symbol TP2 Pin 1 [1, Passive, Line]",
+                            "pos": {
+                                "x": 0.4445,
+                                "y": 0.2286
+                            },
+                            "uuid": "48f406e8-2d99-4dde-9e9a-0fa75fb3df24"
+                        },
+                        {
+                            "description": "No Connect",
+                            "pos": {
+                                "x": 0.2921,
+                                "y": 0.2921
+                            },
+                            "uuid": "cdfb9b52-55cd-430a-8376-4fa8cc3718b3"
+                        }
+                    ],
+                    "severity": "warning",
+                    "type": "no_connect_connected"
+                }
+            ]
+        }
+    ],
+    "source": "NoConnectPinsConnectedByLabel.kicad_sch"
+}

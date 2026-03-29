@@ -1,0 +1,4 @@
+(sym_lib_table
+  (version 7)
+  (lib (name "OnePin") (type "KiCad") (uri "${KIPRJMOD}/OnePin.kicad_sym") (options "") (descr "autoload fixture"))
+)

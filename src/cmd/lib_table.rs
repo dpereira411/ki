@@ -4,7 +4,7 @@ use kiutils_rs::{
 use serde::Serialize;
 
 use crate::error::KiError;
-use crate::output::{self, Flags, OutputFormat, SCHEMA_VERSION};
+use crate::output::{self, CommandResponse, Flags, SCHEMA_VERSION};
 
 enum LibTableFile {
     Symbol(SymLibTableDocument),
@@ -66,46 +66,53 @@ struct LibTableInspectDto {
     disabled_library_count: usize,
     libraries: Vec<LibraryDto>,
     diagnostics: Vec<DiagnosticDto>,
+    path: String,
+}
+
+impl CommandResponse for LibTableInspectDto {
+    fn render_text(&self) {
+        println!("{}-lib-table: {}", self.table_type, self.path);
+        println!(
+            "  libraries: {} ({} disabled)",
+            self.library_count, self.disabled_library_count
+        );
+        for l in &self.libraries {
+            let name = l.name.as_deref().unwrap_or("?");
+            let uri = l.uri.as_deref().unwrap_or("?");
+            let dis = if l.disabled { " [disabled]" } else { "" };
+            println!("    {name}{dis}: {uri}");
+        }
+    }
 }
 
 pub fn inspect(path: &str, flags: &Flags) -> Result<(), KiError> {
     match LibTableFile::read(path)? {
         LibTableFile::Symbol(doc) => {
             let ast = doc.ast();
+            let libs: Vec<_> = ast
+                .libraries
+                .iter()
+                .map(|l| LibraryDto {
+                    name: l.name.clone(),
+                    uri: l.uri.clone(),
+                    library_type: l.library_type.clone(),
+                    disabled: l.disabled,
+                    descr: l.descr.clone(),
+                })
+                .collect();
 
-            if flags.format == OutputFormat::Json {
-                let libs: Vec<_> = ast
-                    .libraries
-                    .iter()
-                    .map(|l| LibraryDto {
-                        name: l.name.clone(),
-                        uri: l.uri.clone(),
-                        library_type: l.library_type.clone(),
-                        disabled: l.disabled,
-                        descr: l.descr.clone(),
-                    })
-                    .collect();
-                output::print_json(&LibTableInspectDto {
+            output::handle_output(
+                &LibTableInspectDto {
                     schema_version: SCHEMA_VERSION,
                     table_type: "symbol".to_string(),
                     library_count: ast.library_count,
                     disabled_library_count: ast.disabled_library_count,
                     libraries: libs,
                     diagnostics: diags_to_dto(doc.diagnostics()),
-                })?;
-            } else {
-                println!("sym-lib-table: {path}");
-                println!(
-                    "  libraries: {} ({} disabled)",
-                    ast.library_count, ast.disabled_library_count
-                );
-                for l in &ast.libraries {
-                    let name = l.name.as_deref().unwrap_or("?");
-                    let uri = l.uri.as_deref().unwrap_or("?");
-                    let dis = if l.disabled { " [disabled]" } else { "" };
-                    println!("    {name}{dis}: {uri}");
-                }
-            }
+                    path: path.to_string(),
+                },
+                flags,
+            )?;
 
             let had_diags = output::handle_diagnostics(doc.diagnostics(), flags);
             if had_diags {
@@ -114,40 +121,30 @@ pub fn inspect(path: &str, flags: &Flags) -> Result<(), KiError> {
         }
         LibTableFile::Footprint(doc) => {
             let ast = doc.ast();
+            let libs: Vec<_> = ast
+                .libraries
+                .iter()
+                .map(|l| LibraryDto {
+                    name: l.name.clone(),
+                    uri: l.uri.clone(),
+                    library_type: l.library_type.clone(),
+                    disabled: l.disabled,
+                    descr: l.descr.clone(),
+                })
+                .collect();
 
-            if flags.format == OutputFormat::Json {
-                let libs: Vec<_> = ast
-                    .libraries
-                    .iter()
-                    .map(|l| LibraryDto {
-                        name: l.name.clone(),
-                        uri: l.uri.clone(),
-                        library_type: l.library_type.clone(),
-                        disabled: l.disabled,
-                        descr: l.descr.clone(),
-                    })
-                    .collect();
-                output::print_json(&LibTableInspectDto {
+            output::handle_output(
+                &LibTableInspectDto {
                     schema_version: SCHEMA_VERSION,
                     table_type: "footprint".to_string(),
                     library_count: ast.library_count,
                     disabled_library_count: ast.disabled_library_count,
                     libraries: libs,
                     diagnostics: diags_to_dto(doc.diagnostics()),
-                })?;
-            } else {
-                println!("fp-lib-table: {path}");
-                println!(
-                    "  libraries: {} ({} disabled)",
-                    ast.library_count, ast.disabled_library_count
-                );
-                for l in &ast.libraries {
-                    let name = l.name.as_deref().unwrap_or("?");
-                    let uri = l.uri.as_deref().unwrap_or("?");
-                    let dis = if l.disabled { " [disabled]" } else { "" };
-                    println!("    {name}{dis}: {uri}");
-                }
-            }
+                    path: path.to_string(),
+                },
+                flags,
+            )?;
 
             let had_diags = output::handle_diagnostics(doc.diagnostics(), flags);
             if had_diags {
@@ -166,58 +163,83 @@ struct LibTableOkDto {
     uri: Option<String>,
     from: Option<String>,
     to: Option<String>,
+    action: &'static str,
+}
+
+impl CommandResponse for LibTableOkDto {
+    fn render_text(&self) {
+        match self.action {
+            "add" => {
+                println!(
+                    "ok: added library {:?} -> {:?}",
+                    self.name.as_deref().unwrap_or("?"),
+                    self.uri.as_deref().unwrap_or("?")
+                );
+            }
+            "rename" => {
+                println!(
+                    "ok: renamed library {:?} -> {:?}",
+                    self.from.as_deref().unwrap_or("?"),
+                    self.to.as_deref().unwrap_or("?")
+                );
+            }
+            _ => {}
+        }
+    }
 }
 
 pub fn add(path: &str, name: &str, uri: &str, flags: &Flags) -> Result<(), KiError> {
     match LibTableFile::read(path)? {
         LibTableFile::Symbol(mut doc) => {
             doc.add_library(name, uri);
-            doc.write(path).map_err(|e| KiError::Message(e.to_string()))?;
+            doc.write(path)
+                .map_err(|e| KiError::Message(e.to_string()))?;
         }
         LibTableFile::Footprint(mut doc) => {
             doc.add_library(name, uri);
-            doc.write(path).map_err(|e| KiError::Message(e.to_string()))?;
+            doc.write(path)
+                .map_err(|e| KiError::Message(e.to_string()))?;
         }
     }
 
-    if flags.format == OutputFormat::Json {
-        output::print_json(&LibTableOkDto {
+    output::handle_output(
+        &LibTableOkDto {
             schema_version: SCHEMA_VERSION,
             ok: true,
             name: Some(name.to_string()),
             uri: Some(uri.to_string()),
             from: None,
             to: None,
-        })?;
-    } else {
-        println!("ok: added library {name:?} -> {uri:?}");
-    }
-    Ok(())
+            action: "add",
+        },
+        flags,
+    )
 }
 
 pub fn rename(path: &str, from: &str, to: &str, flags: &Flags) -> Result<(), KiError> {
     match LibTableFile::read(path)? {
         LibTableFile::Symbol(mut doc) => {
             doc.rename_library(from, to);
-            doc.write(path).map_err(|e| KiError::Message(e.to_string()))?;
+            doc.write(path)
+                .map_err(|e| KiError::Message(e.to_string()))?;
         }
         LibTableFile::Footprint(mut doc) => {
             doc.rename_library(from, to);
-            doc.write(path).map_err(|e| KiError::Message(e.to_string()))?;
+            doc.write(path)
+                .map_err(|e| KiError::Message(e.to_string()))?;
         }
     }
 
-    if flags.format == OutputFormat::Json {
-        output::print_json(&LibTableOkDto {
+    output::handle_output(
+        &LibTableOkDto {
             schema_version: SCHEMA_VERSION,
             ok: true,
             name: None,
             uri: None,
             from: Some(from.to_string()),
             to: Some(to.to_string()),
-        })?;
-    } else {
-        println!("ok: renamed library {from:?} -> {to:?}");
-    }
-    Ok(())
+            action: "rename",
+        },
+        flags,
+    )
 }

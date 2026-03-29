@@ -1,0 +1,8 @@
+(kicad_sch
+  (version 20260101)
+  (generator "eeschema")
+  (uuid "invalid-bus-root")
+  (paper "A4")
+  (bus (pts (xy 0 0 0) (xy 10 0)) (stroke (width 0) (type default)) (uuid "b1"))
+  (sheet_instances
+    (path "/" (page "1"))))

@@ -1,0 +1,1522 @@
+{
+  "summary": {
+    "total": 189,
+    "success_with_json": 189,
+    "nonzero_exit": 0,
+    "missing_json": 0
+  },
+  "results": [
+    {
+      "file": "ERC_dynamic_power_symbol_test.kicad_sch",
+      "oracle_path": "oracles/ERC_dynamic_power_symbol_test.erc.json",
+      "exit_code": 0,
+      "json_exists": true,
+      "stderr": "",
+      "stdout": "Found 27 violations\nSaved ERC Report to tests/fixtures/erc_upstream_qa/oracles/ERC_dynamic_power_symbol_test.erc.json"
+    },
+    {
+      "file": "NoConnectOnLine.kicad_sch",
+      "oracle_path": "oracles/NoConnectOnLine.erc.json",
+      "exit_code": 0,
+      "json_exists": true,
+      "stderr": "",
+      "stdout": "Found 0 violations\nSaved ERC Report to tests/fixtures/erc_upstream_qa/oracles/NoConnectOnLine.erc.json"
+    },
+    {
+      "file": "NoConnectOnLineWithGlobalLabel.kicad_sch",
+      "oracle_path": "oracles/NoConnectOnLineWithGlobalLabel.erc.json",
+      "exit_code": 0,
+      "json_exists": true,
+      "stderr": "",
+      "stdout": "Found 1 violations\nSaved ERC Report to tests/fixtures/erc_upstream_qa/oracles/NoConnectOnLineWithGlobalLabel.erc.json"
+    },
+    {
+      "file": "NoConnectOnLineWithHierarchicalLabel.kicad_sch",
+      "oracle_path": "oracles/NoConnectOnLineWithHierarchicalLabel.erc.json",
+      "exit_code": 0,
+      "json_exists": true,
+      "stderr": "",
+      "stdout": "Found 3 violations\nSaved ERC Report to tests/fixtures/erc_upstream_qa/oracles/NoConnectOnLineWithHierarchicalLabel.erc.json"
+    },
+    {
+      "file": "NoConnectOnLineWithLabel.kicad_sch",
+      "oracle_path": "oracles/NoConnectOnLineWithLabel.erc.json",
+      "exit_code": 0,
+      "json_exists": true,
+      "stderr": "",
+      "stdout": "Found 1 violations\nSaved ERC Report to tests/fixtures/erc_upstream_qa/oracles/NoConnectOnLineWithLabel.erc.json"
+    },
+    {
+      "file": "NoConnectOnPin.kicad_sch",
+      "oracle_path": "oracles/NoConnectOnPin.erc.json",
+      "exit_code": 0,
+      "json_exists": true,
+      "stderr": "",
+      "stdout": "Found 0 violations\nSaved ERC Report to tests/fixtures/erc_upstream_qa/oracles/NoConnectOnPin.erc.json"
+    },
+    {
+      "file": "NoConnectPinsConnectedByLabel.kicad_sch",
+      "oracle_path": "oracles/NoConnectPinsConnectedByLabel.erc.json",
+      "exit_code": 0,
+      "json_exists": true,
+      "stderr": "",
+      "stdout": "Found 1 violations\nSaved ERC Report to tests/fixtures/erc_upstream_qa/oracles/NoConnectPinsConnectedByLabel.erc.json"
+    },
+    {
+      "file": "NoConnectPinsConnectedByLine.kicad_sch",
+      "oracle_path": "oracles/NoConnectPinsConnectedByLine.erc.json",
+      "exit_code": 0,
+      "json_exists": true,
+      "stderr": "",
+      "stdout": "Found 1 violations\nSaved ERC Report to tests/fixtures/erc_upstream_qa/oracles/NoConnectPinsConnectedByLine.erc.json"
+    },
+    {
+      "file": "erc_directive_label_not_connected.kicad_sch",
+      "oracle_path": "oracles/erc_directive_label_not_connected.erc.json",
+      "exit_code": 0,
+      "json_exists": true,
+      "stderr": "",
+      "stdout": "Found 3 violations\nSaved ERC Report to tests/fixtures/erc_upstream_qa/oracles/erc_directive_label_not_connected.erc.json"
+    },
+    {
+      "file": "erc_label_test.kicad_sch",
+      "oracle_path": "oracles/erc_label_test.erc.json",
+      "exit_code": 0,
+      "json_exists": true,
+      "stderr": "",
+      "stdout": "Found 7 violations\nSaved ERC Report to tests/fixtures/erc_upstream_qa/oracles/erc_label_test.erc.json"
+    },
+    {
+      "file": "erc_multiple_pin_to_pin.kicad_sch",
+      "oracle_path": "oracles/erc_multiple_pin_to_pin.erc.json",
+      "exit_code": 0,
+      "json_exists": true,
+      "stderr": "",
+      "stdout": "Found 4 violations\nSaved ERC Report to tests/fixtures/erc_upstream_qa/oracles/erc_multiple_pin_to_pin.erc.json"
+    },
+    {
+      "file": "erc_pin_not_connected_basic.kicad_sch",
+      "oracle_path": "oracles/erc_pin_not_connected_basic.erc.json",
+      "exit_code": 0,
+      "json_exists": true,
+      "stderr": "",
+      "stdout": "Found 2 violations\nSaved ERC Report to tests/fixtures/erc_upstream_qa/oracles/erc_pin_not_connected_basic.erc.json"
+    },
+    {
+      "file": "erc_test_dynamic_power_symbol_subsheet.kicad_sch",
+      "oracle_path": "oracles/erc_test_dynamic_power_symbol_subsheet.erc.json",
+      "exit_code": 0,
+      "json_exists": true,
+      "stderr": "",
+      "stdout": "Found 14 violations\nSaved ERC Report to tests/fixtures/erc_upstream_qa/oracles/erc_test_dynamic_power_symbol_subsheet.erc.json"
+    },
+    {
+      "file": "erc_wire_endpoints.kicad_sch",
+      "oracle_path": "oracles/erc_wire_endpoints.erc.json",
+      "exit_code": 0,
+      "json_exists": true,
+      "stderr": "",
+      "stdout": "Found 5 violations\nSaved ERC Report to tests/fixtures/erc_upstream_qa/oracles/erc_wire_endpoints.erc.json"
+    },
+    {
+      "file": "ground_pin_test_error.kicad_sch",
+      "oracle_path": "oracles/ground_pin_test_error.erc.json",
+      "exit_code": 0,
+      "json_exists": true,
+      "stderr": "",
+      "stdout": "Found 6 violations\nSaved ERC Report to tests/fixtures/erc_upstream_qa/oracles/ground_pin_test_error.erc.json"
+    },
+    {
+      "file": "ground_pin_test_mixed.kicad_sch",
+      "oracle_path": "oracles/ground_pin_test_mixed.erc.json",
+      "exit_code": 0,
+      "json_exists": true,
+      "stderr": "",
+      "stdout": "Found 3 violations\nSaved ERC Report to tests/fixtures/erc_upstream_qa/oracles/ground_pin_test_mixed.erc.json"
+    },
+    {
+      "file": "ground_pin_test_no_ground_net.kicad_sch",
+      "oracle_path": "oracles/ground_pin_test_no_ground_net.erc.json",
+      "exit_code": 0,
+      "json_exists": true,
+      "stderr": "",
+      "stdout": "Found 1 violations\nSaved ERC Report to tests/fixtures/erc_upstream_qa/oracles/ground_pin_test_no_ground_net.erc.json"
+    },
+    {
+      "file": "ground_pin_test_ok.kicad_sch",
+      "oracle_path": "oracles/ground_pin_test_ok.erc.json",
+      "exit_code": 0,
+      "json_exists": true,
+      "stderr": "",
+      "stdout": "Found 2 violations\nSaved ERC Report to tests/fixtures/erc_upstream_qa/oracles/ground_pin_test_ok.erc.json"
+    },
+    {
+      "file": "groups_load_save.kicad_sch",
+      "oracle_path": "oracles/groups_load_save.erc.json",
+      "exit_code": 0,
+      "json_exists": true,
+      "stderr": "",
+      "stdout": "Found 0 violations\nSaved ERC Report to tests/fixtures/erc_upstream_qa/oracles/groups_load_save.erc.json"
+    },
+    {
+      "file": "incremental_test.kicad_sch",
+      "oracle_path": "oracles/incremental_test.erc.json",
+      "exit_code": 0,
+      "json_exists": true,
+      "stderr": "",
+      "stdout": "Found 1 violations\nSaved ERC Report to tests/fixtures/erc_upstream_qa/oracles/incremental_test.erc.json"
+    },
+    {
+      "file": "issue10430.kicad_sch",
+      "oracle_path": "oracles/issue10430.erc.json",
+      "exit_code": 0,
+      "json_exists": true,
+      "stderr": "",
+      "stdout": "Found 8 violations\nSaved ERC Report to tests/fixtures/erc_upstream_qa/oracles/issue10430.erc.json"
+    },
+    {
+      "file": "issue10926_1.kicad_sch",
+      "oracle_path": "oracles/issue10926_1.erc.json",
+      "exit_code": 0,
+      "json_exists": true,
+      "stderr": "",
+      "stdout": "Found 5 violations\nSaved ERC Report to tests/fixtures/erc_upstream_qa/oracles/issue10926_1.erc.json"
+    },
+    {
+      "file": "issue10926_1_subsheet_1.kicad_sch",
+      "oracle_path": "oracles/issue10926_1_subsheet_1.erc.json",
+      "exit_code": 0,
+      "json_exists": true,
+      "stderr": "",
+      "stdout": "Found 8 violations\nSaved ERC Report to tests/fixtures/erc_upstream_qa/oracles/issue10926_1_subsheet_1.erc.json"
+    },
+    {
+      "file": "issue10926_1_subsheet_1_1.kicad_sch",
+      "oracle_path": "oracles/issue10926_1_subsheet_1_1.erc.json",
+      "exit_code": 0,
+      "json_exists": true,
+      "stderr": "",
+      "stdout": "Found 6 violations\nSaved ERC Report to tests/fixtures/erc_upstream_qa/oracles/issue10926_1_subsheet_1_1.erc.json"
+    },
+    {
+      "file": "issue11926.kicad_sch",
+      "oracle_path": "oracles/issue11926.erc.json",
+      "exit_code": 0,
+      "json_exists": true,
+      "stderr": "",
+      "stdout": "Found 2 violations\nSaved ERC Report to tests/fixtures/erc_upstream_qa/oracles/issue11926.erc.json"
+    },
+    {
+      "file": "issue12505.kicad_sch",
+      "oracle_path": "oracles/issue12505.erc.json",
+      "exit_code": 0,
+      "json_exists": true,
+      "stderr": "",
+      "stdout": "Found 3 violations\nSaved ERC Report to tests/fixtures/erc_upstream_qa/oracles/issue12505.erc.json"
+    },
+    {
+      "file": "issue12814.kicad_sch",
+      "oracle_path": "oracles/issue12814.erc.json",
+      "exit_code": 0,
+      "json_exists": true,
+      "stderr": "",
+      "stdout": "Found 3 violations\nSaved ERC Report to tests/fixtures/erc_upstream_qa/oracles/issue12814.erc.json"
+    },
+    {
+      "file": "issue12814_1.kicad_sch",
+      "oracle_path": "oracles/issue12814_1.erc.json",
+      "exit_code": 0,
+      "json_exists": true,
+      "stderr": "",
+      "stdout": "Found 6 violations\nSaved ERC Report to tests/fixtures/erc_upstream_qa/oracles/issue12814_1.erc.json"
+    },
+    {
+      "file": "issue12814_2.kicad_sch",
+      "oracle_path": "oracles/issue12814_2.erc.json",
+      "exit_code": 0,
+      "json_exists": true,
+      "stderr": "",
+      "stdout": "Found 9 violations\nSaved ERC Report to tests/fixtures/erc_upstream_qa/oracles/issue12814_2.erc.json"
+    },
+    {
+      "file": "issue13112.kicad_sch",
+      "oracle_path": "oracles/issue13112.erc.json",
+      "exit_code": 0,
+      "json_exists": true,
+      "stderr": "",
+      "stdout": "Found 73 violations\nSaved ERC Report to tests/fixtures/erc_upstream_qa/oracles/issue13112.erc.json"
+    },
+    {
+      "file": "issue13162.kicad_sch",
+      "oracle_path": "oracles/issue13162.erc.json",
+      "exit_code": 0,
+      "json_exists": true,
+      "stderr": "",
+      "stdout": "Found 11 violations\nSaved ERC Report to tests/fixtures/erc_upstream_qa/oracles/issue13162.erc.json"
+    },
+    {
+      "file": "issue13212.kicad_sch",
+      "oracle_path": "oracles/issue13212.erc.json",
+      "exit_code": 0,
+      "json_exists": true,
+      "stderr": "",
+      "stdout": "Found 2 violations\nSaved ERC Report to tests/fixtures/erc_upstream_qa/oracles/issue13212.erc.json"
+    },
+    {
+      "file": "issue13212_subsheet_1.kicad_sch",
+      "oracle_path": "oracles/issue13212_subsheet_1.erc.json",
+      "exit_code": 0,
+      "json_exists": true,
+      "stderr": "",
+      "stdout": "Found 2 violations\nSaved ERC Report to tests/fixtures/erc_upstream_qa/oracles/issue13212_subsheet_1.erc.json"
+    },
+    {
+      "file": "issue13212_subsheet_2.kicad_sch",
+      "oracle_path": "oracles/issue13212_subsheet_2.erc.json",
+      "exit_code": 0,
+      "json_exists": true,
+      "stderr": "",
+      "stdout": "Found 1 violations\nSaved ERC Report to tests/fixtures/erc_upstream_qa/oracles/issue13212_subsheet_2.erc.json"
+    },
+    {
+      "file": "issue13431.kicad_sch",
+      "oracle_path": "oracles/issue13431.erc.json",
+      "exit_code": 0,
+      "json_exists": true,
+      "stderr": "",
+      "stdout": "Found 27 violations\nSaved ERC Report to tests/fixtures/erc_upstream_qa/oracles/issue13431.erc.json"
+    },
+    {
+      "file": "issue13591.kicad_sch",
+      "oracle_path": "oracles/issue13591.erc.json",
+      "exit_code": 0,
+      "json_exists": true,
+      "stderr": "",
+      "stdout": "Found 6 violations\nSaved ERC Report to tests/fixtures/erc_upstream_qa/oracles/issue13591.erc.json"
+    },
+    {
+      "file": "issue16223.kicad_sch",
+      "oracle_path": "oracles/issue16223.erc.json",
+      "exit_code": 0,
+      "json_exists": true,
+      "stderr": "",
+      "stdout": "Found 19 violations\nSaved ERC Report to tests/fixtures/erc_upstream_qa/oracles/issue16223.erc.json"
+    },
+    {
+      "file": "issue16538/issue16538.kicad_sch",
+      "oracle_path": "oracles/issue16538/issue16538.erc.json",
+      "exit_code": 0,
+      "json_exists": true,
+      "stderr": "",
+      "stdout": "Found 7 violations\nSaved ERC Report to tests/fixtures/erc_upstream_qa/oracles/issue16538/issue16538.erc.json"
+    },
+    {
+      "file": "issue16897.kicad_sch",
+      "oracle_path": "oracles/issue16897.erc.json",
+      "exit_code": 0,
+      "json_exists": true,
+      "stderr": "",
+      "stdout": "Found 9 violations\nSaved ERC Report to tests/fixtures/erc_upstream_qa/oracles/issue16897.erc.json"
+    },
+    {
+      "file": "issue1768/issue1768.kicad_sch",
+      "oracle_path": "oracles/issue1768/issue1768.erc.json",
+      "exit_code": 0,
+      "json_exists": true,
+      "stderr": "",
+      "stdout": "Found 20 violations\nSaved ERC Report to tests/fixtures/erc_upstream_qa/oracles/issue1768/issue1768.erc.json"
+    },
+    {
+      "file": "issue17771/issue1771.kicad_sch",
+      "oracle_path": "oracles/issue17771/issue1771.erc.json",
+      "exit_code": 0,
+      "json_exists": true,
+      "stderr": "",
+      "stdout": "Found 8 violations\nSaved ERC Report to tests/fixtures/erc_upstream_qa/oracles/issue17771/issue1771.erc.json"
+    },
+    {
+      "file": "issue17771/sub.kicad_sch",
+      "oracle_path": "oracles/issue17771/sub.erc.json",
+      "exit_code": 0,
+      "json_exists": true,
+      "stderr": "",
+      "stdout": "Found 9 violations\nSaved ERC Report to tests/fixtures/erc_upstream_qa/oracles/issue17771/sub.erc.json"
+    },
+    {
+      "file": "issue17771/sub2.kicad_sch",
+      "oracle_path": "oracles/issue17771/sub2.erc.json",
+      "exit_code": 0,
+      "json_exists": true,
+      "stderr": "",
+      "stdout": "Found 13 violations\nSaved ERC Report to tests/fixtures/erc_upstream_qa/oracles/issue17771/sub2.erc.json"
+    },
+    {
+      "file": "issue17771/sub3.kicad_sch",
+      "oracle_path": "oracles/issue17771/sub3.erc.json",
+      "exit_code": 0,
+      "json_exists": true,
+      "stderr": "",
+      "stdout": "Found 7 violations\nSaved ERC Report to tests/fixtures/erc_upstream_qa/oracles/issue17771/sub3.erc.json"
+    },
+    {
+      "file": "issue17870.kicad_sch",
+      "oracle_path": "oracles/issue17870.erc.json",
+      "exit_code": 0,
+      "json_exists": true,
+      "stderr": "",
+      "stdout": "Found 26 violations\nSaved ERC Report to tests/fixtures/erc_upstream_qa/oracles/issue17870.erc.json"
+    },
+    {
+      "file": "issue18092/issue18092.kicad_sch",
+      "oracle_path": "oracles/issue18092/issue18092.erc.json",
+      "exit_code": 0,
+      "json_exists": true,
+      "stderr": "",
+      "stdout": "Found 5 violations\nSaved ERC Report to tests/fixtures/erc_upstream_qa/oracles/issue18092/issue18092.erc.json"
+    },
+    {
+      "file": "issue18092/sub_18092.kicad_sch",
+      "oracle_path": "oracles/issue18092/sub_18092.erc.json",
+      "exit_code": 0,
+      "json_exists": true,
+      "stderr": "",
+      "stdout": "Found 4 violations\nSaved ERC Report to tests/fixtures/erc_upstream_qa/oracles/issue18092/sub_18092.erc.json"
+    },
+    {
+      "file": "issue18119/issue18119.kicad_sch",
+      "oracle_path": "oracles/issue18119/issue18119.erc.json",
+      "exit_code": 0,
+      "json_exists": true,
+      "stderr": "",
+      "stdout": "Found 2 violations\nSaved ERC Report to tests/fixtures/erc_upstream_qa/oracles/issue18119/issue18119.erc.json"
+    },
+    {
+      "file": "issue18119/sub.kicad_sch",
+      "oracle_path": "oracles/issue18119/sub.erc.json",
+      "exit_code": 0,
+      "json_exists": true,
+      "stderr": "",
+      "stdout": "Found 9 violations\nSaved ERC Report to tests/fixtures/erc_upstream_qa/oracles/issue18119/sub.erc.json"
+    },
+    {
+      "file": "issue18299/issue18299.kicad_sch",
+      "oracle_path": "oracles/issue18299/issue18299.erc.json",
+      "exit_code": 0,
+      "json_exists": true,
+      "stderr": "",
+      "stdout": "Found 6 violations\nSaved ERC Report to tests/fixtures/erc_upstream_qa/oracles/issue18299/issue18299.erc.json"
+    },
+    {
+      "file": "issue18299/test.kicad_sch",
+      "oracle_path": "oracles/issue18299/test.erc.json",
+      "exit_code": 0,
+      "json_exists": true,
+      "stderr": "",
+      "stdout": "Found 6 violations\nSaved ERC Report to tests/fixtures/erc_upstream_qa/oracles/issue18299/test.erc.json"
+    },
+    {
+      "file": "issue18346.kicad_sch",
+      "oracle_path": "oracles/issue18346.erc.json",
+      "exit_code": 0,
+      "json_exists": true,
+      "stderr": "",
+      "stdout": "Found 3 violations\nSaved ERC Report to tests/fixtures/erc_upstream_qa/oracles/issue18346.erc.json"
+    },
+    {
+      "file": "issue18606/issue18606.kicad_sch",
+      "oracle_path": "oracles/issue18606/issue18606.erc.json",
+      "exit_code": 0,
+      "json_exists": true,
+      "stderr": "",
+      "stdout": "Found 7 violations\nSaved ERC Report to tests/fixtures/erc_upstream_qa/oracles/issue18606/issue18606.erc.json"
+    },
+    {
+      "file": "issue18606/test.kicad_sch",
+      "oracle_path": "oracles/issue18606/test.erc.json",
+      "exit_code": 0,
+      "json_exists": true,
+      "stderr": "",
+      "stdout": "Found 8 violations\nSaved ERC Report to tests/fixtures/erc_upstream_qa/oracles/issue18606/test.erc.json"
+    },
+    {
+      "file": "issue19646/F28P65x-power.kicad_sch",
+      "oracle_path": "oracles/issue19646/F28P65x-power.erc.json",
+      "exit_code": 0,
+      "json_exists": true,
+      "stderr": "",
+      "stdout": "Found 68 violations\nSaved ERC Report to tests/fixtures/erc_upstream_qa/oracles/issue19646/F28P65x-power.erc.json"
+    },
+    {
+      "file": "issue19646/MCU.kicad_sch",
+      "oracle_path": "oracles/issue19646/MCU.erc.json",
+      "exit_code": 0,
+      "json_exists": true,
+      "stderr": "",
+      "stdout": "Found 124 violations\nSaved ERC Report to tests/fixtures/erc_upstream_qa/oracles/issue19646/MCU.erc.json"
+    },
+    {
+      "file": "issue19646/Resolver.kicad_sch",
+      "oracle_path": "oracles/issue19646/Resolver.erc.json",
+      "exit_code": 0,
+      "json_exists": true,
+      "stderr": "",
+      "stdout": "Found 185 violations\nSaved ERC Report to tests/fixtures/erc_upstream_qa/oracles/issue19646/Resolver.erc.json"
+    },
+    {
+      "file": "issue19646/f28p65x_osc_reset_debug.kicad_sch",
+      "oracle_path": "oracles/issue19646/f28p65x_osc_reset_debug.erc.json",
+      "exit_code": 0,
+      "json_exists": true,
+      "stderr": "",
+      "stdout": "Found 52 violations\nSaved ERC Report to tests/fixtures/erc_upstream_qa/oracles/issue19646/f28p65x_osc_reset_debug.erc.json"
+    },
+    {
+      "file": "issue19646/issue19646.kicad_sch",
+      "oracle_path": "oracles/issue19646/issue19646.erc.json",
+      "exit_code": 0,
+      "json_exists": true,
+      "stderr": "",
+      "stdout": "Found 277 violations\nSaved ERC Report to tests/fixtures/erc_upstream_qa/oracles/issue19646/issue19646.erc.json"
+    },
+    {
+      "file": "issue20173/Kicad 9 - multi channel test.kicad_sch",
+      "oracle_path": "oracles/issue20173/Kicad 9 - multi channel test.erc.json",
+      "exit_code": 0,
+      "json_exists": true,
+      "stderr": "",
+      "stdout": "Found 3 violations\nSaved ERC Report to tests/fixtures/erc_upstream_qa/oracles/issue20173/Kicad 9 - multi channel test.erc.json"
+    },
+    {
+      "file": "issue20173/issue20173.kicad_sch",
+      "oracle_path": "oracles/issue20173/issue20173.erc.json",
+      "exit_code": 0,
+      "json_exists": true,
+      "stderr": "",
+      "stdout": "Found 0 violations\nSaved ERC Report to tests/fixtures/erc_upstream_qa/oracles/issue20173/issue20173.erc.json"
+    },
+    {
+      "file": "issue21980/issue21980.kicad_sch",
+      "oracle_path": "oracles/issue21980/issue21980.erc.json",
+      "exit_code": 0,
+      "json_exists": true,
+      "stderr": "",
+      "stdout": "Found 37 violations\nSaved ERC Report to tests/fixtures/erc_upstream_qa/oracles/issue21980/issue21980.erc.json"
+    },
+    {
+      "file": "issue22286/bugtest.kicad_sch",
+      "oracle_path": "oracles/issue22286/bugtest.erc.json",
+      "exit_code": 0,
+      "json_exists": true,
+      "stderr": "",
+      "stdout": "Found 5 violations\nSaved ERC Report to tests/fixtures/erc_upstream_qa/oracles/issue22286/bugtest.erc.json"
+    },
+    {
+      "file": "issue22854/test.kicad_sch",
+      "oracle_path": "oracles/issue22854/test.erc.json",
+      "exit_code": 0,
+      "json_exists": true,
+      "stderr": "",
+      "stdout": "Found 4 violations\nSaved ERC Report to tests/fixtures/erc_upstream_qa/oracles/issue22854/test.erc.json"
+    },
+    {
+      "file": "issue22864/Test_Move_Grid.kicad_sch",
+      "oracle_path": "oracles/issue22864/Test_Move_Grid.erc.json",
+      "exit_code": 0,
+      "json_exists": true,
+      "stderr": "",
+      "stdout": "Found 6 violations\nSaved ERC Report to tests/fixtures/erc_upstream_qa/oracles/issue22864/Test_Move_Grid.erc.json"
+    },
+    {
+      "file": "issue22864/sheet1.kicad_sch",
+      "oracle_path": "oracles/issue22864/sheet1.erc.json",
+      "exit_code": 0,
+      "json_exists": true,
+      "stderr": "",
+      "stdout": "Found 4 violations\nSaved ERC Report to tests/fixtures/erc_upstream_qa/oracles/issue22864/sheet1.erc.json"
+    },
+    {
+      "file": "issue22864/sheet2.kicad_sch",
+      "oracle_path": "oracles/issue22864/sheet2.erc.json",
+      "exit_code": 0,
+      "json_exists": true,
+      "stderr": "",
+      "stdout": "Found 4 violations\nSaved ERC Report to tests/fixtures/erc_upstream_qa/oracles/issue22864/sheet2.erc.json"
+    },
+    {
+      "file": "issue22872/issue22872.kicad_sch",
+      "oracle_path": "oracles/issue22872/issue22872.erc.json",
+      "exit_code": 0,
+      "json_exists": true,
+      "stderr": "",
+      "stdout": "Found 0 violations\nSaved ERC Report to tests/fixtures/erc_upstream_qa/oracles/issue22872/issue22872.erc.json"
+    },
+    {
+      "file": "issue22873/issue22873.kicad_sch",
+      "oracle_path": "oracles/issue22873/issue22873.erc.json",
+      "exit_code": 0,
+      "json_exists": true,
+      "stderr": "",
+      "stdout": "Found 0 violations\nSaved ERC Report to tests/fixtures/erc_upstream_qa/oracles/issue22873/issue22873.erc.json"
+    },
+    {
+      "file": "issue22938/Anschluss.kicad_sch",
+      "oracle_path": "oracles/issue22938/Anschluss.erc.json",
+      "exit_code": 0,
+      "json_exists": true,
+      "stderr": "",
+      "stdout": "Found 0 violations\nSaved ERC Report to tests/fixtures/erc_upstream_qa/oracles/issue22938/Anschluss.erc.json"
+    },
+    {
+      "file": "issue22938/Kompressor.kicad_sch",
+      "oracle_path": "oracles/issue22938/Kompressor.erc.json",
+      "exit_code": 0,
+      "json_exists": true,
+      "stderr": "",
+      "stdout": "Found 0 violations\nSaved ERC Report to tests/fixtures/erc_upstream_qa/oracles/issue22938/Kompressor.erc.json"
+    },
+    {
+      "file": "issue22938/Schrittmotor.kicad_sch",
+      "oracle_path": "oracles/issue22938/Schrittmotor.erc.json",
+      "exit_code": 0,
+      "json_exists": true,
+      "stderr": "",
+      "stdout": "Found 0 violations\nSaved ERC Report to tests/fixtures/erc_upstream_qa/oracles/issue22938/Schrittmotor.erc.json"
+    },
+    {
+      "file": "issue22938/Spannungsversorgung.kicad_sch",
+      "oracle_path": "oracles/issue22938/Spannungsversorgung.erc.json",
+      "exit_code": 0,
+      "json_exists": true,
+      "stderr": "",
+      "stdout": "Found 28 violations\nSaved ERC Report to tests/fixtures/erc_upstream_qa/oracles/issue22938/Spannungsversorgung.erc.json"
+    },
+    {
+      "file": "issue22938/ThermoRelay_8_LargeConn_1206.kicad_sch",
+      "oracle_path": "oracles/issue22938/ThermoRelay_8_LargeConn_1206.erc.json",
+      "exit_code": 0,
+      "json_exists": true,
+      "stderr": "",
+      "stdout": "Found 0 violations\nSaved ERC Report to tests/fixtures/erc_upstream_qa/oracles/issue22938/ThermoRelay_8_LargeConn_1206.erc.json"
+    },
+    {
+      "file": "issue22938/issue22938.kicad_sch",
+      "oracle_path": "oracles/issue22938/issue22938.erc.json",
+      "exit_code": 0,
+      "json_exists": true,
+      "stderr": "",
+      "stdout": "Found 52 violations\nSaved ERC Report to tests/fixtures/erc_upstream_qa/oracles/issue22938/issue22938.erc.json"
+    },
+    {
+      "file": "issue23058/issue23058.kicad_sch",
+      "oracle_path": "oracles/issue23058/issue23058.erc.json",
+      "exit_code": 0,
+      "json_exists": true,
+      "stderr": "",
+      "stdout": "Found 3 violations\nSaved ERC Report to tests/fixtures/erc_upstream_qa/oracles/issue23058/issue23058.erc.json"
+    },
+    {
+      "file": "issue23346/A.kicad_sch",
+      "oracle_path": "oracles/issue23346/A.erc.json",
+      "exit_code": 0,
+      "json_exists": true,
+      "stderr": "",
+      "stdout": "Found 2 violations\nSaved ERC Report to tests/fixtures/erc_upstream_qa/oracles/issue23346/A.erc.json"
+    },
+    {
+      "file": "issue23346/issue23346.kicad_sch",
+      "oracle_path": "oracles/issue23346/issue23346.erc.json",
+      "exit_code": 0,
+      "json_exists": true,
+      "stderr": "",
+      "stdout": "Found 1 violations\nSaved ERC Report to tests/fixtures/erc_upstream_qa/oracles/issue23346/issue23346.erc.json"
+    },
+    {
+      "file": "issue23403/issue23403.kicad_sch",
+      "oracle_path": "oracles/issue23403/issue23403.erc.json",
+      "exit_code": 0,
+      "json_exists": true,
+      "stderr": "",
+      "stdout": "Found 2 violations\nSaved ERC Report to tests/fixtures/erc_upstream_qa/oracles/issue23403/issue23403.erc.json"
+    },
+    {
+      "file": "issue23403/shared1.kicad_sch",
+      "oracle_path": "oracles/issue23403/shared1.erc.json",
+      "exit_code": 0,
+      "json_exists": true,
+      "stderr": "",
+      "stdout": "Found 2 violations\nSaved ERC Report to tests/fixtures/erc_upstream_qa/oracles/issue23403/shared1.erc.json"
+    },
+    {
+      "file": "issue23403/top_level_sheet_1.kicad_sch",
+      "oracle_path": "oracles/issue23403/top_level_sheet_1.erc.json",
+      "exit_code": 0,
+      "json_exists": true,
+      "stderr": "",
+      "stdout": "Found 2 violations\nSaved ERC Report to tests/fixtures/erc_upstream_qa/oracles/issue23403/top_level_sheet_1.erc.json"
+    },
+    {
+      "file": "issue6588.kicad_sch",
+      "oracle_path": "oracles/issue6588.erc.json",
+      "exit_code": 0,
+      "json_exists": true,
+      "stderr": "",
+      "stdout": "Found 6 violations\nSaved ERC Report to tests/fixtures/erc_upstream_qa/oracles/issue6588.erc.json"
+    },
+    {
+      "file": "issue7203.kicad_sch",
+      "oracle_path": "oracles/issue7203.erc.json",
+      "exit_code": 0,
+      "json_exists": true,
+      "stderr": "",
+      "stdout": "Found 4 violations\nSaved ERC Report to tests/fixtures/erc_upstream_qa/oracles/issue7203.erc.json"
+    },
+    {
+      "file": "issue9367.kicad_sch",
+      "oracle_path": "oracles/issue9367.erc.json",
+      "exit_code": 0,
+      "json_exists": true,
+      "stderr": "",
+      "stdout": "Found 15 violations\nSaved ERC Report to tests/fixtures/erc_upstream_qa/oracles/issue9367.erc.json"
+    },
+    {
+      "file": "legacy_hierarchy/ampli_ht.kicad_sch",
+      "oracle_path": "oracles/legacy_hierarchy/ampli_ht.erc.json",
+      "exit_code": 0,
+      "json_exists": true,
+      "stderr": "",
+      "stdout": "Found 66 violations\nSaved ERC Report to tests/fixtures/erc_upstream_qa/oracles/legacy_hierarchy/ampli_ht.erc.json"
+    },
+    {
+      "file": "legacy_hierarchy/legacy_hierarchy.kicad_sch",
+      "oracle_path": "oracles/legacy_hierarchy/legacy_hierarchy.erc.json",
+      "exit_code": 0,
+      "json_exists": true,
+      "stderr": "",
+      "stdout": "Found 73 violations\nSaved ERC Report to tests/fixtures/erc_upstream_qa/oracles/legacy_hierarchy/legacy_hierarchy.erc.json"
+    },
+    {
+      "file": "netlists/bus_connection/a.kicad_sch",
+      "oracle_path": "oracles/netlists/bus_connection/a.erc.json",
+      "exit_code": 0,
+      "json_exists": true,
+      "stderr": "",
+      "stdout": "Found 14 violations\nSaved ERC Report to tests/fixtures/erc_upstream_qa/oracles/netlists/bus_connection/a.erc.json"
+    },
+    {
+      "file": "netlists/bus_connection/a2.kicad_sch",
+      "oracle_path": "oracles/netlists/bus_connection/a2.erc.json",
+      "exit_code": 0,
+      "json_exists": true,
+      "stderr": "",
+      "stdout": "Found 38 violations\nSaved ERC Report to tests/fixtures/erc_upstream_qa/oracles/netlists/bus_connection/a2.erc.json"
+    },
+    {
+      "file": "netlists/bus_connection/b.kicad_sch",
+      "oracle_path": "oracles/netlists/bus_connection/b.erc.json",
+      "exit_code": 0,
+      "json_exists": true,
+      "stderr": "",
+      "stdout": "Found 30 violations\nSaved ERC Report to tests/fixtures/erc_upstream_qa/oracles/netlists/bus_connection/b.erc.json"
+    },
+    {
+      "file": "netlists/bus_connection/bus_connection.kicad_sch",
+      "oracle_path": "oracles/netlists/bus_connection/bus_connection.erc.json",
+      "exit_code": 0,
+      "json_exists": true,
+      "stderr": "",
+      "stdout": "Found 38 violations\nSaved ERC Report to tests/fixtures/erc_upstream_qa/oracles/netlists/bus_connection/bus_connection.erc.json"
+    },
+    {
+      "file": "netlists/bus_entries/bus_entries.kicad_sch",
+      "oracle_path": "oracles/netlists/bus_entries/bus_entries.erc.json",
+      "exit_code": 0,
+      "json_exists": true,
+      "stderr": "",
+      "stdout": "Found 0 violations\nSaved ERC Report to tests/fixtures/erc_upstream_qa/oracles/netlists/bus_entries/bus_entries.erc.json"
+    },
+    {
+      "file": "netlists/bus_junctions/bus_junctions.kicad_sch",
+      "oracle_path": "oracles/netlists/bus_junctions/bus_junctions.erc.json",
+      "exit_code": 0,
+      "json_exists": true,
+      "stderr": "",
+      "stdout": "Found 5 violations\nSaved ERC Report to tests/fixtures/erc_upstream_qa/oracles/netlists/bus_junctions/bus_junctions.erc.json"
+    },
+    {
+      "file": "netlists/complex_hierarchy/ampli_ht.kicad_sch",
+      "oracle_path": "oracles/netlists/complex_hierarchy/ampli_ht.erc.json",
+      "exit_code": 0,
+      "json_exists": true,
+      "stderr": "",
+      "stdout": "Found 66 violations\nSaved ERC Report to tests/fixtures/erc_upstream_qa/oracles/netlists/complex_hierarchy/ampli_ht.erc.json"
+    },
+    {
+      "file": "netlists/complex_hierarchy/complex_hierarchy.kicad_sch",
+      "oracle_path": "oracles/netlists/complex_hierarchy/complex_hierarchy.erc.json",
+      "exit_code": 0,
+      "json_exists": true,
+      "stderr": "",
+      "stdout": "Found 75 violations\nSaved ERC Report to tests/fixtures/erc_upstream_qa/oracles/netlists/complex_hierarchy/complex_hierarchy.erc.json"
+    },
+    {
+      "file": "netlists/complex_hierarchy_shared/ampli_ht/ampli_ht.kicad_sch",
+      "oracle_path": "oracles/netlists/complex_hierarchy_shared/ampli_ht/ampli_ht.erc.json",
+      "exit_code": 0,
+      "json_exists": true,
+      "stderr": "",
+      "stdout": "Found 91 violations\nSaved ERC Report to tests/fixtures/erc_upstream_qa/oracles/netlists/complex_hierarchy_shared/ampli_ht/ampli_ht.erc.json"
+    },
+    {
+      "file": "netlists/complex_hierarchy_shared/ampli_ht/filter.kicad_sch",
+      "oracle_path": "oracles/netlists/complex_hierarchy_shared/ampli_ht/filter.erc.json",
+      "exit_code": 0,
+      "json_exists": true,
+      "stderr": "",
+      "stdout": "Found 55 violations\nSaved ERC Report to tests/fixtures/erc_upstream_qa/oracles/netlists/complex_hierarchy_shared/ampli_ht/filter.erc.json"
+    },
+    {
+      "file": "netlists/complex_hierarchy_shared/complex_hierarchy.kicad_sch",
+      "oracle_path": "oracles/netlists/complex_hierarchy_shared/complex_hierarchy.erc.json",
+      "exit_code": 0,
+      "json_exists": true,
+      "stderr": "",
+      "stdout": "Found 144 violations\nSaved ERC Report to tests/fixtures/erc_upstream_qa/oracles/netlists/complex_hierarchy_shared/complex_hierarchy.erc.json"
+    },
+    {
+      "file": "netlists/component_classes/component_classes.kicad_sch",
+      "oracle_path": "oracles/netlists/component_classes/component_classes.erc.json",
+      "exit_code": 0,
+      "json_exists": true,
+      "stderr": "",
+      "stdout": "Found 17 violations\nSaved ERC Report to tests/fixtures/erc_upstream_qa/oracles/netlists/component_classes/component_classes.erc.json"
+    },
+    {
+      "file": "netlists/group_bus_matching/group_bus_matching.kicad_sch",
+      "oracle_path": "oracles/netlists/group_bus_matching/group_bus_matching.erc.json",
+      "exit_code": 0,
+      "json_exists": true,
+      "stderr": "",
+      "stdout": "Found 3 violations\nSaved ERC Report to tests/fixtures/erc_upstream_qa/oracles/netlists/group_bus_matching/group_bus_matching.erc.json"
+    },
+    {
+      "file": "netlists/group_bus_matching/subsheet1.kicad_sch",
+      "oracle_path": "oracles/netlists/group_bus_matching/subsheet1.erc.json",
+      "exit_code": 0,
+      "json_exists": true,
+      "stderr": "",
+      "stdout": "Found 5 violations\nSaved ERC Report to tests/fixtures/erc_upstream_qa/oracles/netlists/group_bus_matching/subsheet1.erc.json"
+    },
+    {
+      "file": "netlists/group_bus_matching/subsheet2.kicad_sch",
+      "oracle_path": "oracles/netlists/group_bus_matching/subsheet2.erc.json",
+      "exit_code": 0,
+      "json_exists": true,
+      "stderr": "",
+      "stdout": "Found 5 violations\nSaved ERC Report to tests/fixtures/erc_upstream_qa/oracles/netlists/group_bus_matching/subsheet2.erc.json"
+    },
+    {
+      "file": "netlists/hierarchical_component_classes/another_sheet.kicad_sch",
+      "oracle_path": "oracles/netlists/hierarchical_component_classes/another_sheet.erc.json",
+      "exit_code": 0,
+      "json_exists": true,
+      "stderr": "",
+      "stdout": "Found 2 violations\nSaved ERC Report to tests/fixtures/erc_upstream_qa/oracles/netlists/hierarchical_component_classes/another_sheet.erc.json"
+    },
+    {
+      "file": "netlists/hierarchical_component_classes/hierarchical_component_classes.kicad_sch",
+      "oracle_path": "oracles/netlists/hierarchical_component_classes/hierarchical_component_classes.erc.json",
+      "exit_code": 0,
+      "json_exists": true,
+      "stderr": "",
+      "stdout": "Found 10 violations\nSaved ERC Report to tests/fixtures/erc_upstream_qa/oracles/netlists/hierarchical_component_classes/hierarchical_component_classes.erc.json"
+    },
+    {
+      "file": "netlists/hierarchical_component_classes/sheet_3.kicad_sch",
+      "oracle_path": "oracles/netlists/hierarchical_component_classes/sheet_3.erc.json",
+      "exit_code": 0,
+      "json_exists": true,
+      "stderr": "",
+      "stdout": "Found 4 violations\nSaved ERC Report to tests/fixtures/erc_upstream_qa/oracles/netlists/hierarchical_component_classes/sheet_3.erc.json"
+    },
+    {
+      "file": "netlists/hierarchical_component_classes/subsheet_1.kicad_sch",
+      "oracle_path": "oracles/netlists/hierarchical_component_classes/subsheet_1.erc.json",
+      "exit_code": 0,
+      "json_exists": true,
+      "stderr": "",
+      "stdout": "Found 6 violations\nSaved ERC Report to tests/fixtures/erc_upstream_qa/oracles/netlists/hierarchical_component_classes/subsheet_1.erc.json"
+    },
+    {
+      "file": "netlists/hierarchy_aliases/hierarchy_aliases.kicad_sch",
+      "oracle_path": "oracles/netlists/hierarchy_aliases/hierarchy_aliases.erc.json",
+      "exit_code": 0,
+      "json_exists": true,
+      "stderr": "",
+      "stdout": "Found 5 violations\nSaved ERC Report to tests/fixtures/erc_upstream_qa/oracles/netlists/hierarchy_aliases/hierarchy_aliases.erc.json"
+    },
+    {
+      "file": "netlists/hierarchy_aliases/sub1.kicad_sch",
+      "oracle_path": "oracles/netlists/hierarchy_aliases/sub1.erc.json",
+      "exit_code": 0,
+      "json_exists": true,
+      "stderr": "",
+      "stdout": "Found 4 violations\nSaved ERC Report to tests/fixtures/erc_upstream_qa/oracles/netlists/hierarchy_aliases/sub1.erc.json"
+    },
+    {
+      "file": "netlists/hierarchy_aliases/sub2.kicad_sch",
+      "oracle_path": "oracles/netlists/hierarchy_aliases/sub2.erc.json",
+      "exit_code": 0,
+      "json_exists": true,
+      "stderr": "",
+      "stdout": "Found 6 violations\nSaved ERC Report to tests/fixtures/erc_upstream_qa/oracles/netlists/hierarchy_aliases/sub2.erc.json"
+    },
+    {
+      "file": "netlists/issue14494/issue14494.kicad_sch",
+      "oracle_path": "oracles/netlists/issue14494/issue14494.erc.json",
+      "exit_code": 0,
+      "json_exists": true,
+      "stderr": "",
+      "stdout": "Found 7 violations\nSaved ERC Report to tests/fixtures/erc_upstream_qa/oracles/netlists/issue14494/issue14494.erc.json"
+    },
+    {
+      "file": "netlists/issue14494/issue14494_subsheet1.kicad_sch",
+      "oracle_path": "oracles/netlists/issue14494/issue14494_subsheet1.erc.json",
+      "exit_code": 0,
+      "json_exists": true,
+      "stderr": "",
+      "stdout": "Found 10 violations\nSaved ERC Report to tests/fixtures/erc_upstream_qa/oracles/netlists/issue14494/issue14494_subsheet1.erc.json"
+    },
+    {
+      "file": "netlists/issue14657/issue14657.kicad_sch",
+      "oracle_path": "oracles/netlists/issue14657/issue14657.erc.json",
+      "exit_code": 0,
+      "json_exists": true,
+      "stderr": "",
+      "stdout": "Found 1 violations\nSaved ERC Report to tests/fixtures/erc_upstream_qa/oracles/netlists/issue14657/issue14657.erc.json"
+    },
+    {
+      "file": "netlists/issue14657/issue14657_1.kicad_sch",
+      "oracle_path": "oracles/netlists/issue14657/issue14657_1.erc.json",
+      "exit_code": 0,
+      "json_exists": true,
+      "stderr": "",
+      "stdout": "Found 3 violations\nSaved ERC Report to tests/fixtures/erc_upstream_qa/oracles/netlists/issue14657/issue14657_1.erc.json"
+    },
+    {
+      "file": "netlists/issue14657/issue14657_2.kicad_sch",
+      "oracle_path": "oracles/netlists/issue14657/issue14657_2.erc.json",
+      "exit_code": 0,
+      "json_exists": true,
+      "stderr": "",
+      "stdout": "Found 6 violations\nSaved ERC Report to tests/fixtures/erc_upstream_qa/oracles/netlists/issue14657/issue14657_2.erc.json"
+    },
+    {
+      "file": "netlists/issue14818/issue14818.kicad_sch",
+      "oracle_path": "oracles/netlists/issue14818/issue14818.erc.json",
+      "exit_code": 0,
+      "json_exists": true,
+      "stderr": "",
+      "stdout": "Found 2 violations\nSaved ERC Report to tests/fixtures/erc_upstream_qa/oracles/netlists/issue14818/issue14818.erc.json"
+    },
+    {
+      "file": "netlists/issue14818/issue14818_sub.kicad_sch",
+      "oracle_path": "oracles/netlists/issue14818/issue14818_sub.erc.json",
+      "exit_code": 0,
+      "json_exists": true,
+      "stderr": "",
+      "stdout": "Found 5 violations\nSaved ERC Report to tests/fixtures/erc_upstream_qa/oracles/netlists/issue14818/issue14818_sub.erc.json"
+    },
+    {
+      "file": "netlists/issue16003/issue16003.kicad_sch",
+      "oracle_path": "oracles/netlists/issue16003/issue16003.erc.json",
+      "exit_code": 0,
+      "json_exists": true,
+      "stderr": "",
+      "stdout": "Found 6 violations\nSaved ERC Report to tests/fixtures/erc_upstream_qa/oracles/netlists/issue16003/issue16003.erc.json"
+    },
+    {
+      "file": "netlists/issue16003/untitled.kicad_sch",
+      "oracle_path": "oracles/netlists/issue16003/untitled.erc.json",
+      "exit_code": 0,
+      "json_exists": true,
+      "stderr": "",
+      "stdout": "Found 10 violations\nSaved ERC Report to tests/fixtures/erc_upstream_qa/oracles/netlists/issue16003/untitled.erc.json"
+    },
+    {
+      "file": "netlists/issue16003/untitled2.kicad_sch",
+      "oracle_path": "oracles/netlists/issue16003/untitled2.erc.json",
+      "exit_code": 0,
+      "json_exists": true,
+      "stderr": "",
+      "stdout": "Found 10 violations\nSaved ERC Report to tests/fixtures/erc_upstream_qa/oracles/netlists/issue16003/untitled2.erc.json"
+    },
+    {
+      "file": "netlists/issue16439/issue16439.kicad_sch",
+      "oracle_path": "oracles/netlists/issue16439/issue16439.erc.json",
+      "exit_code": 0,
+      "json_exists": true,
+      "stderr": "",
+      "stdout": "Found 1 violations\nSaved ERC Report to tests/fixtures/erc_upstream_qa/oracles/netlists/issue16439/issue16439.erc.json"
+    },
+    {
+      "file": "netlists/issue16915/issue16915.kicad_sch",
+      "oracle_path": "oracles/netlists/issue16915/issue16915.erc.json",
+      "exit_code": 0,
+      "json_exists": true,
+      "stderr": "",
+      "stdout": "Found 4 violations\nSaved ERC Report to tests/fixtures/erc_upstream_qa/oracles/netlists/issue16915/issue16915.erc.json"
+    },
+    {
+      "file": "netlists/jumpers/jumpers.kicad_sch",
+      "oracle_path": "oracles/netlists/jumpers/jumpers.erc.json",
+      "exit_code": 0,
+      "json_exists": true,
+      "stderr": "",
+      "stdout": "Found 5 violations\nSaved ERC Report to tests/fixtures/erc_upstream_qa/oracles/netlists/jumpers/jumpers.erc.json"
+    },
+    {
+      "file": "netlists/legacy_power/legacy_power.kicad_sch",
+      "oracle_path": "oracles/netlists/legacy_power/legacy_power.erc.json",
+      "exit_code": 0,
+      "json_exists": true,
+      "stderr": "",
+      "stdout": "Found 6 violations\nSaved ERC Report to tests/fixtures/erc_upstream_qa/oracles/netlists/legacy_power/legacy_power.erc.json"
+    },
+    {
+      "file": "netlists/multinetclasses/multinetclasses.kicad_sch",
+      "oracle_path": "oracles/netlists/multinetclasses/multinetclasses.erc.json",
+      "exit_code": 0,
+      "json_exists": true,
+      "stderr": "",
+      "stdout": "Found 28 violations\nSaved ERC Report to tests/fixtures/erc_upstream_qa/oracles/netlists/multinetclasses/multinetclasses.erc.json"
+    },
+    {
+      "file": "netlists/noconnects/noconnects.kicad_sch",
+      "oracle_path": "oracles/netlists/noconnects/noconnects.erc.json",
+      "exit_code": 0,
+      "json_exists": true,
+      "stderr": "",
+      "stdout": "Found 23 violations\nSaved ERC Report to tests/fixtures/erc_upstream_qa/oracles/netlists/noconnects/noconnects.erc.json"
+    },
+    {
+      "file": "netlists/prefix_bus_alias/prefix_bus_alias.kicad_sch",
+      "oracle_path": "oracles/netlists/prefix_bus_alias/prefix_bus_alias.erc.json",
+      "exit_code": 0,
+      "json_exists": true,
+      "stderr": "",
+      "stdout": "Found 0 violations\nSaved ERC Report to tests/fixtures/erc_upstream_qa/oracles/netlists/prefix_bus_alias/prefix_bus_alias.erc.json"
+    },
+    {
+      "file": "netlists/prefix_bus_alias/subsheet1.kicad_sch",
+      "oracle_path": "oracles/netlists/prefix_bus_alias/subsheet1.erc.json",
+      "exit_code": 0,
+      "json_exists": true,
+      "stderr": "",
+      "stdout": "Found 11 violations\nSaved ERC Report to tests/fixtures/erc_upstream_qa/oracles/netlists/prefix_bus_alias/subsheet1.erc.json"
+    },
+    {
+      "file": "netlists/prefix_bus_alias/subsheet2.kicad_sch",
+      "oracle_path": "oracles/netlists/prefix_bus_alias/subsheet2.erc.json",
+      "exit_code": 0,
+      "json_exists": true,
+      "stderr": "",
+      "stdout": "Found 21 violations\nSaved ERC Report to tests/fixtures/erc_upstream_qa/oracles/netlists/prefix_bus_alias/subsheet2.erc.json"
+    },
+    {
+      "file": "netlists/test_global_promotion/Sub.kicad_sch",
+      "oracle_path": "oracles/netlists/test_global_promotion/Sub.erc.json",
+      "exit_code": 0,
+      "json_exists": true,
+      "stderr": "",
+      "stdout": "Found 3 violations\nSaved ERC Report to tests/fixtures/erc_upstream_qa/oracles/netlists/test_global_promotion/Sub.erc.json"
+    },
+    {
+      "file": "netlists/test_global_promotion/test_global_promotion.kicad_sch",
+      "oracle_path": "oracles/netlists/test_global_promotion/test_global_promotion.erc.json",
+      "exit_code": 0,
+      "json_exists": true,
+      "stderr": "",
+      "stdout": "Found 6 violations\nSaved ERC Report to tests/fixtures/erc_upstream_qa/oracles/netlists/test_global_promotion/test_global_promotion.erc.json"
+    },
+    {
+      "file": "netlists/test_global_promotion_2/subsheet.kicad_sch",
+      "oracle_path": "oracles/netlists/test_global_promotion_2/subsheet.erc.json",
+      "exit_code": 0,
+      "json_exists": true,
+      "stderr": "",
+      "stdout": "Found 5 violations\nSaved ERC Report to tests/fixtures/erc_upstream_qa/oracles/netlists/test_global_promotion_2/subsheet.erc.json"
+    },
+    {
+      "file": "netlists/test_global_promotion_2/test_global_promotion_2.kicad_sch",
+      "oracle_path": "oracles/netlists/test_global_promotion_2/test_global_promotion_2.erc.json",
+      "exit_code": 0,
+      "json_exists": true,
+      "stderr": "",
+      "stdout": "Found 3 violations\nSaved ERC Report to tests/fixtures/erc_upstream_qa/oracles/netlists/test_global_promotion_2/test_global_promotion_2.erc.json"
+    },
+    {
+      "file": "netlists/test_hier_no_connect/sub1.kicad_sch",
+      "oracle_path": "oracles/netlists/test_hier_no_connect/sub1.erc.json",
+      "exit_code": 0,
+      "json_exists": true,
+      "stderr": "",
+      "stdout": "Found 2 violations\nSaved ERC Report to tests/fixtures/erc_upstream_qa/oracles/netlists/test_hier_no_connect/sub1.erc.json"
+    },
+    {
+      "file": "netlists/test_hier_no_connect/sub2.kicad_sch",
+      "oracle_path": "oracles/netlists/test_hier_no_connect/sub2.erc.json",
+      "exit_code": 0,
+      "json_exists": true,
+      "stderr": "",
+      "stdout": "Found 4 violations\nSaved ERC Report to tests/fixtures/erc_upstream_qa/oracles/netlists/test_hier_no_connect/sub2.erc.json"
+    },
+    {
+      "file": "netlists/test_hier_no_connect/sub3.kicad_sch",
+      "oracle_path": "oracles/netlists/test_hier_no_connect/sub3.erc.json",
+      "exit_code": 0,
+      "json_exists": true,
+      "stderr": "",
+      "stdout": "Found 3 violations\nSaved ERC Report to tests/fixtures/erc_upstream_qa/oracles/netlists/test_hier_no_connect/sub3.erc.json"
+    },
+    {
+      "file": "netlists/test_hier_no_connect/test_hier_no_connect.kicad_sch",
+      "oracle_path": "oracles/netlists/test_hier_no_connect/test_hier_no_connect.erc.json",
+      "exit_code": 0,
+      "json_exists": true,
+      "stderr": "",
+      "stdout": "Found 8 violations\nSaved ERC Report to tests/fixtures/erc_upstream_qa/oracles/netlists/test_hier_no_connect/test_hier_no_connect.erc.json"
+    },
+    {
+      "file": "netlists/test_hier_renaming/LED_matrix_x6.kicad_sch",
+      "oracle_path": "oracles/netlists/test_hier_renaming/LED_matrix_x6.erc.json",
+      "exit_code": 0,
+      "json_exists": true,
+      "stderr": "",
+      "stdout": "Found 50 violations\nSaved ERC Report to tests/fixtures/erc_upstream_qa/oracles/netlists/test_hier_renaming/LED_matrix_x6.erc.json"
+    },
+    {
+      "file": "netlists/test_hier_renaming/test_hier_renaming.kicad_sch",
+      "oracle_path": "oracles/netlists/test_hier_renaming/test_hier_renaming.erc.json",
+      "exit_code": 0,
+      "json_exists": true,
+      "stderr": "",
+      "stdout": "Found 34 violations\nSaved ERC Report to tests/fixtures/erc_upstream_qa/oracles/netlists/test_hier_renaming/test_hier_renaming.erc.json"
+    },
+    {
+      "file": "netlists/test_multiunit_reannotate/test_multiunit_reannotate.kicad_sch",
+      "oracle_path": "oracles/netlists/test_multiunit_reannotate/test_multiunit_reannotate.erc.json",
+      "exit_code": 0,
+      "json_exists": true,
+      "stderr": "",
+      "stdout": "Found 45 violations\nSaved ERC Report to tests/fixtures/erc_upstream_qa/oracles/netlists/test_multiunit_reannotate/test_multiunit_reannotate.erc.json"
+    },
+    {
+      "file": "netlists/test_multiunit_reannotate_2/test_multiunit_reannotate_2.kicad_sch",
+      "oracle_path": "oracles/netlists/test_multiunit_reannotate_2/test_multiunit_reannotate_2.erc.json",
+      "exit_code": 0,
+      "json_exists": true,
+      "stderr": "",
+      "stdout": "Found 47 violations\nSaved ERC Report to tests/fixtures/erc_upstream_qa/oracles/netlists/test_multiunit_reannotate_2/test_multiunit_reannotate_2.erc.json"
+    },
+    {
+      "file": "netlists/test_multiunit_reannotate_3/test_multiunit_reannotate_3.kicad_sch",
+      "oracle_path": "oracles/netlists/test_multiunit_reannotate_3/test_multiunit_reannotate_3.erc.json",
+      "exit_code": 0,
+      "json_exists": true,
+      "stderr": "",
+      "stdout": "Found 45 violations\nSaved ERC Report to tests/fixtures/erc_upstream_qa/oracles/netlists/test_multiunit_reannotate_3/test_multiunit_reannotate_3.erc.json"
+    },
+    {
+      "file": "netlists/test_multiunit_reannotate_4/test_multiunit_reannotate_4.kicad_sch",
+      "oracle_path": "oracles/netlists/test_multiunit_reannotate_4/test_multiunit_reannotate_4.erc.json",
+      "exit_code": 0,
+      "json_exists": true,
+      "stderr": "",
+      "stdout": "Found 30 violations\nSaved ERC Report to tests/fixtures/erc_upstream_qa/oracles/netlists/test_multiunit_reannotate_4/test_multiunit_reannotate_4.erc.json"
+    },
+    {
+      "file": "netlists/test_multiunit_reannotate_5/test_multiunit_reannotate_5.kicad_sch",
+      "oracle_path": "oracles/netlists/test_multiunit_reannotate_5/test_multiunit_reannotate_5.erc.json",
+      "exit_code": 0,
+      "json_exists": true,
+      "stderr": "",
+      "stdout": "Found 56 violations\nSaved ERC Report to tests/fixtures/erc_upstream_qa/oracles/netlists/test_multiunit_reannotate_5/test_multiunit_reannotate_5.erc.json"
+    },
+    {
+      "file": "netlists/test_multiunit_reannotate_same_value/test_multiunit_reannotate_same_value.kicad_sch",
+      "oracle_path": "oracles/netlists/test_multiunit_reannotate_same_value/test_multiunit_reannotate_same_value.erc.json",
+      "exit_code": 0,
+      "json_exists": true,
+      "stderr": "",
+      "stdout": "Found 34 violations\nSaved ERC Report to tests/fixtures/erc_upstream_qa/oracles/netlists/test_multiunit_reannotate_same_value/test_multiunit_reannotate_same_value.erc.json"
+    },
+    {
+      "file": "netlists/top_level_hier_pins/subsheet.kicad_sch",
+      "oracle_path": "oracles/netlists/top_level_hier_pins/subsheet.erc.json",
+      "exit_code": 0,
+      "json_exists": true,
+      "stderr": "",
+      "stdout": "Found 9 violations\nSaved ERC Report to tests/fixtures/erc_upstream_qa/oracles/netlists/top_level_hier_pins/subsheet.erc.json"
+    },
+    {
+      "file": "netlists/top_level_hier_pins/subsubsheet.kicad_sch",
+      "oracle_path": "oracles/netlists/top_level_hier_pins/subsubsheet.erc.json",
+      "exit_code": 0,
+      "json_exists": true,
+      "stderr": "",
+      "stdout": "Found 7 violations\nSaved ERC Report to tests/fixtures/erc_upstream_qa/oracles/netlists/top_level_hier_pins/subsubsheet.erc.json"
+    },
+    {
+      "file": "netlists/top_level_hier_pins/top_level_hier_pins.kicad_sch",
+      "oracle_path": "oracles/netlists/top_level_hier_pins/top_level_hier_pins.erc.json",
+      "exit_code": 0,
+      "json_exists": true,
+      "stderr": "",
+      "stdout": "Found 10 violations\nSaved ERC Report to tests/fixtures/erc_upstream_qa/oracles/netlists/top_level_hier_pins/top_level_hier_pins.erc.json"
+    },
+    {
+      "file": "netlists/video/bus_pci.kicad_sch",
+      "oracle_path": "oracles/netlists/video/bus_pci.erc.json",
+      "exit_code": 0,
+      "json_exists": true,
+      "stderr": "",
+      "stdout": "Found 382 violations\nSaved ERC Report to tests/fixtures/erc_upstream_qa/oracles/netlists/video/bus_pci.erc.json"
+    },
+    {
+      "file": "netlists/video/esvideo.kicad_sch",
+      "oracle_path": "oracles/netlists/video/esvideo.erc.json",
+      "exit_code": 0,
+      "json_exists": true,
+      "stderr": "",
+      "stdout": "Found 197 violations\nSaved ERC Report to tests/fixtures/erc_upstream_qa/oracles/netlists/video/esvideo.erc.json"
+    },
+    {
+      "file": "netlists/video/graphic.kicad_sch",
+      "oracle_path": "oracles/netlists/video/graphic.erc.json",
+      "exit_code": 0,
+      "json_exists": true,
+      "stderr": "",
+      "stdout": "Found 334 violations\nSaved ERC Report to tests/fixtures/erc_upstream_qa/oracles/netlists/video/graphic.erc.json"
+    },
+    {
+      "file": "netlists/video/modul.kicad_sch",
+      "oracle_path": "oracles/netlists/video/modul.erc.json",
+      "exit_code": 0,
+      "json_exists": true,
+      "stderr": "",
+      "stdout": "Found 147 violations\nSaved ERC Report to tests/fixtures/erc_upstream_qa/oracles/netlists/video/modul.erc.json"
+    },
+    {
+      "file": "netlists/video/muxdata.kicad_sch",
+      "oracle_path": "oracles/netlists/video/muxdata.erc.json",
+      "exit_code": 0,
+      "json_exists": true,
+      "stderr": "",
+      "stdout": "Found 208 violations\nSaved ERC Report to tests/fixtures/erc_upstream_qa/oracles/netlists/video/muxdata.erc.json"
+    },
+    {
+      "file": "netlists/video/pal-ntsc.kicad_sch",
+      "oracle_path": "oracles/netlists/video/pal-ntsc.erc.json",
+      "exit_code": 0,
+      "json_exists": true,
+      "stderr": "",
+      "stdout": "Found 162 violations\nSaved ERC Report to tests/fixtures/erc_upstream_qa/oracles/netlists/video/pal-ntsc.erc.json"
+    },
+    {
+      "file": "netlists/video/rams.kicad_sch",
+      "oracle_path": "oracles/netlists/video/rams.erc.json",
+      "exit_code": 0,
+      "json_exists": true,
+      "stderr": "",
+      "stdout": "Found 447 violations\nSaved ERC Report to tests/fixtures/erc_upstream_qa/oracles/netlists/video/rams.erc.json"
+    },
+    {
+      "file": "netlists/video/video.kicad_sch",
+      "oracle_path": "oracles/netlists/video/video.erc.json",
+      "exit_code": 0,
+      "json_exists": true,
+      "stderr": "",
+      "stdout": "Found 1655 violations\nSaved ERC Report to tests/fixtures/erc_upstream_qa/oracles/netlists/video/video.erc.json"
+    },
+    {
+      "file": "netlists/weak_vector_bus_disambiguation/merge.kicad_sch",
+      "oracle_path": "oracles/netlists/weak_vector_bus_disambiguation/merge.erc.json",
+      "exit_code": 0,
+      "json_exists": true,
+      "stderr": "",
+      "stdout": "Found 6 violations\nSaved ERC Report to tests/fixtures/erc_upstream_qa/oracles/netlists/weak_vector_bus_disambiguation/merge.erc.json"
+    },
+    {
+      "file": "netlists/weak_vector_bus_disambiguation/sub1.kicad_sch",
+      "oracle_path": "oracles/netlists/weak_vector_bus_disambiguation/sub1.erc.json",
+      "exit_code": 0,
+      "json_exists": true,
+      "stderr": "",
+      "stdout": "Found 3 violations\nSaved ERC Report to tests/fixtures/erc_upstream_qa/oracles/netlists/weak_vector_bus_disambiguation/sub1.erc.json"
+    },
+    {
+      "file": "netlists/weak_vector_bus_disambiguation/sub2.kicad_sch",
+      "oracle_path": "oracles/netlists/weak_vector_bus_disambiguation/sub2.erc.json",
+      "exit_code": 0,
+      "json_exists": true,
+      "stderr": "",
+      "stdout": "Found 3 violations\nSaved ERC Report to tests/fixtures/erc_upstream_qa/oracles/netlists/weak_vector_bus_disambiguation/sub2.erc.json"
+    },
+    {
+      "file": "netlists/weak_vector_bus_disambiguation/weak_vector_bus_disambiguation.kicad_sch",
+      "oracle_path": "oracles/netlists/weak_vector_bus_disambiguation/weak_vector_bus_disambiguation.erc.json",
+      "exit_code": 0,
+      "json_exists": true,
+      "stderr": "",
+      "stdout": "Found 0 violations\nSaved ERC Report to tests/fixtures/erc_upstream_qa/oracles/netlists/weak_vector_bus_disambiguation/weak_vector_bus_disambiguation.erc.json"
+    },
+    {
+      "file": "same_local_global_label.kicad_sch",
+      "oracle_path": "oracles/same_local_global_label.erc.json",
+      "exit_code": 0,
+      "json_exists": true,
+      "stderr": "",
+      "stdout": "Found 1 violations\nSaved ERC Report to tests/fixtures/erc_upstream_qa/oracles/same_local_global_label.erc.json"
+    },
+    {
+      "file": "same_local_global_label_subsheet.kicad_sch",
+      "oracle_path": "oracles/same_local_global_label_subsheet.erc.json",
+      "exit_code": 0,
+      "json_exists": true,
+      "stderr": "",
+      "stdout": "Found 0 violations\nSaved ERC Report to tests/fixtures/erc_upstream_qa/oracles/same_local_global_label_subsheet.erc.json"
+    },
+    {
+      "file": "schematic_object_tests/not_shared_by_multiple_projects/not_shared_by_multiple_projects.kicad_sch",
+      "oracle_path": "oracles/schematic_object_tests/not_shared_by_multiple_projects/not_shared_by_multiple_projects.erc.json",
+      "exit_code": 0,
+      "json_exists": true,
+      "stderr": "",
+      "stdout": "Found 2 violations\nSaved ERC Report to tests/fixtures/erc_upstream_qa/oracles/schematic_object_tests/not_shared_by_multiple_projects/not_shared_by_multiple_projects.erc.json"
+    },
+    {
+      "file": "schematic_object_tests/shared_by_multiple_projects/project_a/project_a.kicad_sch",
+      "oracle_path": "oracles/schematic_object_tests/shared_by_multiple_projects/project_a/project_a.erc.json",
+      "exit_code": 0,
+      "json_exists": true,
+      "stderr": "",
+      "stdout": "Found 2 violations\nSaved ERC Report to tests/fixtures/erc_upstream_qa/oracles/schematic_object_tests/shared_by_multiple_projects/project_a/project_a.erc.json"
+    },
+    {
+      "file": "schematic_object_tests/shared_by_multiple_projects/project_b/project_b.kicad_sch",
+      "oracle_path": "oracles/schematic_object_tests/shared_by_multiple_projects/project_b/project_b.erc.json",
+      "exit_code": 0,
+      "json_exists": true,
+      "stderr": "",
+      "stdout": "Found 4 violations\nSaved ERC Report to tests/fixtures/erc_upstream_qa/oracles/schematic_object_tests/shared_by_multiple_projects/project_b/project_b.erc.json"
+    },
+    {
+      "file": "spice_netlists/chirp/chirp.kicad_sch",
+      "oracle_path": "oracles/spice_netlists/chirp/chirp.erc.json",
+      "exit_code": 0,
+      "json_exists": true,
+      "stderr": "",
+      "stdout": "Found 1 violations\nSaved ERC Report to tests/fixtures/erc_upstream_qa/oracles/spice_netlists/chirp/chirp.erc.json"
+    },
+    {
+      "file": "spice_netlists/cmos_not/cmos_not.kicad_sch",
+      "oracle_path": "oracles/spice_netlists/cmos_not/cmos_not.erc.json",
+      "exit_code": 0,
+      "json_exists": true,
+      "stderr": "",
+      "stdout": "Found 12 violations\nSaved ERC Report to tests/fixtures/erc_upstream_qa/oracles/spice_netlists/cmos_not/cmos_not.erc.json"
+    },
+    {
+      "file": "spice_netlists/directives/directives.kicad_sch",
+      "oracle_path": "oracles/spice_netlists/directives/directives.erc.json",
+      "exit_code": 0,
+      "json_exists": true,
+      "stderr": "",
+      "stdout": "Found 9 violations\nSaved ERC Report to tests/fixtures/erc_upstream_qa/oracles/spice_netlists/directives/directives.erc.json"
+    },
+    {
+      "file": "spice_netlists/fliege_filter/fliege_filter.kicad_sch",
+      "oracle_path": "oracles/spice_netlists/fliege_filter/fliege_filter.erc.json",
+      "exit_code": 0,
+      "json_exists": true,
+      "stderr": "",
+      "stdout": "Found 9 violations\nSaved ERC Report to tests/fixtures/erc_upstream_qa/oracles/spice_netlists/fliege_filter/fliege_filter.erc.json"
+    },
+    {
+      "file": "spice_netlists/instance_params/instance_params.kicad_sch",
+      "oracle_path": "oracles/spice_netlists/instance_params/instance_params.erc.json",
+      "exit_code": 0,
+      "json_exists": true,
+      "stderr": "",
+      "stdout": "Found 133 violations\nSaved ERC Report to tests/fixtures/erc_upstream_qa/oracles/spice_netlists/instance_params/instance_params.erc.json"
+    },
+    {
+      "file": "spice_netlists/legacy_laser_driver/legacy_laser_driver.kicad_sch",
+      "oracle_path": "oracles/spice_netlists/legacy_laser_driver/legacy_laser_driver.erc.json",
+      "exit_code": 0,
+      "json_exists": true,
+      "stderr": "",
+      "stdout": "Found 25 violations\nSaved ERC Report to tests/fixtures/erc_upstream_qa/oracles/spice_netlists/legacy_laser_driver/legacy_laser_driver.erc.json"
+    },
+    {
+      "file": "spice_netlists/legacy_opamp/legacy_opamp.kicad_sch",
+      "oracle_path": "oracles/spice_netlists/legacy_opamp/legacy_opamp.erc.json",
+      "exit_code": 0,
+      "json_exists": true,
+      "stderr": "",
+      "stdout": "Found 23 violations\nSaved ERC Report to tests/fixtures/erc_upstream_qa/oracles/spice_netlists/legacy_opamp/legacy_opamp.erc.json"
+    },
+    {
+      "file": "spice_netlists/legacy_pot/legacy_pot.kicad_sch",
+      "oracle_path": "oracles/spice_netlists/legacy_pot/legacy_pot.erc.json",
+      "exit_code": 0,
+      "json_exists": true,
+      "stderr": "",
+      "stdout": "Found 12 violations\nSaved ERC Report to tests/fixtures/erc_upstream_qa/oracles/spice_netlists/legacy_pot/legacy_pot.erc.json"
+    },
+    {
+      "file": "spice_netlists/legacy_pspice/legacy_pspice.kicad_sch",
+      "oracle_path": "oracles/spice_netlists/legacy_pspice/legacy_pspice.erc.json",
+      "exit_code": 0,
+      "json_exists": true,
+      "stderr": "",
+      "stdout": "Found 39 violations\nSaved ERC Report to tests/fixtures/erc_upstream_qa/oracles/spice_netlists/legacy_pspice/legacy_pspice.erc.json"
+    },
+    {
+      "file": "spice_netlists/legacy_rectifier/legacy_rectifier.kicad_sch",
+      "oracle_path": "oracles/spice_netlists/legacy_rectifier/legacy_rectifier.erc.json",
+      "exit_code": 0,
+      "json_exists": true,
+      "stderr": "",
+      "stdout": "Found 7 violations\nSaved ERC Report to tests/fixtures/erc_upstream_qa/oracles/spice_netlists/legacy_rectifier/legacy_rectifier.erc.json"
+    },
+    {
+      "file": "spice_netlists/legacy_sallen_key/legacy_sallen_key.kicad_sch",
+      "oracle_path": "oracles/spice_netlists/legacy_sallen_key/legacy_sallen_key.erc.json",
+      "exit_code": 0,
+      "json_exists": true,
+      "stderr": "",
+      "stdout": "Found 19 violations\nSaved ERC Report to tests/fixtures/erc_upstream_qa/oracles/spice_netlists/legacy_sallen_key/legacy_sallen_key.erc.json"
+    },
+    {
+      "file": "spice_netlists/legacy_sources/legacy_sources.kicad_sch",
+      "oracle_path": "oracles/spice_netlists/legacy_sources/legacy_sources.erc.json",
+      "exit_code": 0,
+      "json_exists": true,
+      "stderr": "",
+      "stdout": "Found 39 violations\nSaved ERC Report to tests/fixtures/erc_upstream_qa/oracles/spice_netlists/legacy_sources/legacy_sources.erc.json"
+    },
+    {
+      "file": "spice_netlists/npn_ce_amp/npn_ce_amp.kicad_sch",
+      "oracle_path": "oracles/spice_netlists/npn_ce_amp/npn_ce_amp.erc.json",
+      "exit_code": 0,
+      "json_exists": true,
+      "stderr": "",
+      "stdout": "Found 10 violations\nSaved ERC Report to tests/fixtures/erc_upstream_qa/oracles/spice_netlists/npn_ce_amp/npn_ce_amp.erc.json"
+    },
+    {
+      "file": "spice_netlists/opamp/opamp.kicad_sch",
+      "oracle_path": "oracles/spice_netlists/opamp/opamp.erc.json",
+      "exit_code": 0,
+      "json_exists": true,
+      "stderr": "",
+      "stdout": "Found 17 violations\nSaved ERC Report to tests/fixtures/erc_upstream_qa/oracles/spice_netlists/opamp/opamp.erc.json"
+    },
+    {
+      "file": "spice_netlists/potentiometers/potentiometers.kicad_sch",
+      "oracle_path": "oracles/spice_netlists/potentiometers/potentiometers.erc.json",
+      "exit_code": 0,
+      "json_exists": true,
+      "stderr": "",
+      "stdout": "Found 12 violations\nSaved ERC Report to tests/fixtures/erc_upstream_qa/oracles/spice_netlists/potentiometers/potentiometers.erc.json"
+    },
+    {
+      "file": "spice_netlists/rectifier/rectifier.kicad_sch",
+      "oracle_path": "oracles/spice_netlists/rectifier/rectifier.erc.json",
+      "exit_code": 0,
+      "json_exists": true,
+      "stderr": "",
+      "stdout": "Found 11 violations\nSaved ERC Report to tests/fixtures/erc_upstream_qa/oracles/spice_netlists/rectifier/rectifier.erc.json"
+    },
+    {
+      "file": "spice_netlists/rlc/rlc.kicad_sch",
+      "oracle_path": "oracles/spice_netlists/rlc/rlc.erc.json",
+      "exit_code": 0,
+      "json_exists": true,
+      "stderr": "",
+      "stdout": "Found 9 violations\nSaved ERC Report to tests/fixtures/erc_upstream_qa/oracles/spice_netlists/rlc/rlc.erc.json"
+    },
+    {
+      "file": "spice_netlists/sources/sources.kicad_sch",
+      "oracle_path": "oracles/spice_netlists/sources/sources.erc.json",
+      "exit_code": 0,
+      "json_exists": true,
+      "stderr": "",
+      "stdout": "Found 73 violations\nSaved ERC Report to tests/fixtures/erc_upstream_qa/oracles/spice_netlists/sources/sources.erc.json"
+    },
+    {
+      "file": "spice_netlists/switches/switches.kicad_sch",
+      "oracle_path": "oracles/spice_netlists/switches/switches.erc.json",
+      "exit_code": 0,
+      "json_exists": true,
+      "stderr": "",
+      "stdout": "Found 17 violations\nSaved ERC Report to tests/fixtures/erc_upstream_qa/oracles/spice_netlists/switches/switches.erc.json"
+    },
+    {
+      "file": "spice_netlists/tlines/tlines.kicad_sch",
+      "oracle_path": "oracles/spice_netlists/tlines/tlines.erc.json",
+      "exit_code": 0,
+      "json_exists": true,
+      "stderr": "",
+      "stdout": "Found 13 violations\nSaved ERC Report to tests/fixtures/erc_upstream_qa/oracles/spice_netlists/tlines/tlines.erc.json"
+    },
+    {
+      "file": "stacked_pin_nomenclature.kicad_sch",
+      "oracle_path": "oracles/stacked_pin_nomenclature.erc.json",
+      "exit_code": 0,
+      "json_exists": true,
+      "stderr": "",
+      "stdout": "Found 5 violations\nSaved ERC Report to tests/fixtures/erc_upstream_qa/oracles/stacked_pin_nomenclature.erc.json"
+    },
+    {
+      "file": "test1243/test1243.kicad_sch",
+      "oracle_path": "oracles/test1243/test1243.erc.json",
+      "exit_code": 0,
+      "json_exists": true,
+      "stderr": "",
+      "stdout": "Found 1 violations\nSaved ERC Report to tests/fixtures/erc_upstream_qa/oracles/test1243/test1243.erc.json"
+    },
+    {
+      "file": "unconnected_bus_entry_qa.kicad_sch",
+      "oracle_path": "oracles/unconnected_bus_entry_qa.erc.json",
+      "exit_code": 0,
+      "json_exists": true,
+      "stderr": "",
+      "stdout": "Found 8 violations\nSaved ERC Report to tests/fixtures/erc_upstream_qa/oracles/unconnected_bus_entry_qa.erc.json"
+    },
+    {
+      "file": "variant_test/variant_test.kicad_sch",
+      "oracle_path": "oracles/variant_test/variant_test.erc.json",
+      "exit_code": 0,
+      "json_exists": true,
+      "stderr": "",
+      "stdout": "Found 2 violations\nSaved ERC Report to tests/fixtures/erc_upstream_qa/oracles/variant_test/variant_test.erc.json"
+    },
+    {
+      "file": "variants/pic_sockets.kicad_sch",
+      "oracle_path": "oracles/variants/pic_sockets.erc.json",
+      "exit_code": 0,
+      "json_exists": true,
+      "stderr": "",
+      "stdout": "Found 25 violations\nSaved ERC Report to tests/fixtures/erc_upstream_qa/oracles/variants/pic_sockets.erc.json"
+    },
+    {
+      "file": "variants/variants.kicad_sch",
+      "oracle_path": "oracles/variants/variants.erc.json",
+      "exit_code": 0,
+      "json_exists": true,
+      "stderr": "",
+      "stdout": "Found 127 violations\nSaved ERC Report to tests/fixtures/erc_upstream_qa/oracles/variants/variants.erc.json"
+    }
+  ]
+}

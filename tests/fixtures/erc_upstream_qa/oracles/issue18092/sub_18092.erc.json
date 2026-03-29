@@ -1,0 +1,105 @@
+{
+    "$schema": "https://schemas.kicad.org/erc.v1.json",
+    "coordinate_units": "mm",
+    "date": "2026-03-29T23:05:29",
+    "ignored_checks": [
+        {
+            "description": "Global label only appears once in the schematic",
+            "key": "single_global_label"
+        },
+        {
+            "description": "Four connection points are joined together",
+            "key": "four_way_junction"
+        },
+        {
+            "description": "SPICE model issue",
+            "key": "simulation_model_issue"
+        },
+        {
+            "description": "Assigned footprint doesn't match footprint filters",
+            "key": "footprint_filter"
+        }
+    ],
+    "included_severities": [
+        "error",
+        "warning"
+    ],
+    "kicad_version": "10.0.0",
+    "sheets": [
+        {
+            "path": "/",
+            "uuid_path": "/468691ae-fbea-486a-acab-abdd40c402ea",
+            "violations": [
+                {
+                    "description": "Input Power pin not driven by any Output Power pins",
+                    "items": [
+                        {
+                            "description": "Symbol #PWR0957 Hidden pin 1 [3V3_MM, Power input, Line]",
+                            "pos": {
+                                "x": 0.381,
+                                "y": 0.8128
+                            },
+                            "uuid": "01775cdd-034e-434f-9038-8228a32df11d"
+                        }
+                    ],
+                    "severity": "error",
+                    "type": "power_pin_not_driven"
+                },
+                {
+                    "description": "Label connected to only one pin",
+                    "items": [
+                        {
+                            "description": "Global Label 'AOP_VCC'",
+                            "pos": {
+                                "x": 0.508,
+                                "y": 0.6477
+                            },
+                            "uuid": "5a21f415-1360-4670-bcce-17448a333e36"
+                        }
+                    ],
+                    "severity": "warning",
+                    "type": "isolated_pin_label"
+                },
+                {
+                    "description": "The current configuration does not include the symbol library '0_Power'",
+                    "items": [
+                        {
+                            "description": "Symbol #PWR0957 [3V3_MM]",
+                            "pos": {
+                                "x": 0.381,
+                                "y": 0.8128
+                            },
+                            "uuid": "c21f5b8c-5d37-4dc9-8550-7b3b9ab0ac8e"
+                        }
+                    ],
+                    "severity": "warning",
+                    "type": "lib_symbol_issues"
+                },
+                {
+                    "description": "Both MM_SCREEN_CAP_VCC and 3V3_MM are attached to the same items; MM_SCREEN_CAP_VCC will be used in the netlist",
+                    "items": [
+                        {
+                            "description": "Global Label 'MM_SCREEN_CAP_VCC'",
+                            "pos": {
+                                "x": 0.3556,
+                                "y": 0.6477
+                            },
+                            "uuid": "8100a8a1-f746-4da7-b635-14a04ad989ee"
+                        },
+                        {
+                            "description": "Symbol #PWR0957 Hidden pin 1 [3V3_MM, Power input, Line]",
+                            "pos": {
+                                "x": 0.381,
+                                "y": 0.8128
+                            },
+                            "uuid": "01775cdd-034e-434f-9038-8228a32df11d"
+                        }
+                    ],
+                    "severity": "warning",
+                    "type": "multiple_net_names"
+                }
+            ]
+        }
+    ],
+    "source": "sub_18092.kicad_sch"
+}

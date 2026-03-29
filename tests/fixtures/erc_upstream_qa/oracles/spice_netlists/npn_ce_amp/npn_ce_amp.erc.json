@@ -1,0 +1,187 @@
+{
+    "$schema": "https://schemas.kicad.org/erc.v1.json",
+    "coordinate_units": "mm",
+    "date": "2026-03-29T23:08:19",
+    "ignored_checks": [
+        {
+            "description": "Global label only appears once in the schematic",
+            "key": "single_global_label"
+        },
+        {
+            "description": "Four connection points are joined together",
+            "key": "four_way_junction"
+        },
+        {
+            "description": "SPICE model issue",
+            "key": "simulation_model_issue"
+        },
+        {
+            "description": "Assigned footprint doesn't match footprint filters",
+            "key": "footprint_filter"
+        }
+    ],
+    "included_severities": [
+        "error",
+        "warning"
+    ],
+    "kicad_version": "10.0.0",
+    "sheets": [
+        {
+            "path": "/",
+            "uuid_path": "/48817d43-3f4d-4e7e-ae5d-40c9da0e33d5",
+            "violations": [
+                {
+                    "description": "Input Power pin not driven by any Output Power pins",
+                    "items": [
+                        {
+                            "description": "Symbol #PWR01 Hidden pin 1 [GND, Power input, Line]",
+                            "pos": {
+                                "x": 1.016,
+                                "y": 0.9017
+                            },
+                            "uuid": "88b21522-3f3c-4db4-9769-ae14b29b6781"
+                        }
+                    ],
+                    "severity": "error",
+                    "type": "power_pin_not_driven"
+                },
+                {
+                    "description": "Pin not connected",
+                    "items": [
+                        {
+                            "description": "Symbol Q1 Pin 4 [Substrat, Input, Line]",
+                            "pos": {
+                                "x": 1.3335,
+                                "y": 0.9779
+                            },
+                            "uuid": "621fb5ea-5b78-4f68-aa28-035eca0a9dd8"
+                        }
+                    ],
+                    "severity": "error",
+                    "type": "pin_not_connected"
+                },
+                {
+                    "description": "Input pin not driven by any Output pins",
+                    "items": [
+                        {
+                            "description": "Symbol Q1 Pin 4 [Substrat, Input, Line]",
+                            "pos": {
+                                "x": 1.3335,
+                                "y": 0.9779
+                            },
+                            "uuid": "621fb5ea-5b78-4f68-aa28-035eca0a9dd8"
+                        }
+                    ],
+                    "severity": "error",
+                    "type": "pin_not_driven"
+                },
+                {
+                    "description": "Symbol 'VDC' doesn't match copy in library 'Simulation_SPICE'",
+                    "items": [
+                        {
+                            "description": "Symbol V1 [VDC]",
+                            "pos": {
+                                "x": 1.016,
+                                "y": 0.8509
+                            },
+                            "uuid": "e1dfe550-04dd-4714-a41a-aa2825a2881f"
+                        }
+                    ],
+                    "severity": "warning",
+                    "type": "lib_symbol_mismatch"
+                },
+                {
+                    "description": "Symbol 'GND' doesn't match copy in library 'power'",
+                    "items": [
+                        {
+                            "description": "Symbol #PWR01 [GND]",
+                            "pos": {
+                                "x": 1.016,
+                                "y": 0.9017
+                            },
+                            "uuid": "08f4cc24-6109-4be7-97a5-71df29b2d29f"
+                        }
+                    ],
+                    "severity": "warning",
+                    "type": "lib_symbol_mismatch"
+                },
+                {
+                    "description": "Symbol 'VSIN' doesn't match copy in library 'Simulation_SPICE'",
+                    "items": [
+                        {
+                            "description": "Symbol V2 [VSIN]",
+                            "pos": {
+                                "x": 1.143,
+                                "y": 0.9398
+                            },
+                            "uuid": "973698df-46a0-4ee0-8e2f-010cef494e09"
+                        }
+                    ],
+                    "severity": "warning",
+                    "type": "lib_symbol_mismatch"
+                },
+                {
+                    "description": "Symbol 'GND' doesn't match copy in library 'power'",
+                    "items": [
+                        {
+                            "description": "Symbol #PWR02 [GND]",
+                            "pos": {
+                                "x": 1.143,
+                                "y": 0.9906
+                            },
+                            "uuid": "061346ed-4da6-4a14-a5e0-8de9493b719a"
+                        }
+                    ],
+                    "severity": "warning",
+                    "type": "lib_symbol_mismatch"
+                },
+                {
+                    "description": "Symbol 'GND' doesn't match copy in library 'power'",
+                    "items": [
+                        {
+                            "description": "Symbol #PWR03 [GND]",
+                            "pos": {
+                                "x": 1.27,
+                                "y": 0.9652
+                            },
+                            "uuid": "17af0f63-5021-4f46-8172-d3543add2835"
+                        }
+                    ],
+                    "severity": "warning",
+                    "type": "lib_symbol_mismatch"
+                },
+                {
+                    "description": "The current configuration does not include the symbol library 'pspice'",
+                    "items": [
+                        {
+                            "description": "Symbol Q1 [QNPN]",
+                            "pos": {
+                                "x": 1.3589,
+                                "y": 0.889
+                            },
+                            "uuid": "3f259f4e-365c-40fc-8137-1466a8c5c7ef"
+                        }
+                    ],
+                    "severity": "warning",
+                    "type": "lib_symbol_issues"
+                },
+                {
+                    "description": "Symbol 'GND' doesn't match copy in library 'power'",
+                    "items": [
+                        {
+                            "description": "Symbol #PWR04 [GND]",
+                            "pos": {
+                                "x": 1.397,
+                                "y": 1.1303
+                            },
+                            "uuid": "9d340c06-d2c1-4cea-a45c-57ace419a42d"
+                        }
+                    ],
+                    "severity": "warning",
+                    "type": "lib_symbol_mismatch"
+                }
+            ]
+        }
+    ],
+    "source": "npn_ce_amp.kicad_sch"
+}

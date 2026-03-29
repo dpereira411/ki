@@ -1,0 +1,112 @@
+{
+    "$schema": "https://schemas.kicad.org/erc.v1.json",
+    "coordinate_units": "mm",
+    "date": "2026-03-29T23:05:50",
+    "ignored_checks": [
+        {
+            "description": "Global label only appears once in the schematic",
+            "key": "single_global_label"
+        },
+        {
+            "description": "Four connection points are joined together",
+            "key": "four_way_junction"
+        },
+        {
+            "description": "SPICE model issue",
+            "key": "simulation_model_issue"
+        },
+        {
+            "description": "Assigned footprint doesn't match footprint filters",
+            "key": "footprint_filter"
+        }
+    ],
+    "included_severities": [
+        "error",
+        "warning"
+    ],
+    "kicad_version": "10.0.0",
+    "sheets": [
+        {
+            "path": "/",
+            "uuid_path": "/084ee3b1-71f6-47a6-9dc8-ecb4f5c55a9a",
+            "violations": [
+                {
+                    "description": "Input Power pin not driven by any Output Power pins",
+                    "items": [
+                        {
+                            "description": "Symbol J1 Pin 1 [1.pow, Power input, Line]",
+                            "pos": {
+                                "x": 0.9271,
+                                "y": 0.762
+                            },
+                            "uuid": "da3d86a0-e961-4510-b252-496e6ec73525"
+                        }
+                    ],
+                    "severity": "error",
+                    "type": "power_pin_not_driven"
+                },
+                {
+                    "description": "Input Power pin not driven by any Output Power pins",
+                    "items": [
+                        {
+                            "description": "Symbol J1 Pin 2 [2.pow, Power input, Line]",
+                            "pos": {
+                                "x": 0.9271,
+                                "y": 0.7874
+                            },
+                            "uuid": "ecc7a8a0-6780-432c-be66-419246b0cc68"
+                        }
+                    ],
+                    "severity": "error",
+                    "type": "power_pin_not_driven"
+                },
+                {
+                    "description": "Input Power pin not driven by any Output Power pins",
+                    "items": [
+                        {
+                            "description": "Symbol #PWR02 Pin 1 [Power input, Line]",
+                            "pos": {
+                                "x": 0.9017,
+                                "y": 1.0287
+                            },
+                            "uuid": "c47987e9-c88b-43cd-810a-8b260893e2fa"
+                        }
+                    ],
+                    "severity": "error",
+                    "type": "power_pin_not_driven"
+                },
+                {
+                    "description": "The current configuration does not include the footprint library 'custom'",
+                    "items": [
+                        {
+                            "description": "Symbol J1 [MOLEX_PICOBLADE_8PHOR]",
+                            "pos": {
+                                "x": 0.9779,
+                                "y": 0.8382
+                            },
+                            "uuid": "3ab50da0-dc9b-4c7e-9b38-423adaa36f32"
+                        }
+                    ],
+                    "severity": "warning",
+                    "type": "footprint_link_issues"
+                },
+                {
+                    "description": "The current configuration does not include the symbol library 'custom'",
+                    "items": [
+                        {
+                            "description": "Symbol J1 [MOLEX_PICOBLADE_8PHOR]",
+                            "pos": {
+                                "x": 0.9779,
+                                "y": 0.8382
+                            },
+                            "uuid": "3ab50da0-dc9b-4c7e-9b38-423adaa36f32"
+                        }
+                    ],
+                    "severity": "warning",
+                    "type": "lib_symbol_issues"
+                }
+            ]
+        }
+    ],
+    "source": "bugtest.kicad_sch"
+}

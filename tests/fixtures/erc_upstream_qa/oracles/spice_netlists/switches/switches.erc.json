@@ -1,0 +1,292 @@
+{
+    "$schema": "https://schemas.kicad.org/erc.v1.json",
+    "coordinate_units": "mm",
+    "date": "2026-03-29T23:08:26",
+    "ignored_checks": [
+        {
+            "description": "Global label only appears once in the schematic",
+            "key": "single_global_label"
+        },
+        {
+            "description": "Four connection points are joined together",
+            "key": "four_way_junction"
+        },
+        {
+            "description": "SPICE model issue",
+            "key": "simulation_model_issue"
+        },
+        {
+            "description": "Assigned footprint doesn't match footprint filters",
+            "key": "footprint_filter"
+        }
+    ],
+    "included_severities": [
+        "error",
+        "warning"
+    ],
+    "kicad_version": "10.0.0",
+    "sheets": [
+        {
+            "path": "/",
+            "uuid_path": "/8c3d4d2c-5107-4b13-88da-bd05d371fd8a",
+            "violations": [
+                {
+                    "description": "Input Power pin not driven by any Output Power pins",
+                    "items": [
+                        {
+                            "description": "Symbol #PWR0101 Hidden pin 1 [GND, Power input, Line]",
+                            "pos": {
+                                "x": 1.016,
+                                "y": 1.27
+                            },
+                            "uuid": "143d59bd-771c-4aa1-b84c-77882db7e89f"
+                        }
+                    ],
+                    "severity": "error",
+                    "type": "power_pin_not_driven"
+                },
+                {
+                    "description": "Symbol 'VPULSE' doesn't match copy in library 'Simulation_SPICE'",
+                    "items": [
+                        {
+                            "description": "Symbol V1 [VPULSE]",
+                            "pos": {
+                                "x": 1.016,
+                                "y": 0.8128
+                            },
+                            "uuid": "347e9fb4-5b9c-424b-a0ef-e3e1d4152813"
+                        }
+                    ],
+                    "severity": "warning",
+                    "type": "lib_symbol_mismatch"
+                },
+                {
+                    "description": "Symbol 'GND' doesn't match copy in library 'power'",
+                    "items": [
+                        {
+                            "description": "Symbol #PWR0104 [GND]",
+                            "pos": {
+                                "x": 1.016,
+                                "y": 0.889
+                            },
+                            "uuid": "66dfc60d-51c9-41a4-8112-e32a54e72e44"
+                        }
+                    ],
+                    "severity": "warning",
+                    "type": "lib_symbol_mismatch"
+                },
+                {
+                    "description": "Symbol 'VPULSE' doesn't match copy in library 'Simulation_SPICE'",
+                    "items": [
+                        {
+                            "description": "Symbol V5 [VPULSE]",
+                            "pos": {
+                                "x": 1.016,
+                                "y": 1.1938
+                            },
+                            "uuid": "cc5714e1-b7d6-480c-969a-294d5122f327"
+                        }
+                    ],
+                    "severity": "warning",
+                    "type": "lib_symbol_mismatch"
+                },
+                {
+                    "description": "Symbol 'GND' doesn't match copy in library 'power'",
+                    "items": [
+                        {
+                            "description": "Symbol #PWR0101 [GND]",
+                            "pos": {
+                                "x": 1.016,
+                                "y": 1.27
+                            },
+                            "uuid": "925023dd-5312-461f-a25e-dc1614390dac"
+                        }
+                    ],
+                    "severity": "warning",
+                    "type": "lib_symbol_mismatch"
+                },
+                {
+                    "description": "Symbol 'GND' doesn't match copy in library 'power'",
+                    "items": [
+                        {
+                            "description": "Symbol #PWR0106 [GND]",
+                            "pos": {
+                                "x": 1.5875,
+                                "y": 0.9144
+                            },
+                            "uuid": "3a046e4d-7b2b-4ee1-9196-d1db4ee763bb"
+                        }
+                    ],
+                    "severity": "warning",
+                    "type": "lib_symbol_mismatch"
+                },
+                {
+                    "description": "Footprint 'Relay_1P1T_NO_10x24x18.8mm_Panasonic_ADW11xxxxW_THT' not found in library 'Relay_THT'",
+                    "items": [
+                        {
+                            "description": "Symbol K1 [ADW11]",
+                            "pos": {
+                                "x": 1.6383,
+                                "y": 0.8382
+                            },
+                            "uuid": "c1fe9022-3238-4a03-8269-f88f88525efc"
+                        }
+                    ],
+                    "severity": "warning",
+                    "type": "footprint_link_issues"
+                },
+                {
+                    "description": "Symbol 'ADW11' doesn't match copy in library 'Relay'",
+                    "items": [
+                        {
+                            "description": "Symbol K1 [ADW11]",
+                            "pos": {
+                                "x": 1.6383,
+                                "y": 0.8382
+                            },
+                            "uuid": "c1fe9022-3238-4a03-8269-f88f88525efc"
+                        }
+                    ],
+                    "severity": "warning",
+                    "type": "lib_symbol_mismatch"
+                },
+                {
+                    "description": "Symbol 'VDC' doesn't match copy in library 'Simulation_SPICE'",
+                    "items": [
+                        {
+                            "description": "Symbol V2 [VDC]",
+                            "pos": {
+                                "x": 1.6891,
+                                "y": 0.9652
+                            },
+                            "uuid": "38db2ebd-2b24-4620-9674-dced674c39a5"
+                        }
+                    ],
+                    "severity": "warning",
+                    "type": "lib_symbol_mismatch"
+                },
+                {
+                    "description": "Symbol 'GND' doesn't match copy in library 'power'",
+                    "items": [
+                        {
+                            "description": "Symbol #PWR0108 [GND]",
+                            "pos": {
+                                "x": 1.6891,
+                                "y": 1.016
+                            },
+                            "uuid": "cf6a69fc-ed84-4873-b4dc-81fbde5f83b7"
+                        }
+                    ],
+                    "severity": "warning",
+                    "type": "lib_symbol_mismatch"
+                },
+                {
+                    "description": "Footprint 'Relay_1P1T_NO_10x24x18.8mm_Panasonic_ADW11xxxxW_THT' not found in library 'Relay_THT'",
+                    "items": [
+                        {
+                            "description": "Symbol K2 [ADW11]",
+                            "pos": {
+                                "x": 1.6383,
+                                "y": 1.2192
+                            },
+                            "uuid": "56eb12c2-83ef-4c44-ba5e-b3bc72d7d310"
+                        }
+                    ],
+                    "severity": "warning",
+                    "type": "footprint_link_issues"
+                },
+                {
+                    "description": "Symbol 'ADW11' doesn't match copy in library 'Relay'",
+                    "items": [
+                        {
+                            "description": "Symbol K2 [ADW11]",
+                            "pos": {
+                                "x": 1.6383,
+                                "y": 1.2192
+                            },
+                            "uuid": "56eb12c2-83ef-4c44-ba5e-b3bc72d7d310"
+                        }
+                    ],
+                    "severity": "warning",
+                    "type": "lib_symbol_mismatch"
+                },
+                {
+                    "description": "Symbol 'GND' doesn't match copy in library 'power'",
+                    "items": [
+                        {
+                            "description": "Symbol #PWR0103 [GND]",
+                            "pos": {
+                                "x": 1.5875,
+                                "y": 1.2954
+                            },
+                            "uuid": "7b412bef-6375-4838-89d0-ef85f2a44f39"
+                        }
+                    ],
+                    "severity": "warning",
+                    "type": "lib_symbol_mismatch"
+                },
+                {
+                    "description": "Symbol 'GND' doesn't match copy in library 'power'",
+                    "items": [
+                        {
+                            "description": "Symbol #PWR0107 [GND]",
+                            "pos": {
+                                "x": 1.8415,
+                                "y": 0.9144
+                            },
+                            "uuid": "efec76b7-311a-4c4c-971c-c6fda250379c"
+                        }
+                    ],
+                    "severity": "warning",
+                    "type": "lib_symbol_mismatch"
+                },
+                {
+                    "description": "Symbol 'VDC' doesn't match copy in library 'Simulation_SPICE'",
+                    "items": [
+                        {
+                            "description": "Symbol V4 [VDC]",
+                            "pos": {
+                                "x": 1.6891,
+                                "y": 1.3462
+                            },
+                            "uuid": "ed7a9dd3-92a2-4670-b91d-78c18bed2273"
+                        }
+                    ],
+                    "severity": "warning",
+                    "type": "lib_symbol_mismatch"
+                },
+                {
+                    "description": "Symbol 'GND' doesn't match copy in library 'power'",
+                    "items": [
+                        {
+                            "description": "Symbol #PWR0102 [GND]",
+                            "pos": {
+                                "x": 1.6891,
+                                "y": 1.397
+                            },
+                            "uuid": "af1b7e6e-e3ca-4aef-a5e2-387742769c66"
+                        }
+                    ],
+                    "severity": "warning",
+                    "type": "lib_symbol_mismatch"
+                },
+                {
+                    "description": "Symbol 'GND' doesn't match copy in library 'power'",
+                    "items": [
+                        {
+                            "description": "Symbol #PWR0105 [GND]",
+                            "pos": {
+                                "x": 1.8415,
+                                "y": 1.27
+                            },
+                            "uuid": "8f3fec1f-a25a-4d2a-835f-873a7617927d"
+                        }
+                    ],
+                    "severity": "warning",
+                    "type": "lib_symbol_mismatch"
+                }
+            ]
+        }
+    ],
+    "source": "switches.kicad_sch"
+}

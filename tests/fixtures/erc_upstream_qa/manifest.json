@@ -1,0 +1,41 @@
+{
+  "base_dir": "/Users/Daniel/Desktop/kicad/qa/data/eeschema",
+  "cases": [
+    {
+      "id": "erc_multiple_pin_to_pin",
+      "relative_path": "erc_multiple_pin_to_pin.kicad_sch",
+      "mode": "exact",
+      "note": "Broad exact upstream equality regression"
+    },
+    {
+      "id": "top_level_hier_pins",
+      "relative_path": "netlists/top_level_hier_pins/top_level_hier_pins.kicad_sch",
+      "mode": "exact",
+      "note": "Broad exact hierarchical regression"
+    },
+    {
+      "id": "issue18606",
+      "relative_path": "issue18606/issue18606.kicad_sch",
+      "mode": "exact",
+      "note": "Broad exact hierarchy plus multiple-net-names regression"
+    },
+    {
+      "id": "prefix_bus_alias",
+      "relative_path": "netlists/prefix_bus_alias/prefix_bus_alias.kicad_sch",
+      "mode": "exact",
+      "note": "Broad exact bus-alias regression"
+    },
+    {
+      "id": "bus_connection",
+      "relative_path": "netlists/bus_connection/bus_connection.kicad_sch",
+      "mode": "targeted",
+      "note": "Counts and key items match; 0.0001 mm item-description drift remains on four endpoint_off_grid entries"
+    },
+    {
+      "id": "multinetclasses",
+      "relative_path": "netlists/multinetclasses/multinetclasses.kicad_sch",
+      "mode": "targeted",
+      "note": "Native keeps R7 Pin 1; official KiCad omits it due to upstream marker-provider bug"
+    }
+  ]
+}

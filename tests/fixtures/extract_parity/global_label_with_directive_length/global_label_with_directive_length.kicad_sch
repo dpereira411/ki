@@ -1,0 +1,12 @@
+(kicad_sch
+  (version 20260101)
+  (generator "eeschema")
+  (uuid "global-label-with-directive-length-root")
+  (paper "A4")
+  (global_label "NET"
+    (at 10 10 0)
+    (shape input)
+    (length 1.27)
+    (effects (font (size 1.27 1.27))))
+  (sheet_instances
+    (path "/" (page "1"))))

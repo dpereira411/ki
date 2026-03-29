@@ -1,0 +1,11 @@
+(kicad_sch
+  (version 20260101)
+  (generator "eeschema")
+  (uuid "root-uuid")
+  (paper "A4")
+  (netclass_flag ""
+    (length nope)
+    (shape round)
+    (at 10 10 0)
+    (effects (font (size 1.27 1.27))))
+  (sheet_instances (path "/" (page "1"))))

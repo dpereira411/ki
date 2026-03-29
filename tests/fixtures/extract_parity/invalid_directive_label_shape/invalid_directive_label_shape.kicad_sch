@@ -1,0 +1,9 @@
+(kicad_sch
+  (version 20260101)
+  (generator "eeschema")
+  (uuid "invalid-directive-label-root")
+  (paper "A4")
+  (directive_label "SIG" (shape nonsense) (at 50 50 0) (fields_autoplaced yes) (uuid "dl-1")
+    (effects (font (size 1.27 1.27))))
+  (sheet_instances
+    (path "/" (page "1"))))

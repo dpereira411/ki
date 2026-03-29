@@ -1,0 +1,14 @@
+(kicad_sch
+  (version 20260101)
+  (generator "eeschema")
+  (uuid "invalid-lib-symbol-jumpers-root")
+  (paper "A4")
+  (lib_symbols
+    (symbol "Device:R"
+      (pin_numbers hide)
+      (duplicate_pin_numbers_are_jumpers maybe)
+      (property "Reference" "R" (at 0 0 0) (effects (font (size 1.27 1.27))))
+      (property "Value" "R" (at 0 0 0) (effects (font (size 1.27 1.27))))
+      (symbol "R_1_1")))
+  (sheet_instances
+    (path "/" (page "1"))))

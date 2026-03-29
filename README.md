@@ -50,6 +50,13 @@ Extract a schematic netlist/topology as JSON:
 just run extract path/to/file.kicad_sch --pretty
 ```
 
+Extract output semantics:
+
+- `lib_parts[*].fields` contains library/class symbol properties
+- `components[*].properties` contains instance-only overrides and instance-only custom properties
+- `components[*].footprint` and `components[*].datasheet` are also instance overrides only; inherited library defaults live under the matching `lib_parts[*]`
+- reconstruct full effective properties by overlaying `components[*].properties` on top of the matching `lib_parts[*].fields`
+
 Add a PCB trace:
 
 ```bash

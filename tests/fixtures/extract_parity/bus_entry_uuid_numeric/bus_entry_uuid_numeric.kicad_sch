@@ -1,0 +1,8 @@
+(kicad_sch
+  (version 20260101)
+  (generator "eeschema")
+  (uuid "root-uuid")
+  (paper "A4")
+  (bus_entry (at 10 10) (size 2.54 2.54) (uuid 1))
+  (sheet_instances
+    (path "/" (page "1"))))

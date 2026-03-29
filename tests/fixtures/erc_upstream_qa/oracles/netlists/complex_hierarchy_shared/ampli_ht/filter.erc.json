@@ -1,0 +1,886 @@
+{
+    "$schema": "https://schemas.kicad.org/erc.v1.json",
+    "coordinate_units": "mm",
+    "date": "2026-03-29T23:06:35",
+    "ignored_checks": [
+        {
+            "description": "Global label only appears once in the schematic",
+            "key": "single_global_label"
+        },
+        {
+            "description": "Four connection points are joined together",
+            "key": "four_way_junction"
+        },
+        {
+            "description": "SPICE model issue",
+            "key": "simulation_model_issue"
+        },
+        {
+            "description": "Assigned footprint doesn't match footprint filters",
+            "key": "footprint_filter"
+        }
+    ],
+    "included_severities": [
+        "error",
+        "warning"
+    ],
+    "kicad_version": "10.0.0",
+    "sheets": [
+        {
+            "path": "/",
+            "uuid_path": "/184783f4-f557-41ee-af88-7d281efe2230",
+            "violations": [
+                {
+                    "description": "Hierarchical label 'IN' in root sheet cannot be connected to non-existent parent sheet",
+                    "items": [
+                        {
+                            "description": "Hierarchical Label 'IN'",
+                            "pos": {
+                                "x": 1.27,
+                                "y": 0.7239
+                            },
+                            "uuid": "972a6a01-b910-4b94-a2df-2808a090325a"
+                        }
+                    ],
+                    "severity": "error",
+                    "type": "pin_not_connected"
+                },
+                {
+                    "description": "Wires not connected to anything",
+                    "items": [
+                        {
+                            "description": "Horizontal Wire, length 0.0635 mm",
+                            "pos": {
+                                "x": 1.37795,
+                                "y": 0.7239
+                            },
+                            "uuid": "33988292-82be-4793-8db9-3e60f2ea89ab"
+                        },
+                        {
+                            "description": "Vertical Wire, length 0.0254 mm",
+                            "pos": {
+                                "x": 1.44145,
+                                "y": 0.7493
+                            },
+                            "uuid": "4c30e925-68cc-4a66-83f4-f295d90f0179"
+                        }
+                    ],
+                    "severity": "error",
+                    "type": "wire_dangling"
+                },
+                {
+                    "description": "Wires not connected to anything",
+                    "items": [
+                        {
+                            "description": "Horizontal Wire, length 0.0508 mm",
+                            "pos": {
+                                "x": 1.63195,
+                                "y": 0.7239
+                            },
+                            "uuid": "b629f20a-3de6-4c4c-9e0c-9ecdca952bcd"
+                        },
+                        {
+                            "description": "Vertical Wire, length 0.1016 mm",
+                            "pos": {
+                                "x": 1.63195,
+                                "y": 0.6223
+                            },
+                            "uuid": "379b8d3a-2be1-46d1-93a9-4766c71fe647"
+                        }
+                    ],
+                    "severity": "error",
+                    "type": "wire_dangling"
+                },
+                {
+                    "description": "Input Power pin not driven by any Output Power pins",
+                    "items": [
+                        {
+                            "description": "Symbol #PWR? Hidden pin 1 [GND, Power input, Line]",
+                            "pos": {
+                                "x": 1.73355,
+                                "y": 0.9144
+                            },
+                            "uuid": "c2c68297-1855-4362-950d-e1b0a6c48c44"
+                        }
+                    ],
+                    "severity": "error",
+                    "type": "power_pin_not_driven"
+                },
+                {
+                    "description": "Wires not connected to anything",
+                    "items": [
+                        {
+                            "description": "Vertical Wire, length 0.0508 mm",
+                            "pos": {
+                                "x": 1.82245,
+                                "y": 0.7239
+                            },
+                            "uuid": "00606f42-9c1d-4055-8efc-2a5cf2cb8fff"
+                        },
+                        {
+                            "description": "Horizontal Wire, length 0.0635 mm",
+                            "pos": {
+                                "x": 1.82245,
+                                "y": 0.7239
+                            },
+                            "uuid": "29daefe7-f32a-4e7c-9cd9-c3b65efc0666"
+                        }
+                    ],
+                    "severity": "error",
+                    "type": "wire_dangling"
+                },
+                {
+                    "description": "Input Power pin not driven by any Output Power pins",
+                    "items": [
+                        {
+                            "description": "Symbol U? Pin 8 [V+, Power input, Line]",
+                            "pos": {
+                                "x": 1.92405,
+                                "y": 0.7239
+                            },
+                            "uuid": "c4708d95-71cd-469c-8f0c-464a892bcef0"
+                        }
+                    ],
+                    "severity": "error",
+                    "type": "power_pin_not_driven"
+                },
+                {
+                    "description": "Input Power pin not driven by any Output Power pins",
+                    "items": [
+                        {
+                            "description": "Symbol U? Pin 4 [V-, Power input, Line]",
+                            "pos": {
+                                "x": 1.92405,
+                                "y": 0.9271
+                            },
+                            "uuid": "b4aad4bb-d03c-4aa4-8f44-04bdbaed4687"
+                        }
+                    ],
+                    "severity": "error",
+                    "type": "power_pin_not_driven"
+                },
+                {
+                    "description": "Hierarchical label 'OUT' in root sheet cannot be connected to non-existent parent sheet",
+                    "items": [
+                        {
+                            "description": "Hierarchical Label 'OUT'",
+                            "pos": {
+                                "x": 2.413,
+                                "y": 0.8255
+                            },
+                            "uuid": "e253e497-3efd-48d2-a87d-3ca62c9017c4"
+                        }
+                    ],
+                    "severity": "error",
+                    "type": "pin_not_connected"
+                },
+                {
+                    "description": "Label connected to only one pin",
+                    "items": [
+                        {
+                            "description": "Hierarchical Label 'IN'",
+                            "pos": {
+                                "x": 1.27,
+                                "y": 0.7239
+                            },
+                            "uuid": "972a6a01-b910-4b94-a2df-2808a090325a"
+                        }
+                    ],
+                    "severity": "warning",
+                    "type": "isolated_pin_label"
+                },
+                {
+                    "description": "Symbol pin or wire end off connection grid",
+                    "items": [
+                        {
+                            "description": "Horizontal Wire, length 0.0318 mm",
+                            "pos": {
+                                "x": 1.27,
+                                "y": 0.7239
+                            },
+                            "uuid": "6c078d28-86e2-42bc-9c2d-d09ec3bbc5eb"
+                        }
+                    ],
+                    "severity": "warning",
+                    "type": "endpoint_off_grid"
+                },
+                {
+                    "description": "The current configuration does not include the symbol library 'complex_hierarchy_schlib'",
+                    "items": [
+                        {
+                            "description": "Symbol R? [R]",
+                            "pos": {
+                                "x": 1.33985,
+                                "y": 0.7239
+                            },
+                            "uuid": "081c3c72-72f1-4db7-a695-190810f5e0b2"
+                        }
+                    ],
+                    "severity": "warning",
+                    "type": "lib_symbol_issues"
+                },
+                {
+                    "description": "Symbol pin or wire end off connection grid",
+                    "items": [
+                        {
+                            "description": "Horizontal Wire, length 0.0635 mm",
+                            "pos": {
+                                "x": 1.37795,
+                                "y": 0.7239
+                            },
+                            "uuid": "33988292-82be-4793-8db9-3e60f2ea89ab"
+                        }
+                    ],
+                    "severity": "warning",
+                    "type": "endpoint_off_grid"
+                },
+                {
+                    "description": "Symbol pin or wire end off connection grid",
+                    "items": [
+                        {
+                            "description": "Symbol R? Pin 1 [Passive, Line]",
+                            "pos": {
+                                "x": 1.37795,
+                                "y": 0.7239
+                            },
+                            "uuid": "fe4c8544-cc61-4710-9ef7-bec88a099a7e"
+                        }
+                    ],
+                    "severity": "warning",
+                    "type": "endpoint_off_grid"
+                },
+                {
+                    "description": "Symbol pin or wire end off connection grid",
+                    "items": [
+                        {
+                            "description": "Horizontal Wire, length 0.0635 mm",
+                            "pos": {
+                                "x": 1.44145,
+                                "y": 0.7239
+                            },
+                            "uuid": "58ba9fca-0020-456c-812a-4df670c67cd5"
+                        }
+                    ],
+                    "severity": "warning",
+                    "type": "endpoint_off_grid"
+                },
+                {
+                    "description": "Symbol pin or wire end off connection grid",
+                    "items": [
+                        {
+                            "description": "Symbol C? Pin 1 [Passive, Line]",
+                            "pos": {
+                                "x": 1.44145,
+                                "y": 0.7493
+                            },
+                            "uuid": "1f57a83e-15c4-4a63-85e7-dbc6a677c91e"
+                        }
+                    ],
+                    "severity": "warning",
+                    "type": "endpoint_off_grid"
+                },
+                {
+                    "description": "Symbol pin or wire end off connection grid",
+                    "items": [
+                        {
+                            "description": "Vertical Wire, length 0.0254 mm",
+                            "pos": {
+                                "x": 1.44145,
+                                "y": 0.7493
+                            },
+                            "uuid": "4c30e925-68cc-4a66-83f4-f295d90f0179"
+                        }
+                    ],
+                    "severity": "warning",
+                    "type": "endpoint_off_grid"
+                },
+                {
+                    "description": "The current configuration does not include the symbol library 'complex_hierarchy_schlib'",
+                    "items": [
+                        {
+                            "description": "Symbol C? [C]",
+                            "pos": {
+                                "x": 1.44145,
+                                "y": 0.7874
+                            },
+                            "uuid": "bab733ae-c848-41b4-980d-e9b38b672102"
+                        }
+                    ],
+                    "severity": "warning",
+                    "type": "lib_symbol_issues"
+                },
+                {
+                    "description": "Symbol pin or wire end off connection grid",
+                    "items": [
+                        {
+                            "description": "Symbol #PWR? Hidden pin 1 [GND, Power input, Line]",
+                            "pos": {
+                                "x": 1.44145,
+                                "y": 0.8382
+                            },
+                            "uuid": "6c4d4075-d2ad-4eed-bd58-f23cc053c68f"
+                        }
+                    ],
+                    "severity": "warning",
+                    "type": "endpoint_off_grid"
+                },
+                {
+                    "description": "Symbol pin or wire end off connection grid",
+                    "items": [
+                        {
+                            "description": "Vertical Wire, length 0.0127 mm",
+                            "pos": {
+                                "x": 1.44145,
+                                "y": 0.8382
+                            },
+                            "uuid": "797308fb-1ea7-40c5-b54e-17decb1bdd04"
+                        }
+                    ],
+                    "severity": "warning",
+                    "type": "endpoint_off_grid"
+                },
+                {
+                    "description": "The current configuration does not include the symbol library 'complex_hierarchy_schlib'",
+                    "items": [
+                        {
+                            "description": "Symbol #PWR? [GND]",
+                            "pos": {
+                                "x": 1.44145,
+                                "y": 0.8382
+                            },
+                            "uuid": "13b885fb-5bd2-4588-97c4-2e9d439c6552"
+                        }
+                    ],
+                    "severity": "warning",
+                    "type": "lib_symbol_issues"
+                },
+                {
+                    "description": "The current configuration does not include the symbol library 'complex_hierarchy_schlib'",
+                    "items": [
+                        {
+                            "description": "Symbol R? [R]",
+                            "pos": {
+                                "x": 1.54305,
+                                "y": 0.7239
+                            },
+                            "uuid": "eeb42d24-b703-45f5-b3d4-7bfebac0b2d3"
+                        }
+                    ],
+                    "severity": "warning",
+                    "type": "lib_symbol_issues"
+                },
+                {
+                    "description": "Symbol pin or wire end off connection grid",
+                    "items": [
+                        {
+                            "description": "Symbol R? Pin 1 [Passive, Line]",
+                            "pos": {
+                                "x": 1.58115,
+                                "y": 0.7239
+                            },
+                            "uuid": "6f70c799-2b6f-4cff-b0a6-dc9a24fde770"
+                        }
+                    ],
+                    "severity": "warning",
+                    "type": "endpoint_off_grid"
+                },
+                {
+                    "description": "Symbol pin or wire end off connection grid",
+                    "items": [
+                        {
+                            "description": "Horizontal Wire, length 0.0508 mm",
+                            "pos": {
+                                "x": 1.58115,
+                                "y": 0.7239
+                            },
+                            "uuid": "fa4e47ca-5b1f-4d3b-b79c-d6a9cea1eaa3"
+                        }
+                    ],
+                    "severity": "warning",
+                    "type": "endpoint_off_grid"
+                },
+                {
+                    "description": "Symbol pin or wire end off connection grid",
+                    "items": [
+                        {
+                            "description": "Vertical Wire, length 0.1016 mm",
+                            "pos": {
+                                "x": 1.63195,
+                                "y": 0.6223
+                            },
+                            "uuid": "379b8d3a-2be1-46d1-93a9-4766c71fe647"
+                        }
+                    ],
+                    "severity": "warning",
+                    "type": "endpoint_off_grid"
+                },
+                {
+                    "description": "Symbol pin or wire end off connection grid",
+                    "items": [
+                        {
+                            "description": "Horizontal Wire, length 0.0508 mm",
+                            "pos": {
+                                "x": 1.63195,
+                                "y": 0.7239
+                            },
+                            "uuid": "b629f20a-3de6-4c4c-9e0c-9ecdca952bcd"
+                        }
+                    ],
+                    "severity": "warning",
+                    "type": "endpoint_off_grid"
+                },
+                {
+                    "description": "The current configuration does not include the symbol library 'complex_hierarchy_schlib'",
+                    "items": [
+                        {
+                            "description": "Symbol R? [R]",
+                            "pos": {
+                                "x": 1.72085,
+                                "y": 0.7239
+                            },
+                            "uuid": "2c209735-1dbf-4b3e-baa7-bc32ea5dab52"
+                        }
+                    ],
+                    "severity": "warning",
+                    "type": "lib_symbol_issues"
+                },
+                {
+                    "description": "Symbol pin or wire end off connection grid",
+                    "items": [
+                        {
+                            "description": "Horizontal Wire, length 0.1524 mm",
+                            "pos": {
+                                "x": 1.78435,
+                                "y": 0.6223
+                            },
+                            "uuid": "fc832956-b2d0-45da-bd8d-32419f35e307"
+                        }
+                    ],
+                    "severity": "warning",
+                    "type": "endpoint_off_grid"
+                },
+                {
+                    "description": "Symbol pin or wire end off connection grid",
+                    "items": [
+                        {
+                            "description": "Vertical Wire, length 0.0508 mm",
+                            "pos": {
+                                "x": 1.73355,
+                                "y": 0.7747
+                            },
+                            "uuid": "d9c47886-f27a-4b71-946d-643261b27221"
+                        }
+                    ],
+                    "severity": "warning",
+                    "type": "endpoint_off_grid"
+                },
+                {
+                    "description": "Symbol pin or wire end off connection grid",
+                    "items": [
+                        {
+                            "description": "Symbol R? Pin 1 [Passive, Line]",
+                            "pos": {
+                                "x": 1.75895,
+                                "y": 0.7239
+                            },
+                            "uuid": "971d3036-730f-4fd7-ac0e-6007db585779"
+                        }
+                    ],
+                    "severity": "warning",
+                    "type": "endpoint_off_grid"
+                },
+                {
+                    "description": "Symbol pin or wire end off connection grid",
+                    "items": [
+                        {
+                            "description": "Symbol C? Pin 1 [Passive, Line]",
+                            "pos": {
+                                "x": 1.73355,
+                                "y": 0.8255
+                            },
+                            "uuid": "9f8f3e41-d120-4b59-b294-c4377a4827a9"
+                        }
+                    ],
+                    "severity": "warning",
+                    "type": "endpoint_off_grid"
+                },
+                {
+                    "description": "The current configuration does not include the symbol library 'complex_hierarchy_schlib'",
+                    "items": [
+                        {
+                            "description": "Symbol C? [C]",
+                            "pos": {
+                                "x": 1.82245,
+                                "y": 0.6223
+                            },
+                            "uuid": "ae8cd78e-0822-4415-9231-a4c0e273dc45"
+                        }
+                    ],
+                    "severity": "warning",
+                    "type": "lib_symbol_issues"
+                },
+                {
+                    "description": "The current configuration does not include the symbol library 'complex_hierarchy_schlib'",
+                    "items": [
+                        {
+                            "description": "Symbol C? [C]",
+                            "pos": {
+                                "x": 1.73355,
+                                "y": 0.8636
+                            },
+                            "uuid": "4455ef3a-e35b-4615-ad5f-26baccc4160f"
+                        }
+                    ],
+                    "severity": "warning",
+                    "type": "lib_symbol_issues"
+                },
+                {
+                    "description": "Symbol pin or wire end off connection grid",
+                    "items": [
+                        {
+                            "description": "Vertical Wire, length 0.0127 mm",
+                            "pos": {
+                                "x": 1.73355,
+                                "y": 0.9144
+                            },
+                            "uuid": "3b6a8b94-27cf-4665-9ae4-d7aec558019a"
+                        }
+                    ],
+                    "severity": "warning",
+                    "type": "endpoint_off_grid"
+                },
+                {
+                    "description": "Symbol pin or wire end off connection grid",
+                    "items": [
+                        {
+                            "description": "Symbol #PWR? Hidden pin 1 [GND, Power input, Line]",
+                            "pos": {
+                                "x": 1.73355,
+                                "y": 0.9144
+                            },
+                            "uuid": "c2c68297-1855-4362-950d-e1b0a6c48c44"
+                        }
+                    ],
+                    "severity": "warning",
+                    "type": "endpoint_off_grid"
+                },
+                {
+                    "description": "The current configuration does not include the symbol library 'complex_hierarchy_schlib'",
+                    "items": [
+                        {
+                            "description": "Symbol #PWR? [GND]",
+                            "pos": {
+                                "x": 1.73355,
+                                "y": 0.9144
+                            },
+                            "uuid": "e20910b1-873d-464d-a97b-5b9569b3bd71"
+                        }
+                    ],
+                    "severity": "warning",
+                    "type": "lib_symbol_issues"
+                },
+                {
+                    "description": "Symbol pin or wire end off connection grid",
+                    "items": [
+                        {
+                            "description": "Vertical Wire, length 0.0508 mm",
+                            "pos": {
+                                "x": 1.82245,
+                                "y": 0.7239
+                            },
+                            "uuid": "00606f42-9c1d-4055-8efc-2a5cf2cb8fff"
+                        }
+                    ],
+                    "severity": "warning",
+                    "type": "endpoint_off_grid"
+                },
+                {
+                    "description": "Symbol pin or wire end off connection grid",
+                    "items": [
+                        {
+                            "description": "Horizontal Wire, length 0.0635 mm",
+                            "pos": {
+                                "x": 1.82245,
+                                "y": 0.7239
+                            },
+                            "uuid": "29daefe7-f32a-4e7c-9cd9-c3b65efc0666"
+                        }
+                    ],
+                    "severity": "warning",
+                    "type": "endpoint_off_grid"
+                },
+                {
+                    "description": "Symbol pin or wire end off connection grid",
+                    "items": [
+                        {
+                            "description": "Symbol C? Pin 1 [Passive, Line]",
+                            "pos": {
+                                "x": 1.86055,
+                                "y": 0.6223
+                            },
+                            "uuid": "faa6f02b-e1c9-408c-abca-2fab27370f6f"
+                        }
+                    ],
+                    "severity": "warning",
+                    "type": "endpoint_off_grid"
+                },
+                {
+                    "description": "Symbol pin or wire end off connection grid",
+                    "items": [
+                        {
+                            "description": "Vertical Wire, length 0.0254 mm",
+                            "pos": {
+                                "x": 1.82245,
+                                "y": 0.7747
+                            },
+                            "uuid": "31aeffa3-7870-4a46-b879-c2a302fc45bf"
+                        }
+                    ],
+                    "severity": "warning",
+                    "type": "endpoint_off_grid"
+                },
+                {
+                    "description": "Symbol pin or wire end off connection grid",
+                    "items": [
+                        {
+                            "description": "Horizontal Wire, length 0.0889 mm",
+                            "pos": {
+                                "x": 1.82245,
+                                "y": 0.7747
+                            },
+                            "uuid": "be8d147c-b0c4-4291-a1d0-546cf0d45bcf"
+                        }
+                    ],
+                    "severity": "warning",
+                    "type": "endpoint_off_grid"
+                },
+                {
+                    "description": "Symbol pin or wire end off connection grid",
+                    "items": [
+                        {
+                            "description": "Vertical Wire, length 0.1270 mm",
+                            "pos": {
+                                "x": 1.82245,
+                                "y": 0.8509
+                            },
+                            "uuid": "7a6237f0-26ea-4a29-9c94-cb0ca0401af4"
+                        }
+                    ],
+                    "severity": "warning",
+                    "type": "endpoint_off_grid"
+                },
+                {
+                    "description": "Symbol pin or wire end off connection grid",
+                    "items": [
+                        {
+                            "description": "Symbol #U? Hidden pin 1 [+12V, Power input, Line]",
+                            "pos": {
+                                "x": 1.92405,
+                                "y": 0.7112
+                            },
+                            "uuid": "311bba16-cb61-4668-9f82-b27d3bdef4a4"
+                        }
+                    ],
+                    "severity": "warning",
+                    "type": "endpoint_off_grid"
+                },
+                {
+                    "description": "Symbol pin or wire end off connection grid",
+                    "items": [
+                        {
+                            "description": "Vertical Wire, length 0.0127 mm",
+                            "pos": {
+                                "x": 1.92405,
+                                "y": 0.7112
+                            },
+                            "uuid": "6ca88f24-3691-42d5-a9c9-1627a51bdd7a"
+                        }
+                    ],
+                    "severity": "warning",
+                    "type": "endpoint_off_grid"
+                },
+                {
+                    "description": "The current configuration does not include the symbol library 'complex_hierarchy_schlib'",
+                    "items": [
+                        {
+                            "description": "Symbol #U? [+12V]",
+                            "pos": {
+                                "x": 1.92405,
+                                "y": 0.7112
+                            },
+                            "uuid": "51596b74-88f9-41c6-bf3e-4b161083e60a"
+                        }
+                    ],
+                    "severity": "warning",
+                    "type": "lib_symbol_issues"
+                },
+                {
+                    "description": "Symbol pin or wire end off connection grid",
+                    "items": [
+                        {
+                            "description": "Horizontal Wire, length 0.2794 mm",
+                            "pos": {
+                                "x": 1.82245,
+                                "y": 0.9779
+                            },
+                            "uuid": "744f5095-b4a2-4551-bab7-f473fa256786"
+                        }
+                    ],
+                    "severity": "warning",
+                    "type": "endpoint_off_grid"
+                },
+                {
+                    "description": "The current configuration does not include the symbol library 'complex_hierarchy_schlib'",
+                    "items": [
+                        {
+                            "description": "Symbol U? [LM358N]",
+                            "pos": {
+                                "x": 1.94945,
+                                "y": 0.8255
+                            },
+                            "uuid": "1ba44369-aca1-4e8e-b594-64d846d506c3"
+                        }
+                    ],
+                    "severity": "warning",
+                    "type": "lib_symbol_issues"
+                },
+                {
+                    "description": "Symbol pin or wire end off connection grid",
+                    "items": [
+                        {
+                            "description": "Symbol U? Pin 4 [V-, Power input, Line]",
+                            "pos": {
+                                "x": 1.92405,
+                                "y": 0.9271
+                            },
+                            "uuid": "b4aad4bb-d03c-4aa4-8f44-04bdbaed4687"
+                        }
+                    ],
+                    "severity": "warning",
+                    "type": "endpoint_off_grid"
+                },
+                {
+                    "description": "Symbol pin or wire end off connection grid",
+                    "items": [
+                        {
+                            "description": "Symbol #PWR? Hidden pin 1 [-VAA, Power input, Line]",
+                            "pos": {
+                                "x": 1.92405,
+                                "y": 0.9398
+                            },
+                            "uuid": "3b1b6f67-94e8-4932-ac4c-a23135371f57"
+                        }
+                    ],
+                    "severity": "warning",
+                    "type": "endpoint_off_grid"
+                },
+                {
+                    "description": "Symbol pin or wire end off connection grid",
+                    "items": [
+                        {
+                            "description": "Vertical Wire, length 0.0127 mm",
+                            "pos": {
+                                "x": 1.92405,
+                                "y": 0.9398
+                            },
+                            "uuid": "e1559617-88a1-48e5-8d4b-4177defee345"
+                        }
+                    ],
+                    "severity": "warning",
+                    "type": "endpoint_off_grid"
+                },
+                {
+                    "description": "The current configuration does not include the symbol library 'complex_hierarchy_schlib'",
+                    "items": [
+                        {
+                            "description": "Symbol #PWR? [-VAA]",
+                            "pos": {
+                                "x": 1.92405,
+                                "y": 0.9398
+                            },
+                            "uuid": "b1d4f16d-b3db-43af-9510-15252f0e89d0"
+                        }
+                    ],
+                    "severity": "warning",
+                    "type": "lib_symbol_issues"
+                },
+                {
+                    "description": "Symbol pin or wire end off connection grid",
+                    "items": [
+                        {
+                            "description": "Horizontal Wire, length 0.2413 mm",
+                            "pos": {
+                                "x": 2.10185,
+                                "y": 0.6223
+                            },
+                            "uuid": "a3c941b0-84e6-48ca-a310-681b3195ce7c"
+                        }
+                    ],
+                    "severity": "warning",
+                    "type": "endpoint_off_grid"
+                },
+                {
+                    "description": "Symbol pin or wire end off connection grid",
+                    "items": [
+                        {
+                            "description": "Horizontal Wire, length 0.0254 mm",
+                            "pos": {
+                                "x": 2.07645,
+                                "y": 0.8255
+                            },
+                            "uuid": "e5ba935c-da5c-46e3-b71c-bdcfb7347264"
+                        }
+                    ],
+                    "severity": "warning",
+                    "type": "endpoint_off_grid"
+                },
+                {
+                    "description": "Symbol pin or wire end off connection grid",
+                    "items": [
+                        {
+                            "description": "Vertical Wire, length 0.2032 mm",
+                            "pos": {
+                                "x": 2.10185,
+                                "y": 0.8255
+                            },
+                            "uuid": "9c33cf1d-b36f-4485-aeee-20dcf8bea3d4"
+                        }
+                    ],
+                    "severity": "warning",
+                    "type": "endpoint_off_grid"
+                },
+                {
+                    "description": "Symbol pin or wire end off connection grid",
+                    "items": [
+                        {
+                            "description": "Horizontal Wire, length 0.3111 mm",
+                            "pos": {
+                                "x": 2.10185,
+                                "y": 0.8255
+                            },
+                            "uuid": "f6bbf450-8315-4d78-b1dd-3de9cad0b537"
+                        }
+                    ],
+                    "severity": "warning",
+                    "type": "endpoint_off_grid"
+                },
+                {
+                    "description": "Symbol pin or wire end off connection grid",
+                    "items": [
+                        {
+                            "description": "Vertical Wire, length 0.1524 mm",
+                            "pos": {
+                                "x": 2.10185,
+                                "y": 0.9779
+                            },
+                            "uuid": "9e471629-5e91-4879-87d1-fefd2702b7f0"
+                        }
+                    ],
+                    "severity": "warning",
+                    "type": "endpoint_off_grid"
+                }
+            ]
+        }
+    ],
+    "source": "filter.kicad_sch"
+}

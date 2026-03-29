@@ -1,0 +1,2032 @@
+{
+    "$schema": "https://schemas.kicad.org/erc.v1.json",
+    "coordinate_units": "mm",
+    "date": "2026-03-29T23:08:08",
+    "ignored_checks": [
+        {
+            "description": "Global label only appears once in the schematic",
+            "key": "single_global_label"
+        },
+        {
+            "description": "Four connection points are joined together",
+            "key": "four_way_junction"
+        },
+        {
+            "description": "SPICE model issue",
+            "key": "simulation_model_issue"
+        },
+        {
+            "description": "Assigned footprint doesn't match footprint filters",
+            "key": "footprint_filter"
+        }
+    ],
+    "included_severities": [
+        "error",
+        "warning"
+    ],
+    "kicad_version": "10.0.0",
+    "sheets": [
+        {
+            "path": "/",
+            "uuid_path": "/1671633e-f386-4117-bc06-6790af184544",
+            "violations": [
+                {
+                    "description": "Input Power pin not driven by any Output Power pins",
+                    "items": [
+                        {
+                            "description": "Symbol M1 Pin 4 [B, Input, Line]",
+                            "pos": {
+                                "x": 0.4572,
+                                "y": 0.3683
+                            },
+                            "uuid": "0a18e954-94fb-4444-b1eb-c56932db22af"
+                        }
+                    ],
+                    "severity": "error",
+                    "type": "power_pin_not_driven"
+                },
+                {
+                    "description": "Input Power pin not driven by any Output Power pins",
+                    "items": [
+                        {
+                            "description": "Symbol M5 Pin 4 [B, Input, Line]",
+                            "pos": {
+                                "x": 0.762,
+                                "y": 0.2667
+                            },
+                            "uuid": "81f1e06f-02b8-4858-a2b6-fb14b13851a0"
+                        }
+                    ],
+                    "severity": "error",
+                    "type": "power_pin_not_driven"
+                },
+                {
+                    "description": "Pin not connected",
+                    "items": [
+                        {
+                            "description": "Symbol Q1 Pin 4 [Substrat, Input, Line]",
+                            "pos": {
+                                "x": 2.3495,
+                                "y": 0.4064
+                            },
+                            "uuid": "4daf4538-090e-45e5-89c1-a5a0cd5a6180"
+                        }
+                    ],
+                    "severity": "error",
+                    "type": "pin_not_connected"
+                },
+                {
+                    "description": "Input pin not driven by any Output pins",
+                    "items": [
+                        {
+                            "description": "Symbol Q1 Pin 4 [Substrat, Input, Line]",
+                            "pos": {
+                                "x": 2.3495,
+                                "y": 0.4064
+                            },
+                            "uuid": "4daf4538-090e-45e5-89c1-a5a0cd5a6180"
+                        }
+                    ],
+                    "severity": "error",
+                    "type": "pin_not_driven"
+                },
+                {
+                    "description": "Pin not connected",
+                    "items": [
+                        {
+                            "description": "Symbol Q2 Pin 4 [Substrat, Input, Line]",
+                            "pos": {
+                                "x": 2.3495,
+                                "y": 0.7239
+                            },
+                            "uuid": "7053cf00-368d-45b6-b964-ff65adae2bcc"
+                        }
+                    ],
+                    "severity": "error",
+                    "type": "pin_not_connected"
+                },
+                {
+                    "description": "Input pin not driven by any Output pins",
+                    "items": [
+                        {
+                            "description": "Symbol Q2 Pin 4 [Substrat, Input, Line]",
+                            "pos": {
+                                "x": 2.3495,
+                                "y": 0.7239
+                            },
+                            "uuid": "7053cf00-368d-45b6-b964-ff65adae2bcc"
+                        }
+                    ],
+                    "severity": "error",
+                    "type": "pin_not_driven"
+                },
+                {
+                    "description": "Pin not connected",
+                    "items": [
+                        {
+                            "description": "Symbol Q3 Pin 4 [Substrat, Input, Line]",
+                            "pos": {
+                                "x": 2.3495,
+                                "y": 1.0414
+                            },
+                            "uuid": "e0ff7703-1b25-4a4b-9404-f7b024d7c63e"
+                        }
+                    ],
+                    "severity": "error",
+                    "type": "pin_not_connected"
+                },
+                {
+                    "description": "Input pin not driven by any Output pins",
+                    "items": [
+                        {
+                            "description": "Symbol Q3 Pin 4 [Substrat, Input, Line]",
+                            "pos": {
+                                "x": 2.3495,
+                                "y": 1.0414
+                            },
+                            "uuid": "e0ff7703-1b25-4a4b-9404-f7b024d7c63e"
+                        }
+                    ],
+                    "severity": "error",
+                    "type": "pin_not_driven"
+                },
+                {
+                    "description": "Pin not connected",
+                    "items": [
+                        {
+                            "description": "Symbol Q4 Pin 4 [Substrat, Input, Line]",
+                            "pos": {
+                                "x": 2.667,
+                                "y": 0.2286
+                            },
+                            "uuid": "d6a2c487-0243-4254-b5c7-17aefe3ceea0"
+                        }
+                    ],
+                    "severity": "error",
+                    "type": "pin_not_connected"
+                },
+                {
+                    "description": "Input pin not driven by any Output pins",
+                    "items": [
+                        {
+                            "description": "Symbol Q4 Pin 4 [Substrat, Input, Line]",
+                            "pos": {
+                                "x": 2.667,
+                                "y": 0.2286
+                            },
+                            "uuid": "d6a2c487-0243-4254-b5c7-17aefe3ceea0"
+                        }
+                    ],
+                    "severity": "error",
+                    "type": "pin_not_driven"
+                },
+                {
+                    "description": "Pin not connected",
+                    "items": [
+                        {
+                            "description": "Symbol Q5 Pin 4 [Substrat, Input, Line]",
+                            "pos": {
+                                "x": 2.667,
+                                "y": 0.5461
+                            },
+                            "uuid": "d55d05b6-c5b0-46aa-8ba9-532676ef891a"
+                        }
+                    ],
+                    "severity": "error",
+                    "type": "pin_not_connected"
+                },
+                {
+                    "description": "Input pin not driven by any Output pins",
+                    "items": [
+                        {
+                            "description": "Symbol Q5 Pin 4 [Substrat, Input, Line]",
+                            "pos": {
+                                "x": 2.667,
+                                "y": 0.5461
+                            },
+                            "uuid": "d55d05b6-c5b0-46aa-8ba9-532676ef891a"
+                        }
+                    ],
+                    "severity": "error",
+                    "type": "pin_not_driven"
+                },
+                {
+                    "description": "Pin not connected",
+                    "items": [
+                        {
+                            "description": "Symbol Q6 Pin 4 [Substrat, Input, Line]",
+                            "pos": {
+                                "x": 2.667,
+                                "y": 0.8636
+                            },
+                            "uuid": "68cb1490-9611-4db8-bf4b-515c4e3466c0"
+                        }
+                    ],
+                    "severity": "error",
+                    "type": "pin_not_connected"
+                },
+                {
+                    "description": "Input pin not driven by any Output pins",
+                    "items": [
+                        {
+                            "description": "Symbol Q6 Pin 4 [Substrat, Input, Line]",
+                            "pos": {
+                                "x": 2.667,
+                                "y": 0.8636
+                            },
+                            "uuid": "68cb1490-9611-4db8-bf4b-515c4e3466c0"
+                        }
+                    ],
+                    "severity": "error",
+                    "type": "pin_not_driven"
+                },
+                {
+                    "description": "Symbol '+5V' doesn't match copy in library 'power'",
+                    "items": [
+                        {
+                            "description": "Symbol #PWR017 [+5V]",
+                            "pos": {
+                                "x": 0.4318,
+                                "y": 0.2667
+                            },
+                            "uuid": "ef206b91-7a35-4b50-b59a-1c4f6c20e87b"
+                        }
+                    ],
+                    "severity": "warning",
+                    "type": "lib_symbol_mismatch"
+                },
+                {
+                    "description": "The current configuration does not include the symbol library 'pspice'",
+                    "items": [
+                        {
+                            "description": "Symbol M1 [MNMOS]",
+                            "pos": {
+                                "x": 0.4064,
+                                "y": 0.3175
+                            },
+                            "uuid": "e806bf17-a8b3-490f-9b55-151f9f729a27"
+                        }
+                    ],
+                    "severity": "warning",
+                    "type": "lib_symbol_issues"
+                },
+                {
+                    "description": "Symbol 'GND' doesn't match copy in library 'power'",
+                    "items": [
+                        {
+                            "description": "Symbol #PWR016 [GND]",
+                            "pos": {
+                                "x": 0.4318,
+                                "y": 0.3683
+                            },
+                            "uuid": "8ee07fa8-4fe2-4a2e-8448-5aa55853ed73"
+                        }
+                    ],
+                    "severity": "warning",
+                    "type": "lib_symbol_mismatch"
+                },
+                {
+                    "description": "Symbol '+5V' doesn't match copy in library 'power'",
+                    "items": [
+                        {
+                            "description": "Symbol #PWR018 [+5V]",
+                            "pos": {
+                                "x": 0.4318,
+                                "y": 0.5207
+                            },
+                            "uuid": "b06a86ac-ac86-42b0-959a-da7d412c4ccb"
+                        }
+                    ],
+                    "severity": "warning",
+                    "type": "lib_symbol_mismatch"
+                },
+                {
+                    "description": "The current configuration does not include the symbol library 'pspice'",
+                    "items": [
+                        {
+                            "description": "Symbol M2 [MNMOS]",
+                            "pos": {
+                                "x": 0.4064,
+                                "y": 0.5715
+                            },
+                            "uuid": "2cf1ad5e-600b-4a8f-8ae0-5984c616e54b"
+                        }
+                    ],
+                    "severity": "warning",
+                    "type": "lib_symbol_issues"
+                },
+                {
+                    "description": "Symbol 'GND' doesn't match copy in library 'power'",
+                    "items": [
+                        {
+                            "description": "Symbol #PWR019 [GND]",
+                            "pos": {
+                                "x": 0.4318,
+                                "y": 0.6223
+                            },
+                            "uuid": "d2ab11b0-d4e8-4a2e-8ed0-644b0959b790"
+                        }
+                    ],
+                    "severity": "warning",
+                    "type": "lib_symbol_mismatch"
+                },
+                {
+                    "description": "The current configuration does not include the symbol library 'pspice'",
+                    "items": [
+                        {
+                            "description": "Symbol M5 [MPMOS]",
+                            "pos": {
+                                "x": 0.7112,
+                                "y": 0.3175
+                            },
+                            "uuid": "5feb023a-e54c-4cdb-8c18-96011fbc0e5d"
+                        }
+                    ],
+                    "severity": "warning",
+                    "type": "lib_symbol_issues"
+                },
+                {
+                    "description": "Symbol '+5V' doesn't match copy in library 'power'",
+                    "items": [
+                        {
+                            "description": "Symbol #PWR024 [+5V]",
+                            "pos": {
+                                "x": 0.7366,
+                                "y": 0.2667
+                            },
+                            "uuid": "c8a7ac74-618d-4e69-8aff-5f1d130bfc24"
+                        }
+                    ],
+                    "severity": "warning",
+                    "type": "lib_symbol_mismatch"
+                },
+                {
+                    "description": "Symbol 'GND' doesn't match copy in library 'power'",
+                    "items": [
+                        {
+                            "description": "Symbol #PWR025 [GND]",
+                            "pos": {
+                                "x": 0.7366,
+                                "y": 0.3683
+                            },
+                            "uuid": "f4e4a57c-d517-482f-8327-4ab2a95b4a61"
+                        }
+                    ],
+                    "severity": "warning",
+                    "type": "lib_symbol_mismatch"
+                },
+                {
+                    "description": "Symbol '+5V' doesn't match copy in library 'power'",
+                    "items": [
+                        {
+                            "description": "Symbol #PWR020 [+5V]",
+                            "pos": {
+                                "x": 0.4318,
+                                "y": 0.7747
+                            },
+                            "uuid": "4dd68159-7887-4803-99aa-3f7f93e2e8ff"
+                        }
+                    ],
+                    "severity": "warning",
+                    "type": "lib_symbol_mismatch"
+                },
+                {
+                    "description": "Symbol '+5V' doesn't match copy in library 'power'",
+                    "items": [
+                        {
+                            "description": "Symbol #PWR026 [+5V]",
+                            "pos": {
+                                "x": 0.7366,
+                                "y": 0.5207
+                            },
+                            "uuid": "cfa296cd-5dd1-4a49-8f09-6241718c7bd6"
+                        }
+                    ],
+                    "severity": "warning",
+                    "type": "lib_symbol_mismatch"
+                },
+                {
+                    "description": "The current configuration does not include the symbol library 'pspice'",
+                    "items": [
+                        {
+                            "description": "Symbol M6 [MPMOS]",
+                            "pos": {
+                                "x": 0.7112,
+                                "y": 0.5715
+                            },
+                            "uuid": "9357d907-cbd1-4c2c-8bc1-8c73011b3713"
+                        }
+                    ],
+                    "severity": "warning",
+                    "type": "lib_symbol_issues"
+                },
+                {
+                    "description": "The current configuration does not include the symbol library 'pspice'",
+                    "items": [
+                        {
+                            "description": "Symbol M3 [MNMOS]",
+                            "pos": {
+                                "x": 0.4064,
+                                "y": 0.8255
+                            },
+                            "uuid": "39d75568-9edc-4cc6-ad1e-dfd7491252f6"
+                        }
+                    ],
+                    "severity": "warning",
+                    "type": "lib_symbol_issues"
+                },
+                {
+                    "description": "Symbol 'GND' doesn't match copy in library 'power'",
+                    "items": [
+                        {
+                            "description": "Symbol #PWR027 [GND]",
+                            "pos": {
+                                "x": 0.7366,
+                                "y": 0.6223
+                            },
+                            "uuid": "8cea685a-4c51-483f-80fb-ddbe834d2730"
+                        }
+                    ],
+                    "severity": "warning",
+                    "type": "lib_symbol_mismatch"
+                },
+                {
+                    "description": "Symbol 'GND' doesn't match copy in library 'power'",
+                    "items": [
+                        {
+                            "description": "Symbol #PWR021 [GND]",
+                            "pos": {
+                                "x": 0.4318,
+                                "y": 0.8763
+                            },
+                            "uuid": "10af3437-0cdb-4337-a51a-0bbb39c76865"
+                        }
+                    ],
+                    "severity": "warning",
+                    "type": "lib_symbol_mismatch"
+                },
+                {
+                    "description": "Symbol '+5V' doesn't match copy in library 'power'",
+                    "items": [
+                        {
+                            "description": "Symbol #PWR028 [+5V]",
+                            "pos": {
+                                "x": 0.7366,
+                                "y": 0.7747
+                            },
+                            "uuid": "b0020ba3-4e48-43d8-9fed-b3e7c9bfafb9"
+                        }
+                    ],
+                    "severity": "warning",
+                    "type": "lib_symbol_mismatch"
+                },
+                {
+                    "description": "The current configuration does not include the symbol library 'pspice'",
+                    "items": [
+                        {
+                            "description": "Symbol M13 [MNMOS]",
+                            "pos": {
+                                "x": 1.0414,
+                                "y": 0.3175
+                            },
+                            "uuid": "a974aec1-c219-4abc-beea-01e83bdeceb7"
+                        }
+                    ],
+                    "severity": "warning",
+                    "type": "lib_symbol_issues"
+                },
+                {
+                    "description": "The current configuration does not include the symbol library 'pspice'",
+                    "items": [
+                        {
+                            "description": "Symbol M7 [MPMOS]",
+                            "pos": {
+                                "x": 0.7112,
+                                "y": 0.8255
+                            },
+                            "uuid": "ba3ad314-f4c6-49d0-9ffd-78433b9a517d"
+                        }
+                    ],
+                    "severity": "warning",
+                    "type": "lib_symbol_issues"
+                },
+                {
+                    "description": "Symbol '+5V' doesn't match copy in library 'power'",
+                    "items": [
+                        {
+                            "description": "Symbol #PWR040 [+5V]",
+                            "pos": {
+                                "x": 1.0668,
+                                "y": 0.2667
+                            },
+                            "uuid": "4b8f25a8-c92c-423f-9111-9c6fbb5a81f5"
+                        }
+                    ],
+                    "severity": "warning",
+                    "type": "lib_symbol_mismatch"
+                },
+                {
+                    "description": "Symbol '+5V' doesn't match copy in library 'power'",
+                    "items": [
+                        {
+                            "description": "Symbol #PWR022 [+5V]",
+                            "pos": {
+                                "x": 0.4318,
+                                "y": 1.0287
+                            },
+                            "uuid": "2163d361-6d83-4ac2-95be-81902ae5bc41"
+                        }
+                    ],
+                    "severity": "warning",
+                    "type": "lib_symbol_mismatch"
+                },
+                {
+                    "description": "Symbol 'GND' doesn't match copy in library 'power'",
+                    "items": [
+                        {
+                            "description": "Symbol #PWR041 [GND]",
+                            "pos": {
+                                "x": 1.0668,
+                                "y": 0.3683
+                            },
+                            "uuid": "adfa0f91-31c2-4bd7-99d9-7e8835568f48"
+                        }
+                    ],
+                    "severity": "warning",
+                    "type": "lib_symbol_mismatch"
+                },
+                {
+                    "description": "Symbol 'GND' doesn't match copy in library 'power'",
+                    "items": [
+                        {
+                            "description": "Symbol #PWR029 [GND]",
+                            "pos": {
+                                "x": 0.7366,
+                                "y": 0.8763
+                            },
+                            "uuid": "0d108d0a-1128-4374-847f-add8394296a6"
+                        }
+                    ],
+                    "severity": "warning",
+                    "type": "lib_symbol_mismatch"
+                },
+                {
+                    "description": "The current configuration does not include the symbol library 'pspice'",
+                    "items": [
+                        {
+                            "description": "Symbol M4 [MNMOS]",
+                            "pos": {
+                                "x": 0.4064,
+                                "y": 1.0795
+                            },
+                            "uuid": "d433d5aa-1f77-4ad4-81fd-e951e15d2498"
+                        }
+                    ],
+                    "severity": "warning",
+                    "type": "lib_symbol_issues"
+                },
+                {
+                    "description": "Symbol '+5V' doesn't match copy in library 'power'",
+                    "items": [
+                        {
+                            "description": "Symbol #PWR042 [+5V]",
+                            "pos": {
+                                "x": 1.0668,
+                                "y": 0.5207
+                            },
+                            "uuid": "4b463fc2-f347-43d4-b4c4-df74ac11589e"
+                        }
+                    ],
+                    "severity": "warning",
+                    "type": "lib_symbol_mismatch"
+                },
+                {
+                    "description": "The current configuration does not include the symbol library 'pspice'",
+                    "items": [
+                        {
+                            "description": "Symbol M14 [MNMOS]",
+                            "pos": {
+                                "x": 1.0414,
+                                "y": 0.5715
+                            },
+                            "uuid": "0d2b0aab-01fa-48da-a343-504bfe184fd8"
+                        }
+                    ],
+                    "severity": "warning",
+                    "type": "lib_symbol_issues"
+                },
+                {
+                    "description": "Symbol 'GND' doesn't match copy in library 'power'",
+                    "items": [
+                        {
+                            "description": "Symbol #PWR023 [GND]",
+                            "pos": {
+                                "x": 0.4318,
+                                "y": 1.1303
+                            },
+                            "uuid": "9abf3a2b-c4cb-4f7a-bf35-a3a01852a292"
+                        }
+                    ],
+                    "severity": "warning",
+                    "type": "lib_symbol_mismatch"
+                },
+                {
+                    "description": "Symbol 'GND' doesn't match copy in library 'power'",
+                    "items": [
+                        {
+                            "description": "Symbol #PWR043 [GND]",
+                            "pos": {
+                                "x": 1.0668,
+                                "y": 0.6223
+                            },
+                            "uuid": "f6b270ba-811f-43e9-9aa7-4b6f8032950a"
+                        }
+                    ],
+                    "severity": "warning",
+                    "type": "lib_symbol_mismatch"
+                },
+                {
+                    "description": "Symbol '+5V' doesn't match copy in library 'power'",
+                    "items": [
+                        {
+                            "description": "Symbol #PWR030 [+5V]",
+                            "pos": {
+                                "x": 0.7366,
+                                "y": 1.0287
+                            },
+                            "uuid": "38e2605c-3158-4381-ae12-e65de520de69"
+                        }
+                    ],
+                    "severity": "warning",
+                    "type": "lib_symbol_mismatch"
+                },
+                {
+                    "description": "The current configuration does not include the symbol library 'pspice'",
+                    "items": [
+                        {
+                            "description": "Symbol M8 [MPMOS]",
+                            "pos": {
+                                "x": 0.7112,
+                                "y": 1.0795
+                            },
+                            "uuid": "12c0ce7c-ffaf-4932-be79-fc29fb01694e"
+                        }
+                    ],
+                    "severity": "warning",
+                    "type": "lib_symbol_issues"
+                },
+                {
+                    "description": "Symbol '+5V' doesn't match copy in library 'power'",
+                    "items": [
+                        {
+                            "description": "Symbol #PWR046 [+5V]",
+                            "pos": {
+                                "x": 1.0668,
+                                "y": 0.7747
+                            },
+                            "uuid": "89529041-04c9-4ed4-8784-e607049d98bb"
+                        }
+                    ],
+                    "severity": "warning",
+                    "type": "lib_symbol_mismatch"
+                },
+                {
+                    "description": "The current configuration does not include the symbol library 'pspice'",
+                    "items": [
+                        {
+                            "description": "Symbol M16 [MNMOS]",
+                            "pos": {
+                                "x": 1.0414,
+                                "y": 0.8255
+                            },
+                            "uuid": "c9c5c7f3-8d57-4cc7-bb21-7a8f959887b4"
+                        }
+                    ],
+                    "severity": "warning",
+                    "type": "lib_symbol_issues"
+                },
+                {
+                    "description": "Symbol 'GND' doesn't match copy in library 'power'",
+                    "items": [
+                        {
+                            "description": "Symbol #PWR031 [GND]",
+                            "pos": {
+                                "x": 0.7366,
+                                "y": 1.1303
+                            },
+                            "uuid": "bb7dd7d2-da16-44bd-8a86-83102258dae2"
+                        }
+                    ],
+                    "severity": "warning",
+                    "type": "lib_symbol_mismatch"
+                },
+                {
+                    "description": "Symbol '+5V' doesn't match copy in library 'power'",
+                    "items": [
+                        {
+                            "description": "Symbol #PWR032 [+5V]",
+                            "pos": {
+                                "x": 0.4318,
+                                "y": 1.2827
+                            },
+                            "uuid": "34c639e3-4aeb-4b98-a841-69126f745184"
+                        }
+                    ],
+                    "severity": "warning",
+                    "type": "lib_symbol_mismatch"
+                },
+                {
+                    "description": "Symbol 'GND' doesn't match copy in library 'power'",
+                    "items": [
+                        {
+                            "description": "Symbol #PWR047 [GND]",
+                            "pos": {
+                                "x": 1.0668,
+                                "y": 0.8763
+                            },
+                            "uuid": "a37d2f55-d9ca-4c00-8acd-de795817df0e"
+                        }
+                    ],
+                    "severity": "warning",
+                    "type": "lib_symbol_mismatch"
+                },
+                {
+                    "description": "The current configuration does not include the symbol library 'pspice'",
+                    "items": [
+                        {
+                            "description": "Symbol M9 [MNMOS]",
+                            "pos": {
+                                "x": 0.4064,
+                                "y": 1.3335
+                            },
+                            "uuid": "5b58a704-003b-461b-a2a6-bb4558e6aab6"
+                        }
+                    ],
+                    "severity": "warning",
+                    "type": "lib_symbol_issues"
+                },
+                {
+                    "description": "The current configuration does not include the symbol library 'pspice'",
+                    "items": [
+                        {
+                            "description": "Symbol M19 [MPMOS]",
+                            "pos": {
+                                "x": 1.3589,
+                                "y": 0.3175
+                            },
+                            "uuid": "1f0037bf-d257-4764-b1bd-55ec494693ad"
+                        }
+                    ],
+                    "severity": "warning",
+                    "type": "lib_symbol_issues"
+                },
+                {
+                    "description": "Symbol '+5V' doesn't match copy in library 'power'",
+                    "items": [
+                        {
+                            "description": "Symbol #PWR052 [+5V]",
+                            "pos": {
+                                "x": 1.3843,
+                                "y": 0.2667
+                            },
+                            "uuid": "ded522a2-e05b-4736-9b75-cf01bb15c67b"
+                        }
+                    ],
+                    "severity": "warning",
+                    "type": "lib_symbol_mismatch"
+                },
+                {
+                    "description": "Symbol 'GND' doesn't match copy in library 'power'",
+                    "items": [
+                        {
+                            "description": "Symbol #PWR053 [GND]",
+                            "pos": {
+                                "x": 1.3843,
+                                "y": 0.3683
+                            },
+                            "uuid": "49cd17a3-271e-4e74-bb8f-3c6965f67532"
+                        }
+                    ],
+                    "severity": "warning",
+                    "type": "lib_symbol_mismatch"
+                },
+                {
+                    "description": "Symbol 'GND' doesn't match copy in library 'power'",
+                    "items": [
+                        {
+                            "description": "Symbol #PWR033 [GND]",
+                            "pos": {
+                                "x": 0.4318,
+                                "y": 1.3843
+                            },
+                            "uuid": "904562d1-9743-4b25-a037-4a11b0032cac"
+                        }
+                    ],
+                    "severity": "warning",
+                    "type": "lib_symbol_mismatch"
+                },
+                {
+                    "description": "The current configuration does not include the symbol library 'pspice'",
+                    "items": [
+                        {
+                            "description": "Symbol M15 [MPMOS]",
+                            "pos": {
+                                "x": 1.3589,
+                                "y": 0.5715
+                            },
+                            "uuid": "926f5d0d-8f2b-42db-90a6-419bd792ff0c"
+                        }
+                    ],
+                    "severity": "warning",
+                    "type": "lib_symbol_issues"
+                },
+                {
+                    "description": "Symbol '+5V' doesn't match copy in library 'power'",
+                    "items": [
+                        {
+                            "description": "Symbol #PWR044 [+5V]",
+                            "pos": {
+                                "x": 1.3843,
+                                "y": 0.5207
+                            },
+                            "uuid": "cf66dd8b-43d5-4067-8ec0-4dec28f250a0"
+                        }
+                    ],
+                    "severity": "warning",
+                    "type": "lib_symbol_mismatch"
+                },
+                {
+                    "description": "Symbol '+5V' doesn't match copy in library 'power'",
+                    "items": [
+                        {
+                            "description": "Symbol #PWR036 [+5V]",
+                            "pos": {
+                                "x": 0.7366,
+                                "y": 1.2827
+                            },
+                            "uuid": "e05af1ab-a775-4f24-8446-dd890dfcc3de"
+                        }
+                    ],
+                    "severity": "warning",
+                    "type": "lib_symbol_mismatch"
+                },
+                {
+                    "description": "Symbol '+5V' doesn't match copy in library 'power'",
+                    "items": [
+                        {
+                            "description": "Symbol #PWR050 [+5V]",
+                            "pos": {
+                                "x": 1.0668,
+                                "y": 1.0287
+                            },
+                            "uuid": "fc125f86-ccfe-40d4-bee3-71489047c38c"
+                        }
+                    ],
+                    "severity": "warning",
+                    "type": "lib_symbol_mismatch"
+                },
+                {
+                    "description": "The current configuration does not include the symbol library 'pspice'",
+                    "items": [
+                        {
+                            "description": "Symbol M18 [MNMOS]",
+                            "pos": {
+                                "x": 1.0414,
+                                "y": 1.0795
+                            },
+                            "uuid": "f3d6d360-4a5a-4881-ba09-19bcdd38757f"
+                        }
+                    ],
+                    "severity": "warning",
+                    "type": "lib_symbol_issues"
+                },
+                {
+                    "description": "The current configuration does not include the symbol library 'pspice'",
+                    "items": [
+                        {
+                            "description": "Symbol M11 [MPMOS]",
+                            "pos": {
+                                "x": 0.7112,
+                                "y": 1.3335
+                            },
+                            "uuid": "ec3d19d3-f0d6-4b7c-bfa7-b211a79951d7"
+                        }
+                    ],
+                    "severity": "warning",
+                    "type": "lib_symbol_issues"
+                },
+                {
+                    "description": "Symbol 'GND' doesn't match copy in library 'power'",
+                    "items": [
+                        {
+                            "description": "Symbol #PWR045 [GND]",
+                            "pos": {
+                                "x": 1.3843,
+                                "y": 0.6223
+                            },
+                            "uuid": "a0612528-08bc-4d91-b59a-706a7425abee"
+                        }
+                    ],
+                    "severity": "warning",
+                    "type": "lib_symbol_mismatch"
+                },
+                {
+                    "description": "Symbol 'GND' doesn't match copy in library 'power'",
+                    "items": [
+                        {
+                            "description": "Symbol #PWR051 [GND]",
+                            "pos": {
+                                "x": 1.0668,
+                                "y": 1.1303
+                            },
+                            "uuid": "3a6a3a36-f4c4-42ea-9687-467cce26a42f"
+                        }
+                    ],
+                    "severity": "warning",
+                    "type": "lib_symbol_mismatch"
+                },
+                {
+                    "description": "Symbol 'GND' doesn't match copy in library 'power'",
+                    "items": [
+                        {
+                            "description": "Symbol #PWR037 [GND]",
+                            "pos": {
+                                "x": 0.7366,
+                                "y": 1.3843
+                            },
+                            "uuid": "682e550b-3753-4ab7-bf13-f8dd08995955"
+                        }
+                    ],
+                    "severity": "warning",
+                    "type": "lib_symbol_mismatch"
+                },
+                {
+                    "description": "Symbol '+5V' doesn't match copy in library 'power'",
+                    "items": [
+                        {
+                            "description": "Symbol #PWR048 [+5V]",
+                            "pos": {
+                                "x": 1.3843,
+                                "y": 0.7747
+                            },
+                            "uuid": "63dd9ba8-aa0a-4f20-8284-0d63af8c1423"
+                        }
+                    ],
+                    "severity": "warning",
+                    "type": "lib_symbol_mismatch"
+                },
+                {
+                    "description": "The current configuration does not include the symbol library 'pspice'",
+                    "items": [
+                        {
+                            "description": "Symbol M17 [MPMOS]",
+                            "pos": {
+                                "x": 1.3589,
+                                "y": 0.8255
+                            },
+                            "uuid": "9dce56ad-d0dc-403a-8b49-a644b0930379"
+                        }
+                    ],
+                    "severity": "warning",
+                    "type": "lib_symbol_issues"
+                },
+                {
+                    "description": "Symbol '+5V' doesn't match copy in library 'power'",
+                    "items": [
+                        {
+                            "description": "Symbol #PWR034 [+5V]",
+                            "pos": {
+                                "x": 0.4318,
+                                "y": 1.5367
+                            },
+                            "uuid": "a1316263-ec64-4273-a9b9-e10d758790d4"
+                        }
+                    ],
+                    "severity": "warning",
+                    "type": "lib_symbol_mismatch"
+                },
+                {
+                    "description": "Symbol 'GND' doesn't match copy in library 'power'",
+                    "items": [
+                        {
+                            "description": "Symbol #PWR049 [GND]",
+                            "pos": {
+                                "x": 1.3843,
+                                "y": 0.8763
+                            },
+                            "uuid": "72e39690-e0b9-4db0-8313-42c3bd3380d4"
+                        }
+                    ],
+                    "severity": "warning",
+                    "type": "lib_symbol_mismatch"
+                },
+                {
+                    "description": "The current configuration does not include the symbol library 'pspice'",
+                    "items": [
+                        {
+                            "description": "Symbol M10 [MNMOS]",
+                            "pos": {
+                                "x": 0.4064,
+                                "y": 1.5875
+                            },
+                            "uuid": "1b4336a5-1fbf-429e-8e8d-f5143efc8ae3"
+                        }
+                    ],
+                    "severity": "warning",
+                    "type": "lib_symbol_issues"
+                },
+                {
+                    "description": "Symbol '+5V' doesn't match copy in library 'power'",
+                    "items": [
+                        {
+                            "description": "Symbol #PWR056 [+5V]",
+                            "pos": {
+                                "x": 1.0668,
+                                "y": 1.2954
+                            },
+                            "uuid": "547875a4-8a5f-413b-8b22-4a049e525fee"
+                        }
+                    ],
+                    "severity": "warning",
+                    "type": "lib_symbol_mismatch"
+                },
+                {
+                    "description": "Symbol 'GND' doesn't match copy in library 'power'",
+                    "items": [
+                        {
+                            "description": "Symbol #PWR035 [GND]",
+                            "pos": {
+                                "x": 0.4318,
+                                "y": 1.6383
+                            },
+                            "uuid": "3b48fdd2-e609-441a-8223-2878aa113954"
+                        }
+                    ],
+                    "severity": "warning",
+                    "type": "lib_symbol_mismatch"
+                },
+                {
+                    "description": "The current configuration does not include the symbol library 'pspice'",
+                    "items": [
+                        {
+                            "description": "Symbol M21 [MNMOS]",
+                            "pos": {
+                                "x": 1.0414,
+                                "y": 1.3462
+                            },
+                            "uuid": "5e962465-3c9c-4bfa-9ff9-597bc4dca283"
+                        }
+                    ],
+                    "severity": "warning",
+                    "type": "lib_symbol_issues"
+                },
+                {
+                    "description": "Symbol '+5V' doesn't match copy in library 'power'",
+                    "items": [
+                        {
+                            "description": "Symbol #PWR038 [+5V]",
+                            "pos": {
+                                "x": 0.7366,
+                                "y": 1.5367
+                            },
+                            "uuid": "a47d0a12-bc39-4dfc-b2f6-c1e039c278b5"
+                        }
+                    ],
+                    "severity": "warning",
+                    "type": "lib_symbol_mismatch"
+                },
+                {
+                    "description": "The current configuration does not include the symbol library 'pspice'",
+                    "items": [
+                        {
+                            "description": "Symbol M27 [MNMOS]",
+                            "pos": {
+                                "x": 1.6764,
+                                "y": 0.3175
+                            },
+                            "uuid": "b560fd33-f73d-464b-82f4-a5e43ef77504"
+                        }
+                    ],
+                    "severity": "warning",
+                    "type": "lib_symbol_issues"
+                },
+                {
+                    "description": "Symbol '+5V' doesn't match copy in library 'power'",
+                    "items": [
+                        {
+                            "description": "Symbol #PWR068 [+5V]",
+                            "pos": {
+                                "x": 1.7018,
+                                "y": 0.2667
+                            },
+                            "uuid": "00b636db-8487-47d1-8f0b-dcb483eb4807"
+                        }
+                    ],
+                    "severity": "warning",
+                    "type": "lib_symbol_mismatch"
+                },
+                {
+                    "description": "Symbol '+5V' doesn't match copy in library 'power'",
+                    "items": [
+                        {
+                            "description": "Symbol #PWR054 [+5V]",
+                            "pos": {
+                                "x": 1.3843,
+                                "y": 1.0287
+                            },
+                            "uuid": "c0a18a17-b251-4a66-b7f1-f831a068a0d2"
+                        }
+                    ],
+                    "severity": "warning",
+                    "type": "lib_symbol_mismatch"
+                },
+                {
+                    "description": "The current configuration does not include the symbol library 'pspice'",
+                    "items": [
+                        {
+                            "description": "Symbol M20 [MPMOS]",
+                            "pos": {
+                                "x": 1.3589,
+                                "y": 1.0795
+                            },
+                            "uuid": "dd8645b4-89ba-4d4d-b04a-c1fdbb0bebba"
+                        }
+                    ],
+                    "severity": "warning",
+                    "type": "lib_symbol_issues"
+                },
+                {
+                    "description": "The current configuration does not include the symbol library 'pspice'",
+                    "items": [
+                        {
+                            "description": "Symbol M12 [MPMOS]",
+                            "pos": {
+                                "x": 0.7112,
+                                "y": 1.5875
+                            },
+                            "uuid": "5067276f-c8dc-4b81-a4f6-520b3537d4f4"
+                        }
+                    ],
+                    "severity": "warning",
+                    "type": "lib_symbol_issues"
+                },
+                {
+                    "description": "Symbol 'GND' doesn't match copy in library 'power'",
+                    "items": [
+                        {
+                            "description": "Symbol #PWR069 [GND]",
+                            "pos": {
+                                "x": 1.7018,
+                                "y": 0.3683
+                            },
+                            "uuid": "350d9dfb-019e-469d-b41d-ef391fa27ee7"
+                        }
+                    ],
+                    "severity": "warning",
+                    "type": "lib_symbol_mismatch"
+                },
+                {
+                    "description": "Symbol 'GND' doesn't match copy in library 'power'",
+                    "items": [
+                        {
+                            "description": "Symbol #PWR057 [GND]",
+                            "pos": {
+                                "x": 1.0668,
+                                "y": 1.397
+                            },
+                            "uuid": "5e756bc3-9c1b-489b-a13c-4e95be42cf0a"
+                        }
+                    ],
+                    "severity": "warning",
+                    "type": "lib_symbol_mismatch"
+                },
+                {
+                    "description": "The current configuration does not include the symbol library 'pspice'",
+                    "items": [
+                        {
+                            "description": "Symbol M29 [MNMOS]",
+                            "pos": {
+                                "x": 1.6764,
+                                "y": 0.5715
+                            },
+                            "uuid": "d126dad2-9348-487a-a8c4-2e8bb15fdc93"
+                        }
+                    ],
+                    "severity": "warning",
+                    "type": "lib_symbol_issues"
+                },
+                {
+                    "description": "Symbol '+5V' doesn't match copy in library 'power'",
+                    "items": [
+                        {
+                            "description": "Symbol #PWR072 [+5V]",
+                            "pos": {
+                                "x": 1.7018,
+                                "y": 0.5207
+                            },
+                            "uuid": "2e41996f-4061-43a0-a143-5ee1813f7993"
+                        }
+                    ],
+                    "severity": "warning",
+                    "type": "lib_symbol_mismatch"
+                },
+                {
+                    "description": "Symbol 'GND' doesn't match copy in library 'power'",
+                    "items": [
+                        {
+                            "description": "Symbol #PWR055 [GND]",
+                            "pos": {
+                                "x": 1.3843,
+                                "y": 1.1303
+                            },
+                            "uuid": "b6e1df53-4ec2-40e7-878a-14c47a9cc203"
+                        }
+                    ],
+                    "severity": "warning",
+                    "type": "lib_symbol_mismatch"
+                },
+                {
+                    "description": "Symbol 'GND' doesn't match copy in library 'power'",
+                    "items": [
+                        {
+                            "description": "Symbol #PWR039 [GND]",
+                            "pos": {
+                                "x": 0.7366,
+                                "y": 1.6383
+                            },
+                            "uuid": "65af6aae-0530-46c5-a477-b78290397063"
+                        }
+                    ],
+                    "severity": "warning",
+                    "type": "lib_symbol_mismatch"
+                },
+                {
+                    "description": "Symbol 'GND' doesn't match copy in library 'power'",
+                    "items": [
+                        {
+                            "description": "Symbol #PWR073 [GND]",
+                            "pos": {
+                                "x": 1.7018,
+                                "y": 0.6223
+                            },
+                            "uuid": "0c72a6fb-65eb-4fbd-810b-e4a2a446cd75"
+                        }
+                    ],
+                    "severity": "warning",
+                    "type": "lib_symbol_mismatch"
+                },
+                {
+                    "description": "Symbol '+5V' doesn't match copy in library 'power'",
+                    "items": [
+                        {
+                            "description": "Symbol #PWR014 [+5V]",
+                            "pos": {
+                                "x": 0.381,
+                                "y": 1.778
+                            },
+                            "uuid": "43ae18fb-6c88-4a5a-baeb-d5baae8a07f6"
+                        }
+                    ],
+                    "severity": "warning",
+                    "type": "lib_symbol_mismatch"
+                },
+                {
+                    "description": "Symbol 'VDC' doesn't match copy in library 'Simulation_SPICE'",
+                    "items": [
+                        {
+                            "description": "Symbol V1 [VDC]",
+                            "pos": {
+                                "x": 0.254,
+                                "y": 1.8415
+                            },
+                            "uuid": "6080e464-9b38-429c-b5e0-f8d81abad932"
+                        }
+                    ],
+                    "severity": "warning",
+                    "type": "lib_symbol_mismatch"
+                },
+                {
+                    "description": "The current configuration does not include the symbol library 'pspice'",
+                    "items": [
+                        {
+                            "description": "Symbol M31 [MNMOS]",
+                            "pos": {
+                                "x": 1.6764,
+                                "y": 0.8255
+                            },
+                            "uuid": "ec235838-fa66-4eed-9ccc-29069b45f975"
+                        }
+                    ],
+                    "severity": "warning",
+                    "type": "lib_symbol_issues"
+                },
+                {
+                    "description": "Symbol '+5V' doesn't match copy in library 'power'",
+                    "items": [
+                        {
+                            "description": "Symbol #PWR076 [+5V]",
+                            "pos": {
+                                "x": 1.7018,
+                                "y": 0.7747
+                            },
+                            "uuid": "27f5fcb1-95ff-423e-b7c8-46d72833f8e9"
+                        }
+                    ],
+                    "severity": "warning",
+                    "type": "lib_symbol_mismatch"
+                },
+                {
+                    "description": "Symbol 'VDC' doesn't match copy in library 'Simulation_SPICE'",
+                    "items": [
+                        {
+                            "description": "Symbol V2 [VDC]",
+                            "pos": {
+                                "x": 0.381,
+                                "y": 1.8415
+                            },
+                            "uuid": "423e9368-3c70-4084-9d06-d3c656fca00b"
+                        }
+                    ],
+                    "severity": "warning",
+                    "type": "lib_symbol_mismatch"
+                },
+                {
+                    "description": "Symbol '+5V' doesn't match copy in library 'power'",
+                    "items": [
+                        {
+                            "description": "Symbol #PWR060 [+5V]",
+                            "pos": {
+                                "x": 1.0668,
+                                "y": 1.5494
+                            },
+                            "uuid": "349e8d54-6924-44a7-ad5e-4f4928d13362"
+                        }
+                    ],
+                    "severity": "warning",
+                    "type": "lib_symbol_mismatch"
+                },
+                {
+                    "description": "Symbol '+5V' doesn't match copy in library 'power'",
+                    "items": [
+                        {
+                            "description": "Symbol #PWR058 [+5V]",
+                            "pos": {
+                                "x": 1.3843,
+                                "y": 1.2954
+                            },
+                            "uuid": "7f1d2151-8641-4878-9c10-70a10b92cd13"
+                        }
+                    ],
+                    "severity": "warning",
+                    "type": "lib_symbol_mismatch"
+                },
+                {
+                    "description": "The current configuration does not include the symbol library 'pspice'",
+                    "items": [
+                        {
+                            "description": "Symbol M23 [MNMOS]",
+                            "pos": {
+                                "x": 1.0414,
+                                "y": 1.6002
+                            },
+                            "uuid": "0b83b991-4f6a-48f5-a98e-05c16f5cbc57"
+                        }
+                    ],
+                    "severity": "warning",
+                    "type": "lib_symbol_issues"
+                },
+                {
+                    "description": "The current configuration does not include the symbol library 'pspice'",
+                    "items": [
+                        {
+                            "description": "Symbol M22 [MPMOS]",
+                            "pos": {
+                                "x": 1.3589,
+                                "y": 1.3462
+                            },
+                            "uuid": "f05b6634-f7d7-4b5c-853c-f651c636cf75"
+                        }
+                    ],
+                    "severity": "warning",
+                    "type": "lib_symbol_issues"
+                },
+                {
+                    "description": "Symbol 'GND' doesn't match copy in library 'power'",
+                    "items": [
+                        {
+                            "description": "Symbol #PWR077 [GND]",
+                            "pos": {
+                                "x": 1.7018,
+                                "y": 0.8763
+                            },
+                            "uuid": "3ffb6e41-587c-49d2-851a-fab30867c239"
+                        }
+                    ],
+                    "severity": "warning",
+                    "type": "lib_symbol_mismatch"
+                },
+                {
+                    "description": "Symbol 'GND' doesn't match copy in library 'power'",
+                    "items": [
+                        {
+                            "description": "Symbol #PWR013 [GND]",
+                            "pos": {
+                                "x": 0.254,
+                                "y": 1.905
+                            },
+                            "uuid": "d6010663-4c4e-4581-a881-39fca4c39245"
+                        }
+                    ],
+                    "severity": "warning",
+                    "type": "lib_symbol_mismatch"
+                },
+                {
+                    "description": "Symbol 'GND' doesn't match copy in library 'power'",
+                    "items": [
+                        {
+                            "description": "Symbol #PWR015 [GND]",
+                            "pos": {
+                                "x": 0.381,
+                                "y": 1.905
+                            },
+                            "uuid": "ddf08d6e-6c2f-4a5c-8882-7f2f7543be4d"
+                        }
+                    ],
+                    "severity": "warning",
+                    "type": "lib_symbol_mismatch"
+                },
+                {
+                    "description": "Symbol 'GND' doesn't match copy in library 'power'",
+                    "items": [
+                        {
+                            "description": "Symbol #PWR061 [GND]",
+                            "pos": {
+                                "x": 1.0668,
+                                "y": 1.651
+                            },
+                            "uuid": "06542c65-2583-44f1-bffc-1884e7ec9ef4"
+                        }
+                    ],
+                    "severity": "warning",
+                    "type": "lib_symbol_mismatch"
+                },
+                {
+                    "description": "Symbol 'GND' doesn't match copy in library 'power'",
+                    "items": [
+                        {
+                            "description": "Symbol #PWR059 [GND]",
+                            "pos": {
+                                "x": 1.3843,
+                                "y": 1.397
+                            },
+                            "uuid": "d92c5c2d-2579-443d-80de-f76c93ee3661"
+                        }
+                    ],
+                    "severity": "warning",
+                    "type": "lib_symbol_mismatch"
+                },
+                {
+                    "description": "The current configuration does not include the symbol library 'pspice'",
+                    "items": [
+                        {
+                            "description": "Symbol M28 [MPMOS]",
+                            "pos": {
+                                "x": 1.9939,
+                                "y": 0.3175
+                            },
+                            "uuid": "012e579a-4ae8-4081-a48f-9713e582e426"
+                        }
+                    ],
+                    "severity": "warning",
+                    "type": "lib_symbol_issues"
+                },
+                {
+                    "description": "Symbol '+5V' doesn't match copy in library 'power'",
+                    "items": [
+                        {
+                            "description": "Symbol #PWR070 [+5V]",
+                            "pos": {
+                                "x": 2.0193,
+                                "y": 0.2667
+                            },
+                            "uuid": "f5482e03-c9f6-4818-bbce-2e24dafb5e69"
+                        }
+                    ],
+                    "severity": "warning",
+                    "type": "lib_symbol_mismatch"
+                },
+                {
+                    "description": "Symbol 'GND' doesn't match copy in library 'power'",
+                    "items": [
+                        {
+                            "description": "Symbol #PWR071 [GND]",
+                            "pos": {
+                                "x": 2.0193,
+                                "y": 0.3683
+                            },
+                            "uuid": "53d7ada6-1119-4788-bebc-b1f76f0e93d1"
+                        }
+                    ],
+                    "severity": "warning",
+                    "type": "lib_symbol_mismatch"
+                },
+                {
+                    "description": "The current configuration does not include the symbol library 'pspice'",
+                    "items": [
+                        {
+                            "description": "Symbol M30 [MPMOS]",
+                            "pos": {
+                                "x": 1.9939,
+                                "y": 0.5715
+                            },
+                            "uuid": "2221eb2f-9f45-4d91-9f61-fad114e508e2"
+                        }
+                    ],
+                    "severity": "warning",
+                    "type": "lib_symbol_issues"
+                },
+                {
+                    "description": "Symbol '+5V' doesn't match copy in library 'power'",
+                    "items": [
+                        {
+                            "description": "Symbol #PWR062 [+5V]",
+                            "pos": {
+                                "x": 1.3843,
+                                "y": 1.5494
+                            },
+                            "uuid": "402e406c-1982-4c88-9979-50444bb518ea"
+                        }
+                    ],
+                    "severity": "warning",
+                    "type": "lib_symbol_mismatch"
+                },
+                {
+                    "description": "Symbol '+5V' doesn't match copy in library 'power'",
+                    "items": [
+                        {
+                            "description": "Symbol #PWR064 [+5V]",
+                            "pos": {
+                                "x": 1.0668,
+                                "y": 1.7907
+                            },
+                            "uuid": "eb46eaa2-ec72-4228-9d71-4bfae6811b44"
+                        }
+                    ],
+                    "severity": "warning",
+                    "type": "lib_symbol_mismatch"
+                },
+                {
+                    "description": "Symbol '+5V' doesn't match copy in library 'power'",
+                    "items": [
+                        {
+                            "description": "Symbol #PWR074 [+5V]",
+                            "pos": {
+                                "x": 2.0193,
+                                "y": 0.5207
+                            },
+                            "uuid": "06cc85a8-2ae6-45dd-9fdb-e7c2515cfe02"
+                        }
+                    ],
+                    "severity": "warning",
+                    "type": "lib_symbol_mismatch"
+                },
+                {
+                    "description": "The current configuration does not include the symbol library 'pspice'",
+                    "items": [
+                        {
+                            "description": "Symbol M24 [MPMOS]",
+                            "pos": {
+                                "x": 1.3589,
+                                "y": 1.6002
+                            },
+                            "uuid": "80e3e350-23f0-4ec8-9a90-6bd23e9eb1ce"
+                        }
+                    ],
+                    "severity": "warning",
+                    "type": "lib_symbol_issues"
+                },
+                {
+                    "description": "Symbol 'GND' doesn't match copy in library 'power'",
+                    "items": [
+                        {
+                            "description": "Symbol #PWR075 [GND]",
+                            "pos": {
+                                "x": 2.0193,
+                                "y": 0.6223
+                            },
+                            "uuid": "0a1ec27d-0e7d-442b-a35c-84717ca38525"
+                        }
+                    ],
+                    "severity": "warning",
+                    "type": "lib_symbol_mismatch"
+                },
+                {
+                    "description": "The current configuration does not include the symbol library 'pspice'",
+                    "items": [
+                        {
+                            "description": "Symbol M25 [MNMOS]",
+                            "pos": {
+                                "x": 1.0414,
+                                "y": 1.8415
+                            },
+                            "uuid": "b2640e4d-a505-4d21-86ed-8573e5eeb6bf"
+                        }
+                    ],
+                    "severity": "warning",
+                    "type": "lib_symbol_issues"
+                },
+                {
+                    "description": "Symbol 'GND' doesn't match copy in library 'power'",
+                    "items": [
+                        {
+                            "description": "Symbol #PWR063 [GND]",
+                            "pos": {
+                                "x": 1.3843,
+                                "y": 1.651
+                            },
+                            "uuid": "a2d54f56-f669-470b-9095-12032a2b60db"
+                        }
+                    ],
+                    "severity": "warning",
+                    "type": "lib_symbol_mismatch"
+                },
+                {
+                    "description": "The current configuration does not include the symbol library 'pspice'",
+                    "items": [
+                        {
+                            "description": "Symbol M32 [MPMOS]",
+                            "pos": {
+                                "x": 1.9939,
+                                "y": 0.8255
+                            },
+                            "uuid": "b52a2faf-7d80-4ec9-9c9d-33a6c4ff7369"
+                        }
+                    ],
+                    "severity": "warning",
+                    "type": "lib_symbol_issues"
+                },
+                {
+                    "description": "Symbol '+5V' doesn't match copy in library 'power'",
+                    "items": [
+                        {
+                            "description": "Symbol #PWR078 [+5V]",
+                            "pos": {
+                                "x": 2.0193,
+                                "y": 0.7747
+                            },
+                            "uuid": "64ad7367-1136-44bc-919d-0048c7393bf4"
+                        }
+                    ],
+                    "severity": "warning",
+                    "type": "lib_symbol_mismatch"
+                },
+                {
+                    "description": "Symbol 'GND' doesn't match copy in library 'power'",
+                    "items": [
+                        {
+                            "description": "Symbol #PWR065 [GND]",
+                            "pos": {
+                                "x": 1.0668,
+                                "y": 1.8923
+                            },
+                            "uuid": "a2126a65-075f-4dc0-af33-868cef6797fa"
+                        }
+                    ],
+                    "severity": "warning",
+                    "type": "lib_symbol_mismatch"
+                },
+                {
+                    "description": "Symbol 'GND' doesn't match copy in library 'power'",
+                    "items": [
+                        {
+                            "description": "Symbol #PWR079 [GND]",
+                            "pos": {
+                                "x": 2.0193,
+                                "y": 0.8763
+                            },
+                            "uuid": "924c1bba-68a6-4ebe-9ed3-d9e39067a5e1"
+                        }
+                    ],
+                    "severity": "warning",
+                    "type": "lib_symbol_mismatch"
+                },
+                {
+                    "description": "Symbol '+5V' doesn't match copy in library 'power'",
+                    "items": [
+                        {
+                            "description": "Symbol #PWR066 [+5V]",
+                            "pos": {
+                                "x": 1.3843,
+                                "y": 1.7907
+                            },
+                            "uuid": "5e4bcd06-329a-4460-8f5c-c1304bb3d63e"
+                        }
+                    ],
+                    "severity": "warning",
+                    "type": "lib_symbol_mismatch"
+                },
+                {
+                    "description": "The current configuration does not include the symbol library 'pspice'",
+                    "items": [
+                        {
+                            "description": "Symbol M26 [MPMOS]",
+                            "pos": {
+                                "x": 1.3589,
+                                "y": 1.8415
+                            },
+                            "uuid": "8bd050b7-10a4-43ec-ab62-04b92a049b07"
+                        }
+                    ],
+                    "severity": "warning",
+                    "type": "lib_symbol_issues"
+                },
+                {
+                    "description": "Symbol 'GND' doesn't match copy in library 'power'",
+                    "items": [
+                        {
+                            "description": "Symbol #PWR067 [GND]",
+                            "pos": {
+                                "x": 1.3843,
+                                "y": 1.8923
+                            },
+                            "uuid": "a5da12a4-4682-43b8-80e8-30c8c010311d"
+                        }
+                    ],
+                    "severity": "warning",
+                    "type": "lib_symbol_mismatch"
+                },
+                {
+                    "description": "The current configuration does not include the symbol library 'pspice'",
+                    "items": [
+                        {
+                            "description": "Symbol Q1 [QNPN]",
+                            "pos": {
+                                "x": 2.3749,
+                                "y": 0.3175
+                            },
+                            "uuid": "5feb4450-66f7-4453-99e9-b1f73bc5f887"
+                        }
+                    ],
+                    "severity": "warning",
+                    "type": "lib_symbol_issues"
+                },
+                {
+                    "description": "Symbol '+5V' doesn't match copy in library 'power'",
+                    "items": [
+                        {
+                            "description": "Symbol #PWR01 [+5V]",
+                            "pos": {
+                                "x": 2.413,
+                                "y": 0.2286
+                            },
+                            "uuid": "b6b35c9f-0af8-4faa-b0ab-ef4b00d90e3c"
+                        }
+                    ],
+                    "severity": "warning",
+                    "type": "lib_symbol_mismatch"
+                },
+                {
+                    "description": "Symbol 'GND' doesn't match copy in library 'power'",
+                    "items": [
+                        {
+                            "description": "Symbol #PWR02 [GND]",
+                            "pos": {
+                                "x": 2.413,
+                                "y": 0.4064
+                            },
+                            "uuid": "c7378c82-7157-4128-9389-e124c7212c28"
+                        }
+                    ],
+                    "severity": "warning",
+                    "type": "lib_symbol_mismatch"
+                },
+                {
+                    "description": "The current configuration does not include the symbol library 'pspice'",
+                    "items": [
+                        {
+                            "description": "Symbol Q2 [QNPN]",
+                            "pos": {
+                                "x": 2.3749,
+                                "y": 0.635
+                            },
+                            "uuid": "72f15c7a-1c18-4bc3-bfb5-aad039a792b7"
+                        }
+                    ],
+                    "severity": "warning",
+                    "type": "lib_symbol_issues"
+                },
+                {
+                    "description": "Symbol '+5V' doesn't match copy in library 'power'",
+                    "items": [
+                        {
+                            "description": "Symbol #PWR03 [+5V]",
+                            "pos": {
+                                "x": 2.413,
+                                "y": 0.5461
+                            },
+                            "uuid": "c35fdc57-c1ce-4805-8785-9dee846df119"
+                        }
+                    ],
+                    "severity": "warning",
+                    "type": "lib_symbol_mismatch"
+                },
+                {
+                    "description": "Symbol 'GND' doesn't match copy in library 'power'",
+                    "items": [
+                        {
+                            "description": "Symbol #PWR04 [GND]",
+                            "pos": {
+                                "x": 2.413,
+                                "y": 0.7239
+                            },
+                            "uuid": "d5de4778-bb6f-4296-9694-fa693334bbad"
+                        }
+                    ],
+                    "severity": "warning",
+                    "type": "lib_symbol_mismatch"
+                },
+                {
+                    "description": "The current configuration does not include the symbol library 'pspice'",
+                    "items": [
+                        {
+                            "description": "Symbol Q3 [QNPN]",
+                            "pos": {
+                                "x": 2.3749,
+                                "y": 0.9525
+                            },
+                            "uuid": "34388f0e-8468-4b26-8a96-7e374001c5b9"
+                        }
+                    ],
+                    "severity": "warning",
+                    "type": "lib_symbol_issues"
+                },
+                {
+                    "description": "Symbol '+5V' doesn't match copy in library 'power'",
+                    "items": [
+                        {
+                            "description": "Symbol #PWR05 [+5V]",
+                            "pos": {
+                                "x": 2.413,
+                                "y": 0.8636
+                            },
+                            "uuid": "28e8c0b4-4598-4ffd-891e-9c463b451cf7"
+                        }
+                    ],
+                    "severity": "warning",
+                    "type": "lib_symbol_mismatch"
+                },
+                {
+                    "description": "Symbol 'GND' doesn't match copy in library 'power'",
+                    "items": [
+                        {
+                            "description": "Symbol #PWR06 [GND]",
+                            "pos": {
+                                "x": 2.413,
+                                "y": 1.0414
+                            },
+                            "uuid": "755b6c9b-567d-4a6d-ba57-83c2790c219a"
+                        }
+                    ],
+                    "severity": "warning",
+                    "type": "lib_symbol_mismatch"
+                },
+                {
+                    "description": "The current configuration does not include the symbol library 'pspice'",
+                    "items": [
+                        {
+                            "description": "Symbol Q4 [QPNP]",
+                            "pos": {
+                                "x": 2.6924,
+                                "y": 0.3175
+                            },
+                            "uuid": "f3d5eb0d-6d2c-4fa6-a7b2-5c4db0eee0de"
+                        }
+                    ],
+                    "severity": "warning",
+                    "type": "lib_symbol_issues"
+                },
+                {
+                    "description": "Symbol '+5V' doesn't match copy in library 'power'",
+                    "items": [
+                        {
+                            "description": "Symbol #PWR07 [+5V]",
+                            "pos": {
+                                "x": 2.7305,
+                                "y": 0.2286
+                            },
+                            "uuid": "1644596d-ff4c-4f8a-a071-3edeb0e426c8"
+                        }
+                    ],
+                    "severity": "warning",
+                    "type": "lib_symbol_mismatch"
+                },
+                {
+                    "description": "Symbol 'GND' doesn't match copy in library 'power'",
+                    "items": [
+                        {
+                            "description": "Symbol #PWR08 [GND]",
+                            "pos": {
+                                "x": 2.7305,
+                                "y": 0.4064
+                            },
+                            "uuid": "8daa3790-1362-4f71-9c1c-7bb791297f3d"
+                        }
+                    ],
+                    "severity": "warning",
+                    "type": "lib_symbol_mismatch"
+                },
+                {
+                    "description": "The current configuration does not include the symbol library 'pspice'",
+                    "items": [
+                        {
+                            "description": "Symbol Q5 [QPNP]",
+                            "pos": {
+                                "x": 2.6924,
+                                "y": 0.635
+                            },
+                            "uuid": "04b3d68c-c334-494d-bad8-dcbbacf4da64"
+                        }
+                    ],
+                    "severity": "warning",
+                    "type": "lib_symbol_issues"
+                },
+                {
+                    "description": "Symbol '+5V' doesn't match copy in library 'power'",
+                    "items": [
+                        {
+                            "description": "Symbol #PWR09 [+5V]",
+                            "pos": {
+                                "x": 2.7305,
+                                "y": 0.5461
+                            },
+                            "uuid": "d29c193e-9dc8-47c7-bdd2-a40fa018f4da"
+                        }
+                    ],
+                    "severity": "warning",
+                    "type": "lib_symbol_mismatch"
+                },
+                {
+                    "description": "Symbol 'GND' doesn't match copy in library 'power'",
+                    "items": [
+                        {
+                            "description": "Symbol #PWR010 [GND]",
+                            "pos": {
+                                "x": 2.7305,
+                                "y": 0.7239
+                            },
+                            "uuid": "2b0d4d8c-7ffd-4be9-bdb3-3b063bf6a7ab"
+                        }
+                    ],
+                    "severity": "warning",
+                    "type": "lib_symbol_mismatch"
+                },
+                {
+                    "description": "The current configuration does not include the symbol library 'pspice'",
+                    "items": [
+                        {
+                            "description": "Symbol Q6 [QPNP]",
+                            "pos": {
+                                "x": 2.6924,
+                                "y": 0.9525
+                            },
+                            "uuid": "9daa6bc6-dc31-47ef-b7f5-45ed251d995c"
+                        }
+                    ],
+                    "severity": "warning",
+                    "type": "lib_symbol_issues"
+                },
+                {
+                    "description": "Symbol '+5V' doesn't match copy in library 'power'",
+                    "items": [
+                        {
+                            "description": "Symbol #PWR011 [+5V]",
+                            "pos": {
+                                "x": 2.7305,
+                                "y": 0.8636
+                            },
+                            "uuid": "b22a8ee4-697e-4e16-b2b7-5940b0545276"
+                        }
+                    ],
+                    "severity": "warning",
+                    "type": "lib_symbol_mismatch"
+                },
+                {
+                    "description": "Symbol 'GND' doesn't match copy in library 'power'",
+                    "items": [
+                        {
+                            "description": "Symbol #PWR012 [GND]",
+                            "pos": {
+                                "x": 2.7305,
+                                "y": 1.0414
+                            },
+                            "uuid": "d5849729-730b-4f0d-a42a-e21b175f6178"
+                        }
+                    ],
+                    "severity": "warning",
+                    "type": "lib_symbol_mismatch"
+                }
+            ]
+        }
+    ],
+    "source": "instance_params.kicad_sch"
+}

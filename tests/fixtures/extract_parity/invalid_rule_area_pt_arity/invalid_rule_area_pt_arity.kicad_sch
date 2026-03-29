@@ -1,0 +1,8 @@
+(kicad_sch
+  (version 20260101)
+  (generator "eeschema")
+  (uuid "invalid-rule-area-root")
+  (paper "A4")
+  (rule_area (pts (xy 0 0 0) (xy 10 0) (xy 10 10) (xy 0 10)) (stroke (width 0) (type default)) (fill (type none)) (uuid "ra1"))
+  (sheet_instances
+    (path "/" (page "1"))))

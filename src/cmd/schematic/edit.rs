@@ -2,7 +2,7 @@ use kiutils_rs::{rename_symbol_in_schematic, SchematicFile};
 use serde::Serialize;
 
 use crate::error::KiError;
-use crate::output::{self, Flags, OutputFormat, SCHEMA_VERSION};
+use crate::output::{self, CommandResponse, Flags, SCHEMA_VERSION};
 
 #[derive(Serialize)]
 struct PropertyResponse<'a> {
@@ -14,6 +14,16 @@ struct PropertyResponse<'a> {
     value: Option<&'a str>,
 }
 
+impl<'a> CommandResponse for PropertyResponse<'a> {
+    fn render_text(&self) {
+        if let Some(value) = self.value {
+            println!("ok: set {}.{} = {value:?}", self.reference, self.key);
+        } else {
+            println!("ok: removed {}.{}", self.reference, self.key);
+        }
+    }
+}
+
 #[derive(Serialize)]
 struct SymbolResponse<'a> {
     schema_version: u32,
@@ -21,6 +31,22 @@ struct SymbolResponse<'a> {
     reference: &'a str,
     #[serde(skip_serializing_if = "Option::is_none")]
     lib_id: Option<&'a str>,
+    #[serde(skip_serializing_if = "Option::is_none")]
+    x: Option<f64>,
+    #[serde(skip_serializing_if = "Option::is_none")]
+    y: Option<f64>,
+}
+
+impl<'a> CommandResponse for SymbolResponse<'a> {
+    fn render_text(&self) {
+        if let (Some(x), Some(y), Some(lib_id)) = (self.x, self.y, self.lib_id) {
+            println!("ok: added {} ({}) at {x},{y}", self.reference, lib_id);
+        } else if let Some(lib_id) = self.lib_id {
+            println!("ok: {} lib_id = {}", self.reference, lib_id);
+        } else {
+            println!("ok: removed {}", self.reference);
+        }
+    }
 }
 
 #[derive(Serialize)]
@@ -31,6 +57,17 @@ struct WireResponse {
     y1: f64,
     x2: f64,
     y2: f64,
+    removed: bool,
+}
+
+impl CommandResponse for WireResponse {
+    fn render_text(&self) {
+        let action = if self.removed { "removed" } else { "added" };
+        println!(
+            "ok: {action} wire ({},{}) -> ({},{})",
+            self.x1, self.y1, self.x2, self.y2
+        );
+    }
 }
 
 #[derive(Serialize)]
@@ -40,6 +77,30 @@ struct LabelResponse<'a> {
     text: &'a str,
     #[serde(skip_serializing_if = "Option::is_none")]
     shape: Option<&'a str>,
+    #[serde(skip_serializing_if = "Option::is_none")]
+    x: Option<f64>,
+    #[serde(skip_serializing_if = "Option::is_none")]
+    y: Option<f64>,
+    #[serde(skip_serializing_if = "Option::is_none")]
+    new_name: Option<&'a str>,
+    removed: bool,
+}
+
+impl<'a> CommandResponse for LabelResponse<'a> {
+    fn render_text(&self) {
+        if self.removed {
+            println!("ok: removed label {:?}", self.text);
+        } else if let Some(new_name) = self.new_name {
+            println!("ok: renamed label {:?} → {:?}", self.text, new_name);
+        } else if let (Some(x), Some(y), Some(shape)) = (self.x, self.y, self.shape) {
+            println!(
+                "ok: added global label {:?} ({}) at {x},{y}",
+                self.text, shape
+            );
+        } else if let (Some(x), Some(y)) = (self.x, self.y) {
+            println!("ok: added label {:?} at {x},{y}", self.text);
+        }
+    }
 }
 
 #[derive(Serialize)]
@@ -48,6 +109,13 @@ struct CoordResponse {
     ok: bool,
     x: f64,
     y: f64,
+    item_type: &'static str,
+}
+
+impl CommandResponse for CoordResponse {
+    fn render_text(&self) {
+        println!("ok: added {} at {},{}", self.item_type, self.x, self.y);
+    }
 }
 
 pub fn set_property(
@@ -62,18 +130,16 @@ pub fn set_property(
     doc.write(path)
         .map_err(|e| KiError::Message(e.to_string()))?;
 
-    if flags.format == OutputFormat::Json {
-        output::print_json(&PropertyResponse {
+    output::handle_output(
+        &PropertyResponse {
             schema_version: SCHEMA_VERSION,
             ok: true,
             reference,
             key,
             value: Some(value),
-        })?;
-    } else {
-        println!("ok: set {reference}.{key} = {value:?}");
-    }
-    Ok(())
+        },
+        flags,
+    )
 }
 
 pub fn remove_property(
@@ -87,23 +153,16 @@ pub fn remove_property(
     doc.write(path)
         .map_err(|e| KiError::Message(e.to_string()))?;
 
-    if flags.format == OutputFormat::Json {
-        output::print_json(&PropertyResponse {
+    output::handle_output(
+        &PropertyResponse {
             schema_version: SCHEMA_VERSION,
             ok: true,
             reference,
             key,
             value: None,
-        })?;
-    } else {
-        println!("ok: removed {reference}.{key}");
-    }
-    Ok(())
-}
-
-pub fn parse_coord(s: &str, name: &str) -> Result<f64, KiError> {
-    s.parse::<f64>()
-        .map_err(|_| KiError::Message(format!("invalid coordinate <{name}>: {s:?}")))
+        },
+        flags,
+    )
 }
 
 pub fn add_symbol(
@@ -111,28 +170,26 @@ pub fn add_symbol(
     lib_id: &str,
     reference: &str,
     value: &str,
-    x: &str,
-    y: &str,
+    x: f64,
+    y: f64,
     flags: &Flags,
 ) -> Result<(), KiError> {
-    let x = parse_coord(x, "x")?;
-    let y = parse_coord(y, "y")?;
     let mut doc = SchematicFile::read(path).map_err(|e| KiError::Message(e.to_string()))?;
     doc.add_symbol_instance(lib_id, reference, value, x, y);
     doc.write(path)
         .map_err(|e| KiError::Message(e.to_string()))?;
 
-    if flags.format == OutputFormat::Json {
-        output::print_json(&SymbolResponse {
+    output::handle_output(
+        &SymbolResponse {
             schema_version: SCHEMA_VERSION,
             ok: true,
             reference,
             lib_id: Some(lib_id),
-        })?;
-    } else {
-        println!("ok: added {reference} ({lib_id}) at {x},{y}");
-    }
-    Ok(())
+            x: Some(x),
+            y: Some(y),
+        },
+        flags,
+    )
 }
 
 pub fn remove_symbol(path: &str, reference: &str, flags: &Flags) -> Result<(), KiError> {
@@ -141,197 +198,221 @@ pub fn remove_symbol(path: &str, reference: &str, flags: &Flags) -> Result<(), K
     doc.write(path)
         .map_err(|e| KiError::Message(e.to_string()))?;
 
-    if flags.format == OutputFormat::Json {
-        output::print_json(&SymbolResponse {
+    output::handle_output(
+        &SymbolResponse {
             schema_version: SCHEMA_VERSION,
             ok: true,
             reference,
             lib_id: None,
-        })?;
-    } else {
-        println!("ok: removed {reference}");
-    }
-    Ok(())
+            x: None,
+            y: None,
+        },
+        flags,
+    )
 }
 
 pub fn rename(path: &str, reference: &str, new_lib_id: &str, flags: &Flags) -> Result<(), KiError> {
     rename_symbol_in_schematic(path, reference, new_lib_id)
         .map_err(|e| KiError::Message(e.to_string()))?;
 
-    if flags.format == OutputFormat::Json {
-        output::print_json(&SymbolResponse {
+    output::handle_output(
+        &SymbolResponse {
             schema_version: SCHEMA_VERSION,
             ok: true,
             reference,
             lib_id: Some(new_lib_id),
-        })?;
-    } else {
-        println!("ok: {reference} lib_id = {new_lib_id}");
-    }
-    Ok(())
+            x: None,
+            y: None,
+        },
+        flags,
+    )
 }
 
 pub fn add_wire(
     path: &str,
-    x1: &str,
-    y1: &str,
-    x2: &str,
-    y2: &str,
+    x1: f64,
+    y1: f64,
+    x2: f64,
+    y2: f64,
     flags: &Flags,
 ) -> Result<(), KiError> {
-    let x1 = parse_coord(x1, "x1")?;
-    let y1 = parse_coord(y1, "y1")?;
-    let x2 = parse_coord(x2, "x2")?;
-    let y2 = parse_coord(y2, "y2")?;
     let mut doc = SchematicFile::read(path).map_err(|e| KiError::Message(e.to_string()))?;
     doc.add_wire(x1, y1, x2, y2);
     doc.write(path)
         .map_err(|e| KiError::Message(e.to_string()))?;
 
-    if flags.format == OutputFormat::Json {
-        output::print_json(&WireResponse {
+    output::handle_output(
+        &WireResponse {
             schema_version: SCHEMA_VERSION,
             ok: true,
             x1,
             y1,
             x2,
             y2,
-        })?;
-    } else {
-        println!("ok: added wire ({x1},{y1}) -> ({x2},{y2})");
-    }
-    Ok(())
+            removed: false,
+        },
+        flags,
+    )
+}
+
+pub fn remove_label(path: &str, name: &str, flags: &Flags) -> Result<(), KiError> {
+    let mut doc = SchematicFile::read(path).map_err(|e| KiError::Message(e.to_string()))?;
+    doc.remove_label_by_name(name);
+    doc.write(path)
+        .map_err(|e| KiError::Message(e.to_string()))?;
+
+    output::handle_output(
+        &LabelResponse {
+            schema_version: SCHEMA_VERSION,
+            ok: true,
+            text: name,
+            shape: None,
+            x: None,
+            y: None,
+            new_name: None,
+            removed: true,
+        },
+        flags,
+    )
+}
+
+pub fn rename_label(path: &str, name: &str, new_name: &str, flags: &Flags) -> Result<(), KiError> {
+    let mut doc = SchematicFile::read(path).map_err(|e| KiError::Message(e.to_string()))?;
+    doc.rename_label(name, new_name);
+    doc.write(path)
+        .map_err(|e| KiError::Message(e.to_string()))?;
+
+    output::handle_output(
+        &LabelResponse {
+            schema_version: SCHEMA_VERSION,
+            ok: true,
+            text: name,
+            shape: None,
+            x: None,
+            y: None,
+            new_name: Some(new_name),
+            removed: false,
+        },
+        flags,
+    )
 }
 
 pub fn remove_wire(
     path: &str,
-    x1: &str,
-    y1: &str,
-    x2: &str,
-    y2: &str,
+    x1: f64,
+    y1: f64,
+    x2: f64,
+    y2: f64,
     flags: &Flags,
 ) -> Result<(), KiError> {
-    let x1 = parse_coord(x1, "x1")?;
-    let y1 = parse_coord(y1, "y1")?;
-    let x2 = parse_coord(x2, "x2")?;
-    let y2 = parse_coord(y2, "y2")?;
     let mut doc = SchematicFile::read(path).map_err(|e| KiError::Message(e.to_string()))?;
     doc.remove_wire_at(x1, y1, x2, y2);
     doc.write(path)
         .map_err(|e| KiError::Message(e.to_string()))?;
 
-    if flags.format == OutputFormat::Json {
-        output::print_json(&WireResponse {
+    output::handle_output(
+        &WireResponse {
             schema_version: SCHEMA_VERSION,
             ok: true,
             x1,
             y1,
             x2,
             y2,
-        })?;
-    } else {
-        println!("ok: removed wire ({x1},{y1}) -> ({x2},{y2})");
-    }
-    Ok(())
+            removed: true,
+        },
+        flags,
+    )
 }
 
 pub fn add_label(
     path: &str,
     text: &str,
-    x: &str,
-    y: &str,
-    angle: &str,
+    x: f64,
+    y: f64,
+    angle: f64,
     flags: &Flags,
 ) -> Result<(), KiError> {
-    let x = parse_coord(x, "x")?;
-    let y = parse_coord(y, "y")?;
-    let angle = parse_coord(angle, "angle")?;
     let mut doc = SchematicFile::read(path).map_err(|e| KiError::Message(e.to_string()))?;
     doc.add_label(text, x, y, angle);
     doc.write(path)
         .map_err(|e| KiError::Message(e.to_string()))?;
 
-    if flags.format == OutputFormat::Json {
-        output::print_json(&LabelResponse {
+    output::handle_output(
+        &LabelResponse {
             schema_version: SCHEMA_VERSION,
             ok: true,
             text,
             shape: None,
-        })?;
-    } else {
-        println!("ok: added label {text:?} at {x},{y}");
-    }
-    Ok(())
+            x: Some(x),
+            y: Some(y),
+            new_name: None,
+            removed: false,
+        },
+        flags,
+    )
 }
 
-pub fn add_junction(path: &str, x: &str, y: &str, flags: &Flags) -> Result<(), KiError> {
-    let x = parse_coord(x, "x")?;
-    let y = parse_coord(y, "y")?;
+pub fn add_junction(path: &str, x: f64, y: f64, flags: &Flags) -> Result<(), KiError> {
     let mut doc = SchematicFile::read(path).map_err(|e| KiError::Message(e.to_string()))?;
     doc.add_junction(x, y);
     doc.write(path)
         .map_err(|e| KiError::Message(e.to_string()))?;
 
-    if flags.format == OutputFormat::Json {
-        output::print_json(&CoordResponse {
+    output::handle_output(
+        &CoordResponse {
             schema_version: SCHEMA_VERSION,
             ok: true,
             x,
             y,
-        })?;
-    } else {
-        println!("ok: added junction at {x},{y}");
-    }
-    Ok(())
+            item_type: "junction",
+        },
+        flags,
+    )
 }
 
-pub fn add_no_connect(path: &str, x: &str, y: &str, flags: &Flags) -> Result<(), KiError> {
-    let x = parse_coord(x, "x")?;
-    let y = parse_coord(y, "y")?;
+pub fn add_no_connect(path: &str, x: f64, y: f64, flags: &Flags) -> Result<(), KiError> {
     let mut doc = SchematicFile::read(path).map_err(|e| KiError::Message(e.to_string()))?;
     doc.add_no_connect(x, y);
     doc.write(path)
         .map_err(|e| KiError::Message(e.to_string()))?;
 
-    if flags.format == OutputFormat::Json {
-        output::print_json(&CoordResponse {
+    output::handle_output(
+        &CoordResponse {
             schema_version: SCHEMA_VERSION,
             ok: true,
             x,
             y,
-        })?;
-    } else {
-        println!("ok: added no-connect at {x},{y}");
-    }
-    Ok(())
+            item_type: "no-connect",
+        },
+        flags,
+    )
 }
 
 pub fn add_global_label(
     path: &str,
     text: &str,
     shape: &str,
-    x: &str,
-    y: &str,
-    angle: &str,
+    x: f64,
+    y: f64,
+    angle: f64,
     flags: &Flags,
 ) -> Result<(), KiError> {
-    let x = parse_coord(x, "x")?;
-    let y = parse_coord(y, "y")?;
-    let angle = parse_coord(angle, "angle")?;
     let mut doc = SchematicFile::read(path).map_err(|e| KiError::Message(e.to_string()))?;
     doc.add_global_label(text, shape, x, y, angle);
     doc.write(path)
         .map_err(|e| KiError::Message(e.to_string()))?;
 
-    if flags.format == OutputFormat::Json {
-        output::print_json(&LabelResponse {
+    output::handle_output(
+        &LabelResponse {
             schema_version: SCHEMA_VERSION,
             ok: true,
             text,
             shape: Some(shape),
-        })?;
-    } else {
-        println!("ok: added global label {text:?} ({shape}) at {x},{y}");
-    }
-    Ok(())
+            x: Some(x),
+            y: Some(y),
+            new_name: None,
+            removed: false,
+        },
+        flags,
+    )
 }

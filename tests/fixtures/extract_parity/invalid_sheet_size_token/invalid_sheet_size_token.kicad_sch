@@ -1,0 +1,11 @@
+(kicad_sch
+  (version 20260101)
+  (generator "eeschema")
+  (uuid "invalid-sheet-size-root")
+  (paper "A4")
+  (sheet (at 10 10) (size nope 20) (stroke (width 0.1524) (type solid)) (fill (color 0 0 0 0))
+    (property "Sheetname" "Sub" (at 10 9 0) (effects (font (size 1.27 1.27))))
+    (property "Sheetfile" "sub.kicad_sch" (at 10 21 0) (effects (font (size 1.27 1.27))))
+    (uuid "s1"))
+  (sheet_instances
+    (path "/" (page "1"))))

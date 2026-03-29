@@ -1,0 +1,8 @@
+(kicad_sch
+  (version 20260101)
+  (generator "eeschema")
+  (uuid "invalid-junction-root")
+  (paper "A4")
+  (junction (at 10 10 0) (diameter 0) (color 0 0 0 0) (uuid "j1"))
+  (sheet_instances
+    (path "/" (page "1"))))

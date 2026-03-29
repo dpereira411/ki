@@ -1,0 +1,263 @@
+{
+    "$schema": "https://schemas.kicad.org/erc.v1.json",
+    "coordinate_units": "mm",
+    "date": "2026-03-29T23:04:46",
+    "ignored_checks": [
+        {
+            "description": "Global label only appears once in the schematic",
+            "key": "single_global_label"
+        },
+        {
+            "description": "Four connection points are joined together",
+            "key": "four_way_junction"
+        },
+        {
+            "description": "SPICE model issue",
+            "key": "simulation_model_issue"
+        },
+        {
+            "description": "Assigned footprint doesn't match footprint filters",
+            "key": "footprint_filter"
+        }
+    ],
+    "included_severities": [
+        "error",
+        "warning"
+    ],
+    "kicad_version": "10.0.0",
+    "sheets": [
+        {
+            "path": "/",
+            "uuid_path": "/3c62b2d9-e85b-41ac-b240-e9fba27dce75",
+            "violations": [
+                {
+                    "description": "Invalid connection between bus and net items",
+                    "items": [
+                        {
+                            "description": "Hierarchical Label 'REF_NODE'",
+                            "pos": {
+                                "x": 0.46355,
+                                "y": 0.56515
+                            },
+                            "uuid": "6af255fa-cae8-4410-a1a0-a9da5295758d"
+                        },
+                        {
+                            "description": "Hierarchical Label '${param}'",
+                            "pos": {
+                                "x": 0.46355,
+                                "y": 0.7239
+                            },
+                            "uuid": "5b7361e7-1bbc-4e69-aa47-4c25593681d8"
+                        }
+                    ],
+                    "severity": "error",
+                    "type": "bus_to_net_conflict"
+                },
+                {
+                    "description": "Hierarchical label 'REF_NODE' in root sheet cannot be connected to non-existent parent sheet",
+                    "items": [
+                        {
+                            "description": "Hierarchical Label 'REF_NODE'",
+                            "pos": {
+                                "x": 0.46355,
+                                "y": 0.56515
+                            },
+                            "uuid": "6af255fa-cae8-4410-a1a0-a9da5295758d"
+                        }
+                    ],
+                    "severity": "error",
+                    "type": "pin_not_connected"
+                },
+                {
+                    "description": "Hierarchical label '${param}' in root sheet cannot be connected to non-existent parent sheet",
+                    "items": [
+                        {
+                            "description": "Hierarchical Label '${param}'",
+                            "pos": {
+                                "x": 0.46355,
+                                "y": 0.7239
+                            },
+                            "uuid": "5b7361e7-1bbc-4e69-aa47-4c25593681d8"
+                        }
+                    ],
+                    "severity": "error",
+                    "type": "pin_not_connected"
+                },
+                {
+                    "description": "Symbol pin or wire end off connection grid",
+                    "items": [
+                        {
+                            "description": "Horizontal Wire, length 0.0571 mm",
+                            "pos": {
+                                "x": 0.46355,
+                                "y": 0.56515
+                            },
+                            "uuid": "886d34f4-cb4c-488b-9285-8343e265f56a"
+                        }
+                    ],
+                    "severity": "warning",
+                    "type": "endpoint_off_grid"
+                },
+                {
+                    "description": "Both ${param} and REF_NODE are attached to the same items; ${param} will be used in the netlist",
+                    "items": [
+                        {
+                            "description": "Hierarchical Label '${param}'",
+                            "pos": {
+                                "x": 0.46355,
+                                "y": 0.7239
+                            },
+                            "uuid": "5b7361e7-1bbc-4e69-aa47-4c25593681d8"
+                        },
+                        {
+                            "description": "Hierarchical Label 'REF_NODE'",
+                            "pos": {
+                                "x": 0.46355,
+                                "y": 0.56515
+                            },
+                            "uuid": "6af255fa-cae8-4410-a1a0-a9da5295758d"
+                        }
+                    ],
+                    "severity": "warning",
+                    "type": "multiple_net_names"
+                },
+                {
+                    "description": "Symbol pin or wire end off connection grid",
+                    "items": [
+                        {
+                            "description": "Horizontal Wire, length 0.0508 mm",
+                            "pos": {
+                                "x": 0.5207,
+                                "y": 0.56515
+                            },
+                            "uuid": "79105409-01a7-4863-becb-bdee5c98b930"
+                        }
+                    ],
+                    "severity": "warning",
+                    "type": "endpoint_off_grid"
+                },
+                {
+                    "description": "Symbol pin or wire end off connection grid",
+                    "items": [
+                        {
+                            "description": "Vertical Wire, length 0.1588 mm",
+                            "pos": {
+                                "x": 0.5207,
+                                "y": 0.56515
+                            },
+                            "uuid": "e3d7f375-c20f-4a01-8a2b-b6365bb37095"
+                        }
+                    ],
+                    "severity": "warning",
+                    "type": "endpoint_off_grid"
+                },
+                {
+                    "description": "Symbol pin or wire end off connection grid",
+                    "items": [
+                        {
+                            "description": "Symbol R201 Pin 1 [Passive, Line]",
+                            "pos": {
+                                "x": 0.5715,
+                                "y": 0.56515
+                            },
+                            "uuid": "0130a35f-faa1-40c8-bb2e-a1a7fcd4327a"
+                        }
+                    ],
+                    "severity": "warning",
+                    "type": "endpoint_off_grid"
+                },
+                {
+                    "description": "Symbol pin or wire end off connection grid",
+                    "items": [
+                        {
+                            "description": "Horizontal Wire, length 0.0571 mm",
+                            "pos": {
+                                "x": 0.5207,
+                                "y": 0.7239
+                            },
+                            "uuid": "82b61808-c9ab-4a47-afc9-7d70785a53e5"
+                        }
+                    ],
+                    "severity": "warning",
+                    "type": "endpoint_off_grid"
+                },
+                {
+                    "description": "Symbol pin or wire end off connection grid",
+                    "items": [
+                        {
+                            "description": "Symbol #FLG0201 Pin 1 [pwr, Power output, Line]",
+                            "pos": {
+                                "x": 0.762,
+                                "y": 0.51435
+                            },
+                            "uuid": "c87469b5-b57a-439d-af20-56a874e1fe4b"
+                        }
+                    ],
+                    "severity": "warning",
+                    "type": "endpoint_off_grid"
+                },
+                {
+                    "description": "Symbol pin or wire end off connection grid",
+                    "items": [
+                        {
+                            "description": "Vertical Wire, length 0.0508 mm",
+                            "pos": {
+                                "x": 0.762,
+                                "y": 0.51435
+                            },
+                            "uuid": "ef9b8d67-23ec-4755-83d2-bd1af884a0c6"
+                        }
+                    ],
+                    "severity": "warning",
+                    "type": "endpoint_off_grid"
+                },
+                {
+                    "description": "The current configuration does not include the symbol library 'PCM_4ms_Power-symbol'",
+                    "items": [
+                        {
+                            "description": "Symbol #FLG0201 [PWR_FLAG]",
+                            "pos": {
+                                "x": 0.762,
+                                "y": 0.51435
+                            },
+                            "uuid": "6059cea7-e82b-44fb-ad00-7e6582d903eb"
+                        }
+                    ],
+                    "severity": "warning",
+                    "type": "lib_symbol_issues"
+                },
+                {
+                    "description": "Symbol pin or wire end off connection grid",
+                    "items": [
+                        {
+                            "description": "Vertical Wire, length 0.0571 mm",
+                            "pos": {
+                                "x": 0.762,
+                                "y": 0.56515
+                            },
+                            "uuid": "d4af9bf7-4447-4477-936e-5ddb4503a8ff"
+                        }
+                    ],
+                    "severity": "warning",
+                    "type": "endpoint_off_grid"
+                },
+                {
+                    "description": "The current configuration does not include the symbol library '.Project_Library'",
+                    "items": [
+                        {
+                            "description": "Symbol #PWR0201 [REF${#}]",
+                            "pos": {
+                                "x": 0.762,
+                                "y": 0.6223
+                            },
+                            "uuid": "b2b6c513-6b49-4516-9750-e44a26481ea2"
+                        }
+                    ],
+                    "severity": "warning",
+                    "type": "lib_symbol_issues"
+                }
+            ]
+        }
+    ],
+    "source": "erc_test_dynamic_power_symbol_subsheet.kicad_sch"
+}

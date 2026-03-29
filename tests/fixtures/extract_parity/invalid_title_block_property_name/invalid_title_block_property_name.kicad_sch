@@ -1,0 +1,9 @@
+(kicad_sch
+  (version 20260101)
+  (generator "eeschema")
+  (uuid "bad-title-prop-name-root")
+  (paper "A4")
+  (title_block
+    (property "" "x"))
+  (sheet_instances
+    (path "/" (page "1"))))

@@ -1,0 +1,3048 @@
+{
+    "$schema": "https://schemas.kicad.org/erc.v1.json",
+    "coordinate_units": "mm",
+    "date": "2026-03-29T23:07:41",
+    "ignored_checks": [
+        {
+            "description": "Global label only appears once in the schematic",
+            "key": "single_global_label"
+        },
+        {
+            "description": "Four connection points are joined together",
+            "key": "four_way_junction"
+        },
+        {
+            "description": "SPICE model issue",
+            "key": "simulation_model_issue"
+        },
+        {
+            "description": "Assigned footprint doesn't match footprint filters",
+            "key": "footprint_filter"
+        }
+    ],
+    "included_severities": [
+        "error",
+        "warning"
+    ],
+    "kicad_version": "10.0.0",
+    "sheets": [
+        {
+            "path": "/",
+            "uuid_path": "/39f53fcf-6caf-4733-ad11-25d31eb15b1d",
+            "violations": [
+                {
+                    "description": "Hierarchical label 'TVI[0..1]' in root sheet cannot be connected to non-existent parent sheet",
+                    "items": [
+                        {
+                            "description": "Hierarchical Label 'TVI[0..1]'",
+                            "pos": {
+                                "x": 0.381,
+                                "y": 0.1905
+                            },
+                            "uuid": "d29a62b6-c06b-45c3-ac32-f49dc34fb91b"
+                        }
+                    ],
+                    "severity": "error",
+                    "type": "pin_not_connected"
+                },
+                {
+                    "description": "Hierarchical label 'TVR[0..7]' in root sheet cannot be connected to non-existent parent sheet",
+                    "items": [
+                        {
+                            "description": "Hierarchical Label 'TVR[0..7]'",
+                            "pos": {
+                                "x": 0.381,
+                                "y": 0.2159
+                            },
+                            "uuid": "e19de1fa-2ed7-44b4-8cd7-772f1e7c7a79"
+                        }
+                    ],
+                    "severity": "error",
+                    "type": "pin_not_connected"
+                },
+                {
+                    "description": "Hierarchical label 'TVG[0..7]' in root sheet cannot be connected to non-existent parent sheet",
+                    "items": [
+                        {
+                            "description": "Hierarchical Label 'TVG[0..7]'",
+                            "pos": {
+                                "x": 0.381,
+                                "y": 0.2413
+                            },
+                            "uuid": "a36b2d67-b948-4149-837b-7b9f37ce2b6e"
+                        }
+                    ],
+                    "severity": "error",
+                    "type": "pin_not_connected"
+                },
+                {
+                    "description": "Hierarchical label 'PCA[0..2]' in root sheet cannot be connected to non-existent parent sheet",
+                    "items": [
+                        {
+                            "description": "Hierarchical Label 'PCA[0..2]'",
+                            "pos": {
+                                "x": 0.381,
+                                "y": 0.3429
+                            },
+                            "uuid": "801e3ad7-7531-4be2-bfb1-9b1ba79fc51d"
+                        }
+                    ],
+                    "severity": "error",
+                    "type": "pin_not_connected"
+                },
+                {
+                    "description": "Wires not connected to anything",
+                    "items": [
+                        {
+                            "description": "Vertical Wire, length 0.0254 mm",
+                            "pos": {
+                                "x": 0.9652,
+                                "y": 0.508
+                            },
+                            "uuid": "f7c68abf-deff-41cb-b00c-dde9e926cb4a"
+                        },
+                        {
+                            "description": "Vertical Wire, length 0.0254 mm",
+                            "pos": {
+                                "x": 0.9652,
+                                "y": 0.5334
+                            },
+                            "uuid": "8e445b06-7320-48d2-8481-6fb7f97f312b"
+                        }
+                    ],
+                    "severity": "error",
+                    "type": "wire_dangling"
+                },
+                {
+                    "description": "Wires not connected to anything",
+                    "items": [
+                        {
+                            "description": "Horizontal Wire, length 0.0127 mm",
+                            "pos": {
+                                "x": 0.9525,
+                                "y": 0.7112
+                            },
+                            "uuid": "8f6e6926-ff8b-4dbd-afb4-b4b78bb5c7a9"
+                        },
+                        {
+                            "description": "Vertical Wire, length 0.0508 mm",
+                            "pos": {
+                                "x": 0.9652,
+                                "y": 0.7112
+                            },
+                            "uuid": "bfc884a3-ed35-45f2-9daa-4bf84713f231"
+                        }
+                    ],
+                    "severity": "error",
+                    "type": "wire_dangling"
+                },
+                {
+                    "description": "Hierarchical label 'RED_IN' in root sheet cannot be connected to non-existent parent sheet",
+                    "items": [
+                        {
+                            "description": "Hierarchical Label 'RED_IN'",
+                            "pos": {
+                                "x": 0.4318,
+                                "y": 1.1684
+                            },
+                            "uuid": "7aa01dae-998f-46c4-9d57-84b91d480db4"
+                        }
+                    ],
+                    "severity": "error",
+                    "type": "pin_not_connected"
+                },
+                {
+                    "description": "Wires not connected to anything",
+                    "items": [
+                        {
+                            "description": "Horizontal Wire, length 0.0127 mm",
+                            "pos": {
+                                "x": 0.5842,
+                                "y": 1.1684
+                            },
+                            "uuid": "a1621135-ca31-47fa-a705-2762fdadd36a"
+                        }
+                    ],
+                    "severity": "error",
+                    "type": "wire_dangling"
+                },
+                {
+                    "description": "Wires not connected to anything",
+                    "items": [
+                        {
+                            "description": "Horizontal Wire, length 0.0254 mm",
+                            "pos": {
+                                "x": 1.1049,
+                                "y": 0.7112
+                            },
+                            "uuid": "63fd5d58-ce30-48e7-a8a3-972576e22190"
+                        }
+                    ],
+                    "severity": "error",
+                    "type": "wire_dangling"
+                },
+                {
+                    "description": "Wires not connected to anything",
+                    "items": [
+                        {
+                            "description": "Horizontal Wire, length 0.0254 mm",
+                            "pos": {
+                                "x": 1.1049,
+                                "y": 0.7366
+                            },
+                            "uuid": "ff13b8c4-1591-4cc3-85bd-fc46066d6c89"
+                        }
+                    ],
+                    "severity": "error",
+                    "type": "wire_dangling"
+                },
+                {
+                    "description": "Wires not connected to anything",
+                    "items": [
+                        {
+                            "description": "Horizontal Wire, length 0.4318 mm",
+                            "pos": {
+                                "x": 0.6985,
+                                "y": 1.1684
+                            },
+                            "uuid": "3c602d90-717e-46bc-a418-de61e88a85e8"
+                        }
+                    ],
+                    "severity": "error",
+                    "type": "wire_dangling"
+                },
+                {
+                    "description": "Hierarchical label 'GREEN_IN' in root sheet cannot be connected to non-existent parent sheet",
+                    "items": [
+                        {
+                            "description": "Hierarchical Label 'GREEN_IN'",
+                            "pos": {
+                                "x": 0.4318,
+                                "y": 1.3716
+                            },
+                            "uuid": "84eb1415-e659-4618-bac0-3bb4b70f5388"
+                        }
+                    ],
+                    "severity": "error",
+                    "type": "pin_not_connected"
+                },
+                {
+                    "description": "Wires not connected to anything",
+                    "items": [
+                        {
+                            "description": "Horizontal Wire, length 0.0127 mm",
+                            "pos": {
+                                "x": 0.5842,
+                                "y": 1.3716
+                            },
+                            "uuid": "bbf1a396-39b0-4569-84ac-88c459964a79"
+                        }
+                    ],
+                    "severity": "error",
+                    "type": "wire_dangling"
+                },
+                {
+                    "description": "Wires not connected to anything",
+                    "items": [
+                        {
+                            "description": "Horizontal Wire, length 0.0381 mm",
+                            "pos": {
+                                "x": 0.6985,
+                                "y": 1.3716
+                            },
+                            "uuid": "5430f52d-0f64-4f8c-994f-ffda6f018b31"
+                        },
+                        {
+                            "description": "Vertical Wire, length 0.1778 mm",
+                            "pos": {
+                                "x": 0.7366,
+                                "y": 1.1938
+                            },
+                            "uuid": "c61b8f10-afe1-4e1f-bd06-9bf486dfa0df"
+                        }
+                    ],
+                    "severity": "error",
+                    "type": "wire_dangling"
+                },
+                {
+                    "description": "Hierarchical label 'BLUE_IN' in root sheet cannot be connected to non-existent parent sheet",
+                    "items": [
+                        {
+                            "description": "Hierarchical Label 'BLUE_IN'",
+                            "pos": {
+                                "x": 0.4318,
+                                "y": 1.5748
+                            },
+                            "uuid": "d3194406-d713-4380-ad63-e78fe9606ff0"
+                        }
+                    ],
+                    "severity": "error",
+                    "type": "pin_not_connected"
+                },
+                {
+                    "description": "Wires not connected to anything",
+                    "items": [
+                        {
+                            "description": "Horizontal Wire, length 0.0127 mm",
+                            "pos": {
+                                "x": 0.5842,
+                                "y": 1.5748
+                            },
+                            "uuid": "227d5a09-b1b0-4a86-a181-1c2c0027612b"
+                        }
+                    ],
+                    "severity": "error",
+                    "type": "wire_dangling"
+                },
+                {
+                    "description": "Wires not connected to anything",
+                    "items": [
+                        {
+                            "description": "Horizontal Wire, length 0.0635 mm",
+                            "pos": {
+                                "x": 0.6985,
+                                "y": 1.5748
+                            },
+                            "uuid": "89e4c39f-98b2-410a-becf-d9cfea683c8b"
+                        },
+                        {
+                            "description": "Vertical Wire, length 0.3556 mm",
+                            "pos": {
+                                "x": 0.762,
+                                "y": 1.2192
+                            },
+                            "uuid": "18042807-daca-4f82-9375-ca58afc24421"
+                        }
+                    ],
+                    "severity": "error",
+                    "type": "wire_dangling"
+                },
+                {
+                    "description": "Hierarchical label 'CSYNCIN-' in root sheet cannot be connected to non-existent parent sheet",
+                    "items": [
+                        {
+                            "description": "Hierarchical Label 'CSYNCIN-'",
+                            "pos": {
+                                "x": 1.6637,
+                                "y": 0.6858
+                            },
+                            "uuid": "56d1394e-7809-4b77-a14b-2bb6390bcaf4"
+                        }
+                    ],
+                    "severity": "error",
+                    "type": "pin_not_connected"
+                },
+                {
+                    "description": "Wires not connected to anything",
+                    "items": [
+                        {
+                            "description": "Vertical Wire, length 0.0254 mm",
+                            "pos": {
+                                "x": 1.6637,
+                                "y": 0.7874
+                            },
+                            "uuid": "9dd257b7-6409-448c-a24e-d42e4961fb4d"
+                        }
+                    ],
+                    "severity": "error",
+                    "type": "wire_dangling"
+                },
+                {
+                    "description": "Wires not connected to anything",
+                    "items": [
+                        {
+                            "description": "Vertical Wire, length 0.0254 mm",
+                            "pos": {
+                                "x": 1.6637,
+                                "y": 0.8636
+                            },
+                            "uuid": "b5d53fd4-5274-4927-b606-92b4ec5c7d42"
+                        }
+                    ],
+                    "severity": "error",
+                    "type": "wire_dangling"
+                },
+                {
+                    "description": "Wires not connected to anything",
+                    "items": [
+                        {
+                            "description": "Vertical Wire, length 0.0254 mm",
+                            "pos": {
+                                "x": 1.6637,
+                                "y": 0.9398
+                            },
+                            "uuid": "f0b15c18-59cd-4b22-a5b0-8315c7523258"
+                        }
+                    ],
+                    "severity": "error",
+                    "type": "wire_dangling"
+                },
+                {
+                    "description": "Input pin not driven by any Output pins",
+                    "items": [
+                        {
+                            "description": "Symbol U8 Pin 37 [ZERO, Input, Line]",
+                            "pos": {
+                                "x": 1.6637,
+                                "y": 1.0414
+                            },
+                            "uuid": "e9e120f3-375e-496e-baf0-a76feb2b1ae8"
+                        }
+                    ],
+                    "severity": "error",
+                    "type": "pin_not_driven"
+                },
+                {
+                    "description": "Hierarchical label 'RDCAD-' in root sheet cannot be connected to non-existent parent sheet",
+                    "items": [
+                        {
+                            "description": "Hierarchical Label 'RDCAD-'",
+                            "pos": {
+                                "x": 1.1303,
+                                "y": 1.7018
+                            },
+                            "uuid": "4e53b6e9-125c-4cdc-8b73-b7b6fea18c8d"
+                        }
+                    ],
+                    "severity": "error",
+                    "type": "pin_not_connected"
+                },
+                {
+                    "description": "Input pin not driven by any Output pins",
+                    "items": [
+                        {
+                            "description": "Symbol U8 Pin 20 [RD, Input, Inverted]",
+                            "pos": {
+                                "x": 1.1303,
+                                "y": 1.7018
+                            },
+                            "uuid": "9cdffcea-6cf7-493e-9a88-7a787fa6b101"
+                        }
+                    ],
+                    "severity": "error",
+                    "type": "pin_not_driven"
+                },
+                {
+                    "description": "Hierarchical label 'CLKCAD' in root sheet cannot be connected to non-existent parent sheet",
+                    "items": [
+                        {
+                            "description": "Hierarchical Label 'CLKCAD'",
+                            "pos": {
+                                "x": 1.6891,
+                                "y": 1.1684
+                            },
+                            "uuid": "0291da90-a6a2-4f0c-b439-c8f28ee7b36d"
+                        }
+                    ],
+                    "severity": "error",
+                    "type": "pin_not_connected"
+                },
+                {
+                    "description": "Input pin not driven by any Output pins",
+                    "items": [
+                        {
+                            "description": "Symbol U8 Pin 38 [BCLOCK, Input, Clock]",
+                            "pos": {
+                                "x": 1.6637,
+                                "y": 1.2192
+                            },
+                            "uuid": "f9a336f9-a9dc-4e04-b91a-f311775ac5fe"
+                        }
+                    ],
+                    "severity": "error",
+                    "type": "pin_not_driven"
+                },
+                {
+                    "description": "Hierarchical label 'WRCAD-' in root sheet cannot be connected to non-existent parent sheet",
+                    "items": [
+                        {
+                            "description": "Hierarchical Label 'WRCAD-'",
+                            "pos": {
+                                "x": 1.1303,
+                                "y": 1.7272
+                            },
+                            "uuid": "67c1e38d-e72e-4d73-8dd1-9cd145444045"
+                        }
+                    ],
+                    "severity": "error",
+                    "type": "pin_not_connected"
+                },
+                {
+                    "description": "Input pin not driven by any Output pins",
+                    "items": [
+                        {
+                            "description": "Symbol U8 Pin 24 [WR, Input, Inverted]",
+                            "pos": {
+                                "x": 1.1303,
+                                "y": 1.7272
+                            },
+                            "uuid": "956fea90-7b97-4e55-aee4-a67dacbeb014"
+                        }
+                    ],
+                    "severity": "error",
+                    "type": "pin_not_driven"
+                },
+                {
+                    "description": "Input pin not driven by any Output pins",
+                    "items": [
+                        {
+                            "description": "Symbol U8 Pin 17 [A0, Input, Line]",
+                            "pos": {
+                                "x": 1.1303,
+                                "y": 1.778
+                            },
+                            "uuid": "71ed8fce-3417-440e-b0e3-1c178c53ab9d"
+                        }
+                    ],
+                    "severity": "error",
+                    "type": "pin_not_driven"
+                },
+                {
+                    "description": "Input pin not driven by any Output pins",
+                    "items": [
+                        {
+                            "description": "Symbol U8 Pin 18 [A1, Input, Line]",
+                            "pos": {
+                                "x": 1.1303,
+                                "y": 1.8034
+                            },
+                            "uuid": "8e2bc267-b857-4731-976f-83edbcd713e3"
+                        }
+                    ],
+                    "severity": "error",
+                    "type": "pin_not_driven"
+                },
+                {
+                    "description": "Input pin not driven by any Output pins",
+                    "items": [
+                        {
+                            "description": "Symbol U8 Pin 19 [A2, Input, Line]",
+                            "pos": {
+                                "x": 1.1303,
+                                "y": 1.8288
+                            },
+                            "uuid": "b6ddb57b-c69e-48c7-b4c3-65458138d4a1"
+                        }
+                    ],
+                    "severity": "error",
+                    "type": "pin_not_driven"
+                },
+                {
+                    "description": "Input Power pin not driven by any Output Power pins",
+                    "items": [
+                        {
+                            "description": "Symbol U8 Pin 2 [GND, Input, Line]",
+                            "pos": {
+                                "x": 1.3589,
+                                "y": 2.0574
+                            },
+                            "uuid": "c05f9592-b372-4860-8df9-1a2dc6bda7b1"
+                        }
+                    ],
+                    "severity": "error",
+                    "type": "power_pin_not_driven"
+                },
+                {
+                    "description": "Hierarchical label 'RDCDA-' in root sheet cannot be connected to non-existent parent sheet",
+                    "items": [
+                        {
+                            "description": "Hierarchical Label 'RDCDA-'",
+                            "pos": {
+                                "x": 2.3622,
+                                "y": 1.8161
+                            },
+                            "uuid": "c3608603-dc32-4012-8d4e-45825df7ec5f"
+                        }
+                    ],
+                    "severity": "error",
+                    "type": "pin_not_connected"
+                },
+                {
+                    "description": "Input pin not driven by any Output pins",
+                    "items": [
+                        {
+                            "description": "Symbol U9 Pin 22 [WR, Input, Inverted]",
+                            "pos": {
+                                "x": 2.3749,
+                                "y": 1.8161
+                            },
+                            "uuid": "a717929d-42f4-4ede-ae47-35025e792ac1"
+                        }
+                    ],
+                    "severity": "error",
+                    "type": "pin_not_driven"
+                },
+                {
+                    "description": "Hierarchical label 'WRCDA-' in root sheet cannot be connected to non-existent parent sheet",
+                    "items": [
+                        {
+                            "description": "Hierarchical Label 'WRCDA-'",
+                            "pos": {
+                                "x": 2.3622,
+                                "y": 1.8415
+                            },
+                            "uuid": "dc961081-64d1-41b2-a129-255744b6aef0"
+                        }
+                    ],
+                    "severity": "error",
+                    "type": "pin_not_connected"
+                },
+                {
+                    "description": "Input pin not driven by any Output pins",
+                    "items": [
+                        {
+                            "description": "Symbol U9 Pin 23 [RD, Input, Inverted]",
+                            "pos": {
+                                "x": 2.3749,
+                                "y": 1.8415
+                            },
+                            "uuid": "f9f25622-8017-4d21-a19c-838f1dd2ad88"
+                        }
+                    ],
+                    "severity": "error",
+                    "type": "pin_not_driven"
+                },
+                {
+                    "description": "Wires not connected to anything",
+                    "items": [
+                        {
+                            "description": "Vertical Wire, length 0.3429 mm",
+                            "pos": {
+                                "x": 2.9083,
+                                "y": 0.8382
+                            },
+                            "uuid": "dd96222e-90da-454a-9554-5db371c584b9"
+                        },
+                        {
+                            "description": "Horizontal Wire, length 0.0254 mm",
+                            "pos": {
+                                "x": 2.9083,
+                                "y": 1.1811
+                            },
+                            "uuid": "f3bd9423-de02-4b02-9472-b1936cc5f8b3"
+                        }
+                    ],
+                    "severity": "error",
+                    "type": "wire_dangling"
+                },
+                {
+                    "description": "Input pin not driven by any Output pins",
+                    "items": [
+                        {
+                            "description": "Symbol U9 Pin 10 [OL0, Input, Line]",
+                            "pos": {
+                                "x": 2.3749,
+                                "y": 1.8923
+                            },
+                            "uuid": "7cef7fa1-ff59-402d-b1a6-972a3d7ec0a1"
+                        }
+                    ],
+                    "severity": "error",
+                    "type": "pin_not_driven"
+                },
+                {
+                    "description": "Input pin not driven by any Output pins",
+                    "items": [
+                        {
+                            "description": "Symbol U9 Pin 11 [OL1, Input, Line]",
+                            "pos": {
+                                "x": 2.3749,
+                                "y": 1.9177
+                            },
+                            "uuid": "a1cd75d6-0ae6-44d3-92ce-70c02af56170"
+                        }
+                    ],
+                    "severity": "error",
+                    "type": "pin_not_driven"
+                },
+                {
+                    "description": "Wires not connected to anything",
+                    "items": [
+                        {
+                            "description": "Horizontal Wire, length 0.2032 mm",
+                            "pos": {
+                                "x": 2.8829,
+                                "y": 1.0795
+                            },
+                            "uuid": "3b9ee6ce-76b8-4ed4-bd0b-64145e543910"
+                        },
+                        {
+                            "description": "Vertical Wire, length 0.0254 mm",
+                            "pos": {
+                                "x": 2.9591,
+                                "y": 0.7112
+                            },
+                            "uuid": "79d431d1-8d34-4f5f-afdc-51512367c9de"
+                        }
+                    ],
+                    "severity": "error",
+                    "type": "wire_dangling"
+                },
+                {
+                    "description": "Input Power pin not driven by any Output Power pins",
+                    "items": [
+                        {
+                            "description": "Symbol #VCC0182 Hidden pin 1 [VCC, Power input, Line]",
+                            "pos": {
+                                "x": 3.0861,
+                                "y": 0.3683
+                            },
+                            "uuid": "f0ee8f63-28e2-44ef-9552-bca0d602a3f7"
+                        }
+                    ],
+                    "severity": "error",
+                    "type": "power_pin_not_driven"
+                },
+                {
+                    "description": "Wires not connected to anything",
+                    "items": [
+                        {
+                            "description": "Horizontal Wire, length 0.0381 mm",
+                            "pos": {
+                                "x": 2.8829,
+                                "y": 1.2827
+                            },
+                            "uuid": "5f382157-63f2-42ab-8aa9-355e3e3a526a"
+                        },
+                        {
+                            "description": "Horizontal Wire, length 0.0381 mm",
+                            "pos": {
+                                "x": 2.921,
+                                "y": 1.1303
+                            },
+                            "uuid": "8d49eeac-119d-450c-b00d-3313500d668c"
+                        }
+                    ],
+                    "severity": "error",
+                    "type": "wire_dangling"
+                },
+                {
+                    "description": "Input pin not driven by any Output pins",
+                    "items": [
+                        {
+                            "description": "Symbol U9 Pin 8 [SYNC, Input, Inverted]",
+                            "pos": {
+                                "x": 2.8829,
+                                "y": 1.3843
+                            },
+                            "uuid": "5586bd6f-74f5-4eb4-9bca-bd7addcb9488"
+                        }
+                    ],
+                    "severity": "error",
+                    "type": "pin_not_driven"
+                },
+                {
+                    "description": "Hierarchical label 'CSYNCOUT-' in root sheet cannot be connected to non-existent parent sheet",
+                    "items": [
+                        {
+                            "description": "Hierarchical Label 'CSYNCOUT-'",
+                            "pos": {
+                                "x": 2.8956,
+                                "y": 1.3843
+                            },
+                            "uuid": "7f62a74f-9066-4188-8653-1af3ab71f1fc"
+                        }
+                    ],
+                    "severity": "error",
+                    "type": "pin_not_connected"
+                },
+                {
+                    "description": "Input pin not driven by any Output pins",
+                    "items": [
+                        {
+                            "description": "Symbol U9 Pin 7 [BLANK, Input, Inverted]",
+                            "pos": {
+                                "x": 2.8829,
+                                "y": 1.4351
+                            },
+                            "uuid": "0ecf1ade-2e0d-4e99-ab46-74bbd431c717"
+                        }
+                    ],
+                    "severity": "error",
+                    "type": "pin_not_driven"
+                },
+                {
+                    "description": "Hierarchical label 'BLANK-' in root sheet cannot be connected to non-existent parent sheet",
+                    "items": [
+                        {
+                            "description": "Hierarchical Label 'BLANK-'",
+                            "pos": {
+                                "x": 2.8956,
+                                "y": 1.4351
+                            },
+                            "uuid": "05ebca25-1d13-4644-8768-9808f2da33a7"
+                        }
+                    ],
+                    "severity": "error",
+                    "type": "pin_not_connected"
+                },
+                {
+                    "description": "Input pin not driven by any Output pins",
+                    "items": [
+                        {
+                            "description": "Symbol U9 Pin 9 [CLOCK, Input, Clock]",
+                            "pos": {
+                                "x": 2.8829,
+                                "y": 1.4859
+                            },
+                            "uuid": "1f848aac-a373-4398-990b-d3eba0cdf4e6"
+                        }
+                    ],
+                    "severity": "error",
+                    "type": "pin_not_driven"
+                },
+                {
+                    "description": "Hierarchical label 'CLKCDA' in root sheet cannot be connected to non-existent parent sheet",
+                    "items": [
+                        {
+                            "description": "Hierarchical Label 'CLKCDA'",
+                            "pos": {
+                                "x": 2.8956,
+                                "y": 1.4859
+                            },
+                            "uuid": "b3dd7205-8360-4019-a1b3-715bbb7866a1"
+                        }
+                    ],
+                    "severity": "error",
+                    "type": "pin_not_connected"
+                },
+                {
+                    "description": "Hierarchical label 'OE_PAL-' in root sheet cannot be connected to non-existent parent sheet",
+                    "items": [
+                        {
+                            "description": "Hierarchical Label 'OE_PAL-'",
+                            "pos": {
+                                "x": 3.048,
+                                "y": 1.6129
+                            },
+                            "uuid": "5420dad5-f1c5-4671-8f90-127d0c94586e"
+                        }
+                    ],
+                    "severity": "error",
+                    "type": "pin_not_connected"
+                },
+                {
+                    "description": "Hierarchical label 'RED' in root sheet cannot be connected to non-existent parent sheet",
+                    "items": [
+                        {
+                            "description": "Hierarchical Label 'RED'",
+                            "pos": {
+                                "x": 3.4163,
+                                "y": 0.8763
+                            },
+                            "uuid": "c6b822c9-7489-41ee-8ba1-72fb2b411820"
+                        }
+                    ],
+                    "severity": "error",
+                    "type": "pin_not_connected"
+                },
+                {
+                    "description": "Hierarchical label 'GREEN' in root sheet cannot be connected to non-existent parent sheet",
+                    "items": [
+                        {
+                            "description": "Hierarchical Label 'GREEN'",
+                            "pos": {
+                                "x": 3.4163,
+                                "y": 0.9271
+                            },
+                            "uuid": "0fe765b0-03f1-4f3a-81f0-fff0446ec427"
+                        }
+                    ],
+                    "severity": "error",
+                    "type": "pin_not_connected"
+                },
+                {
+                    "description": "Hierarchical label 'BLUE' in root sheet cannot be connected to non-existent parent sheet",
+                    "items": [
+                        {
+                            "description": "Hierarchical Label 'BLUE'",
+                            "pos": {
+                                "x": 3.4163,
+                                "y": 0.9779
+                            },
+                            "uuid": "13d554bc-fdbe-4d87-b31f-907a5fec1e00"
+                        }
+                    ],
+                    "severity": "error",
+                    "type": "pin_not_connected"
+                },
+                {
+                    "description": "The current configuration does not include the symbol library 'video_schlib'",
+                    "items": [
+                        {
+                            "description": "Symbol #GND0178 [GND]",
+                            "pos": {
+                                "x": 0.9652,
+                                "y": 0.3683
+                            },
+                            "uuid": "91c33aa4-2d0a-46ea-a736-5421c38f4791"
+                        }
+                    ],
+                    "severity": "warning",
+                    "type": "lib_symbol_issues"
+                },
+                {
+                    "description": "Footprint 'R_1206_3216Metric_Pad1.24x1.80mm_HandSolder' not found in library 'Resistor_SMD'",
+                    "items": [
+                        {
+                            "description": "Symbol R15 [R]",
+                            "pos": {
+                                "x": 0.9652,
+                                "y": 0.4445
+                            },
+                            "uuid": "db0174c7-b464-4d61-9158-9082b559fbed"
+                        }
+                    ],
+                    "severity": "warning",
+                    "type": "footprint_link_issues"
+                },
+                {
+                    "description": "The current configuration does not include the symbol library 'video_schlib'",
+                    "items": [
+                        {
+                            "description": "Symbol R15 [R]",
+                            "pos": {
+                                "x": 0.9652,
+                                "y": 0.4445
+                            },
+                            "uuid": "db0174c7-b464-4d61-9158-9082b559fbed"
+                        }
+                    ],
+                    "severity": "warning",
+                    "type": "lib_symbol_issues"
+                },
+                {
+                    "description": "The current configuration does not include the symbol library 'video_schlib'",
+                    "items": [
+                        {
+                            "description": "Symbol #GND0179 [GND]",
+                            "pos": {
+                                "x": 0.8382,
+                                "y": 0.7112
+                            },
+                            "uuid": "664adc2e-d7b1-46af-8aa1-f31d6b6cec50"
+                        }
+                    ],
+                    "severity": "warning",
+                    "type": "lib_symbol_issues"
+                },
+                {
+                    "description": "Footprint 'R_1206_3216Metric_Pad1.24x1.80mm_HandSolder' not found in library 'Resistor_SMD'",
+                    "items": [
+                        {
+                            "description": "Symbol C36 [C]",
+                            "pos": {
+                                "x": 0.9652,
+                                "y": 0.6096
+                            },
+                            "uuid": "25f39dc2-15b5-412d-8c86-57e27ea0cbb1"
+                        }
+                    ],
+                    "severity": "warning",
+                    "type": "footprint_link_issues"
+                },
+                {
+                    "description": "The current configuration does not include the symbol library 'video_schlib'",
+                    "items": [
+                        {
+                            "description": "Symbol C36 [C]",
+                            "pos": {
+                                "x": 0.9652,
+                                "y": 0.6096
+                            },
+                            "uuid": "25f39dc2-15b5-412d-8c86-57e27ea0cbb1"
+                        }
+                    ],
+                    "severity": "warning",
+                    "type": "lib_symbol_issues"
+                },
+                {
+                    "description": "Footprint 'R_1206_3216Metric_Pad1.24x1.80mm_HandSolder' not found in library 'Resistor_SMD'",
+                    "items": [
+                        {
+                            "description": "Symbol C37 [C]",
+                            "pos": {
+                                "x": 0.9017,
+                                "y": 0.7112
+                            },
+                            "uuid": "9af9843e-ce31-4a1a-931f-69d126323e24"
+                        }
+                    ],
+                    "severity": "warning",
+                    "type": "footprint_link_issues"
+                },
+                {
+                    "description": "The current configuration does not include the symbol library 'video_schlib'",
+                    "items": [
+                        {
+                            "description": "Symbol C37 [C]",
+                            "pos": {
+                                "x": 0.9017,
+                                "y": 0.7112
+                            },
+                            "uuid": "9af9843e-ce31-4a1a-931f-69d126323e24"
+                        }
+                    ],
+                    "severity": "warning",
+                    "type": "lib_symbol_issues"
+                },
+                {
+                    "description": "The current configuration does not include the symbol library 'video_schlib'",
+                    "items": [
+                        {
+                            "description": "Symbol #GND0181 [GND]",
+                            "pos": {
+                                "x": 0.8636,
+                                "y": 0.7874
+                            },
+                            "uuid": "00000000-0000-0000-0000-00005d7688fd"
+                        }
+                    ],
+                    "severity": "warning",
+                    "type": "lib_symbol_issues"
+                },
+                {
+                    "description": "The current configuration does not include the symbol library 'video_schlib'",
+                    "items": [
+                        {
+                            "description": "Symbol #GND0177 [GND]",
+                            "pos": {
+                                "x": 0.9652,
+                                "y": 0.7366
+                            },
+                            "uuid": "88046012-47ac-4d19-aded-d9f80856c9ea"
+                        }
+                    ],
+                    "severity": "warning",
+                    "type": "lib_symbol_issues"
+                },
+                {
+                    "description": "Footprint 'R_1206_3216Metric_Pad1.24x1.80mm_HandSolder' not found in library 'Resistor_SMD'",
+                    "items": [
+                        {
+                            "description": "Symbol R37 [R]",
+                            "pos": {
+                                "x": 0.9398,
+                                "y": 0.7874
+                            },
+                            "uuid": "00000000-0000-0000-0000-00005d7688e4"
+                        }
+                    ],
+                    "severity": "warning",
+                    "type": "footprint_link_issues"
+                },
+                {
+                    "description": "The current configuration does not include the symbol library 'video_schlib'",
+                    "items": [
+                        {
+                            "description": "Symbol R37 [R]",
+                            "pos": {
+                                "x": 0.9398,
+                                "y": 0.7874
+                            },
+                            "uuid": "00000000-0000-0000-0000-00005d7688e4"
+                        }
+                    ],
+                    "severity": "warning",
+                    "type": "lib_symbol_issues"
+                },
+                {
+                    "description": "Footprint 'R_1206_3216Metric_Pad1.24x1.80mm_HandSolder' not found in library 'Resistor_SMD'",
+                    "items": [
+                        {
+                            "description": "Symbol R36 [R]",
+                            "pos": {
+                                "x": 1.0414,
+                                "y": 0.7112
+                            },
+                            "uuid": "11ef2ed0-b18e-4dc8-81ab-4ddb24b0ac95"
+                        }
+                    ],
+                    "severity": "warning",
+                    "type": "footprint_link_issues"
+                },
+                {
+                    "description": "The current configuration does not include the symbol library 'video_schlib'",
+                    "items": [
+                        {
+                            "description": "Symbol R36 [R]",
+                            "pos": {
+                                "x": 1.0414,
+                                "y": 0.7112
+                            },
+                            "uuid": "11ef2ed0-b18e-4dc8-81ab-4ddb24b0ac95"
+                        }
+                    ],
+                    "severity": "warning",
+                    "type": "lib_symbol_issues"
+                },
+                {
+                    "description": "Footprint 'R_1206_3216Metric_Pad1.24x1.80mm_HandSolder' not found in library 'Resistor_SMD'",
+                    "items": [
+                        {
+                            "description": "Symbol R38 [R]",
+                            "pos": {
+                                "x": 1.0414,
+                                "y": 0.7366
+                            },
+                            "uuid": "608642bb-2e32-4de4-bcce-bee22be389cc"
+                        }
+                    ],
+                    "severity": "warning",
+                    "type": "footprint_link_issues"
+                },
+                {
+                    "description": "The current configuration does not include the symbol library 'video_schlib'",
+                    "items": [
+                        {
+                            "description": "Symbol R38 [R]",
+                            "pos": {
+                                "x": 1.0414,
+                                "y": 0.7366
+                            },
+                            "uuid": "608642bb-2e32-4de4-bcce-bee22be389cc"
+                        }
+                    ],
+                    "severity": "warning",
+                    "type": "lib_symbol_issues"
+                },
+                {
+                    "description": "Footprint 'R_1206_3216Metric_Pad1.24x1.80mm_HandSolder' not found in library 'Resistor_SMD'",
+                    "items": [
+                        {
+                            "description": "Symbol R24 [R]",
+                            "pos": {
+                                "x": 0.5207,
+                                "y": 1.1684
+                            },
+                            "uuid": "2c155086-165a-415a-8bcf-5af729bece8d"
+                        }
+                    ],
+                    "severity": "warning",
+                    "type": "footprint_link_issues"
+                },
+                {
+                    "description": "The current configuration does not include the symbol library 'video_schlib'",
+                    "items": [
+                        {
+                            "description": "Symbol R24 [R]",
+                            "pos": {
+                                "x": 0.5207,
+                                "y": 1.1684
+                            },
+                            "uuid": "2c155086-165a-415a-8bcf-5af729bece8d"
+                        }
+                    ],
+                    "severity": "warning",
+                    "type": "lib_symbol_issues"
+                },
+                {
+                    "description": "Footprint 'R_1210_3225Metric_Pad1.24x2.70mm_HandSolder' not found in library 'Resistor_SMD'",
+                    "items": [
+                        {
+                            "description": "Symbol C39 [C]",
+                            "pos": {
+                                "x": 0.6477,
+                                "y": 1.1684
+                            },
+                            "uuid": "e333d91d-dcd6-413f-8a30-6f4f8b0c4573"
+                        }
+                    ],
+                    "severity": "warning",
+                    "type": "footprint_link_issues"
+                },
+                {
+                    "description": "The current configuration does not include the symbol library 'video_schlib'",
+                    "items": [
+                        {
+                            "description": "Symbol C39 [C]",
+                            "pos": {
+                                "x": 0.6477,
+                                "y": 1.1684
+                            },
+                            "uuid": "e333d91d-dcd6-413f-8a30-6f4f8b0c4573"
+                        }
+                    ],
+                    "severity": "warning",
+                    "type": "lib_symbol_issues"
+                },
+                {
+                    "description": "Footprint 'R_1206_3216Metric_Pad1.24x1.80mm_HandSolder' not found in library 'Resistor_SMD'",
+                    "items": [
+                        {
+                            "description": "Symbol R47 [R]",
+                            "pos": {
+                                "x": 0.5207,
+                                "y": 1.27
+                            },
+                            "uuid": "1cebaee7-e0dc-4223-a6ff-302d3940c2a2"
+                        }
+                    ],
+                    "severity": "warning",
+                    "type": "footprint_link_issues"
+                },
+                {
+                    "description": "The current configuration does not include the symbol library 'video_schlib'",
+                    "items": [
+                        {
+                            "description": "Symbol R47 [R]",
+                            "pos": {
+                                "x": 0.5207,
+                                "y": 1.27
+                            },
+                            "uuid": "1cebaee7-e0dc-4223-a6ff-302d3940c2a2"
+                        }
+                    ],
+                    "severity": "warning",
+                    "type": "lib_symbol_issues"
+                },
+                {
+                    "description": "The current configuration does not include the symbol library 'video_schlib'",
+                    "items": [
+                        {
+                            "description": "Symbol #GND0174 [GND]",
+                            "pos": {
+                                "x": 0.5969,
+                                "y": 1.27
+                            },
+                            "uuid": "e1681e15-57f9-4f2b-93c8-11f40627ef7d"
+                        }
+                    ],
+                    "severity": "warning",
+                    "type": "lib_symbol_issues"
+                },
+                {
+                    "description": "Footprint 'R_1206_3216Metric_Pad1.24x1.80mm_HandSolder' not found in library 'Resistor_SMD'",
+                    "items": [
+                        {
+                            "description": "Symbol R23 [R]",
+                            "pos": {
+                                "x": 0.5207,
+                                "y": 1.3716
+                            },
+                            "uuid": "df462de2-6994-4a24-af2e-3508ac92ceb8"
+                        }
+                    ],
+                    "severity": "warning",
+                    "type": "footprint_link_issues"
+                },
+                {
+                    "description": "The current configuration does not include the symbol library 'video_schlib'",
+                    "items": [
+                        {
+                            "description": "Symbol R23 [R]",
+                            "pos": {
+                                "x": 0.5207,
+                                "y": 1.3716
+                            },
+                            "uuid": "df462de2-6994-4a24-af2e-3508ac92ceb8"
+                        }
+                    ],
+                    "severity": "warning",
+                    "type": "lib_symbol_issues"
+                },
+                {
+                    "description": "Footprint 'R_1210_3225Metric_Pad1.24x2.70mm_HandSolder' not found in library 'Resistor_SMD'",
+                    "items": [
+                        {
+                            "description": "Symbol C40 [C]",
+                            "pos": {
+                                "x": 0.6477,
+                                "y": 1.3716
+                            },
+                            "uuid": "5562157b-31aa-4fc7-b16c-c78a79ea3822"
+                        }
+                    ],
+                    "severity": "warning",
+                    "type": "footprint_link_issues"
+                },
+                {
+                    "description": "The current configuration does not include the symbol library 'video_schlib'",
+                    "items": [
+                        {
+                            "description": "Symbol C40 [C]",
+                            "pos": {
+                                "x": 0.6477,
+                                "y": 1.3716
+                            },
+                            "uuid": "5562157b-31aa-4fc7-b16c-c78a79ea3822"
+                        }
+                    ],
+                    "severity": "warning",
+                    "type": "lib_symbol_issues"
+                },
+                {
+                    "description": "The current configuration does not include the symbol library 'video_schlib'",
+                    "items": [
+                        {
+                            "description": "Symbol #PWR0163 [GND]",
+                            "pos": {
+                                "x": 1.1049,
+                                "y": 1.0668
+                            },
+                            "uuid": "00000000-0000-0000-0000-00003392d11c"
+                        }
+                    ],
+                    "severity": "warning",
+                    "type": "lib_symbol_issues"
+                },
+                {
+                    "description": "Footprint 'R_1206_3216Metric_Pad1.24x1.80mm_HandSolder' not found in library 'Resistor_SMD'",
+                    "items": [
+                        {
+                            "description": "Symbol R45 [R]",
+                            "pos": {
+                                "x": 0.5207,
+                                "y": 1.4732
+                            },
+                            "uuid": "a928b23f-d058-4a15-b5e8-e3fdc83dd428"
+                        }
+                    ],
+                    "severity": "warning",
+                    "type": "footprint_link_issues"
+                },
+                {
+                    "description": "The current configuration does not include the symbol library 'video_schlib'",
+                    "items": [
+                        {
+                            "description": "Symbol R45 [R]",
+                            "pos": {
+                                "x": 0.5207,
+                                "y": 1.4732
+                            },
+                            "uuid": "a928b23f-d058-4a15-b5e8-e3fdc83dd428"
+                        }
+                    ],
+                    "severity": "warning",
+                    "type": "lib_symbol_issues"
+                },
+                {
+                    "description": "The current configuration does not include the symbol library 'video_schlib'",
+                    "items": [
+                        {
+                            "description": "Symbol #GND0175 [GND]",
+                            "pos": {
+                                "x": 0.5969,
+                                "y": 1.4732
+                            },
+                            "uuid": "ba133870-746b-4b1e-ae10-1152ef8d398b"
+                        }
+                    ],
+                    "severity": "warning",
+                    "type": "lib_symbol_issues"
+                },
+                {
+                    "description": "Footprint 'R_1206_3216Metric_Pad1.24x1.80mm_HandSolder' not found in library 'Resistor_SMD'",
+                    "items": [
+                        {
+                            "description": "Symbol R22 [R]",
+                            "pos": {
+                                "x": 0.5207,
+                                "y": 1.5748
+                            },
+                            "uuid": "94ef7768-08ac-4b39-8e0d-f52293cd1ffa"
+                        }
+                    ],
+                    "severity": "warning",
+                    "type": "footprint_link_issues"
+                },
+                {
+                    "description": "The current configuration does not include the symbol library 'video_schlib'",
+                    "items": [
+                        {
+                            "description": "Symbol R22 [R]",
+                            "pos": {
+                                "x": 0.5207,
+                                "y": 1.5748
+                            },
+                            "uuid": "94ef7768-08ac-4b39-8e0d-f52293cd1ffa"
+                        }
+                    ],
+                    "severity": "warning",
+                    "type": "lib_symbol_issues"
+                },
+                {
+                    "description": "Footprint 'R_1206_3216Metric_Pad1.24x1.80mm_HandSolder' not found in library 'Resistor_SMD'",
+                    "items": [
+                        {
+                            "description": "Symbol C52 [CP]",
+                            "pos": {
+                                "x": 1.5621,
+                                "y": 0.5588
+                            },
+                            "uuid": "9e74f64e-9c03-4455-828d-e8ab09202727"
+                        }
+                    ],
+                    "severity": "warning",
+                    "type": "footprint_link_issues"
+                },
+                {
+                    "description": "The current configuration does not include the symbol library 'video_schlib'",
+                    "items": [
+                        {
+                            "description": "Symbol C52 [CP]",
+                            "pos": {
+                                "x": 1.5621,
+                                "y": 0.5588
+                            },
+                            "uuid": "9e74f64e-9c03-4455-828d-e8ab09202727"
+                        }
+                    ],
+                    "severity": "warning",
+                    "type": "lib_symbol_issues"
+                },
+                {
+                    "description": "Footprint 'R_1210_3225Metric_Pad1.24x2.70mm_HandSolder' not found in library 'Resistor_SMD'",
+                    "items": [
+                        {
+                            "description": "Symbol C41 [C]",
+                            "pos": {
+                                "x": 0.6477,
+                                "y": 1.5748
+                            },
+                            "uuid": "6663e394-4446-489d-83d9-5c7b8d86a6a5"
+                        }
+                    ],
+                    "severity": "warning",
+                    "type": "footprint_link_issues"
+                },
+                {
+                    "description": "The current configuration does not include the symbol library 'video_schlib'",
+                    "items": [
+                        {
+                            "description": "Symbol C41 [C]",
+                            "pos": {
+                                "x": 0.6477,
+                                "y": 1.5748
+                            },
+                            "uuid": "6663e394-4446-489d-83d9-5c7b8d86a6a5"
+                        }
+                    ],
+                    "severity": "warning",
+                    "type": "lib_symbol_issues"
+                },
+                {
+                    "description": "The current configuration does not include the symbol library 'video_schlib'",
+                    "items": [
+                        {
+                            "description": "Symbol #GND0180 [GND]",
+                            "pos": {
+                                "x": 1.6256,
+                                "y": 0.5588
+                            },
+                            "uuid": "00000000-0000-0000-0000-000026fc0c80"
+                        }
+                    ],
+                    "severity": "warning",
+                    "type": "lib_symbol_issues"
+                },
+                {
+                    "description": "Footprint 'R_1206_3216Metric_Pad1.24x1.80mm_HandSolder' not found in library 'Resistor_SMD'",
+                    "items": [
+                        {
+                            "description": "Symbol R46 [R]",
+                            "pos": {
+                                "x": 0.5207,
+                                "y": 1.6764
+                            },
+                            "uuid": "77fc60e1-2375-4f76-872f-f5fcea51d604"
+                        }
+                    ],
+                    "severity": "warning",
+                    "type": "footprint_link_issues"
+                },
+                {
+                    "description": "The current configuration does not include the symbol library 'video_schlib'",
+                    "items": [
+                        {
+                            "description": "Symbol R46 [R]",
+                            "pos": {
+                                "x": 0.5207,
+                                "y": 1.6764
+                            },
+                            "uuid": "77fc60e1-2375-4f76-872f-f5fcea51d604"
+                        }
+                    ],
+                    "severity": "warning",
+                    "type": "lib_symbol_issues"
+                },
+                {
+                    "description": "The current configuration does not include the symbol library 'video_schlib'",
+                    "items": [
+                        {
+                            "description": "Symbol #GND0176 [GND]",
+                            "pos": {
+                                "x": 0.5969,
+                                "y": 1.6764
+                            },
+                            "uuid": "cd34d12e-60fb-48f9-b22e-3d2ab5d70e3f"
+                        }
+                    ],
+                    "severity": "warning",
+                    "type": "lib_symbol_issues"
+                },
+                {
+                    "description": "Label connected to only one pin",
+                    "items": [
+                        {
+                            "description": "Hierarchical Label 'CSYNCIN-'",
+                            "pos": {
+                                "x": 1.6637,
+                                "y": 0.6858
+                            },
+                            "uuid": "56d1394e-7809-4b77-a14b-2bb6390bcaf4"
+                        }
+                    ],
+                    "severity": "warning",
+                    "type": "isolated_pin_label"
+                },
+                {
+                    "description": "The current configuration does not include the footprint library 'footprints'",
+                    "items": [
+                        {
+                            "description": "Symbol U8 [BT253]",
+                            "pos": {
+                                "x": 1.397,
+                                "y": 1.3208
+                            },
+                            "uuid": "00000000-0000-0000-0000-000032f9e7f1"
+                        }
+                    ],
+                    "severity": "warning",
+                    "type": "footprint_link_issues"
+                },
+                {
+                    "description": "The current configuration does not include the symbol library 'video_schlib'",
+                    "items": [
+                        {
+                            "description": "Symbol U8 [BT253]",
+                            "pos": {
+                                "x": 1.397,
+                                "y": 1.3208
+                            },
+                            "uuid": "00000000-0000-0000-0000-000032f9e7f1"
+                        }
+                    ],
+                    "severity": "warning",
+                    "type": "lib_symbol_issues"
+                },
+                {
+                    "description": "The current configuration does not include the symbol library 'video_schlib'",
+                    "items": [
+                        {
+                            "description": "Symbol #GND0173 [GND]",
+                            "pos": {
+                                "x": 1.6891,
+                                "y": 1.1176
+                            },
+                            "uuid": "b7ed6b1f-9a8f-4d64-894a-bb36d9b85382"
+                        }
+                    ],
+                    "severity": "warning",
+                    "type": "lib_symbol_issues"
+                },
+                {
+                    "description": "Label connected to only one pin",
+                    "items": [
+                        {
+                            "description": "Hierarchical Label 'RDCAD-'",
+                            "pos": {
+                                "x": 1.1303,
+                                "y": 1.7018
+                            },
+                            "uuid": "4e53b6e9-125c-4cdc-8b73-b7b6fea18c8d"
+                        }
+                    ],
+                    "severity": "warning",
+                    "type": "isolated_pin_label"
+                },
+                {
+                    "description": "Unconnected wire endpoint",
+                    "items": [
+                        {
+                            "description": "Horizontal Wire, length 0.1016 mm",
+                            "pos": {
+                                "x": 1.0287,
+                                "y": 1.778
+                            },
+                            "uuid": "471b29fa-9199-4c43-bc82-2560f65d5138"
+                        }
+                    ],
+                    "severity": "warning",
+                    "type": "unconnected_wire_endpoint"
+                },
+                {
+                    "description": "Label connected to only one pin",
+                    "items": [
+                        {
+                            "description": "Hierarchical Label 'WRCAD-'",
+                            "pos": {
+                                "x": 1.1303,
+                                "y": 1.7272
+                            },
+                            "uuid": "67c1e38d-e72e-4d73-8dd1-9cd145444045"
+                        }
+                    ],
+                    "severity": "warning",
+                    "type": "isolated_pin_label"
+                },
+                {
+                    "description": "Unconnected wire endpoint",
+                    "items": [
+                        {
+                            "description": "Horizontal Wire, length 0.1016 mm",
+                            "pos": {
+                                "x": 1.0287,
+                                "y": 1.8034
+                            },
+                            "uuid": "ff25ee6b-7223-4fe4-9b69-7cac6913c767"
+                        }
+                    ],
+                    "severity": "warning",
+                    "type": "unconnected_wire_endpoint"
+                },
+                {
+                    "description": "Unconnected wire endpoint",
+                    "items": [
+                        {
+                            "description": "Horizontal Wire, length 0.1016 mm",
+                            "pos": {
+                                "x": 1.0287,
+                                "y": 1.8288
+                            },
+                            "uuid": "7a1a4d9b-b646-406e-b6b7-95185cc5b3fb"
+                        }
+                    ],
+                    "severity": "warning",
+                    "type": "unconnected_wire_endpoint"
+                },
+                {
+                    "description": "Unconnected wire endpoint",
+                    "items": [
+                        {
+                            "description": "Horizontal Wire, length 0.1143 mm",
+                            "pos": {
+                                "x": 1.6637,
+                                "y": 1.27
+                            },
+                            "uuid": "b11d8598-fcb9-475c-9339-13fb8ea6d85f"
+                        }
+                    ],
+                    "severity": "warning",
+                    "type": "unconnected_wire_endpoint"
+                },
+                {
+                    "description": "Unconnected wire endpoint",
+                    "items": [
+                        {
+                            "description": "Horizontal Wire, length 0.1143 mm",
+                            "pos": {
+                                "x": 1.6637,
+                                "y": 1.2954
+                            },
+                            "uuid": "9216c0ca-88db-409c-90c4-84d24df4dd80"
+                        }
+                    ],
+                    "severity": "warning",
+                    "type": "unconnected_wire_endpoint"
+                },
+                {
+                    "description": "Unconnected wire endpoint",
+                    "items": [
+                        {
+                            "description": "Horizontal Wire, length 0.1143 mm",
+                            "pos": {
+                                "x": 1.6637,
+                                "y": 1.3208
+                            },
+                            "uuid": "94adcc57-8e81-4457-bdb4-da1fbf51466f"
+                        }
+                    ],
+                    "severity": "warning",
+                    "type": "unconnected_wire_endpoint"
+                },
+                {
+                    "description": "Unconnected wire endpoint",
+                    "items": [
+                        {
+                            "description": "Horizontal Wire, length 0.1143 mm",
+                            "pos": {
+                                "x": 1.6637,
+                                "y": 1.3462
+                            },
+                            "uuid": "6b1dc770-77e0-449b-a9cd-2169d9c8a7b9"
+                        }
+                    ],
+                    "severity": "warning",
+                    "type": "unconnected_wire_endpoint"
+                },
+                {
+                    "description": "Unconnected wire endpoint",
+                    "items": [
+                        {
+                            "description": "Horizontal Wire, length 0.1143 mm",
+                            "pos": {
+                                "x": 1.6637,
+                                "y": 1.3716
+                            },
+                            "uuid": "9b7df063-bb84-4697-a53d-d35e0bbcc8ec"
+                        }
+                    ],
+                    "severity": "warning",
+                    "type": "unconnected_wire_endpoint"
+                },
+                {
+                    "description": "Unconnected wire endpoint",
+                    "items": [
+                        {
+                            "description": "Horizontal Wire, length 0.1143 mm",
+                            "pos": {
+                                "x": 1.6637,
+                                "y": 1.397
+                            },
+                            "uuid": "29303a3c-1714-41d8-8e37-31fd605f3cee"
+                        }
+                    ],
+                    "severity": "warning",
+                    "type": "unconnected_wire_endpoint"
+                },
+                {
+                    "description": "Unconnected wire endpoint",
+                    "items": [
+                        {
+                            "description": "Horizontal Wire, length 0.1143 mm",
+                            "pos": {
+                                "x": 1.6637,
+                                "y": 1.4224
+                            },
+                            "uuid": "03aba335-7940-423a-887f-1f750733c480"
+                        }
+                    ],
+                    "severity": "warning",
+                    "type": "unconnected_wire_endpoint"
+                },
+                {
+                    "description": "Unconnected wire endpoint",
+                    "items": [
+                        {
+                            "description": "Horizontal Wire, length 0.1143 mm",
+                            "pos": {
+                                "x": 1.6637,
+                                "y": 1.4478
+                            },
+                            "uuid": "8630f6bb-db1b-42ca-b444-8efddcc0f00c"
+                        }
+                    ],
+                    "severity": "warning",
+                    "type": "unconnected_wire_endpoint"
+                },
+                {
+                    "description": "Unconnected wire endpoint",
+                    "items": [
+                        {
+                            "description": "Horizontal Wire, length 0.1143 mm",
+                            "pos": {
+                                "x": 1.6637,
+                                "y": 1.4986
+                            },
+                            "uuid": "62d31f1d-d9c0-4a59-a963-9aba1d8a758a"
+                        }
+                    ],
+                    "severity": "warning",
+                    "type": "unconnected_wire_endpoint"
+                },
+                {
+                    "description": "Unconnected wire endpoint",
+                    "items": [
+                        {
+                            "description": "Horizontal Wire, length 0.1143 mm",
+                            "pos": {
+                                "x": 1.6637,
+                                "y": 1.524
+                            },
+                            "uuid": "25819c84-ba6a-41a5-8245-e8e39660257d"
+                        }
+                    ],
+                    "severity": "warning",
+                    "type": "unconnected_wire_endpoint"
+                },
+                {
+                    "description": "Unconnected wire endpoint",
+                    "items": [
+                        {
+                            "description": "Horizontal Wire, length 0.1143 mm",
+                            "pos": {
+                                "x": 1.6637,
+                                "y": 1.5494
+                            },
+                            "uuid": "8e5992a6-db6c-4101-9106-2d9a2aed5817"
+                        }
+                    ],
+                    "severity": "warning",
+                    "type": "unconnected_wire_endpoint"
+                },
+                {
+                    "description": "Unconnected wire endpoint",
+                    "items": [
+                        {
+                            "description": "Horizontal Wire, length 0.1143 mm",
+                            "pos": {
+                                "x": 1.6637,
+                                "y": 1.5748
+                            },
+                            "uuid": "267978ca-76cc-4fc7-a338-f60ddc791c91"
+                        }
+                    ],
+                    "severity": "warning",
+                    "type": "unconnected_wire_endpoint"
+                },
+                {
+                    "description": "Unconnected wire endpoint",
+                    "items": [
+                        {
+                            "description": "Horizontal Wire, length 0.1143 mm",
+                            "pos": {
+                                "x": 1.6637,
+                                "y": 1.6002
+                            },
+                            "uuid": "86403766-d333-4bc3-8c7b-0852caf21968"
+                        }
+                    ],
+                    "severity": "warning",
+                    "type": "unconnected_wire_endpoint"
+                },
+                {
+                    "description": "Unconnected wire endpoint",
+                    "items": [
+                        {
+                            "description": "Horizontal Wire, length 0.1143 mm",
+                            "pos": {
+                                "x": 2.2606,
+                                "y": 0.8001
+                            },
+                            "uuid": "eb1917dc-9c82-4e9a-b2b1-0be00a44111d"
+                        }
+                    ],
+                    "severity": "warning",
+                    "type": "unconnected_wire_endpoint"
+                },
+                {
+                    "description": "Unconnected wire endpoint",
+                    "items": [
+                        {
+                            "description": "Horizontal Wire, length 0.1143 mm",
+                            "pos": {
+                                "x": 2.2606,
+                                "y": 0.8255
+                            },
+                            "uuid": "fe951a5c-27e2-4e95-b2ed-b5c046c45165"
+                        }
+                    ],
+                    "severity": "warning",
+                    "type": "unconnected_wire_endpoint"
+                },
+                {
+                    "description": "Unconnected wire endpoint",
+                    "items": [
+                        {
+                            "description": "Horizontal Wire, length 0.1143 mm",
+                            "pos": {
+                                "x": 1.6637,
+                                "y": 1.6256
+                            },
+                            "uuid": "b41a1deb-a109-451c-8b0b-0e9086113191"
+                        }
+                    ],
+                    "severity": "warning",
+                    "type": "unconnected_wire_endpoint"
+                },
+                {
+                    "description": "Unconnected wire endpoint",
+                    "items": [
+                        {
+                            "description": "Horizontal Wire, length 0.1143 mm",
+                            "pos": {
+                                "x": 2.2606,
+                                "y": 0.8509
+                            },
+                            "uuid": "00cbbc9c-e1dd-4f41-822c-46e3a6da467e"
+                        }
+                    ],
+                    "severity": "warning",
+                    "type": "unconnected_wire_endpoint"
+                },
+                {
+                    "description": "Unconnected wire endpoint",
+                    "items": [
+                        {
+                            "description": "Horizontal Wire, length 0.1143 mm",
+                            "pos": {
+                                "x": 2.2606,
+                                "y": 0.8763
+                            },
+                            "uuid": "b4061cd9-fd6c-4777-8cc0-f56777da319d"
+                        }
+                    ],
+                    "severity": "warning",
+                    "type": "unconnected_wire_endpoint"
+                },
+                {
+                    "description": "Unconnected wire endpoint",
+                    "items": [
+                        {
+                            "description": "Horizontal Wire, length 0.1143 mm",
+                            "pos": {
+                                "x": 1.6637,
+                                "y": 1.651
+                            },
+                            "uuid": "e4384e87-6728-4521-9370-4910883b3bd1"
+                        }
+                    ],
+                    "severity": "warning",
+                    "type": "unconnected_wire_endpoint"
+                },
+                {
+                    "description": "Unconnected wire endpoint",
+                    "items": [
+                        {
+                            "description": "Horizontal Wire, length 0.1143 mm",
+                            "pos": {
+                                "x": 2.2606,
+                                "y": 0.9017
+                            },
+                            "uuid": "e76f2b08-3fab-400f-9b28-77540c9923fc"
+                        }
+                    ],
+                    "severity": "warning",
+                    "type": "unconnected_wire_endpoint"
+                },
+                {
+                    "description": "Unconnected wire endpoint",
+                    "items": [
+                        {
+                            "description": "Horizontal Wire, length 0.1143 mm",
+                            "pos": {
+                                "x": 2.2606,
+                                "y": 0.9271
+                            },
+                            "uuid": "b42786a7-fc58-42a7-a70f-4eef4574e165"
+                        }
+                    ],
+                    "severity": "warning",
+                    "type": "unconnected_wire_endpoint"
+                },
+                {
+                    "description": "Unconnected wire endpoint",
+                    "items": [
+                        {
+                            "description": "Horizontal Wire, length 0.1143 mm",
+                            "pos": {
+                                "x": 1.6637,
+                                "y": 1.6764
+                            },
+                            "uuid": "5022a851-adab-4fd8-a454-e3e919f99b90"
+                        }
+                    ],
+                    "severity": "warning",
+                    "type": "unconnected_wire_endpoint"
+                },
+                {
+                    "description": "Unconnected wire endpoint",
+                    "items": [
+                        {
+                            "description": "Horizontal Wire, length 0.1143 mm",
+                            "pos": {
+                                "x": 2.2606,
+                                "y": 0.9525
+                            },
+                            "uuid": "4f8c5aa2-6129-4d77-84ea-a37726c0bc27"
+                        }
+                    ],
+                    "severity": "warning",
+                    "type": "unconnected_wire_endpoint"
+                },
+                {
+                    "description": "Footprint 'R_1206_3216Metric_Pad1.24x1.80mm_HandSolder' not found in library 'Resistor_SMD'",
+                    "items": [
+                        {
+                            "description": "Symbol C33 [C]",
+                            "pos": {
+                                "x": 2.3749,
+                                "y": 0.635
+                            },
+                            "uuid": "445c24f7-895f-41de-b565-f917926d0f45"
+                        }
+                    ],
+                    "severity": "warning",
+                    "type": "footprint_link_issues"
+                },
+                {
+                    "description": "The current configuration does not include the symbol library 'video_schlib'",
+                    "items": [
+                        {
+                            "description": "Symbol C33 [C]",
+                            "pos": {
+                                "x": 2.3749,
+                                "y": 0.635
+                            },
+                            "uuid": "445c24f7-895f-41de-b565-f917926d0f45"
+                        }
+                    ],
+                    "severity": "warning",
+                    "type": "lib_symbol_issues"
+                },
+                {
+                    "description": "Unconnected wire endpoint",
+                    "items": [
+                        {
+                            "description": "Horizontal Wire, length 0.1143 mm",
+                            "pos": {
+                                "x": 2.2606,
+                                "y": 0.9779
+                            },
+                            "uuid": "fb363023-59a7-4bb3-bbc7-ff4d0a265f93"
+                        }
+                    ],
+                    "severity": "warning",
+                    "type": "unconnected_wire_endpoint"
+                },
+                {
+                    "description": "The current configuration does not include the symbol library 'video_schlib'",
+                    "items": [
+                        {
+                            "description": "Symbol #GND0168 [GND]",
+                            "pos": {
+                                "x": 2.3749,
+                                "y": 0.6985
+                            },
+                            "uuid": "00000000-0000-0000-0000-0000684863b9"
+                        }
+                    ],
+                    "severity": "warning",
+                    "type": "lib_symbol_issues"
+                },
+                {
+                    "description": "Unconnected wire endpoint",
+                    "items": [
+                        {
+                            "description": "Horizontal Wire, length 0.1143 mm",
+                            "pos": {
+                                "x": 1.6637,
+                                "y": 1.7272
+                            },
+                            "uuid": "974adcf1-5b1c-4665-97e2-1a055c63f131"
+                        }
+                    ],
+                    "severity": "warning",
+                    "type": "unconnected_wire_endpoint"
+                },
+                {
+                    "description": "Unconnected wire endpoint",
+                    "items": [
+                        {
+                            "description": "Horizontal Wire, length 0.1143 mm",
+                            "pos": {
+                                "x": 2.2606,
+                                "y": 1.0287
+                            },
+                            "uuid": "e71fabb3-4711-467c-8728-80b6c70c0a31"
+                        }
+                    ],
+                    "severity": "warning",
+                    "type": "unconnected_wire_endpoint"
+                },
+                {
+                    "description": "Unconnected wire endpoint",
+                    "items": [
+                        {
+                            "description": "Horizontal Wire, length 0.1143 mm",
+                            "pos": {
+                                "x": 2.2606,
+                                "y": 1.0541
+                            },
+                            "uuid": "8208155e-edf4-4061-90fa-1e15d226b30c"
+                        }
+                    ],
+                    "severity": "warning",
+                    "type": "unconnected_wire_endpoint"
+                },
+                {
+                    "description": "Unconnected wire endpoint",
+                    "items": [
+                        {
+                            "description": "Horizontal Wire, length 0.1143 mm",
+                            "pos": {
+                                "x": 1.6637,
+                                "y": 1.7526
+                            },
+                            "uuid": "9fe4d851-a9a2-41d6-b0f5-b3d7c154f452"
+                        }
+                    ],
+                    "severity": "warning",
+                    "type": "unconnected_wire_endpoint"
+                },
+                {
+                    "description": "Unconnected wire endpoint",
+                    "items": [
+                        {
+                            "description": "Horizontal Wire, length 0.1143 mm",
+                            "pos": {
+                                "x": 2.2606,
+                                "y": 1.0795
+                            },
+                            "uuid": "2567bba0-a30f-427c-988f-6cbc93c2d490"
+                        }
+                    ],
+                    "severity": "warning",
+                    "type": "unconnected_wire_endpoint"
+                },
+                {
+                    "description": "Unconnected wire endpoint",
+                    "items": [
+                        {
+                            "description": "Horizontal Wire, length 0.1143 mm",
+                            "pos": {
+                                "x": 1.6637,
+                                "y": 1.778
+                            },
+                            "uuid": "d54b7ccf-986c-4f4d-9f38-dacfd1e7d6dc"
+                        }
+                    ],
+                    "severity": "warning",
+                    "type": "unconnected_wire_endpoint"
+                },
+                {
+                    "description": "Unconnected wire endpoint",
+                    "items": [
+                        {
+                            "description": "Horizontal Wire, length 0.1143 mm",
+                            "pos": {
+                                "x": 2.2606,
+                                "y": 1.1049
+                            },
+                            "uuid": "adcb9cf0-eeff-4dac-b967-11868c168563"
+                        }
+                    ],
+                    "severity": "warning",
+                    "type": "unconnected_wire_endpoint"
+                },
+                {
+                    "description": "Unconnected wire endpoint",
+                    "items": [
+                        {
+                            "description": "Horizontal Wire, length 0.1143 mm",
+                            "pos": {
+                                "x": 2.2606,
+                                "y": 1.1303
+                            },
+                            "uuid": "dac61b4e-8def-4a0f-9545-d93ec7b7a9f5"
+                        }
+                    ],
+                    "severity": "warning",
+                    "type": "unconnected_wire_endpoint"
+                },
+                {
+                    "description": "Unconnected wire endpoint",
+                    "items": [
+                        {
+                            "description": "Horizontal Wire, length 0.1143 mm",
+                            "pos": {
+                                "x": 1.6637,
+                                "y": 1.8034
+                            },
+                            "uuid": "008a00dd-3029-4b22-9f90-4ae4f0beffdf"
+                        }
+                    ],
+                    "severity": "warning",
+                    "type": "unconnected_wire_endpoint"
+                },
+                {
+                    "description": "Unconnected wire endpoint",
+                    "items": [
+                        {
+                            "description": "Horizontal Wire, length 0.1143 mm",
+                            "pos": {
+                                "x": 2.2606,
+                                "y": 1.1557
+                            },
+                            "uuid": "54687876-cbd5-4171-8b75-4a3956b3d567"
+                        }
+                    ],
+                    "severity": "warning",
+                    "type": "unconnected_wire_endpoint"
+                },
+                {
+                    "description": "The current configuration does not include the symbol library 'video_schlib'",
+                    "items": [
+                        {
+                            "description": "Symbol #GND0166 [GND]",
+                            "pos": {
+                                "x": 1.4351,
+                                "y": 2.0955
+                            },
+                            "uuid": "00000000-0000-0000-0000-000032fa0485"
+                        }
+                    ],
+                    "severity": "warning",
+                    "type": "lib_symbol_issues"
+                },
+                {
+                    "description": "Unconnected wire endpoint",
+                    "items": [
+                        {
+                            "description": "Horizontal Wire, length 0.1143 mm",
+                            "pos": {
+                                "x": 2.2606,
+                                "y": 1.1811
+                            },
+                            "uuid": "47fe0ec9-dbb0-49d6-9f31-f1becd7171bc"
+                        }
+                    ],
+                    "severity": "warning",
+                    "type": "unconnected_wire_endpoint"
+                },
+                {
+                    "description": "Unconnected wire endpoint",
+                    "items": [
+                        {
+                            "description": "Horizontal Wire, length 0.1143 mm",
+                            "pos": {
+                                "x": 1.6637,
+                                "y": 1.8288
+                            },
+                            "uuid": "6c140c13-cc83-4bca-86dc-c18a447eff0f"
+                        }
+                    ],
+                    "severity": "warning",
+                    "type": "unconnected_wire_endpoint"
+                },
+                {
+                    "description": "Unconnected wire endpoint",
+                    "items": [
+                        {
+                            "description": "Horizontal Wire, length 0.1143 mm",
+                            "pos": {
+                                "x": 2.2606,
+                                "y": 1.2065
+                            },
+                            "uuid": "820d33f1-f9fa-4f0d-b207-a023429a3385"
+                        }
+                    ],
+                    "severity": "warning",
+                    "type": "unconnected_wire_endpoint"
+                },
+                {
+                    "description": "Unconnected wire endpoint",
+                    "items": [
+                        {
+                            "description": "Horizontal Wire, length 0.1143 mm",
+                            "pos": {
+                                "x": 1.6637,
+                                "y": 1.8542
+                            },
+                            "uuid": "b6749260-d978-421b-bbe2-eb94457a9bef"
+                        }
+                    ],
+                    "severity": "warning",
+                    "type": "unconnected_wire_endpoint"
+                },
+                {
+                    "description": "Footprint 'R_1210_3225Metric_Pad1.24x2.70mm_HandSolder' not found in library 'Resistor_SMD'",
+                    "items": [
+                        {
+                            "description": "Symbol C51 [CP]",
+                            "pos": {
+                                "x": 2.5019,
+                                "y": 0.635
+                            },
+                            "uuid": "00000000-0000-0000-0000-000028ed6a43"
+                        }
+                    ],
+                    "severity": "warning",
+                    "type": "footprint_link_issues"
+                },
+                {
+                    "description": "The current configuration does not include the symbol library 'video_schlib'",
+                    "items": [
+                        {
+                            "description": "Symbol C51 [CP]",
+                            "pos": {
+                                "x": 2.5019,
+                                "y": 0.635
+                            },
+                            "uuid": "00000000-0000-0000-0000-000028ed6a43"
+                        }
+                    ],
+                    "severity": "warning",
+                    "type": "lib_symbol_issues"
+                },
+                {
+                    "description": "Unconnected wire endpoint",
+                    "items": [
+                        {
+                            "description": "Horizontal Wire, length 0.1143 mm",
+                            "pos": {
+                                "x": 2.2606,
+                                "y": 1.2573
+                            },
+                            "uuid": "cd7a229c-695d-47b0-afe3-36c5db00a388"
+                        }
+                    ],
+                    "severity": "warning",
+                    "type": "unconnected_wire_endpoint"
+                },
+                {
+                    "description": "Unconnected wire endpoint",
+                    "items": [
+                        {
+                            "description": "Horizontal Wire, length 0.1143 mm",
+                            "pos": {
+                                "x": 1.6637,
+                                "y": 1.8796
+                            },
+                            "uuid": "29ee3c4e-82af-42e7-8ec6-ba18ff08b7a7"
+                        }
+                    ],
+                    "severity": "warning",
+                    "type": "unconnected_wire_endpoint"
+                },
+                {
+                    "description": "The current configuration does not include the symbol library 'video_schlib'",
+                    "items": [
+                        {
+                            "description": "Symbol #GND0169 [GND]",
+                            "pos": {
+                                "x": 2.5019,
+                                "y": 0.6985
+                            },
+                            "uuid": "00000000-0000-0000-0000-0000684863be"
+                        }
+                    ],
+                    "severity": "warning",
+                    "type": "lib_symbol_issues"
+                },
+                {
+                    "description": "Unconnected wire endpoint",
+                    "items": [
+                        {
+                            "description": "Horizontal Wire, length 0.1143 mm",
+                            "pos": {
+                                "x": 2.2606,
+                                "y": 1.2827
+                            },
+                            "uuid": "0c962a06-7863-4c32-b759-0b6cbd270c99"
+                        }
+                    ],
+                    "severity": "warning",
+                    "type": "unconnected_wire_endpoint"
+                },
+                {
+                    "description": "Unconnected wire endpoint",
+                    "items": [
+                        {
+                            "description": "Horizontal Wire, length 0.1143 mm",
+                            "pos": {
+                                "x": 1.6637,
+                                "y": 1.905
+                            },
+                            "uuid": "cdd2a6b3-d1d3-4119-8690-057c94f776a1"
+                        }
+                    ],
+                    "severity": "warning",
+                    "type": "unconnected_wire_endpoint"
+                },
+                {
+                    "description": "Unconnected wire endpoint",
+                    "items": [
+                        {
+                            "description": "Horizontal Wire, length 0.1143 mm",
+                            "pos": {
+                                "x": 2.2606,
+                                "y": 1.3081
+                            },
+                            "uuid": "0a619164-010f-46aa-a15d-97a535854e2d"
+                        }
+                    ],
+                    "severity": "warning",
+                    "type": "unconnected_wire_endpoint"
+                },
+                {
+                    "description": "Unconnected wire endpoint",
+                    "items": [
+                        {
+                            "description": "Horizontal Wire, length 0.1143 mm",
+                            "pos": {
+                                "x": 2.2606,
+                                "y": 1.3335
+                            },
+                            "uuid": "bc59f0f5-34a7-4203-9cdf-a9906c57972a"
+                        }
+                    ],
+                    "severity": "warning",
+                    "type": "unconnected_wire_endpoint"
+                },
+                {
+                    "description": "Unconnected wire endpoint",
+                    "items": [
+                        {
+                            "description": "Horizontal Wire, length 0.1143 mm",
+                            "pos": {
+                                "x": 2.2606,
+                                "y": 1.3589
+                            },
+                            "uuid": "5825b937-e396-40ff-8d13-d952f5aaf1b7"
+                        }
+                    ],
+                    "severity": "warning",
+                    "type": "unconnected_wire_endpoint"
+                },
+                {
+                    "description": "Unconnected wire endpoint",
+                    "items": [
+                        {
+                            "description": "Horizontal Wire, length 0.1143 mm",
+                            "pos": {
+                                "x": 2.2606,
+                                "y": 1.3843
+                            },
+                            "uuid": "b19884be-fdd8-4693-ae56-fa4f252b2d68"
+                        }
+                    ],
+                    "severity": "warning",
+                    "type": "unconnected_wire_endpoint"
+                },
+                {
+                    "description": "Unconnected wire endpoint",
+                    "items": [
+                        {
+                            "description": "Horizontal Wire, length 0.1143 mm",
+                            "pos": {
+                                "x": 2.2606,
+                                "y": 1.4097
+                            },
+                            "uuid": "2f029feb-bb93-4b8f-8640-30cd6e77f5e2"
+                        }
+                    ],
+                    "severity": "warning",
+                    "type": "unconnected_wire_endpoint"
+                },
+                {
+                    "description": "Unconnected wire endpoint",
+                    "items": [
+                        {
+                            "description": "Horizontal Wire, length 0.1524 mm",
+                            "pos": {
+                                "x": 1.6637,
+                                "y": 1.9558
+                            },
+                            "uuid": "bc6b2802-9797-432e-9a2b-50ff7a41ded7"
+                        }
+                    ],
+                    "severity": "warning",
+                    "type": "unconnected_wire_endpoint"
+                },
+                {
+                    "description": "Unconnected wire endpoint",
+                    "items": [
+                        {
+                            "description": "Horizontal Wire, length 0.1143 mm",
+                            "pos": {
+                                "x": 2.2606,
+                                "y": 1.4351
+                            },
+                            "uuid": "0d02f6a4-6931-4c6d-a96c-bd5b14f75e02"
+                        }
+                    ],
+                    "severity": "warning",
+                    "type": "unconnected_wire_endpoint"
+                },
+                {
+                    "description": "Unconnected wire endpoint",
+                    "items": [
+                        {
+                            "description": "Horizontal Wire, length 0.1016 mm",
+                            "pos": {
+                                "x": 2.3749,
+                                "y": 1.8923
+                            },
+                            "uuid": "adf2b204-dff7-4d09-bcb8-ba77a72167a7"
+                        }
+                    ],
+                    "severity": "warning",
+                    "type": "unconnected_wire_endpoint"
+                },
+                {
+                    "description": "Label connected to only one pin",
+                    "items": [
+                        {
+                            "description": "Label 'TVI0'",
+                            "pos": {
+                                "x": 2.286,
+                                "y": 1.8923
+                            },
+                            "uuid": "67c3d1c1-1362-4901-8134-1444c5df4980"
+                        }
+                    ],
+                    "severity": "warning",
+                    "type": "isolated_pin_label"
+                },
+                {
+                    "description": "The current configuration does not include the footprint library 'footprints'",
+                    "items": [
+                        {
+                            "description": "Symbol U9 [BT473]",
+                            "pos": {
+                                "x": 2.6289,
+                                "y": 1.3843
+                            },
+                            "uuid": "00000000-0000-0000-0000-000032f9e902"
+                        }
+                    ],
+                    "severity": "warning",
+                    "type": "footprint_link_issues"
+                },
+                {
+                    "description": "The current configuration does not include the symbol library 'video_schlib'",
+                    "items": [
+                        {
+                            "description": "Symbol U9 [BT473]",
+                            "pos": {
+                                "x": 2.6289,
+                                "y": 1.3843
+                            },
+                            "uuid": "00000000-0000-0000-0000-000032f9e902"
+                        }
+                    ],
+                    "severity": "warning",
+                    "type": "lib_symbol_issues"
+                },
+                {
+                    "description": "Unconnected wire endpoint",
+                    "items": [
+                        {
+                            "description": "Horizontal Wire, length 0.1016 mm",
+                            "pos": {
+                                "x": 2.3749,
+                                "y": 1.9177
+                            },
+                            "uuid": "eb49d835-4340-467a-bb64-a8569371626a"
+                        }
+                    ],
+                    "severity": "warning",
+                    "type": "unconnected_wire_endpoint"
+                },
+                {
+                    "description": "Label connected to only one pin",
+                    "items": [
+                        {
+                            "description": "Hierarchical Label 'RDCDA-'",
+                            "pos": {
+                                "x": 2.3622,
+                                "y": 1.8161
+                            },
+                            "uuid": "c3608603-dc32-4012-8d4e-45825df7ec5f"
+                        }
+                    ],
+                    "severity": "warning",
+                    "type": "isolated_pin_label"
+                },
+                {
+                    "description": "Label connected to only one pin",
+                    "items": [
+                        {
+                            "description": "Label 'TVI1'",
+                            "pos": {
+                                "x": 2.286,
+                                "y": 1.9177
+                            },
+                            "uuid": "8cfaa955-99a3-4c9a-b108-958c24f8d3a0"
+                        }
+                    ],
+                    "severity": "warning",
+                    "type": "isolated_pin_label"
+                },
+                {
+                    "description": "Label connected to only one pin",
+                    "items": [
+                        {
+                            "description": "Hierarchical Label 'WRCDA-'",
+                            "pos": {
+                                "x": 2.3622,
+                                "y": 1.8415
+                            },
+                            "uuid": "dc961081-64d1-41b2-a129-255744b6aef0"
+                        }
+                    ],
+                    "severity": "warning",
+                    "type": "isolated_pin_label"
+                },
+                {
+                    "description": "Footprint 'R_1206_3216Metric_Pad1.24x1.80mm_HandSolder' not found in library 'Resistor_SMD'",
+                    "items": [
+                        {
+                            "description": "Symbol C35 [C]",
+                            "pos": {
+                                "x": 2.9083,
+                                "y": 0.7874
+                            },
+                            "uuid": "47f4068f-ca03-424e-838a-c3a32f0c3f14"
+                        }
+                    ],
+                    "severity": "warning",
+                    "type": "footprint_link_issues"
+                },
+                {
+                    "description": "The current configuration does not include the symbol library 'video_schlib'",
+                    "items": [
+                        {
+                            "description": "Symbol C35 [C]",
+                            "pos": {
+                                "x": 2.9083,
+                                "y": 0.7874
+                            },
+                            "uuid": "47f4068f-ca03-424e-838a-c3a32f0c3f14"
+                        }
+                    ],
+                    "severity": "warning",
+                    "type": "lib_symbol_issues"
+                },
+                {
+                    "description": "Footprint 'R_1206_3216Metric_Pad1.24x1.80mm_HandSolder' not found in library 'Resistor_SMD'",
+                    "items": [
+                        {
+                            "description": "Symbol C34 [C]",
+                            "pos": {
+                                "x": 2.9591,
+                                "y": 0.6604
+                            },
+                            "uuid": "41349215-2bcc-4d91-8c5d-6cb55d3a7c63"
+                        }
+                    ],
+                    "severity": "warning",
+                    "type": "footprint_link_issues"
+                },
+                {
+                    "description": "The current configuration does not include the symbol library 'video_schlib'",
+                    "items": [
+                        {
+                            "description": "Symbol C34 [C]",
+                            "pos": {
+                                "x": 2.9591,
+                                "y": 0.6604
+                            },
+                            "uuid": "41349215-2bcc-4d91-8c5d-6cb55d3a7c63"
+                        }
+                    ],
+                    "severity": "warning",
+                    "type": "lib_symbol_issues"
+                },
+                {
+                    "description": "The current configuration does not include the symbol library 'video_schlib'",
+                    "items": [
+                        {
+                            "description": "Symbol #PWR0162 [GND]",
+                            "pos": {
+                                "x": 2.3622,
+                                "y": 1.9812
+                            },
+                            "uuid": "00000000-0000-0000-0000-000033a566eb"
+                        }
+                    ],
+                    "severity": "warning",
+                    "type": "lib_symbol_issues"
+                },
+                {
+                    "description": "The current configuration does not include the symbol library 'video_schlib'",
+                    "items": [
+                        {
+                            "description": "Symbol #VCC0182 [VCC]",
+                            "pos": {
+                                "x": 3.0861,
+                                "y": 0.3683
+                            },
+                            "uuid": "00000000-0000-0000-0000-00004bf036b4"
+                        }
+                    ],
+                    "severity": "warning",
+                    "type": "lib_symbol_issues"
+                },
+                {
+                    "description": "Footprint 'R_1812_4532Metric_Pad1.24x3.50mm_HandSolder' not found in library 'Resistor_SMD'",
+                    "items": [
+                        {
+                            "description": "Symbol L5 [INDUCTOR]",
+                            "pos": {
+                                "x": 3.0861,
+                                "y": 0.4572
+                            },
+                            "uuid": "63afd531-21a4-46a3-b350-dd94901de129"
+                        }
+                    ],
+                    "severity": "warning",
+                    "type": "footprint_link_issues"
+                },
+                {
+                    "description": "The current configuration does not include the symbol library 'video_schlib'",
+                    "items": [
+                        {
+                            "description": "Symbol L5 [INDUCTOR]",
+                            "pos": {
+                                "x": 3.0861,
+                                "y": 0.4572
+                            },
+                            "uuid": "63afd531-21a4-46a3-b350-dd94901de129"
+                        }
+                    ],
+                    "severity": "warning",
+                    "type": "lib_symbol_issues"
+                },
+                {
+                    "description": "Footprint 'R_1210_3225Metric_Pad1.24x2.70mm_HandSolder' not found in library 'Resistor_SMD'",
+                    "items": [
+                        {
+                            "description": "Symbol C42 [CP]",
+                            "pos": {
+                                "x": 3.0861,
+                                "y": 0.6604
+                            },
+                            "uuid": "10967df5-1372-4194-a1bf-c1548e0ab253"
+                        }
+                    ],
+                    "severity": "warning",
+                    "type": "footprint_link_issues"
+                },
+                {
+                    "description": "The current configuration does not include the symbol library 'video_schlib'",
+                    "items": [
+                        {
+                            "description": "Symbol C42 [CP]",
+                            "pos": {
+                                "x": 3.0861,
+                                "y": 0.6604
+                            },
+                            "uuid": "10967df5-1372-4194-a1bf-c1548e0ab253"
+                        }
+                    ],
+                    "severity": "warning",
+                    "type": "lib_symbol_issues"
+                },
+                {
+                    "description": "Label connected to only one pin",
+                    "items": [
+                        {
+                            "description": "Hierarchical Label 'CSYNCOUT-'",
+                            "pos": {
+                                "x": 2.8956,
+                                "y": 1.3843
+                            },
+                            "uuid": "7f62a74f-9066-4188-8653-1af3ab71f1fc"
+                        }
+                    ],
+                    "severity": "warning",
+                    "type": "isolated_pin_label"
+                },
+                {
+                    "description": "Label connected to only one pin",
+                    "items": [
+                        {
+                            "description": "Hierarchical Label 'BLANK-'",
+                            "pos": {
+                                "x": 2.8956,
+                                "y": 1.4351
+                            },
+                            "uuid": "05ebca25-1d13-4644-8768-9808f2da33a7"
+                        }
+                    ],
+                    "severity": "warning",
+                    "type": "isolated_pin_label"
+                },
+                {
+                    "description": "Label connected to only one pin",
+                    "items": [
+                        {
+                            "description": "Hierarchical Label 'CLKCDA'",
+                            "pos": {
+                                "x": 2.8956,
+                                "y": 1.4859
+                            },
+                            "uuid": "b3dd7205-8360-4019-a1b3-715bbb7866a1"
+                        }
+                    ],
+                    "severity": "warning",
+                    "type": "isolated_pin_label"
+                },
+                {
+                    "description": "Footprint 'R_1206_3216Metric_Pad1.24x1.80mm_HandSolder' not found in library 'Resistor_SMD'",
+                    "items": [
+                        {
+                            "description": "Symbol C32 [C]",
+                            "pos": {
+                                "x": 2.9972,
+                                "y": 1.2827
+                            },
+                            "uuid": "00000000-0000-0000-0000-0000335f5df2"
+                        }
+                    ],
+                    "severity": "warning",
+                    "type": "footprint_link_issues"
+                },
+                {
+                    "description": "The current configuration does not include the symbol library 'video_schlib'",
+                    "items": [
+                        {
+                            "description": "Symbol C32 [C]",
+                            "pos": {
+                                "x": 2.9972,
+                                "y": 1.2827
+                            },
+                            "uuid": "00000000-0000-0000-0000-0000335f5df2"
+                        }
+                    ],
+                    "severity": "warning",
+                    "type": "lib_symbol_issues"
+                },
+                {
+                    "description": "The current configuration does not include the symbol library 'video_schlib'",
+                    "items": [
+                        {
+                            "description": "Symbol #GND0170 [GND]",
+                            "pos": {
+                                "x": 3.2004,
+                                "y": 0.6858
+                            },
+                            "uuid": "00000000-0000-0000-0000-0000684863c3"
+                        }
+                    ],
+                    "severity": "warning",
+                    "type": "lib_symbol_issues"
+                },
+                {
+                    "description": "Footprint 'R_1206_3216Metric_Pad1.24x1.80mm_HandSolder' not found in library 'Resistor_SMD'",
+                    "items": [
+                        {
+                            "description": "Symbol R42 [R]",
+                            "pos": {
+                                "x": 3.2004,
+                                "y": 0.762
+                            },
+                            "uuid": "def99e7a-c51b-44e7-91f6-7e39d0531e8e"
+                        }
+                    ],
+                    "severity": "warning",
+                    "type": "footprint_link_issues"
+                },
+                {
+                    "description": "The current configuration does not include the symbol library 'video_schlib'",
+                    "items": [
+                        {
+                            "description": "Symbol R42 [R]",
+                            "pos": {
+                                "x": 3.2004,
+                                "y": 0.762
+                            },
+                            "uuid": "def99e7a-c51b-44e7-91f6-7e39d0531e8e"
+                        }
+                    ],
+                    "severity": "warning",
+                    "type": "lib_symbol_issues"
+                },
+                {
+                    "description": "The current configuration does not include the symbol library 'video_schlib'",
+                    "items": [
+                        {
+                            "description": "Symbol #PWR0164 [GND]",
+                            "pos": {
+                                "x": 3.0607,
+                                "y": 1.2827
+                            },
+                            "uuid": "00000000-0000-0000-0000-0000335f5dfc"
+                        }
+                    ],
+                    "severity": "warning",
+                    "type": "lib_symbol_issues"
+                },
+                {
+                    "description": "The current configuration does not include the symbol library 'video_schlib'",
+                    "items": [
+                        {
+                            "description": "Symbol #GND0171 [GND]",
+                            "pos": {
+                                "x": 3.2766,
+                                "y": 0.6858
+                            },
+                            "uuid": "00000000-0000-0000-0000-0000684863c8"
+                        }
+                    ],
+                    "severity": "warning",
+                    "type": "lib_symbol_issues"
+                },
+                {
+                    "description": "Footprint 'R_1206_3216Metric_Pad1.24x1.80mm_HandSolder' not found in library 'Resistor_SMD'",
+                    "items": [
+                        {
+                            "description": "Symbol R43 [R]",
+                            "pos": {
+                                "x": 3.2766,
+                                "y": 0.762
+                            },
+                            "uuid": "5ff84fd5-934b-4a73-8a3e-cb4ee7920088"
+                        }
+                    ],
+                    "severity": "warning",
+                    "type": "footprint_link_issues"
+                },
+                {
+                    "description": "The current configuration does not include the symbol library 'video_schlib'",
+                    "items": [
+                        {
+                            "description": "Symbol R43 [R]",
+                            "pos": {
+                                "x": 3.2766,
+                                "y": 0.762
+                            },
+                            "uuid": "5ff84fd5-934b-4a73-8a3e-cb4ee7920088"
+                        }
+                    ],
+                    "severity": "warning",
+                    "type": "lib_symbol_issues"
+                },
+                {
+                    "description": "Footprint 'R_1206_3216Metric_Pad1.24x1.80mm_HandSolder' not found in library 'Resistor_SMD'",
+                    "items": [
+                        {
+                            "description": "Symbol R8 [R]",
+                            "pos": {
+                                "x": 3.1877,
+                                "y": 1.0795
+                            },
+                            "uuid": "591ed589-f349-45b3-9936-f0d2899e85b8"
+                        }
+                    ],
+                    "severity": "warning",
+                    "type": "footprint_link_issues"
+                },
+                {
+                    "description": "The current configuration does not include the symbol library 'video_schlib'",
+                    "items": [
+                        {
+                            "description": "Symbol R8 [R]",
+                            "pos": {
+                                "x": 3.1877,
+                                "y": 1.0795
+                            },
+                            "uuid": "591ed589-f349-45b3-9936-f0d2899e85b8"
+                        }
+                    ],
+                    "severity": "warning",
+                    "type": "lib_symbol_issues"
+                },
+                {
+                    "description": "The current configuration does not include the symbol library 'video_schlib'",
+                    "items": [
+                        {
+                            "description": "Symbol #GND0167 [GND]",
+                            "pos": {
+                                "x": 2.6543,
+                                "y": 2.0955
+                            },
+                            "uuid": "00000000-0000-0000-0000-000032f9f3e8"
+                        }
+                    ],
+                    "severity": "warning",
+                    "type": "lib_symbol_issues"
+                },
+                {
+                    "description": "The current configuration does not include the symbol library 'video_schlib'",
+                    "items": [
+                        {
+                            "description": "Symbol #GND0172 [GND]",
+                            "pos": {
+                                "x": 3.3401,
+                                "y": 0.6858
+                            },
+                            "uuid": "00000000-0000-0000-0000-0000684863cd"
+                        }
+                    ],
+                    "severity": "warning",
+                    "type": "lib_symbol_issues"
+                },
+                {
+                    "description": "Footprint 'R_1206_3216Metric_Pad1.24x1.80mm_HandSolder' not found in library 'Resistor_SMD'",
+                    "items": [
+                        {
+                            "description": "Symbol R44 [R]",
+                            "pos": {
+                                "x": 3.3401,
+                                "y": 0.762
+                            },
+                            "uuid": "3444cdcb-284d-43e9-8c14-6291ab459d18"
+                        }
+                    ],
+                    "severity": "warning",
+                    "type": "footprint_link_issues"
+                },
+                {
+                    "description": "The current configuration does not include the symbol library 'video_schlib'",
+                    "items": [
+                        {
+                            "description": "Symbol R44 [R]",
+                            "pos": {
+                                "x": 3.3401,
+                                "y": 0.762
+                            },
+                            "uuid": "3444cdcb-284d-43e9-8c14-6291ab459d18"
+                        }
+                    ],
+                    "severity": "warning",
+                    "type": "lib_symbol_issues"
+                },
+                {
+                    "description": "The current configuration does not include the symbol library 'video_schlib'",
+                    "items": [
+                        {
+                            "description": "Symbol #GND0165 [GND]",
+                            "pos": {
+                                "x": 3.2639,
+                                "y": 1.0795
+                            },
+                            "uuid": "40d982fa-4ba5-4274-8e0c-b030ab5fd3b6"
+                        }
+                    ],
+                    "severity": "warning",
+                    "type": "lib_symbol_issues"
+                },
+                {
+                    "description": "Unconnected wire endpoint",
+                    "items": [
+                        {
+                            "description": "Horizontal Wire, length 0.1397 mm",
+                            "pos": {
+                                "x": 2.8829,
+                                "y": 1.6383
+                            },
+                            "uuid": "ef72b204-53ba-4307-a0d0-e392b2e6834e"
+                        }
+                    ],
+                    "severity": "warning",
+                    "type": "unconnected_wire_endpoint"
+                },
+                {
+                    "description": "Label connected to only one pin",
+                    "items": [
+                        {
+                            "description": "Hierarchical Label 'OE_PAL-'",
+                            "pos": {
+                                "x": 3.048,
+                                "y": 1.6129
+                            },
+                            "uuid": "5420dad5-f1c5-4671-8f90-127d0c94586e"
+                        }
+                    ],
+                    "severity": "warning",
+                    "type": "isolated_pin_label"
+                }
+            ]
+        }
+    ],
+    "source": "esvideo.kicad_sch"
+}

@@ -14,11 +14,10 @@ pub enum OutputFormat {
 pub struct Flags {
     pub format: OutputFormat,
     pub emit_diagnostics: bool,
-    pub hierarchical: bool,
 }
 
 impl Flags {
-    pub fn new(json: bool, diagnostics: bool, hierarchical: bool) -> Self {
+    pub fn new(json: bool, diagnostics: bool) -> Self {
         Self {
             format: if json {
                 OutputFormat::Json
@@ -26,15 +25,28 @@ impl Flags {
                 OutputFormat::Text
             },
             emit_diagnostics: diagnostics,
-            hierarchical,
         }
     }
+}
+
+pub trait CommandResponse: serde::Serialize {
+    fn render_text(&self);
 }
 
 pub fn print_json<T: serde::Serialize>(value: &T) -> Result<(), KiError> {
     let s = serde_json::to_string_pretty(value)?;
     println!("{s}");
     Ok(())
+}
+
+pub fn handle_output<T: CommandResponse>(value: &T, flags: &Flags) -> Result<(), KiError> {
+    match flags.format {
+        OutputFormat::Json => print_json(value),
+        OutputFormat::Text => {
+            value.render_text();
+            Ok(())
+        }
+    }
 }
 
 pub fn emit_diagnostics_stderr(diagnostics: &[Diagnostic]) {

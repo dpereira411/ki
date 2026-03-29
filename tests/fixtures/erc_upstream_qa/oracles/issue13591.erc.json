@@ -1,0 +1,127 @@
+{
+    "$schema": "https://schemas.kicad.org/erc.v1.json",
+    "coordinate_units": "mm",
+    "date": "2026-03-29T23:05:15",
+    "ignored_checks": [
+        {
+            "description": "Global label only appears once in the schematic",
+            "key": "single_global_label"
+        },
+        {
+            "description": "Four connection points are joined together",
+            "key": "four_way_junction"
+        },
+        {
+            "description": "SPICE model issue",
+            "key": "simulation_model_issue"
+        },
+        {
+            "description": "Assigned footprint doesn't match footprint filters",
+            "key": "footprint_filter"
+        }
+    ],
+    "included_severities": [
+        "error",
+        "warning"
+    ],
+    "kicad_version": "10.0.0",
+    "sheets": [
+        {
+            "path": "/",
+            "uuid_path": "/c320d65b-dd35-489c-9c1b-364c21869ec2",
+            "violations": [
+                {
+                    "description": "Input Power pin not driven by any Output Power pins",
+                    "items": [
+                        {
+                            "description": "Symbol #GND01 Hidden pin 1 [0, Power input, Line]",
+                            "pos": {
+                                "x": 0.4953,
+                                "y": 0.9144
+                            },
+                            "uuid": "77e096c3-94c7-4388-beca-f23c80794d4d"
+                        }
+                    ],
+                    "severity": "error",
+                    "type": "power_pin_not_driven"
+                },
+                {
+                    "description": "Symbol 'VPULSE' doesn't match copy in library 'Simulation_SPICE'",
+                    "items": [
+                        {
+                            "description": "Symbol V1 [VPULSE]",
+                            "pos": {
+                                "x": 0.4953,
+                                "y": 0.762
+                            },
+                            "uuid": "374e384d-7485-4232-8741-607d5a41e745"
+                        }
+                    ],
+                    "severity": "warning",
+                    "type": "lib_symbol_mismatch"
+                },
+                {
+                    "description": "The current configuration does not include the symbol library 'pspice'",
+                    "items": [
+                        {
+                            "description": "Symbol #GND01 [0]",
+                            "pos": {
+                                "x": 0.4953,
+                                "y": 0.9144
+                            },
+                            "uuid": "953baf45-76c0-417d-b68a-33fecdb25a10"
+                        }
+                    ],
+                    "severity": "warning",
+                    "type": "lib_symbol_issues"
+                },
+                {
+                    "description": "Symbol 'D' doesn't match copy in library 'Device'",
+                    "items": [
+                        {
+                            "description": "Symbol D1 [D]",
+                            "pos": {
+                                "x": 0.9652,
+                                "y": 0.7747
+                            },
+                            "uuid": "828fa253-b44e-4f6e-a95a-66db5e9fea1d"
+                        }
+                    ],
+                    "severity": "warning",
+                    "type": "lib_symbol_mismatch"
+                },
+                {
+                    "description": "The current configuration does not include the symbol library 'pspice'",
+                    "items": [
+                        {
+                            "description": "Symbol #GND02 [0]",
+                            "pos": {
+                                "x": 0.9652,
+                                "y": 0.9144
+                            },
+                            "uuid": "e743f90c-f4b3-4e96-b93e-fa4a32eee11e"
+                        }
+                    ],
+                    "severity": "warning",
+                    "type": "lib_symbol_issues"
+                },
+                {
+                    "description": "The current configuration does not include the symbol library 'pspice'",
+                    "items": [
+                        {
+                            "description": "Symbol #GND? [0]",
+                            "pos": {
+                                "x": 1.1049,
+                                "y": 0.9144
+                            },
+                            "uuid": "1a5be67d-9866-401d-b629-c1e5f0845d67"
+                        }
+                    ],
+                    "severity": "warning",
+                    "type": "lib_symbol_issues"
+                }
+            ]
+        }
+    ],
+    "source": "issue13591.kicad_sch"
+}

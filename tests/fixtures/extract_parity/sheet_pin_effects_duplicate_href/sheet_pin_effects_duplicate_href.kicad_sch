@@ -1,0 +1,14 @@
+(kicad_sch
+  (version 20260101)
+  (generator "eeschema")
+  (uuid "root-uuid")
+  (paper "A4")
+  (sheet
+    (at 10 10)
+    (size 20 20)
+    (uuid "s1")
+    (pin "SIG" input
+      (at 10 20 0)
+      (effects (href "a") (href "b") (font (size 1.27 1.27)))))
+  (sheet_instances
+    (path "/" (page "1"))))

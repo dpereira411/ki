@@ -1,0 +1,322 @@
+{
+    "$schema": "https://schemas.kicad.org/erc.v1.json",
+    "coordinate_units": "mm",
+    "date": "2026-03-29T23:08:16",
+    "ignored_checks": [
+        {
+            "description": "Global label only appears once in the schematic",
+            "key": "single_global_label"
+        },
+        {
+            "description": "Four connection points are joined together",
+            "key": "four_way_junction"
+        },
+        {
+            "description": "SPICE model issue",
+            "key": "simulation_model_issue"
+        },
+        {
+            "description": "Assigned footprint doesn't match footprint filters",
+            "key": "footprint_filter"
+        }
+    ],
+    "included_severities": [
+        "error",
+        "warning"
+    ],
+    "kicad_version": "10.0.0",
+    "sheets": [
+        {
+            "path": "/",
+            "uuid_path": "/403a5eac-c035-4b08-8ba1-e036b0ed18fb",
+            "violations": [
+                {
+                    "description": "The current configuration does not include the symbol library 'sallen_key_schlib'",
+                    "items": [
+                        {
+                            "description": "Symbol V1 [VSOURCE]",
+                            "pos": {
+                                "x": 1.524,
+                                "y": 1.1938
+                            },
+                            "uuid": "00000000-0000-0000-0000-000057336052"
+                        }
+                    ],
+                    "severity": "warning",
+                    "type": "lib_symbol_issues"
+                },
+                {
+                    "description": "The current configuration does not include the symbol library 'sallen_key_schlib'",
+                    "items": [
+                        {
+                            "description": "Symbol R1 [R]",
+                            "pos": {
+                                "x": 1.6256,
+                                "y": 1.0922
+                            },
+                            "uuid": "00000000-0000-0000-0000-0000578906ff"
+                        }
+                    ],
+                    "severity": "warning",
+                    "type": "lib_symbol_issues"
+                },
+                {
+                    "description": "The current configuration does not include the symbol library 'sallen_key_schlib'",
+                    "items": [
+                        {
+                            "description": "Symbol #PWR0101 [GND]",
+                            "pos": {
+                                "x": 1.524,
+                                "y": 1.27
+                            },
+                            "uuid": "00000000-0000-0000-0000-00005a0b57f1"
+                        }
+                    ],
+                    "severity": "warning",
+                    "type": "lib_symbol_issues"
+                },
+                {
+                    "description": "The current configuration does not include the symbol library 'sallen_key_schlib'",
+                    "items": [
+                        {
+                            "description": "Symbol R2 [R]",
+                            "pos": {
+                                "x": 1.7653,
+                                "y": 1.0922
+                            },
+                            "uuid": "00000000-0000-0000-0000-000057890691"
+                        }
+                    ],
+                    "severity": "warning",
+                    "type": "lib_symbol_issues"
+                },
+                {
+                    "description": "The current configuration does not include the symbol library 'sallen_key_schlib'",
+                    "items": [
+                        {
+                            "description": "Symbol #PWR02 [GND]",
+                            "pos": {
+                                "x": 1.8669,
+                                "y": 0.9652
+                            },
+                            "uuid": "00000000-0000-0000-0000-000057890b95"
+                        }
+                    ],
+                    "severity": "warning",
+                    "type": "lib_symbol_issues"
+                },
+                {
+                    "description": "The current configuration does not include the symbol library 'sallen_key_schlib'",
+                    "items": [
+                        {
+                            "description": "Symbol C2 [C]",
+                            "pos": {
+                                "x": 1.8669,
+                                "y": 1.016
+                            },
+                            "uuid": "00000000-0000-0000-0000-00005789085b"
+                        }
+                    ],
+                    "severity": "warning",
+                    "type": "lib_symbol_issues"
+                },
+                {
+                    "description": "The current configuration does not include the symbol library 'sallen_key_schlib'",
+                    "items": [
+                        {
+                            "description": "Symbol C1 [C]",
+                            "pos": {
+                                "x": 1.778,
+                                "y": 1.2573
+                            },
+                            "uuid": "00000000-0000-0000-0000-00005789077d"
+                        }
+                    ],
+                    "severity": "warning",
+                    "type": "lib_symbol_issues"
+                },
+                {
+                    "description": "The current configuration does not include the symbol library 'sallen_key_schlib'",
+                    "items": [
+                        {
+                            "description": "Symbol #PWR03 [VDD]",
+                            "pos": {
+                                "x": 1.9685,
+                                "y": 1.0414
+                            },
+                            "uuid": "00000000-0000-0000-0000-000057890425"
+                        }
+                    ],
+                    "severity": "warning",
+                    "type": "lib_symbol_issues"
+                },
+                {
+                    "description": "The current configuration does not include the symbol library 'sallen_key_schlib'",
+                    "items": [
+                        {
+                            "description": "Symbol U1 [Generic_Opamp]",
+                            "pos": {
+                                "x": 1.9939,
+                                "y": 1.1176
+                            },
+                            "uuid": "00000000-0000-0000-0000-00005788ff9f"
+                        }
+                    ],
+                    "severity": "warning",
+                    "type": "lib_symbol_issues"
+                },
+                {
+                    "description": "The current configuration does not include the symbol library 'sallen_key_schlib'",
+                    "items": [
+                        {
+                            "description": "Symbol #PWR04 [VSS]",
+                            "pos": {
+                                "x": 1.9685,
+                                "y": 1.1938
+                            },
+                            "uuid": "00000000-0000-0000-0000-000057890453"
+                        }
+                    ],
+                    "severity": "warning",
+                    "type": "lib_symbol_issues"
+                },
+                {
+                    "description": "Symbol 'PWR_FLAG' doesn't match copy in library 'power'",
+                    "items": [
+                        {
+                            "description": "Symbol #FLG0102 [PWR_FLAG]",
+                            "pos": {
+                                "x": 2.3241,
+                                "y": 0.5461
+                            },
+                            "uuid": "e06aaf18-42f6-424d-8f09-e7146efa2360"
+                        }
+                    ],
+                    "severity": "warning",
+                    "type": "lib_symbol_mismatch"
+                },
+                {
+                    "description": "Symbol 'PWR_FLAG' doesn't match copy in library 'power'",
+                    "items": [
+                        {
+                            "description": "Symbol #FLG0103 [PWR_FLAG]",
+                            "pos": {
+                                "x": 2.3876,
+                                "y": 0.4064
+                            },
+                            "uuid": "d2ccd91b-84a5-4a27-b12e-cea8603afb89"
+                        }
+                    ],
+                    "severity": "warning",
+                    "type": "lib_symbol_mismatch"
+                },
+                {
+                    "description": "The current configuration does not include the symbol library 'sallen_key_schlib'",
+                    "items": [
+                        {
+                            "description": "Symbol #PWR05 [GND]",
+                            "pos": {
+                                "x": 2.3876,
+                                "y": 0.5461
+                            },
+                            "uuid": "00000000-0000-0000-0000-0000578902d2"
+                        }
+                    ],
+                    "severity": "warning",
+                    "type": "lib_symbol_issues"
+                },
+                {
+                    "description": "Symbol 'PWR_FLAG' doesn't match copy in library 'power'",
+                    "items": [
+                        {
+                            "description": "Symbol #FLG0101 [PWR_FLAG]",
+                            "pos": {
+                                "x": 2.3749,
+                                "y": 0.6604
+                            },
+                            "uuid": "c10484fa-5553-45ee-ac36-942fdc26ec8e"
+                        }
+                    ],
+                    "severity": "warning",
+                    "type": "lib_symbol_mismatch"
+                },
+                {
+                    "description": "The current configuration does not include the symbol library 'sallen_key_schlib'",
+                    "items": [
+                        {
+                            "description": "Symbol #PWR06 [VDD]",
+                            "pos": {
+                                "x": 2.4511,
+                                "y": 0.4064
+                            },
+                            "uuid": "00000000-0000-0000-0000-0000578903c0"
+                        }
+                    ],
+                    "severity": "warning",
+                    "type": "lib_symbol_issues"
+                },
+                {
+                    "description": "The current configuration does not include the symbol library 'sallen_key_schlib'",
+                    "items": [
+                        {
+                            "description": "Symbol V2 [VSOURCE]",
+                            "pos": {
+                                "x": 2.4511,
+                                "y": 0.4699
+                            },
+                            "uuid": "00000000-0000-0000-0000-0000578900ba"
+                        }
+                    ],
+                    "severity": "warning",
+                    "type": "lib_symbol_issues"
+                },
+                {
+                    "description": "Unconnected wire endpoint",
+                    "items": [
+                        {
+                            "description": "Horizontal Wire, length 0.1397 mm",
+                            "pos": {
+                                "x": 2.1209,
+                                "y": 1.1176
+                            },
+                            "uuid": "640ba09e-d127-41b3-9851-0b378f034976"
+                        }
+                    ],
+                    "severity": "warning",
+                    "type": "unconnected_wire_endpoint"
+                },
+                {
+                    "description": "The current configuration does not include the symbol library 'sallen_key_schlib'",
+                    "items": [
+                        {
+                            "description": "Symbol V3 [VSOURCE]",
+                            "pos": {
+                                "x": 2.4511,
+                                "y": 0.5969
+                            },
+                            "uuid": "00000000-0000-0000-0000-000057890232"
+                        }
+                    ],
+                    "severity": "warning",
+                    "type": "lib_symbol_issues"
+                },
+                {
+                    "description": "The current configuration does not include the symbol library 'sallen_key_schlib'",
+                    "items": [
+                        {
+                            "description": "Symbol #PWR07 [VSS]",
+                            "pos": {
+                                "x": 2.4511,
+                                "y": 0.6604
+                            },
+                            "uuid": "00000000-0000-0000-0000-0000578903e2"
+                        }
+                    ],
+                    "severity": "warning",
+                    "type": "lib_symbol_issues"
+                }
+            ]
+        }
+    ],
+    "source": "legacy_sallen_key.kicad_sch"
+}

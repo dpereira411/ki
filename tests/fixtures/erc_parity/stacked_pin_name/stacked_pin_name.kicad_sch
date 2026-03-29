@@ -1,0 +1,35 @@
+(kicad_sch
+  (version 20260101)
+  (generator "eeschema")
+  (generator_version "10.0")
+  (uuid "db3220da-c2c4-4d02-af45-80234a5d1011")
+  (paper "A4")
+  (lib_symbols
+    (symbol "MissingLib:BadStackedPin"
+      (pin_numbers hide)
+      (pin_names (offset 0))
+      (exclude_from_sim no)
+      (in_bom yes)
+      (on_board yes)
+      (in_pos_files yes)
+      (property "Reference" "U" (at 2.032 0 90) (show_name no) (do_not_autoplace no) (effects (font (size 1.27 1.27))))
+      (property "Value" "BadStackedPin" (at 0 0 90) (show_name no) (do_not_autoplace no) (effects (font (size 1.27 1.27))))
+      (property "Footprint" "" (at 0 0 0) (hide yes) (show_name no) (do_not_autoplace no) (effects (font (size 1.27 1.27))))
+      (property "Datasheet" "" (at 0 0 0) (hide yes) (show_name no) (do_not_autoplace no) (effects (font (size 1.27 1.27))))
+      (symbol "BadStackedPin_0_1"
+        (circle (center 0 0) (radius 1.27) (stroke (width 0.254) (type default)) (fill (type none))))
+      (symbol "BadStackedPin_1_1"
+        (pin passive line (at 0 0 180) (length 0)
+          (name "IO" (effects (font (size 1.27 1.27))))
+          (number "[3-1]" (effects (font (size 1.27 1.27))))))
+      (embedded_fonts no)))
+  (symbol (lib_id "MissingLib:BadStackedPin") (at 50.8 50.8 0) (unit 1) (body_style 1) (exclude_from_sim no) (in_bom yes) (on_board yes) (in_pos_files yes) (dnp no) (fields_autoplaced yes) (uuid "sym-stacked")
+    (property "Reference" "U1" (at 48.768 50.8 90) (show_name no) (do_not_autoplace no) (effects (font (size 1.27 1.27))))
+    (property "Value" "BadStackedPin" (at 50.8 50.8 90) (show_name no) (do_not_autoplace no) (effects (font (size 1.27 1.27))))
+    (property "Footprint" "" (at 50.8 50.8 0) (hide yes) (show_name no) (do_not_autoplace no) (effects (font (size 1.27 1.27))))
+    (property "Datasheet" "" (at 50.8 50.8 0) (hide yes) (show_name no) (do_not_autoplace no) (effects (font (size 1.27 1.27))))
+    (pin "[3-1]" (uuid "u1-pinbad"))
+    (instances (project "stacked_pin_name" (path "/db3220da-c2c4-4d02-af45-80234a5d1011" (reference "U1") (unit 1)))))
+  (sheet_instances
+    (path "/" (page "1")))
+  (embedded_fonts no))

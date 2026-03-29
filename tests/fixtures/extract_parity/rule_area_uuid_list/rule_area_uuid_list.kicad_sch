@@ -1,0 +1,10 @@
+(kicad_sch
+  (version 20260101)
+  (generator "eeschema")
+  (uuid "root-uuid")
+  (paper "A4")
+  (rule_area
+    (pts (xy 0 0) (xy 10 0) (xy 10 10) (xy 0 10))
+    (uuid (bad)))
+  (sheet_instances
+    (path "/" (page "1"))))

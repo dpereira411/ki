@@ -1,0 +1,82 @@
+{
+    "$schema": "https://schemas.kicad.org/erc.v1.json",
+    "coordinate_units": "mm",
+    "date": "2026-03-29T23:04:49",
+    "ignored_checks": [
+        {
+            "description": "Global label only appears once in the schematic",
+            "key": "single_global_label"
+        },
+        {
+            "description": "Four connection points are joined together",
+            "key": "four_way_junction"
+        },
+        {
+            "description": "SPICE model issue",
+            "key": "simulation_model_issue"
+        },
+        {
+            "description": "Assigned footprint doesn't match footprint filters",
+            "key": "footprint_filter"
+        }
+    ],
+    "included_severities": [
+        "error",
+        "warning"
+    ],
+    "kicad_version": "10.0.0",
+    "sheets": [
+        {
+            "path": "/",
+            "uuid_path": "/5e4b0281-93a3-49ab-a5a7-472966b09c07",
+            "violations": [
+                {
+                    "description": "The current configuration does not include the symbol library 'Test'",
+                    "items": [
+                        {
+                            "description": "Symbol U1 [Test_Symbol_Multiple_GND]",
+                            "pos": {
+                                "x": 1.2192,
+                                "y": 0.762
+                            },
+                            "uuid": "d8eaf934-6715-43b2-b2f4-46653da95b1c"
+                        }
+                    ],
+                    "severity": "warning",
+                    "type": "lib_symbol_issues"
+                },
+                {
+                    "description": "Pin GND not connected to ground net",
+                    "items": [
+                        {
+                            "description": "Symbol U1 Pin 2 [GND, Power input, Line]",
+                            "pos": {
+                                "x": 1.3208,
+                                "y": 0.7239
+                            },
+                            "uuid": "863e2415-9bff-4ae8-a11e-0b50c8fdd2cf"
+                        }
+                    ],
+                    "severity": "warning",
+                    "type": "ground_pin_not_ground"
+                },
+                {
+                    "description": "Symbol 'GND' doesn't match copy in library 'power'",
+                    "items": [
+                        {
+                            "description": "Symbol #PWR01 [GND]",
+                            "pos": {
+                                "x": 1.5367,
+                                "y": 0.8255
+                            },
+                            "uuid": "99c04430-50cf-4216-8d3b-e8fe5c448e36"
+                        }
+                    ],
+                    "severity": "warning",
+                    "type": "lib_symbol_mismatch"
+                }
+            ]
+        }
+    ],
+    "source": "ground_pin_test_mixed.kicad_sch"
+}

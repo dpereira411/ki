@@ -3,7 +3,7 @@ use serde::Serialize;
 use std::collections::BTreeMap;
 
 use crate::error::KiError;
-use crate::output::{self, Flags, OutputFormat, SCHEMA_VERSION};
+use crate::output::{self, CommandResponse, Flags, SCHEMA_VERSION};
 
 #[derive(Serialize)]
 struct DiagnosticDto {
@@ -44,6 +44,23 @@ struct SymbolLibInspectDto {
     total_pin_count: usize,
     symbols: Vec<SymbolDto>,
     diagnostics: Vec<DiagnosticDto>,
+    path: String,
+}
+
+impl CommandResponse for SymbolLibInspectDto {
+    fn render_text(&self) {
+        println!("symbol lib: {}", self.path);
+        println!("  version: {:?}", self.version);
+        println!("  generator: {:?}", self.generator);
+        println!("  symbols: {}", self.symbol_count);
+        for s in &self.symbols {
+            let name = s.name.as_deref().unwrap_or("?");
+            println!(
+                "    {name}: {} props, {} pins",
+                s.property_count, s.pin_count
+            );
+        }
+    }
 }
 
 #[derive(Serialize)]
@@ -55,6 +72,25 @@ struct SymbolInspectDto {
     pin_count: usize,
     pins: Vec<PinDto>,
     diagnostics: Vec<DiagnosticDto>,
+}
+
+impl CommandResponse for SymbolInspectDto {
+    fn render_text(&self) {
+        println!("symbol: {}", self.name.as_deref().unwrap_or("?"));
+        println!("  units: {}", self.unit_count);
+        println!("  pins ({}):", self.pin_count);
+        for p in &self.pins {
+            let num = p.number.as_deref().unwrap_or("?");
+            let name = p.name.as_deref().unwrap_or("?");
+            let etype = p.electrical_type.as_deref().unwrap_or("?");
+            println!(
+                "    [{num}] {name}  {etype}  ({:.4}, {:.4}) @{:.1}deg",
+                p.x.unwrap_or(0.0),
+                p.y.unwrap_or(0.0),
+                p.angle.unwrap_or(0.0),
+            );
+        }
+    }
 }
 
 pub fn inspect(path: &str, symbol: Option<&str>, flags: &Flags) -> Result<(), KiError> {
@@ -78,23 +114,23 @@ pub fn inspect(path: &str, symbol: Option<&str>, flags: &Flags) -> Result<(), Ki
             .find(|s| s.name.as_deref() == Some(sym_name))
             .ok_or_else(|| KiError::Message(format!("symbol {sym_name:?} not found in {path}")))?;
 
-        if flags.format == OutputFormat::Json {
-            let pins: Vec<_> = sym
-                .pins
-                .iter()
-                .map(|p| PinDto {
-                    number: p.number.clone(),
-                    name: p.name.clone(),
-                    electrical_type: p.electrical_type.clone(),
-                    graphical_style: p.graphical_style.clone(),
-                    x: p.x,
-                    y: p.y,
-                    angle: p.angle,
-                    length: p.length,
-                })
-                .collect();
+        let pins: Vec<_> = sym
+            .pins
+            .iter()
+            .map(|p| PinDto {
+                number: p.number.clone(),
+                name: p.name.clone(),
+                electrical_type: p.electrical_type.clone(),
+                graphical_style: p.graphical_style.clone(),
+                x: p.x,
+                y: p.y,
+                angle: p.angle,
+                length: p.length,
+            })
+            .collect();
 
-            output::print_json(&SymbolInspectDto {
+        output::handle_output(
+            &SymbolInspectDto {
                 schema_version: SCHEMA_VERSION,
                 name: sym.name.clone(),
                 property_count: sym.property_count,
@@ -102,24 +138,10 @@ pub fn inspect(path: &str, symbol: Option<&str>, flags: &Flags) -> Result<(), Ki
                 pin_count: sym.pin_count,
                 pins,
                 diagnostics: diag_json,
-            })?;
-        } else {
-            println!("symbol: {}", sym.name.as_deref().unwrap_or("?"));
-            println!("  units: {}", sym.unit_count);
-            println!("  pins ({}):", sym.pin_count);
-            for p in &sym.pins {
-                let num = p.number.as_deref().unwrap_or("?");
-                let name = p.name.as_deref().unwrap_or("?");
-                let etype = p.electrical_type.as_deref().unwrap_or("?");
-                println!(
-                    "    [{num}] {name}  {etype}  ({:.4}, {:.4}) @{:.1}deg",
-                    p.x.unwrap_or(0.0),
-                    p.y.unwrap_or(0.0),
-                    p.angle.unwrap_or(0.0),
-                );
-            }
-        }
-    } else if flags.format == OutputFormat::Json {
+            },
+            flags,
+        )?;
+    } else {
         let symbols: Vec<_> = ast
             .symbols
             .iter()
@@ -133,28 +155,20 @@ pub fn inspect(path: &str, symbol: Option<&str>, flags: &Flags) -> Result<(), Ki
             })
             .collect();
 
-        output::print_json(&SymbolLibInspectDto {
-            schema_version: SCHEMA_VERSION,
-            version: ast.version.clone(),
-            generator: ast.generator.clone(),
-            symbol_count: ast.symbol_count,
-            total_property_count: ast.total_property_count,
-            total_pin_count: ast.total_pin_count,
-            symbols,
-            diagnostics: diag_json,
-        })?;
-    } else {
-        println!("symbol lib: {path}");
-        println!("  version: {:?}", ast.version);
-        println!("  generator: {:?}", ast.generator);
-        println!("  symbols: {}", ast.symbol_count);
-        for s in &ast.symbols {
-            let name = s.name.as_deref().unwrap_or("?");
-            println!(
-                "    {name}: {} props, {} pins",
-                s.property_count, s.pin_count
-            );
-        }
+        output::handle_output(
+            &SymbolLibInspectDto {
+                schema_version: SCHEMA_VERSION,
+                version: ast.version.clone(),
+                generator: ast.generator.clone(),
+                symbol_count: ast.symbol_count,
+                total_property_count: ast.total_property_count,
+                total_pin_count: ast.total_pin_count,
+                symbols,
+                diagnostics: diag_json,
+                path: path.to_string(),
+            },
+            flags,
+        )?;
     }
 
     let had_diags = output::handle_diagnostics(doc.diagnostics(), flags);
@@ -173,6 +187,16 @@ struct SymbolPropertyDto {
     value: Option<String>,
 }
 
+impl CommandResponse for SymbolPropertyDto {
+    fn render_text(&self) {
+        if let Some(value) = &self.value {
+            println!("ok: set {}.{} = {value:?}", self.symbol, self.key);
+        } else {
+            println!("ok: removed {}.{}", self.symbol, self.key);
+        }
+    }
+}
+
 pub fn set_property(
     path: &str,
     symbol_name: &str,
@@ -182,20 +206,19 @@ pub fn set_property(
 ) -> Result<(), KiError> {
     let mut doc = SymbolLibFile::read(path).map_err(|e| KiError::Message(e.to_string()))?;
     doc.upsert_symbol_property(symbol_name, key, value);
-    doc.write(path).map_err(|e| KiError::Message(e.to_string()))?;
+    doc.write(path)
+        .map_err(|e| KiError::Message(e.to_string()))?;
 
-    if flags.format == OutputFormat::Json {
-        output::print_json(&SymbolPropertyDto {
+    output::handle_output(
+        &SymbolPropertyDto {
             schema_version: SCHEMA_VERSION,
             ok: true,
             symbol: symbol_name.to_string(),
             key: key.to_string(),
             value: Some(value.to_string()),
-        })?;
-    } else {
-        println!("ok: set {symbol_name}.{key} = {value:?}");
-    }
-    Ok(())
+        },
+        flags,
+    )
 }
 
 pub fn remove_property(
@@ -206,20 +229,19 @@ pub fn remove_property(
 ) -> Result<(), KiError> {
     let mut doc = SymbolLibFile::read(path).map_err(|e| KiError::Message(e.to_string()))?;
     doc.remove_symbol_property(symbol_name, key);
-    doc.write(path).map_err(|e| KiError::Message(e.to_string()))?;
+    doc.write(path)
+        .map_err(|e| KiError::Message(e.to_string()))?;
 
-    if flags.format == OutputFormat::Json {
-        output::print_json(&SymbolPropertyDto {
+    output::handle_output(
+        &SymbolPropertyDto {
             schema_version: SCHEMA_VERSION,
             ok: true,
             symbol: symbol_name.to_string(),
             key: key.to_string(),
             value: None,
-        })?;
-    } else {
-        println!("ok: removed {symbol_name}.{key}");
-    }
-    Ok(())
+        },
+        flags,
+    )
 }
 
 #[derive(Serialize)]
@@ -230,20 +252,25 @@ struct SymbolRenameDto {
     to: String,
 }
 
+impl CommandResponse for SymbolRenameDto {
+    fn render_text(&self) {
+        println!("ok: renamed {} -> {}", self.from, self.to);
+    }
+}
+
 pub fn rename(path: &str, from: &str, to: &str, flags: &Flags) -> Result<(), KiError> {
     let mut doc = SymbolLibFile::read(path).map_err(|e| KiError::Message(e.to_string()))?;
     doc.rename_symbol(from, to);
-    doc.write(path).map_err(|e| KiError::Message(e.to_string()))?;
+    doc.write(path)
+        .map_err(|e| KiError::Message(e.to_string()))?;
 
-    if flags.format == OutputFormat::Json {
-        output::print_json(&SymbolRenameDto {
+    output::handle_output(
+        &SymbolRenameDto {
             schema_version: SCHEMA_VERSION,
             ok: true,
             from: from.to_string(),
             to: to.to_string(),
-        })?;
-    } else {
-        println!("ok: renamed {from} -> {to}");
-    }
-    Ok(())
+        },
+        flags,
+    )
 }

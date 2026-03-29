@@ -1,0 +1,1947 @@
+{
+    "$schema": "https://schemas.kicad.org/erc.v1.json",
+    "coordinate_units": "mm",
+    "date": "2026-03-29T23:08:35",
+    "ignored_checks": [
+        {
+            "description": "Global label only appears once in the schematic",
+            "key": "single_global_label"
+        },
+        {
+            "description": "Four connection points are joined together",
+            "key": "four_way_junction"
+        },
+        {
+            "description": "SPICE model issue",
+            "key": "simulation_model_issue"
+        },
+        {
+            "description": "Assigned footprint doesn't match footprint filters",
+            "key": "footprint_filter"
+        }
+    ],
+    "included_severities": [
+        "error",
+        "warning"
+    ],
+    "kicad_version": "10.0.0",
+    "sheets": [
+        {
+            "path": "/",
+            "uuid_path": "/2e45d1d2-c73f-46e5-98d6-3a9dc360bff5",
+            "violations": [
+                {
+                    "description": "The current configuration does not include the symbol library 'pic_programmer'",
+                    "items": [
+                        {
+                            "description": "Symbol R2 [R]",
+                            "pos": {
+                                "x": 0.7112,
+                                "y": 0.508
+                            },
+                            "uuid": "00000000-0000-0000-0000-0000442a4cfb"
+                        }
+                    ],
+                    "severity": "warning",
+                    "type": "lib_symbol_issues"
+                },
+                {
+                    "description": "The current configuration does not include the symbol library 'pic_programmer'",
+                    "items": [
+                        {
+                            "description": "Symbol #PWR023 [GND]",
+                            "pos": {
+                                "x": 0.7112,
+                                "y": 0.5461
+                            },
+                            "uuid": "00000000-0000-0000-0000-0000442a4db3"
+                        }
+                    ],
+                    "severity": "warning",
+                    "type": "lib_symbol_issues"
+                },
+                {
+                    "description": "The current configuration does not include the symbol library 'pic_programmer'",
+                    "items": [
+                        {
+                            "description": "Symbol R1 [R]",
+                            "pos": {
+                                "x": 0.7874,
+                                "y": 0.4318
+                            },
+                            "uuid": "00000000-0000-0000-0000-0000442a4cf4"
+                        }
+                    ],
+                    "severity": "warning",
+                    "type": "lib_symbol_issues"
+                },
+                {
+                    "description": "The current configuration does not include the symbol library 'pic_programmer'",
+                    "items": [
+                        {
+                            "description": "Symbol #PWR033 [VCC]",
+                            "pos": {
+                                "x": 0.8763,
+                                "y": 0.3175
+                            },
+                            "uuid": "00000000-0000-0000-0000-0000442a4d41"
+                        }
+                    ],
+                    "severity": "warning",
+                    "type": "lib_symbol_issues"
+                },
+                {
+                    "description": "The current configuration does not include the symbol library 'pic_programmer'",
+                    "items": [
+                        {
+                            "description": "Symbol D2 [D_Schottky]",
+                            "pos": {
+                                "x": 0.8763,
+                                "y": 0.3683
+                            },
+                            "uuid": "00000000-0000-0000-0000-0000442a4d1b"
+                        }
+                    ],
+                    "severity": "warning",
+                    "type": "lib_symbol_issues"
+                },
+                {
+                    "description": "Footprint 'DSUB-9_Female_Horizontal_P2.77x2.84mm_EdgePinOffset7.70mm_Housed_MountingHolesOffset9.12mm' not found in library 'Connector_Dsub'",
+                    "items": [
+                        {
+                            "description": "Symbol J1 [DB9]",
+                            "pos": {
+                                "x": 0.3175,
+                                "y": 0.9144
+                            },
+                            "uuid": "00000000-0000-0000-0000-0000442a4c93"
+                        }
+                    ],
+                    "severity": "warning",
+                    "type": "footprint_link_issues"
+                },
+                {
+                    "description": "The current configuration does not include the symbol library 'pic_programmer'",
+                    "items": [
+                        {
+                            "description": "Symbol J1 [DB9]",
+                            "pos": {
+                                "x": 0.3175,
+                                "y": 0.9144
+                            },
+                            "uuid": "00000000-0000-0000-0000-0000442a4c93"
+                        }
+                    ],
+                    "severity": "warning",
+                    "type": "lib_symbol_issues"
+                },
+                {
+                    "description": "The current configuration does not include the symbol library 'pic_programmer'",
+                    "items": [
+                        {
+                            "description": "Symbol D3 [D_Schottky]",
+                            "pos": {
+                                "x": 0.8763,
+                                "y": 0.508
+                            },
+                            "uuid": "00000000-0000-0000-0000-0000442a4d25"
+                        }
+                    ],
+                    "severity": "warning",
+                    "type": "lib_symbol_issues"
+                },
+                {
+                    "description": "The current configuration does not include the symbol library 'pic_programmer'",
+                    "items": [
+                        {
+                            "description": "Symbol #PWR034 [GND]",
+                            "pos": {
+                                "x": 0.8763,
+                                "y": 0.5588
+                            },
+                            "uuid": "00000000-0000-0000-0000-0000442a4d3b"
+                        }
+                    ],
+                    "severity": "warning",
+                    "type": "lib_symbol_issues"
+                },
+                {
+                    "description": "The current configuration does not include the symbol library 'pic_programmer'",
+                    "items": [
+                        {
+                            "description": "Symbol #PWR09 [VCC]",
+                            "pos": {
+                                "x": 0.9906,
+                                "y": 0.381
+                            },
+                            "uuid": "00000000-0000-0000-0000-00005a234929"
+                        }
+                    ],
+                    "severity": "warning",
+                    "type": "lib_symbol_issues"
+                },
+                {
+                    "description": "The current configuration does not include the symbol library 'pic_programmer'",
+                    "items": [
+                        {
+                            "description": "Symbol U2 [74LS125]",
+                            "pos": {
+                                "x": 1.0033,
+                                "y": 0.4318
+                            },
+                            "uuid": "00000000-0000-0000-0000-0000442a4cc8"
+                        }
+                    ],
+                    "severity": "warning",
+                    "type": "lib_symbol_issues"
+                },
+                {
+                    "description": "The current configuration does not include the symbol library 'pic_programmer'",
+                    "items": [
+                        {
+                            "description": "Symbol #PWR06 [GND]",
+                            "pos": {
+                                "x": 0.9906,
+                                "y": 0.4826
+                            },
+                            "uuid": "00000000-0000-0000-0000-00005a234890"
+                        }
+                    ],
+                    "severity": "warning",
+                    "type": "lib_symbol_issues"
+                },
+                {
+                    "description": "The current configuration does not include the symbol library 'pic_programmer'",
+                    "items": [
+                        {
+                            "description": "Symbol #PWR022 [GND]",
+                            "pos": {
+                                "x": 0.4318,
+                                "y": 1.016
+                            },
+                            "uuid": "00000000-0000-0000-0000-0000442a4e06"
+                        }
+                    ],
+                    "severity": "warning",
+                    "type": "lib_symbol_issues"
+                },
+                {
+                    "description": "The current configuration does not include the symbol library 'pic_programmer'",
+                    "items": [
+                        {
+                            "description": "Symbol #PWR035 [GND]",
+                            "pos": {
+                                "x": 1.0287,
+                                "y": 0.4826
+                            },
+                            "uuid": "00000000-0000-0000-0000-0000442a4d38"
+                        }
+                    ],
+                    "severity": "warning",
+                    "type": "lib_symbol_issues"
+                },
+                {
+                    "description": "The current configuration does not include the symbol library 'pic_programmer'",
+                    "items": [
+                        {
+                            "description": "Symbol #PWR030 [VCC]",
+                            "pos": {
+                                "x": 0.9779,
+                                "y": 0.6858
+                            },
+                            "uuid": "00000000-0000-0000-0000-0000442a4d60"
+                        }
+                    ],
+                    "severity": "warning",
+                    "type": "lib_symbol_issues"
+                },
+                {
+                    "description": "The current configuration does not include the symbol library 'pic_programmer'",
+                    "items": [
+                        {
+                            "description": "Symbol R4 [R]",
+                            "pos": {
+                                "x": 0.8128,
+                                "y": 0.8763
+                            },
+                            "uuid": "00000000-0000-0000-0000-0000442a4d5b"
+                        }
+                    ],
+                    "severity": "warning",
+                    "type": "lib_symbol_issues"
+                },
+                {
+                    "description": "The current configuration does not include the symbol library 'pic_programmer'",
+                    "items": [
+                        {
+                            "description": "Symbol R3 [R]",
+                            "pos": {
+                                "x": 0.889,
+                                "y": 0.8001
+                            },
+                            "uuid": "00000000-0000-0000-0000-0000442a4d5a"
+                        }
+                    ],
+                    "severity": "warning",
+                    "type": "lib_symbol_issues"
+                },
+                {
+                    "description": "The current configuration does not include the symbol library 'pic_programmer'",
+                    "items": [
+                        {
+                            "description": "Symbol #PWR025 [GND]",
+                            "pos": {
+                                "x": 0.8128,
+                                "y": 0.9144
+                            },
+                            "uuid": "00000000-0000-0000-0000-0000442a4dab"
+                        }
+                    ],
+                    "severity": "warning",
+                    "type": "lib_symbol_issues"
+                },
+                {
+                    "description": "The current configuration does not include the symbol library 'pic_programmer'",
+                    "items": [
+                        {
+                            "description": "Symbol D4 [D_Schottky]",
+                            "pos": {
+                                "x": 0.9779,
+                                "y": 0.7366
+                            },
+                            "uuid": "00000000-0000-0000-0000-0000442a4d5c"
+                        }
+                    ],
+                    "severity": "warning",
+                    "type": "lib_symbol_issues"
+                },
+                {
+                    "description": "The current configuration does not include the symbol library 'pic_programmer'",
+                    "items": [
+                        {
+                            "description": "Symbol R8 [R]",
+                            "pos": {
+                                "x": 1.1938,
+                                "y": 0.4318
+                            },
+                            "uuid": "00000000-0000-0000-0000-0000442a4d92"
+                        }
+                    ],
+                    "severity": "warning",
+                    "type": "lib_symbol_issues"
+                },
+                {
+                    "description": "The current configuration does not include the symbol library 'pic_programmer'",
+                    "items": [
+                        {
+                            "description": "Symbol D5 [D_Schottky]",
+                            "pos": {
+                                "x": 0.9779,
+                                "y": 0.8763
+                            },
+                            "uuid": "00000000-0000-0000-0000-0000442a4d5d"
+                        }
+                    ],
+                    "severity": "warning",
+                    "type": "lib_symbol_issues"
+                },
+                {
+                    "description": "The current configuration does not include the symbol library 'pic_programmer'",
+                    "items": [
+                        {
+                            "description": "Symbol #PWR052 [VCC]",
+                            "pos": {
+                                "x": 1.0922,
+                                "y": 0.7493
+                            },
+                            "uuid": "00000000-0000-0000-0000-00005a231b05"
+                        }
+                    ],
+                    "severity": "warning",
+                    "type": "lib_symbol_issues"
+                },
+                {
+                    "description": "The current configuration does not include the symbol library 'pic_programmer'",
+                    "items": [
+                        {
+                            "description": "Symbol #PWR031 [GND]",
+                            "pos": {
+                                "x": 0.9779,
+                                "y": 0.9144
+                            },
+                            "uuid": "00000000-0000-0000-0000-0000442a4d5f"
+                        }
+                    ],
+                    "severity": "warning",
+                    "type": "lib_symbol_issues"
+                },
+                {
+                    "description": "The current configuration does not include the symbol library 'pic_programmer'",
+                    "items": [
+                        {
+                            "description": "Symbol U2 [74LS125]",
+                            "pos": {
+                                "x": 1.1049,
+                                "y": 0.8001
+                            },
+                            "uuid": "00000000-0000-0000-0000-0000442a4d59"
+                        }
+                    ],
+                    "severity": "warning",
+                    "type": "lib_symbol_issues"
+                },
+                {
+                    "description": "The current configuration does not include the symbol library 'pic_programmer'",
+                    "items": [
+                        {
+                            "description": "Symbol #PWR047 [GND]",
+                            "pos": {
+                                "x": 1.0922,
+                                "y": 0.8509
+                            },
+                            "uuid": "00000000-0000-0000-0000-00005a230fb8"
+                        }
+                    ],
+                    "severity": "warning",
+                    "type": "lib_symbol_issues"
+                },
+                {
+                    "description": "The current configuration does not include the symbol library 'pic_programmer'",
+                    "items": [
+                        {
+                            "description": "Symbol #PWR032 [GND]",
+                            "pos": {
+                                "x": 1.1303,
+                                "y": 0.8509
+                            },
+                            "uuid": "00000000-0000-0000-0000-0000442a4d5e"
+                        }
+                    ],
+                    "severity": "warning",
+                    "type": "lib_symbol_issues"
+                },
+                {
+                    "description": "The current configuration does not include the symbol library 'pic_programmer'",
+                    "items": [
+                        {
+                            "description": "Symbol Q1 [BC237]",
+                            "pos": {
+                                "x": 1.3589,
+                                "y": 0.4318
+                            },
+                            "uuid": "00000000-0000-0000-0000-0000442a4eb9"
+                        }
+                    ],
+                    "severity": "warning",
+                    "type": "lib_symbol_issues"
+                },
+                {
+                    "description": "The current configuration does not include the symbol library 'pic_programmer'",
+                    "items": [
+                        {
+                            "description": "Symbol #PWR021 [GND]",
+                            "pos": {
+                                "x": 1.3843,
+                                "y": 0.4826
+                            },
+                            "uuid": "00000000-0000-0000-0000-0000442a4f1c"
+                        }
+                    ],
+                    "severity": "warning",
+                    "type": "lib_symbol_issues"
+                },
+                {
+                    "description": "The current configuration does not include the symbol library 'pic_programmer'",
+                    "items": [
+                        {
+                            "description": "Symbol C9 [C]",
+                            "pos": {
+                                "x": 1.4478,
+                                "y": 0.254
+                            },
+                            "uuid": "00000000-0000-0000-0000-0000464ad280"
+                        }
+                    ],
+                    "severity": "warning",
+                    "type": "lib_symbol_issues"
+                },
+                {
+                    "description": "The current configuration does not include the symbol library 'pic_programmer'",
+                    "items": [
+                        {
+                            "description": "Symbol R11 [R]",
+                            "pos": {
+                                "x": 1.4605,
+                                "y": 0.3556
+                            },
+                            "uuid": "00000000-0000-0000-0000-0000442a4f23"
+                        }
+                    ],
+                    "severity": "warning",
+                    "type": "lib_symbol_issues"
+                },
+                {
+                    "description": "The current configuration does not include the symbol library 'pic_programmer'",
+                    "items": [
+                        {
+                            "description": "Symbol #PWR051 [VCC]",
+                            "pos": {
+                                "x": 1.1176,
+                                "y": 1.016
+                            },
+                            "uuid": "00000000-0000-0000-0000-00005a2319de"
+                        }
+                    ],
+                    "severity": "warning",
+                    "type": "lib_symbol_issues"
+                },
+                {
+                    "description": "The current configuration does not include the symbol library 'pic_programmer'",
+                    "items": [
+                        {
+                            "description": "Symbol R12 [R]",
+                            "pos": {
+                                "x": 1.2954,
+                                "y": 0.8001
+                            },
+                            "uuid": "00000000-0000-0000-0000-0000442a4d85"
+                        }
+                    ],
+                    "severity": "warning",
+                    "type": "lib_symbol_issues"
+                },
+                {
+                    "description": "The current configuration does not include the symbol library 'pic_programmer'",
+                    "items": [
+                        {
+                            "description": "Symbol #PWR027 [VCC]",
+                            "pos": {
+                                "x": 0.9779,
+                                "y": 1.1811
+                            },
+                            "uuid": "00000000-0000-0000-0000-0000442a4d68"
+                        }
+                    ],
+                    "severity": "warning",
+                    "type": "lib_symbol_issues"
+                },
+                {
+                    "description": "The current configuration does not include the symbol library 'pic_programmer'",
+                    "items": [
+                        {
+                            "description": "Symbol U2 [74LS125]",
+                            "pos": {
+                                "x": 1.1049,
+                                "y": 1.0668
+                            },
+                            "uuid": "00000000-0000-0000-0000-0000442a4d6b"
+                        }
+                    ],
+                    "severity": "warning",
+                    "type": "lib_symbol_issues"
+                },
+                {
+                    "description": "The current configuration does not include the symbol library 'pic_programmer'",
+                    "items": [
+                        {
+                            "description": "Symbol #PWR026 [GND]",
+                            "pos": {
+                                "x": 1.0795,
+                                "y": 1.1176
+                            },
+                            "uuid": "00000000-0000-0000-0000-0000442a4d75"
+                        }
+                    ],
+                    "severity": "warning",
+                    "type": "lib_symbol_issues"
+                },
+                {
+                    "description": "The current configuration does not include the symbol library 'pic_programmer'",
+                    "items": [
+                        {
+                            "description": "Symbol #PWR122 [VPP]",
+                            "pos": {
+                                "x": 1.5494,
+                                "y": 0.1778
+                            },
+                            "uuid": "00000000-0000-0000-0000-0000442a4f44"
+                        }
+                    ],
+                    "severity": "warning",
+                    "type": "lib_symbol_issues"
+                },
+                {
+                    "description": "The current configuration does not include the symbol library 'pic_programmer'",
+                    "items": [
+                        {
+                            "description": "Symbol R7 [R]",
+                            "pos": {
+                                "x": 1.5494,
+                                "y": 0.254
+                            },
+                            "uuid": "00000000-0000-0000-0000-0000442a4f2a"
+                        }
+                    ],
+                    "severity": "warning",
+                    "type": "lib_symbol_issues"
+                },
+                {
+                    "description": "The current configuration does not include the symbol library 'pic_programmer'",
+                    "items": [
+                        {
+                            "description": "Symbol R5 [R]",
+                            "pos": {
+                                "x": 0.889,
+                                "y": 1.2954
+                            },
+                            "uuid": "00000000-0000-0000-0000-0000442a4d62"
+                        }
+                    ],
+                    "severity": "warning",
+                    "type": "lib_symbol_issues"
+                },
+                {
+                    "description": "The current configuration does not include the symbol library 'pic_programmer'",
+                    "items": [
+                        {
+                            "description": "Symbol D6 [D_Schottky]",
+                            "pos": {
+                                "x": 0.9779,
+                                "y": 1.2319
+                            },
+                            "uuid": "00000000-0000-0000-0000-0000442a4d64"
+                        }
+                    ],
+                    "severity": "warning",
+                    "type": "lib_symbol_issues"
+                },
+                {
+                    "description": "The current configuration does not include the symbol library 'pic_programmer'",
+                    "items": [
+                        {
+                            "description": "Symbol #PWR048 [GND]",
+                            "pos": {
+                                "x": 1.1176,
+                                "y": 1.1176
+                            },
+                            "uuid": "00000000-0000-0000-0000-00005a231124"
+                        }
+                    ],
+                    "severity": "warning",
+                    "type": "lib_symbol_issues"
+                },
+                {
+                    "description": "The current configuration does not include the symbol library 'pic_programmer'",
+                    "items": [
+                        {
+                            "description": "Symbol R6 [R]",
+                            "pos": {
+                                "x": 0.8128,
+                                "y": 1.3716
+                            },
+                            "uuid": "00000000-0000-0000-0000-0000442a4d63"
+                        }
+                    ],
+                    "severity": "warning",
+                    "type": "lib_symbol_issues"
+                },
+                {
+                    "description": "The current configuration does not include the symbol library 'pic_programmer'",
+                    "items": [
+                        {
+                            "description": "Symbol #PWR024 [GND]",
+                            "pos": {
+                                "x": 0.8128,
+                                "y": 1.4097
+                            },
+                            "uuid": "00000000-0000-0000-0000-0000442a4dae"
+                        }
+                    ],
+                    "severity": "warning",
+                    "type": "lib_symbol_issues"
+                },
+                {
+                    "description": "The current configuration does not include the symbol library 'pic_programmer'",
+                    "items": [
+                        {
+                            "description": "Symbol #PWR050 [VCC]",
+                            "pos": {
+                                "x": 1.0922,
+                                "y": 1.2446
+                            },
+                            "uuid": "00000000-0000-0000-0000-00005a23151c"
+                        }
+                    ],
+                    "severity": "warning",
+                    "type": "lib_symbol_issues"
+                },
+                {
+                    "description": "The current configuration does not include the symbol library 'pic_programmer'",
+                    "items": [
+                        {
+                            "description": "Symbol Q2 [BC307]",
+                            "pos": {
+                                "x": 1.6383,
+                                "y": 0.3556
+                            },
+                            "uuid": "00000000-0000-0000-0000-0000442a4f30"
+                        }
+                    ],
+                    "severity": "warning",
+                    "type": "lib_symbol_issues"
+                },
+                {
+                    "description": "The current configuration does not include the symbol library 'pic_programmer'",
+                    "items": [
+                        {
+                            "description": "Symbol D7 [D_Schottky]",
+                            "pos": {
+                                "x": 0.9779,
+                                "y": 1.3716
+                            },
+                            "uuid": "00000000-0000-0000-0000-0000442a4d65"
+                        }
+                    ],
+                    "severity": "warning",
+                    "type": "lib_symbol_issues"
+                },
+                {
+                    "description": "The current configuration does not include the symbol library 'pic_programmer'",
+                    "items": [
+                        {
+                            "description": "Symbol #PWR123 [VPP]",
+                            "pos": {
+                                "x": 1.6637,
+                                "y": 0.2794
+                            },
+                            "uuid": "00000000-0000-0000-0000-0000442a4f48"
+                        }
+                    ],
+                    "severity": "warning",
+                    "type": "lib_symbol_issues"
+                },
+                {
+                    "description": "The current configuration does not include the symbol library 'pic_programmer'",
+                    "items": [
+                        {
+                            "description": "Symbol U2 [74LS125]",
+                            "pos": {
+                                "x": 1.1049,
+                                "y": 1.2954
+                            },
+                            "uuid": "00000000-0000-0000-0000-0000442a4d61"
+                        }
+                    ],
+                    "severity": "warning",
+                    "type": "lib_symbol_issues"
+                },
+                {
+                    "description": "The current configuration does not include the symbol library 'pic_programmer'",
+                    "items": [
+                        {
+                            "description": "Symbol #PWR028 [GND]",
+                            "pos": {
+                                "x": 0.9779,
+                                "y": 1.4224
+                            },
+                            "uuid": "00000000-0000-0000-0000-0000442a4d67"
+                        }
+                    ],
+                    "severity": "warning",
+                    "type": "lib_symbol_issues"
+                },
+                {
+                    "description": "The current configuration does not include the symbol library 'pic_programmer'",
+                    "items": [
+                        {
+                            "description": "Symbol R9 [R]",
+                            "pos": {
+                                "x": 1.6637,
+                                "y": 0.4826
+                            },
+                            "uuid": "00000000-0000-0000-0000-0000442a4f52"
+                        }
+                    ],
+                    "severity": "warning",
+                    "type": "lib_symbol_issues"
+                },
+                {
+                    "description": "The current configuration does not include the symbol library 'pic_programmer'",
+                    "items": [
+                        {
+                            "description": "Symbol P1 [CONN_2]",
+                            "pos": {
+                                "x": 0.254,
+                                "y": 1.7145
+                            },
+                            "uuid": "00000000-0000-0000-0000-0000442a4fe7"
+                        }
+                    ],
+                    "severity": "warning",
+                    "type": "lib_symbol_issues"
+                },
+                {
+                    "description": "The current configuration does not include the symbol library 'pic_programmer'",
+                    "items": [
+                        {
+                            "description": "Symbol #PWR049 [GND]",
+                            "pos": {
+                                "x": 1.0922,
+                                "y": 1.3462
+                            },
+                            "uuid": "00000000-0000-0000-0000-00005a231320"
+                        }
+                    ],
+                    "severity": "warning",
+                    "type": "lib_symbol_issues"
+                },
+                {
+                    "description": "The current configuration does not include the symbol library 'pic_programmer'",
+                    "items": [
+                        {
+                            "description": "Symbol D1 [D]",
+                            "pos": {
+                                "x": 0.4191,
+                                "y": 1.6891
+                            },
+                            "uuid": "00000000-0000-0000-0000-0000442a500b"
+                        }
+                    ],
+                    "severity": "warning",
+                    "type": "lib_symbol_issues"
+                },
+                {
+                    "description": "The current configuration does not include the symbol library 'pic_programmer'",
+                    "items": [
+                        {
+                            "description": "Symbol #PWR029 [GND]",
+                            "pos": {
+                                "x": 1.1303,
+                                "y": 1.3462
+                            },
+                            "uuid": "00000000-0000-0000-0000-0000442a4d66"
+                        }
+                    ],
+                    "severity": "warning",
+                    "type": "lib_symbol_issues"
+                },
+                {
+                    "description": "The current configuration does not include the symbol library 'pic_programmer'",
+                    "items": [
+                        {
+                            "description": "Symbol D8 [LED]",
+                            "pos": {
+                                "x": 1.6637,
+                                "y": 0.6096
+                            },
+                            "uuid": "00000000-0000-0000-0000-0000442a4f5d"
+                        }
+                    ],
+                    "severity": "warning",
+                    "type": "lib_symbol_issues"
+                },
+                {
+                    "description": "The current configuration does not include the symbol library 'pic_programmer'",
+                    "items": [
+                        {
+                            "description": "Symbol #PWR020 [GND]",
+                            "pos": {
+                                "x": 0.3556,
+                                "y": 1.7526
+                            },
+                            "uuid": "00000000-0000-0000-0000-0000442a500f"
+                        }
+                    ],
+                    "severity": "warning",
+                    "type": "lib_symbol_issues"
+                },
+                {
+                    "description": "The current configuration does not include the symbol library 'pic_programmer'",
+                    "items": [
+                        {
+                            "description": "Symbol #PWR05 [GND]",
+                            "pos": {
+                                "x": 1.6637,
+                                "y": 0.6731
+                            },
+                            "uuid": "00000000-0000-0000-0000-0000442aabc2"
+                        }
+                    ],
+                    "severity": "warning",
+                    "type": "lib_symbol_issues"
+                },
+                {
+                    "description": "The current configuration does not include the symbol library 'pic_programmer'",
+                    "items": [
+                        {
+                            "description": "Symbol #FLG06 [PWR_FLAG]",
+                            "pos": {
+                                "x": 0.4064,
+                                "y": 1.7526
+                            },
+                            "uuid": "00000000-0000-0000-0000-0000442a8330"
+                        }
+                    ],
+                    "severity": "warning",
+                    "type": "lib_symbol_issues"
+                },
+                {
+                    "description": "The current configuration does not include the symbol library 'pic_programmer'",
+                    "items": [
+                        {
+                            "description": "Symbol C2 [CP]",
+                            "pos": {
+                                "x": 0.4953,
+                                "y": 1.7526
+                            },
+                            "uuid": "00000000-0000-0000-0000-0000442a501d"
+                        }
+                    ],
+                    "severity": "warning",
+                    "type": "lib_symbol_issues"
+                },
+                {
+                    "description": "The current configuration does not include the symbol library 'pic_programmer'",
+                    "items": [
+                        {
+                            "description": "Symbol R13 [R]",
+                            "pos": {
+                                "x": 1.2954,
+                                "y": 1.2954
+                            },
+                            "uuid": "00000000-0000-0000-0000-0000442a4d8d"
+                        }
+                    ],
+                    "severity": "warning",
+                    "type": "lib_symbol_issues"
+                },
+                {
+                    "description": "The current configuration does not include the symbol library 'pic_programmer'",
+                    "items": [
+                        {
+                            "description": "Symbol U3 [7805]",
+                            "pos": {
+                                "x": 0.6858,
+                                "y": 1.7018
+                            },
+                            "uuid": "00000000-0000-0000-0000-00005a238df8"
+                        }
+                    ],
+                    "severity": "warning",
+                    "type": "lib_symbol_issues"
+                },
+                {
+                    "description": "The current configuration does not include the symbol library 'pic_programmer'",
+                    "items": [
+                        {
+                            "description": "Symbol #PWR019 [GND]",
+                            "pos": {
+                                "x": 0.4953,
+                                "y": 1.7907
+                            },
+                            "uuid": "00000000-0000-0000-0000-0000442a5023"
+                        }
+                    ],
+                    "severity": "warning",
+                    "type": "lib_symbol_issues"
+                },
+                {
+                    "description": "The current configuration does not include the symbol library 'pic_programmer'",
+                    "items": [
+                        {
+                            "description": "Symbol R17 [R]",
+                            "pos": {
+                                "x": 1.7907,
+                                "y": 0.508
+                            },
+                            "uuid": "00000000-0000-0000-0000-0000442a50bf"
+                        }
+                    ],
+                    "severity": "warning",
+                    "type": "lib_symbol_issues"
+                },
+                {
+                    "description": "The current configuration does not include the symbol library 'pic_programmer'",
+                    "items": [
+                        {
+                            "description": "Symbol #PWR014 [GND]",
+                            "pos": {
+                                "x": 1.7907,
+                                "y": 0.5461
+                            },
+                            "uuid": "00000000-0000-0000-0000-0000442a50c2"
+                        }
+                    ],
+                    "severity": "warning",
+                    "type": "lib_symbol_issues"
+                },
+                {
+                    "description": "The current configuration does not include the symbol library 'pic_programmer'",
+                    "items": [
+                        {
+                            "description": "Symbol #PWR015 [VCC]",
+                            "pos": {
+                                "x": 0.8636,
+                                "y": 1.6764
+                            },
+                            "uuid": "00000000-0000-0000-0000-0000442a50b3"
+                        }
+                    ],
+                    "severity": "warning",
+                    "type": "lib_symbol_issues"
+                },
+                {
+                    "description": "The current configuration does not include the symbol library 'pic_programmer'",
+                    "items": [
+                        {
+                            "description": "Symbol #PWR018 [GND]",
+                            "pos": {
+                                "x": 0.6858,
+                                "y": 1.7653
+                            },
+                            "uuid": "00000000-0000-0000-0000-0000442a5050"
+                        }
+                    ],
+                    "severity": "warning",
+                    "type": "lib_symbol_issues"
+                },
+                {
+                    "description": "The current configuration does not include the symbol library 'pic_programmer'",
+                    "items": [
+                        {
+                            "description": "Symbol R18 [R]",
+                            "pos": {
+                                "x": 1.8669,
+                                "y": 0.4064
+                            },
+                            "uuid": "00000000-0000-0000-0000-000044369638"
+                        }
+                    ],
+                    "severity": "warning",
+                    "type": "lib_symbol_issues"
+                },
+                {
+                    "description": "The current configuration does not include the symbol library 'pic_programmer'",
+                    "items": [
+                        {
+                            "description": "Symbol C1 [CP]",
+                            "pos": {
+                                "x": 0.8128,
+                                "y": 1.7526
+                            },
+                            "uuid": "00000000-0000-0000-0000-0000442a5056"
+                        }
+                    ],
+                    "severity": "warning",
+                    "type": "lib_symbol_issues"
+                },
+                {
+                    "description": "The current configuration does not include the symbol library 'pic_programmer'",
+                    "items": [
+                        {
+                            "description": "Symbol R14 [R]",
+                            "pos": {
+                                "x": 0.9779,
+                                "y": 1.6891
+                            },
+                            "uuid": "00000000-0000-0000-0000-0000442a5083"
+                        }
+                    ],
+                    "severity": "warning",
+                    "type": "lib_symbol_issues"
+                },
+                {
+                    "description": "The current configuration does not include the symbol library 'pic_programmer'",
+                    "items": [
+                        {
+                            "description": "Symbol D11 [D_Schottky]",
+                            "pos": {
+                                "x": 1.8161,
+                                "y": 0.7366
+                            },
+                            "uuid": "00000000-0000-0000-0000-00004639ba28"
+                        }
+                    ],
+                    "severity": "warning",
+                    "type": "lib_symbol_issues"
+                },
+                {
+                    "description": "The current configuration does not include the symbol library 'pic_programmer'",
+                    "items": [
+                        {
+                            "description": "Symbol #PWR017 [GND]",
+                            "pos": {
+                                "x": 0.8128,
+                                "y": 1.7907
+                            },
+                            "uuid": "00000000-0000-0000-0000-0000442a5057"
+                        }
+                    ],
+                    "severity": "warning",
+                    "type": "lib_symbol_issues"
+                },
+                {
+                    "description": "The current configuration does not include the symbol library 'pic_programmer'",
+                    "items": [
+                        {
+                            "description": "Symbol #PWR04 [VCC]",
+                            "pos": {
+                                "x": 1.8796,
+                                "y": 0.6731
+                            },
+                            "uuid": "00000000-0000-0000-0000-00004638ab33"
+                        }
+                    ],
+                    "severity": "warning",
+                    "type": "lib_symbol_issues"
+                },
+                {
+                    "description": "The current configuration does not include the symbol library 'pic_programmer'",
+                    "items": [
+                        {
+                            "description": "Symbol D9 [LED]",
+                            "pos": {
+                                "x": 1.0541,
+                                "y": 1.7653
+                            },
+                            "uuid": "00000000-0000-0000-0000-0000442a5084"
+                        }
+                    ],
+                    "severity": "warning",
+                    "type": "lib_symbol_issues"
+                },
+                {
+                    "description": "The current configuration does not include the symbol library 'pic_programmer'",
+                    "items": [
+                        {
+                            "description": "Symbol R20 [R]",
+                            "pos": {
+                                "x": 1.9431,
+                                "y": 0.6731
+                            },
+                            "uuid": "00000000-0000-0000-0000-00004639b9b3"
+                        }
+                    ],
+                    "severity": "warning",
+                    "type": "lib_symbol_issues"
+                },
+                {
+                    "description": "The current configuration does not include the symbol library 'pic_programmer'",
+                    "items": [
+                        {
+                            "description": "Symbol R19 [R]",
+                            "pos": {
+                                "x": 1.9431,
+                                "y": 0.7366
+                            },
+                            "uuid": "00000000-0000-0000-0000-00004639b9b0"
+                        }
+                    ],
+                    "severity": "warning",
+                    "type": "lib_symbol_issues"
+                },
+                {
+                    "description": "The current configuration does not include the symbol library 'pic_programmer'",
+                    "items": [
+                        {
+                            "description": "Symbol #PWR016 [GND]",
+                            "pos": {
+                                "x": 1.0541,
+                                "y": 1.8161
+                            },
+                            "uuid": "00000000-0000-0000-0000-0000442a5095"
+                        }
+                    ],
+                    "severity": "warning",
+                    "type": "lib_symbol_issues"
+                },
+                {
+                    "description": "The current configuration does not include the symbol library 'pic_programmer'",
+                    "items": [
+                        {
+                            "description": "Symbol D12 [LED]",
+                            "pos": {
+                                "x": 1.9431,
+                                "y": 0.889
+                            },
+                            "uuid": "00000000-0000-0000-0000-00004639b9ea"
+                        }
+                    ],
+                    "severity": "warning",
+                    "type": "lib_symbol_issues"
+                },
+                {
+                    "description": "The current configuration does not include the symbol library 'pic_programmer'",
+                    "items": [
+                        {
+                            "description": "Symbol #PWR03 [GND]",
+                            "pos": {
+                                "x": 1.9431,
+                                "y": 0.9398
+                            },
+                            "uuid": "00000000-0000-0000-0000-00004639b9eb"
+                        }
+                    ],
+                    "severity": "warning",
+                    "type": "lib_symbol_issues"
+                },
+                {
+                    "description": "The current configuration does not include the symbol library 'pic_programmer'",
+                    "items": [
+                        {
+                            "description": "Symbol R21 [R]",
+                            "pos": {
+                                "x": 2.0066,
+                                "y": 0.8128
+                            },
+                            "uuid": "00000000-0000-0000-0000-00004639b9e9"
+                        }
+                    ],
+                    "severity": "warning",
+                    "type": "lib_symbol_issues"
+                },
+                {
+                    "description": "The current configuration does not include the symbol library 'pic_programmer'",
+                    "items": [
+                        {
+                            "description": "Symbol Q3 [BC307]",
+                            "pos": {
+                                "x": 2.0828,
+                                "y": 0.7366
+                            },
+                            "uuid": "00000000-0000-0000-0000-00004639b996"
+                        }
+                    ],
+                    "severity": "warning",
+                    "type": "lib_symbol_issues"
+                },
+                {
+                    "description": "The current configuration does not include the symbol library 'pic_programmer'",
+                    "items": [
+                        {
+                            "description": "Symbol #PWR02 [VCC]",
+                            "pos": {
+                                "x": 2.1082,
+                                "y": 0.6858
+                            },
+                            "uuid": "00000000-0000-0000-0000-00004639ba17"
+                        }
+                    ],
+                    "severity": "warning",
+                    "type": "lib_symbol_issues"
+                },
+                {
+                    "description": "The current configuration does not include the symbol library 'pic_programmer'",
+                    "items": [
+                        {
+                            "description": "Symbol #PWR01 [VCC]",
+                            "pos": {
+                                "x": 2.1971,
+                                "y": 0.6477
+                            },
+                            "uuid": "00000000-0000-0000-0000-00004639bb04"
+                        }
+                    ],
+                    "severity": "warning",
+                    "type": "lib_symbol_issues"
+                },
+                {
+                    "description": "The current configuration does not include the symbol library 'pic_programmer'",
+                    "items": [
+                        {
+                            "description": "Symbol #PWR013 [VCC]",
+                            "pos": {
+                                "x": 1.9685,
+                                "y": 1.1811
+                            },
+                            "uuid": "00000000-0000-0000-0000-0000442a57cb"
+                        }
+                    ],
+                    "severity": "warning",
+                    "type": "lib_symbol_issues"
+                },
+                {
+                    "description": "The current configuration does not include the symbol library 'pic_programmer'",
+                    "items": [
+                        {
+                            "description": "Symbol JP1 [JUMPER]",
+                            "pos": {
+                                "x": 2.1971,
+                                "y": 0.7239
+                            },
+                            "uuid": "00000000-0000-0000-0000-00004639baf8"
+                        }
+                    ],
+                    "severity": "warning",
+                    "type": "lib_symbol_issues"
+                },
+                {
+                    "description": "The current configuration does not include the symbol library 'pic_programmer'",
+                    "items": [
+                        {
+                            "description": "Symbol P101 [MOUNTING_HOLE]",
+                            "pos": {
+                                "x": 1.6256,
+                                "y": 1.7272
+                            },
+                            "uuid": "00000000-0000-0000-0000-000054020bea"
+                        }
+                    ],
+                    "severity": "warning",
+                    "type": "lib_symbol_issues"
+                },
+                {
+                    "description": "The current configuration does not include the symbol library 'pic_programmer'",
+                    "items": [
+                        {
+                            "description": "Symbol U4 [LT1373]",
+                            "pos": {
+                                "x": 1.9685,
+                                "y": 1.3716
+                            },
+                            "uuid": "00000000-0000-0000-0000-0000442a5e20"
+                        }
+                    ],
+                    "severity": "warning",
+                    "type": "lib_symbol_issues"
+                },
+                {
+                    "description": "The current configuration does not include the symbol library 'pic_programmer'",
+                    "items": [
+                        {
+                            "description": "Symbol P102 [MOUNTING_HOLE]",
+                            "pos": {
+                                "x": 1.6256,
+                                "y": 1.7653
+                            },
+                            "uuid": "00000000-0000-0000-0000-000054020da9"
+                        }
+                    ],
+                    "severity": "warning",
+                    "type": "lib_symbol_issues"
+                },
+                {
+                    "description": "The current configuration does not include the symbol library 'pic_programmer'",
+                    "items": [
+                        {
+                            "description": "Symbol P103 [MOUNTING_HOLE]",
+                            "pos": {
+                                "x": 1.6256,
+                                "y": 1.8034
+                            },
+                            "uuid": "00000000-0000-0000-0000-000054020dc2"
+                        }
+                    ],
+                    "severity": "warning",
+                    "type": "lib_symbol_issues"
+                },
+                {
+                    "description": "The current configuration does not include the symbol library 'pic_programmer'",
+                    "items": [
+                        {
+                            "description": "Symbol #PWR012 [GND]",
+                            "pos": {
+                                "x": 1.8923,
+                                "y": 1.5621
+                            },
+                            "uuid": "00000000-0000-0000-0000-0000442a580b"
+                        }
+                    ],
+                    "severity": "warning",
+                    "type": "lib_symbol_issues"
+                },
+                {
+                    "description": "The current configuration does not include the symbol library 'pic_programmer'",
+                    "items": [
+                        {
+                            "description": "Symbol P104 [MOUNTING_HOLE]",
+                            "pos": {
+                                "x": 1.6256,
+                                "y": 1.8415
+                            },
+                            "uuid": "00000000-0000-0000-0000-000054020de3"
+                        }
+                    ],
+                    "severity": "warning",
+                    "type": "lib_symbol_issues"
+                },
+                {
+                    "description": "The current configuration does not include the symbol library 'pic_programmer'",
+                    "items": [
+                        {
+                            "description": "Symbol P105 [MOUNTING_HOLE]",
+                            "pos": {
+                                "x": 1.6256,
+                                "y": 1.8796
+                            },
+                            "uuid": "00000000-0000-0000-0000-000054020e5d"
+                        }
+                    ],
+                    "severity": "warning",
+                    "type": "lib_symbol_issues"
+                },
+                {
+                    "description": "The current configuration does not include the symbol library 'pic_programmer'",
+                    "items": [
+                        {
+                            "description": "Symbol P106 [MOUNTING_HOLE]",
+                            "pos": {
+                                "x": 1.6256,
+                                "y": 1.9177
+                            },
+                            "uuid": "00000000-0000-0000-0000-000054020e76"
+                        }
+                    ],
+                    "severity": "warning",
+                    "type": "lib_symbol_issues"
+                },
+                {
+                    "description": "The current configuration does not include the symbol library 'pic_programmer'",
+                    "items": [
+                        {
+                            "description": "Symbol R10 [R]",
+                            "pos": {
+                                "x": 2.1209,
+                                "y": 1.5494
+                            },
+                            "uuid": "00000000-0000-0000-0000-0000442a5f83"
+                        }
+                    ],
+                    "severity": "warning",
+                    "type": "lib_symbol_issues"
+                },
+                {
+                    "description": "The current configuration does not include the symbol library 'pic_programmer'",
+                    "items": [
+                        {
+                            "description": "Symbol L1 [INDUCTOR]",
+                            "pos": {
+                                "x": 2.3114,
+                                "y": 1.3081
+                            },
+                            "uuid": "00000000-0000-0000-0000-0000442a57be"
+                        }
+                    ],
+                    "severity": "warning",
+                    "type": "lib_symbol_issues"
+                },
+                {
+                    "description": "The current configuration does not include the symbol library 'pic_programmer'",
+                    "items": [
+                        {
+                            "description": "Symbol #PWR010 [VCC]",
+                            "pos": {
+                                "x": 2.3876,
+                                "y": 1.2827
+                            },
+                            "uuid": "00000000-0000-0000-0000-0000442a5882"
+                        }
+                    ],
+                    "severity": "warning",
+                    "type": "lib_symbol_issues"
+                },
+                {
+                    "description": "The current configuration does not include the symbol library 'pic_programmer'",
+                    "items": [
+                        {
+                            "description": "Symbol C5 [C]",
+                            "pos": {
+                                "x": 2.286,
+                                "y": 1.524
+                            },
+                            "uuid": "00000000-0000-0000-0000-0000442a58b1"
+                        }
+                    ],
+                    "severity": "warning",
+                    "type": "lib_symbol_issues"
+                },
+                {
+                    "description": "The current configuration does not include the symbol library 'pic_programmer'",
+                    "items": [
+                        {
+                            "description": "Symbol D10 [D_Schottky]",
+                            "pos": {
+                                "x": 2.3876,
+                                "y": 1.3716
+                            },
+                            "uuid": "00000000-0000-0000-0000-0000442a6026"
+                        }
+                    ],
+                    "severity": "warning",
+                    "type": "lib_symbol_issues"
+                },
+                {
+                    "description": "The current configuration does not include the symbol library 'pic_programmer'",
+                    "items": [
+                        {
+                            "description": "Symbol C4 [C]",
+                            "pos": {
+                                "x": 2.2479,
+                                "y": 1.6002
+                            },
+                            "uuid": "00000000-0000-0000-0000-0000442a5f61"
+                        }
+                    ],
+                    "severity": "warning",
+                    "type": "lib_symbol_issues"
+                },
+                {
+                    "description": "The current configuration does not include the symbol library 'pic_programmer'",
+                    "items": [
+                        {
+                            "description": "Symbol #PWR08 [GND]",
+                            "pos": {
+                                "x": 2.3495,
+                                "y": 1.524
+                            },
+                            "uuid": "00000000-0000-0000-0000-0000442a58b8"
+                        }
+                    ],
+                    "severity": "warning",
+                    "type": "lib_symbol_issues"
+                },
+                {
+                    "description": "The current configuration does not include the footprint library 'footprints'",
+                    "items": [
+                        {
+                            "description": "Symbol RV1 [POT]",
+                            "pos": {
+                                "x": 2.4384,
+                                "y": 1.4986
+                            },
+                            "uuid": "00000000-0000-0000-0000-0000443d0101"
+                        }
+                    ],
+                    "severity": "warning",
+                    "type": "footprint_link_issues"
+                },
+                {
+                    "description": "The current configuration does not include the symbol library 'pic_programmer'",
+                    "items": [
+                        {
+                            "description": "Symbol RV1 [POT]",
+                            "pos": {
+                                "x": 2.4384,
+                                "y": 1.4986
+                            },
+                            "uuid": "00000000-0000-0000-0000-0000443d0101"
+                        }
+                    ],
+                    "severity": "warning",
+                    "type": "lib_symbol_issues"
+                },
+                {
+                    "description": "The current configuration does not include the symbol library 'pic_programmer'",
+                    "items": [
+                        {
+                            "description": "Symbol #FLG09 [PWR_FLAG]",
+                            "pos": {
+                                "x": 2.5527,
+                                "y": 1.3589
+                            },
+                            "uuid": "00000000-0000-0000-0000-0000442a5893"
+                        }
+                    ],
+                    "severity": "warning",
+                    "type": "lib_symbol_issues"
+                },
+                {
+                    "description": "The current configuration does not include the symbol library 'pic_programmer'",
+                    "items": [
+                        {
+                            "description": "Symbol R16 [R]",
+                            "pos": {
+                                "x": 2.54,
+                                "y": 1.4351
+                            },
+                            "uuid": "00000000-0000-0000-0000-0000442a58dc"
+                        }
+                    ],
+                    "severity": "warning",
+                    "type": "lib_symbol_issues"
+                },
+                {
+                    "description": "The current configuration does not include the symbol library 'pic_programmer'",
+                    "items": [
+                        {
+                            "description": "Symbol #PWR134 [VPP]",
+                            "pos": {
+                                "x": 2.6035,
+                                "y": 1.3589
+                            },
+                            "uuid": "00000000-0000-0000-0000-0000442a5846"
+                        }
+                    ],
+                    "severity": "warning",
+                    "type": "lib_symbol_issues"
+                },
+                {
+                    "description": "The current configuration does not include the symbol library 'pic_programmer'",
+                    "items": [
+                        {
+                            "description": "Symbol R15 [R]",
+                            "pos": {
+                                "x": 2.54,
+                                "y": 1.5621
+                            },
+                            "uuid": "00000000-0000-0000-0000-0000442a58d7"
+                        }
+                    ],
+                    "severity": "warning",
+                    "type": "lib_symbol_issues"
+                },
+                {
+                    "description": "The current configuration does not include the symbol library 'pic_programmer'",
+                    "items": [
+                        {
+                            "description": "Symbol C3 [CP]",
+                            "pos": {
+                                "x": 2.6797,
+                                "y": 1.3716
+                            },
+                            "uuid": "00000000-0000-0000-0000-0000442a584c"
+                        }
+                    ],
+                    "severity": "warning",
+                    "type": "lib_symbol_issues"
+                },
+                {
+                    "description": "The current configuration does not include the symbol library 'pic_programmer'",
+                    "items": [
+                        {
+                            "description": "Symbol #PWR07 [GND]",
+                            "pos": {
+                                "x": 2.6035,
+                                "y": 1.5748
+                            },
+                            "uuid": "00000000-0000-0000-0000-0000442a58df"
+                        }
+                    ],
+                    "severity": "warning",
+                    "type": "lib_symbol_issues"
+                },
+                {
+                    "description": "The current configuration does not include the symbol library 'pic_programmer'",
+                    "items": [
+                        {
+                            "description": "Symbol #PWR011 [GND]",
+                            "pos": {
+                                "x": 2.7432,
+                                "y": 1.3843
+                            },
+                            "uuid": "00000000-0000-0000-0000-0000442a5852"
+                        }
+                    ],
+                    "severity": "warning",
+                    "type": "lib_symbol_issues"
+                },
+                {
+                    "description": "The current configuration does not include the symbol library 'pic_programmer'",
+                    "items": [
+                        {
+                            "description": "Symbol #PWR043 [GND]",
+                            "pos": {
+                                "x": 0.7112,
+                                "y": 0.3429
+                            },
+                            "uuid": "00000000-0000-0000-0000-0000442a8838"
+                        }
+                    ],
+                    "severity": "warning",
+                    "type": "lib_symbol_issues"
+                },
+                {
+                    "description": "The current configuration does not include the symbol library 'pic_programmer'",
+                    "items": [
+                        {
+                            "description": "Symbol U1 [24C16]",
+                            "pos": {
+                                "x": 0.9398,
+                                "y": 0.3302
+                            },
+                            "uuid": "00000000-0000-0000-0000-0000442a87f7"
+                        }
+                    ],
+                    "severity": "warning",
+                    "type": "lib_symbol_issues"
+                },
+                {
+                    "description": "The current configuration does not include the symbol library 'pic_programmer'",
+                    "items": [
+                        {
+                            "description": "Symbol #PWR046 [GND]",
+                            "pos": {
+                                "x": 0.9398,
+                                "y": 0.4699
+                            },
+                            "uuid": "00000000-0000-0000-0000-000052c92629"
+                        }
+                    ],
+                    "severity": "warning",
+                    "type": "lib_symbol_issues"
+                },
+                {
+                    "description": "The current configuration does not include the symbol library 'pic_programmer'",
+                    "items": [
+                        {
+                            "description": "Symbol U6 [PIC12C508A]",
+                            "pos": {
+                                "x": 0.9525,
+                                "y": 0.7366
+                            },
+                            "uuid": "00000000-0000-0000-0000-0000442a81a5"
+                        }
+                    ],
+                    "severity": "warning",
+                    "type": "lib_symbol_issues"
+                },
+                {
+                    "description": "The current configuration does not include the symbol library 'pic_programmer'",
+                    "items": [
+                        {
+                            "description": "Symbol #PWR045 [GND]",
+                            "pos": {
+                                "x": 1.1303,
+                                "y": 0.6096
+                            },
+                            "uuid": "00000000-0000-0000-0000-0000442a8205"
+                        }
+                    ],
+                    "severity": "warning",
+                    "type": "lib_symbol_issues"
+                },
+                {
+                    "description": "The current configuration does not include the symbol library 'pic_programmer'",
+                    "items": [
+                        {
+                            "description": "Symbol #PWR044 [GND]",
+                            "pos": {
+                                "x": 0.6985,
+                                "y": 1.1811
+                            },
+                            "uuid": "00000000-0000-0000-0000-0000442a820f"
+                        }
+                    ],
+                    "severity": "warning",
+                    "type": "lib_symbol_issues"
+                },
+                {
+                    "description": "The current configuration does not include the symbol library 'pic_programmer'",
+                    "items": [
+                        {
+                            "description": "Symbol U5 [PIC16F54]",
+                            "pos": {
+                                "x": 0.9525,
+                                "y": 1.1684
+                            },
+                            "uuid": "00000000-0000-0000-0000-0000442a81a7"
+                        }
+                    ],
+                    "severity": "warning",
+                    "type": "lib_symbol_issues"
+                },
+                {
+                    "description": "The current configuration does not include the symbol library 'pic_programmer'",
+                    "items": [
+                        {
+                            "description": "Symbol C6 [C]",
+                            "pos": {
+                                "x": 0.6096,
+                                "y": 1.7145
+                            },
+                            "uuid": "00000000-0000-0000-0000-0000442aa12b"
+                        }
+                    ],
+                    "severity": "warning",
+                    "type": "lib_symbol_issues"
+                },
+                {
+                    "description": "The current configuration does not include the symbol library 'pic_programmer'",
+                    "items": [
+                        {
+                            "description": "Symbol #FLG047 [PWR_FLAG]",
+                            "pos": {
+                                "x": 0.8382,
+                                "y": 1.651
+                            },
+                            "uuid": "00000000-0000-0000-0000-00005558fa28"
+                        }
+                    ],
+                    "severity": "warning",
+                    "type": "lib_symbol_issues"
+                },
+                {
+                    "description": "The current configuration does not include the symbol library 'pic_programmer'",
+                    "items": [
+                        {
+                            "description": "Symbol #PWR041 [GND]",
+                            "pos": {
+                                "x": 0.6096,
+                                "y": 1.7653
+                            },
+                            "uuid": "00000000-0000-0000-0000-0000442aa138"
+                        }
+                    ],
+                    "severity": "warning",
+                    "type": "lib_symbol_issues"
+                },
+                {
+                    "description": "The current configuration does not include the symbol library 'pic_programmer'",
+                    "items": [
+                        {
+                            "description": "Symbol C7 [C]",
+                            "pos": {
+                                "x": 0.8382,
+                                "y": 1.7145
+                            },
+                            "uuid": "00000000-0000-0000-0000-0000442aa145"
+                        }
+                    ],
+                    "severity": "warning",
+                    "type": "lib_symbol_issues"
+                },
+                {
+                    "description": "The current configuration does not include the symbol library 'pic_programmer'",
+                    "items": [
+                        {
+                            "description": "Symbol #PWR040 [GND]",
+                            "pos": {
+                                "x": 0.8382,
+                                "y": 1.7653
+                            },
+                            "uuid": "00000000-0000-0000-0000-0000442aa147"
+                        }
+                    ],
+                    "severity": "warning",
+                    "type": "lib_symbol_issues"
+                },
+                {
+                    "description": "The current configuration does not include the symbol library 'pic_programmer'",
+                    "items": [
+                        {
+                            "description": "Symbol #PWR039 [GND]",
+                            "pos": {
+                                "x": 2.032,
+                                "y": 0.6604
+                            },
+                            "uuid": "00000000-0000-0000-0000-0000443697c3"
+                        }
+                    ],
+                    "severity": "warning",
+                    "type": "lib_symbol_issues"
+                },
+                {
+                    "description": "The current configuration does not include the symbol library 'pic_programmer'",
+                    "items": [
+                        {
+                            "description": "Symbol P2 [SUPP28]",
+                            "pos": {
+                                "x": 2.1844,
+                                "y": 0.6477
+                            },
+                            "uuid": "00000000-0000-0000-0000-00004436967e"
+                        }
+                    ],
+                    "severity": "warning",
+                    "type": "lib_symbol_issues"
+                },
+                {
+                    "description": "The current configuration does not include the symbol library 'pic_programmer'",
+                    "items": [
+                        {
+                            "description": "Symbol #PWR037 [GND]",
+                            "pos": {
+                                "x": 2.032,
+                                "y": 1.1684
+                            },
+                            "uuid": "00000000-0000-0000-0000-0000443cca5d"
+                        }
+                    ],
+                    "severity": "warning",
+                    "type": "lib_symbol_issues"
+                },
+                {
+                    "description": "The current configuration does not include the symbol library 'pic_programmer'",
+                    "items": [
+                        {
+                            "description": "Symbol #PWR036 [GND]",
+                            "pos": {
+                                "x": 2.032,
+                                "y": 1.27
+                            },
+                            "uuid": "00000000-0000-0000-0000-0000442a8794"
+                        }
+                    ],
+                    "severity": "warning",
+                    "type": "lib_symbol_issues"
+                },
+                {
+                    "description": "The current configuration does not include the symbol library 'pic_programmer'",
+                    "items": [
+                        {
+                            "description": "Symbol #PWR038 [GND]",
+                            "pos": {
+                                "x": 2.3368,
+                                "y": 0.7112
+                            },
+                            "uuid": "00000000-0000-0000-0000-0000443697c7"
+                        }
+                    ],
+                    "severity": "warning",
+                    "type": "lib_symbol_issues"
+                },
+                {
+                    "description": "The current configuration does not include the footprint library 'footprints'",
+                    "items": [
+                        {
+                            "description": "Symbol P3 [SUPP40]",
+                            "pos": {
+                                "x": 2.1844,
+                                "y": 1.2319
+                            },
+                            "uuid": "00000000-0000-0000-0000-0000442a88ed"
+                        }
+                    ],
+                    "severity": "warning",
+                    "type": "footprint_link_issues"
+                },
+                {
+                    "description": "The current configuration does not include the symbol library 'pic_programmer'",
+                    "items": [
+                        {
+                            "description": "Symbol P3 [SUPP40]",
+                            "pos": {
+                                "x": 2.1844,
+                                "y": 1.2319
+                            },
+                            "uuid": "00000000-0000-0000-0000-0000442a88ed"
+                        }
+                    ],
+                    "severity": "warning",
+                    "type": "lib_symbol_issues"
+                },
+                {
+                    "description": "The current configuration does not include the symbol library 'pic_programmer'",
+                    "items": [
+                        {
+                            "description": "Symbol #PWR042 [GND]",
+                            "pos": {
+                                "x": 2.3368,
+                                "y": 1.2192
+                            },
+                            "uuid": "00000000-0000-0000-0000-0000442a896a"
+                        }
+                    ],
+                    "severity": "warning",
+                    "type": "lib_symbol_issues"
+                }
+            ]
+        },
+        {
+            "path": "/pic_sockets/",
+            "uuid_path": "/2e45d1d2-c73f-46e5-98d6-3a9dc360bff5/00000000-0000-0000-0000-00004804a5e2",
+            "violations": []
+        }
+    ],
+    "source": "variants.kicad_sch"
+}

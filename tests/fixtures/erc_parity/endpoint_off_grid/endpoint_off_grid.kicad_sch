@@ -1,0 +1,10 @@
+(kicad_sch
+  (version 20260101)
+  (generator "eeschema")
+  (generator_version "10.0")
+  (uuid "6b093fe4-a3cd-4970-90ff-b56f275e6f3b")
+  (paper "A4")
+  (wire (pts (xy 50 50) (xy 60.001 50)) (stroke (width 0) (type default)) (uuid "wire-off-grid"))
+  (sheet_instances
+    (path "/" (page "1")))
+  (embedded_fonts no))

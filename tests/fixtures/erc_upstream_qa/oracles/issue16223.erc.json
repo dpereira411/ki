@@ -1,0 +1,322 @@
+{
+    "$schema": "https://schemas.kicad.org/erc.v1.json",
+    "coordinate_units": "mm",
+    "date": "2026-03-29T23:05:16",
+    "ignored_checks": [
+        {
+            "description": "Global label only appears once in the schematic",
+            "key": "single_global_label"
+        },
+        {
+            "description": "Four connection points are joined together",
+            "key": "four_way_junction"
+        },
+        {
+            "description": "SPICE model issue",
+            "key": "simulation_model_issue"
+        },
+        {
+            "description": "Assigned footprint doesn't match footprint filters",
+            "key": "footprint_filter"
+        }
+    ],
+    "included_severities": [
+        "error",
+        "warning"
+    ],
+    "kicad_version": "10.0.0",
+    "sheets": [
+        {
+            "path": "/",
+            "uuid_path": "/1a8e7370-b668-4162-803f-e7f4a10f2245",
+            "violations": [
+                {
+                    "description": "Input Power pin not driven by any Output Power pins",
+                    "items": [
+                        {
+                            "description": "Symbol U1 Pin 1 [REF, Power input, Line]",
+                            "pos": {
+                                "x": 0.5461,
+                                "y": 0.4191
+                            },
+                            "uuid": "e3f94fde-def8-4a6f-b694-c30869c05552"
+                        }
+                    ],
+                    "severity": "error",
+                    "type": "power_pin_not_driven"
+                },
+                {
+                    "description": "The current configuration does not include the symbol library 'pspice'",
+                    "items": [
+                        {
+                            "description": "Symbol #GND01 [0]",
+                            "pos": {
+                                "x": 0.5461,
+                                "y": 0.4826
+                            },
+                            "uuid": "cb0260a3-668d-49a8-9b47-3b0408cba6af"
+                        }
+                    ],
+                    "severity": "warning",
+                    "type": "lib_symbol_issues"
+                },
+                {
+                    "description": "The current configuration does not include the symbol library 'pspice'",
+                    "items": [
+                        {
+                            "description": "Symbol #GND02 [0]",
+                            "pos": {
+                                "x": 0.5461,
+                                "y": 0.8255
+                            },
+                            "uuid": "fea59903-cff8-410e-89fb-841c17399908"
+                        }
+                    ],
+                    "severity": "warning",
+                    "type": "lib_symbol_issues"
+                },
+                {
+                    "description": "The current configuration does not include the symbol library 'pspice'",
+                    "items": [
+                        {
+                            "description": "Symbol #GND06 [0]",
+                            "pos": {
+                                "x": 0.9652,
+                                "y": 0.5207
+                            },
+                            "uuid": "ae5e9139-3979-4c0a-a0df-66ce5f93eb58"
+                        }
+                    ],
+                    "severity": "warning",
+                    "type": "lib_symbol_issues"
+                },
+                {
+                    "description": "Symbol 'VDC' doesn't match copy in library 'Simulation_SPICE'",
+                    "items": [
+                        {
+                            "description": "Symbol V1 [VDC]",
+                            "pos": {
+                                "x": 1.0922,
+                                "y": 0.3683
+                            },
+                            "uuid": "b1f3dad6-3ca1-4f66-8a30-0f262dbc710e"
+                        }
+                    ],
+                    "severity": "warning",
+                    "type": "lib_symbol_mismatch"
+                },
+                {
+                    "description": "The current configuration does not include the symbol library 'pspice'",
+                    "items": [
+                        {
+                            "description": "Symbol #GND03 [0]",
+                            "pos": {
+                                "x": 0.5461,
+                                "y": 1.1684
+                            },
+                            "uuid": "b8579b94-f59b-4855-bb92-2dbec3578500"
+                        }
+                    ],
+                    "severity": "warning",
+                    "type": "lib_symbol_issues"
+                },
+                {
+                    "description": "The current configuration does not include the symbol library 'pspice'",
+                    "items": [
+                        {
+                            "description": "Symbol #GND07 [0]",
+                            "pos": {
+                                "x": 0.9652,
+                                "y": 0.8636
+                            },
+                            "uuid": "a62c8a35-10a3-428b-9801-59afa4b51854"
+                        }
+                    ],
+                    "severity": "warning",
+                    "type": "lib_symbol_issues"
+                },
+                {
+                    "description": "Symbol 'VDC' doesn't match copy in library 'Simulation_SPICE'",
+                    "items": [
+                        {
+                            "description": "Symbol V2 [VDC]",
+                            "pos": {
+                                "x": 1.0922,
+                                "y": 0.7112
+                            },
+                            "uuid": "ad2a66e3-1a33-48f6-aaeb-db3032a3f513"
+                        }
+                    ],
+                    "severity": "warning",
+                    "type": "lib_symbol_mismatch"
+                },
+                {
+                    "description": "Symbol 'VPULSE' doesn't match copy in library 'Simulation_SPICE'",
+                    "items": [
+                        {
+                            "description": "Symbol V6 [VPULSE]",
+                            "pos": {
+                                "x": 1.4224,
+                                "y": 0.4318
+                            },
+                            "uuid": "b8e17a2a-7446-4247-a06f-ebcc0bd8a891"
+                        }
+                    ],
+                    "severity": "warning",
+                    "type": "lib_symbol_mismatch"
+                },
+                {
+                    "description": "The current configuration does not include the symbol library 'pspice'",
+                    "items": [
+                        {
+                            "description": "Symbol #GND011 [0]",
+                            "pos": {
+                                "x": 1.4224,
+                                "y": 0.4826
+                            },
+                            "uuid": "c72501b6-c853-40c2-9106-20ca5333d314"
+                        }
+                    ],
+                    "severity": "warning",
+                    "type": "lib_symbol_issues"
+                },
+                {
+                    "description": "Symbol 'VDC' doesn't match copy in library 'Simulation_SPICE'",
+                    "items": [
+                        {
+                            "description": "Symbol V3 [VDC]",
+                            "pos": {
+                                "x": 1.0922,
+                                "y": 1.0541
+                            },
+                            "uuid": "206cc867-8eb6-40d0-96a6-791f7850cced"
+                        }
+                    ],
+                    "severity": "warning",
+                    "type": "lib_symbol_mismatch"
+                },
+                {
+                    "description": "The current configuration does not include the symbol library 'pspice'",
+                    "items": [
+                        {
+                            "description": "Symbol #GND08 [0]",
+                            "pos": {
+                                "x": 0.9652,
+                                "y": 1.2065
+                            },
+                            "uuid": "9e268656-15b7-4fe2-8853-015894cb33e9"
+                        }
+                    ],
+                    "severity": "warning",
+                    "type": "lib_symbol_issues"
+                },
+                {
+                    "description": "The current configuration does not include the symbol library 'pspice'",
+                    "items": [
+                        {
+                            "description": "Symbol #GND04 [0]",
+                            "pos": {
+                                "x": 0.5461,
+                                "y": 1.4986
+                            },
+                            "uuid": "87b5bb88-346d-44bf-8060-f2ae0182ca0c"
+                        }
+                    ],
+                    "severity": "warning",
+                    "type": "lib_symbol_issues"
+                },
+                {
+                    "description": "Symbol 'VDC' doesn't match copy in library 'Simulation_SPICE'",
+                    "items": [
+                        {
+                            "description": "Symbol V4 [VDC]",
+                            "pos": {
+                                "x": 1.0922,
+                                "y": 1.3843
+                            },
+                            "uuid": "93f7d86a-7b22-4c56-b309-f3a79274e164"
+                        }
+                    ],
+                    "severity": "warning",
+                    "type": "lib_symbol_mismatch"
+                },
+                {
+                    "description": "The current configuration does not include the symbol library 'pspice'",
+                    "items": [
+                        {
+                            "description": "Symbol #GND09 [0]",
+                            "pos": {
+                                "x": 0.9652,
+                                "y": 1.5367
+                            },
+                            "uuid": "cadaffeb-bca9-45ea-aa88-c0330693ad1d"
+                        }
+                    ],
+                    "severity": "warning",
+                    "type": "lib_symbol_issues"
+                },
+                {
+                    "description": "The current configuration does not include the symbol library 'pspice'",
+                    "items": [
+                        {
+                            "description": "Symbol #GND05 [0]",
+                            "pos": {
+                                "x": 0.5461,
+                                "y": 1.8415
+                            },
+                            "uuid": "70104aa5-4788-4403-84d9-b0e15fd998a5"
+                        }
+                    ],
+                    "severity": "warning",
+                    "type": "lib_symbol_issues"
+                },
+                {
+                    "description": "The current configuration does not include the symbol library 'pspice'",
+                    "items": [
+                        {
+                            "description": "Symbol #GND012 [0]",
+                            "pos": {
+                                "x": 1.8923,
+                                "y": 0.4953
+                            },
+                            "uuid": "4acb2041-c6aa-4386-861b-f3c1f2d5afff"
+                        }
+                    ],
+                    "severity": "warning",
+                    "type": "lib_symbol_issues"
+                },
+                {
+                    "description": "Symbol 'VDC' doesn't match copy in library 'Simulation_SPICE'",
+                    "items": [
+                        {
+                            "description": "Symbol V5 [VDC]",
+                            "pos": {
+                                "x": 1.0922,
+                                "y": 1.7272
+                            },
+                            "uuid": "f8246837-b2a5-4f60-9b09-1af12ebd706a"
+                        }
+                    ],
+                    "severity": "warning",
+                    "type": "lib_symbol_mismatch"
+                },
+                {
+                    "description": "The current configuration does not include the symbol library 'pspice'",
+                    "items": [
+                        {
+                            "description": "Symbol #GND010 [0]",
+                            "pos": {
+                                "x": 0.9652,
+                                "y": 1.8796
+                            },
+                            "uuid": "e380b0e5-2998-4ceb-b069-81e0241b4116"
+                        }
+                    ],
+                    "severity": "warning",
+                    "type": "lib_symbol_issues"
+                }
+            ]
+        }
+    ],
+    "source": "issue16223.kicad_sch"
+}

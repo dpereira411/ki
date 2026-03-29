@@ -1,0 +1,11 @@
+(kicad_sch
+  (version 20260101)
+  (generator "eeschema")
+  (uuid "invalid-libid-root")
+  (paper "A4")
+  (lib_symbols)
+  (symbol (lib_id "No Lib:Bad") (at 20 20 0) (unit 1) (body_style 1) (uuid "sym-a")
+    (property "Reference" "U1" (at 20 18 0) (effects (font (size 1.27 1.27))))
+    (property "Value" "Bad" (at 20 22 0) (effects (font (size 1.27 1.27)))))
+  (sheet_instances
+    (path "/" (page "1"))))

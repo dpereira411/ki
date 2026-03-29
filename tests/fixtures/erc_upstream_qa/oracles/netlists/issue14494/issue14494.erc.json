@@ -1,0 +1,147 @@
+{
+    "$schema": "https://schemas.kicad.org/erc.v1.json",
+    "coordinate_units": "mm",
+    "date": "2026-03-29T23:06:51",
+    "ignored_checks": [
+        {
+            "description": "Global label only appears once in the schematic",
+            "key": "single_global_label"
+        },
+        {
+            "description": "Four connection points are joined together",
+            "key": "four_way_junction"
+        },
+        {
+            "description": "SPICE model issue",
+            "key": "simulation_model_issue"
+        },
+        {
+            "description": "Assigned footprint doesn't match footprint filters",
+            "key": "footprint_filter"
+        }
+    ],
+    "included_severities": [
+        "error",
+        "warning"
+    ],
+    "kicad_version": "10.0.0",
+    "sheets": [
+        {
+            "path": "/",
+            "uuid_path": "/9c65c6c4-f8a1-4869-9ee5-38624b40fdf6",
+            "violations": [
+                {
+                    "description": "Netclass net_01 is not defined",
+                    "items": [
+                        {
+                            "description": "Directive Label [Net Class net_01]",
+                            "pos": {
+                                "x": 1.7272,
+                                "y": 1.0414
+                            },
+                            "uuid": "c3364c08-43a4-4538-a10f-ea20b6615cf9"
+                        }
+                    ],
+                    "severity": "error",
+                    "type": "undefined_netclass"
+                },
+                {
+                    "description": "Netclass net_01 is not defined",
+                    "items": [
+                        {
+                            "description": "Directive Label [Net Class net_01]",
+                            "pos": {
+                                "x": 1.8034,
+                                "y": 1.6002
+                            },
+                            "uuid": "d361e7b8-e9c7-4e0a-ba0a-dcc4bcfa92c7"
+                        }
+                    ],
+                    "severity": "error",
+                    "type": "undefined_netclass"
+                },
+                {
+                    "description": "Netclass net_02 is not defined",
+                    "items": [
+                        {
+                            "description": "Directive Label [Net Class net_02]",
+                            "pos": {
+                                "x": 1.27,
+                                "y": 0.762
+                            },
+                            "uuid": "1bf7253b-b6da-4156-856e-9ef8b5dcc7c0"
+                        }
+                    ],
+                    "severity": "error",
+                    "type": "undefined_netclass"
+                },
+                {
+                    "description": "Netclass net_02 is not defined",
+                    "items": [
+                        {
+                            "description": "Directive Label [Net Class net_02]",
+                            "pos": {
+                                "x": 1.2446,
+                                "y": 1.0922
+                            },
+                            "uuid": "5d615c22-3590-4433-9f49-f88a15bfe462"
+                        }
+                    ],
+                    "severity": "error",
+                    "type": "undefined_netclass"
+                },
+                {
+                    "description": "The current configuration does not include the footprint library '0IBF_RCL'",
+                    "items": [
+                        {
+                            "description": "Symbol R2 [R]",
+                            "pos": {
+                                "x": 1.9812,
+                                "y": 0.9652
+                            },
+                            "uuid": "1dd3c410-9299-41f8-a85a-cbefc6359e42"
+                        }
+                    ],
+                    "severity": "warning",
+                    "type": "footprint_link_issues"
+                },
+                {
+                    "description": "The current configuration does not include the footprint library '0IBF_RCL'",
+                    "items": [
+                        {
+                            "description": "Symbol R4 [R]",
+                            "pos": {
+                                "x": 2.159,
+                                "y": 1.5494
+                            },
+                            "uuid": "ffa8d79a-2371-411f-8da8-c03e956d0004"
+                        }
+                    ],
+                    "severity": "warning",
+                    "type": "footprint_link_issues"
+                },
+                {
+                    "description": "The current configuration does not include the footprint library '0IBF_RCL'",
+                    "items": [
+                        {
+                            "description": "Symbol R3 [R]",
+                            "pos": {
+                                "x": 1.0922,
+                                "y": 1.0922
+                            },
+                            "uuid": "0663dc95-1d72-4e0a-ad4b-87388dcd2ed9"
+                        }
+                    ],
+                    "severity": "warning",
+                    "type": "footprint_link_issues"
+                }
+            ]
+        },
+        {
+            "path": "/subsheet_01/",
+            "uuid_path": "/9c65c6c4-f8a1-4869-9ee5-38624b40fdf6/6b22bc55-3b0d-4d96-9827-112a2df8c14e",
+            "violations": []
+        }
+    ],
+    "source": "issue14494.kicad_sch"
+}

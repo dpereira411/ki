@@ -1,0 +1,412 @@
+{
+    "$schema": "https://schemas.kicad.org/erc.v1.json",
+    "coordinate_units": "mm",
+    "date": "2026-03-29T23:08:10",
+    "ignored_checks": [
+        {
+            "description": "Global label only appears once in the schematic",
+            "key": "single_global_label"
+        },
+        {
+            "description": "Four connection points are joined together",
+            "key": "four_way_junction"
+        },
+        {
+            "description": "SPICE model issue",
+            "key": "simulation_model_issue"
+        },
+        {
+            "description": "Assigned footprint doesn't match footprint filters",
+            "key": "footprint_filter"
+        }
+    ],
+    "included_severities": [
+        "error",
+        "warning"
+    ],
+    "kicad_version": "10.0.0",
+    "sheets": [
+        {
+            "path": "/",
+            "uuid_path": "/345f09c0-9aae-452d-8e25-bb6665c6b8ac",
+            "violations": [
+                {
+                    "description": "The current configuration does not include the symbol library 'laser_driver_schlib'",
+                    "items": [
+                        {
+                            "description": "Symbol V1 [VSOURCE]",
+                            "pos": {
+                                "x": 0.6731,
+                                "y": 0.9017
+                            },
+                            "uuid": "00000000-0000-0000-0000-000057336052"
+                        }
+                    ],
+                    "severity": "warning",
+                    "type": "lib_symbol_issues"
+                },
+                {
+                    "description": "The current configuration does not include the symbol library 'laser_driver_schlib'",
+                    "items": [
+                        {
+                            "description": "Symbol #PWR01 [GND]",
+                            "pos": {
+                                "x": 0.6731,
+                                "y": 1.0668
+                            },
+                            "uuid": "00000000-0000-0000-0000-0000578ec19d"
+                        }
+                    ],
+                    "severity": "warning",
+                    "type": "lib_symbol_issues"
+                },
+                {
+                    "description": "The current configuration does not include the symbol library 'laser_driver_schlib'",
+                    "items": [
+                        {
+                            "description": "Symbol R2 [R]",
+                            "pos": {
+                                "x": 1.1049,
+                                "y": 0.7366
+                            },
+                            "uuid": "00000000-0000-0000-0000-0000578ebb39"
+                        }
+                    ],
+                    "severity": "warning",
+                    "type": "lib_symbol_issues"
+                },
+                {
+                    "description": "The current configuration does not include the symbol library 'laser_driver_schlib'",
+                    "items": [
+                        {
+                            "description": "Symbol #PWR02 [GND]",
+                            "pos": {
+                                "x": 1.016,
+                                "y": 0.9144
+                            },
+                            "uuid": "00000000-0000-0000-0000-0000578ebbe4"
+                        }
+                    ],
+                    "severity": "warning",
+                    "type": "lib_symbol_issues"
+                },
+                {
+                    "description": "The current configuration does not include the symbol library 'laser_driver_schlib'",
+                    "items": [
+                        {
+                            "description": "Symbol R1 [R]",
+                            "pos": {
+                                "x": 1.0541,
+                                "y": 0.9144
+                            },
+                            "uuid": "00000000-0000-0000-0000-0000578ea7ee"
+                        }
+                    ],
+                    "severity": "warning",
+                    "type": "lib_symbol_issues"
+                },
+                {
+                    "description": "The current configuration does not include the symbol library 'laser_driver_schlib'",
+                    "items": [
+                        {
+                            "description": "Symbol #PWR03 [VDD]",
+                            "pos": {
+                                "x": 1.2573,
+                                "y": 0.8128
+                            },
+                            "uuid": "00000000-0000-0000-0000-000057890425"
+                        }
+                    ],
+                    "severity": "warning",
+                    "type": "lib_symbol_issues"
+                },
+                {
+                    "description": "The current configuration does not include the symbol library 'laser_driver_schlib'",
+                    "items": [
+                        {
+                            "description": "Symbol U1 [Generic_Opamp]",
+                            "pos": {
+                                "x": 1.2827,
+                                "y": 0.889
+                            },
+                            "uuid": "00000000-0000-0000-0000-00005788ff9f"
+                        }
+                    ],
+                    "severity": "warning",
+                    "type": "lib_symbol_issues"
+                },
+                {
+                    "description": "The current configuration does not include the symbol library 'laser_driver_schlib'",
+                    "items": [
+                        {
+                            "description": "Symbol #PWR04 [VSS]",
+                            "pos": {
+                                "x": 1.2573,
+                                "y": 0.9652
+                            },
+                            "uuid": "00000000-0000-0000-0000-000057890453"
+                        }
+                    ],
+                    "severity": "warning",
+                    "type": "lib_symbol_issues"
+                },
+                {
+                    "description": "The current configuration does not include the symbol library 'laser_driver_schlib'",
+                    "items": [
+                        {
+                            "description": "Symbol R4 [R]",
+                            "pos": {
+                                "x": 1.5621,
+                                "y": 0.7366
+                            },
+                            "uuid": "00000000-0000-0000-0000-0000578eba35"
+                        }
+                    ],
+                    "severity": "warning",
+                    "type": "lib_symbol_issues"
+                },
+                {
+                    "description": "The current configuration does not include the symbol library 'laser_driver_schlib'",
+                    "items": [
+                        {
+                            "description": "Symbol R3 [R]",
+                            "pos": {
+                                "x": 1.3716,
+                                "y": 1.0541
+                            },
+                            "uuid": "00000000-0000-0000-0000-0000578ea8b4"
+                        }
+                    ],
+                    "severity": "warning",
+                    "type": "lib_symbol_issues"
+                },
+                {
+                    "description": "The current configuration does not include the symbol library 'laser_driver_schlib'",
+                    "items": [
+                        {
+                            "description": "Symbol C1 [C]",
+                            "pos": {
+                                "x": 1.3716,
+                                "y": 1.1176
+                            },
+                            "uuid": "00000000-0000-0000-0000-0000578eb076"
+                        }
+                    ],
+                    "severity": "warning",
+                    "type": "lib_symbol_issues"
+                },
+                {
+                    "description": "The current configuration does not include the symbol library 'laser_driver_schlib'",
+                    "items": [
+                        {
+                            "description": "Symbol #PWR0101 [VDD]",
+                            "pos": {
+                                "x": 1.6256,
+                                "y": 0.8382
+                            },
+                            "uuid": "00000000-0000-0000-0000-00005a0b5a9d"
+                        }
+                    ],
+                    "severity": "warning",
+                    "type": "lib_symbol_issues"
+                },
+                {
+                    "description": "The current configuration does not include the symbol library 'laser_driver_schlib'",
+                    "items": [
+                        {
+                            "description": "Symbol Q1 [Q_NPN_CBE]",
+                            "pos": {
+                                "x": 1.6002,
+                                "y": 0.889
+                            },
+                            "uuid": "00000000-0000-0000-0000-0000578eadcc"
+                        }
+                    ],
+                    "severity": "warning",
+                    "type": "lib_symbol_issues"
+                },
+                {
+                    "description": "The current configuration does not include the symbol library 'laser_driver_schlib'",
+                    "items": [
+                        {
+                            "description": "Symbol R5 [R]",
+                            "pos": {
+                                "x": 1.6256,
+                                "y": 1.016
+                            },
+                            "uuid": "00000000-0000-0000-0000-0000578ea6d8"
+                        }
+                    ],
+                    "severity": "warning",
+                    "type": "lib_symbol_issues"
+                },
+                {
+                    "description": "The current configuration does not include the symbol library 'laser_driver_schlib'",
+                    "items": [
+                        {
+                            "description": "Symbol C2 [C]",
+                            "pos": {
+                                "x": 1.7272,
+                                "y": 1.016
+                            },
+                            "uuid": "00000000-0000-0000-0000-00005789085b"
+                        }
+                    ],
+                    "severity": "warning",
+                    "type": "lib_symbol_issues"
+                },
+                {
+                    "description": "The current configuration does not include the symbol library 'laser_driver_schlib'",
+                    "items": [
+                        {
+                            "description": "Symbol D1 [LED]",
+                            "pos": {
+                                "x": 1.6256,
+                                "y": 1.2446
+                            },
+                            "uuid": "00000000-0000-0000-0000-0000578eb1e8"
+                        }
+                    ],
+                    "severity": "warning",
+                    "type": "lib_symbol_issues"
+                },
+                {
+                    "description": "The current configuration does not include the symbol library 'laser_driver_schlib'",
+                    "items": [
+                        {
+                            "description": "Symbol #PWR06 [GND]",
+                            "pos": {
+                                "x": 1.6256,
+                                "y": 1.2954
+                            },
+                            "uuid": "00000000-0000-0000-0000-0000578eb42d"
+                        }
+                    ],
+                    "severity": "warning",
+                    "type": "lib_symbol_issues"
+                },
+                {
+                    "description": "Symbol 'PWR_FLAG' doesn't match copy in library 'power'",
+                    "items": [
+                        {
+                            "description": "Symbol #FLG0103 [PWR_FLAG]",
+                            "pos": {
+                                "x": 2.3368,
+                                "y": 0.5461
+                            },
+                            "uuid": "63fc4c18-7f39-4806-9185-c37efcf99579"
+                        }
+                    ],
+                    "severity": "warning",
+                    "type": "lib_symbol_mismatch"
+                },
+                {
+                    "description": "Symbol 'PWR_FLAG' doesn't match copy in library 'power'",
+                    "items": [
+                        {
+                            "description": "Symbol #FLG0101 [PWR_FLAG]",
+                            "pos": {
+                                "x": 2.3749,
+                                "y": 0.4064
+                            },
+                            "uuid": "30468655-fd8b-4bef-8c43-09d939fcbff5"
+                        }
+                    ],
+                    "severity": "warning",
+                    "type": "lib_symbol_mismatch"
+                },
+                {
+                    "description": "Symbol 'PWR_FLAG' doesn't match copy in library 'power'",
+                    "items": [
+                        {
+                            "description": "Symbol #FLG0102 [PWR_FLAG]",
+                            "pos": {
+                                "x": 2.3495,
+                                "y": 0.6604
+                            },
+                            "uuid": "a8f4cb9f-5c44-4d92-b170-52e37c1ffbb3"
+                        }
+                    ],
+                    "severity": "warning",
+                    "type": "lib_symbol_mismatch"
+                },
+                {
+                    "description": "The current configuration does not include the symbol library 'laser_driver_schlib'",
+                    "items": [
+                        {
+                            "description": "Symbol #PWR07 [GND]",
+                            "pos": {
+                                "x": 2.3876,
+                                "y": 0.5461
+                            },
+                            "uuid": "00000000-0000-0000-0000-0000578902d2"
+                        }
+                    ],
+                    "severity": "warning",
+                    "type": "lib_symbol_issues"
+                },
+                {
+                    "description": "The current configuration does not include the symbol library 'laser_driver_schlib'",
+                    "items": [
+                        {
+                            "description": "Symbol #PWR08 [VDD]",
+                            "pos": {
+                                "x": 2.4511,
+                                "y": 0.4064
+                            },
+                            "uuid": "00000000-0000-0000-0000-0000578903c0"
+                        }
+                    ],
+                    "severity": "warning",
+                    "type": "lib_symbol_issues"
+                },
+                {
+                    "description": "The current configuration does not include the symbol library 'laser_driver_schlib'",
+                    "items": [
+                        {
+                            "description": "Symbol V2 [VSOURCE]",
+                            "pos": {
+                                "x": 2.4511,
+                                "y": 0.4699
+                            },
+                            "uuid": "00000000-0000-0000-0000-0000578900ba"
+                        }
+                    ],
+                    "severity": "warning",
+                    "type": "lib_symbol_issues"
+                },
+                {
+                    "description": "The current configuration does not include the symbol library 'laser_driver_schlib'",
+                    "items": [
+                        {
+                            "description": "Symbol V3 [VSOURCE]",
+                            "pos": {
+                                "x": 2.4511,
+                                "y": 0.5969
+                            },
+                            "uuid": "00000000-0000-0000-0000-000057890232"
+                        }
+                    ],
+                    "severity": "warning",
+                    "type": "lib_symbol_issues"
+                },
+                {
+                    "description": "The current configuration does not include the symbol library 'laser_driver_schlib'",
+                    "items": [
+                        {
+                            "description": "Symbol #PWR09 [VSS]",
+                            "pos": {
+                                "x": 2.4511,
+                                "y": 0.6604
+                            },
+                            "uuid": "00000000-0000-0000-0000-0000578903e2"
+                        }
+                    ],
+                    "severity": "warning",
+                    "type": "lib_symbol_issues"
+                }
+            ]
+        }
+    ],
+    "source": "legacy_laser_driver.kicad_sch"
+}

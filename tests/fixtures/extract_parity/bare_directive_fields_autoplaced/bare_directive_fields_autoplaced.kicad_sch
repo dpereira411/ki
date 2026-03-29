@@ -1,0 +1,8 @@
+(kicad_sch
+  (version 20260101)
+  (generator "eeschema")
+  (uuid "bare-directive-fields-autoplaced-root")
+  (paper "A4")
+  (directive_label "X" (at 0 0 0) (shape input) (fields_autoplaced) (effects (font (size 1.27 1.27))) (uuid "d1"))
+  (sheet_instances
+    (path "/" (page "1"))))

@@ -1,0 +1,52 @@
+{
+    "$schema": "https://schemas.kicad.org/erc.v1.json",
+    "coordinate_units": "mm",
+    "date": "2026-03-29T23:04:51",
+    "ignored_checks": [
+        {
+            "description": "Global label only appears once in the schematic",
+            "key": "single_global_label"
+        },
+        {
+            "description": "Four connection points are joined together",
+            "key": "four_way_junction"
+        },
+        {
+            "description": "SPICE model issue",
+            "key": "simulation_model_issue"
+        },
+        {
+            "description": "Assigned footprint doesn't match footprint filters",
+            "key": "footprint_filter"
+        }
+    ],
+    "included_severities": [
+        "error",
+        "warning"
+    ],
+    "kicad_version": "10.0.0",
+    "sheets": [
+        {
+            "path": "/",
+            "uuid_path": "/4c9d4de9-9305-4dd7-bd4d-a30bf65598a4",
+            "violations": [
+                {
+                    "description": "The current configuration does not include the symbol library 'Test'",
+                    "items": [
+                        {
+                            "description": "Symbol U1 [Test_Symbol_GND]",
+                            "pos": {
+                                "x": 1.2192,
+                                "y": 0.762
+                            },
+                            "uuid": "8b3aa65b-4af6-4885-a4ae-c694578b7d31"
+                        }
+                    ],
+                    "severity": "warning",
+                    "type": "lib_symbol_issues"
+                }
+            ]
+        }
+    ],
+    "source": "ground_pin_test_no_ground_net.kicad_sch"
+}

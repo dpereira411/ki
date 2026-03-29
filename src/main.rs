@@ -3,6 +3,7 @@ mod cmd;
 mod error;
 mod extract;
 mod output;
+mod schematic;
 
 use std::process::ExitCode;
 use std::time::Duration;
@@ -38,6 +39,14 @@ fn main() -> ExitCode {
             }
             if matches!(err.error, KiError::Validation) {
                 return ExitCode::from(1);
+            }
+            if is_schematic_load_failure(&err.error) {
+                if !err.silent {
+                    for line in error::render_error(&err.error) {
+                        eprintln!("{line}");
+                    }
+                }
+                return ExitCode::from(3);
             }
             if !err.silent {
                 for line in error::render_error(&err.error) {
@@ -113,6 +122,14 @@ fn run_refresh(refresh: RefreshArgs) -> Result<(), RunError> {
 
 fn should_exit_success_on_error(silent: bool) -> bool {
     silent
+}
+
+fn is_schematic_load_failure(err: &KiError) -> bool {
+    match err {
+        KiError::Message(msg) => msg == "Failed to load schematic",
+        KiError::Lines(lines) => lines.iter().any(|line| line == "Failed to load schematic"),
+        _ => false,
+    }
 }
 
 fn is_refresh_unhandled(err: &KiCadError) -> bool {

@@ -1,0 +1,1142 @@
+{
+    "$schema": "https://schemas.kicad.org/erc.v1.json",
+    "coordinate_units": "mm",
+    "date": "2026-03-29T23:06:22",
+    "ignored_checks": [
+        {
+            "description": "Global label only appears once in the schematic",
+            "key": "single_global_label"
+        },
+        {
+            "description": "Four connection points are joined together",
+            "key": "four_way_junction"
+        },
+        {
+            "description": "SPICE model issue",
+            "key": "simulation_model_issue"
+        },
+        {
+            "description": "Assigned footprint doesn't match footprint filters",
+            "key": "footprint_filter"
+        }
+    ],
+    "included_severities": [
+        "error",
+        "warning"
+    ],
+    "kicad_version": "10.0.0",
+    "sheets": [
+        {
+            "path": "/",
+            "uuid_path": "/5b9623a5-6d01-41fc-9865-e1bc779418c8",
+            "violations": [
+                {
+                    "description": "The current configuration does not include the symbol library 'complex_hierarchy'",
+                    "items": [
+                        {
+                            "description": "Symbol P101 [CONN_2]",
+                            "pos": {
+                                "x": 0.4191,
+                                "y": 0.3556
+                            },
+                            "uuid": "00000000-0000-0000-0000-00004b3a12f4"
+                        }
+                    ],
+                    "severity": "warning",
+                    "type": "lib_symbol_issues"
+                },
+                {
+                    "description": "The current configuration does not include the symbol library 'complex_hierarchy'",
+                    "items": [
+                        {
+                            "description": "Symbol #U0101 [PWR_FLAG]",
+                            "pos": {
+                                "x": 0.5588,
+                                "y": 0.3175
+                            },
+                            "uuid": "00000000-0000-0000-0000-00004b03caa3"
+                        }
+                    ],
+                    "severity": "warning",
+                    "type": "lib_symbol_issues"
+                },
+                {
+                    "description": "The current configuration does not include the symbol library 'complex_hierarchy'",
+                    "items": [
+                        {
+                            "description": "Symbol #U0103 [PWR_FLAG]",
+                            "pos": {
+                                "x": 0.5588,
+                                "y": 0.4191
+                            },
+                            "uuid": "00000000-0000-0000-0000-00004ae17c31"
+                        }
+                    ],
+                    "severity": "warning",
+                    "type": "lib_symbol_issues"
+                },
+                {
+                    "description": "The current configuration does not include the symbol library 'complex_hierarchy'",
+                    "items": [
+                        {
+                            "description": "Symbol #PWR0101 [HT]",
+                            "pos": {
+                                "x": 0.635,
+                                "y": 0.3175
+                            },
+                            "uuid": "00000000-0000-0000-0000-00004b0fa68b"
+                        }
+                    ],
+                    "severity": "warning",
+                    "type": "lib_symbol_issues"
+                },
+                {
+                    "description": "The current configuration does not include the symbol library 'complex_hierarchy'",
+                    "items": [
+                        {
+                            "description": "Symbol #PWR0105 [GND]",
+                            "pos": {
+                                "x": 0.5588,
+                                "y": 0.4445
+                            },
+                            "uuid": "00000000-0000-0000-0000-00004b3a1302"
+                        }
+                    ],
+                    "severity": "warning",
+                    "type": "lib_symbol_issues"
+                },
+                {
+                    "description": "The current configuration does not include the symbol library 'complex_hierarchy'",
+                    "items": [
+                        {
+                            "description": "Symbol C101 [CP]",
+                            "pos": {
+                                "x": 0.635,
+                                "y": 0.381
+                            },
+                            "uuid": "00000000-0000-0000-0000-00004b3a1558"
+                        }
+                    ],
+                    "severity": "warning",
+                    "type": "lib_symbol_issues"
+                },
+                {
+                    "description": "The current configuration does not include the symbol library 'complex_hierarchy'",
+                    "items": [
+                        {
+                            "description": "Symbol #PWR0104 [GND]",
+                            "pos": {
+                                "x": 0.635,
+                                "y": 0.4318
+                            },
+                            "uuid": "00000000-0000-0000-0000-00004b3a1557"
+                        }
+                    ],
+                    "severity": "warning",
+                    "type": "lib_symbol_issues"
+                },
+                {
+                    "description": "The current configuration does not include the symbol library 'complex_hierarchy'",
+                    "items": [
+                        {
+                            "description": "Symbol P102 [CONN_2]",
+                            "pos": {
+                                "x": 0.4191,
+                                "y": 0.6604
+                            },
+                            "uuid": "00000000-0000-0000-0000-00004ad71b06"
+                        }
+                    ],
+                    "severity": "warning",
+                    "type": "lib_symbol_issues"
+                },
+                {
+                    "description": "The current configuration does not include the symbol library 'complex_hierarchy'",
+                    "items": [
+                        {
+                            "description": "Symbol #PWR0110 [GND]",
+                            "pos": {
+                                "x": 0.5334,
+                                "y": 0.7112
+                            },
+                            "uuid": "00000000-0000-0000-0000-00004ad71b8e"
+                        }
+                    ],
+                    "severity": "warning",
+                    "type": "lib_symbol_issues"
+                },
+                {
+                    "description": "The current configuration does not include the symbol library 'complex_hierarchy'",
+                    "items": [
+                        {
+                            "description": "Symbol D101 [D_Small]",
+                            "pos": {
+                                "x": 0.6858,
+                                "y": 0.635
+                            },
+                            "uuid": "00000000-0000-0000-0000-00004ae172f4"
+                        }
+                    ],
+                    "severity": "warning",
+                    "type": "lib_symbol_issues"
+                },
+                {
+                    "description": "The current configuration does not include the symbol library 'complex_hierarchy'",
+                    "items": [
+                        {
+                            "description": "Symbol #U0104 [PWR_FLAG]",
+                            "pos": {
+                                "x": 0.762,
+                                "y": 0.6223
+                            },
+                            "uuid": "00000000-0000-0000-0000-00004b03c9f9"
+                        }
+                    ],
+                    "severity": "warning",
+                    "type": "lib_symbol_issues"
+                },
+                {
+                    "description": "The current configuration does not include the symbol library 'complex_hierarchy'",
+                    "items": [
+                        {
+                            "description": "Symbol C104 [CP]",
+                            "pos": {
+                                "x": 0.8128,
+                                "y": 0.6985
+                            },
+                            "uuid": "00000000-0000-0000-0000-00004ae173cf"
+                        }
+                    ],
+                    "severity": "warning",
+                    "type": "lib_symbol_issues"
+                },
+                {
+                    "description": "The current configuration does not include the symbol library 'complex_hierarchy'",
+                    "items": [
+                        {
+                            "description": "Symbol #U0105 [+12V]",
+                            "pos": {
+                                "x": 0.9017,
+                                "y": 0.6223
+                            },
+                            "uuid": "00000000-0000-0000-0000-00004ae173ef"
+                        }
+                    ],
+                    "severity": "warning",
+                    "type": "lib_symbol_issues"
+                },
+                {
+                    "description": "The current configuration does not include the symbol library 'complex_hierarchy'",
+                    "items": [
+                        {
+                            "description": "Symbol #PWR0111 [GND]",
+                            "pos": {
+                                "x": 0.8128,
+                                "y": 0.762
+                            },
+                            "uuid": "00000000-0000-0000-0000-00004ae173d0"
+                        }
+                    ],
+                    "severity": "warning",
+                    "type": "lib_symbol_issues"
+                },
+                {
+                    "description": "The current configuration does not include the symbol library 'complex_hierarchy'",
+                    "items": [
+                        {
+                            "description": "Symbol C105 [CP]",
+                            "pos": {
+                                "x": 1.6891,
+                                "y": 0.6985
+                            },
+                            "uuid": "00000000-0000-0000-0000-00004b4b15e7"
+                        }
+                    ],
+                    "severity": "warning",
+                    "type": "lib_symbol_issues"
+                },
+                {
+                    "description": "The current configuration does not include the symbol library 'complex_hierarchy'",
+                    "items": [
+                        {
+                            "description": "Symbol #U0102 [+12V]",
+                            "pos": {
+                                "x": 1.8796,
+                                "y": 0.3175
+                            },
+                            "uuid": "d418c5eb-438d-44c1-a35d-5bffdd0f0c32"
+                        }
+                    ],
+                    "severity": "warning",
+                    "type": "lib_symbol_issues"
+                },
+                {
+                    "description": "The current configuration does not include the symbol library 'complex_hierarchy'",
+                    "items": [
+                        {
+                            "description": "Symbol U101 [7805]",
+                            "pos": {
+                                "x": 2.0066,
+                                "y": 0.3429
+                            },
+                            "uuid": "00000000-0000-0000-0000-00004b4b1532"
+                        }
+                    ],
+                    "severity": "warning",
+                    "type": "lib_symbol_issues"
+                },
+                {
+                    "description": "The current configuration does not include the symbol library 'complex_hierarchy'",
+                    "items": [
+                        {
+                            "description": "Symbol #PWR0103 [GND]",
+                            "pos": {
+                                "x": 2.0066,
+                                "y": 0.4191
+                            },
+                            "uuid": "00000000-0000-0000-0000-00004b03ce88"
+                        }
+                    ],
+                    "severity": "warning",
+                    "type": "lib_symbol_issues"
+                },
+                {
+                    "description": "The current configuration does not include the symbol library 'complex_hierarchy'",
+                    "items": [
+                        {
+                            "description": "Symbol #PWR0107 [VCC]",
+                            "pos": {
+                                "x": 2.0066,
+                                "y": 0.5588
+                            },
+                            "uuid": "00000000-0000-0000-0000-00004b4b1253"
+                        }
+                    ],
+                    "severity": "warning",
+                    "type": "lib_symbol_issues"
+                },
+                {
+                    "description": "The current configuration does not include the symbol library 'complex_hierarchy'",
+                    "items": [
+                        {
+                            "description": "Symbol U102 [ICL7660]",
+                            "pos": {
+                                "x": 2.0193,
+                                "y": 0.7366
+                            },
+                            "uuid": "00000000-0000-0000-0000-00004b4b1230"
+                        }
+                    ],
+                    "severity": "warning",
+                    "type": "lib_symbol_issues"
+                },
+                {
+                    "description": "The current configuration does not include the symbol library 'complex_hierarchy'",
+                    "items": [
+                        {
+                            "description": "Symbol #PWR0112 [GND]",
+                            "pos": {
+                                "x": 2.0066,
+                                "y": 0.9144
+                            },
+                            "uuid": "00000000-0000-0000-0000-00004b4b1237"
+                        }
+                    ],
+                    "severity": "warning",
+                    "type": "lib_symbol_issues"
+                },
+                {
+                    "description": "The current configuration does not include the symbol library 'complex_hierarchy'",
+                    "items": [
+                        {
+                            "description": "Symbol #PWR0102 [VCC]",
+                            "pos": {
+                                "x": 2.3368,
+                                "y": 0.3175
+                            },
+                            "uuid": "00000000-0000-0000-0000-00004b4b124e"
+                        }
+                    ],
+                    "severity": "warning",
+                    "type": "lib_symbol_issues"
+                },
+                {
+                    "description": "The current configuration does not include the symbol library 'complex_hierarchy'",
+                    "items": [
+                        {
+                            "description": "Symbol #PWR0108 [GND]",
+                            "pos": {
+                                "x": 2.2987,
+                                "y": 0.5842
+                            },
+                            "uuid": "00000000-0000-0000-0000-00004b4b15da"
+                        }
+                    ],
+                    "severity": "warning",
+                    "type": "lib_symbol_issues"
+                },
+                {
+                    "description": "The current configuration does not include the symbol library 'complex_hierarchy'",
+                    "items": [
+                        {
+                            "description": "Symbol C102 [CP]",
+                            "pos": {
+                                "x": 2.3368,
+                                "y": 0.4064
+                            },
+                            "uuid": "00000000-0000-0000-0000-00004b03cec2"
+                        }
+                    ],
+                    "severity": "warning",
+                    "type": "lib_symbol_issues"
+                },
+                {
+                    "description": "The current configuration does not include the symbol library 'complex_hierarchy'",
+                    "items": [
+                        {
+                            "description": "Symbol #PWR0106 [GND]",
+                            "pos": {
+                                "x": 2.3368,
+                                "y": 0.4572
+                            },
+                            "uuid": "00000000-0000-0000-0000-00004b03cec1"
+                        }
+                    ],
+                    "severity": "warning",
+                    "type": "lib_symbol_issues"
+                },
+                {
+                    "description": "The current configuration does not include the symbol library 'complex_hierarchy'",
+                    "items": [
+                        {
+                            "description": "Symbol C103 [CP]",
+                            "pos": {
+                                "x": 2.3368,
+                                "y": 0.635
+                            },
+                            "uuid": "00000000-0000-0000-0000-00004b4b15d9"
+                        }
+                    ],
+                    "severity": "warning",
+                    "type": "lib_symbol_issues"
+                },
+                {
+                    "description": "The current configuration does not include the symbol library 'complex_hierarchy'",
+                    "items": [
+                        {
+                            "description": "Symbol #PWR0109 [-VAA]",
+                            "pos": {
+                                "x": 2.3749,
+                                "y": 0.6985
+                            },
+                            "uuid": "00000000-0000-0000-0000-00004b4b1578"
+                        }
+                    ],
+                    "severity": "warning",
+                    "type": "lib_symbol_issues"
+                },
+                {
+                    "description": "The current configuration does not include the symbol library 'complex_hierarchy'",
+                    "items": [
+                        {
+                            "description": "Symbol P301 [CONN_2]",
+                            "pos": {
+                                "x": 0.3429,
+                                "y": 0.5334
+                            },
+                            "uuid": "00000000-0000-0000-0000-00004b3a1367"
+                        }
+                    ],
+                    "severity": "warning",
+                    "type": "lib_symbol_issues"
+                },
+                {
+                    "description": "The current configuration does not include the symbol library 'complex_hierarchy'",
+                    "items": [
+                        {
+                            "description": "Symbol #PWR0301 [GND]",
+                            "pos": {
+                                "x": 0.4572,
+                                "y": 0.5715
+                            },
+                            "uuid": "00000000-0000-0000-0000-00004b3a136a"
+                        }
+                    ],
+                    "severity": "warning",
+                    "type": "lib_symbol_issues"
+                },
+                {
+                    "description": "The current configuration does not include the symbol library 'complex_hierarchy'",
+                    "items": [
+                        {
+                            "description": "Symbol R301 [R]",
+                            "pos": {
+                                "x": 0.6223,
+                                "y": 0.508
+                            },
+                            "uuid": "00000000-0000-0000-0000-00004b4f363e"
+                        }
+                    ],
+                    "severity": "warning",
+                    "type": "lib_symbol_issues"
+                },
+                {
+                    "description": "The current configuration does not include the symbol library 'complex_hierarchy'",
+                    "items": [
+                        {
+                            "description": "Symbol C302 [C]",
+                            "pos": {
+                                "x": 0.7239,
+                                "y": 0.5715
+                            },
+                            "uuid": "00000000-0000-0000-0000-00004b4f3641"
+                        }
+                    ],
+                    "severity": "warning",
+                    "type": "lib_symbol_issues"
+                },
+                {
+                    "description": "The current configuration does not include the symbol library 'complex_hierarchy'",
+                    "items": [
+                        {
+                            "description": "Symbol #PWR0302 [GND]",
+                            "pos": {
+                                "x": 0.7239,
+                                "y": 0.6223
+                            },
+                            "uuid": "00000000-0000-0000-0000-00004b4f364a"
+                        }
+                    ],
+                    "severity": "warning",
+                    "type": "lib_symbol_issues"
+                },
+                {
+                    "description": "The current configuration does not include the symbol library 'complex_hierarchy'",
+                    "items": [
+                        {
+                            "description": "Symbol R302 [R]",
+                            "pos": {
+                                "x": 0.8255,
+                                "y": 0.508
+                            },
+                            "uuid": "00000000-0000-0000-0000-00004b3a136b"
+                        }
+                    ],
+                    "severity": "warning",
+                    "type": "lib_symbol_issues"
+                },
+                {
+                    "description": "The current configuration does not include the symbol library 'complex_hierarchy'",
+                    "items": [
+                        {
+                            "description": "Symbol R303 [R]",
+                            "pos": {
+                                "x": 1.0033,
+                                "y": 0.508
+                            },
+                            "uuid": "00000000-0000-0000-0000-00004b3a1359"
+                        }
+                    ],
+                    "severity": "warning",
+                    "type": "lib_symbol_issues"
+                },
+                {
+                    "description": "The current configuration does not include the symbol library 'complex_hierarchy'",
+                    "items": [
+                        {
+                            "description": "Symbol C301 [C]",
+                            "pos": {
+                                "x": 1.1049,
+                                "y": 0.4064
+                            },
+                            "uuid": "00000000-0000-0000-0000-00004b3a1358"
+                        }
+                    ],
+                    "severity": "warning",
+                    "type": "lib_symbol_issues"
+                },
+                {
+                    "description": "The current configuration does not include the symbol library 'complex_hierarchy'",
+                    "items": [
+                        {
+                            "description": "Symbol C303 [C]",
+                            "pos": {
+                                "x": 1.016,
+                                "y": 0.6477
+                            },
+                            "uuid": "00000000-0000-0000-0000-00004b3a1366"
+                        }
+                    ],
+                    "severity": "warning",
+                    "type": "lib_symbol_issues"
+                },
+                {
+                    "description": "The current configuration does not include the symbol library 'complex_hierarchy'",
+                    "items": [
+                        {
+                            "description": "Symbol #PWR0305 [GND]",
+                            "pos": {
+                                "x": 1.016,
+                                "y": 0.6985
+                            },
+                            "uuid": "00000000-0000-0000-0000-00004b3a1369"
+                        }
+                    ],
+                    "severity": "warning",
+                    "type": "lib_symbol_issues"
+                },
+                {
+                    "description": "The current configuration does not include the symbol library 'complex_hierarchy'",
+                    "items": [
+                        {
+                            "description": "Symbol #U0301 [+12V]",
+                            "pos": {
+                                "x": 1.2065,
+                                "y": 0.4953
+                            },
+                            "uuid": "00000000-0000-0000-0000-00004b3a135b"
+                        }
+                    ],
+                    "severity": "warning",
+                    "type": "lib_symbol_issues"
+                },
+                {
+                    "description": "The current configuration does not include the symbol library 'complex_hierarchy'",
+                    "items": [
+                        {
+                            "description": "Symbol U301 [LM358N]",
+                            "pos": {
+                                "x": 1.2319,
+                                "y": 0.6096
+                            },
+                            "uuid": "00000000-0000-0000-0000-00004b3a135c"
+                        }
+                    ],
+                    "severity": "warning",
+                    "type": "lib_symbol_issues"
+                },
+                {
+                    "description": "The current configuration does not include the symbol library 'complex_hierarchy'",
+                    "items": [
+                        {
+                            "description": "Symbol #PWR0306 [-VAA]",
+                            "pos": {
+                                "x": 1.2065,
+                                "y": 0.7239
+                            },
+                            "uuid": "00000000-0000-0000-0000-00004b4b1080"
+                        }
+                    ],
+                    "severity": "warning",
+                    "type": "lib_symbol_issues"
+                },
+                {
+                    "description": "The current configuration does not include the symbol library 'complex_hierarchy'",
+                    "items": [
+                        {
+                            "description": "Symbol #PWR0304 [HT]",
+                            "pos": {
+                                "x": 1.8542,
+                                "y": 0.6731
+                            },
+                            "uuid": "00000000-0000-0000-0000-00004b3a135f"
+                        }
+                    ],
+                    "severity": "warning",
+                    "type": "lib_symbol_issues"
+                },
+                {
+                    "description": "The current configuration does not include the symbol library 'complex_hierarchy'",
+                    "items": [
+                        {
+                            "description": "Symbol D301 [D_Small]",
+                            "pos": {
+                                "x": 1.8542,
+                                "y": 0.7112
+                            },
+                            "uuid": "00000000-0000-0000-0000-00004b3a1375"
+                        }
+                    ],
+                    "severity": "warning",
+                    "type": "lib_symbol_issues"
+                },
+                {
+                    "description": "The current configuration does not include the symbol library 'complex_hierarchy'",
+                    "items": [
+                        {
+                            "description": "Symbol D302 [D_Small]",
+                            "pos": {
+                                "x": 1.8542,
+                                "y": 0.7874
+                            },
+                            "uuid": "00000000-0000-0000-0000-00004b3a1377"
+                        }
+                    ],
+                    "severity": "warning",
+                    "type": "lib_symbol_issues"
+                },
+                {
+                    "description": "The current configuration does not include the symbol library 'complex_hierarchy'",
+                    "items": [
+                        {
+                            "description": "Symbol #U0302 [+12V]",
+                            "pos": {
+                                "x": 1.6002,
+                                "y": 1.2573
+                            },
+                            "uuid": "00000000-0000-0000-0000-00004b3a136f"
+                        }
+                    ],
+                    "severity": "warning",
+                    "type": "lib_symbol_issues"
+                },
+                {
+                    "description": "The current configuration does not include the symbol library 'complex_hierarchy'",
+                    "items": [
+                        {
+                            "description": "Symbol R305 [R]",
+                            "pos": {
+                                "x": 1.8542,
+                                "y": 0.9144
+                            },
+                            "uuid": "00000000-0000-0000-0000-00004b3a1374"
+                        }
+                    ],
+                    "severity": "warning",
+                    "type": "lib_symbol_issues"
+                },
+                {
+                    "description": "The current configuration does not include the symbol library 'complex_hierarchy'",
+                    "items": [
+                        {
+                            "description": "Symbol #PWR0314 [GND]",
+                            "pos": {
+                                "x": 1.2827,
+                                "y": 1.6256
+                            },
+                            "uuid": "00000000-0000-0000-0000-00004b3a1361"
+                        }
+                    ],
+                    "severity": "warning",
+                    "type": "lib_symbol_issues"
+                },
+                {
+                    "description": "The current configuration does not include the symbol library 'complex_hierarchy'",
+                    "items": [
+                        {
+                            "description": "Symbol #PWR0308 [GND]",
+                            "pos": {
+                                "x": 1.8542,
+                                "y": 0.9779
+                            },
+                            "uuid": "00000000-0000-0000-0000-00004b3a1373"
+                        }
+                    ],
+                    "severity": "warning",
+                    "type": "lib_symbol_issues"
+                },
+                {
+                    "description": "The current configuration does not include the symbol library 'complex_hierarchy'",
+                    "items": [
+                        {
+                            "description": "Symbol R313 [R]",
+                            "pos": {
+                                "x": 1.3335,
+                                "y": 1.6256
+                            },
+                            "uuid": "00000000-0000-0000-0000-00004b3a1362"
+                        }
+                    ],
+                    "severity": "warning",
+                    "type": "lib_symbol_issues"
+                },
+                {
+                    "description": "The current configuration does not include the symbol library 'complex_hierarchy'",
+                    "items": [
+                        {
+                            "description": "Symbol #PWR0303 [HT]",
+                            "pos": {
+                                "x": 2.0066,
+                                "y": 0.6477
+                            },
+                            "uuid": "00000000-0000-0000-0000-00004b3a135e"
+                        }
+                    ],
+                    "severity": "warning",
+                    "type": "lib_symbol_issues"
+                },
+                {
+                    "description": "The current configuration does not include the symbol library 'complex_hierarchy'",
+                    "items": [
+                        {
+                            "description": "Symbol R304 [R]",
+                            "pos": {
+                                "x": 2.0066,
+                                "y": 0.6985
+                            },
+                            "uuid": "00000000-0000-0000-0000-00004b3a1376"
+                        }
+                    ],
+                    "severity": "warning",
+                    "type": "lib_symbol_issues"
+                },
+                {
+                    "description": "The current configuration does not include the symbol library 'complex_hierarchy'",
+                    "items": [
+                        {
+                            "description": "Symbol U301 [LM358N]",
+                            "pos": {
+                                "x": 1.6256,
+                                "y": 1.3716
+                            },
+                            "uuid": "00000000-0000-0000-0000-00004b3a1368"
+                        }
+                    ],
+                    "severity": "warning",
+                    "type": "lib_symbol_issues"
+                },
+                {
+                    "description": "The current configuration does not include the symbol library 'complex_hierarchy'",
+                    "items": [
+                        {
+                            "description": "Symbol Q301 [MPSA92]",
+                            "pos": {
+                                "x": 1.9812,
+                                "y": 0.8382
+                            },
+                            "uuid": "00000000-0000-0000-0000-00004b3a1360"
+                        }
+                    ],
+                    "severity": "warning",
+                    "type": "lib_symbol_issues"
+                },
+                {
+                    "description": "The current configuration does not include the symbol library 'complex_hierarchy'",
+                    "items": [
+                        {
+                            "description": "Symbol #PWR0312 [-VAA]",
+                            "pos": {
+                                "x": 1.6002,
+                                "y": 1.4859
+                            },
+                            "uuid": "00000000-0000-0000-0000-00004b4b1086"
+                        }
+                    ],
+                    "severity": "warning",
+                    "type": "lib_symbol_issues"
+                },
+                {
+                    "description": "The current configuration does not include the symbol library 'complex_hierarchy'",
+                    "items": [
+                        {
+                            "description": "Symbol RV301 [POT]",
+                            "pos": {
+                                "x": 1.4859,
+                                "y": 1.6256
+                            },
+                            "uuid": "00000000-0000-0000-0000-00004b3a1357"
+                        }
+                    ],
+                    "severity": "warning",
+                    "type": "lib_symbol_issues"
+                },
+                {
+                    "description": "The current configuration does not include the symbol library 'complex_hierarchy'",
+                    "items": [
+                        {
+                            "description": "Symbol #PWR0310 [GND]",
+                            "pos": {
+                                "x": 1.778,
+                                "y": 1.3208
+                            },
+                            "uuid": "00000000-0000-0000-0000-00004b3a1378"
+                        }
+                    ],
+                    "severity": "warning",
+                    "type": "lib_symbol_issues"
+                },
+                {
+                    "description": "The current configuration does not include the symbol library 'complex_hierarchy'",
+                    "items": [
+                        {
+                            "description": "Symbol D303 [D_Small]",
+                            "pos": {
+                                "x": 2.0066,
+                                "y": 1.016
+                            },
+                            "uuid": "00000000-0000-0000-0000-00004b616afa"
+                        }
+                    ],
+                    "severity": "warning",
+                    "type": "lib_symbol_issues"
+                },
+                {
+                    "description": "The current configuration does not include the symbol library 'complex_hierarchy'",
+                    "items": [
+                        {
+                            "description": "Symbol R308 [R]",
+                            "pos": {
+                                "x": 1.8415,
+                                "y": 1.2954
+                            },
+                            "uuid": "00000000-0000-0000-0000-00004b3a1371"
+                        }
+                    ],
+                    "severity": "warning",
+                    "type": "lib_symbol_issues"
+                },
+                {
+                    "description": "The current configuration does not include the symbol library 'complex_hierarchy'",
+                    "items": [
+                        {
+                            "description": "Symbol D304 [D_Small]",
+                            "pos": {
+                                "x": 2.0066,
+                                "y": 1.143
+                            },
+                            "uuid": "00000000-0000-0000-0000-00004b3a137b"
+                        }
+                    ],
+                    "severity": "warning",
+                    "type": "lib_symbol_issues"
+                },
+                {
+                    "description": "The current configuration does not include the symbol library 'complex_hierarchy'",
+                    "items": [
+                        {
+                            "description": "Symbol R312 [R]",
+                            "pos": {
+                                "x": 1.8796,
+                                "y": 1.3716
+                            },
+                            "uuid": "00000000-0000-0000-0000-00004b3a136d"
+                        }
+                    ],
+                    "severity": "warning",
+                    "type": "lib_symbol_issues"
+                },
+                {
+                    "description": "The current configuration does not include the symbol library 'complex_hierarchy'",
+                    "items": [
+                        {
+                            "description": "Symbol #PWR0307 [HT]",
+                            "pos": {
+                                "x": 2.1844,
+                                "y": 0.8382
+                            },
+                            "uuid": "00000000-0000-0000-0000-00004b3a135d"
+                        }
+                    ],
+                    "severity": "warning",
+                    "type": "lib_symbol_issues"
+                },
+                {
+                    "description": "The current configuration does not include the symbol library 'complex_hierarchy'",
+                    "items": [
+                        {
+                            "description": "Symbol Q302 [MPSA42]",
+                            "pos": {
+                                "x": 2.159,
+                                "y": 0.9398
+                            },
+                            "uuid": "00000000-0000-0000-0000-00004b3a137d"
+                        }
+                    ],
+                    "severity": "warning",
+                    "type": "lib_symbol_issues"
+                },
+                {
+                    "description": "The current configuration does not include the symbol library 'complex_hierarchy'",
+                    "items": [
+                        {
+                            "description": "Symbol Q304 [MPSA42]",
+                            "pos": {
+                                "x": 1.9812,
+                                "y": 1.2954
+                            },
+                            "uuid": "00000000-0000-0000-0000-00004b3a1379"
+                        }
+                    ],
+                    "severity": "warning",
+                    "type": "lib_symbol_issues"
+                },
+                {
+                    "description": "The current configuration does not include the symbol library 'complex_hierarchy'",
+                    "items": [
+                        {
+                            "description": "Symbol R311 [R]",
+                            "pos": {
+                                "x": 2.0574,
+                                "y": 1.3335
+                            },
+                            "uuid": "00000000-0000-0000-0000-00004b61688c"
+                        }
+                    ],
+                    "severity": "warning",
+                    "type": "lib_symbol_issues"
+                },
+                {
+                    "description": "The current configuration does not include the symbol library 'complex_hierarchy'",
+                    "items": [
+                        {
+                            "description": "Symbol Q303 [MPSA92]",
+                            "pos": {
+                                "x": 2.159,
+                                "y": 1.2192
+                            },
+                            "uuid": "00000000-0000-0000-0000-00004b3a137c"
+                        }
+                    ],
+                    "severity": "warning",
+                    "type": "lib_symbol_issues"
+                },
+                {
+                    "description": "The current configuration does not include the symbol library 'complex_hierarchy'",
+                    "items": [
+                        {
+                            "description": "Symbol C304 [C]",
+                            "pos": {
+                                "x": 2.0574,
+                                "y": 1.4605
+                            },
+                            "uuid": "00000000-0000-0000-0000-00004b3a1365"
+                        }
+                    ],
+                    "severity": "warning",
+                    "type": "lib_symbol_issues"
+                },
+                {
+                    "description": "The current configuration does not include the symbol library 'complex_hierarchy'",
+                    "items": [
+                        {
+                            "description": "Symbol #PWR0313 [GND]",
+                            "pos": {
+                                "x": 2.0574,
+                                "y": 1.5113
+                            },
+                            "uuid": "00000000-0000-0000-0000-00004b6168a3"
+                        }
+                    ],
+                    "severity": "warning",
+                    "type": "lib_symbol_issues"
+                },
+                {
+                    "description": "The current configuration does not include the symbol library 'complex_hierarchy'",
+                    "items": [
+                        {
+                            "description": "Symbol #PWR0311 [GND]",
+                            "pos": {
+                                "x": 2.1844,
+                                "y": 1.3462
+                            },
+                            "uuid": "00000000-0000-0000-0000-00004b3a137a"
+                        }
+                    ],
+                    "severity": "warning",
+                    "type": "lib_symbol_issues"
+                },
+                {
+                    "description": "The current configuration does not include the symbol library 'complex_hierarchy'",
+                    "items": [
+                        {
+                            "description": "Symbol R309 [R]",
+                            "pos": {
+                                "x": 2.2606,
+                                "y": 1.2954
+                            },
+                            "uuid": "00000000-0000-0000-0000-00004b3a1370"
+                        }
+                    ],
+                    "severity": "warning",
+                    "type": "lib_symbol_issues"
+                },
+                {
+                    "description": "The current configuration does not include the symbol library 'complex_hierarchy'",
+                    "items": [
+                        {
+                            "description": "Symbol R306 [R]",
+                            "pos": {
+                                "x": 2.4003,
+                                "y": 1.0541
+                            },
+                            "uuid": "00000000-0000-0000-0000-00004b3a1364"
+                        }
+                    ],
+                    "severity": "warning",
+                    "type": "lib_symbol_issues"
+                },
+                {
+                    "description": "The current configuration does not include the symbol library 'complex_hierarchy'",
+                    "items": [
+                        {
+                            "description": "Symbol R310 [R]",
+                            "pos": {
+                                "x": 2.3114,
+                                "y": 1.2954
+                            },
+                            "uuid": "00000000-0000-0000-0000-00004b617b88"
+                        }
+                    ],
+                    "severity": "warning",
+                    "type": "lib_symbol_issues"
+                },
+                {
+                    "description": "The current configuration does not include the symbol library 'complex_hierarchy'",
+                    "items": [
+                        {
+                            "description": "Symbol R307 [R]",
+                            "pos": {
+                                "x": 2.4003,
+                                "y": 1.1303
+                            },
+                            "uuid": "00000000-0000-0000-0000-00004b616b96"
+                        }
+                    ],
+                    "severity": "warning",
+                    "type": "lib_symbol_issues"
+                },
+                {
+                    "description": "The current configuration does not include the symbol library 'complex_hierarchy'",
+                    "items": [
+                        {
+                            "description": "Symbol #PWR0309 [GND]",
+                            "pos": {
+                                "x": 2.6035,
+                                "y": 1.1557
+                            },
+                            "uuid": "00000000-0000-0000-0000-00004b3a1363"
+                        }
+                    ],
+                    "severity": "warning",
+                    "type": "lib_symbol_issues"
+                },
+                {
+                    "description": "The current configuration does not include the symbol library 'complex_hierarchy'",
+                    "items": [
+                        {
+                            "description": "Symbol P302 [CONN_2]",
+                            "pos": {
+                                "x": 2.7305,
+                                "y": 1.1176
+                            },
+                            "uuid": "00000000-0000-0000-0000-00004b3a136c"
+                        }
+                    ],
+                    "severity": "warning",
+                    "type": "lib_symbol_issues"
+                }
+            ]
+        },
+        {
+            "path": "/ampli_ht_vertical/",
+            "uuid_path": "/5b9623a5-6d01-41fc-9865-e1bc779418c8/00000000-0000-0000-0000-00004b3a1333",
+            "violations": []
+        },
+        {
+            "path": "/ampli_ht_horizontal/",
+            "uuid_path": "/5b9623a5-6d01-41fc-9865-e1bc779418c8/00000000-0000-0000-0000-00004b3a13a4",
+            "violations": []
+        }
+    ],
+    "source": "legacy_hierarchy.kicad_sch"
+}

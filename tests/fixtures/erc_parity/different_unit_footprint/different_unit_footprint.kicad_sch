@@ -1,0 +1,38 @@
+(kicad_sch
+  (version 20260101)
+  (generator "eeschema")
+  (generator_version "10.0")
+  (uuid "4a8eb70d-7c4d-43bd-b3ab-d43f34ca4dc2")
+  (paper "A4")
+  (lib_symbols
+    (symbol "MissingLib:DualFootprint"
+      (pin_numbers hide)
+      (pin_names (offset 0))
+      (exclude_from_sim no)
+      (in_bom yes)
+      (on_board yes)
+      (in_pos_files yes)
+      (property "Reference" "U" (at 0 7.62 0) (show_name no) (do_not_autoplace no) (effects (font (size 1.27 1.27))))
+      (property "Value" "DualFootprint" (at 0 -7.62 0) (show_name no) (do_not_autoplace no) (effects (font (size 1.27 1.27))))
+      (property "Footprint" "" (at 0 0 0) (hide yes) (show_name no) (do_not_autoplace no) (effects (font (size 1.27 1.27))))
+      (property "Datasheet" "" (at 0 0 0) (hide yes) (show_name no) (do_not_autoplace no) (effects (font (size 1.27 1.27))))
+      (symbol "DualFootprint_1_1"
+        (rectangle (start -2.54 2.54) (end 2.54 -2.54) (stroke (width 0.254) (type default)) (fill (type none))))
+      (symbol "DualFootprint_2_1"
+        (rectangle (start -2.54 2.54) (end 2.54 -2.54) (stroke (width 0.254) (type default)) (fill (type none))))
+      (embedded_fonts no)))
+  (symbol (lib_id "MissingLib:DualFootprint") (at 50.8 50.8 0) (unit 1) (body_style 1) (exclude_from_sim no) (in_bom yes) (on_board yes) (in_pos_files yes) (dnp no) (fields_autoplaced yes) (uuid "sym-a")
+    (property "Reference" "U1" (at 48.26 58.42 0) (effects (font (size 1.27 1.27))))
+    (property "Value" "DualFootprint" (at 48.26 43.18 0) (effects (font (size 1.27 1.27))))
+    (property "Footprint" "LibA:PkgA" (at 50.8 50.8 0) (hide yes) (effects (font (size 1.27 1.27))))
+    (property "Datasheet" "" (at 50.8 50.8 0) (hide yes) (effects (font (size 1.27 1.27))))
+    (instances (project "different_unit_footprint" (path "/4a8eb70d-7c4d-43bd-b3ab-d43f34ca4dc2" (reference "U1") (unit 1)))))
+  (symbol (lib_id "MissingLib:DualFootprint") (at 71.12 50.8 0) (unit 2) (body_style 1) (exclude_from_sim no) (in_bom yes) (on_board yes) (in_pos_files yes) (dnp no) (fields_autoplaced yes) (uuid "sym-b")
+    (property "Reference" "U1" (at 68.58 58.42 0) (effects (font (size 1.27 1.27))))
+    (property "Value" "DualFootprint" (at 68.58 43.18 0) (effects (font (size 1.27 1.27))))
+    (property "Footprint" "LibB:PkgB" (at 71.12 50.8 0) (hide yes) (effects (font (size 1.27 1.27))))
+    (property "Datasheet" "" (at 71.12 50.8 0) (hide yes) (effects (font (size 1.27 1.27))))
+    (instances (project "different_unit_footprint" (path "/4a8eb70d-7c4d-43bd-b3ab-d43f34ca4dc2" (reference "U1") (unit 2)))))
+  (sheet_instances
+    (path "/" (page "1")))
+  (embedded_fonts no))

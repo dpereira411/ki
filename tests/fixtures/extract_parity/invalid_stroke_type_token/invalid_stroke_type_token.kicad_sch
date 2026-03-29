@@ -1,0 +1,8 @@
+(kicad_sch
+  (version 20260101)
+  (generator "eeschema")
+  (uuid "invalid-stroke-type-root")
+  (paper "A4")
+  (wire (pts (xy 0 0) (xy 10 0)) (stroke (width 0) (type nonsense)) (uuid "w4"))
+  (sheet_instances
+    (path "/" (page "1"))))

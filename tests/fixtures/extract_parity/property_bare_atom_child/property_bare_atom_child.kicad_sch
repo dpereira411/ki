@@ -1,0 +1,10 @@
+(kicad_sch
+  (version 20260101)
+  (generator "eeschema")
+  (uuid "root-uuid")
+  (paper "A4")
+  (lib_symbols
+    (symbol "Device:R" (pin_numbers hide) (pin_names (offset 0))
+      (property "Reference" "R" (at 0 0 0) (effects (font (size 1.27 1.27))) foo)
+      (property "Value" "R" (at 0 0 0) (effects (font (size 1.27 1.27))))))
+  (sheet_instances (path "/" (page "1"))))

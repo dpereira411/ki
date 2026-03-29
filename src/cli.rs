@@ -35,13 +35,16 @@ COMMANDS:
     remove-wire <path.kicad_sch> <x1> <y1> <x2> <y2>
     add-label <path.kicad_sch> <text> <x> <y> <angle>
     add-global-label <path.kicad_sch> <text> <shape> <x> <y> <angle>
+    remove-label <path.kicad_sch> <name>
+    rename-label <path.kicad_sch> <name> <new_name>
     add-junction <path.kicad_sch> <x> <y>
     add-no-connect <path.kicad_sch> <x> <y>
     fork-symbol <path.kicad_sch> <reference> <library_name> <target_symbol_name> [--override]
     push-to-lib <path.kicad_sch> <reference> <library_name>
-    replace-from-lib <path.kicad_sch> <reference> <library_name> <symbol_name> [--override-value]
-    update-from-lib <path.kicad_sch> <library_name> <reference> [--override-value]
-    update-from-lib <path.kicad_sch> <library_name> --all [--override-value]
+    replace-from-lib <path.kicad_sch> <reference> <library_name> <symbol_name> [--override-value] [--preserve-property <name>...]
+    update-from-lib <path.kicad_sch> <library_name> <reference> [--override-value] [--preserve-property <name>...]
+    update-from-lib <path.kicad_sch> <library_name> --all [--override-value] [--preserve-property <name>...]
+    erc <path.kicad_sch>
     query component <path.kicad_sch> <reference>
     query net <path.kicad_sch> <net_name> [--hierarchical]
     query unconnected <path.kicad_sch> [--hierarchical]
@@ -94,7 +97,7 @@ EXIT CODES:
   1   validation warnings or errors found, or IPC refresh failure
   2   parse or IO error";
 
-const SCHEMATIC_AFTER_LONG_HELP: &str = "Actions:\n  inspect <path.kicad_sch>\n  set-property <path.kicad_sch> <reference> <key> <value>\n  remove-property <path.kicad_sch> <reference> <key>\n  add-symbol <path.kicad_sch> <lib_id> <reference> <value> <x> <y>\n  remove-symbol <path.kicad_sch> <reference>\n  rename <path.kicad_sch> <reference> <new_lib_id>\n  add-wire <path.kicad_sch> <x1> <y1> <x2> <y2>\n  remove-wire <path.kicad_sch> <x1> <y1> <x2> <y2>\n  add-label <path.kicad_sch> <text> <x> <y> <angle>\n  add-global-label <path.kicad_sch> <text> <shape> <x> <y> <angle>\n  add-junction <path.kicad_sch> <x> <y>\n  add-no-connect <path.kicad_sch> <x> <y>\n  fork-symbol <path.kicad_sch> <reference> <library_name> <target_symbol_name> [--override]\n  push-to-lib <path.kicad_sch> <reference> <library_name>\n  replace-from-lib <path.kicad_sch> <reference> <library_name> <symbol_name> [--override-value]\n  update-from-lib <path.kicad_sch> <library_name> <reference> [--override-value]\n  update-from-lib <path.kicad_sch> <library_name> --all [--override-value]\n  query component <path.kicad_sch> <reference>\n  query net <path.kicad_sch> <net_name> [--hierarchical]\n  query unconnected <path.kicad_sch> [--hierarchical]\n  check-intent <path.kicad_sch> --intent <file.json>\n\nFlags:\n  --json            Machine-readable JSON to stdout\n  --diagnostics     Emit diagnostics as JSON array to stderr";
+const SCHEMATIC_AFTER_LONG_HELP: &str = "Actions:\n  inspect <path.kicad_sch>\n  set-property <path.kicad_sch> <reference> <key> <value>\n  remove-property <path.kicad_sch> <reference> <key>\n  add-symbol <path.kicad_sch> <lib_id> <reference> <value> <x> <y>\n  remove-symbol <path.kicad_sch> <reference>\n  rename <path.kicad_sch> <reference> <new_lib_id>\n  add-wire <path.kicad_sch> <x1> <y1> <x2> <y2>\n  remove-wire <path.kicad_sch> <x1> <y1> <x2> <y2>\n  add-label <path.kicad_sch> <text> <x> <y> <angle>\n  add-global-label <path.kicad_sch> <text> <shape> <x> <y> <angle>\n  add-junction <path.kicad_sch> <x> <y>\n  add-no-connect <path.kicad_sch> <x> <y>\n  fork-symbol <path.kicad_sch> <reference> <library_name> <target_symbol_name> [--override]\n  push-to-lib <path.kicad_sch> <reference> <library_name>\n  replace-from-lib <path.kicad_sch> <reference> <library_name> <symbol_name> [--override-value] [--preserve-property <name>...]\n  update-from-lib <path.kicad_sch> <library_name> <reference> [--override-value] [--preserve-property <name>...]\n  update-from-lib <path.kicad_sch> <library_name> --all [--override-value] [--preserve-property <name>...]\n  erc <path.kicad_sch> [--json] [--output <FILE>] [--units <UNITS>] [--severity-all|--severity-error|--severity-warning|--severity-exclusions] [--exit-code-violations]\n  query component <path.kicad_sch> <reference>\n  query net <path.kicad_sch> <net_name> [--hierarchical]\n  query unconnected <path.kicad_sch> [--hierarchical]\n  check-intent <path.kicad_sch> --intent <file.json>\n\nFlags:\n  --json            Machine-readable JSON to stdout\n  --diagnostics     Emit diagnostics as JSON array to stderr";
 
 const PCB_AFTER_LONG_HELP: &str = "Actions:\n  inspect <path.kicad_pcb>\n  query footprint <path.kicad_pcb> <reference>\n  set-property <path.kicad_pcb> <key> <value>\n  add-trace <path.kicad_pcb> <x1> <y1> <x2> <y2> <width> <layer> <net>\n  remove-trace <path.kicad_pcb> <x1> <y1> <x2> <y2>\n  add-via <path.kicad_pcb> <x> <y> <size> <drill> <net>\n  add-footprint <path.kicad_pcb> <lib_ref> <x> <y> <layer> <reference> <value>\n  move-footprint <path.kicad_pcb> <reference> <x> <y> [rotation]\n  remove-footprint <path.kicad_pcb> <reference>\n\nFlags:\n  --json            Machine-readable JSON to stdout\n  --diagnostics     Emit diagnostics as JSON array to stderr";
 
@@ -308,11 +311,12 @@ pub enum SchematicAction {
         lib_id: String,
         reference: String,
         value: String,
-        x: String,
-        y: String,
+        x: f64,
+        y: f64,
         #[command(flatten)]
         output: OutputArgs,
     },
+
     /// Remove a symbol instance from a schematic.
     RemoveSymbol {
         path: String,
@@ -332,20 +336,20 @@ pub enum SchematicAction {
     /// Add a wire segment.
     AddWire {
         path: String,
-        x1: String,
-        y1: String,
-        x2: String,
-        y2: String,
+        x1: f64,
+        y1: f64,
+        x2: f64,
+        y2: f64,
         #[command(flatten)]
         output: OutputArgs,
     },
     /// Remove a wire segment.
     RemoveWire {
         path: String,
-        x1: String,
-        y1: String,
-        x2: String,
-        y2: String,
+        x1: f64,
+        y1: f64,
+        x2: f64,
+        y2: f64,
         #[command(flatten)]
         output: OutputArgs,
     },
@@ -353,9 +357,9 @@ pub enum SchematicAction {
     AddLabel {
         path: String,
         text: String,
-        x: String,
-        y: String,
-        angle: String,
+        x: f64,
+        y: f64,
+        angle: f64,
         #[command(flatten)]
         output: OutputArgs,
     },
@@ -364,25 +368,40 @@ pub enum SchematicAction {
         path: String,
         text: String,
         shape: String,
-        x: String,
-        y: String,
-        angle: String,
+        x: f64,
+        y: f64,
+        angle: f64,
+        #[command(flatten)]
+        output: OutputArgs,
+    },
+    /// Remove all labels with the given text.
+    RemoveLabel {
+        path: String,
+        name: String,
+        #[command(flatten)]
+        output: OutputArgs,
+    },
+    /// Rename all labels with the given text to a new name.
+    RenameLabel {
+        path: String,
+        name: String,
+        new_name: String,
         #[command(flatten)]
         output: OutputArgs,
     },
     /// Add a junction marker.
     AddJunction {
         path: String,
-        x: String,
-        y: String,
+        x: f64,
+        y: f64,
         #[command(flatten)]
         output: OutputArgs,
     },
     /// Add a no-connect marker.
     AddNoConnect {
         path: String,
-        x: String,
-        y: String,
+        x: f64,
+        y: f64,
         #[command(flatten)]
         output: OutputArgs,
     },
@@ -413,6 +432,8 @@ pub enum SchematicAction {
         symbol_name: String,
         #[arg(long)]
         override_value: bool,
+        #[arg(long = "preserve-property")]
+        preserve_property: Vec<String>,
         #[command(flatten)]
         output: OutputArgs,
     },
@@ -425,8 +446,30 @@ pub enum SchematicAction {
         all: bool,
         #[arg(long)]
         override_value: bool,
+        #[arg(long = "preserve-property")]
+        preserve_property: Vec<String>,
         #[command(flatten)]
         output: OutputArgs,
+    },
+    /// Run electrical rules checks on a schematic.
+    Erc {
+        path: String,
+        #[arg(short, long)]
+        output: Option<String>,
+        #[arg(long, default_value = "mm")]
+        units: String,
+        #[arg(long)]
+        severity_all: bool,
+        #[arg(long)]
+        severity_error: bool,
+        #[arg(long)]
+        severity_warning: bool,
+        #[arg(long)]
+        severity_exclusions: bool,
+        #[arg(long)]
+        exit_code_violations: bool,
+        #[command(flatten)]
+        format: OutputArgs,
     },
     /// Query schematic components or nets.
     Query(SchematicQueryCommand),
@@ -551,34 +594,34 @@ pub enum PcbAction {
     /// Add a PCB trace segment.
     AddTrace {
         path: String,
-        x1: String,
-        y1: String,
-        x2: String,
-        y2: String,
-        width: String,
+        x1: f64,
+        y1: f64,
+        x2: f64,
+        y2: f64,
+        width: f64,
         layer: String,
-        net: String,
+        net: i32,
         #[command(flatten)]
         output: OutputArgs,
     },
     /// Remove a PCB trace segment.
     RemoveTrace {
         path: String,
-        x1: String,
-        y1: String,
-        x2: String,
-        y2: String,
+        x1: f64,
+        y1: f64,
+        x2: f64,
+        y2: f64,
         #[command(flatten)]
         output: OutputArgs,
     },
     /// Add a via.
     AddVia {
         path: String,
-        x: String,
-        y: String,
-        size: String,
-        drill: String,
-        net: String,
+        x: f64,
+        y: f64,
+        size: f64,
+        drill: f64,
+        net: i32,
         #[command(flatten)]
         output: OutputArgs,
     },
@@ -586,8 +629,8 @@ pub enum PcbAction {
     AddFootprint {
         path: String,
         lib_ref: String,
-        x: String,
-        y: String,
+        x: f64,
+        y: f64,
         layer: String,
         reference: String,
         value: String,
@@ -598,9 +641,9 @@ pub enum PcbAction {
     MoveFootprint {
         path: String,
         reference: String,
-        x: String,
-        y: String,
-        rotation: Option<String>,
+        x: f64,
+        y: f64,
+        rotation: Option<f64>,
         #[command(flatten)]
         output: OutputArgs,
     },
@@ -778,6 +821,57 @@ mod tests {
             Command::Schematic(SchematicCommand {
                 action: SchematicAction::UpdateFromLib { all: true, .. }
             })
+        ));
+    }
+
+    #[test]
+    fn parses_update_from_lib_preserve_properties() {
+        let args = Args::try_parse_from([
+            "ki",
+            "schematic",
+            "update-from-lib",
+            "a.kicad_sch",
+            "Device",
+            "R1",
+            "--preserve-property",
+            "MPN",
+            "--preserve-property",
+            "Manufacturer",
+        ])
+        .expect("update-from-lib preserve properties should parse");
+        assert!(matches!(
+            args.command,
+            Command::Schematic(SchematicCommand {
+                action: SchematicAction::UpdateFromLib {
+                    preserve_property,
+                    ..
+                }
+            }) if preserve_property == ["MPN", "Manufacturer"]
+        ));
+    }
+
+    #[test]
+    fn parses_replace_from_lib_preserve_property() {
+        let args = Args::try_parse_from([
+            "ki",
+            "schematic",
+            "replace-from-lib",
+            "a.kicad_sch",
+            "R1",
+            "Device",
+            "R",
+            "--preserve-property",
+            "MPN",
+        ])
+        .expect("replace-from-lib preserve property should parse");
+        assert!(matches!(
+            args.command,
+            Command::Schematic(SchematicCommand {
+                action: SchematicAction::ReplaceFromLib {
+                    preserve_property,
+                    ..
+                }
+            }) if preserve_property == ["MPN"]
         ));
     }
 

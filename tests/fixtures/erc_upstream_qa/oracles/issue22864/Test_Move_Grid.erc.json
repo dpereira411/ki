@@ -1,0 +1,137 @@
+{
+    "$schema": "https://schemas.kicad.org/erc.v1.json",
+    "coordinate_units": "mm",
+    "date": "2026-03-29T23:05:53",
+    "ignored_checks": [
+        {
+            "description": "Global label only appears once in the schematic",
+            "key": "single_global_label"
+        },
+        {
+            "description": "Four connection points are joined together",
+            "key": "four_way_junction"
+        },
+        {
+            "description": "SPICE model issue",
+            "key": "simulation_model_issue"
+        },
+        {
+            "description": "Assigned footprint doesn't match footprint filters",
+            "key": "footprint_filter"
+        }
+    ],
+    "included_severities": [
+        "error",
+        "warning"
+    ],
+    "kicad_version": "10.0.0",
+    "sheets": [
+        {
+            "path": "/",
+            "uuid_path": "/0c75c306-927c-401a-9754-31b7a0ff1a88",
+            "violations": [
+                {
+                    "description": "Label not connected",
+                    "items": [
+                        {
+                            "description": "Hierarchical Label 'Pin1'",
+                            "pos": {
+                                "x": 1.4097,
+                                "y": 1.1938
+                            },
+                            "uuid": "249cc818-53d2-4783-8c71-37e8bb19c5ab"
+                        }
+                    ],
+                    "severity": "error",
+                    "type": "label_dangling"
+                },
+                {
+                    "description": "Label not connected",
+                    "items": [
+                        {
+                            "description": "Hierarchical Label 'Pin2'",
+                            "pos": {
+                                "x": 1.4097,
+                                "y": 1.2192
+                            },
+                            "uuid": "7797a5f3-f86a-4ff0-8da8-0603742288a3"
+                        }
+                    ],
+                    "severity": "error",
+                    "type": "label_dangling"
+                },
+                {
+                    "description": "Label not connected",
+                    "items": [
+                        {
+                            "description": "Hierarchical Label 'Pin1'",
+                            "pos": {
+                                "x": 1.397,
+                                "y": 1.0668
+                            },
+                            "uuid": "11ef11a3-f753-4581-8ee8-4bf6eda9df04"
+                        }
+                    ],
+                    "severity": "error",
+                    "type": "label_dangling"
+                },
+                {
+                    "description": "Label not connected",
+                    "items": [
+                        {
+                            "description": "Hierarchical Label 'Pin2'",
+                            "pos": {
+                                "x": 1.397,
+                                "y": 1.0922
+                            },
+                            "uuid": "4502b5af-3cef-4777-b471-e303174db36e"
+                        }
+                    ],
+                    "severity": "error",
+                    "type": "label_dangling"
+                },
+                {
+                    "description": "Symbol pin or wire end off connection grid",
+                    "items": [
+                        {
+                            "description": "Horizontal Wire, length 0.1206 mm",
+                            "pos": {
+                                "x": 1.1557,
+                                "y": 1.0414
+                            },
+                            "uuid": "3d864797-f502-4c0c-808e-aff8299e0a14"
+                        }
+                    ],
+                    "severity": "warning",
+                    "type": "endpoint_off_grid"
+                },
+                {
+                    "description": "Symbol pin or wire end off connection grid",
+                    "items": [
+                        {
+                            "description": "Horizontal Wire, length 0.1206 mm",
+                            "pos": {
+                                "x": 1.1557,
+                                "y": 1.0668
+                            },
+                            "uuid": "15674a81-6897-4411-83ee-04c3fc99c7cd"
+                        }
+                    ],
+                    "severity": "warning",
+                    "type": "endpoint_off_grid"
+                }
+            ]
+        },
+        {
+            "path": "/sheet1/",
+            "uuid_path": "/0c75c306-927c-401a-9754-31b7a0ff1a88/55d5f2c9-5bd3-4e5f-83c9-32f32b2c9868",
+            "violations": []
+        },
+        {
+            "path": "/sheet2/",
+            "uuid_path": "/0c75c306-927c-401a-9754-31b7a0ff1a88/c63030d0-0d12-481f-8161-de2cf4c2b48d",
+            "violations": []
+        }
+    ],
+    "source": "Test_Move_Grid.kicad_sch"
+}

@@ -1,0 +1,44 @@
+{
+  "board": {
+    "design_settings": {
+      "meta": {
+        "version": 2
+      }
+    }
+  },
+  "cvpcb": {},
+  "erc": {
+    "erc_exclusions": [],
+    "meta": {
+      "version": 0
+    },
+    "rule_severities": {
+      "single_global_label": "warning",
+      "lib_symbol_issues": "warning",
+      "lib_symbol_mismatch": "warning"
+    }
+  },
+  "libraries": {
+    "pinned_footprint_libs": [],
+    "pinned_symbol_libs": []
+  },
+  "meta": {
+    "filename": "single_global_label.kicad_pro",
+    "version": 1
+  },
+  "net_settings": {
+    "classes": [],
+    "meta": {
+      "version": 0
+    }
+  },
+  "pcbnew": {},
+  "schematic": {
+    "legacy_lib_dir": "",
+    "meta": {
+      "version": 0
+    }
+  },
+  "sheets": [],
+  "text_variables": {}
+}

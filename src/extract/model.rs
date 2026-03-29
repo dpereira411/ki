@@ -12,6 +12,12 @@ pub struct ExtractedNetlist {
     pub nets: Vec<Net>,
 }
 
+#[derive(Debug, Clone)]
+pub struct ExtractReport {
+    pub netlist: ExtractedNetlist,
+    pub diagnostics: Vec<ExtractDiagnostic>,
+}
+
 #[derive(Debug, Clone, Serialize)]
 pub struct LibPart {
     pub lib: String,
@@ -53,6 +59,10 @@ pub struct Component {
 pub struct Property {
     pub name: String,
     pub value: String,
+    #[serde(skip_serializing_if = "Option::is_none")]
+    pub x: Option<f64>,
+    #[serde(skip_serializing_if = "Option::is_none")]
+    pub y: Option<f64>,
 }
 
 #[derive(Debug, Clone, Serialize)]
@@ -91,10 +101,15 @@ pub struct ComponentPin {
 pub struct ExtractComponent {
     #[serde(rename = "ref")]
     pub ref_: String,
+    #[serde(skip_serializing_if = "Option::is_none")]
     pub lib_part_id: Option<String>,
+    #[serde(skip_serializing_if = "Option::is_none")]
     pub value: Option<String>,
+    #[serde(skip_serializing_if = "Option::is_none")]
     pub footprint: Option<String>,
+    #[serde(skip_serializing_if = "Option::is_none")]
     pub datasheet: Option<String>,
+    #[serde(skip_serializing_if = "Option::is_none")]
     pub sheet_path: Option<String>,
     pub properties: Vec<Property>,
     pub pins: Vec<ComponentPin>,
@@ -110,10 +125,10 @@ pub struct ExtractLibPin {
 #[derive(Debug, Clone, Serialize)]
 pub struct ExtractLibPart {
     pub id: String,
-    pub lib: String,
-    pub part: String,
+    #[serde(skip_serializing_if = "Option::is_none")]
     pub description: Option<String>,
-    pub documentation: Option<String>,
+    #[serde(skip_serializing_if = "Option::is_none")]
+    pub datasheet: Option<String>,
     pub footprint_filters: Vec<String>,
     pub fields: Vec<Field>,
     pub pins: Vec<ExtractLibPin>,
@@ -153,5 +168,14 @@ pub struct ExtractDoc {
     #[serde(skip_serializing_if = "Option::is_none")]
     pub nets: Option<Vec<ExtractNet>>,
     #[serde(skip_serializing_if = "Option::is_none")]
-    pub diagnostics: Option<Vec<serde_json::Value>>,
+    pub diagnostics: Option<Vec<ExtractDiagnostic>>,
+}
+
+#[derive(Debug, Clone, Serialize, PartialEq, Eq)]
+pub struct ExtractDiagnostic {
+    pub severity: String,
+    #[serde(skip_serializing_if = "Option::is_none")]
+    pub code: Option<String>,
+    pub message: String,
+    pub source: String,
 }

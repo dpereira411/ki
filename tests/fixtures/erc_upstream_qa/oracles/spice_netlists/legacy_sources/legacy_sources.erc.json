@@ -1,0 +1,622 @@
+{
+    "$schema": "https://schemas.kicad.org/erc.v1.json",
+    "coordinate_units": "mm",
+    "date": "2026-03-29T23:08:17",
+    "ignored_checks": [
+        {
+            "description": "Global label only appears once in the schematic",
+            "key": "single_global_label"
+        },
+        {
+            "description": "Four connection points are joined together",
+            "key": "four_way_junction"
+        },
+        {
+            "description": "SPICE model issue",
+            "key": "simulation_model_issue"
+        },
+        {
+            "description": "Assigned footprint doesn't match footprint filters",
+            "key": "footprint_filter"
+        }
+    ],
+    "included_severities": [
+        "error",
+        "warning"
+    ],
+    "kicad_version": "10.0.0",
+    "sheets": [
+        {
+            "path": "/",
+            "uuid_path": "/290fe62e-4cea-473b-badf-2a76c0d280cd",
+            "violations": [
+                {
+                    "description": "The current configuration does not include the symbol library 'v_i_sources'",
+                    "items": [
+                        {
+                            "description": "Symbol V1 [VAM-Simulation_SPICE]",
+                            "pos": {
+                                "x": 0.254,
+                                "y": 0.2286
+                            },
+                            "uuid": "00000000-0000-0000-0000-00005c531459"
+                        }
+                    ],
+                    "severity": "warning",
+                    "type": "lib_symbol_issues"
+                },
+                {
+                    "description": "The current configuration does not include the symbol library 'v_i_sources'",
+                    "items": [
+                        {
+                            "description": "Symbol R1 [R-Device]",
+                            "pos": {
+                                "x": 0.3429,
+                                "y": 0.2032
+                            },
+                            "uuid": "00000000-0000-0000-0000-00005bda3c13"
+                        }
+                    ],
+                    "severity": "warning",
+                    "type": "lib_symbol_issues"
+                },
+                {
+                    "description": "The current configuration does not include the symbol library 'v_i_sources'",
+                    "items": [
+                        {
+                            "description": "Symbol V2 [VDC-Simulation_SPICE]",
+                            "pos": {
+                                "x": 0.4318,
+                                "y": 0.2921
+                            },
+                            "uuid": "00000000-0000-0000-0000-00005c530c73"
+                        }
+                    ],
+                    "severity": "warning",
+                    "type": "lib_symbol_issues"
+                },
+                {
+                    "description": "The current configuration does not include the symbol library 'v_i_sources'",
+                    "items": [
+                        {
+                            "description": "Symbol R2 [R-Device]",
+                            "pos": {
+                                "x": 0.5207,
+                                "y": 0.2032
+                            },
+                            "uuid": "00000000-0000-0000-0000-00005bda54f9"
+                        }
+                    ],
+                    "severity": "warning",
+                    "type": "lib_symbol_issues"
+                },
+                {
+                    "description": "The current configuration does not include the symbol library 'v_i_sources'",
+                    "items": [
+                        {
+                            "description": "Symbol V3 [VEXP-Simulation_SPICE]",
+                            "pos": {
+                                "x": 0.6096,
+                                "y": 0.3556
+                            },
+                            "uuid": "00000000-0000-0000-0000-00005c53039f"
+                        }
+                    ],
+                    "severity": "warning",
+                    "type": "lib_symbol_issues"
+                },
+                {
+                    "description": "The current configuration does not include the symbol library 'v_i_sources'",
+                    "items": [
+                        {
+                            "description": "Symbol R3 [R-Device]",
+                            "pos": {
+                                "x": 0.7112,
+                                "y": 0.2032
+                            },
+                            "uuid": "00000000-0000-0000-0000-00005bda5e69"
+                        }
+                    ],
+                    "severity": "warning",
+                    "type": "lib_symbol_issues"
+                },
+                {
+                    "description": "Symbol 'GND' doesn't match copy in library 'power'",
+                    "items": [
+                        {
+                            "description": "Symbol #PWR01 [GND]",
+                            "pos": {
+                                "x": 0.254,
+                                "y": 0.8128
+                            },
+                            "uuid": "00000000-0000-0000-0000-00005bda09bd"
+                        }
+                    ],
+                    "severity": "warning",
+                    "type": "lib_symbol_mismatch"
+                },
+                {
+                    "description": "The current configuration does not include the symbol library 'v_i_sources'",
+                    "items": [
+                        {
+                            "description": "Symbol V4 [VPULSE-Simulation_SPICE]",
+                            "pos": {
+                                "x": 0.8001,
+                                "y": 0.4191
+                            },
+                            "uuid": "00000000-0000-0000-0000-00005c52f92f"
+                        }
+                    ],
+                    "severity": "warning",
+                    "type": "lib_symbol_issues"
+                },
+                {
+                    "description": "The current configuration does not include the symbol library 'v_i_sources'",
+                    "items": [
+                        {
+                            "description": "Symbol R4 [R-Device]",
+                            "pos": {
+                                "x": 0.9271,
+                                "y": 0.2032
+                            },
+                            "uuid": "00000000-0000-0000-0000-00005bda6c25"
+                        }
+                    ],
+                    "severity": "warning",
+                    "type": "lib_symbol_issues"
+                },
+                {
+                    "description": "The current configuration does not include the symbol library 'v_i_sources'",
+                    "items": [
+                        {
+                            "description": "Symbol I1 [IAM-Simulation_SPICE]",
+                            "pos": {
+                                "x": 0.2667,
+                                "y": 1.0033
+                            },
+                            "uuid": "00000000-0000-0000-0000-00005c52b633"
+                        }
+                    ],
+                    "severity": "warning",
+                    "type": "lib_symbol_issues"
+                },
+                {
+                    "description": "The current configuration does not include the symbol library 'v_i_sources'",
+                    "items": [
+                        {
+                            "description": "Symbol R10 [R-Device]",
+                            "pos": {
+                                "x": 0.3556,
+                                "y": 0.9779
+                            },
+                            "uuid": "00000000-0000-0000-0000-00005bda71a5"
+                        }
+                    ],
+                    "severity": "warning",
+                    "type": "lib_symbol_issues"
+                },
+                {
+                    "description": "The current configuration does not include the symbol library 'v_i_sources'",
+                    "items": [
+                        {
+                            "description": "Symbol R11 [R-Device]",
+                            "pos": {
+                                "x": 0.5334,
+                                "y": 0.9779
+                            },
+                            "uuid": "00000000-0000-0000-0000-00005bda71ac"
+                        }
+                    ],
+                    "severity": "warning",
+                    "type": "lib_symbol_issues"
+                },
+                {
+                    "description": "The current configuration does not include the symbol library 'v_i_sources'",
+                    "items": [
+                        {
+                            "description": "Symbol V5 [VPWL-Simulation_SPICE]",
+                            "pos": {
+                                "x": 1.016,
+                                "y": 0.4826
+                            },
+                            "uuid": "00000000-0000-0000-0000-00005c52ef6f"
+                        }
+                    ],
+                    "severity": "warning",
+                    "type": "lib_symbol_issues"
+                },
+                {
+                    "description": "The current configuration does not include the symbol library 'v_i_sources'",
+                    "items": [
+                        {
+                            "description": "Symbol R5 [R-Device]",
+                            "pos": {
+                                "x": 1.1176,
+                                "y": 0.2032
+                            },
+                            "uuid": "00000000-0000-0000-0000-00005bda74fc"
+                        }
+                    ],
+                    "severity": "warning",
+                    "type": "lib_symbol_issues"
+                },
+                {
+                    "description": "The current configuration does not include the symbol library 'v_i_sources'",
+                    "items": [
+                        {
+                            "description": "Symbol I2 [IDC-Simulation_SPICE]",
+                            "pos": {
+                                "x": 0.4445,
+                                "y": 1.0668
+                            },
+                            "uuid": "00000000-0000-0000-0000-00005c52abaa"
+                        }
+                    ],
+                    "severity": "warning",
+                    "type": "lib_symbol_issues"
+                },
+                {
+                    "description": "The current configuration does not include the symbol library 'v_i_sources'",
+                    "items": [
+                        {
+                            "description": "Symbol R12 [R-Device]",
+                            "pos": {
+                                "x": 0.7239,
+                                "y": 0.9779
+                            },
+                            "uuid": "00000000-0000-0000-0000-00005bda71b2"
+                        }
+                    ],
+                    "severity": "warning",
+                    "type": "lib_symbol_issues"
+                },
+                {
+                    "description": "The current configuration does not include the symbol library 'v_i_sources'",
+                    "items": [
+                        {
+                            "description": "Symbol I3 [IEXP-Simulation_SPICE]",
+                            "pos": {
+                                "x": 0.6223,
+                                "y": 1.1303
+                            },
+                            "uuid": "00000000-0000-0000-0000-00005c52a002"
+                        }
+                    ],
+                    "severity": "warning",
+                    "type": "lib_symbol_issues"
+                },
+                {
+                    "description": "The current configuration does not include the symbol library 'v_i_sources'",
+                    "items": [
+                        {
+                            "description": "Symbol V6 [VSFFM-Simulation_SPICE]",
+                            "pos": {
+                                "x": 1.2065,
+                                "y": 0.5461
+                            },
+                            "uuid": "00000000-0000-0000-0000-00005c52e253"
+                        }
+                    ],
+                    "severity": "warning",
+                    "type": "lib_symbol_issues"
+                },
+                {
+                    "description": "The current configuration does not include the symbol library 'v_i_sources'",
+                    "items": [
+                        {
+                            "description": "Symbol R6 [R-Device]",
+                            "pos": {
+                                "x": 1.3208,
+                                "y": 0.2032
+                            },
+                            "uuid": "00000000-0000-0000-0000-00005bda7e91"
+                        }
+                    ],
+                    "severity": "warning",
+                    "type": "lib_symbol_issues"
+                },
+                {
+                    "description": "The current configuration does not include the symbol library 'v_i_sources'",
+                    "items": [
+                        {
+                            "description": "Symbol R13 [R-Device]",
+                            "pos": {
+                                "x": 0.9398,
+                                "y": 0.9779
+                            },
+                            "uuid": "00000000-0000-0000-0000-00005bda71be"
+                        }
+                    ],
+                    "severity": "warning",
+                    "type": "lib_symbol_issues"
+                },
+                {
+                    "description": "The current configuration does not include the symbol library 'v_i_sources'",
+                    "items": [
+                        {
+                            "description": "Symbol I4 [IPULSE-Simulation_SPICE]",
+                            "pos": {
+                                "x": 0.8128,
+                                "y": 1.1938
+                            },
+                            "uuid": "00000000-0000-0000-0000-00005c529462"
+                        }
+                    ],
+                    "severity": "warning",
+                    "type": "lib_symbol_issues"
+                },
+                {
+                    "description": "The current configuration does not include the symbol library 'v_i_sources'",
+                    "items": [
+                        {
+                            "description": "Symbol R14 [R-Device]",
+                            "pos": {
+                                "x": 1.1303,
+                                "y": 0.9779
+                            },
+                            "uuid": "00000000-0000-0000-0000-00005bda71c4"
+                        }
+                    ],
+                    "severity": "warning",
+                    "type": "lib_symbol_issues"
+                },
+                {
+                    "description": "The current configuration does not include the symbol library 'v_i_sources'",
+                    "items": [
+                        {
+                            "description": "Symbol R7 [R-Device]",
+                            "pos": {
+                                "x": 1.4986,
+                                "y": 0.2032
+                            },
+                            "uuid": "00000000-0000-0000-0000-00005bda56df"
+                        }
+                    ],
+                    "severity": "warning",
+                    "type": "lib_symbol_issues"
+                },
+                {
+                    "description": "The current configuration does not include the symbol library 'v_i_sources'",
+                    "items": [
+                        {
+                            "description": "Symbol V7 [VSIN-Simulation_SPICE]",
+                            "pos": {
+                                "x": 1.4097,
+                                "y": 0.6096
+                            },
+                            "uuid": "00000000-0000-0000-0000-00005c52d6bf"
+                        }
+                    ],
+                    "severity": "warning",
+                    "type": "lib_symbol_issues"
+                },
+                {
+                    "description": "Symbol 'GND' doesn't match copy in library 'power'",
+                    "items": [
+                        {
+                            "description": "Symbol #PWR02 [GND]",
+                            "pos": {
+                                "x": 0.2667,
+                                "y": 1.5875
+                            },
+                            "uuid": "00000000-0000-0000-0000-00005bda717d"
+                        }
+                    ],
+                    "severity": "warning",
+                    "type": "lib_symbol_mismatch"
+                },
+                {
+                    "description": "Symbol 'PWR_FLAG' doesn't match copy in library 'power'",
+                    "items": [
+                        {
+                            "description": "Symbol #FLG0101 [PWR_FLAG]",
+                            "pos": {
+                                "x": 0.3302,
+                                "y": 1.5875
+                            },
+                            "uuid": "a7c49e6c-6736-4a1d-a5d4-9863e74c2de5"
+                        }
+                    ],
+                    "severity": "warning",
+                    "type": "lib_symbol_mismatch"
+                },
+                {
+                    "description": "The current configuration does not include the symbol library 'v_i_sources'",
+                    "items": [
+                        {
+                            "description": "Symbol I5 [IPWL-Simulation_SPICE]",
+                            "pos": {
+                                "x": 1.0287,
+                                "y": 1.2573
+                            },
+                            "uuid": "00000000-0000-0000-0000-00005c528b91"
+                        }
+                    ],
+                    "severity": "warning",
+                    "type": "lib_symbol_issues"
+                },
+                {
+                    "description": "The current configuration does not include the symbol library 'v_i_sources'",
+                    "items": [
+                        {
+                            "description": "Symbol R15 [R-Device]",
+                            "pos": {
+                                "x": 1.3335,
+                                "y": 0.9779
+                            },
+                            "uuid": "00000000-0000-0000-0000-00005bda71ca"
+                        }
+                    ],
+                    "severity": "warning",
+                    "type": "lib_symbol_issues"
+                },
+                {
+                    "description": "The current configuration does not include the symbol library 'v_i_sources'",
+                    "items": [
+                        {
+                            "description": "Symbol V8 [VTRNOISE-Simulation_SPICE]",
+                            "pos": {
+                                "x": 1.5875,
+                                "y": 0.6731
+                            },
+                            "uuid": "00000000-0000-0000-0000-00005c52cc31"
+                        }
+                    ],
+                    "severity": "warning",
+                    "type": "lib_symbol_issues"
+                },
+                {
+                    "description": "The current configuration does not include the symbol library 'v_i_sources'",
+                    "items": [
+                        {
+                            "description": "Symbol R8 [R-Device]",
+                            "pos": {
+                                "x": 1.7272,
+                                "y": 0.2032
+                            },
+                            "uuid": "00000000-0000-0000-0000-00005bda631a"
+                        }
+                    ],
+                    "severity": "warning",
+                    "type": "lib_symbol_issues"
+                },
+                {
+                    "description": "The current configuration does not include the symbol library 'v_i_sources'",
+                    "items": [
+                        {
+                            "description": "Symbol I6 [ISFFM-Simulation_SPICE]",
+                            "pos": {
+                                "x": 1.2192,
+                                "y": 1.3208
+                            },
+                            "uuid": "00000000-0000-0000-0000-00005c527dc7"
+                        }
+                    ],
+                    "severity": "warning",
+                    "type": "lib_symbol_issues"
+                },
+                {
+                    "description": "The current configuration does not include the symbol library 'v_i_sources'",
+                    "items": [
+                        {
+                            "description": "Symbol R16 [R-Device]",
+                            "pos": {
+                                "x": 1.5113,
+                                "y": 0.9779
+                            },
+                            "uuid": "00000000-0000-0000-0000-00005bda719b"
+                        }
+                    ],
+                    "severity": "warning",
+                    "type": "lib_symbol_issues"
+                },
+                {
+                    "description": "The current configuration does not include the symbol library 'v_i_sources'",
+                    "items": [
+                        {
+                            "description": "Symbol V9 [VTRRANDOM-Simulation_SPICE]",
+                            "pos": {
+                                "x": 1.8161,
+                                "y": 0.7366
+                            },
+                            "uuid": "00000000-0000-0000-0000-00005c52c2f7"
+                        }
+                    ],
+                    "severity": "warning",
+                    "type": "lib_symbol_issues"
+                },
+                {
+                    "description": "The current configuration does not include the symbol library 'v_i_sources'",
+                    "items": [
+                        {
+                            "description": "Symbol I7 [ISIN-Simulation_SPICE]",
+                            "pos": {
+                                "x": 1.4224,
+                                "y": 1.3843
+                            },
+                            "uuid": "00000000-0000-0000-0000-00005c527479"
+                        }
+                    ],
+                    "severity": "warning",
+                    "type": "lib_symbol_issues"
+                },
+                {
+                    "description": "The current configuration does not include the symbol library 'v_i_sources'",
+                    "items": [
+                        {
+                            "description": "Symbol R9 [R-Device]",
+                            "pos": {
+                                "x": 1.9812,
+                                "y": 0.2032
+                            },
+                            "uuid": "00000000-0000-0000-0000-00005bdc2ddf"
+                        }
+                    ],
+                    "severity": "warning",
+                    "type": "lib_symbol_issues"
+                },
+                {
+                    "description": "The current configuration does not include the symbol library 'v_i_sources'",
+                    "items": [
+                        {
+                            "description": "Symbol R17 [R-Device]",
+                            "pos": {
+                                "x": 1.7399,
+                                "y": 0.9779
+                            },
+                            "uuid": "00000000-0000-0000-0000-00005bda71b8"
+                        }
+                    ],
+                    "severity": "warning",
+                    "type": "lib_symbol_issues"
+                },
+                {
+                    "description": "The current configuration does not include the symbol library 'v_i_sources'",
+                    "items": [
+                        {
+                            "description": "Symbol I8 [ITRNOISE-Simulation_SPICE]",
+                            "pos": {
+                                "x": 1.6002,
+                                "y": 1.4478
+                            },
+                            "uuid": "00000000-0000-0000-0000-00005c526b8f"
+                        }
+                    ],
+                    "severity": "warning",
+                    "type": "lib_symbol_issues"
+                },
+                {
+                    "description": "The current configuration does not include the symbol library 'v_i_sources'",
+                    "items": [
+                        {
+                            "description": "Symbol R18 [R-Device]",
+                            "pos": {
+                                "x": 1.9939,
+                                "y": 0.9779
+                            },
+                            "uuid": "00000000-0000-0000-0000-00005bda7207"
+                        }
+                    ],
+                    "severity": "warning",
+                    "type": "lib_symbol_issues"
+                },
+                {
+                    "description": "The current configuration does not include the symbol library 'v_i_sources'",
+                    "items": [
+                        {
+                            "description": "Symbol I9 [ITRRANDOM-Simulation_SPICE]",
+                            "pos": {
+                                "x": 1.8288,
+                                "y": 1.5113
+                            },
+                            "uuid": "00000000-0000-0000-0000-00005c5263e1"
+                        }
+                    ],
+                    "severity": "warning",
+                    "type": "lib_symbol_issues"
+                }
+            ]
+        }
+    ],
+    "source": "legacy_sources.kicad_sch"
+}

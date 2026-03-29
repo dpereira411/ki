@@ -1,0 +1,15 @@
+(kicad_sch
+  (version 20260101)
+  (generator "eeschema")
+  (uuid "bad-unit-number-root")
+  (paper "A4")
+  (lib_symbols
+    (symbol "Device:R"
+      (property "Reference" "R" (at 0 0 0) (effects (font (size 1.27 1.27))))
+      (property "Value" "R" (at 0 0 0) (effects (font (size 1.27 1.27))))
+      (symbol "R_X_1"
+        (pin passive line (at 0 3.81 270) (length 1.27)
+          (name "A" (effects (font (size 1.27 1.27))))
+          (number "1" (effects (font (size 1.27 1.27))))))))
+  (sheet_instances
+    (path "/" (page "1"))))

@@ -1,0 +1,694 @@
+[
+  {
+    "id": "missing_input_file",
+    "fixture_dir": null,
+    "oracle_path": null,
+    "kicad_source": [
+      "/Users/Daniel/Desktop/kicad/kicad/cli/command_sch_erc.cpp:84"
+    ],
+    "kicad_cli_args": [],
+    "ki_cli_args": [],
+    "expected_exit_code": 3,
+    "expected_messages": [
+      "Schematic file does not exist or is not accessible"
+    ]
+  },
+  {
+    "id": "basic_test_errors_only",
+    "fixture_dir": "tests/fixtures/erc_parity/basic_test_errors_only",
+    "oracle_path": "tests/fixtures/erc_parity/basic_test_errors_only/oracle.json",
+    "kicad_source": [
+      "/Users/Daniel/Desktop/kicad/eeschema/erc/erc.cpp:1202",
+      "/Users/Daniel/Desktop/kicad/eeschema/erc/erc_item.cpp:60",
+      "/Users/Daniel/Desktop/kicad/eeschema/erc/erc_settings.h:47"
+    ],
+    "kicad_cli_args": [
+      "--severity-error"
+    ],
+    "ki_cli_args": [
+      "--severity-error"
+    ],
+    "expected_exit_code": 0,
+    "expected_messages": []
+  },
+  {
+    "id": "missing_symbol_library_in_configuration",
+    "fixture_dir": "tests/fixtures/erc_parity/missing_symbol_library_in_configuration",
+    "oracle_path": "tests/fixtures/erc_parity/missing_symbol_library_in_configuration/oracle.json",
+    "kicad_source": [
+      "/Users/Daniel/Desktop/kicad/eeschema/erc/erc.cpp:1686",
+      "/Users/Daniel/Desktop/kicad/eeschema/erc/erc_item.cpp:194",
+      "/Users/Daniel/Desktop/kicad/eeschema/erc/erc_settings.h:81"
+    ],
+    "kicad_cli_args": [],
+    "ki_cli_args": [],
+    "expected_exit_code": 0,
+    "expected_messages": []
+  },
+  {
+    "id": "pin_not_connected",
+    "fixture_dir": "tests/fixtures/erc_parity/pin_not_connected",
+    "oracle_path": "tests/fixtures/erc_parity/pin_not_connected/oracle.json",
+    "kicad_source": [
+      "/Users/Daniel/Desktop/kicad/eeschema/erc/erc.cpp:1202",
+      "/Users/Daniel/Desktop/kicad/eeschema/erc/erc_item.cpp:52",
+      "/Users/Daniel/Desktop/kicad/eeschema/erc/erc_settings.h:44"
+    ],
+    "kicad_cli_args": [],
+    "ki_cli_args": [],
+    "expected_exit_code": 0,
+    "expected_messages": []
+  },
+  {
+    "id": "endpoint_off_grid",
+    "fixture_dir": "tests/fixtures/erc_parity/endpoint_off_grid",
+    "oracle_path": "tests/fixtures/erc_parity/endpoint_off_grid/oracle.json",
+    "kicad_source": [
+      "/Users/Daniel/Desktop/kicad/eeschema/erc/erc.cpp:1966",
+      "/Users/Daniel/Desktop/kicad/eeschema/erc/erc_item.cpp:48",
+      "/Users/Daniel/Desktop/kicad/eeschema/erc/erc_settings.h:43"
+    ],
+    "kicad_cli_args": [],
+    "ki_cli_args": [],
+    "expected_exit_code": 0,
+    "expected_messages": []
+  },
+  {
+    "id": "single_global_label",
+    "fixture_dir": "tests/fixtures/erc_parity/single_global_label",
+    "oracle_path": "tests/fixtures/erc_parity/single_global_label/oracle.json",
+    "kicad_source": [
+      "/Users/Daniel/Desktop/kicad/eeschema/connection_graph.cpp:3473",
+      "/Users/Daniel/Desktop/kicad/eeschema/connection_graph.cpp:4366",
+      "/Users/Daniel/Desktop/kicad/eeschema/erc/erc_item.cpp:124",
+      "/Users/Daniel/Desktop/kicad/eeschema/erc/erc_settings.h:56"
+    ],
+    "kicad_cli_args": [],
+    "ki_cli_args": [],
+    "expected_exit_code": 0,
+    "expected_messages": []
+  },
+  {
+    "id": "four_way_junction",
+    "fixture_dir": "tests/fixtures/erc_parity/four_way_junction",
+    "oracle_path": "tests/fixtures/erc_parity/four_way_junction/oracle.json",
+    "kicad_source": [
+      "/Users/Daniel/Desktop/kicad/eeschema/erc/erc.cpp:872",
+      "/Users/Daniel/Desktop/kicad/eeschema/erc/erc_item.cpp:88",
+      "/Users/Daniel/Desktop/kicad/eeschema/erc/erc_settings.h:91"
+    ],
+    "kicad_cli_args": [],
+    "ki_cli_args": [],
+    "expected_exit_code": 0,
+    "expected_messages": []
+  },
+  {
+    "id": "label_dangling",
+    "fixture_dir": "tests/fixtures/erc_parity/label_dangling",
+    "oracle_path": "tests/fixtures/erc_parity/label_dangling/oracle.json",
+    "kicad_source": [
+      "/Users/Daniel/Desktop/kicad/eeschema/connection_graph.cpp:4198",
+      "/Users/Daniel/Desktop/kicad/eeschema/erc/erc_item.cpp:104",
+      "/Users/Daniel/Desktop/kicad/eeschema/erc/erc_settings.h:52"
+    ],
+    "kicad_cli_args": [],
+    "ki_cli_args": [],
+    "expected_exit_code": 0,
+    "expected_messages": []
+  },
+  {
+    "id": "isolated_pin_label",
+    "fixture_dir": "tests/fixtures/erc_parity/isolated_pin_label",
+    "oracle_path": "tests/fixtures/erc_parity/isolated_pin_label/oracle.json",
+    "kicad_source": [
+      "/Users/Daniel/Desktop/kicad/eeschema/connection_graph.cpp:4310",
+      "/Users/Daniel/Desktop/kicad/eeschema/connection_graph.cpp:4066",
+      "/Users/Daniel/Desktop/kicad/eeschema/erc/erc_item.cpp:108",
+      "/Users/Daniel/Desktop/kicad/eeschema/erc/erc_item.cpp:244",
+      "/Users/Daniel/Desktop/kicad/eeschema/erc/erc_settings.h:76",
+      "/Users/Daniel/Desktop/kicad/eeschema/erc/erc_settings.h:93",
+      "/Users/Daniel/Desktop/kicad/eeschema/erc/erc.cpp:1686",
+      "/Users/Daniel/Desktop/kicad/eeschema/erc/erc_item.cpp:194",
+      "/Users/Daniel/Desktop/kicad/eeschema/erc/erc_settings.h:81"
+    ],
+    "kicad_cli_args": [],
+    "ki_cli_args": [],
+    "expected_exit_code": 0,
+    "expected_messages": []
+  },
+  {
+    "id": "no_connect_dangling",
+    "fixture_dir": "tests/fixtures/erc_parity/no_connect_dangling",
+    "oracle_path": "tests/fixtures/erc_parity/no_connect_dangling/oracle.json",
+    "kicad_source": [
+      "/Users/Daniel/Desktop/kicad/eeschema/connection_graph.cpp:3877",
+      "/Users/Daniel/Desktop/kicad/eeschema/erc/erc_item.cpp:100",
+      "/Users/Daniel/Desktop/kicad/eeschema/erc/erc_settings.h:51"
+    ],
+    "kicad_cli_args": [],
+    "ki_cli_args": [],
+    "expected_exit_code": 0,
+    "expected_messages": []
+  },
+  {
+    "id": "no_connect_connected",
+    "fixture_dir": "tests/fixtures/erc_parity/no_connect_connected",
+    "oracle_path": "tests/fixtures/erc_parity/no_connect_connected/oracle.json",
+    "kicad_source": [
+      "/Users/Daniel/Desktop/kicad/eeschema/connection_graph.cpp:3851",
+      "/Users/Daniel/Desktop/kicad/eeschema/erc/erc_item.cpp:96",
+      "/Users/Daniel/Desktop/kicad/eeschema/erc/erc_settings.h:50",
+      "/Users/Daniel/Desktop/kicad/eeschema/erc/erc.cpp:1686",
+      "/Users/Daniel/Desktop/kicad/eeschema/erc/erc_item.cpp:194",
+      "/Users/Daniel/Desktop/kicad/eeschema/erc/erc_settings.h:81"
+    ],
+    "kicad_cli_args": [],
+    "ki_cli_args": [],
+    "expected_exit_code": 0,
+    "expected_messages": []
+  },
+  {
+    "id": "label_multiple_wires",
+    "fixture_dir": "tests/fixtures/erc_parity/label_multiple_wires",
+    "oracle_path": "tests/fixtures/erc_parity/label_multiple_wires/oracle.json",
+    "kicad_source": [
+      "/Users/Daniel/Desktop/kicad/eeschema/erc/erc.cpp:795",
+      "/Users/Daniel/Desktop/kicad/eeschema/erc/erc_item.cpp:92",
+      "/Users/Daniel/Desktop/kicad/eeschema/erc/erc_settings.h:92",
+      "/Users/Daniel/Desktop/kicad/eeschema/erc/erc.cpp:1686",
+      "/Users/Daniel/Desktop/kicad/eeschema/erc/erc_item.cpp:194",
+      "/Users/Daniel/Desktop/kicad/eeschema/erc/erc_settings.h:81"
+    ],
+    "kicad_cli_args": [],
+    "ki_cli_args": [],
+    "expected_exit_code": 0,
+    "expected_messages": []
+  },
+  {
+    "id": "wire_dangling",
+    "fixture_dir": "tests/fixtures/erc_parity/wire_dangling",
+    "oracle_path": "tests/fixtures/erc_parity/wire_dangling/oracle.json",
+    "kicad_source": [
+      "/Users/Daniel/Desktop/kicad/eeschema/connection_graph.cpp:4113",
+      "/Users/Daniel/Desktop/kicad/eeschema/connection_graph.cpp:4072",
+      "/Users/Daniel/Desktop/kicad/eeschema/erc/erc_item.cpp:188",
+      "/Users/Daniel/Desktop/kicad/eeschema/erc/erc_item.cpp:244",
+      "/Users/Daniel/Desktop/kicad/eeschema/erc/erc_settings.h:80",
+      "/Users/Daniel/Desktop/kicad/eeschema/erc/erc_settings.h:93"
+    ],
+    "kicad_cli_args": [],
+    "ki_cli_args": [],
+    "expected_exit_code": 0,
+    "expected_messages": []
+  },
+  {
+    "id": "similar_labels",
+    "fixture_dir": "tests/fixtures/erc_parity/similar_labels",
+    "oracle_path": "tests/fixtures/erc_parity/similar_labels/oracle.json",
+    "kicad_source": [
+      "/Users/Daniel/Desktop/kicad/eeschema/erc/erc.cpp:1571",
+      "/Users/Daniel/Desktop/kicad/eeschema/erc/erc_item.cpp:112",
+      "/Users/Daniel/Desktop/kicad/eeschema/erc/erc_settings.h:53",
+      "/Users/Daniel/Desktop/kicad/eeschema/connection_graph.cpp:4198",
+      "/Users/Daniel/Desktop/kicad/eeschema/erc/erc_item.cpp:104",
+      "/Users/Daniel/Desktop/kicad/eeschema/erc/erc_settings.h:52"
+    ],
+    "kicad_cli_args": [],
+    "ki_cli_args": [],
+    "expected_exit_code": 0,
+    "expected_messages": []
+  },
+  {
+    "id": "field_name_whitespace",
+    "fixture_dir": "tests/fixtures/erc_parity/field_name_whitespace",
+    "oracle_path": "tests/fixtures/erc_parity/field_name_whitespace/oracle.json",
+    "kicad_source": [
+      "/Users/Daniel/Desktop/kicad/eeschema/erc/erc.cpp:467",
+      "/Users/Daniel/Desktop/kicad/eeschema/erc/erc_item.cpp:172",
+      "/Users/Daniel/Desktop/kicad/eeschema/erc/erc_settings.h:95",
+      "/Users/Daniel/Desktop/kicad/eeschema/erc/erc.cpp:1686",
+      "/Users/Daniel/Desktop/kicad/eeschema/erc/erc_item.cpp:194",
+      "/Users/Daniel/Desktop/kicad/eeschema/erc/erc_settings.h:81",
+      "/Users/Daniel/Desktop/kicad/eeschema/erc/erc.cpp:1202",
+      "/Users/Daniel/Desktop/kicad/eeschema/erc/erc_item.cpp:52",
+      "/Users/Daniel/Desktop/kicad/eeschema/erc/erc_settings.h:44"
+    ],
+    "kicad_cli_args": [],
+    "ki_cli_args": [],
+    "expected_exit_code": 0,
+    "expected_messages": []
+  },
+  {
+    "id": "same_local_global_label",
+    "fixture_dir": "tests/fixtures/erc_parity/same_local_global_label",
+    "oracle_path": "tests/fixtures/erc_parity/same_local_global_label/oracle.json",
+    "kicad_source": [
+      "/Users/Daniel/Desktop/kicad/eeschema/erc/erc.cpp:1538",
+      "/Users/Daniel/Desktop/kicad/eeschema/erc/erc_item.cpp:128",
+      "/Users/Daniel/Desktop/kicad/eeschema/erc/erc_settings.h:57",
+      "/Users/Daniel/Desktop/kicad/eeschema/connection_graph.cpp:4198",
+      "/Users/Daniel/Desktop/kicad/eeschema/erc/erc_item.cpp:104",
+      "/Users/Daniel/Desktop/kicad/eeschema/erc/erc_settings.h:52"
+    ],
+    "kicad_cli_args": [],
+    "ki_cli_args": [],
+    "expected_exit_code": 0,
+    "expected_messages": []
+  },
+  {
+    "id": "pin_not_driven",
+    "fixture_dir": "tests/fixtures/erc_parity/pin_not_driven",
+    "oracle_path": "tests/fixtures/erc_parity/pin_not_driven/oracle.json",
+    "kicad_source": [
+      "/Users/Daniel/Desktop/kicad/eeschema/erc/erc.cpp:1192",
+      "/Users/Daniel/Desktop/kicad/eeschema/erc/erc_item.cpp:56",
+      "/Users/Daniel/Desktop/kicad/eeschema/erc/erc_settings.h:45",
+      "/Users/Daniel/Desktop/kicad/eeschema/erc/erc.cpp:1686",
+      "/Users/Daniel/Desktop/kicad/eeschema/erc/erc_item.cpp:194",
+      "/Users/Daniel/Desktop/kicad/eeschema/erc/erc_settings.h:81"
+    ],
+    "kicad_cli_args": [],
+    "ki_cli_args": [],
+    "expected_exit_code": 0,
+    "expected_messages": []
+  },
+  {
+    "id": "stacked_pin_name",
+    "fixture_dir": "tests/fixtures/erc_parity/stacked_pin_name",
+    "oracle_path": "tests/fixtures/erc_parity/stacked_pin_name/oracle.json",
+    "kicad_source": [
+      "/Users/Daniel/Desktop/kicad/eeschema/erc/erc.cpp:1460",
+      "/Users/Daniel/Desktop/kicad/eeschema/erc/erc_item.cpp:168",
+      "/Users/Daniel/Desktop/kicad/eeschema/erc/erc_settings.h:94",
+      "/Users/Daniel/Desktop/kicad/common/string_utils.cpp:1589",
+      "/Users/Daniel/Desktop/kicad/eeschema/erc/erc.cpp:1686",
+      "/Users/Daniel/Desktop/kicad/eeschema/erc/erc_item.cpp:194",
+      "/Users/Daniel/Desktop/kicad/eeschema/erc/erc_settings.h:81",
+      "/Users/Daniel/Desktop/kicad/eeschema/erc/erc.cpp:1202",
+      "/Users/Daniel/Desktop/kicad/eeschema/erc/erc_item.cpp:52",
+      "/Users/Daniel/Desktop/kicad/eeschema/erc/erc_settings.h:44"
+    ],
+    "kicad_cli_args": [],
+    "ki_cli_args": [],
+    "expected_exit_code": 0,
+    "expected_messages": []
+  },
+  {
+    "id": "footprint_link_invalid_identifier",
+    "fixture_dir": "tests/fixtures/erc_parity/footprint_link_invalid_identifier",
+    "oracle_path": "tests/fixtures/erc_parity/footprint_link_invalid_identifier/oracle.json",
+    "kicad_source": [
+      "/Users/Daniel/Desktop/kicad/eeschema/erc/erc.cpp:1818",
+      "/Users/Daniel/Desktop/kicad/eeschema/erc/erc_item.cpp:202",
+      "/Users/Daniel/Desktop/kicad/eeschema/erc/erc_settings.h:83",
+      "/Users/Daniel/Desktop/kicad/eeschema/erc/erc.cpp:1686",
+      "/Users/Daniel/Desktop/kicad/eeschema/erc/erc_item.cpp:194",
+      "/Users/Daniel/Desktop/kicad/eeschema/erc/erc_settings.h:81",
+      "/Users/Daniel/Desktop/kicad/eeschema/erc/erc.cpp:1202",
+      "/Users/Daniel/Desktop/kicad/eeschema/erc/erc_item.cpp:52",
+      "/Users/Daniel/Desktop/kicad/eeschema/erc/erc_settings.h:44"
+    ],
+    "kicad_cli_args": [],
+    "ki_cli_args": [],
+    "expected_exit_code": 0,
+    "expected_messages": []
+  },
+  {
+    "id": "similar_label_and_power",
+    "fixture_dir": "tests/fixtures/erc_parity/similar_label_and_power",
+    "oracle_path": "tests/fixtures/erc_parity/similar_label_and_power/oracle.json",
+    "kicad_source": [
+      "/Users/Daniel/Desktop/kicad/eeschema/erc/erc.cpp:1581",
+      "/Users/Daniel/Desktop/kicad/eeschema/erc/erc_item.cpp:120",
+      "/Users/Daniel/Desktop/kicad/eeschema/erc/erc_settings.h:55",
+      "/Users/Daniel/Desktop/kicad/eeschema/erc/erc.cpp:1202",
+      "/Users/Daniel/Desktop/kicad/eeschema/erc/erc_item.cpp:52",
+      "/Users/Daniel/Desktop/kicad/eeschema/erc/erc_item.cpp:60",
+      "/Users/Daniel/Desktop/kicad/eeschema/erc/erc_settings.h:44",
+      "/Users/Daniel/Desktop/kicad/eeschema/erc/erc_settings.h:47",
+      "/Users/Daniel/Desktop/kicad/eeschema/erc/erc.cpp:1686",
+      "/Users/Daniel/Desktop/kicad/eeschema/erc/erc_item.cpp:194",
+      "/Users/Daniel/Desktop/kicad/eeschema/erc/erc_settings.h:81"
+    ],
+    "kicad_cli_args": [],
+    "ki_cli_args": [],
+    "expected_exit_code": 0,
+    "expected_messages": []
+  },
+  {
+    "id": "similar_power",
+    "fixture_dir": "tests/fixtures/erc_parity/similar_power",
+    "oracle_path": "tests/fixtures/erc_parity/similar_power/oracle.json",
+    "kicad_source": [
+      "/Users/Daniel/Desktop/kicad/eeschema/erc/erc.cpp:1577",
+      "/Users/Daniel/Desktop/kicad/eeschema/erc/erc_item.cpp:116",
+      "/Users/Daniel/Desktop/kicad/eeschema/erc/erc_settings.h:54",
+      "/Users/Daniel/Desktop/kicad/eeschema/erc/erc.cpp:1202",
+      "/Users/Daniel/Desktop/kicad/eeschema/erc/erc_item.cpp:52",
+      "/Users/Daniel/Desktop/kicad/eeschema/erc/erc_item.cpp:60",
+      "/Users/Daniel/Desktop/kicad/eeschema/erc/erc_settings.h:44",
+      "/Users/Daniel/Desktop/kicad/eeschema/erc/erc_settings.h:47",
+      "/Users/Daniel/Desktop/kicad/eeschema/erc/erc.cpp:1686",
+      "/Users/Daniel/Desktop/kicad/eeschema/erc/erc_item.cpp:194",
+      "/Users/Daniel/Desktop/kicad/eeschema/erc/erc_settings.h:81"
+    ],
+    "kicad_cli_args": [],
+    "ki_cli_args": [],
+    "expected_exit_code": 0,
+    "expected_messages": []
+  },
+  {
+    "id": "missing_input_pin",
+    "fixture_dir": "tests/fixtures/erc_parity/missing_input_pin",
+    "oracle_path": "tests/fixtures/erc_parity/missing_input_pin/oracle.json",
+    "kicad_source": [
+      "/Users/Daniel/Desktop/kicad/eeschema/erc/erc.cpp:571",
+      "/Users/Daniel/Desktop/kicad/eeschema/erc/erc_item.cpp:216",
+      "/Users/Daniel/Desktop/kicad/eeschema/erc/erc_item.cpp:220",
+      "/Users/Daniel/Desktop/kicad/eeschema/erc/erc_settings.h:88",
+      "/Users/Daniel/Desktop/kicad/eeschema/erc/erc_settings.h:89",
+      "/Users/Daniel/Desktop/kicad/eeschema/erc/erc.cpp:1686",
+      "/Users/Daniel/Desktop/kicad/eeschema/erc/erc_item.cpp:194",
+      "/Users/Daniel/Desktop/kicad/eeschema/erc/erc_settings.h:81"
+    ],
+    "kicad_cli_args": [],
+    "ki_cli_args": [],
+    "expected_exit_code": 0,
+    "expected_messages": []
+  },
+  {
+    "id": "missing_bidi_pin",
+    "fixture_dir": "tests/fixtures/erc_parity/missing_bidi_pin",
+    "oracle_path": "tests/fixtures/erc_parity/missing_bidi_pin/oracle.json",
+    "kicad_source": [
+      "/Users/Daniel/Desktop/kicad/eeschema/erc/erc.cpp:571",
+      "/Users/Daniel/Desktop/kicad/eeschema/erc/erc_item.cpp:216",
+      "/Users/Daniel/Desktop/kicad/eeschema/erc/erc_item.cpp:224",
+      "/Users/Daniel/Desktop/kicad/eeschema/erc/erc_settings.h:88",
+      "/Users/Daniel/Desktop/kicad/eeschema/erc/erc_settings.h:90",
+      "/Users/Daniel/Desktop/kicad/eeschema/erc/erc.cpp:1686",
+      "/Users/Daniel/Desktop/kicad/eeschema/erc/erc_item.cpp:194",
+      "/Users/Daniel/Desktop/kicad/eeschema/erc/erc_settings.h:81"
+    ],
+    "kicad_cli_args": [],
+    "ki_cli_args": [],
+    "expected_exit_code": 0,
+    "expected_messages": []
+  },
+  {
+    "id": "missing_power_pin",
+    "fixture_dir": "tests/fixtures/erc_parity/missing_power_pin",
+    "oracle_path": "tests/fixtures/erc_parity/missing_power_pin/oracle.json",
+    "kicad_source": [
+      "/Users/Daniel/Desktop/kicad/eeschema/erc/erc.cpp:571",
+      "/Users/Daniel/Desktop/kicad/eeschema/erc/erc_item.cpp:216",
+      "/Users/Daniel/Desktop/kicad/eeschema/erc/erc_item.cpp:228",
+      "/Users/Daniel/Desktop/kicad/eeschema/erc/erc_settings.h:88",
+      "/Users/Daniel/Desktop/kicad/eeschema/erc/erc_settings.h:91",
+      "/Users/Daniel/Desktop/kicad/eeschema/erc/erc.cpp:1686",
+      "/Users/Daniel/Desktop/kicad/eeschema/erc/erc_item.cpp:194",
+      "/Users/Daniel/Desktop/kicad/eeschema/erc/erc_settings.h:81"
+    ],
+    "kicad_cli_args": [],
+    "ki_cli_args": [],
+    "expected_exit_code": 0,
+    "expected_messages": []
+  },
+  {
+    "id": "missing_unit",
+    "fixture_dir": "tests/fixtures/erc_parity/missing_unit",
+    "oracle_path": "tests/fixtures/erc_parity/missing_unit/oracle.json",
+    "kicad_source": [
+      "/Users/Daniel/Desktop/kicad/eeschema/erc/erc.cpp:571",
+      "/Users/Daniel/Desktop/kicad/eeschema/erc/erc_item.cpp:216",
+      "/Users/Daniel/Desktop/kicad/eeschema/erc/erc_settings.h:65"
+    ],
+    "kicad_cli_args": [],
+    "ki_cli_args": [],
+    "expected_exit_code": 0,
+    "expected_messages": []
+  },
+  {
+    "id": "different_unit_footprint",
+    "fixture_dir": "tests/fixtures/erc_parity/different_unit_footprint",
+    "oracle_path": "tests/fixtures/erc_parity/different_unit_footprint/oracle.json",
+    "kicad_source": [
+      "/Users/Daniel/Desktop/kicad/eeschema/erc/erc.cpp:510",
+      "/Users/Daniel/Desktop/kicad/eeschema/erc/erc_item.cpp:136",
+      "/Users/Daniel/Desktop/kicad/eeschema/erc/erc_settings.h:59",
+      "/Users/Daniel/Desktop/kicad/eeschema/erc/erc.cpp:1818",
+      "/Users/Daniel/Desktop/kicad/eeschema/erc/erc_item.cpp:200",
+      "/Users/Daniel/Desktop/kicad/eeschema/erc/erc_settings.h:83",
+      "/Users/Daniel/Desktop/kicad/eeschema/erc/erc.cpp:1686",
+      "/Users/Daniel/Desktop/kicad/eeschema/erc/erc_item.cpp:194",
+      "/Users/Daniel/Desktop/kicad/eeschema/erc/erc_settings.h:81"
+    ],
+    "kicad_cli_args": [],
+    "ki_cli_args": [],
+    "expected_exit_code": 0,
+    "expected_messages": []
+  },
+  {
+    "id": "footprint_filter_builtin",
+    "fixture_dir": "tests/fixtures/erc_parity/footprint_filter_builtin",
+    "oracle_path": "tests/fixtures/erc_parity/footprint_filter_builtin/oracle.json",
+    "kicad_source": [
+      "/Users/Daniel/Desktop/kicad/eeschema/erc/erc.cpp:1887",
+      "/Users/Daniel/Desktop/kicad/eeschema/erc/erc_item.cpp:204",
+      "/Users/Daniel/Desktop/kicad/eeschema/erc/erc_settings.h:85",
+      "/Users/Daniel/Desktop/kicad/eeschema/erc/erc.cpp:1759",
+      "/Users/Daniel/Desktop/kicad/eeschema/erc/erc_item.cpp:196",
+      "/Users/Daniel/Desktop/kicad/eeschema/erc/erc_settings.h:82",
+      "/Users/Daniel/Desktop/kicad/eeschema/erc/erc.cpp:1202",
+      "/Users/Daniel/Desktop/kicad/eeschema/erc/erc_item.cpp:52",
+      "/Users/Daniel/Desktop/kicad/eeschema/erc/erc_settings.h:44"
+    ],
+    "kicad_cli_args": [],
+    "ki_cli_args": [],
+    "expected_exit_code": 0,
+    "expected_messages": []
+  },
+  {
+    "id": "ground_pin_not_ground",
+    "fixture_dir": "tests/fixtures/erc_parity/ground_pin_not_ground",
+    "oracle_path": "tests/fixtures/erc_parity/ground_pin_not_ground/oracle.json",
+    "kicad_source": [
+      "/Users/Daniel/Desktop/kicad/eeschema/erc/erc.cpp:1376",
+      "/Users/Daniel/Desktop/kicad/eeschema/erc/erc_item.cpp:164",
+      "/Users/Daniel/Desktop/kicad/eeschema/erc/erc_settings.h:75",
+      "/Users/Daniel/Desktop/kicad/eeschema/erc/erc.cpp:1202",
+      "/Users/Daniel/Desktop/kicad/eeschema/erc/erc_item.cpp:60",
+      "/Users/Daniel/Desktop/kicad/eeschema/erc/erc_settings.h:47",
+      "/Users/Daniel/Desktop/kicad/eeschema/erc/erc.cpp:1686",
+      "/Users/Daniel/Desktop/kicad/eeschema/erc/erc_item.cpp:194",
+      "/Users/Daniel/Desktop/kicad/eeschema/erc/erc_settings.h:81"
+    ],
+    "kicad_cli_args": [],
+    "ki_cli_args": [],
+    "expected_exit_code": 0,
+    "expected_messages": []
+  },
+  {
+    "id": "undefined_netclass",
+    "fixture_dir": "tests/fixtures/erc_parity/undefined_netclass",
+    "oracle_path": "tests/fixtures/erc_parity/undefined_netclass/oracle.json",
+    "kicad_source": [
+      "/Users/Daniel/Desktop/kicad/eeschema/erc/erc.cpp:705",
+      "/Users/Daniel/Desktop/kicad/eeschema/erc/erc_item.cpp:180",
+      "/Users/Daniel/Desktop/kicad/eeschema/erc/erc_settings.h:77",
+      "/Users/Daniel/Desktop/kicad/eeschema/erc/erc.cpp:1202",
+      "/Users/Daniel/Desktop/kicad/eeschema/erc/erc_item.cpp:52",
+      "/Users/Daniel/Desktop/kicad/eeschema/erc/erc_settings.h:44",
+      "/Users/Daniel/Desktop/kicad/eeschema/erc/erc.cpp:1686",
+      "/Users/Daniel/Desktop/kicad/eeschema/erc/erc_item.cpp:194",
+      "/Users/Daniel/Desktop/kicad/eeschema/erc/erc_settings.h:81"
+    ],
+    "kicad_cli_args": [],
+    "ki_cli_args": [],
+    "expected_exit_code": 0,
+    "expected_messages": []
+  },
+  {
+    "id": "unresolved_variable",
+    "fixture_dir": "tests/fixtures/erc_parity/unresolved_variable",
+    "oracle_path": "tests/fixtures/erc_parity/unresolved_variable/oracle.json",
+    "kicad_source": [
+      "/Users/Daniel/Desktop/kicad/eeschema/erc/erc.cpp:186",
+      "/Users/Daniel/Desktop/kicad/eeschema/erc/erc_item.cpp:176",
+      "/Users/Daniel/Desktop/kicad/eeschema/erc/erc_settings.h:96",
+      "/Users/Daniel/Desktop/kicad/eeschema/erc/erc.cpp:1202",
+      "/Users/Daniel/Desktop/kicad/eeschema/erc/erc_item.cpp:52",
+      "/Users/Daniel/Desktop/kicad/eeschema/erc/erc_settings.h:44",
+      "/Users/Daniel/Desktop/kicad/eeschema/erc/erc.cpp:1686",
+      "/Users/Daniel/Desktop/kicad/eeschema/erc/erc_item.cpp:194",
+      "/Users/Daniel/Desktop/kicad/eeschema/erc/erc_settings.h:81"
+    ],
+    "kicad_cli_args": [],
+    "ki_cli_args": [],
+    "expected_exit_code": 0,
+    "expected_messages": []
+  },
+  {
+    "id": "generic_warning",
+    "fixture_dir": "tests/fixtures/erc_parity/generic_warning",
+    "oracle_path": "tests/fixtures/erc_parity/generic_warning/oracle.json",
+    "kicad_source": [
+      "/Users/Daniel/Desktop/kicad/eeschema/erc/erc.cpp:201",
+      "/Users/Daniel/Desktop/kicad/eeschema/erc/erc_item.cpp:76",
+      "/Users/Daniel/Desktop/kicad/eeschema/erc/erc.cpp:1202",
+      "/Users/Daniel/Desktop/kicad/eeschema/erc/erc_item.cpp:52",
+      "/Users/Daniel/Desktop/kicad/eeschema/erc/erc_settings.h:44",
+      "/Users/Daniel/Desktop/kicad/eeschema/erc/erc.cpp:1686",
+      "/Users/Daniel/Desktop/kicad/eeschema/erc/erc_item.cpp:194",
+      "/Users/Daniel/Desktop/kicad/eeschema/erc/erc_settings.h:81"
+    ],
+    "kicad_cli_args": [],
+    "ki_cli_args": [],
+    "expected_exit_code": 0,
+    "expected_messages": []
+  },
+  {
+    "id": "generic_error",
+    "fixture_dir": "tests/fixtures/erc_parity/generic_error",
+    "oracle_path": "tests/fixtures/erc_parity/generic_error/oracle.json",
+    "kicad_source": [
+      "/Users/Daniel/Desktop/kicad/eeschema/erc/erc.cpp:225",
+      "/Users/Daniel/Desktop/kicad/eeschema/erc/erc_item.cpp:80",
+      "/Users/Daniel/Desktop/kicad/eeschema/erc/erc.cpp:1202",
+      "/Users/Daniel/Desktop/kicad/eeschema/erc/erc_item.cpp:52",
+      "/Users/Daniel/Desktop/kicad/eeschema/erc/erc_settings.h:44",
+      "/Users/Daniel/Desktop/kicad/eeschema/erc/erc.cpp:1686",
+      "/Users/Daniel/Desktop/kicad/eeschema/erc/erc_item.cpp:194",
+      "/Users/Daniel/Desktop/kicad/eeschema/erc/erc_settings.h:81"
+    ],
+    "kicad_cli_args": [],
+    "ki_cli_args": [],
+    "expected_exit_code": 0,
+    "expected_messages": []
+  },
+  {
+    "id": "pin_to_pin",
+    "fixture_dir": "tests/fixtures/erc_parity/pin_to_pin",
+    "oracle_path": "tests/fixtures/erc_parity/pin_to_pin/oracle.json",
+    "kicad_source": [
+      "/Users/Daniel/Desktop/kicad/eeschema/erc/erc.cpp:1094",
+      "/Users/Daniel/Desktop/kicad/eeschema/erc/erc.cpp:1184",
+      "/Users/Daniel/Desktop/kicad/eeschema/erc/erc_item.cpp:68",
+      "/Users/Daniel/Desktop/kicad/eeschema/erc/erc_item.cpp:72",
+      "/Users/Daniel/Desktop/kicad/eeschema/erc/erc_settings.h:48",
+      "/Users/Daniel/Desktop/kicad/eeschema/erc/erc_settings.h:49"
+    ],
+    "kicad_cli_args": [
+      "--severity-error"
+    ],
+    "ki_cli_args": [
+      "--severity-error"
+    ],
+    "expected_exit_code": 0,
+    "expected_messages": []
+  },
+  {
+    "id": "duplicate_sheet_names",
+    "fixture_dir": "tests/fixtures/erc_parity/duplicate_sheet_names",
+    "oracle_path": "tests/fixtures/erc_parity/duplicate_sheet_names/oracle.json",
+    "kicad_source": [
+      "/Users/Daniel/Desktop/kicad/eeschema/erc/erc.cpp:132",
+      "/Users/Daniel/Desktop/kicad/eeschema/erc/erc.cpp:2091",
+      "/Users/Daniel/Desktop/kicad/eeschema/erc/erc_item.cpp:44",
+      "/Users/Daniel/Desktop/kicad/eeschema/erc/erc_settings.h:42"
+    ],
+    "kicad_cli_args": [],
+    "ki_cli_args": [],
+    "expected_exit_code": 0,
+    "expected_messages": []
+  },
+  {
+    "id": "duplicate_pins",
+    "fixture_dir": "tests/fixtures/erc_parity/duplicate_pins",
+    "oracle_path": "tests/fixtures/erc_parity/duplicate_pins/oracle.json",
+    "kicad_source": [
+      "/Users/Daniel/Desktop/kicad/eeschema/erc/erc.cpp:1294",
+      "/Users/Daniel/Desktop/kicad/eeschema/erc/erc.cpp:2140",
+      "/Users/Daniel/Desktop/kicad/eeschema/erc/erc_item.cpp:64",
+      "/Users/Daniel/Desktop/kicad/eeschema/erc/erc_settings.h:99"
+    ],
+    "kicad_cli_args": [],
+    "ki_cli_args": [],
+    "expected_exit_code": 0,
+    "expected_messages": []
+  },
+  {
+    "id": "multiple_net_names",
+    "fixture_dir": "tests/fixtures/erc_parity/multiple_net_names",
+    "oracle_path": "tests/fixtures/erc_parity/multiple_net_names/oracle.json",
+    "kicad_source": [
+      "/Users/Daniel/Desktop/kicad/eeschema/connection_graph.cpp:3410",
+      "/Users/Daniel/Desktop/kicad/eeschema/connection_graph.cpp:3505",
+      "/Users/Daniel/Desktop/kicad/eeschema/erc/erc_item.cpp:150",
+      "/Users/Daniel/Desktop/kicad/eeschema/erc/erc_settings.h:69"
+    ],
+    "kicad_cli_args": [],
+    "ki_cli_args": [],
+    "expected_exit_code": 0,
+    "expected_messages": []
+  },
+  {
+    "id": "different_unit_net",
+    "fixture_dir": "tests/fixtures/erc_parity/different_unit_net",
+    "oracle_path": "tests/fixtures/erc_parity/different_unit_net/oracle.json",
+    "kicad_source": [
+      "/Users/Daniel/Desktop/kicad/eeschema/erc/erc.cpp:1243",
+      "/Users/Daniel/Desktop/kicad/eeschema/erc/erc_item.cpp:140",
+      "/Users/Daniel/Desktop/kicad/eeschema/erc/erc_settings.h:66"
+    ],
+    "kicad_cli_args": [],
+    "ki_cli_args": [],
+    "expected_exit_code": 0,
+    "expected_messages": []
+  },
+  {
+    "id": "hier_label_mismatch",
+    "fixture_dir": "tests/fixtures/erc_parity/hier_label_mismatch",
+    "oracle_path": "tests/fixtures/erc_parity/hier_label_mismatch/oracle.json",
+    "kicad_source": [
+      "/Users/Daniel/Desktop/kicad/eeschema/connection_graph.cpp:3467",
+      "/Users/Daniel/Desktop/kicad/eeschema/connection_graph.cpp:4497",
+      "/Users/Daniel/Desktop/kicad/eeschema/erc/erc_item.cpp:84",
+      "/Users/Daniel/Desktop/kicad/eeschema/erc/erc_settings.h:49"
+    ],
+    "kicad_cli_args": [],
+    "ki_cli_args": [],
+    "expected_exit_code": 0,
+    "expected_messages": []
+  },
+  {
+    "id": "bus_to_net_conflict",
+    "fixture_dir": "tests/fixtures/erc_parity/bus_to_net_conflict",
+    "oracle_path": "tests/fixtures/erc_parity/bus_to_net_conflict/oracle.json",
+    "kicad_source": [
+      "/Users/Daniel/Desktop/kicad/eeschema/connection_graph.cpp:3436",
+      "/Users/Daniel/Desktop/kicad/eeschema/connection_graph.cpp:3524",
+      "/Users/Daniel/Desktop/kicad/eeschema/erc/erc_item.cpp:160",
+      "/Users/Daniel/Desktop/kicad/eeschema/erc/erc_settings.h:73"
+    ],
+    "kicad_cli_args": [],
+    "ki_cli_args": [],
+    "expected_exit_code": 0,
+    "expected_messages": []
+  },
+  {
+    "id": "net_not_bus_member",
+    "fixture_dir": "tests/fixtures/erc_parity/net_not_bus_member",
+    "oracle_path": "tests/fixtures/erc_parity/net_not_bus_member/oracle.json",
+    "kicad_source": [
+      "/Users/Daniel/Desktop/kicad/eeschema/connection_graph.cpp:3442",
+      "/Users/Daniel/Desktop/kicad/eeschema/connection_graph.cpp:3665",
+      "/Users/Daniel/Desktop/kicad/eeschema/erc/erc_item.cpp:152",
+      "/Users/Daniel/Desktop/kicad/eeschema/erc/erc_settings.h:70"
+    ],
+    "kicad_cli_args": [],
+    "ki_cli_args": [],
+    "expected_exit_code": 0,
+    "expected_messages": []
+  }
+]

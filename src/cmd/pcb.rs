@@ -2,7 +2,7 @@ use kiutils_rs::PcbFile;
 use serde::Serialize;
 
 use crate::error::KiError;
-use crate::output::{self, Flags, OutputFormat, SCHEMA_VERSION};
+use crate::output::{self, CommandResponse, Flags, SCHEMA_VERSION};
 
 #[derive(Serialize)]
 struct DiagnosticDto {
@@ -21,6 +21,21 @@ struct FootprintDto {
     y: Option<f64>,
     rotation: Option<f64>,
     pad_count: usize,
+}
+
+impl CommandResponse for FootprintDto {
+    fn render_text(&self) {
+        let ref_ = self.reference.as_deref().unwrap_or("?");
+        let val = self.value.as_deref().unwrap_or("?");
+        let lib = self.lib_id.as_deref().unwrap_or("?");
+        let layer = self.layer.as_deref().unwrap_or("?");
+        let x = self.x.unwrap_or(0.0);
+        let y = self.y.unwrap_or(0.0);
+        let rot = self.rotation.unwrap_or(0.0);
+        println!("{ref_}: {val} ({lib})");
+        println!("  layer: {layer}  at ({x}, {y})  rotation {rot}deg");
+        println!("  pads: {}", self.pad_count);
+    }
 }
 
 #[derive(Serialize)]
@@ -63,64 +78,78 @@ struct InspectDto {
     diagnostics: Vec<DiagnosticDto>,
 }
 
+impl CommandResponse for InspectDto {
+    fn render_text(&self) {
+        println!("pcb:");
+        println!("  version: {:?}", self.version);
+        println!("  generator: {:?}", self.generator);
+        println!("  footprints: {}", self.footprint_count);
+        println!("  nets: {}", self.net_count);
+        println!("  layers: {}", self.layer_count);
+        println!("  segments: {}", self.trace_segment_count);
+        println!("  vias: {}", self.via_count);
+        println!("  zones: {}", self.zone_count);
+    }
+}
+
 pub fn inspect(path: &str, flags: &Flags) -> Result<(), KiError> {
     let doc = PcbFile::read(path).map_err(|e| KiError::Message(e.to_string()))?;
     let ast = doc.ast();
 
-    if flags.format == OutputFormat::Json {
-        let diag_json: Vec<_> = doc
-            .diagnostics()
-            .iter()
-            .map(|d| DiagnosticDto {
-                severity: format!("{:?}", d.severity).to_lowercase(),
-                code: d.code.to_string(),
-                message: d.message.clone(),
-            })
-            .collect();
+    let diag_json: Vec<_> = doc
+        .diagnostics()
+        .iter()
+        .map(|d| DiagnosticDto {
+            severity: format!("{:?}", d.severity).to_lowercase(),
+            code: d.code.to_string(),
+            message: d.message.clone(),
+        })
+        .collect();
 
-        let footprints_json: Vec<_> = ast
-            .footprints
-            .iter()
-            .map(|f| FootprintDto {
-                reference: f.reference.clone(),
-                value: f.value.clone(),
-                lib_id: f.lib_id.clone(),
-                layer: f.layer.clone(),
-                x: f.at.map(|a| a[0]),
-                y: f.at.map(|a| a[1]),
-                rotation: f.rotation,
-                pad_count: f.pad_count,
-            })
-            .collect();
-        let segments_json: Vec<_> = ast
-            .segments
-            .iter()
-            .map(|s| SegmentDto {
-                x1: s.start.map(|a| a[0]),
-                y1: s.start.map(|a| a[1]),
-                x2: s.end.map(|a| a[0]),
-                y2: s.end.map(|a| a[1]),
-                width: s.width,
-                layer: s.layer.clone(),
-                net: s.net,
-            })
-            .collect();
-        let vias_json: Vec<_> = ast
-            .vias
-            .iter()
-            .map(|v| ViaDto {
-                x: v.at.map(|a| a[0]),
-                y: v.at.map(|a| a[1]),
-                size: v.size,
-                drill: v.drill,
-                net: v.net,
-                layers: v.layers.clone(),
-            })
-            .collect();
+    let footprints_json: Vec<_> = ast
+        .footprints
+        .iter()
+        .map(|f| FootprintDto {
+            reference: f.reference.clone(),
+            value: f.value.clone(),
+            lib_id: f.lib_id.clone(),
+            layer: f.layer.clone(),
+            x: f.at.map(|a| a[0]),
+            y: f.at.map(|a| a[1]),
+            rotation: f.rotation,
+            pad_count: f.pad_count,
+        })
+        .collect();
+    let segments_json: Vec<_> = ast
+        .segments
+        .iter()
+        .map(|s| SegmentDto {
+            x1: s.start.map(|a| a[0]),
+            y1: s.start.map(|a| a[1]),
+            x2: s.end.map(|a| a[0]),
+            y2: s.end.map(|a| a[1]),
+            width: s.width,
+            layer: s.layer.clone(),
+            net: s.net,
+        })
+        .collect();
+    let vias_json: Vec<_> = ast
+        .vias
+        .iter()
+        .map(|v| ViaDto {
+            x: v.at.map(|a| a[0]),
+            y: v.at.map(|a| a[1]),
+            size: v.size,
+            drill: v.drill,
+            net: v.net,
+            layers: v.layers.clone(),
+        })
+        .collect();
 
-        output::print_json(&InspectDto {
+    output::handle_output(
+        &InspectDto {
             schema_version: SCHEMA_VERSION,
-            version: ast.version.clone(),
+            version: ast.version,
             generator: ast.generator.clone(),
             generator_version: ast.generator_version.clone(),
             footprint_count: ast.footprint_count,
@@ -134,34 +163,15 @@ pub fn inspect(path: &str, flags: &Flags) -> Result<(), KiError> {
             segments: segments_json,
             vias: vias_json,
             diagnostics: diag_json,
-        })?;
-    } else {
-        println!("pcb: {path}");
-        println!("  version: {:?}", ast.version);
-        println!("  generator: {:?}", ast.generator);
-        println!("  footprints: {}", ast.footprint_count);
-        println!("  nets: {}", ast.net_count);
-        println!("  layers: {}", ast.layer_count);
-        println!("  segments: {}", ast.trace_segment_count);
-        println!("  vias: {}", ast.via_count);
-        println!("  zones: {}", ast.zone_count);
-    }
+        },
+        flags,
+    )?;
 
     let had_diags = output::handle_diagnostics(doc.diagnostics(), flags);
     if had_diags {
         return Err(KiError::Validation);
     }
     Ok(())
-}
-
-fn parse_coord(s: &str, name: &str) -> Result<f64, KiError> {
-    s.parse::<f64>()
-        .map_err(|_| KiError::Message(format!("invalid value <{name}>: {s:?}")))
-}
-
-fn parse_int(s: &str, name: &str) -> Result<i32, KiError> {
-    s.parse::<i32>()
-        .map_err(|_| KiError::Message(format!("invalid integer <{name}>: {s:?}")))
 }
 
 #[derive(Serialize)]
@@ -177,31 +187,33 @@ struct AddTraceDto {
     net: i32,
 }
 
+impl CommandResponse for AddTraceDto {
+    fn render_text(&self) {
+        println!(
+            "ok: added trace ({},{}) -> ({},{}) on {} net {}",
+            self.x1, self.y1, self.x2, self.y2, self.layer, self.net
+        );
+    }
+}
+
 pub fn add_trace(
     path: &str,
-    x1: &str,
-    y1: &str,
-    x2: &str,
-    y2: &str,
-    width: &str,
+    x1: f64,
+    y1: f64,
+    x2: f64,
+    y2: f64,
+    width: f64,
     layer: &str,
-    net: &str,
+    net: i32,
     flags: &Flags,
 ) -> Result<(), KiError> {
-    let (x1, y1, x2, y2) = (
-        parse_coord(x1, "x1")?,
-        parse_coord(y1, "y1")?,
-        parse_coord(x2, "x2")?,
-        parse_coord(y2, "y2")?,
-    );
-    let width = parse_coord(width, "width")?;
-    let net = parse_int(net, "net")?;
     let mut doc = PcbFile::read(path).map_err(|e| KiError::Message(e.to_string()))?;
     doc.add_trace(x1, y1, x2, y2, width, layer, net);
-    doc.write(path).map_err(|e| KiError::Message(e.to_string()))?;
+    doc.write(path)
+        .map_err(|e| KiError::Message(e.to_string()))?;
 
-    if flags.format == OutputFormat::Json {
-        output::print_json(&AddTraceDto {
+    output::handle_output(
+        &AddTraceDto {
             schema_version: SCHEMA_VERSION,
             ok: true,
             x1,
@@ -211,11 +223,9 @@ pub fn add_trace(
             width,
             layer: layer.to_string(),
             net,
-        })?;
-    } else {
-        println!("ok: added trace ({x1},{y1}) -> ({x2},{y2}) on {layer} net {net}");
-    }
-    Ok(())
+        },
+        flags,
+    )
 }
 
 #[derive(Serialize)]
@@ -228,37 +238,39 @@ struct RemoveTraceDto {
     y2: f64,
 }
 
+impl CommandResponse for RemoveTraceDto {
+    fn render_text(&self) {
+        println!(
+            "ok: removed trace ({},{}) -> ({},{})",
+            self.x1, self.y1, self.x2, self.y2
+        );
+    }
+}
+
 pub fn remove_trace(
     path: &str,
-    x1: &str,
-    y1: &str,
-    x2: &str,
-    y2: &str,
+    x1: f64,
+    y1: f64,
+    x2: f64,
+    y2: f64,
     flags: &Flags,
 ) -> Result<(), KiError> {
-    let (x1, y1, x2, y2) = (
-        parse_coord(x1, "x1")?,
-        parse_coord(y1, "y1")?,
-        parse_coord(x2, "x2")?,
-        parse_coord(y2, "y2")?,
-    );
     let mut doc = PcbFile::read(path).map_err(|e| KiError::Message(e.to_string()))?;
     doc.remove_trace_at(x1, y1, x2, y2);
-    doc.write(path).map_err(|e| KiError::Message(e.to_string()))?;
+    doc.write(path)
+        .map_err(|e| KiError::Message(e.to_string()))?;
 
-    if flags.format == OutputFormat::Json {
-        output::print_json(&RemoveTraceDto {
+    output::handle_output(
+        &RemoveTraceDto {
             schema_version: SCHEMA_VERSION,
             ok: true,
             x1,
             y1,
             x2,
             y2,
-        })?;
-    } else {
-        println!("ok: removed trace ({x1},{y1}) -> ({x2},{y2})");
-    }
-    Ok(())
+        },
+        flags,
+    )
 }
 
 #[derive(Serialize)]
@@ -272,25 +284,31 @@ struct AddViaDto {
     net: i32,
 }
 
+impl CommandResponse for AddViaDto {
+    fn render_text(&self) {
+        println!(
+            "ok: added via at ({},{}) size {} drill {} net {}",
+            self.x, self.y, self.size, self.drill, self.net
+        );
+    }
+}
+
 pub fn add_via(
     path: &str,
-    x: &str,
-    y: &str,
-    size: &str,
-    drill: &str,
-    net: &str,
+    x: f64,
+    y: f64,
+    size: f64,
+    drill: f64,
+    net: i32,
     flags: &Flags,
 ) -> Result<(), KiError> {
-    let (x, y) = (parse_coord(x, "x")?, parse_coord(y, "y")?);
-    let size = parse_coord(size, "size")?;
-    let drill = parse_coord(drill, "drill")?;
-    let net = parse_int(net, "net")?;
     let mut doc = PcbFile::read(path).map_err(|e| KiError::Message(e.to_string()))?;
     doc.add_via(x, y, size, drill, net);
-    doc.write(path).map_err(|e| KiError::Message(e.to_string()))?;
+    doc.write(path)
+        .map_err(|e| KiError::Message(e.to_string()))?;
 
-    if flags.format == OutputFormat::Json {
-        output::print_json(&AddViaDto {
+    output::handle_output(
+        &AddViaDto {
             schema_version: SCHEMA_VERSION,
             ok: true,
             x,
@@ -298,11 +316,9 @@ pub fn add_via(
             size,
             drill,
             net,
-        })?;
-    } else {
-        println!("ok: added via at ({x},{y}) size {size} drill {drill} net {net}");
-    }
-    Ok(())
+        },
+        flags,
+    )
 }
 
 #[derive(Serialize)]
@@ -313,32 +329,36 @@ struct AddFootprintDto {
     reference: String,
 }
 
+impl CommandResponse for AddFootprintDto {
+    fn render_text(&self) {
+        println!("ok: added footprint {} ({})", self.reference, self.lib_ref);
+    }
+}
+
 pub fn add_footprint(
     path: &str,
     lib_ref: &str,
-    x: &str,
-    y: &str,
+    x: f64,
+    y: f64,
     layer: &str,
     reference: &str,
     value: &str,
     flags: &Flags,
 ) -> Result<(), KiError> {
-    let (x, y) = (parse_coord(x, "x")?, parse_coord(y, "y")?);
     let mut doc = PcbFile::read(path).map_err(|e| KiError::Message(e.to_string()))?;
     doc.add_footprint(lib_ref, x, y, layer, reference, value);
-    doc.write(path).map_err(|e| KiError::Message(e.to_string()))?;
+    doc.write(path)
+        .map_err(|e| KiError::Message(e.to_string()))?;
 
-    if flags.format == OutputFormat::Json {
-        output::print_json(&AddFootprintDto {
+    output::handle_output(
+        &AddFootprintDto {
             schema_version: SCHEMA_VERSION,
             ok: true,
             lib_ref: lib_ref.to_string(),
             reference: reference.to_string(),
-        })?;
-    } else {
-        println!("ok: added footprint {reference} ({lib_ref}) at ({x},{y}) on {layer}");
-    }
-    Ok(())
+        },
+        flags,
+    )
 }
 
 #[derive(Serialize)]
@@ -351,38 +371,43 @@ struct MoveFootprintDto {
     rotation: Option<f64>,
 }
 
+impl CommandResponse for MoveFootprintDto {
+    fn render_text(&self) {
+        let rot_str = self
+            .rotation
+            .map(|r| format!(" rotation {r}deg"))
+            .unwrap_or_default();
+        println!(
+            "ok: moved footprint {} to ({},{}){rot_str}",
+            self.reference, self.x, self.y
+        );
+    }
+}
+
 pub fn move_footprint(
     path: &str,
     reference: &str,
-    x: &str,
-    y: &str,
-    rotation: Option<&str>,
+    x: f64,
+    y: f64,
+    rotation: Option<f64>,
     flags: &Flags,
 ) -> Result<(), KiError> {
-    let (x, y) = (parse_coord(x, "x")?, parse_coord(y, "y")?);
-    let rotation = rotation
-        .map(|r| parse_coord(r, "rotation"))
-        .transpose()?;
     let mut doc = PcbFile::read(path).map_err(|e| KiError::Message(e.to_string()))?;
     doc.move_footprint(reference, x, y, rotation);
-    doc.write(path).map_err(|e| KiError::Message(e.to_string()))?;
+    doc.write(path)
+        .map_err(|e| KiError::Message(e.to_string()))?;
 
-    if flags.format == OutputFormat::Json {
-        output::print_json(&MoveFootprintDto {
+    output::handle_output(
+        &MoveFootprintDto {
             schema_version: SCHEMA_VERSION,
             ok: true,
             reference: reference.to_string(),
             x,
             y,
             rotation,
-        })?;
-    } else {
-        let rot_str = rotation
-            .map(|r| format!(" rotation {r}deg"))
-            .unwrap_or_default();
-        println!("ok: moved footprint {reference} to ({x},{y}){rot_str}");
-    }
-    Ok(())
+        },
+        flags,
+    )
 }
 
 #[derive(Serialize)]
@@ -392,21 +417,26 @@ struct RemoveFootprintDto {
     reference: String,
 }
 
+impl CommandResponse for RemoveFootprintDto {
+    fn render_text(&self) {
+        println!("ok: removed footprint {}", self.reference);
+    }
+}
+
 pub fn remove_footprint(path: &str, reference: &str, flags: &Flags) -> Result<(), KiError> {
     let mut doc = PcbFile::read(path).map_err(|e| KiError::Message(e.to_string()))?;
     doc.remove_footprint(reference);
-    doc.write(path).map_err(|e| KiError::Message(e.to_string()))?;
+    doc.write(path)
+        .map_err(|e| KiError::Message(e.to_string()))?;
 
-    if flags.format == OutputFormat::Json {
-        output::print_json(&RemoveFootprintDto {
+    output::handle_output(
+        &RemoveFootprintDto {
             schema_version: SCHEMA_VERSION,
             ok: true,
             reference: reference.to_string(),
-        })?;
-    } else {
-        println!("ok: removed footprint {reference}");
-    }
-    Ok(())
+        },
+        flags,
+    )
 }
 
 pub fn query_footprint(path: &str, reference: &str, flags: &Flags) -> Result<(), KiError> {
@@ -418,8 +448,8 @@ pub fn query_footprint(path: &str, reference: &str, flags: &Flags) -> Result<(),
         .find(|f| f.reference.as_deref() == Some(reference))
         .ok_or_else(|| KiError::Message(format!("footprint {reference:?} not found in {path}")))?;
 
-    if flags.format == OutputFormat::Json {
-        output::print_json(&FootprintDto {
+    output::handle_output(
+        &FootprintDto {
             reference: fp.reference.clone(),
             value: fp.value.clone(),
             lib_id: fp.lib_id.clone(),
@@ -428,19 +458,9 @@ pub fn query_footprint(path: &str, reference: &str, flags: &Flags) -> Result<(),
             y: fp.at.map(|a| a[1]),
             rotation: fp.rotation,
             pad_count: fp.pad_count,
-        })?;
-    } else {
-        let ref_ = fp.reference.as_deref().unwrap_or("?");
-        let val = fp.value.as_deref().unwrap_or("?");
-        let lib = fp.lib_id.as_deref().unwrap_or("?");
-        let layer = fp.layer.as_deref().unwrap_or("?");
-        let (x, y) = fp.at.map(|a| (a[0], a[1])).unwrap_or((0.0, 0.0));
-        let rot = fp.rotation.unwrap_or(0.0);
-        println!("{ref_}: {val} ({lib})");
-        println!("  layer: {layer}  at ({x}, {y})  rotation {rot}deg");
-        println!("  pads: {}", fp.pad_count);
-    }
-    Ok(())
+        },
+        flags,
+    )
 }
 
 #[derive(Serialize)]
@@ -451,20 +471,25 @@ struct SetPropertyDto {
     value: String,
 }
 
+impl CommandResponse for SetPropertyDto {
+    fn render_text(&self) {
+        println!("ok: set {} = {:?}", self.key, self.value);
+    }
+}
+
 pub fn set_property(path: &str, key: &str, value: &str, flags: &Flags) -> Result<(), KiError> {
     let mut doc = PcbFile::read(path).map_err(|e| KiError::Message(e.to_string()))?;
     doc.upsert_property(key, value);
-    doc.write(path).map_err(|e| KiError::Message(e.to_string()))?;
+    doc.write(path)
+        .map_err(|e| KiError::Message(e.to_string()))?;
 
-    if flags.format == OutputFormat::Json {
-        output::print_json(&SetPropertyDto {
+    output::handle_output(
+        &SetPropertyDto {
             schema_version: SCHEMA_VERSION,
             ok: true,
             key: key.to_string(),
             value: value.to_string(),
-        })?;
-    } else {
-        println!("ok: set {key} = {value:?}");
-    }
-    Ok(())
+        },
+        flags,
+    )
 }

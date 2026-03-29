@@ -1,0 +1,187 @@
+{
+    "$schema": "https://schemas.kicad.org/erc.v1.json",
+    "coordinate_units": "mm",
+    "date": "2026-03-29T23:06:52",
+    "ignored_checks": [
+        {
+            "description": "Global label only appears once in the schematic",
+            "key": "single_global_label"
+        },
+        {
+            "description": "Four connection points are joined together",
+            "key": "four_way_junction"
+        },
+        {
+            "description": "SPICE model issue",
+            "key": "simulation_model_issue"
+        },
+        {
+            "description": "Assigned footprint doesn't match footprint filters",
+            "key": "footprint_filter"
+        }
+    ],
+    "included_severities": [
+        "error",
+        "warning"
+    ],
+    "kicad_version": "10.0.0",
+    "sheets": [
+        {
+            "path": "/",
+            "uuid_path": "/8dfd5f4a-2345-4e4b-9bc9-7cd3a57e205c",
+            "violations": [
+                {
+                    "description": "Hierarchical label 'A' in root sheet cannot be connected to non-existent parent sheet",
+                    "items": [
+                        {
+                            "description": "Hierarchical Label 'A'",
+                            "pos": {
+                                "x": 0.7874,
+                                "y": 0.762
+                            },
+                            "uuid": "32e55c65-0eb2-443c-b9a8-500117834615"
+                        }
+                    ],
+                    "severity": "error",
+                    "type": "pin_not_connected"
+                },
+                {
+                    "description": "Netclass net_02 is not defined",
+                    "items": [
+                        {
+                            "description": "Directive Label [Net Class net_02]",
+                            "pos": {
+                                "x": 1.27,
+                                "y": 0.762
+                            },
+                            "uuid": "1bf7253b-b6da-4156-856e-9ef8b5dcc7c0"
+                        }
+                    ],
+                    "severity": "error",
+                    "type": "undefined_netclass"
+                },
+                {
+                    "description": "Netclass net_02 is not defined",
+                    "items": [
+                        {
+                            "description": "Directive Label [Net Class net_02]",
+                            "pos": {
+                                "x": 1.2446,
+                                "y": 1.0922
+                            },
+                            "uuid": "5d615c22-3590-4433-9f49-f88a15bfe462"
+                        }
+                    ],
+                    "severity": "error",
+                    "type": "undefined_netclass"
+                },
+                {
+                    "description": "Hierarchical label 'B' in root sheet cannot be connected to non-existent parent sheet",
+                    "items": [
+                        {
+                            "description": "Hierarchical Label 'B'",
+                            "pos": {
+                                "x": 1.5748,
+                                "y": 0.762
+                            },
+                            "uuid": "f6b59296-9518-44d8-bf44-5ce4a4741e82"
+                        }
+                    ],
+                    "severity": "error",
+                    "type": "pin_not_connected"
+                },
+                {
+                    "description": "Hierarchical label 'D' in root sheet cannot be connected to non-existent parent sheet",
+                    "items": [
+                        {
+                            "description": "Hierarchical Label 'D'",
+                            "pos": {
+                                "x": 1.5494,
+                                "y": 1.0922
+                            },
+                            "uuid": "7e7a88b8-10b3-4b32-8666-130e2e385f0d"
+                        }
+                    ],
+                    "severity": "error",
+                    "type": "pin_not_connected"
+                },
+                {
+                    "description": "Label connected to only one pin",
+                    "items": [
+                        {
+                            "description": "Hierarchical Label 'A'",
+                            "pos": {
+                                "x": 0.7874,
+                                "y": 0.762
+                            },
+                            "uuid": "32e55c65-0eb2-443c-b9a8-500117834615"
+                        }
+                    ],
+                    "severity": "warning",
+                    "type": "isolated_pin_label"
+                },
+                {
+                    "description": "Label connected to only one pin",
+                    "items": [
+                        {
+                            "description": "Hierarchical Label 'C'",
+                            "pos": {
+                                "x": 0.762,
+                                "y": 1.0922
+                            },
+                            "uuid": "c8aff472-a8f0-48ae-b32f-8ad1a91efc2e"
+                        }
+                    ],
+                    "severity": "warning",
+                    "type": "isolated_pin_label"
+                },
+                {
+                    "description": "The current configuration does not include the footprint library '0IBF_RCL'",
+                    "items": [
+                        {
+                            "description": "Symbol R3 [R]",
+                            "pos": {
+                                "x": 1.0922,
+                                "y": 1.0922
+                            },
+                            "uuid": "0663dc95-1d72-4e0a-ad4b-87388dcd2ed9"
+                        }
+                    ],
+                    "severity": "warning",
+                    "type": "footprint_link_issues"
+                },
+                {
+                    "description": "Label connected to only one pin",
+                    "items": [
+                        {
+                            "description": "Hierarchical Label 'B'",
+                            "pos": {
+                                "x": 1.5748,
+                                "y": 0.762
+                            },
+                            "uuid": "f6b59296-9518-44d8-bf44-5ce4a4741e82"
+                        }
+                    ],
+                    "severity": "warning",
+                    "type": "isolated_pin_label"
+                },
+                {
+                    "description": "Label connected to only one pin",
+                    "items": [
+                        {
+                            "description": "Hierarchical Label 'D'",
+                            "pos": {
+                                "x": 1.5494,
+                                "y": 1.0922
+                            },
+                            "uuid": "7e7a88b8-10b3-4b32-8666-130e2e385f0d"
+                        }
+                    ],
+                    "severity": "warning",
+                    "type": "isolated_pin_label"
+                }
+            ]
+        }
+    ],
+    "source": "issue14494_subsheet1.kicad_sch"
+}

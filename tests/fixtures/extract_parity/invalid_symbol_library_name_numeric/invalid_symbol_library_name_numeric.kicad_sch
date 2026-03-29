@@ -1,0 +1,15 @@
+(kicad_sch
+  (version 20260101)
+  (generator "eeschema")
+  (uuid "invalid-symbol-library-name-numeric-root")
+  (paper "A4")
+  (lib_symbols
+    (symbol "Device:R"
+      (property "Reference" "R" (at 0 0 0) (effects (font (size 1.27 1.27))))
+      (property "Value" "R" (at 0 0 0) (effects (font (size 1.27 1.27)))))
+  )
+  (symbol (lib_name 123) (lib_id "Device:R") (at 50 50 0) (unit 1) (body_style 1) (uuid "sym-a")
+    (property "Reference" "R?" (at 0 0 0) (effects (font (size 1.27 1.27))))
+    (property "Value" "10k" (at 0 0 0) (effects (font (size 1.27 1.27)))))
+  (sheet_instances
+    (path "/" (page "1"))))

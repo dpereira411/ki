@@ -1,0 +1,286 @@
+{
+    "$schema": "https://schemas.kicad.org/erc.v1.json",
+    "coordinate_units": "mm",
+    "date": "2026-03-29T23:06:19",
+    "ignored_checks": [
+        {
+            "description": "Global label only appears once in the schematic",
+            "key": "single_global_label"
+        },
+        {
+            "description": "Four connection points are joined together",
+            "key": "four_way_junction"
+        },
+        {
+            "description": "SPICE model issue",
+            "key": "simulation_model_issue"
+        },
+        {
+            "description": "Assigned footprint doesn't match footprint filters",
+            "key": "footprint_filter"
+        }
+    ],
+    "included_severities": [
+        "error",
+        "warning"
+    ],
+    "kicad_version": "10.0.0",
+    "sheets": [
+        {
+            "path": "/",
+            "uuid_path": "/42cb452b-0025-41f3-ae52-70902384e6c1",
+            "violations": [
+                {
+                    "description": "Label not connected",
+                    "items": [
+                        {
+                            "description": "Label 'RX1'",
+                            "pos": {
+                                "x": 1.2192,
+                                "y": 0.7112
+                            },
+                            "uuid": "a704bc1b-cffd-42f1-b255-604a994f491f"
+                        }
+                    ],
+                    "severity": "error",
+                    "type": "label_dangling"
+                },
+                {
+                    "description": "Label not connected",
+                    "items": [
+                        {
+                            "description": "Global Label 'TX1'",
+                            "pos": {
+                                "x": 1.3843,
+                                "y": 0.7112
+                            },
+                            "uuid": "595f58ee-7a9d-483b-900c-241205affa97"
+                        }
+                    ],
+                    "severity": "error",
+                    "type": "label_dangling"
+                },
+                {
+                    "description": "Label not connected",
+                    "items": [
+                        {
+                            "description": "Global Label 'GL2'",
+                            "pos": {
+                                "x": 1.2446,
+                                "y": 0.9779
+                            },
+                            "uuid": "33c2e437-c11c-4ea2-9005-694c58022174"
+                        }
+                    ],
+                    "severity": "error",
+                    "type": "label_dangling"
+                },
+                {
+                    "description": "Label not connected",
+                    "items": [
+                        {
+                            "description": "Global Label 'RX1'",
+                            "pos": {
+                                "x": 1.3843,
+                                "y": 0.7874
+                            },
+                            "uuid": "4d379e56-88a8-4875-8bdc-4cc50cce81b3"
+                        }
+                    ],
+                    "severity": "error",
+                    "type": "label_dangling"
+                },
+                {
+                    "description": "Label not connected",
+                    "items": [
+                        {
+                            "description": "Global Label 'GL1'",
+                            "pos": {
+                                "x": 1.3589,
+                                "y": 0.9779
+                            },
+                            "uuid": "36c8b1e4-3cc0-4715-ac55-64a74412c33f"
+                        }
+                    ],
+                    "severity": "error",
+                    "type": "label_dangling"
+                },
+                {
+                    "description": "Label not connected",
+                    "items": [
+                        {
+                            "description": "Global Label 'GL3'",
+                            "pos": {
+                                "x": 1.3589,
+                                "y": 1.2065
+                            },
+                            "uuid": "c7e7b732-ba94-430a-83a4-33f9d3de90b5"
+                        }
+                    ],
+                    "severity": "error",
+                    "type": "label_dangling"
+                },
+                {
+                    "description": "Label not connected",
+                    "items": [
+                        {
+                            "description": "Label 'LL1'",
+                            "pos": {
+                                "x": 1.3589,
+                                "y": 1.2827
+                            },
+                            "uuid": "a7a344d0-7a58-4262-83ac-fda394ca4122"
+                        }
+                    ],
+                    "severity": "error",
+                    "type": "label_dangling"
+                },
+                {
+                    "description": "Label not connected",
+                    "items": [
+                        {
+                            "description": "Hierarchical Label 'HL1'",
+                            "pos": {
+                                "x": 1.3589,
+                                "y": 1.3335
+                            },
+                            "uuid": "4abc3818-d024-4893-8971-0b1fee3948ef"
+                        }
+                    ],
+                    "severity": "error",
+                    "type": "label_dangling"
+                },
+                {
+                    "description": "Hierarchical label 'HL1' in root sheet cannot be connected to non-existent parent sheet",
+                    "items": [
+                        {
+                            "description": "Hierarchical Label 'HL1'",
+                            "pos": {
+                                "x": 1.3589,
+                                "y": 1.3335
+                            },
+                            "uuid": "4abc3818-d024-4893-8971-0b1fee3948ef"
+                        }
+                    ],
+                    "severity": "error",
+                    "type": "pin_not_connected"
+                },
+                {
+                    "description": "Label connected to only one pin",
+                    "items": [
+                        {
+                            "description": "Label 'LL2'",
+                            "pos": {
+                                "x": 0.8763,
+                                "y": 1.1811
+                            },
+                            "uuid": "8fe9cea9-eff9-48c3-b409-c27b36a4e9cc"
+                        }
+                    ],
+                    "severity": "warning",
+                    "type": "isolated_pin_label"
+                },
+                {
+                    "description": "Label connected to only one pin",
+                    "items": [
+                        {
+                            "description": "Label 'LL2'",
+                            "pos": {
+                                "x": 0.8763,
+                                "y": 1.2446
+                            },
+                            "uuid": "7a1cbb62-a31f-4521-a621-fc5432507df2"
+                        }
+                    ],
+                    "severity": "warning",
+                    "type": "isolated_pin_label"
+                },
+                {
+                    "description": "Unconnected wire endpoint",
+                    "items": [
+                        {
+                            "description": "Horizontal Wire, length 0.0381 mm",
+                            "pos": {
+                                "x": 0.8763,
+                                "y": 1.2446
+                            },
+                            "uuid": "8b08992f-318f-4afb-a970-d3dcd260f9c1"
+                        }
+                    ],
+                    "severity": "warning",
+                    "type": "unconnected_wire_endpoint"
+                },
+                {
+                    "description": "Both RX1 and TX1 are attached to the same items; RX1 will be used in the netlist",
+                    "items": [
+                        {
+                            "description": "Global Label 'RX1'",
+                            "pos": {
+                                "x": 1.3843,
+                                "y": 0.7874
+                            },
+                            "uuid": "4d379e56-88a8-4875-8bdc-4cc50cce81b3"
+                        },
+                        {
+                            "description": "Global Label 'TX1'",
+                            "pos": {
+                                "x": 1.3843,
+                                "y": 0.7112
+                            },
+                            "uuid": "595f58ee-7a9d-483b-900c-241205affa97"
+                        }
+                    ],
+                    "severity": "warning",
+                    "type": "multiple_net_names"
+                },
+                {
+                    "description": "Both GL1 and GL2 are attached to the same items; GL1 will be used in the netlist",
+                    "items": [
+                        {
+                            "description": "Global Label 'GL1'",
+                            "pos": {
+                                "x": 1.3589,
+                                "y": 0.9779
+                            },
+                            "uuid": "36c8b1e4-3cc0-4715-ac55-64a74412c33f"
+                        },
+                        {
+                            "description": "Global Label 'GL2'",
+                            "pos": {
+                                "x": 1.2446,
+                                "y": 0.9779
+                            },
+                            "uuid": "33c2e437-c11c-4ea2-9005-694c58022174"
+                        }
+                    ],
+                    "severity": "warning",
+                    "type": "multiple_net_names"
+                },
+                {
+                    "description": "Local and global labels have same name",
+                    "items": [
+                        {
+                            "description": "Global Label 'RX1'",
+                            "pos": {
+                                "x": 1.3843,
+                                "y": 0.7874
+                            },
+                            "uuid": "4d379e56-88a8-4875-8bdc-4cc50cce81b3"
+                        },
+                        {
+                            "description": "Label 'RX1'",
+                            "pos": {
+                                "x": 1.2192,
+                                "y": 0.7112
+                            },
+                            "uuid": "a704bc1b-cffd-42f1-b255-604a994f491f"
+                        }
+                    ],
+                    "severity": "warning",
+                    "type": "same_local_global_label"
+                }
+            ]
+        }
+    ],
+    "source": "issue9367.kicad_sch"
+}

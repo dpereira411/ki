@@ -1,0 +1,8 @@
+(kicad_sch
+  (version 20260101)
+  (generator "eeschema")
+  (uuid "bad-textbox-root")
+  (paper "A4")
+  (text_box 123 (at 0 0 0) (size 10 10) (stroke (width 0) (type default)) (fill (type none)) (uuid "tb-1"))
+  (sheet_instances
+    (path "/" (page "1"))))

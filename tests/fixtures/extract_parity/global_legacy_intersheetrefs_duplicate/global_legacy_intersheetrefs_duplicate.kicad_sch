@@ -1,0 +1,19 @@
+(kicad_sch
+  (version 20260101)
+  (generator "eeschema")
+  (uuid "u")
+  (paper "A4")
+  (global_label "NET"
+    (shape input)
+    (at 129.54 74.93 270)
+    (fields_autoplaced yes)
+    (effects (font (size 1.27 1.27)) (justify right))
+    (uuid "df841051-5ce8-4473-b8b2-556c0cd93135")
+    (property "Intersheetrefs" "${INTERSHEET_REFS}"
+      (at 129.54 83.4185 90)
+      (effects (font (size 1.27 1.27)) (justify right) (hide yes)))
+    (property "Intersheet References" "${INTERSHEET_REFS}"
+      (at 129.54 90 90)
+      (effects (font (size 1.27 1.27)) (justify right) (hide yes))))
+  (sheet_instances
+    (path "/" (page "1"))))

@@ -1,0 +1,8 @@
+(kicad_sch
+  (version 20260101)
+  (generator "eeschema")
+  (uuid "invalid-directive-exclude-from-sim-root")
+  (paper "A4")
+  (directive_label "X" (at 0 0 0) (exclude_from_sim maybe) (shape input) (effects (font (size 1.27 1.27))) (uuid "d1"))
+  (sheet_instances
+    (path "/" (page "1"))))

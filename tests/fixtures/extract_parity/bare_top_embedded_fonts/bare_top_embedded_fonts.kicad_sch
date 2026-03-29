@@ -1,0 +1,8 @@
+(kicad_sch
+  (version 20260101)
+  (generator "eeschema")
+  (uuid "bare-top-embedded-fonts")
+  (paper "A4")
+  (embedded_fonts)
+  (sheet_instances
+    (path "/" (page "1"))))

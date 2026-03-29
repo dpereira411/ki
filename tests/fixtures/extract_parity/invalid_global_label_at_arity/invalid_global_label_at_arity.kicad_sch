@@ -1,0 +1,8 @@
+(kicad_sch
+  (version 20260101)
+  (generator "eeschema")
+  (uuid "invalid-global-label-at-root")
+  (paper "A4")
+  (global_label "SIG" (shape input) (at 0 0 0 0) (fields_autoplaced yes) (uuid "gl2") (effects (font (size 1.27 1.27))))
+  (sheet_instances
+    (path "/" (page "1"))))

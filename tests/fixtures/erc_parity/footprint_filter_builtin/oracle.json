@@ -1,0 +1,74 @@
+{
+    "$schema": "https://schemas.kicad.org/erc.v1.json",
+    "coordinate_units": "mm",
+    "date": "2026-03-29T11:18:22",
+    "ignored_checks": [
+        {
+            "description": "Global label only appears once in the schematic",
+            "key": "single_global_label"
+        },
+        {
+            "description": "Four connection points are joined together",
+            "key": "four_way_junction"
+        }
+    ],
+    "included_severities": [
+        "error",
+        "warning"
+    ],
+    "kicad_version": "10.0.0",
+    "sheets": [
+        {
+            "path": "/",
+            "uuid_path": "/22222222-2222-2222-2222-222222222222",
+            "violations": [
+                {
+                    "description": "Pin not connected",
+                    "items": [
+                        {
+                            "description": "Symbol R1 Pin 1 [~, Passive, Line]",
+                            "pos": {
+                                "x": 0.508,
+                                "y": 0.4699
+                            },
+                            "uuid": "562032d5-e8e5-43f8-94fe-eb88569f5939"
+                        }
+                    ],
+                    "severity": "error",
+                    "type": "pin_not_connected"
+                },
+                {
+                    "description": "Pin not connected",
+                    "items": [
+                        {
+                            "description": "Symbol R1 Pin 2 [~, Passive, Line]",
+                            "pos": {
+                                "x": 0.508,
+                                "y": 0.5461
+                            },
+                            "uuid": "adf990a8-f860-41c3-a61f-8e6806942a6c"
+                        }
+                    ],
+                    "severity": "error",
+                    "type": "pin_not_connected"
+                },
+                {
+                    "description": "Assigned footprint (to-92_inline) doesn't match footprint filters (R_*)",
+                    "items": [
+                        {
+                            "description": "Symbol R1 [R]",
+                            "pos": {
+                                "x": 0.508,
+                                "y": 0.508
+                            },
+                            "uuid": "471e89ed-649a-41a6-96f6-ec452b9e4749"
+                        }
+                    ],
+                    "severity": "warning",
+                    "type": "footprint_link_issues"
+                }
+            ]
+        }
+    ],
+    "source": "footprint_filter_builtin.kicad_sch"
+}

@@ -1,0 +1,622 @@
+{
+    "$schema": "https://schemas.kicad.org/erc.v1.json",
+    "coordinate_units": "mm",
+    "date": "2026-03-29T23:08:14",
+    "ignored_checks": [
+        {
+            "description": "Global label only appears once in the schematic",
+            "key": "single_global_label"
+        },
+        {
+            "description": "Four connection points are joined together",
+            "key": "four_way_junction"
+        },
+        {
+            "description": "SPICE model issue",
+            "key": "simulation_model_issue"
+        },
+        {
+            "description": "Assigned footprint doesn't match footprint filters",
+            "key": "footprint_filter"
+        }
+    ],
+    "included_severities": [
+        "error",
+        "warning"
+    ],
+    "kicad_version": "10.0.0",
+    "sheets": [
+        {
+            "path": "/",
+            "uuid_path": "/a4349b77-fc13-4b06-b73d-e811f055a7b6",
+            "violations": [
+                {
+                    "description": "The current configuration does not include the symbol library 'schematic_libspice'",
+                    "items": [
+                        {
+                            "description": "Symbol #+12V02 [+12V]",
+                            "pos": {
+                                "x": 0.7239,
+                                "y": 0.381
+                            },
+                            "uuid": "00000000-0000-0000-0000-000032cfc34d"
+                        }
+                    ],
+                    "severity": "warning",
+                    "type": "lib_symbol_issues"
+                },
+                {
+                    "description": "The current configuration does not include the symbol library 'schematic_libspice'",
+                    "items": [
+                        {
+                            "description": "Symbol V1 [VSOURCE]",
+                            "pos": {
+                                "x": 0.7239,
+                                "y": 0.5588
+                            },
+                            "uuid": "00000000-0000-0000-0000-000032cfc337"
+                        }
+                    ],
+                    "severity": "warning",
+                    "type": "lib_symbol_issues"
+                },
+                {
+                    "description": "The current configuration does not include the symbol library 'schematic_libspice'",
+                    "items": [
+                        {
+                            "description": "Symbol #GND01 [0]",
+                            "pos": {
+                                "x": 0.7239,
+                                "y": 0.7493
+                            },
+                            "uuid": "00000000-0000-0000-0000-000032cfc344"
+                        }
+                    ],
+                    "severity": "warning",
+                    "type": "lib_symbol_issues"
+                },
+                {
+                    "description": "The current configuration does not include the symbol library 'schematic_libspice'",
+                    "items": [
+                        {
+                            "description": "Symbol C1 [C]",
+                            "pos": {
+                                "x": 1.0541,
+                                "y": 0.7112
+                            },
+                            "uuid": "00000000-0000-0000-0000-000032cfc413"
+                        }
+                    ],
+                    "severity": "warning",
+                    "type": "lib_symbol_issues"
+                },
+                {
+                    "description": "The current configuration does not include the symbol library 'schematic_libspice'",
+                    "items": [
+                        {
+                            "description": "Symbol V2 [VSOURCE]",
+                            "pos": {
+                                "x": 0.9779,
+                                "y": 0.889
+                            },
+                            "uuid": "00000000-0000-0000-0000-000032cfc454"
+                        }
+                    ],
+                    "severity": "warning",
+                    "type": "lib_symbol_issues"
+                },
+                {
+                    "description": "The current configuration does not include the symbol library 'schematic_libspice'",
+                    "items": [
+                        {
+                            "description": "Symbol #+12V03 [+12V]",
+                            "pos": {
+                                "x": 1.2954,
+                                "y": 0.4445
+                            },
+                            "uuid": "00000000-0000-0000-0000-000032cfc2f7"
+                        }
+                    ],
+                    "severity": "warning",
+                    "type": "lib_symbol_issues"
+                },
+                {
+                    "description": "The current configuration does not include the symbol library 'schematic_libspice'",
+                    "items": [
+                        {
+                            "description": "Symbol R3 [R]",
+                            "pos": {
+                                "x": 1.2954,
+                                "y": 0.5207
+                            },
+                            "uuid": "00000000-0000-0000-0000-000032cfc288"
+                        }
+                    ],
+                    "severity": "warning",
+                    "type": "lib_symbol_issues"
+                },
+                {
+                    "description": "The current configuration does not include the symbol library 'schematic_libspice'",
+                    "items": [
+                        {
+                            "description": "Symbol #FLG02 [PWR_FLAG]",
+                            "pos": {
+                                "x": 0.9271,
+                                "y": 1.0795
+                            },
+                            "uuid": "00000000-0000-0000-0000-0000592c3ea3"
+                        }
+                    ],
+                    "severity": "warning",
+                    "type": "lib_symbol_issues"
+                },
+                {
+                    "description": "The current configuration does not include the symbol library 'schematic_libspice'",
+                    "items": [
+                        {
+                            "description": "Symbol #GND08 [0]",
+                            "pos": {
+                                "x": 0.9779,
+                                "y": 1.0795
+                            },
+                            "uuid": "00000000-0000-0000-0000-000032cfc469"
+                        }
+                    ],
+                    "severity": "warning",
+                    "type": "lib_symbol_issues"
+                },
+                {
+                    "description": "The current configuration does not include the symbol library 'schematic_libspice'",
+                    "items": [
+                        {
+                            "description": "Symbol #+12V04 [+12V]",
+                            "pos": {
+                                "x": 1.4605,
+                                "y": 0.4445
+                            },
+                            "uuid": "00000000-0000-0000-0000-000032cfc2fd"
+                        }
+                    ],
+                    "severity": "warning",
+                    "type": "lib_symbol_issues"
+                },
+                {
+                    "description": "The current configuration does not include the symbol library 'schematic_libspice'",
+                    "items": [
+                        {
+                            "description": "Symbol R4 [R]",
+                            "pos": {
+                                "x": 1.4605,
+                                "y": 0.5207
+                            },
+                            "uuid": "00000000-0000-0000-0000-000032cfc24c"
+                        }
+                    ],
+                    "severity": "warning",
+                    "type": "lib_symbol_issues"
+                },
+                {
+                    "description": "The current configuration does not include the symbol library 'schematic_libspice'",
+                    "items": [
+                        {
+                            "description": "Symbol R9 [R]",
+                            "pos": {
+                                "x": 1.2954,
+                                "y": 0.9017
+                            },
+                            "uuid": "00000000-0000-0000-0000-000032cfc293"
+                        }
+                    ],
+                    "severity": "warning",
+                    "type": "lib_symbol_issues"
+                },
+                {
+                    "description": "The current configuration does not include the symbol library 'schematic_libspice'",
+                    "items": [
+                        {
+                            "description": "Symbol Q2 [QNPN]",
+                            "pos": {
+                                "x": 1.4224,
+                                "y": 0.7112
+                            },
+                            "uuid": "00000000-0000-0000-0000-000032cfc227"
+                        }
+                    ],
+                    "severity": "warning",
+                    "type": "lib_symbol_issues"
+                },
+                {
+                    "description": "The current configuration does not include the symbol library 'schematic_libspice'",
+                    "items": [
+                        {
+                            "description": "Symbol #+12V05 [+12V]",
+                            "pos": {
+                                "x": 1.5494,
+                                "y": 0.4445
+                            },
+                            "uuid": "00000000-0000-0000-0000-000032cfc2ff"
+                        }
+                    ],
+                    "severity": "warning",
+                    "type": "lib_symbol_issues"
+                },
+                {
+                    "description": "The current configuration does not include the symbol library 'schematic_libspice'",
+                    "items": [
+                        {
+                            "description": "Symbol #GND05 [0]",
+                            "pos": {
+                                "x": 1.2954,
+                                "y": 0.9779
+                            },
+                            "uuid": "00000000-0000-0000-0000-000032cfc2b5"
+                        }
+                    ],
+                    "severity": "warning",
+                    "type": "lib_symbol_issues"
+                },
+                {
+                    "description": "The current configuration does not include the symbol library 'schematic_libspice'",
+                    "items": [
+                        {
+                            "description": "Symbol R5 [R]",
+                            "pos": {
+                                "x": 1.5494,
+                                "y": 0.5207
+                            },
+                            "uuid": "00000000-0000-0000-0000-000032cfc254"
+                        }
+                    ],
+                    "severity": "warning",
+                    "type": "lib_symbol_issues"
+                },
+                {
+                    "description": "The current configuration does not include the symbol library 'schematic_libspice'",
+                    "items": [
+                        {
+                            "description": "Symbol Q3 [QNPN]",
+                            "pos": {
+                                "x": 1.5875,
+                                "y": 0.7112
+                            },
+                            "uuid": "00000000-0000-0000-0000-000032cfc230"
+                        }
+                    ],
+                    "severity": "warning",
+                    "type": "lib_symbol_issues"
+                },
+                {
+                    "description": "The current configuration does not include the symbol library 'schematic_libspice'",
+                    "items": [
+                        {
+                            "description": "Symbol #+12V06 [+12V]",
+                            "pos": {
+                                "x": 1.7018,
+                                "y": 0.4445
+                            },
+                            "uuid": "00000000-0000-0000-0000-000032cfc303"
+                        }
+                    ],
+                    "severity": "warning",
+                    "type": "lib_symbol_issues"
+                },
+                {
+                    "description": "The current configuration does not include the symbol library 'schematic_libspice'",
+                    "items": [
+                        {
+                            "description": "Symbol R10 [R]",
+                            "pos": {
+                                "x": 1.5113,
+                                "y": 0.9017
+                            },
+                            "uuid": "00000000-0000-0000-0000-000032cfc25a"
+                        }
+                    ],
+                    "severity": "warning",
+                    "type": "lib_symbol_issues"
+                },
+                {
+                    "description": "The current configuration does not include the symbol library 'schematic_libspice'",
+                    "items": [
+                        {
+                            "description": "Symbol R6 [R]",
+                            "pos": {
+                                "x": 1.7018,
+                                "y": 0.5207
+                            },
+                            "uuid": "00000000-0000-0000-0000-000032cfc27f"
+                        }
+                    ],
+                    "severity": "warning",
+                    "type": "lib_symbol_issues"
+                },
+                {
+                    "description": "The current configuration does not include the symbol library 'schematic_libspice'",
+                    "items": [
+                        {
+                            "description": "Symbol #GND06 [0]",
+                            "pos": {
+                                "x": 1.5113,
+                                "y": 0.9779
+                            },
+                            "uuid": "00000000-0000-0000-0000-000032cfc26c"
+                        }
+                    ],
+                    "severity": "warning",
+                    "type": "lib_symbol_issues"
+                },
+                {
+                    "description": "The current configuration does not include the symbol library 'schematic_libspice'",
+                    "items": [
+                        {
+                            "description": "Symbol #FLG01 [PWR_FLAG]",
+                            "pos": {
+                                "x": 1.905,
+                                "y": 0.2159
+                            },
+                            "uuid": "00000000-0000-0000-0000-0000592c404d"
+                        }
+                    ],
+                    "severity": "warning",
+                    "type": "lib_symbol_issues"
+                },
+                {
+                    "description": "The current configuration does not include the symbol library 'schematic_libspice'",
+                    "items": [
+                        {
+                            "description": "Symbol R11 [R]",
+                            "pos": {
+                                "x": 1.7018,
+                                "y": 0.9017
+                            },
+                            "uuid": "00000000-0000-0000-0000-000032cfc277"
+                        }
+                    ],
+                    "severity": "warning",
+                    "type": "lib_symbol_issues"
+                },
+                {
+                    "description": "The current configuration does not include the symbol library 'schematic_libspice'",
+                    "items": [
+                        {
+                            "description": "Symbol C2 [C]",
+                            "pos": {
+                                "x": 1.7907,
+                                "y": 0.7239
+                            },
+                            "uuid": "00000000-0000-0000-0000-00003e9d1ef8"
+                        }
+                    ],
+                    "severity": "warning",
+                    "type": "lib_symbol_issues"
+                },
+                {
+                    "description": "The current configuration does not include the symbol library 'schematic_libspice'",
+                    "items": [
+                        {
+                            "description": "Symbol #GND02 [0]",
+                            "pos": {
+                                "x": 1.7907,
+                                "y": 0.8001
+                            },
+                            "uuid": "00000000-0000-0000-0000-00003e9d1eff"
+                        }
+                    ],
+                    "severity": "warning",
+                    "type": "lib_symbol_issues"
+                },
+                {
+                    "description": "The current configuration does not include the symbol library 'schematic_libspice'",
+                    "items": [
+                        {
+                            "description": "Symbol #GND07 [0]",
+                            "pos": {
+                                "x": 1.7018,
+                                "y": 0.9779
+                            },
+                            "uuid": "00000000-0000-0000-0000-000032cfc2b8"
+                        }
+                    ],
+                    "severity": "warning",
+                    "type": "lib_symbol_issues"
+                },
+                {
+                    "description": "The current configuration does not include the symbol library 'schematic_libspice'",
+                    "items": [
+                        {
+                            "description": "Symbol #+12V01 [+12V]",
+                            "pos": {
+                                "x": 1.9812,
+                                "y": 0.2159
+                            },
+                            "uuid": "00000000-0000-0000-0000-000032e8b84a"
+                        }
+                    ],
+                    "severity": "warning",
+                    "type": "lib_symbol_issues"
+                },
+                {
+                    "description": "The current configuration does not include the symbol library 'schematic_libspice'",
+                    "items": [
+                        {
+                            "description": "Symbol R1 [R]",
+                            "pos": {
+                                "x": 1.9812,
+                                "y": 0.3048
+                            },
+                            "uuid": "00000000-0000-0000-0000-00003e9d4d47"
+                        }
+                    ],
+                    "severity": "warning",
+                    "type": "lib_symbol_issues"
+                },
+                {
+                    "description": "The current configuration does not include the symbol library 'schematic_libspice'",
+                    "items": [
+                        {
+                            "description": "Symbol Q1 [QNPN]",
+                            "pos": {
+                                "x": 1.9177,
+                                "y": 0.6223
+                            },
+                            "uuid": "00000000-0000-0000-0000-000032e8b7fc"
+                        }
+                    ],
+                    "severity": "warning",
+                    "type": "lib_symbol_issues"
+                },
+                {
+                    "description": "The current configuration does not include the symbol library 'schematic_libspice'",
+                    "items": [
+                        {
+                            "description": "Symbol R8 [R]",
+                            "pos": {
+                                "x": 1.9558,
+                                "y": 0.8255
+                            },
+                            "uuid": "00000000-0000-0000-0000-000032e8b80e"
+                        }
+                    ],
+                    "severity": "warning",
+                    "type": "lib_symbol_issues"
+                },
+                {
+                    "description": "The current configuration does not include the symbol library 'schematic_libspice'",
+                    "items": [
+                        {
+                            "description": "Symbol #GND04 [0]",
+                            "pos": {
+                                "x": 1.9558,
+                                "y": 0.9017
+                            },
+                            "uuid": "00000000-0000-0000-0000-000032e8b852"
+                        }
+                    ],
+                    "severity": "warning",
+                    "type": "lib_symbol_issues"
+                },
+                {
+                    "description": "The current configuration does not include the symbol library 'schematic_libspice'",
+                    "items": [
+                        {
+                            "description": "Symbol C4 [CAP]",
+                            "pos": {
+                                "x": 2.159,
+                                "y": 0.2667
+                            },
+                            "uuid": "00000000-0000-0000-0000-0000592c267c"
+                        }
+                    ],
+                    "severity": "warning",
+                    "type": "lib_symbol_issues"
+                },
+                {
+                    "description": "The current configuration does not include the symbol library 'schematic_libspice'",
+                    "items": [
+                        {
+                            "description": "Symbol L1 [INDUCTOR]",
+                            "pos": {
+                                "x": 2.159,
+                                "y": 0.381
+                            },
+                            "uuid": "00000000-0000-0000-0000-00003e9d4a5d"
+                        }
+                    ],
+                    "severity": "warning",
+                    "type": "lib_symbol_issues"
+                },
+                {
+                    "description": "The current configuration does not include the symbol library 'schematic_libspice'",
+                    "items": [
+                        {
+                            "description": "Symbol R2 [R]",
+                            "pos": {
+                                "x": 2.1463,
+                                "y": 0.4572
+                            },
+                            "uuid": "00000000-0000-0000-0000-00003e9d53da"
+                        }
+                    ],
+                    "severity": "warning",
+                    "type": "lib_symbol_issues"
+                },
+                {
+                    "description": "The current configuration does not include the symbol library 'schematic_libspice'",
+                    "items": [
+                        {
+                            "description": "Symbol R12 [R]",
+                            "pos": {
+                                "x": 2.0955,
+                                "y": 0.7366
+                            },
+                            "uuid": "00000000-0000-0000-0000-0000592c449d"
+                        }
+                    ],
+                    "severity": "warning",
+                    "type": "lib_symbol_issues"
+                },
+                {
+                    "description": "The current configuration does not include the symbol library 'schematic_libspice'",
+                    "items": [
+                        {
+                            "description": "Symbol L2 [INDUCTOR]",
+                            "pos": {
+                                "x": 2.3114,
+                                "y": 0.7112
+                            },
+                            "uuid": "00000000-0000-0000-0000-0000592c1eb9"
+                        }
+                    ],
+                    "severity": "warning",
+                    "type": "lib_symbol_issues"
+                },
+                {
+                    "description": "The current configuration does not include the symbol library 'schematic_libspice'",
+                    "items": [
+                        {
+                            "description": "Symbol R7 [R]",
+                            "pos": {
+                                "x": 2.3114,
+                                "y": 0.7747
+                            },
+                            "uuid": "00000000-0000-0000-0000-0000592c1eb3"
+                        }
+                    ],
+                    "severity": "warning",
+                    "type": "lib_symbol_issues"
+                },
+                {
+                    "description": "The current configuration does not include the symbol library 'schematic_libspice'",
+                    "items": [
+                        {
+                            "description": "Symbol C3 [CAP]",
+                            "pos": {
+                                "x": 2.4257,
+                                "y": 0.8128
+                            },
+                            "uuid": "00000000-0000-0000-0000-00003e9d3dd3"
+                        }
+                    ],
+                    "severity": "warning",
+                    "type": "lib_symbol_issues"
+                },
+                {
+                    "description": "The current configuration does not include the symbol library 'schematic_libspice'",
+                    "items": [
+                        {
+                            "description": "Symbol #GND03 [0]",
+                            "pos": {
+                                "x": 2.4257,
+                                "y": 0.889
+                            },
+                            "uuid": "00000000-0000-0000-0000-00003e9d3de2"
+                        }
+                    ],
+                    "severity": "warning",
+                    "type": "lib_symbol_issues"
+                }
+            ]
+        }
+    ],
+    "source": "legacy_pspice.kicad_sch"
+}

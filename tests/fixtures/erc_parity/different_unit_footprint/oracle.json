@@ -1,0 +1,120 @@
+{
+    "$schema": "https://schemas.kicad.org/erc.v1.json",
+    "coordinate_units": "mm",
+    "date": "2026-03-28T23:55:38",
+    "ignored_checks": [
+        {
+            "description": "Global label only appears once in the schematic",
+            "key": "single_global_label"
+        },
+        {
+            "description": "Four connection points are joined together",
+            "key": "four_way_junction"
+        },
+        {
+            "description": "SPICE model issue",
+            "key": "simulation_model_issue"
+        },
+        {
+            "description": "Assigned footprint doesn't match footprint filters",
+            "key": "footprint_filter"
+        }
+    ],
+    "included_severities": [
+        "error",
+        "warning"
+    ],
+    "kicad_version": "10.0.0",
+    "sheets": [
+        {
+            "path": "/",
+            "uuid_path": "/4a8eb70d-7c4d-43bd-b3ab-d43f34ca4dc2",
+            "violations": [
+                {
+                    "description": "Different footprints assigned to U1A and U1B",
+                    "items": [
+                        {
+                            "description": "Symbol U1 [DualFootprint]",
+                            "pos": {
+                                "x": 0.508,
+                                "y": 0.508
+                            },
+                            "uuid": "54735d19-eac6-47d9-814c-43dba6625abf"
+                        },
+                        {
+                            "description": "Symbol U1 [DualFootprint]",
+                            "pos": {
+                                "x": 0.7112,
+                                "y": 0.508
+                            },
+                            "uuid": "75df64e5-357d-4327-bb94-aa1cf18ff6fa"
+                        }
+                    ],
+                    "severity": "error",
+                    "type": "different_unit_footprint"
+                },
+                {
+                    "description": "The current configuration does not include the footprint library 'LibA'",
+                    "items": [
+                        {
+                            "description": "Symbol U1 [DualFootprint]",
+                            "pos": {
+                                "x": 0.508,
+                                "y": 0.508
+                            },
+                            "uuid": "54735d19-eac6-47d9-814c-43dba6625abf"
+                        }
+                    ],
+                    "severity": "warning",
+                    "type": "footprint_link_issues"
+                },
+                {
+                    "description": "The current configuration does not include the symbol library 'MissingLib'",
+                    "items": [
+                        {
+                            "description": "Symbol U1 [DualFootprint]",
+                            "pos": {
+                                "x": 0.508,
+                                "y": 0.508
+                            },
+                            "uuid": "54735d19-eac6-47d9-814c-43dba6625abf"
+                        }
+                    ],
+                    "severity": "warning",
+                    "type": "lib_symbol_issues"
+                },
+                {
+                    "description": "The current configuration does not include the footprint library 'LibB'",
+                    "items": [
+                        {
+                            "description": "Symbol U1 [DualFootprint]",
+                            "pos": {
+                                "x": 0.7112,
+                                "y": 0.508
+                            },
+                            "uuid": "75df64e5-357d-4327-bb94-aa1cf18ff6fa"
+                        }
+                    ],
+                    "severity": "warning",
+                    "type": "footprint_link_issues"
+                },
+                {
+                    "description": "The current configuration does not include the symbol library 'MissingLib'",
+                    "items": [
+                        {
+                            "description": "Symbol U1 [DualFootprint]",
+                            "pos": {
+                                "x": 0.7112,
+                                "y": 0.508
+                            },
+                            "uuid": "75df64e5-357d-4327-bb94-aa1cf18ff6fa"
+                        }
+                    ],
+                    "severity": "warning",
+                    "type": "lib_symbol_issues"
+                }
+            ]
+        }
+    ],
+    "source": "different_unit_footprint.kicad_sch"
+}

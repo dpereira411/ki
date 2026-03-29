@@ -1,0 +1,90 @@
+{
+    "$schema": "https://schemas.kicad.org/erc.v1.json",
+    "coordinate_units": "mm",
+    "date": "2026-03-29T02:34:37",
+    "ignored_checks": [
+        {
+            "description": "Global label only appears once in the schematic",
+            "key": "single_global_label"
+        },
+        {
+            "description": "Four connection points are joined together",
+            "key": "four_way_junction"
+        },
+        {
+            "description": "SPICE model issue",
+            "key": "simulation_model_issue"
+        },
+        {
+            "description": "Assigned footprint doesn't match footprint filters",
+            "key": "footprint_filter"
+        }
+    ],
+    "included_severities": [
+        "error",
+        "warning"
+    ],
+    "kicad_version": "10.0.0",
+    "sheets": [
+        {
+            "path": "/",
+            "uuid_path": "/1d706252-5ae5-4498-b042-2dbb82ce999c",
+            "violations": [
+                {
+                    "description": "The current configuration does not include the symbol library 'MissingLib'",
+                    "items": [
+                        {
+                            "description": "Symbol TP1 [Probe]",
+                            "pos": {
+                                "x": 0.508,
+                                "y": 0.508
+                            },
+                            "uuid": "fc982bf4-7d1e-449b-88b6-d1d4e53d60c6"
+                        }
+                    ],
+                    "severity": "warning",
+                    "type": "lib_symbol_issues"
+                },
+                {
+                    "description": "Both A0 and A2 are attached to the same items; A0 will be used in the netlist",
+                    "items": [
+                        {
+                            "description": "Label 'A0'",
+                            "pos": {
+                                "x": 0.5334,
+                                "y": 0.508
+                            },
+                            "uuid": "b813ad89-27ba-4b49-b36b-cc25e79b9457"
+                        },
+                        {
+                            "description": "Label 'A2'",
+                            "pos": {
+                                "x": 0.5842,
+                                "y": 0.508
+                            },
+                            "uuid": "2eaf3c40-8835-49ca-b178-693ed098e7c5"
+                        }
+                    ],
+                    "severity": "warning",
+                    "type": "multiple_net_names"
+                },
+                {
+                    "description": "The current configuration does not include the symbol library 'MissingLib'",
+                    "items": [
+                        {
+                            "description": "Symbol TP2 [Probe]",
+                            "pos": {
+                                "x": 0.6096,
+                                "y": 0.508
+                            },
+                            "uuid": "f3d25c19-a2f3-48d6-8a42-73abbb1430f9"
+                        }
+                    ],
+                    "severity": "warning",
+                    "type": "lib_symbol_issues"
+                }
+            ]
+        }
+    ],
+    "source": "multiple_net_names.kicad_sch"
+}

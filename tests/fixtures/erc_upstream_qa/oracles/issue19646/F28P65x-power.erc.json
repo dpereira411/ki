@@ -1,0 +1,1057 @@
+{
+    "$schema": "https://schemas.kicad.org/erc.v1.json",
+    "coordinate_units": "mm",
+    "date": "2026-03-29T23:05:39",
+    "ignored_checks": [
+        {
+            "description": "Global label only appears once in the schematic",
+            "key": "single_global_label"
+        },
+        {
+            "description": "Four connection points are joined together",
+            "key": "four_way_junction"
+        },
+        {
+            "description": "SPICE model issue",
+            "key": "simulation_model_issue"
+        },
+        {
+            "description": "Assigned footprint doesn't match footprint filters",
+            "key": "footprint_filter"
+        }
+    ],
+    "included_severities": [
+        "error",
+        "warning"
+    ],
+    "kicad_version": "10.0.0",
+    "sheets": [
+        {
+            "path": "/",
+            "uuid_path": "/b32913ca-3da2-45bc-b50f-2262e59d9854",
+            "violations": [
+                {
+                    "description": "Input Power pin not driven by any Output Power pins",
+                    "items": [
+                        {
+                            "description": "Symbol U4 Pin 32 [VREFLOC, Power input, Line]",
+                            "pos": {
+                                "x": 2.3368,
+                                "y": 1.2192
+                            },
+                            "uuid": "179411b5-7f9a-474f-863f-950d82a45944"
+                        }
+                    ],
+                    "severity": "error",
+                    "type": "power_pin_not_driven"
+                },
+                {
+                    "description": "The current configuration does not include the symbol library 'Library'",
+                    "items": [
+                        {
+                            "description": "Symbol #PWR029 [+3V3]",
+                            "pos": {
+                                "x": 0.381,
+                                "y": 0.7747
+                            },
+                            "uuid": "287528f1-1661-4fb1-801f-d98e1155870e"
+                        }
+                    ],
+                    "severity": "warning",
+                    "type": "lib_symbol_issues"
+                },
+                {
+                    "description": "The current configuration does not include the footprint library 'VOLTU'",
+                    "items": [
+                        {
+                            "description": "Symbol C16 [CAP_CER_4.7UF_16V_X7R_0805]",
+                            "pos": {
+                                "x": 0.8128,
+                                "y": 0.5715
+                            },
+                            "uuid": "c44f5e3a-ea7c-4123-8754-8ea0250451b6"
+                        }
+                    ],
+                    "severity": "warning",
+                    "type": "footprint_link_issues"
+                },
+                {
+                    "description": "The current configuration does not include the symbol library 'Library'",
+                    "items": [
+                        {
+                            "description": "Symbol C16 [CAP_CER_4.7UF_16V_X7R_0805]",
+                            "pos": {
+                                "x": 0.8128,
+                                "y": 0.5715
+                            },
+                            "uuid": "c44f5e3a-ea7c-4123-8754-8ea0250451b6"
+                        }
+                    ],
+                    "severity": "warning",
+                    "type": "lib_symbol_issues"
+                },
+                {
+                    "description": "The current configuration does not include the footprint library 'VOLTU'",
+                    "items": [
+                        {
+                            "description": "Symbol C21 [CAP_CER_0.1UF_16V_X7R_0402]",
+                            "pos": {
+                                "x": 0.381,
+                                "y": 0.9398
+                            },
+                            "uuid": "0edddd2f-47f6-49fc-949f-364831cd57de"
+                        }
+                    ],
+                    "severity": "warning",
+                    "type": "footprint_link_issues"
+                },
+                {
+                    "description": "The current configuration does not include the symbol library 'Library'",
+                    "items": [
+                        {
+                            "description": "Symbol C21 [CAP_CER_0.1UF_16V_X7R_0402]",
+                            "pos": {
+                                "x": 0.381,
+                                "y": 0.9398
+                            },
+                            "uuid": "0edddd2f-47f6-49fc-949f-364831cd57de"
+                        }
+                    ],
+                    "severity": "warning",
+                    "type": "lib_symbol_issues"
+                },
+                {
+                    "description": "The current configuration does not include the symbol library 'Library'",
+                    "items": [
+                        {
+                            "description": "Symbol #PWR025 [+1V2]",
+                            "pos": {
+                                "x": 0.9398,
+                                "y": 0.3937
+                            },
+                            "uuid": "448d434d-4d00-4238-81b4-d18d2b2b7d66"
+                        }
+                    ],
+                    "severity": "warning",
+                    "type": "lib_symbol_issues"
+                },
+                {
+                    "description": "The current configuration does not include the footprint library 'VOLTU'",
+                    "items": [
+                        {
+                            "description": "Symbol C22 [CAP_CER_0.1UF_16V_X7R_0402]",
+                            "pos": {
+                                "x": 0.4445,
+                                "y": 0.9398
+                            },
+                            "uuid": "260c04e6-c643-44d3-b44d-172f778a28dd"
+                        }
+                    ],
+                    "severity": "warning",
+                    "type": "footprint_link_issues"
+                },
+                {
+                    "description": "The current configuration does not include the symbol library 'Library'",
+                    "items": [
+                        {
+                            "description": "Symbol C22 [CAP_CER_0.1UF_16V_X7R_0402]",
+                            "pos": {
+                                "x": 0.4445,
+                                "y": 0.9398
+                            },
+                            "uuid": "260c04e6-c643-44d3-b44d-172f778a28dd"
+                        }
+                    ],
+                    "severity": "warning",
+                    "type": "lib_symbol_issues"
+                },
+                {
+                    "description": "The current configuration does not include the footprint library 'VOLTU'",
+                    "items": [
+                        {
+                            "description": "Symbol C17 [CAP_CER_4.7UF_16V_X7R_0805]",
+                            "pos": {
+                                "x": 0.8763,
+                                "y": 0.5715
+                            },
+                            "uuid": "433d9c75-628f-460e-81ac-0e44b84bb00b"
+                        }
+                    ],
+                    "severity": "warning",
+                    "type": "footprint_link_issues"
+                },
+                {
+                    "description": "The current configuration does not include the symbol library 'Library'",
+                    "items": [
+                        {
+                            "description": "Symbol C17 [CAP_CER_4.7UF_16V_X7R_0805]",
+                            "pos": {
+                                "x": 0.8763,
+                                "y": 0.5715
+                            },
+                            "uuid": "433d9c75-628f-460e-81ac-0e44b84bb00b"
+                        }
+                    ],
+                    "severity": "warning",
+                    "type": "lib_symbol_issues"
+                },
+                {
+                    "description": "The current configuration does not include the footprint library 'VOLTU'",
+                    "items": [
+                        {
+                            "description": "Symbol C23 [CAP_CER_0.1UF_16V_X7R_0402]",
+                            "pos": {
+                                "x": 0.508,
+                                "y": 0.9398
+                            },
+                            "uuid": "9ba04b2d-e9af-48c5-a736-ae2620d34fb1"
+                        }
+                    ],
+                    "severity": "warning",
+                    "type": "footprint_link_issues"
+                },
+                {
+                    "description": "The current configuration does not include the symbol library 'Library'",
+                    "items": [
+                        {
+                            "description": "Symbol C23 [CAP_CER_0.1UF_16V_X7R_0402]",
+                            "pos": {
+                                "x": 0.508,
+                                "y": 0.9398
+                            },
+                            "uuid": "9ba04b2d-e9af-48c5-a736-ae2620d34fb1"
+                        }
+                    ],
+                    "severity": "warning",
+                    "type": "lib_symbol_issues"
+                },
+                {
+                    "description": "The current configuration does not include the symbol library 'Library'",
+                    "items": [
+                        {
+                            "description": "Symbol #PWR033 [GND]",
+                            "pos": {
+                                "x": 0.381,
+                                "y": 1.0287
+                            },
+                            "uuid": "f1c1cc6b-529f-48f0-92c7-d6b52fab1c3a"
+                        }
+                    ],
+                    "severity": "warning",
+                    "type": "lib_symbol_issues"
+                },
+                {
+                    "description": "The current configuration does not include the footprint library 'VOLTU'",
+                    "items": [
+                        {
+                            "description": "Symbol C18 [CAP_CER_4.7UF_16V_X7R_0805]",
+                            "pos": {
+                                "x": 0.9398,
+                                "y": 0.5715
+                            },
+                            "uuid": "4d4e6f44-5fc1-4665-a045-eadc5885a036"
+                        }
+                    ],
+                    "severity": "warning",
+                    "type": "footprint_link_issues"
+                },
+                {
+                    "description": "The current configuration does not include the symbol library 'Library'",
+                    "items": [
+                        {
+                            "description": "Symbol C18 [CAP_CER_4.7UF_16V_X7R_0805]",
+                            "pos": {
+                                "x": 0.9398,
+                                "y": 0.5715
+                            },
+                            "uuid": "4d4e6f44-5fc1-4665-a045-eadc5885a036"
+                        }
+                    ],
+                    "severity": "warning",
+                    "type": "lib_symbol_issues"
+                },
+                {
+                    "description": "The current configuration does not include the footprint library 'VOLTU'",
+                    "items": [
+                        {
+                            "description": "Symbol C25 [CAP_CER_0.1UF_16V_X7R_0402]",
+                            "pos": {
+                                "x": 0.635,
+                                "y": 0.9398
+                            },
+                            "uuid": "9d08f16c-ed27-4a22-b9e2-577a9bdba9e0"
+                        }
+                    ],
+                    "severity": "warning",
+                    "type": "footprint_link_issues"
+                },
+                {
+                    "description": "The current configuration does not include the symbol library 'Library'",
+                    "items": [
+                        {
+                            "description": "Symbol C25 [CAP_CER_0.1UF_16V_X7R_0402]",
+                            "pos": {
+                                "x": 0.635,
+                                "y": 0.9398
+                            },
+                            "uuid": "9d08f16c-ed27-4a22-b9e2-577a9bdba9e0"
+                        }
+                    ],
+                    "severity": "warning",
+                    "type": "lib_symbol_issues"
+                },
+                {
+                    "description": "The current configuration does not include the symbol library 'Library'",
+                    "items": [
+                        {
+                            "description": "Symbol #PWR028 [GND]",
+                            "pos": {
+                                "x": 0.9398,
+                                "y": 0.6604
+                            },
+                            "uuid": "054d00f0-2c2d-4dbe-a161-b10defa6e14b"
+                        }
+                    ],
+                    "severity": "warning",
+                    "type": "lib_symbol_issues"
+                },
+                {
+                    "description": "The current configuration does not include the footprint library 'VOLTU'",
+                    "items": [
+                        {
+                            "description": "Symbol C19 [CAP_CER_4.7UF_16V_X7R_0805]",
+                            "pos": {
+                                "x": 1.0033,
+                                "y": 0.5715
+                            },
+                            "uuid": "2f5e7187-7152-484d-81f3-7bc7e885f6f3"
+                        }
+                    ],
+                    "severity": "warning",
+                    "type": "footprint_link_issues"
+                },
+                {
+                    "description": "The current configuration does not include the symbol library 'Library'",
+                    "items": [
+                        {
+                            "description": "Symbol C19 [CAP_CER_4.7UF_16V_X7R_0805]",
+                            "pos": {
+                                "x": 1.0033,
+                                "y": 0.5715
+                            },
+                            "uuid": "2f5e7187-7152-484d-81f3-7bc7e885f6f3"
+                        }
+                    ],
+                    "severity": "warning",
+                    "type": "lib_symbol_issues"
+                },
+                {
+                    "description": "The current configuration does not include the footprint library 'VOLTU'",
+                    "items": [
+                        {
+                            "description": "Symbol C26 [CAP_CER_0.1UF_16V_X7R_0402]",
+                            "pos": {
+                                "x": 0.6985,
+                                "y": 0.9398
+                            },
+                            "uuid": "68b03ee9-360b-45b6-b441-89be7594b177"
+                        }
+                    ],
+                    "severity": "warning",
+                    "type": "footprint_link_issues"
+                },
+                {
+                    "description": "The current configuration does not include the symbol library 'Library'",
+                    "items": [
+                        {
+                            "description": "Symbol C26 [CAP_CER_0.1UF_16V_X7R_0402]",
+                            "pos": {
+                                "x": 0.6985,
+                                "y": 0.9398
+                            },
+                            "uuid": "68b03ee9-360b-45b6-b441-89be7594b177"
+                        }
+                    ],
+                    "severity": "warning",
+                    "type": "lib_symbol_issues"
+                },
+                {
+                    "description": "The current configuration does not include the footprint library 'VOLTU'",
+                    "items": [
+                        {
+                            "description": "Symbol C27 [CAP_CER_0.1UF_16V_X7R_0402]",
+                            "pos": {
+                                "x": 0.762,
+                                "y": 0.9398
+                            },
+                            "uuid": "9a3a5f88-f403-4bc1-a632-e61ee2edd6dd"
+                        }
+                    ],
+                    "severity": "warning",
+                    "type": "footprint_link_issues"
+                },
+                {
+                    "description": "The current configuration does not include the symbol library 'Library'",
+                    "items": [
+                        {
+                            "description": "Symbol C27 [CAP_CER_0.1UF_16V_X7R_0402]",
+                            "pos": {
+                                "x": 0.762,
+                                "y": 0.9398
+                            },
+                            "uuid": "9a3a5f88-f403-4bc1-a632-e61ee2edd6dd"
+                        }
+                    ],
+                    "severity": "warning",
+                    "type": "lib_symbol_issues"
+                },
+                {
+                    "description": "The current configuration does not include the footprint library 'VOLTU'",
+                    "items": [
+                        {
+                            "description": "Symbol C20 [CAP_CER_4.7UF_16V_X7R_0805]",
+                            "pos": {
+                                "x": 1.0668,
+                                "y": 0.5715
+                            },
+                            "uuid": "0a1cf1ef-0f08-43ce-bbbd-83f026b8851c"
+                        }
+                    ],
+                    "severity": "warning",
+                    "type": "footprint_link_issues"
+                },
+                {
+                    "description": "The current configuration does not include the symbol library 'Library'",
+                    "items": [
+                        {
+                            "description": "Symbol C20 [CAP_CER_4.7UF_16V_X7R_0805]",
+                            "pos": {
+                                "x": 1.0668,
+                                "y": 0.5715
+                            },
+                            "uuid": "0a1cf1ef-0f08-43ce-bbbd-83f026b8851c"
+                        }
+                    ],
+                    "severity": "warning",
+                    "type": "lib_symbol_issues"
+                },
+                {
+                    "description": "The current configuration does not include the footprint library 'VOLTU'",
+                    "items": [
+                        {
+                            "description": "Symbol C28 [CAP_CER_0.1UF_16V_X7R_0402]",
+                            "pos": {
+                                "x": 0.8255,
+                                "y": 0.9398
+                            },
+                            "uuid": "15e53d8e-dc64-4d09-8323-ead589b9b847"
+                        }
+                    ],
+                    "severity": "warning",
+                    "type": "footprint_link_issues"
+                },
+                {
+                    "description": "The current configuration does not include the symbol library 'Library'",
+                    "items": [
+                        {
+                            "description": "Symbol C28 [CAP_CER_0.1UF_16V_X7R_0402]",
+                            "pos": {
+                                "x": 0.8255,
+                                "y": 0.9398
+                            },
+                            "uuid": "15e53d8e-dc64-4d09-8323-ead589b9b847"
+                        }
+                    ],
+                    "severity": "warning",
+                    "type": "lib_symbol_issues"
+                },
+                {
+                    "description": "The current configuration does not include the symbol library 'Library'",
+                    "items": [
+                        {
+                            "description": "Symbol #PWR037 [+3V3]",
+                            "pos": {
+                                "x": 0.381,
+                                "y": 1.2065
+                            },
+                            "uuid": "cea17d54-d4d7-42a2-9e7a-d7512678932e"
+                        }
+                    ],
+                    "severity": "warning",
+                    "type": "lib_symbol_issues"
+                },
+                {
+                    "description": "The current configuration does not include the footprint library 'VOLTU'",
+                    "items": [
+                        {
+                            "description": "Symbol C29 [CAP_CER_0.1UF_16V_X7R_0402]",
+                            "pos": {
+                                "x": 0.889,
+                                "y": 0.9398
+                            },
+                            "uuid": "80bda267-47f5-47a6-87c1-13e3a86e09b5"
+                        }
+                    ],
+                    "severity": "warning",
+                    "type": "footprint_link_issues"
+                },
+                {
+                    "description": "The current configuration does not include the symbol library 'Library'",
+                    "items": [
+                        {
+                            "description": "Symbol C29 [CAP_CER_0.1UF_16V_X7R_0402]",
+                            "pos": {
+                                "x": 0.889,
+                                "y": 0.9398
+                            },
+                            "uuid": "80bda267-47f5-47a6-87c1-13e3a86e09b5"
+                        }
+                    ],
+                    "severity": "warning",
+                    "type": "lib_symbol_issues"
+                },
+                {
+                    "description": "The current configuration does not include the footprint library 'VOLTU'",
+                    "items": [
+                        {
+                            "description": "Symbol C30 [CAP_CER_0.1UF_16V_X7R_0402]",
+                            "pos": {
+                                "x": 0.9525,
+                                "y": 0.9398
+                            },
+                            "uuid": "4977f356-faec-4113-8dba-6de97213e8d5"
+                        }
+                    ],
+                    "severity": "warning",
+                    "type": "footprint_link_issues"
+                },
+                {
+                    "description": "The current configuration does not include the symbol library 'Library'",
+                    "items": [
+                        {
+                            "description": "Symbol C30 [CAP_CER_0.1UF_16V_X7R_0402]",
+                            "pos": {
+                                "x": 0.9525,
+                                "y": 0.9398
+                            },
+                            "uuid": "4977f356-faec-4113-8dba-6de97213e8d5"
+                        }
+                    ],
+                    "severity": "warning",
+                    "type": "lib_symbol_issues"
+                },
+                {
+                    "description": "The current configuration does not include the footprint library 'VOLTU'",
+                    "items": [
+                        {
+                            "description": "Symbol C37 [CAP_CER_ 2.2UF_6.3V_X7R_0603]",
+                            "pos": {
+                                "x": 0.381,
+                                "y": 1.2954
+                            },
+                            "uuid": "96d654a8-eacd-4453-8459-1991a80164c6"
+                        }
+                    ],
+                    "severity": "warning",
+                    "type": "footprint_link_issues"
+                },
+                {
+                    "description": "The current configuration does not include the symbol library 'Library'",
+                    "items": [
+                        {
+                            "description": "Symbol C37 [CAP_CER_ 2.2UF_6.3V_X7R_0603]",
+                            "pos": {
+                                "x": 0.381,
+                                "y": 1.2954
+                            },
+                            "uuid": "96d654a8-eacd-4453-8459-1991a80164c6"
+                        }
+                    ],
+                    "severity": "warning",
+                    "type": "lib_symbol_issues"
+                },
+                {
+                    "description": "The current configuration does not include the footprint library 'VOLTU'",
+                    "items": [
+                        {
+                            "description": "Symbol C38 [CAP_CER_ 2.2UF_6.3V_X7R_0603]",
+                            "pos": {
+                                "x": 0.4826,
+                                "y": 1.2954
+                            },
+                            "uuid": "a6ab18f1-b423-44f6-92c4-10273a47a0e1"
+                        }
+                    ],
+                    "severity": "warning",
+                    "type": "footprint_link_issues"
+                },
+                {
+                    "description": "The current configuration does not include the symbol library 'Library'",
+                    "items": [
+                        {
+                            "description": "Symbol C38 [CAP_CER_ 2.2UF_6.3V_X7R_0603]",
+                            "pos": {
+                                "x": 0.4826,
+                                "y": 1.2954
+                            },
+                            "uuid": "a6ab18f1-b423-44f6-92c4-10273a47a0e1"
+                        }
+                    ],
+                    "severity": "warning",
+                    "type": "lib_symbol_issues"
+                },
+                {
+                    "description": "The current configuration does not include the footprint library 'VOLTU'",
+                    "items": [
+                        {
+                            "description": "Symbol C31 [CAP_CER_0.1UF_16V_X7R_0402]",
+                            "pos": {
+                                "x": 1.016,
+                                "y": 0.9398
+                            },
+                            "uuid": "d4ffd3e7-7270-47b4-aa5e-9cd1b777636a"
+                        }
+                    ],
+                    "severity": "warning",
+                    "type": "footprint_link_issues"
+                },
+                {
+                    "description": "The current configuration does not include the symbol library 'Library'",
+                    "items": [
+                        {
+                            "description": "Symbol C31 [CAP_CER_0.1UF_16V_X7R_0402]",
+                            "pos": {
+                                "x": 1.016,
+                                "y": 0.9398
+                            },
+                            "uuid": "d4ffd3e7-7270-47b4-aa5e-9cd1b777636a"
+                        }
+                    ],
+                    "severity": "warning",
+                    "type": "lib_symbol_issues"
+                },
+                {
+                    "description": "The current configuration does not include the footprint library 'VOLTU'",
+                    "items": [
+                        {
+                            "description": "Symbol C39 [CAP_CER_ 2.2UF_6.3V_X7R_0603]",
+                            "pos": {
+                                "x": 0.5842,
+                                "y": 1.2954
+                            },
+                            "uuid": "abeeb110-450a-4d39-99d2-88ee193ccbe0"
+                        }
+                    ],
+                    "severity": "warning",
+                    "type": "footprint_link_issues"
+                },
+                {
+                    "description": "The current configuration does not include the symbol library 'Library'",
+                    "items": [
+                        {
+                            "description": "Symbol C39 [CAP_CER_ 2.2UF_6.3V_X7R_0603]",
+                            "pos": {
+                                "x": 0.5842,
+                                "y": 1.2954
+                            },
+                            "uuid": "abeeb110-450a-4d39-99d2-88ee193ccbe0"
+                        }
+                    ],
+                    "severity": "warning",
+                    "type": "lib_symbol_issues"
+                },
+                {
+                    "description": "The current configuration does not include the symbol library 'Library'",
+                    "items": [
+                        {
+                            "description": "Symbol #PWR038 [GND]",
+                            "pos": {
+                                "x": 0.381,
+                                "y": 1.3716
+                            },
+                            "uuid": "cf5f41cc-1753-471e-ab88-b266dabf7f89"
+                        }
+                    ],
+                    "severity": "warning",
+                    "type": "lib_symbol_issues"
+                },
+                {
+                    "description": "The current configuration does not include the footprint library 'VOLTU'",
+                    "items": [
+                        {
+                            "description": "Symbol C32 [CAP_CER_0.1UF_16V_X7R_0402]",
+                            "pos": {
+                                "x": 1.0795,
+                                "y": 0.9398
+                            },
+                            "uuid": "ef44c88f-1dc1-4378-b2c6-433574bab874"
+                        }
+                    ],
+                    "severity": "warning",
+                    "type": "footprint_link_issues"
+                },
+                {
+                    "description": "The current configuration does not include the symbol library 'Library'",
+                    "items": [
+                        {
+                            "description": "Symbol C32 [CAP_CER_0.1UF_16V_X7R_0402]",
+                            "pos": {
+                                "x": 1.0795,
+                                "y": 0.9398
+                            },
+                            "uuid": "ef44c88f-1dc1-4378-b2c6-433574bab874"
+                        }
+                    ],
+                    "severity": "warning",
+                    "type": "lib_symbol_issues"
+                },
+                {
+                    "description": "The current configuration does not include the symbol library 'Library'",
+                    "items": [
+                        {
+                            "description": "Symbol #PWR030 [+3V3]",
+                            "pos": {
+                                "x": 1.2827,
+                                "y": 0.7874
+                            },
+                            "uuid": "6c2f6e38-e7c9-4b91-af4d-251a44a9ba74"
+                        }
+                    ],
+                    "severity": "warning",
+                    "type": "lib_symbol_issues"
+                },
+                {
+                    "description": "The current configuration does not include the footprint library 'VOLTU'",
+                    "items": [
+                        {
+                            "description": "Symbol C33 [CAP_CER_ 2.2UF_6.3V_X7R_0603]",
+                            "pos": {
+                                "x": 1.1811,
+                                "y": 0.9398
+                            },
+                            "uuid": "a099db7b-a5dc-45fa-8f1d-f1146c6416b9"
+                        }
+                    ],
+                    "severity": "warning",
+                    "type": "footprint_link_issues"
+                },
+                {
+                    "description": "The current configuration does not include the symbol library 'Library'",
+                    "items": [
+                        {
+                            "description": "Symbol C33 [CAP_CER_ 2.2UF_6.3V_X7R_0603]",
+                            "pos": {
+                                "x": 1.1811,
+                                "y": 0.9398
+                            },
+                            "uuid": "a099db7b-a5dc-45fa-8f1d-f1146c6416b9"
+                        }
+                    ],
+                    "severity": "warning",
+                    "type": "lib_symbol_issues"
+                },
+                {
+                    "description": "The current configuration does not include the footprint library 'VOLTU'",
+                    "items": [
+                        {
+                            "description": "Symbol C34 [CAP_CER_ 2.2UF_6.3V_X7R_0603]",
+                            "pos": {
+                                "x": 1.2827,
+                                "y": 0.9398
+                            },
+                            "uuid": "7646ab07-f4cd-4d79-98de-1234a10d36bf"
+                        }
+                    ],
+                    "severity": "warning",
+                    "type": "footprint_link_issues"
+                },
+                {
+                    "description": "The current configuration does not include the symbol library 'Library'",
+                    "items": [
+                        {
+                            "description": "Symbol C34 [CAP_CER_ 2.2UF_6.3V_X7R_0603]",
+                            "pos": {
+                                "x": 1.2827,
+                                "y": 0.9398
+                            },
+                            "uuid": "7646ab07-f4cd-4d79-98de-1234a10d36bf"
+                        }
+                    ],
+                    "severity": "warning",
+                    "type": "lib_symbol_issues"
+                },
+                {
+                    "description": "The current configuration does not include the symbol library 'Library'",
+                    "items": [
+                        {
+                            "description": "Symbol #PWR034 [GND]",
+                            "pos": {
+                                "x": 1.2827,
+                                "y": 1.0287
+                            },
+                            "uuid": "cc6e6f30-9faf-46e4-bb69-e58bd9e2053e"
+                        }
+                    ],
+                    "severity": "warning",
+                    "type": "lib_symbol_issues"
+                },
+                {
+                    "description": "The current configuration does not include the symbol library 'Library'",
+                    "items": [
+                        {
+                            "description": "Symbol #PWR031 [+3V3]",
+                            "pos": {
+                                "x": 1.4478,
+                                "y": 0.7874
+                            },
+                            "uuid": "d5a7340a-3f07-46a1-8806-72b297232489"
+                        }
+                    ],
+                    "severity": "warning",
+                    "type": "lib_symbol_issues"
+                },
+                {
+                    "description": "The current configuration does not include the footprint library 'VOLTU'",
+                    "items": [
+                        {
+                            "description": "Symbol C35 [CAP_CER_0.1UF_16V_X7R_0402]",
+                            "pos": {
+                                "x": 1.4478,
+                                "y": 0.9398
+                            },
+                            "uuid": "2ea921ec-1369-4a62-b9de-3ff7ac7d4db9"
+                        }
+                    ],
+                    "severity": "warning",
+                    "type": "footprint_link_issues"
+                },
+                {
+                    "description": "The current configuration does not include the symbol library 'Library'",
+                    "items": [
+                        {
+                            "description": "Symbol C35 [CAP_CER_0.1UF_16V_X7R_0402]",
+                            "pos": {
+                                "x": 1.4478,
+                                "y": 0.9398
+                            },
+                            "uuid": "2ea921ec-1369-4a62-b9de-3ff7ac7d4db9"
+                        }
+                    ],
+                    "severity": "warning",
+                    "type": "lib_symbol_issues"
+                },
+                {
+                    "description": "The current configuration does not include the symbol library 'Library'",
+                    "items": [
+                        {
+                            "description": "Symbol #PWR032 [+3V3]",
+                            "pos": {
+                                "x": 1.5748,
+                                "y": 0.7874
+                            },
+                            "uuid": "992f38c2-6665-4967-8911-8b71ec3e4542"
+                        }
+                    ],
+                    "severity": "warning",
+                    "type": "lib_symbol_issues"
+                },
+                {
+                    "description": "The current configuration does not include the symbol library 'Library'",
+                    "items": [
+                        {
+                            "description": "Symbol #PWR035 [GND]",
+                            "pos": {
+                                "x": 1.4478,
+                                "y": 1.0287
+                            },
+                            "uuid": "b6d90acc-4327-455b-9a8f-c1fe66f033dc"
+                        }
+                    ],
+                    "severity": "warning",
+                    "type": "lib_symbol_issues"
+                },
+                {
+                    "description": "The current configuration does not include the footprint library 'VOLTU'",
+                    "items": [
+                        {
+                            "description": "Symbol C36 [CAP_CER_0.1UF_16V_X7R_0402]",
+                            "pos": {
+                                "x": 1.5748,
+                                "y": 0.9398
+                            },
+                            "uuid": "0692cabb-c701-4374-bb96-ca1f06808d72"
+                        }
+                    ],
+                    "severity": "warning",
+                    "type": "footprint_link_issues"
+                },
+                {
+                    "description": "The current configuration does not include the symbol library 'Library'",
+                    "items": [
+                        {
+                            "description": "Symbol C36 [CAP_CER_0.1UF_16V_X7R_0402]",
+                            "pos": {
+                                "x": 1.5748,
+                                "y": 0.9398
+                            },
+                            "uuid": "0692cabb-c701-4374-bb96-ca1f06808d72"
+                        }
+                    ],
+                    "severity": "warning",
+                    "type": "lib_symbol_issues"
+                },
+                {
+                    "description": "The current configuration does not include the symbol library 'Library'",
+                    "items": [
+                        {
+                            "description": "Symbol #PWR036 [GND]",
+                            "pos": {
+                                "x": 1.5748,
+                                "y": 1.0287
+                            },
+                            "uuid": "600230b0-79a5-4340-aae1-4207a2abe2da"
+                        }
+                    ],
+                    "severity": "warning",
+                    "type": "lib_symbol_issues"
+                },
+                {
+                    "description": "The current configuration does not include the symbol library 'Library'",
+                    "items": [
+                        {
+                            "description": "Symbol #FLG04 [PWR_FLAG]",
+                            "pos": {
+                                "x": 2.1844,
+                                "y": 0.635
+                            },
+                            "uuid": "158aa101-da6e-482b-a17a-51eebcec9def"
+                        }
+                    ],
+                    "severity": "warning",
+                    "type": "lib_symbol_issues"
+                },
+                {
+                    "description": "The current configuration does not include the symbol library 'Library'",
+                    "items": [
+                        {
+                            "description": "Symbol #FLG03 [PWR_FLAG]",
+                            "pos": {
+                                "x": 2.2225,
+                                "y": 0.4953
+                            },
+                            "uuid": "eaaf3cbc-dd87-4183-9320-d47e94f3ad32"
+                        }
+                    ],
+                    "severity": "warning",
+                    "type": "lib_symbol_issues"
+                },
+                {
+                    "description": "The current configuration does not include the symbol library 'Library'",
+                    "items": [
+                        {
+                            "description": "Symbol #PWR027 [+3V3]",
+                            "pos": {
+                                "x": 2.2733,
+                                "y": 0.635
+                            },
+                            "uuid": "b59df703-35af-4793-a778-0183db37f71d"
+                        }
+                    ],
+                    "severity": "warning",
+                    "type": "lib_symbol_issues"
+                },
+                {
+                    "description": "The current configuration does not include the symbol library 'Library'",
+                    "items": [
+                        {
+                            "description": "Symbol #PWR026 [+1V2]",
+                            "pos": {
+                                "x": 2.3368,
+                                "y": 0.4826
+                            },
+                            "uuid": "9a7cd04a-72e1-42e8-b8bc-8314fd93b590"
+                        }
+                    ],
+                    "severity": "warning",
+                    "type": "lib_symbol_issues"
+                },
+                {
+                    "description": "The current configuration does not include the footprint library 'VOLTU'",
+                    "items": [
+                        {
+                            "description": "Symbol U4 [F28P659DK8PTPQ1]",
+                            "pos": {
+                                "x": 2.3368,
+                                "y": 0.5334
+                            },
+                            "uuid": "3a3c7d83-3f51-49f3-91f6-db6796da7722"
+                        }
+                    ],
+                    "severity": "warning",
+                    "type": "footprint_link_issues"
+                },
+                {
+                    "description": "The current configuration does not include the symbol library 'Library'",
+                    "items": [
+                        {
+                            "description": "Symbol U4 [F28P659DK8PTPQ1]",
+                            "pos": {
+                                "x": 2.3368,
+                                "y": 0.5334
+                            },
+                            "uuid": "3a3c7d83-3f51-49f3-91f6-db6796da7722"
+                        }
+                    ],
+                    "severity": "warning",
+                    "type": "lib_symbol_issues"
+                },
+                {
+                    "description": "Symbol U4 has bidirectional pins in units [ A, B, C ] that are not placed",
+                    "items": [
+                        {
+                            "description": "Symbol U4 [F28P659DK8PTPQ1]",
+                            "pos": {
+                                "x": 2.3368,
+                                "y": 0.5334
+                            },
+                            "uuid": "3a3c7d83-3f51-49f3-91f6-db6796da7722"
+                        }
+                    ],
+                    "severity": "warning",
+                    "type": "missing_bidi_pin"
+                },
+                {
+                    "description": "Symbol U4 has unplaced units [ A, B, C ]",
+                    "items": [
+                        {
+                            "description": "Symbol U4 [F28P659DK8PTPQ1]",
+                            "pos": {
+                                "x": 2.3368,
+                                "y": 0.5334
+                            },
+                            "uuid": "3a3c7d83-3f51-49f3-91f6-db6796da7722"
+                        }
+                    ],
+                    "severity": "warning",
+                    "type": "missing_unit"
+                },
+                {
+                    "description": "The current configuration does not include the symbol library 'Library'",
+                    "items": [
+                        {
+                            "description": "Symbol #PWR039 [GND]",
+                            "pos": {
+                                "x": 2.3368,
+                                "y": 1.3843
+                            },
+                            "uuid": "9c4e358e-79e5-4786-8262-cbfa2a635f5a"
+                        }
+                    ],
+                    "severity": "warning",
+                    "type": "lib_symbol_issues"
+                }
+            ]
+        }
+    ],
+    "source": "F28P65x-power.kicad_sch"
+}

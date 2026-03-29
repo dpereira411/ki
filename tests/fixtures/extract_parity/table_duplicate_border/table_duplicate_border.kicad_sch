@@ -1,0 +1,17 @@
+(kicad_sch
+  (version 20260101)
+  (generator "eeschema")
+  (uuid "u")
+  (paper "A4")
+  (table
+    (column 1)
+    (row 1)
+    (row_heights 10)
+    (col_widths 10)
+    (border (external yes))
+    (border (external yes))
+    (cells
+      (table_cell "X" (at 10 10 0) (size 5 5) (effects (font (size 1.27 1.27)))))
+    (stroke (width 0) (type solid)))
+  (sheet_instances
+    (path "/" (page "1"))))

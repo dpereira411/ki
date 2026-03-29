@@ -1,0 +1,10 @@
+(kicad_sch
+  (version 20260101)
+  (generator "eeschema")
+  (uuid "recursive-root")
+  (paper "A4")
+  (sheet (at 20 20) (size 20 10) (uuid "sheet-self")
+    (property "Sheetname" "Self" (at 20 18 0) (effects (font (size 1.27 1.27))))
+    (property "Sheetfile" "recursive_sheet.kicad_sch" (at 20 31 0) (effects (font (size 1.27 1.27)))))
+  (sheet_instances
+    (path "/" (page "1"))))

@@ -1,0 +1,592 @@
+{
+    "$schema": "https://schemas.kicad.org/erc.v1.json",
+    "coordinate_units": "mm",
+    "date": "2026-03-29T23:05:49",
+    "ignored_checks": [
+        {
+            "description": "Global label only appears once in the schematic",
+            "key": "single_global_label"
+        },
+        {
+            "description": "Four connection points are joined together",
+            "key": "four_way_junction"
+        },
+        {
+            "description": "SPICE model issue",
+            "key": "simulation_model_issue"
+        },
+        {
+            "description": "Assigned footprint doesn't match footprint filters",
+            "key": "footprint_filter"
+        }
+    ],
+    "included_severities": [
+        "error",
+        "warning"
+    ],
+    "kicad_version": "10.0.0",
+    "sheets": [
+        {
+            "path": "/",
+            "uuid_path": "/0358f1df-89ce-434b-a273-8c14f192d203",
+            "violations": [
+                {
+                    "description": "Pin not connected",
+                    "items": [
+                        {
+                            "description": "Symbol A1 Pin J1.1 [+3.3V, Power output, Line]",
+                            "pos": {
+                                "x": 0.6604,
+                                "y": 0.5588
+                            },
+                            "uuid": "5539de72-5b80-42b9-be12-1ad76a4698e8"
+                        }
+                    ],
+                    "severity": "error",
+                    "type": "pin_not_connected"
+                },
+                {
+                    "description": "Pin not connected",
+                    "items": [
+                        {
+                            "description": "Symbol A1 Pin J1.2 [ADCINB2/C6, Input, Line]",
+                            "pos": {
+                                "x": 0.6604,
+                                "y": 0.6096
+                            },
+                            "uuid": "2d8cb837-a2b6-4073-a975-ee6b5cd0fcda"
+                        }
+                    ],
+                    "severity": "error",
+                    "type": "pin_not_connected"
+                },
+                {
+                    "description": "Input pin not driven by any Output pins",
+                    "items": [
+                        {
+                            "description": "Symbol A1 Pin J1.2 [ADCINB2/C6, Input, Line]",
+                            "pos": {
+                                "x": 0.6604,
+                                "y": 0.6096
+                            },
+                            "uuid": "2d8cb837-a2b6-4073-a975-ee6b5cd0fcda"
+                        }
+                    ],
+                    "severity": "error",
+                    "type": "pin_not_driven"
+                },
+                {
+                    "description": "Pin not connected",
+                    "items": [
+                        {
+                            "description": "Symbol A1 Pin J1.3 [GPIO28, Bidirectional, Line]",
+                            "pos": {
+                                "x": 0.6604,
+                                "y": 0.6604
+                            },
+                            "uuid": "b0f0a725-3d76-49f0-b42b-afa94287e4d3"
+                        }
+                    ],
+                    "severity": "error",
+                    "type": "pin_not_connected"
+                },
+                {
+                    "description": "Pin not connected",
+                    "items": [
+                        {
+                            "description": "Symbol A1 Pin J1.4 [GPIO29, Bidirectional, Line]",
+                            "pos": {
+                                "x": 0.6604,
+                                "y": 0.7112
+                            },
+                            "uuid": "3b19e129-7079-4131-acf2-98d7497e97cc"
+                        }
+                    ],
+                    "severity": "error",
+                    "type": "pin_not_connected"
+                },
+                {
+                    "description": "Pin not connected",
+                    "items": [
+                        {
+                            "description": "Symbol A1 Pin J1.5 [GPIO29, Bidirectional, Line]",
+                            "pos": {
+                                "x": 0.6604,
+                                "y": 0.762
+                            },
+                            "uuid": "abf77568-e4c9-4729-a3f2-cf866092627a"
+                        }
+                    ],
+                    "severity": "error",
+                    "type": "pin_not_connected"
+                },
+                {
+                    "description": "Pin not connected",
+                    "items": [
+                        {
+                            "description": "Symbol A1 Pin J1.6 [ADCINB3, Input, Line]",
+                            "pos": {
+                                "x": 0.6604,
+                                "y": 0.8128
+                            },
+                            "uuid": "dee57091-f8ed-4647-877d-1416d03c8058"
+                        }
+                    ],
+                    "severity": "error",
+                    "type": "pin_not_connected"
+                },
+                {
+                    "description": "Input pin not driven by any Output pins",
+                    "items": [
+                        {
+                            "description": "Symbol A1 Pin J1.6 [ADCINB3, Input, Line]",
+                            "pos": {
+                                "x": 0.6604,
+                                "y": 0.8128
+                            },
+                            "uuid": "dee57091-f8ed-4647-877d-1416d03c8058"
+                        }
+                    ],
+                    "severity": "error",
+                    "type": "pin_not_driven"
+                },
+                {
+                    "description": "Pin not connected",
+                    "items": [
+                        {
+                            "description": "Symbol A1 Pin J1.7 [GPIO9, Bidirectional, Line]",
+                            "pos": {
+                                "x": 0.6604,
+                                "y": 0.8636
+                            },
+                            "uuid": "8e05827d-1e10-4769-bd3a-2252d59c2da0"
+                        }
+                    ],
+                    "severity": "error",
+                    "type": "pin_not_connected"
+                },
+                {
+                    "description": "Pin not connected",
+                    "items": [
+                        {
+                            "description": "Symbol A1 Pin J1.8 [GPIO24, Bidirectional, Line]",
+                            "pos": {
+                                "x": 0.6604,
+                                "y": 0.9144
+                            },
+                            "uuid": "f03e3d8a-8152-49de-ac91-ec73e02551a1"
+                        }
+                    ],
+                    "severity": "error",
+                    "type": "pin_not_connected"
+                },
+                {
+                    "description": "Symbol A1 has input power pins in units [ TopRight_UnderSide, BottomLeft_UnderSide, BottomRight_UnderSide, . ] that are not placed",
+                    "items": [
+                        {
+                            "description": "Symbol A1 [LAUNCHXL-F280039C_symbol]",
+                            "pos": {
+                                "x": 0.8636,
+                                "y": 0.7874
+                            },
+                            "uuid": "16575282-f722-440e-9d2c-5156a704128d"
+                        }
+                    ],
+                    "severity": "error",
+                    "type": "missing_power_pin"
+                },
+                {
+                    "description": "Pin not connected",
+                    "items": [
+                        {
+                            "description": "Symbol A1 Pin J1.9 [GPIO51, Bidirectional, Line]",
+                            "pos": {
+                                "x": 0.6604,
+                                "y": 0.9652
+                            },
+                            "uuid": "15e6e040-3e5a-41bc-bc0c-2c99813faecb"
+                        }
+                    ],
+                    "severity": "error",
+                    "type": "pin_not_connected"
+                },
+                {
+                    "description": "Pin not connected",
+                    "items": [
+                        {
+                            "description": "Symbol A1 Pin J3.21 [+5V, Power input, Line]",
+                            "pos": {
+                                "x": 1.0668,
+                                "y": 0.5588
+                            },
+                            "uuid": "fd45dc28-7708-42ee-9b4e-e583750c82df"
+                        }
+                    ],
+                    "severity": "error",
+                    "type": "pin_not_connected"
+                },
+                {
+                    "description": "Input Power pin not driven by any Output Power pins",
+                    "items": [
+                        {
+                            "description": "Symbol A1 Pin J3.21 [+5V, Power input, Line]",
+                            "pos": {
+                                "x": 1.0668,
+                                "y": 0.5588
+                            },
+                            "uuid": "fd45dc28-7708-42ee-9b4e-e583750c82df"
+                        }
+                    ],
+                    "severity": "error",
+                    "type": "power_pin_not_driven"
+                },
+                {
+                    "description": "Pin not connected",
+                    "items": [
+                        {
+                            "description": "Symbol A1 Pin J1.10 [GPIO34, Bidirectional, Line]",
+                            "pos": {
+                                "x": 0.6604,
+                                "y": 1.016
+                            },
+                            "uuid": "8d5e13bc-d244-4925-a4fc-bc0390e3efc4"
+                        }
+                    ],
+                    "severity": "error",
+                    "type": "pin_not_connected"
+                },
+                {
+                    "description": "Pin not connected",
+                    "items": [
+                        {
+                            "description": "Symbol A1 Pin J3.22 [GND, Power input, Line]",
+                            "pos": {
+                                "x": 1.0668,
+                                "y": 0.6096
+                            },
+                            "uuid": "c50ec04f-bfb8-44be-913e-ce4171d7101c"
+                        }
+                    ],
+                    "severity": "error",
+                    "type": "pin_not_connected"
+                },
+                {
+                    "description": "Input Power pin not driven by any Output Power pins",
+                    "items": [
+                        {
+                            "description": "Symbol A1 Pin J3.22 [GND, Power input, Line]",
+                            "pos": {
+                                "x": 1.0668,
+                                "y": 0.6096
+                            },
+                            "uuid": "c50ec04f-bfb8-44be-913e-ce4171d7101c"
+                        }
+                    ],
+                    "severity": "error",
+                    "type": "power_pin_not_driven"
+                },
+                {
+                    "description": "Pin not connected",
+                    "items": [
+                        {
+                            "description": "Symbol A1 Pin J3.23 [ADCINA6, Input, Line]",
+                            "pos": {
+                                "x": 1.0668,
+                                "y": 0.6604
+                            },
+                            "uuid": "2c5f96d9-d2c1-4c19-af3e-67f4cd183e07"
+                        }
+                    ],
+                    "severity": "error",
+                    "type": "pin_not_connected"
+                },
+                {
+                    "description": "Input pin not driven by any Output pins",
+                    "items": [
+                        {
+                            "description": "Symbol A1 Pin J3.23 [ADCINA6, Input, Line]",
+                            "pos": {
+                                "x": 1.0668,
+                                "y": 0.6604
+                            },
+                            "uuid": "2c5f96d9-d2c1-4c19-af3e-67f4cd183e07"
+                        }
+                    ],
+                    "severity": "error",
+                    "type": "pin_not_driven"
+                },
+                {
+                    "description": "Pin not connected",
+                    "items": [
+                        {
+                            "description": "Symbol A1 Pin J3.24 [ADCINA2/B6/C9, Input, Line]",
+                            "pos": {
+                                "x": 1.0668,
+                                "y": 0.7112
+                            },
+                            "uuid": "7c1c135c-08cc-442f-8918-4a1650636bba"
+                        }
+                    ],
+                    "severity": "error",
+                    "type": "pin_not_connected"
+                },
+                {
+                    "description": "Input pin not driven by any Output pins",
+                    "items": [
+                        {
+                            "description": "Symbol A1 Pin J3.24 [ADCINA2/B6/C9, Input, Line]",
+                            "pos": {
+                                "x": 1.0668,
+                                "y": 0.7112
+                            },
+                            "uuid": "7c1c135c-08cc-442f-8918-4a1650636bba"
+                        }
+                    ],
+                    "severity": "error",
+                    "type": "pin_not_driven"
+                },
+                {
+                    "description": "Pin not connected",
+                    "items": [
+                        {
+                            "description": "Symbol A1 Pin J3.25 [ADCINA3/B9/C7, Input, Line]",
+                            "pos": {
+                                "x": 1.0668,
+                                "y": 0.762
+                            },
+                            "uuid": "231e88c5-8f32-4200-9f9a-494cb37d5ed1"
+                        }
+                    ],
+                    "severity": "error",
+                    "type": "pin_not_connected"
+                },
+                {
+                    "description": "Input pin not driven by any Output pins",
+                    "items": [
+                        {
+                            "description": "Symbol A1 Pin J3.25 [ADCINA3/B9/C7, Input, Line]",
+                            "pos": {
+                                "x": 1.0668,
+                                "y": 0.762
+                            },
+                            "uuid": "231e88c5-8f32-4200-9f9a-494cb37d5ed1"
+                        }
+                    ],
+                    "severity": "error",
+                    "type": "pin_not_driven"
+                },
+                {
+                    "description": "Pin not connected",
+                    "items": [
+                        {
+                            "description": "Symbol A1 Pin J3.26 [ADCINA14/B14/C4, Input, Line]",
+                            "pos": {
+                                "x": 1.0668,
+                                "y": 0.8128
+                            },
+                            "uuid": "c9ac883a-b7d5-4e22-b0b2-dd17e4b36dd6"
+                        }
+                    ],
+                    "severity": "error",
+                    "type": "pin_not_connected"
+                },
+                {
+                    "description": "Input pin not driven by any Output pins",
+                    "items": [
+                        {
+                            "description": "Symbol A1 Pin J3.26 [ADCINA14/B14/C4, Input, Line]",
+                            "pos": {
+                                "x": 1.0668,
+                                "y": 0.8128
+                            },
+                            "uuid": "c9ac883a-b7d5-4e22-b0b2-dd17e4b36dd6"
+                        }
+                    ],
+                    "severity": "error",
+                    "type": "pin_not_driven"
+                },
+                {
+                    "description": "Pin not connected",
+                    "items": [
+                        {
+                            "description": "Symbol A1 Pin J3.27 [ADCINA11/B10/C0, Input, Line]",
+                            "pos": {
+                                "x": 1.0668,
+                                "y": 0.8636
+                            },
+                            "uuid": "fe25b643-c769-49d2-b4b0-1a1c557f0ba1"
+                        }
+                    ],
+                    "severity": "error",
+                    "type": "pin_not_connected"
+                },
+                {
+                    "description": "Input pin not driven by any Output pins",
+                    "items": [
+                        {
+                            "description": "Symbol A1 Pin J3.27 [ADCINA11/B10/C0, Input, Line]",
+                            "pos": {
+                                "x": 1.0668,
+                                "y": 0.8636
+                            },
+                            "uuid": "fe25b643-c769-49d2-b4b0-1a1c557f0ba1"
+                        }
+                    ],
+                    "severity": "error",
+                    "type": "pin_not_driven"
+                },
+                {
+                    "description": "Pin not connected",
+                    "items": [
+                        {
+                            "description": "Symbol A1 Pin J3.28 [ADCINB12/C2, Input, Line]",
+                            "pos": {
+                                "x": 1.0668,
+                                "y": 0.9144
+                            },
+                            "uuid": "d8158e4a-53c8-4875-a0f7-b0389650c524"
+                        }
+                    ],
+                    "severity": "error",
+                    "type": "pin_not_connected"
+                },
+                {
+                    "description": "Input pin not driven by any Output pins",
+                    "items": [
+                        {
+                            "description": "Symbol A1 Pin J3.28 [ADCINB12/C2, Input, Line]",
+                            "pos": {
+                                "x": 1.0668,
+                                "y": 0.9144
+                            },
+                            "uuid": "d8158e4a-53c8-4875-a0f7-b0389650c524"
+                        }
+                    ],
+                    "severity": "error",
+                    "type": "pin_not_driven"
+                },
+                {
+                    "description": "Pin not connected",
+                    "items": [
+                        {
+                            "description": "Symbol A1 Pin J3.29 [ADCINA7/C3, Input, Line]",
+                            "pos": {
+                                "x": 1.0668,
+                                "y": 0.9652
+                            },
+                            "uuid": "2e5893ac-5917-4a44-880e-95f74c229dc1"
+                        }
+                    ],
+                    "severity": "error",
+                    "type": "pin_not_connected"
+                },
+                {
+                    "description": "Input pin not driven by any Output pins",
+                    "items": [
+                        {
+                            "description": "Symbol A1 Pin J3.29 [ADCINA7/C3, Input, Line]",
+                            "pos": {
+                                "x": 1.0668,
+                                "y": 0.9652
+                            },
+                            "uuid": "2e5893ac-5917-4a44-880e-95f74c229dc1"
+                        }
+                    ],
+                    "severity": "error",
+                    "type": "pin_not_driven"
+                },
+                {
+                    "description": "Pin not connected",
+                    "items": [
+                        {
+                            "description": "Symbol A1 Pin J3.30 [ADCINA1/B7, Input, Line]",
+                            "pos": {
+                                "x": 1.0668,
+                                "y": 1.016
+                            },
+                            "uuid": "e3af218c-d162-4dea-9f64-48d7541a1e97"
+                        }
+                    ],
+                    "severity": "error",
+                    "type": "pin_not_connected"
+                },
+                {
+                    "description": "Input pin not driven by any Output pins",
+                    "items": [
+                        {
+                            "description": "Symbol A1 Pin J3.30 [ADCINA1/B7, Input, Line]",
+                            "pos": {
+                                "x": 1.0668,
+                                "y": 1.016
+                            },
+                            "uuid": "e3af218c-d162-4dea-9f64-48d7541a1e97"
+                        }
+                    ],
+                    "severity": "error",
+                    "type": "pin_not_driven"
+                },
+                {
+                    "description": "The current configuration does not include the symbol library 'Texas_instrument_Me'",
+                    "items": [
+                        {
+                            "description": "Symbol A1 [LAUNCHXL-F280039C_symbol]",
+                            "pos": {
+                                "x": 0.8636,
+                                "y": 0.7874
+                            },
+                            "uuid": "16575282-f722-440e-9d2c-5156a704128d"
+                        }
+                    ],
+                    "severity": "warning",
+                    "type": "lib_symbol_issues"
+                },
+                {
+                    "description": "Symbol A1 has bidirectional pins in units [ TopRight_UnderSide, BottomLeft_UnderSide, BottomRight_UnderSide, . ] that are not placed",
+                    "items": [
+                        {
+                            "description": "Symbol A1 [LAUNCHXL-F280039C_symbol]",
+                            "pos": {
+                                "x": 0.8636,
+                                "y": 0.7874
+                            },
+                            "uuid": "16575282-f722-440e-9d2c-5156a704128d"
+                        }
+                    ],
+                    "severity": "warning",
+                    "type": "missing_bidi_pin"
+                },
+                {
+                    "description": "Symbol A1 has input pins in units [ TopRight_UnderSide, BottomLeft_UnderSide, BottomRight_UnderSide, . ] that are not placed",
+                    "items": [
+                        {
+                            "description": "Symbol A1 [LAUNCHXL-F280039C_symbol]",
+                            "pos": {
+                                "x": 0.8636,
+                                "y": 0.7874
+                            },
+                            "uuid": "16575282-f722-440e-9d2c-5156a704128d"
+                        }
+                    ],
+                    "severity": "warning",
+                    "type": "missing_input_pin"
+                },
+                {
+                    "description": "Symbol A1 has unplaced units [ TopRight_UnderSide, BottomLeft_UnderSide, BottomRight_UnderSide, . ]",
+                    "items": [
+                        {
+                            "description": "Symbol A1 [LAUNCHXL-F280039C_symbol]",
+                            "pos": {
+                                "x": 0.8636,
+                                "y": 0.7874
+                            },
+                            "uuid": "16575282-f722-440e-9d2c-5156a704128d"
+                        }
+                    ],
+                    "severity": "warning",
+                    "type": "missing_unit"
+                }
+            ]
+        }
+    ],
+    "source": "issue21980.kicad_sch"
+}

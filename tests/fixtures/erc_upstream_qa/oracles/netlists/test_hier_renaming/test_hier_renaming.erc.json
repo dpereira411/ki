@@ -1,0 +1,558 @@
+{
+    "$schema": "https://schemas.kicad.org/erc.v1.json",
+    "coordinate_units": "mm",
+    "date": "2026-03-29T23:07:27",
+    "ignored_checks": [
+        {
+            "description": "Global label only appears once in the schematic",
+            "key": "single_global_label"
+        },
+        {
+            "description": "Four connection points are joined together",
+            "key": "four_way_junction"
+        },
+        {
+            "description": "SPICE model issue",
+            "key": "simulation_model_issue"
+        },
+        {
+            "description": "Assigned footprint doesn't match footprint filters",
+            "key": "footprint_filter"
+        }
+    ],
+    "included_severities": [
+        "error",
+        "warning"
+    ],
+    "kicad_version": "10.0.0",
+    "sheets": [
+        {
+            "path": "/",
+            "uuid_path": "/b9d68f82-715e-4090-a318-57dda3c84ce9",
+            "violations": [
+                {
+                    "description": "Label not connected",
+                    "items": [
+                        {
+                            "description": "Label 'ROW0'",
+                            "pos": {
+                                "x": 1.3081,
+                                "y": 0.8636
+                            },
+                            "uuid": "a8e8e6f5-c9a2-463d-94f0-55376cb75a55"
+                        }
+                    ],
+                    "severity": "error",
+                    "type": "label_dangling"
+                },
+                {
+                    "description": "Label not connected",
+                    "items": [
+                        {
+                            "description": "Label 'ROW1'",
+                            "pos": {
+                                "x": 1.3081,
+                                "y": 0.889
+                            },
+                            "uuid": "b5f39de0-0569-4025-b34c-15187cd5ac3f"
+                        }
+                    ],
+                    "severity": "error",
+                    "type": "label_dangling"
+                },
+                {
+                    "description": "Label not connected",
+                    "items": [
+                        {
+                            "description": "Label 'ROW2'",
+                            "pos": {
+                                "x": 1.3081,
+                                "y": 0.9144
+                            },
+                            "uuid": "08c5c844-6f65-4f5a-9b8a-7c8361114307"
+                        }
+                    ],
+                    "severity": "error",
+                    "type": "label_dangling"
+                },
+                {
+                    "description": "Label not connected",
+                    "items": [
+                        {
+                            "description": "Label 'ROW3'",
+                            "pos": {
+                                "x": 1.3081,
+                                "y": 0.9398
+                            },
+                            "uuid": "fed872da-af3c-4453-bd19-0ae6a3e7e51b"
+                        }
+                    ],
+                    "severity": "error",
+                    "type": "label_dangling"
+                },
+                {
+                    "description": "Label not connected",
+                    "items": [
+                        {
+                            "description": "Label 'ROW4'",
+                            "pos": {
+                                "x": 1.3081,
+                                "y": 0.9652
+                            },
+                            "uuid": "d1bdaa9d-b1d8-4e5a-82ad-6dac4613d2ec"
+                        }
+                    ],
+                    "severity": "error",
+                    "type": "label_dangling"
+                },
+                {
+                    "description": "Label not connected",
+                    "items": [
+                        {
+                            "description": "Label 'ROW5'",
+                            "pos": {
+                                "x": 1.3081,
+                                "y": 0.9906
+                            },
+                            "uuid": "a0523836-a9a7-4153-ab83-1d081da498f8"
+                        }
+                    ],
+                    "severity": "error",
+                    "type": "label_dangling"
+                },
+                {
+                    "description": "Label not connected",
+                    "items": [
+                        {
+                            "description": "Label 'ROW6'",
+                            "pos": {
+                                "x": 1.3081,
+                                "y": 1.016
+                            },
+                            "uuid": "a71dfdad-4527-4d39-9f43-94b9b33933d4"
+                        }
+                    ],
+                    "severity": "error",
+                    "type": "label_dangling"
+                },
+                {
+                    "description": "Label not connected",
+                    "items": [
+                        {
+                            "description": "Label 'ROW7'",
+                            "pos": {
+                                "x": 1.3081,
+                                "y": 1.0414
+                            },
+                            "uuid": "cb52de5d-9b97-4bc3-aa7b-db716a37236e"
+                        }
+                    ],
+                    "severity": "error",
+                    "type": "label_dangling"
+                },
+                {
+                    "description": "Label not connected",
+                    "items": [
+                        {
+                            "description": "Label 'ROW0'",
+                            "pos": {
+                                "x": 2.2733,
+                                "y": 0.8636
+                            },
+                            "uuid": "219d255c-bee9-48dd-8d4a-3f368da129b7"
+                        }
+                    ],
+                    "severity": "error",
+                    "type": "label_dangling"
+                },
+                {
+                    "description": "Label not connected",
+                    "items": [
+                        {
+                            "description": "Label 'ROW1'",
+                            "pos": {
+                                "x": 2.2733,
+                                "y": 0.889
+                            },
+                            "uuid": "16549cfe-1bf0-473b-818d-e820121ec440"
+                        }
+                    ],
+                    "severity": "error",
+                    "type": "label_dangling"
+                },
+                {
+                    "description": "Label not connected",
+                    "items": [
+                        {
+                            "description": "Label 'ROW2'",
+                            "pos": {
+                                "x": 2.2733,
+                                "y": 0.9144
+                            },
+                            "uuid": "3054a4d5-943a-4f7b-8972-736945eb10d1"
+                        }
+                    ],
+                    "severity": "error",
+                    "type": "label_dangling"
+                },
+                {
+                    "description": "Label not connected",
+                    "items": [
+                        {
+                            "description": "Label 'ROW3'",
+                            "pos": {
+                                "x": 2.2733,
+                                "y": 0.9398
+                            },
+                            "uuid": "80210e91-7ab4-4947-bfca-504663fe37fb"
+                        }
+                    ],
+                    "severity": "error",
+                    "type": "label_dangling"
+                },
+                {
+                    "description": "Label not connected",
+                    "items": [
+                        {
+                            "description": "Label 'ROW4'",
+                            "pos": {
+                                "x": 2.2733,
+                                "y": 0.9652
+                            },
+                            "uuid": "ae423fee-70d7-460a-a9b5-b6cd62055b74"
+                        }
+                    ],
+                    "severity": "error",
+                    "type": "label_dangling"
+                },
+                {
+                    "description": "Label not connected",
+                    "items": [
+                        {
+                            "description": "Label 'ROW5'",
+                            "pos": {
+                                "x": 2.2733,
+                                "y": 0.9906
+                            },
+                            "uuid": "60991ea5-9694-4777-a8a8-72c07bca8726"
+                        }
+                    ],
+                    "severity": "error",
+                    "type": "label_dangling"
+                },
+                {
+                    "description": "Label not connected",
+                    "items": [
+                        {
+                            "description": "Label 'ROW6'",
+                            "pos": {
+                                "x": 2.2733,
+                                "y": 1.016
+                            },
+                            "uuid": "8aa69d65-c685-438d-9404-9b6a6a630f9d"
+                        }
+                    ],
+                    "severity": "error",
+                    "type": "label_dangling"
+                },
+                {
+                    "description": "Label not connected",
+                    "items": [
+                        {
+                            "description": "Label 'ROW7'",
+                            "pos": {
+                                "x": 2.2733,
+                                "y": 1.0414
+                            },
+                            "uuid": "ffb64f5c-d73c-4eb9-8476-a202a10c59bc"
+                        }
+                    ],
+                    "severity": "error",
+                    "type": "label_dangling"
+                },
+                {
+                    "description": "Footprint '788xHG' not found in library 'Display'",
+                    "items": [
+                        {
+                            "description": "Symbol DS2 [788xHG]",
+                            "pos": {
+                                "x": 2.032,
+                                "y": 0.6096
+                            },
+                            "uuid": "e63356eb-7345-434d-8464-3fa9dc47789a"
+                        }
+                    ],
+                    "severity": "warning",
+                    "type": "footprint_link_issues"
+                },
+                {
+                    "description": "Symbol '788xHG' not found in symbol library 'Display_Graphic'",
+                    "items": [
+                        {
+                            "description": "Symbol DS2 [788xHG]",
+                            "pos": {
+                                "x": 2.032,
+                                "y": 0.6096
+                            },
+                            "uuid": "e63356eb-7345-434d-8464-3fa9dc47789a"
+                        }
+                    ],
+                    "severity": "warning",
+                    "type": "lib_symbol_issues"
+                }
+            ]
+        },
+        {
+            "path": "/matrixes1/",
+            "uuid_path": "/b9d68f82-715e-4090-a318-57dda3c84ce9/0c777b0f-2f12-4510-99ee-a28b103b057a",
+            "violations": []
+        },
+        {
+            "path": "/matrixes2/",
+            "uuid_path": "/b9d68f82-715e-4090-a318-57dda3c84ce9/8fe7e2b2-e224-440a-ae87-ac0912bb533a",
+            "violations": [
+                {
+                    "description": "Pin not connected",
+                    "items": [
+                        {
+                            "description": "Symbol DS2 Pin 17 [COL1R, Passive, Line]",
+                            "pos": {
+                                "x": 1.9558,
+                                "y": 0.4318
+                            },
+                            "uuid": "d130c84b-6158-4274-86cd-e049ca0059ba"
+                        }
+                    ],
+                    "severity": "error",
+                    "type": "pin_not_connected"
+                },
+                {
+                    "description": "Pin not connected",
+                    "items": [
+                        {
+                            "description": "Symbol DS2 Pin 18 [COL2R, Passive, Line]",
+                            "pos": {
+                                "x": 1.9812,
+                                "y": 0.4318
+                            },
+                            "uuid": "80537673-074f-4e22-b6c0-a264a5381428"
+                        }
+                    ],
+                    "severity": "error",
+                    "type": "pin_not_connected"
+                },
+                {
+                    "description": "Pin not connected",
+                    "items": [
+                        {
+                            "description": "Symbol DS2 Pin 19 [COL3R, Passive, Line]",
+                            "pos": {
+                                "x": 2.0066,
+                                "y": 0.4318
+                            },
+                            "uuid": "c2ef4f9d-cd2b-4603-9aef-3bd7be55cf73"
+                        }
+                    ],
+                    "severity": "error",
+                    "type": "pin_not_connected"
+                },
+                {
+                    "description": "Pin not connected",
+                    "items": [
+                        {
+                            "description": "Symbol DS2 Pin 20 [COL4R, Passive, Line]",
+                            "pos": {
+                                "x": 2.032,
+                                "y": 0.4318
+                            },
+                            "uuid": "6bc47d8e-d3ac-4dab-b7b3-619154f56824"
+                        }
+                    ],
+                    "severity": "error",
+                    "type": "pin_not_connected"
+                },
+                {
+                    "description": "Pin not connected",
+                    "items": [
+                        {
+                            "description": "Symbol DS2 Pin 21 [COL5R, Passive, Line]",
+                            "pos": {
+                                "x": 2.0574,
+                                "y": 0.4318
+                            },
+                            "uuid": "cd3754bd-d711-470b-bd15-828a55ad41f7"
+                        }
+                    ],
+                    "severity": "error",
+                    "type": "pin_not_connected"
+                },
+                {
+                    "description": "Pin not connected",
+                    "items": [
+                        {
+                            "description": "Symbol DS2 Pin 1 [COL1G, Passive, Line]",
+                            "pos": {
+                                "x": 1.9558,
+                                "y": 0.8128
+                            },
+                            "uuid": "55a4373c-c9d5-4a40-835e-ddce8690cdc0"
+                        }
+                    ],
+                    "severity": "error",
+                    "type": "pin_not_connected"
+                },
+                {
+                    "description": "Pin not connected",
+                    "items": [
+                        {
+                            "description": "Symbol DS2 Pin 22 [COL6R, Passive, Line]",
+                            "pos": {
+                                "x": 2.0828,
+                                "y": 0.4318
+                            },
+                            "uuid": "bb75210d-48c0-4bcb-af61-e54b7dd0513a"
+                        }
+                    ],
+                    "severity": "error",
+                    "type": "pin_not_connected"
+                },
+                {
+                    "description": "Pin not connected",
+                    "items": [
+                        {
+                            "description": "Symbol DS2 Pin 2 [COL2G, Passive, Line]",
+                            "pos": {
+                                "x": 1.9812,
+                                "y": 0.8128
+                            },
+                            "uuid": "67f17b6f-3b8b-46f6-9bbb-94e6ca96bbcd"
+                        }
+                    ],
+                    "severity": "error",
+                    "type": "pin_not_connected"
+                },
+                {
+                    "description": "Pin not connected",
+                    "items": [
+                        {
+                            "description": "Symbol DS2 Pin 23 [COL7R, Passive, Line]",
+                            "pos": {
+                                "x": 2.1082,
+                                "y": 0.4318
+                            },
+                            "uuid": "298458db-eee1-4477-9855-9c2af47df998"
+                        }
+                    ],
+                    "severity": "error",
+                    "type": "pin_not_connected"
+                },
+                {
+                    "description": "Pin not connected",
+                    "items": [
+                        {
+                            "description": "Symbol DS2 Pin 3 [COL3G, Passive, Line]",
+                            "pos": {
+                                "x": 2.0066,
+                                "y": 0.8128
+                            },
+                            "uuid": "27072529-4251-48b4-9ba8-a4fc5ad0e85b"
+                        }
+                    ],
+                    "severity": "error",
+                    "type": "pin_not_connected"
+                },
+                {
+                    "description": "Pin not connected",
+                    "items": [
+                        {
+                            "description": "Symbol DS2 Pin 24 [COL8R, Passive, Line]",
+                            "pos": {
+                                "x": 2.1336,
+                                "y": 0.4318
+                            },
+                            "uuid": "296c6566-a83e-4dd1-98f6-16f5c393de31"
+                        }
+                    ],
+                    "severity": "error",
+                    "type": "pin_not_connected"
+                },
+                {
+                    "description": "Pin not connected",
+                    "items": [
+                        {
+                            "description": "Symbol DS2 Pin 4 [COL4G, Passive, Line]",
+                            "pos": {
+                                "x": 2.032,
+                                "y": 0.8128
+                            },
+                            "uuid": "0d23243e-caf9-4e66-ab43-3c7cb0e7f043"
+                        }
+                    ],
+                    "severity": "error",
+                    "type": "pin_not_connected"
+                },
+                {
+                    "description": "Pin not connected",
+                    "items": [
+                        {
+                            "description": "Symbol DS2 Pin 5 [COL5G, Passive, Line]",
+                            "pos": {
+                                "x": 2.0574,
+                                "y": 0.8128
+                            },
+                            "uuid": "68482285-62a9-41c8-84c6-7c0aba5a0eda"
+                        }
+                    ],
+                    "severity": "error",
+                    "type": "pin_not_connected"
+                },
+                {
+                    "description": "Pin not connected",
+                    "items": [
+                        {
+                            "description": "Symbol DS2 Pin 6 [COL6G, Passive, Line]",
+                            "pos": {
+                                "x": 2.0828,
+                                "y": 0.8128
+                            },
+                            "uuid": "9cc5e487-1336-49b3-8696-3833b6804651"
+                        }
+                    ],
+                    "severity": "error",
+                    "type": "pin_not_connected"
+                },
+                {
+                    "description": "Pin not connected",
+                    "items": [
+                        {
+                            "description": "Symbol DS2 Pin 7 [COL7G, Passive, Line]",
+                            "pos": {
+                                "x": 2.1082,
+                                "y": 0.8128
+                            },
+                            "uuid": "8a57085b-0f77-480b-a5d5-f0aec625e229"
+                        }
+                    ],
+                    "severity": "error",
+                    "type": "pin_not_connected"
+                },
+                {
+                    "description": "Pin not connected",
+                    "items": [
+                        {
+                            "description": "Symbol DS2 Pin 8 [COL8G, Passive, Line]",
+                            "pos": {
+                                "x": 2.1336,
+                                "y": 0.8128
+                            },
+                            "uuid": "5f286e90-1ab3-4752-a41b-c3c3e638d1e8"
+                        }
+                    ],
+                    "severity": "error",
+                    "type": "pin_not_connected"
+                }
+            ]
+        }
+    ],
+    "source": "test_hier_renaming.kicad_sch"
+}

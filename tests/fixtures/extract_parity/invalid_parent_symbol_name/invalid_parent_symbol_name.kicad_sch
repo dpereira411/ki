@@ -1,0 +1,12 @@
+(kicad_sch
+  (version 20260101)
+  (generator "eeschema")
+  (uuid "invalid-parent-root")
+  (paper "A4")
+  (lib_symbols
+    (symbol "Device:R"
+      (extends (at 0 0 0))
+      (property "Reference" "R" (at 0 0 0) (effects (font (size 1.27 1.27))))
+      (property "Value" "R" (at 0 0 0) (effects (font (size 1.27 1.27))))))
+  (sheet_instances
+    (path "/" (page "1"))))

@@ -1,0 +1,13 @@
+{
+  "meta": {
+    "filename": "duplicate_pins.kicad_pro",
+    "version": 1
+  },
+  "schematic": {
+    "erc": {
+      "severity": {
+        "duplicate_pins": "error"
+      }
+    }
+  }
+}

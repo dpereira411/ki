@@ -3,7 +3,7 @@ use std::path::Path;
 
 use crate::cli::ExtractArgs;
 use crate::error::KiError;
-use crate::extract::{render, sym_lib};
+use crate::extract::{build, diagnostics, model::ExtractReport, serialize, sym_lib, validate};
 
 pub fn run(args: &ExtractArgs) -> Result<(), KiError> {
     let input = Path::new(&args.input);
@@ -13,9 +13,22 @@ pub fn run(args: &ExtractArgs) -> Result<(), KiError> {
             input
         )));
     }
+    if !input.exists() {
+        return Err(KiError::Message(
+            "Schematic file does not exist or is not accessible".to_string(),
+        ));
+    }
 
-    let mut netlist =
-        render::extract_from_schematic(&args.input).map_err(|err| KiError::Message(err))?;
+    validate::preflight(&args.input).map_err(|msg| {
+        if msg == "Warning: Unknown image data format." {
+            KiError::Lines(vec![msg, "Failed to load schematic".to_string()])
+        } else {
+            KiError::Message("Failed to load schematic".to_string())
+        }
+    })?;
+
+    let mut netlist = build::extract_from_schematic(&args.input)
+        .map_err(|_| KiError::Message("Failed to load schematic".to_string()))?;
     let mut sym_lib_paths = Vec::new();
     let mut seen = BTreeSet::new();
 
@@ -33,9 +46,15 @@ pub fn run(args: &ExtractArgs) -> Result<(), KiError> {
     sym_lib::enrich(&mut netlist, &sym_lib_paths)
         .map_err(|err| KiError::Message(err.to_string()))?;
 
-    let doc = render::render_doc(
-        &netlist,
-        &render::RenderOptions {
+    let report = ExtractReport {
+        diagnostics: diagnostics::collect(&args.input, &netlist)
+            .map_err(|err| KiError::Message(err))?,
+        netlist,
+    };
+
+    let doc = serialize::render_doc(
+        &report,
+        &serialize::RenderOptions {
             include_nets: args.include_nets,
             include_diagnostics: args.include_diagnostics,
         },

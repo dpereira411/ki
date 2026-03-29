@@ -1,0 +1,103 @@
+{
+    "$schema": "https://schemas.kicad.org/erc.v1.json",
+    "coordinate_units": "mm",
+    "date": "2026-03-29T23:08:02",
+    "ignored_checks": [
+        {
+            "description": "Global label only appears once in the schematic",
+            "key": "single_global_label"
+        },
+        {
+            "description": "Four connection points are joined together",
+            "key": "four_way_junction"
+        },
+        {
+            "description": "SPICE model issue",
+            "key": "simulation_model_issue"
+        },
+        {
+            "description": "Assigned footprint doesn't match footprint filters",
+            "key": "footprint_filter"
+        }
+    ],
+    "included_severities": [
+        "error",
+        "warning"
+    ],
+    "kicad_version": "10.0.0",
+    "sheets": [
+        {
+            "path": "/",
+            "uuid_path": "/b3f257ad-640c-4beb-bc70-dea79d3e6f3f",
+            "violations": [
+                {
+                    "description": "Pin not connected",
+                    "items": [
+                        {
+                            "description": "Symbol R101 Pin 1 [Passive, Line]",
+                            "pos": {
+                                "x": 0.6985,
+                                "y": 0.6604
+                            },
+                            "uuid": "5c1f9347-84ad-4d80-a5e2-35df26535380"
+                        }
+                    ],
+                    "severity": "error",
+                    "type": "pin_not_connected"
+                },
+                {
+                    "description": "Pin not connected",
+                    "items": [
+                        {
+                            "description": "Symbol R101 Pin 2 [Passive, Line]",
+                            "pos": {
+                                "x": 0.6985,
+                                "y": 0.7366
+                            },
+                            "uuid": "c2979bdb-c7c7-49dc-8943-37dc2fc6b780"
+                        }
+                    ],
+                    "severity": "error",
+                    "type": "pin_not_connected"
+                }
+            ]
+        },
+        {
+            "path": "/shared_with_project_a/",
+            "uuid_path": "/b3f257ad-640c-4beb-bc70-dea79d3e6f3f/03fd8cff-6eb0-4392-9ef3-50dc68f78e90",
+            "violations": [
+                {
+                    "description": "Pin not connected",
+                    "items": [
+                        {
+                            "description": "Symbol R201 Pin 1 [Passive, Line]",
+                            "pos": {
+                                "x": 1.3843,
+                                "y": 0.889
+                            },
+                            "uuid": "f513b49c-42cc-4b1a-a72f-d444a3532886"
+                        }
+                    ],
+                    "severity": "error",
+                    "type": "pin_not_connected"
+                },
+                {
+                    "description": "Pin not connected",
+                    "items": [
+                        {
+                            "description": "Symbol R201 Pin 2 [Passive, Line]",
+                            "pos": {
+                                "x": 1.3843,
+                                "y": 0.9652
+                            },
+                            "uuid": "a00c1ba3-f420-4226-9444-796fa16417c2"
+                        }
+                    ],
+                    "severity": "error",
+                    "type": "pin_not_connected"
+                }
+            ]
+        }
+    ],
+    "source": "project_b.kicad_sch"
+}

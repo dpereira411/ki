@@ -1,0 +1,232 @@
+{
+    "$schema": "https://schemas.kicad.org/erc.v1.json",
+    "coordinate_units": "mm",
+    "date": "2026-03-29T23:08:27",
+    "ignored_checks": [
+        {
+            "description": "Global label only appears once in the schematic",
+            "key": "single_global_label"
+        },
+        {
+            "description": "Four connection points are joined together",
+            "key": "four_way_junction"
+        },
+        {
+            "description": "SPICE model issue",
+            "key": "simulation_model_issue"
+        },
+        {
+            "description": "Assigned footprint doesn't match footprint filters",
+            "key": "footprint_filter"
+        }
+    ],
+    "included_severities": [
+        "error",
+        "warning"
+    ],
+    "kicad_version": "10.0.0",
+    "sheets": [
+        {
+            "path": "/",
+            "uuid_path": "/f74aa792-5ddc-4342-b3b1-f3d782106d77",
+            "violations": [
+                {
+                    "description": "Input Power pin not driven by any Output Power pins",
+                    "items": [
+                        {
+                            "description": "Symbol #PWR0101 Hidden pin 1 [GND, Power input, Line]",
+                            "pos": {
+                                "x": 1.651,
+                                "y": 0.8636
+                            },
+                            "uuid": "084b1caf-06a0-4971-9750-c64366f414d2"
+                        }
+                    ],
+                    "severity": "error",
+                    "type": "power_pin_not_driven"
+                },
+                {
+                    "description": "Symbol 'VPULSE' doesn't match copy in library 'Simulation_SPICE'",
+                    "items": [
+                        {
+                            "description": "Symbol V1 [VPULSE]",
+                            "pos": {
+                                "x": 1.27,
+                                "y": 0.8128
+                            },
+                            "uuid": "56fc236a-df5f-49ef-9b92-3227f86197b4"
+                        }
+                    ],
+                    "severity": "warning",
+                    "type": "lib_symbol_mismatch"
+                },
+                {
+                    "description": "Symbol 'GND' doesn't match copy in library 'power'",
+                    "items": [
+                        {
+                            "description": "Symbol #PWR0106 [GND]",
+                            "pos": {
+                                "x": 1.27,
+                                "y": 0.8636
+                            },
+                            "uuid": "0bb52765-586c-4bf2-a0f2-cc8769dedeec"
+                        }
+                    ],
+                    "severity": "warning",
+                    "type": "lib_symbol_mismatch"
+                },
+                {
+                    "description": "Symbol 'GND' doesn't match copy in library 'power'",
+                    "items": [
+                        {
+                            "description": "Symbol #PWR0107 [GND]",
+                            "pos": {
+                                "x": 1.4097,
+                                "y": 0.7874
+                            },
+                            "uuid": "59dbe783-3723-4dcc-a641-a603ab67a5a4"
+                        }
+                    ],
+                    "severity": "warning",
+                    "type": "lib_symbol_mismatch"
+                },
+                {
+                    "description": "The current configuration does not include the symbol library 'Transmission_Line'",
+                    "items": [
+                        {
+                            "description": "Symbol TLINE1 [TLINE]",
+                            "pos": {
+                                "x": 1.4605,
+                                "y": 0.762
+                            },
+                            "uuid": "b320600b-eef1-4883-916c-38700f3f43d4"
+                        }
+                    ],
+                    "severity": "warning",
+                    "type": "lib_symbol_issues"
+                },
+                {
+                    "description": "Symbol 'GND' doesn't match copy in library 'power'",
+                    "items": [
+                        {
+                            "description": "Symbol #PWR0108 [GND]",
+                            "pos": {
+                                "x": 1.5113,
+                                "y": 0.7874
+                            },
+                            "uuid": "fc8afb4b-228e-4b15-8225-7bdabc7f37d5"
+                        }
+                    ],
+                    "severity": "warning",
+                    "type": "lib_symbol_mismatch"
+                },
+                {
+                    "description": "Symbol 'VPULSE' doesn't match copy in library 'Simulation_SPICE'",
+                    "items": [
+                        {
+                            "description": "Symbol V2 [VPULSE]",
+                            "pos": {
+                                "x": 1.27,
+                                "y": 1.1938
+                            },
+                            "uuid": "fcc0dfa9-c624-4a32-a3d3-4c36ee7b0fe6"
+                        }
+                    ],
+                    "severity": "warning",
+                    "type": "lib_symbol_mismatch"
+                },
+                {
+                    "description": "Symbol 'GND' doesn't match copy in library 'power'",
+                    "items": [
+                        {
+                            "description": "Symbol #PWR0102 [GND]",
+                            "pos": {
+                                "x": 1.27,
+                                "y": 1.2446
+                            },
+                            "uuid": "5f9f7595-cc0b-4628-ae7b-35d307a4eb99"
+                        }
+                    ],
+                    "severity": "warning",
+                    "type": "lib_symbol_mismatch"
+                },
+                {
+                    "description": "Symbol 'GND' doesn't match copy in library 'power'",
+                    "items": [
+                        {
+                            "description": "Symbol #PWR0103 [GND]",
+                            "pos": {
+                                "x": 1.4097,
+                                "y": 1.1684
+                            },
+                            "uuid": "b0fd7eaf-a224-48f5-80b6-b4c9a3988f57"
+                        }
+                    ],
+                    "severity": "warning",
+                    "type": "lib_symbol_mismatch"
+                },
+                {
+                    "description": "The current configuration does not include the symbol library 'Transmission_Line'",
+                    "items": [
+                        {
+                            "description": "Symbol TLINE2 [TLINE]",
+                            "pos": {
+                                "x": 1.4605,
+                                "y": 1.143
+                            },
+                            "uuid": "27aefe2b-7fc4-496d-8a9d-7c135474145a"
+                        }
+                    ],
+                    "severity": "warning",
+                    "type": "lib_symbol_issues"
+                },
+                {
+                    "description": "Symbol 'GND' doesn't match copy in library 'power'",
+                    "items": [
+                        {
+                            "description": "Symbol #PWR0101 [GND]",
+                            "pos": {
+                                "x": 1.651,
+                                "y": 0.8636
+                            },
+                            "uuid": "5b460e62-196b-4585-8ed3-c8e3325f6a48"
+                        }
+                    ],
+                    "severity": "warning",
+                    "type": "lib_symbol_mismatch"
+                },
+                {
+                    "description": "Symbol 'GND' doesn't match copy in library 'power'",
+                    "items": [
+                        {
+                            "description": "Symbol #PWR0104 [GND]",
+                            "pos": {
+                                "x": 1.5113,
+                                "y": 1.1684
+                            },
+                            "uuid": "232c811f-1246-4b76-86b4-d8721684bd11"
+                        }
+                    ],
+                    "severity": "warning",
+                    "type": "lib_symbol_mismatch"
+                },
+                {
+                    "description": "Symbol 'GND' doesn't match copy in library 'power'",
+                    "items": [
+                        {
+                            "description": "Symbol #PWR0105 [GND]",
+                            "pos": {
+                                "x": 1.651,
+                                "y": 1.2446
+                            },
+                            "uuid": "ff04fe94-7180-4f4a-b4d1-f6aca630b6d1"
+                        }
+                    ],
+                    "severity": "warning",
+                    "type": "lib_symbol_mismatch"
+                }
+            ]
+        }
+    ],
+    "source": "tlines.kicad_sch"
+}

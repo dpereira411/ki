@@ -1,0 +1,11 @@
+(kicad_sch
+  (version 20260101)
+  (generator "eeschema")
+  (uuid "invalid-sheet-on-board-root")
+  (paper "A4")
+  (sheet (at 10 10) (size 20 20) (on_board maybe)
+    (property "Sheetname" "Sub" (at 10 9 0) (effects (font (size 1.27 1.27))))
+    (property "Sheetfile" "sub.kicad_sch" (at 10 21 0) (effects (font (size 1.27 1.27))))
+    (uuid "s1"))
+  (sheet_instances
+    (path "/" (page "1"))))
