@@ -5238,49 +5238,48 @@ token-boundary and interaction bugs.
 - Relevant KiCad sources:
   - `/Users/Daniel/Desktop/kicad/eeschema/sch_io/kicad_sexpr/sch_io_kicad_sexpr_parser.cpp:4742`
 - Internal parser path:
-  local `label` rejects `property` children
+  local `label` accepts a generic `property` child on the current CLI export path
 - Observation:
-  a local `label` carrying a `property` child fails through `kicad-cli` and surfaces only the
-  generic message `Failed to load schematic`
-- Severity: error
-- Export behavior: fails before export
+  a local `label` carrying a `property` child exports successfully through `kicad-cli` with no
+  visible diagnostics
+- Severity: none
+- Export behavior: exports successfully
 
 ### `global_label_with_property`
 
 - Relevant KiCad sources:
   - `/Users/Daniel/Desktop/kicad/eeschema/sch_io/kicad_sexpr/sch_io_kicad_sexpr_parser.cpp:4742`
 - Internal parser path:
-  `global_label` rejects arbitrary `property` children; only the special intersheetrefs field path
-  is accepted
+  `global_label` accepts a generic `property` child on the current CLI export path
 - Observation:
-  a `global_label` carrying a generic `property` child fails through `kicad-cli` and surfaces only
-  the generic message `Failed to load schematic`
-- Severity: error
-- Export behavior: fails before export
+  a `global_label` carrying a generic `property` child exports successfully through `kicad-cli`
+  with no visible diagnostics
+- Severity: none
+- Export behavior: exports successfully
 
 ### `hier_label_with_property`
 
 - Relevant KiCad sources:
   - `/Users/Daniel/Desktop/kicad/eeschema/sch_io/kicad_sexpr/sch_io_kicad_sexpr_parser.cpp:4742`
 - Internal parser path:
-  `hierarchical_label` rejects arbitrary `property` children
+  `hierarchical_label` accepts a generic `property` child on the current CLI export path
 - Observation:
-  a `hierarchical_label` carrying a generic `property` child fails through `kicad-cli` and
-  surfaces only the generic message `Failed to load schematic`
-- Severity: error
-- Export behavior: fails before export
+  a `hierarchical_label` carrying a generic `property` child exports successfully through
+  `kicad-cli` with no visible diagnostics
+- Severity: none
+- Export behavior: exports successfully
 
 ### `directive_label_with_property`
 
 - Relevant KiCad sources:
   - `/Users/Daniel/Desktop/kicad/eeschema/sch_io/kicad_sexpr/sch_io_kicad_sexpr_parser.cpp:4742`
 - Internal parser path:
-  plain `directive_label` rejects arbitrary `property` children
+  plain `directive_label` accepts a generic `property` child on the current CLI export path
 - Observation:
-  a `directive_label` carrying a generic `property` child fails through `kicad-cli` and surfaces
-  only the generic message `Failed to load schematic`
-- Severity: error
-- Export behavior: fails before export
+  a `directive_label` carrying a generic `property` child exports successfully through `kicad-cli`
+  with no visible diagnostics
+- Severity: none
+- Export behavior: exports successfully
 
 ### `label_property_name_list_child`
 

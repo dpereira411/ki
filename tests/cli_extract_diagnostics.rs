@@ -2,6 +2,7 @@ mod common;
 
 use std::collections::HashSet;
 use std::fs;
+use std::path::Path;
 
 use serde_json::Value;
 use tempfile::TempDir;
@@ -11,116 +12,87 @@ use common::{
     kicad_cli_extract_raw,
 };
 
-#[test]
-fn extract_matches_kicad_cli_annotation_error_diagnostics() {
-    let schematic = extract_parity_fixture("annotation_errors/annotation_errors.kicad_sch");
-    let Some(kicad) = kicad_cli_extract_diagnostics(&schematic) else {
+fn assert_no_visible_diagnostics(schematic: &Path) {
+    let Some(kicad) = kicad_cli_extract_diagnostics(schematic) else {
         return;
     };
-    let ki = ki_extract_diagnostics(&schematic);
-
-    assert_eq!(kicad.exit_code, 0);
-    assert_eq!(ki.exit_code, 0);
-    assert_eq!(ki.messages, kicad.messages);
-}
-
-#[test]
-fn extract_matches_kicad_cli_duplicate_sheet_name_diagnostics() {
-    let schematic = extract_parity_fixture("duplicate_sheet_names/duplicate_sheet_names.kicad_sch");
-    let Some(kicad) = kicad_cli_extract_diagnostics(&schematic) else {
-        return;
-    };
-    let ki = ki_extract_diagnostics(&schematic);
-
-    assert_eq!(kicad.exit_code, 0);
-    assert_eq!(ki.exit_code, 0);
-    assert_eq!(ki.messages, kicad.messages);
-}
-
-#[test]
-fn extract_matches_kicad_cli_recursive_sheet_no_visible_diagnostics() {
-    let schematic = extract_parity_fixture("recursive_sheet/recursive_sheet.kicad_sch");
-    let Some(kicad) = kicad_cli_extract_diagnostics(&schematic) else {
-        return;
-    };
-    let ki = ki_extract_diagnostics(&schematic);
+    let ki = ki_extract_diagnostics(schematic);
 
     assert_eq!(kicad.exit_code, 0);
     assert_eq!(ki.exit_code, 0);
     assert!(kicad.messages.is_empty());
     assert_eq!(ki.messages, kicad.messages);
+}
+
+fn assert_matching_diagnostics(schematic: &Path) {
+    let Some(kicad) = kicad_cli_extract_diagnostics(schematic) else {
+        return;
+    };
+    let ki = ki_extract_diagnostics(schematic);
+
+    assert_eq!(kicad.exit_code, 0);
+    assert_eq!(ki.exit_code, 0);
+    assert_eq!(ki.messages, kicad.messages);
+}
+
+fn assert_failed_load_message(schematic: &Path) {
+    let Some(kicad) = kicad_cli_extract_raw(schematic) else {
+        return;
+    };
+    let ki = ki_extract_raw(schematic);
+
+    assert_eq!(kicad.messages, vec!["Failed to load schematic".to_string()]);
+    assert_eq!(ki.messages, kicad.messages);
+}
+
+#[test]
+fn extract_matches_kicad_cli_annotation_error_diagnostics() {
+    let schematic = extract_parity_fixture("annotation_errors/annotation_errors.kicad_sch");
+    assert_matching_diagnostics(&schematic);
+}
+
+#[test]
+fn extract_matches_kicad_cli_duplicate_sheet_name_diagnostics() {
+    let schematic = extract_parity_fixture("duplicate_sheet_names/duplicate_sheet_names.kicad_sch");
+    assert_matching_diagnostics(&schematic);
+}
+
+#[test]
+fn extract_matches_kicad_cli_recursive_sheet_no_visible_diagnostics() {
+    let schematic = extract_parity_fixture("recursive_sheet/recursive_sheet.kicad_sch");
+    assert_no_visible_diagnostics(&schematic);
 }
 
 #[test]
 fn extract_matches_kicad_cli_missing_library_symbol_no_visible_diagnostics() {
     let schematic =
         extract_parity_fixture("missing_library_symbol/missing_library_symbol.kicad_sch");
-    let Some(kicad) = kicad_cli_extract_diagnostics(&schematic) else {
-        return;
-    };
-    let ki = ki_extract_diagnostics(&schematic);
-
-    assert_eq!(kicad.exit_code, 0);
-    assert_eq!(ki.exit_code, 0);
-    assert!(kicad.messages.is_empty());
-    assert_eq!(ki.messages, kicad.messages);
+    assert_no_visible_diagnostics(&schematic);
 }
 
 #[test]
 fn extract_matches_kicad_cli_missing_child_sheet_no_visible_diagnostics() {
     let schematic = extract_parity_fixture("missing_child_sheet/missing_child_sheet.kicad_sch");
-    let Some(kicad) = kicad_cli_extract_diagnostics(&schematic) else {
-        return;
-    };
-    let ki = ki_extract_diagnostics(&schematic);
-
-    assert_eq!(kicad.exit_code, 0);
-    assert_eq!(ki.exit_code, 0);
-    assert!(kicad.messages.is_empty());
-    assert_eq!(ki.messages, kicad.messages);
+    assert_no_visible_diagnostics(&schematic);
 }
 
 #[test]
 fn extract_matches_kicad_cli_invalid_lib_id_no_visible_diagnostics() {
     let schematic = extract_parity_fixture("invalid_lib_id/invalid_lib_id.kicad_sch");
-    let Some(kicad) = kicad_cli_extract_diagnostics(&schematic) else {
-        return;
-    };
-    let ki = ki_extract_diagnostics(&schematic);
-
-    assert_eq!(kicad.exit_code, 0);
-    assert_eq!(ki.exit_code, 0);
-    assert!(kicad.messages.is_empty());
-    assert_eq!(ki.messages, kicad.messages);
+    assert_no_visible_diagnostics(&schematic);
 }
 
 #[test]
 fn extract_matches_kicad_cli_invalid_symbol_name_no_visible_diagnostics() {
     let schematic = extract_parity_fixture("invalid_symbol_name/invalid_symbol_name.kicad_sch");
-    let Some(kicad) = kicad_cli_extract_diagnostics(&schematic) else {
-        return;
-    };
-    let ki = ki_extract_diagnostics(&schematic);
-
-    assert_eq!(kicad.exit_code, 0);
-    assert_eq!(ki.exit_code, 0);
-    assert!(kicad.messages.is_empty());
-    assert_eq!(ki.messages, kicad.messages);
+    assert_no_visible_diagnostics(&schematic);
 }
 
 #[test]
 fn extract_matches_kicad_cli_invalid_symbol_library_id_no_visible_diagnostics() {
     let schematic =
         extract_parity_fixture("invalid_symbol_library_id/invalid_symbol_library_id.kicad_sch");
-    let Some(kicad) = kicad_cli_extract_diagnostics(&schematic) else {
-        return;
-    };
-    let ki = ki_extract_diagnostics(&schematic);
-
-    assert_eq!(kicad.exit_code, 0);
-    assert_eq!(ki.exit_code, 0);
-    assert!(kicad.messages.is_empty());
-    assert_eq!(ki.messages, kicad.messages);
+    assert_no_visible_diagnostics(&schematic);
 }
 
 #[test]
@@ -159,7 +131,7 @@ fn extract_matches_kicad_cli_invalid_sheet_instances_page_failed_load_message() 
     };
     let ki = ki_extract_raw(&schematic);
 
-    assert!(kicad.messages.is_empty());
+    assert_eq!(kicad.messages, vec!["Failed to load schematic".to_string()]);
     assert_eq!(ki.messages, kicad.messages);
 }
 
@@ -173,7 +145,7 @@ fn extract_matches_kicad_cli_invalid_sheet_instances_path_failed_load_message() 
     };
     let ki = ki_extract_raw(&schematic);
 
-    assert!(kicad.messages.is_empty());
+    assert_eq!(kicad.messages, vec!["Failed to load schematic".to_string()]);
     assert_eq!(ki.messages, kicad.messages);
 }
 
@@ -182,13 +154,7 @@ fn extract_matches_kicad_cli_invalid_sheet_instances_numeric_path_failed_load_me
     let schematic = extract_parity_fixture(
         "invalid_sheet_instances_numeric_path/invalid_sheet_instances_numeric_path.kicad_sch",
     );
-    let Some(kicad) = kicad_cli_extract_raw(&schematic) else {
-        return;
-    };
-    let ki = ki_extract_raw(&schematic);
-
-    assert!(kicad.messages.is_empty());
-    assert_eq!(ki.messages, kicad.messages);
+    assert_failed_load_message(&schematic);
 }
 
 #[test]
@@ -196,13 +162,7 @@ fn extract_matches_kicad_cli_invalid_sheet_instances_numeric_page_failed_load_me
     let schematic = extract_parity_fixture(
         "invalid_sheet_instances_numeric_page/invalid_sheet_instances_numeric_page.kicad_sch",
     );
-    let Some(kicad) = kicad_cli_extract_raw(&schematic) else {
-        return;
-    };
-    let ki = ki_extract_raw(&schematic);
-
-    assert!(kicad.messages.is_empty());
-    assert_eq!(ki.messages, kicad.messages);
+    assert_failed_load_message(&schematic);
 }
 
 #[test]
@@ -210,13 +170,7 @@ fn extract_matches_kicad_cli_invalid_symbol_instances_reference_failed_load_mess
     let schematic = extract_parity_fixture(
         "invalid_symbol_instances_reference/invalid_symbol_instances_reference.kicad_sch",
     );
-    let Some(kicad) = kicad_cli_extract_raw(&schematic) else {
-        return;
-    };
-    let ki = ki_extract_raw(&schematic);
-
-    assert!(kicad.messages.is_empty());
-    assert_eq!(ki.messages, kicad.messages);
+    assert_failed_load_message(&schematic);
 }
 
 #[test]
@@ -2886,39 +2840,21 @@ fn extract_matches_kicad_cli_label_with_iref_failed_load_message() {
 #[test]
 fn extract_matches_kicad_cli_label_with_property_failed_load_message() {
     let schematic = extract_parity_fixture("label_with_property/label_with_property.kicad_sch");
-    let Some(kicad) = kicad_cli_extract_raw(&schematic) else {
-        return;
-    };
-    let ki = ki_extract_raw(&schematic);
-
-    assert_eq!(kicad.messages, vec!["Failed to load schematic".to_string()]);
-    assert_eq!(ki.messages, kicad.messages);
+    assert_no_visible_diagnostics(&schematic);
 }
 
 #[test]
 fn extract_matches_kicad_cli_global_label_with_property_failed_load_message() {
     let schematic =
         extract_parity_fixture("global_label_with_property/global_label_with_property.kicad_sch");
-    let Some(kicad) = kicad_cli_extract_raw(&schematic) else {
-        return;
-    };
-    let ki = ki_extract_raw(&schematic);
-
-    assert_eq!(kicad.messages, vec!["Failed to load schematic".to_string()]);
-    assert_eq!(ki.messages, kicad.messages);
+    assert_no_visible_diagnostics(&schematic);
 }
 
 #[test]
 fn extract_matches_kicad_cli_hier_label_with_property_failed_load_message() {
     let schematic =
         extract_parity_fixture("hier_label_with_property/hier_label_with_property.kicad_sch");
-    let Some(kicad) = kicad_cli_extract_raw(&schematic) else {
-        return;
-    };
-    let ki = ki_extract_raw(&schematic);
-
-    assert_eq!(kicad.messages, vec!["Failed to load schematic".to_string()]);
-    assert_eq!(ki.messages, kicad.messages);
+    assert_no_visible_diagnostics(&schematic);
 }
 
 #[test]
@@ -2926,13 +2862,7 @@ fn extract_matches_kicad_cli_directive_label_with_property_failed_load_message()
     let schematic = extract_parity_fixture(
         "directive_label_with_property/directive_label_with_property.kicad_sch",
     );
-    let Some(kicad) = kicad_cli_extract_raw(&schematic) else {
-        return;
-    };
-    let ki = ki_extract_raw(&schematic);
-
-    assert_eq!(kicad.messages, vec!["Failed to load schematic".to_string()]);
-    assert_eq!(ki.messages, kicad.messages);
+    assert_no_visible_diagnostics(&schematic);
 }
 
 #[test]

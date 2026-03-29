@@ -4746,10 +4746,8 @@
     "kicad_source": [
       "/Users/Daniel/Desktop/kicad/eeschema/sch_io/kicad_sexpr/sch_io_kicad_sexpr_parser.cpp:4742"
     ],
-    "expected_exit_code": 3,
-    "expected_messages": [
-      "Failed to load schematic"
-    ]
+    "expected_exit_code": 0,
+    "expected_messages": []
   },
   {
     "id": "global_label_with_property",
@@ -4757,10 +4755,8 @@
     "kicad_source": [
       "/Users/Daniel/Desktop/kicad/eeschema/sch_io/kicad_sexpr/sch_io_kicad_sexpr_parser.cpp:4742"
     ],
-    "expected_exit_code": 3,
-    "expected_messages": [
-      "Failed to load schematic"
-    ]
+    "expected_exit_code": 0,
+    "expected_messages": []
   },
   {
     "id": "hier_label_with_property",
@@ -4768,10 +4764,8 @@
     "kicad_source": [
       "/Users/Daniel/Desktop/kicad/eeschema/sch_io/kicad_sexpr/sch_io_kicad_sexpr_parser.cpp:4742"
     ],
-    "expected_exit_code": 3,
-    "expected_messages": [
-      "Failed to load schematic"
-    ]
+    "expected_exit_code": 0,
+    "expected_messages": []
   },
   {
     "id": "directive_label_with_property",
@@ -4779,10 +4773,8 @@
     "kicad_source": [
       "/Users/Daniel/Desktop/kicad/eeschema/sch_io/kicad_sexpr/sch_io_kicad_sexpr_parser.cpp:4742"
     ],
-    "expected_exit_code": 3,
-    "expected_messages": [
-      "Failed to load schematic"
-    ]
+    "expected_exit_code": 0,
+    "expected_messages": []
   },
   {
     "id": "label_property_name_list_child",

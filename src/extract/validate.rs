@@ -235,7 +235,7 @@ fn validate_node(
         Some("pin") => validate_pin(node)?,
         Some("table") => validate_table(raw, node)?,
         Some("image") => validate_image(raw, node)?,
-        Some("bus_alias") => validate_bus_alias(node)?,
+        Some("bus_alias") => validate_bus_alias(raw, node)?,
         Some("group") => validate_group(node)?,
         Some("embedded_fonts") => {
             validate_bool_flag(node, false, "invalid embedded_fonts flag")?;
@@ -430,7 +430,13 @@ fn validate_sheet(raw: &str, node: &Node) -> Result<(), String> {
 }
 
 fn validate_property(raw: &str, node: &Node) -> Result<(), String> {
-    match child_items(node).get(1) {
+    let mut name_index = 1;
+
+    if nth_atom_string(node, 1).as_deref() == Some("private") {
+        name_index = 2;
+    }
+
+    match child_items(node).get(name_index) {
         Some(Node::Atom {
             atom: Atom::Quoted(name) | Atom::Symbol(name),
             ..
@@ -440,7 +446,7 @@ fn validate_property(raw: &str, node: &Node) -> Result<(), String> {
         None => return Ok(()),
     }
 
-    match child_items(node).get(2) {
+    match child_items(node).get(name_index + 1) {
         Some(Node::Atom {
             atom: Atom::Quoted(_),
             ..
@@ -459,17 +465,19 @@ fn validate_property(raw: &str, node: &Node) -> Result<(), String> {
         None => Ok(()),
     }?;
 
-    for child in child_items(node).iter().skip(1) {
+    for child in payload_children(node, name_index + 2) {
         match head_of(child) {
             Some("href") => return Err("invalid hyperlink url".to_string()),
             Some("at") if !list_has_exact_symbol_numeric_arity(child, 3) => {
                 return Err("invalid property position".to_string());
             }
+            Some("at") => {}
             Some("show_name" | "do_not_autoplace") => {
                 validate_bool_flag(child, true, "invalid property boolean flag")?;
             }
             Some("hide") => validate_bool_flag(child, false, "invalid property boolean flag")?,
-            _ => {}
+            Some("effects" | "id") => {}
+            Some(_) | None => return Err("invalid property value".to_string()),
         }
     }
 
@@ -498,7 +506,7 @@ fn validate_text_value(raw: &str, node: &Node) -> Result<(), String> {
 }
 
 fn validate_text_flags(node: &Node, in_lib_symbols: bool) -> Result<(), String> {
-    for child in child_items(node).iter().skip(1) {
+    for child in payload_children(node, 1) {
         if !matches!(child, Node::List { .. }) {
             continue;
         }
@@ -522,7 +530,7 @@ fn validate_text_flags(node: &Node, in_lib_symbols: bool) -> Result<(), String> 
 }
 
 fn validate_label_at(node: &Node) -> Result<(), String> {
-    for child in child_items(node).iter().skip(1) {
+    for child in payload_children(node, 1) {
         if head_of(child) == Some("at") && !list_has_exact_symbol_numeric_arity(child, 3) {
             return Err("invalid label position".to_string());
         }
@@ -553,7 +561,7 @@ fn validate_href(raw: &str, node: &Node) -> Result<(), String> {
 }
 
 fn validate_label_shape(node: &Node) -> Result<(), String> {
-    for child in child_items(node).iter().skip(1) {
+    for child in payload_children(node, 1) {
         if head_of(child) != Some("shape") {
             continue;
         }
@@ -771,19 +779,24 @@ fn validate_effects(node: &Node) -> Result<(), String> {
                         Some("size") if !list_has_exact_symbol_numeric_arity(grandchild, 2) => {
                             return Err("invalid font size".to_string());
                         }
+                        Some("size") => {}
                         Some("thickness")
                             if !list_has_exact_symbol_numeric_arity(grandchild, 1) =>
                         {
                             return Err("invalid font thickness".to_string());
                         }
+                        Some("thickness") => {}
                         Some("line_spacing")
                             if !list_has_exact_symbol_numeric_arity(grandchild, 1) =>
                         {
                             return Err("invalid font line spacing".to_string());
                         }
+                        Some("line_spacing") => {}
                         Some("color") if !list_has_exact_symbol_numeric_arity(grandchild, 4) => {
                             return Err("invalid font color".to_string());
                         }
+                        Some("color") => {}
+                        Some("face") => {}
                         Some("bold" | "italic") => {
                             validate_bool_flag(grandchild, true, "invalid font style flag")?
                         }
@@ -827,15 +840,17 @@ fn validate_stroke(node: &Node) -> Result<(), String> {
             Some("width") if !list_has_exact_symbol_numeric_arity(child, 1) => {
                 return Err("invalid stroke width".to_string());
             }
+            Some("width") => {}
             Some("color") if !list_has_exact_symbol_numeric_arity(child, 4) => {
                 return Err("invalid stroke color".to_string());
             }
+            Some("color") => {}
             Some("type") => {
-                let Some(stroke_type) = nth_atom_string(child, 1) else {
+                let Some(stroke_type) = child_items(child).get(1).and_then(atom_string) else {
                     return Err("invalid stroke type".to_string());
                 };
 
-                if !VALID_STROKE_TYPES.contains(&stroke_type.as_str()) {
+                if !VALID_STROKE_TYPES.contains(&stroke_type) {
                     return Err("invalid stroke type".to_string());
                 }
             }
@@ -868,7 +883,7 @@ fn validate_junction(node: &Node) -> Result<(), String> {
 }
 
 fn validate_directive_label(node: &Node) -> Result<(), String> {
-    for child in child_items(node).iter().skip(1) {
+    for child in payload_children(node, 2) {
         match head_of(child) {
             Some(
                 "at" | "shape" | "effects" | "fields_autoplaced" | "exclude_from_sim" | "length"
@@ -949,29 +964,13 @@ fn validate_label_fields(raw: &str, node: &Node) -> Result<(), String> {
                     property_name.as_str(),
                     "Intersheetrefs" | "Intersheet References"
                 );
-                let is_netclass_flag_property = head_of(node) == Some("netclass_flag");
 
-                if !(head_of(node) == Some("global_label") && is_intersheetrefs)
-                    && !is_netclass_flag_property
-                {
-                    return Err("invalid label child".to_string());
-                }
-
-                if is_intersheetrefs {
+                if head_of(node) == Some("global_label") && is_intersheetrefs {
                     if saw_intersheetrefs {
                         return Err("invalid label child".to_string());
                     }
 
                     saw_intersheetrefs = true;
-                }
-
-                for property_child in child_items(child).iter().skip(3) {
-                    match head_of(property_child) {
-                        Some("at" | "effects") => {}
-                        Some("id") => return Err("invalid label child".to_string()),
-                        Some(_) => return Err("invalid label child".to_string()),
-                        None => {}
-                    }
                 }
             }
             Some("at" | "shape") => {}
@@ -1305,8 +1304,13 @@ fn validate_pin(node: &Node) -> Result<(), String> {
         return Err("invalid pin shape".to_string());
     }
 
-    for child in child_items(node).iter().skip(1) {
+    // Skip the pin type and shape atoms; only validate the nested child lists.
+    for child in payload_children(node, 3) {
         match head_of(child) {
+            Some("at") if !list_has_exact_symbol_numeric_arity(child, 3) => {
+                return Err("invalid pin position".to_string());
+            }
+            Some("at") => {}
             Some("name") if !matches!(child_items(child).get(1), Some(Node::Atom { .. })) => {
                 return Err("invalid pin name".to_string());
             }
@@ -1342,6 +1346,7 @@ fn validate_pin(node: &Node) -> Result<(), String> {
             Some("length") if !list_has_exact_symbol_numeric_arity(child, 1) => {
                 return Err("invalid pin length".to_string());
             }
+            Some("length") => {}
             Some("hide") => validate_bool_flag(child, false, "invalid pin hide")?,
             Some("alternate") => {
                 let items = child_items(child);
@@ -1365,7 +1370,7 @@ fn validate_pin(node: &Node) -> Result<(), String> {
                     return Err("invalid alternate pin shape".to_string());
                 }
             }
-            _ => {}
+            Some(_) | None => return Err("invalid pin shape".to_string()),
         }
     }
 
@@ -1373,7 +1378,7 @@ fn validate_pin(node: &Node) -> Result<(), String> {
 }
 
 fn validate_schematic_symbol(raw: &str, node: &Node) -> Result<(), String> {
-    for child in child_items(node).iter().skip(1) {
+    for child in payload_children(node, 1) {
         match head_of(child) {
             Some("lib_name") => match child_items(child).get(1) {
                 Some(Node::Atom {
@@ -1475,7 +1480,7 @@ fn validate_schematic_symbol_pin(raw: &str, node: &Node) -> Result<(), String> {
 }
 
 fn validate_default_instance(raw: &str, node: &Node) -> Result<(), String> {
-    for child in child_items(node).iter().skip(1) {
+    for child in payload_children(node, 1) {
         match head_of(child) {
             Some("reference" | "value" | "footprint")
                 if !is_non_numeric_atom(child_items(child).get(1), raw) =>
@@ -1500,7 +1505,7 @@ fn validate_default_instance(raw: &str, node: &Node) -> Result<(), String> {
 fn validate_image(raw: &str, node: &Node) -> Result<(), String> {
     let mut data = String::new();
 
-    for child in child_items(node).iter().skip(1) {
+    for child in payload_children(node, 1) {
         match head_of(child) {
             Some("at") if !list_has_exact_numeric_arity(child, 2) => {
                 return Err("invalid image at".to_string());
@@ -1868,7 +1873,7 @@ fn validate_title_block(node: &Node) -> Result<(), String> {
     Ok(())
 }
 
-fn validate_bus_alias(node: &Node) -> Result<(), String> {
+fn validate_bus_alias(raw: &str, node: &Node) -> Result<(), String> {
     if !matches!(child_items(node).get(1), Some(Node::Atom { .. })) {
         return Err("invalid bus alias name".to_string());
     }
@@ -1876,7 +1881,7 @@ fn validate_bus_alias(node: &Node) -> Result<(), String> {
     let mut saw_members = false;
     let mut seen_members = BTreeSet::new();
 
-    for child in child_items(node).iter().skip(2) {
+    for child in payload_children(node, 2) {
         if head_of(child) != Some("members") {
             return Err("invalid bus alias members".to_string());
         }
@@ -1891,6 +1896,16 @@ fn validate_bus_alias(node: &Node) -> Result<(), String> {
             let Some(value) = atom_string(member) else {
                 return Err("invalid bus alias members".to_string());
             };
+
+            if let Node::Atom {
+                atom: Atom::Symbol(_),
+                span,
+            } = member
+            {
+                if raw_token_is_numeric(raw, *span) {
+                    return Err("invalid bus alias members".to_string());
+                }
+            }
 
             if !seen_members.insert(value.to_string()) {
                 return Err("invalid bus alias members".to_string());
@@ -2102,7 +2117,7 @@ fn validate_lib_symbol(node: &Node) -> Result<(), String> {
 fn validate_sheet_instances(raw: &str, node: &Node) -> Result<(), String> {
     for child in child_items(node).iter().skip(1) {
         if !matches!(child, Node::List { .. }) {
-            continue;
+            return Err("invalid sheet instance child".to_string());
         }
 
         if head_of(child) != Some("path") {
@@ -2113,9 +2128,9 @@ fn validate_sheet_instances(raw: &str, node: &Node) -> Result<(), String> {
             return Err("invalid sheet instance path".to_string());
         }
 
-        for path_child in child_items(child).iter().skip(1) {
+        for path_child in child_items(child).iter().skip(2) {
             if !matches!(path_child, Node::List { .. }) {
-                continue;
+                return Err("invalid sheet instance child".to_string());
             }
 
             match head_of(path_child) {
@@ -2134,7 +2149,7 @@ fn validate_sheet_instances(raw: &str, node: &Node) -> Result<(), String> {
 fn validate_symbol_instances(raw: &str, node: &Node) -> Result<(), String> {
     for child in child_items(node).iter().skip(1) {
         if !matches!(child, Node::List { .. }) {
-            continue;
+            return Err("invalid symbol instance child".to_string());
         }
 
         if head_of(child) != Some("path") {
@@ -2145,9 +2160,9 @@ fn validate_symbol_instances(raw: &str, node: &Node) -> Result<(), String> {
             return Err("invalid symbol instance path".to_string());
         }
 
-        for path_child in child_items(child).iter().skip(1) {
+        for path_child in child_items(child).iter().skip(2) {
             if !matches!(path_child, Node::List { .. }) {
-                continue;
+                return Err("invalid symbol instance child".to_string());
             }
 
             match head_of(path_child) {
@@ -2318,6 +2333,10 @@ fn child_items(node: &Node) -> &[Node] {
     }
 }
 
+fn payload_children(node: &Node, start: usize) -> &[Node] {
+    child_items(node).get(start..).unwrap_or(&[])
+}
+
 fn nth_atom_string(node: &Node, index: usize) -> Option<String> {
     match child_items(node).get(index) {
         Some(Node::Atom {
@@ -2386,7 +2405,9 @@ fn atom_string(node: &Node) -> Option<&str> {
 
 #[cfg(test)]
 mod tests {
-    use super::preflight;
+    use super::{preflight, validate_effects};
+    use kiutils_sexpr::{parse_one, Node};
+    use std::fs;
 
     #[test]
     fn preflight_accepts_netclass_flag_without_visible_text() {
@@ -2405,7 +2426,7 @@ mod tests {
     fn preflight_accepts_label_with_property() {
         let path =
             "tests/fixtures/extract_parity/label_with_property/label_with_property.kicad_sch";
-        assert!(preflight(path).is_err());
+        assert!(preflight(path).is_ok());
     }
 
     #[test]
@@ -2413,5 +2434,76 @@ mod tests {
         let path =
             "tests/fixtures/extract_parity/text_box_with_property/text_box_with_property.kicad_sch";
         assert!(preflight(path).is_err());
+    }
+
+    #[test]
+    fn preflight_accepts_extract_resistor_gnd_fixture() {
+        let path = "tests/fixtures/extract/resistor_gnd.kicad_sch";
+        let result = preflight(path);
+        assert!(result.is_ok(), "{result:?}");
+    }
+
+    #[test]
+    fn validate_effects_accepts_simple_font_size() {
+        let cst = parse_one("(effects (font (size 1.27 1.27)))").unwrap();
+        let effects = &cst.nodes[0];
+        let result = validate_effects(effects);
+        assert!(result.is_ok(), "{result:?}");
+    }
+
+    #[test]
+    fn validate_effects_accepts_extract_resistor_gnd_effects_nodes() {
+        fn walk<'a>(node: &'a Node, out: &mut Vec<&'a Node>) {
+            let Node::List { items, .. } = node else {
+                return;
+            };
+            if matches!(items.first(), Some(Node::Atom { .. })) && super::head_of(node) == Some("effects") {
+                out.push(node);
+            }
+            for child in items.iter().skip(1) {
+                walk(child, out);
+            }
+        }
+
+        let path = "tests/fixtures/extract/resistor_gnd.kicad_sch";
+        let raw = fs::read_to_string(path).unwrap();
+        let cst = parse_one(&raw).unwrap();
+        let mut effects = Vec::new();
+        for node in &cst.nodes {
+            walk(node, &mut effects);
+        }
+
+        for node in effects {
+            let result = validate_effects(node);
+            assert!(result.is_ok(), "{result:?} on {node:?}");
+        }
+    }
+
+    #[test]
+    fn validate_stroke_accepts_extract_resistor_gnd_stroke_nodes() {
+        fn walk<'a>(node: &'a Node, out: &mut Vec<&'a Node>) {
+            let Node::List { items, .. } = node else {
+                return;
+            };
+            if matches!(items.first(), Some(Node::Atom { .. })) && super::head_of(node) == Some("stroke") {
+                out.push(node);
+            }
+            for child in items.iter().skip(1) {
+                walk(child, out);
+            }
+        }
+
+        let path = "tests/fixtures/extract/resistor_gnd.kicad_sch";
+        let raw = fs::read_to_string(path).unwrap();
+        let cst = parse_one(&raw).unwrap();
+        let mut strokes = Vec::new();
+        for node in &cst.nodes {
+            walk(node, &mut strokes);
+        }
+
+        for node in strokes {
+            let result = super::validate_stroke(node);
+            assert!(result.is_ok(), "{result:?} on {node:?}");
+        }
     }
 }
