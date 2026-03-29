@@ -116,7 +116,7 @@ pub fn query_component(path: &str, reference: &str, flags: &Flags) -> Result<(),
 }
 
 pub fn query_net(path: &str, net_name: &str, flags: &Flags) -> Result<(), KiError> {
-    let schema = parse_schema(path).map_err(|e| KiError::Message(e))?;
+    let schema = parse_schema(path, None).map_err(|e| KiError::Message(e))?;
     let nets = resolve_nets(&schema);
 
     let net = nets
@@ -163,7 +163,7 @@ pub fn query_net(path: &str, net_name: &str, flags: &Flags) -> Result<(), KiErro
 }
 
 pub fn query_unconnected(path: &str, _flags: &Flags) -> Result<(), KiError> {
-    let schema = parse_schema(path).map_err(|e| KiError::Message(e))?;
+    let schema = parse_schema(path, None).map_err(|e| KiError::Message(e))?;
     let nets = resolve_nets(&schema);
 
     let unconnected_count = nets.iter().filter(|n: &&ResolvedNet| n.no_connect).count();

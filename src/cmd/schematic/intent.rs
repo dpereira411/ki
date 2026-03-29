@@ -37,7 +37,7 @@ impl CommandResponse for IntentResponse {
 }
 
 pub fn check_intent(path: &str, intent_path: &str, flags: &Flags) -> Result<(), KiError> {
-    let schema = parse_schema(path).map_err(|e: String| KiError::Message(e))?;
+    let schema = parse_schema(path, None).map_err(|e: String| KiError::Message(e))?;
     let nets = resolve_nets(&schema);
 
     let intent_json = std::fs::read_to_string(intent_path).map_err(|e| KiError::Io(e))?;

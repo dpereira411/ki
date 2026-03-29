@@ -177,10 +177,6 @@ pub fn load_named_global_symbol_libraries(
 }
 
 fn load_symbol_lib(path: &str) -> Result<ProjectSymbolLibraryIndex, Error> {
-    let doc = SymbolLibFile::read(path).map_err(|err| Error::Read {
-        path: path.to_string(),
-        message: err.to_string(),
-    })?;
     let raw = std::fs::read_to_string(path).map_err(|err| Error::Read {
         path: path.to_string(),
         message: err.to_string(),
@@ -200,47 +196,51 @@ fn load_symbol_lib(path: &str) -> Result<ProjectSymbolLibraryIndex, Error> {
     let mut parts = BTreeMap::new();
     library_names.insert(lib_name.clone());
 
-    for symbol in &doc.ast().symbols {
-        let Some(symbol_name) = symbol.name.clone() else {
-            continue;
-        };
-        let pins = symbol
-            .pins
-            .iter()
-            .filter_map(|pin| {
-                let num = pin.number.clone()?;
-                Some(LibPin {
-                    num,
-                    name: pin.name.clone(),
-                    electrical_type: pin.electrical_type.clone(),
+    if let Ok(doc) = SymbolLibFile::read(path) {
+        for symbol in &doc.ast().symbols {
+            let Some(symbol_name) = symbol.name.clone() else {
+                continue;
+            };
+            let pins = symbol
+                .pins
+                .iter()
+                .filter_map(|pin| {
+                    let num = pin.number.clone()?;
+                    Some(LibPin {
+                        num,
+                        name: pin.name.clone(),
+                        electrical_type: pin.electrical_type.clone(),
+                    })
                 })
-            })
-            .collect::<Vec<_>>();
-        let mut docs = None;
-        let mut footprints = Vec::new();
-        let mut fields = Vec::new();
+                .collect::<Vec<_>>();
+            let mut docs = None;
+            let mut footprints = Vec::new();
+            let mut fields = Vec::new();
 
-        for (key, value) in &symbol.properties {
-            match key.as_str() {
-                "Datasheet" if !value.trim().is_empty() => docs = Some(value.clone()),
-                "Footprint" if !value.trim().is_empty() => footprints.push(value.clone()),
-                "Reference" | "Value" => {}
-                _ => fields.push(Field {
-                    name: key.clone(),
-                    value: value.clone(),
-                }),
+            for (key, value) in &symbol.properties {
+                match key.as_str() {
+                    "Datasheet" if !value.trim().is_empty() => docs = Some(value.clone()),
+                    "Footprint" if !value.trim().is_empty() => footprints.push(value.clone()),
+                    "Reference" | "Value" => {}
+                    _ => fields.push(Field {
+                        name: key.clone(),
+                        value: value.clone(),
+                    }),
+                }
             }
-        }
 
-        let signature = find_symbol_signature(&cst, &symbol_name).unwrap_or_default();
-        let part = ExternalLibPart {
-            docs,
-            footprints,
-            fields,
-            pins,
-            signature,
-        };
-        parts.insert((lib_name.clone(), symbol_name), part);
+            let signature = find_symbol_signature(&cst, &symbol_name).unwrap_or_default();
+            let part = ExternalLibPart {
+                docs,
+                footprints,
+                fields,
+                pins,
+                signature,
+            };
+            parts.insert((lib_name.clone(), symbol_name), part);
+        }
+    } else {
+        parts.extend(parse_symbol_lib_from_cst(&cst, &lib_name));
     }
 
     Ok(ProjectSymbolLibraryIndex {
@@ -324,6 +324,120 @@ fn find_symbol_signature(cst: &CstDocument, symbol_name: &str) -> Option<String>
         }
         Some(normalized_symbol_signature(node, symbol_name))
     })
+}
+
+fn parse_symbol_lib_from_cst(
+    cst: &CstDocument,
+    lib_name: &str,
+) -> BTreeMap<(String, String), ExternalLibPart> {
+    let mut parts = BTreeMap::new();
+    let Some(root) = cst.nodes.first() else {
+        return parts;
+    };
+    let Node::List { items, .. } = root else {
+        return parts;
+    };
+
+    for node in items.iter().skip(1) {
+        if head_of(node) != Some("symbol") {
+            continue;
+        }
+        let Some(symbol_name) = nth_atom_string(node, 1) else {
+            continue;
+        };
+        let local_name = symbol_name.rsplit(':').next().unwrap_or(&symbol_name).to_string();
+        let properties = child_items(node)
+            .iter()
+            .filter(|entry| head_of(entry) == Some("property"))
+            .filter_map(|property| {
+                Some(Field {
+                    name: nth_atom_string(property, 1)?,
+                    value: nth_atom_string(property, 2).unwrap_or_default(),
+                })
+            })
+            .collect::<Vec<_>>();
+        let docs = properties
+            .iter()
+            .find(|field| field.name == "Datasheet")
+            .map(|field| field.value.clone())
+            .filter(|value| !value.trim().is_empty());
+        let footprints = properties
+            .iter()
+            .find(|field| field.name == "Footprint")
+            .map(|field| vec![field.value.clone()])
+            .unwrap_or_default()
+            .into_iter()
+            .filter(|value| !value.trim().is_empty())
+            .collect::<Vec<_>>();
+        let fields = properties
+            .into_iter()
+            .filter(|field| !matches!(field.name.as_str(), "Reference" | "Value"))
+            .collect::<Vec<_>>();
+        let mut pins = Vec::new();
+        collect_symbol_lib_pins(node, &local_name, &mut pins);
+        pins.sort_by(|a, b| a.num.cmp(&b.num));
+        pins.dedup_by(|a, b| a.num == b.num);
+
+        parts.insert(
+            (lib_name.to_string(), local_name.clone()),
+            ExternalLibPart {
+                docs,
+                footprints,
+                fields,
+                pins,
+                signature: find_symbol_signature(cst, &symbol_name).unwrap_or_default(),
+            },
+        );
+    }
+
+    parts
+}
+
+fn collect_symbol_lib_pins(node: &Node, local_name: &str, out: &mut Vec<LibPin>) {
+    let Node::List { items, .. } = node else {
+        return;
+    };
+
+    for child in items.iter().skip(1) {
+        match head_of(child) {
+            Some("pin") => {
+                if let Some(pin) = parse_symbol_lib_pin(child) {
+                    out.push(pin);
+                }
+            }
+            Some("symbol") if nested_symbol_identity(child, local_name).is_some() => {
+                collect_symbol_lib_pins(child, local_name, out);
+            }
+            _ => {}
+        }
+    }
+}
+
+fn parse_symbol_lib_pin(node: &Node) -> Option<LibPin> {
+    let electrical_type = nth_atom_string(node, 1);
+    let mut name = None;
+    let mut number = None;
+
+    for child in child_items(node).iter().skip(3) {
+        match head_of(child) {
+            Some("name") => name = nth_atom_string(child, 1),
+            Some("number") => number = nth_atom_string(child, 1),
+            _ => {}
+        }
+    }
+
+    Some(LibPin {
+        num: number?,
+        name,
+        electrical_type,
+    })
+}
+
+fn nested_symbol_identity(node: &Node, local_name: &str) -> Option<(i32, i32)> {
+    let full_name = nth_atom_string(node, 1)?;
+    let suffix = full_name.strip_prefix(local_name)?.strip_prefix('_')?;
+    let (unit, body_style) = suffix.split_once('_')?;
+    Some((unit.parse().ok()?, body_style.parse().ok()?))
 }
 
 fn normalized_symbol_signature(node: &Node, symbol_name: &str) -> String {
@@ -414,6 +528,27 @@ fn normalize_symbol_signature_node(
     })
 }
 
+#[cfg(test)]
+mod tests {
+    use std::path::Path;
+
+    use crate::extract::{build, diagnostics};
+
+    use super::{discover_project_sym_libs, enrich};
+
+    #[test]
+    fn enrich_and_diagnostics_handle_resistor_gnd_fixture() {
+        let path = concat!(
+            env!("CARGO_MANIFEST_DIR"),
+            "/tests/fixtures/extract/resistor_gnd.kicad_sch"
+        );
+        let mut netlist = build::extract_from_schematic(path).expect("build should succeed");
+        let libs = discover_project_sym_libs(Path::new(path), false);
+        enrich(&mut netlist, &libs).expect("sym-lib enrich should succeed");
+        diagnostics::collect(path, &netlist).expect("diagnostics should succeed");
+    }
+}
+
 fn head_of(node: &Node) -> Option<&str> {
     let Node::List { items, .. } = node else {
         return None;
@@ -425,6 +560,13 @@ fn head_of(node: &Node) -> Option<&str> {
             ..
         }) => Some(head.as_str()),
         _ => None,
+    }
+}
+
+fn child_items(node: &Node) -> &[Node] {
+    match node {
+        Node::List { items, .. } => items,
+        _ => &[],
     }
 }
 

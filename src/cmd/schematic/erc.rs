@@ -231,8 +231,8 @@ pub fn run_erc(
         severity_exclusions,
     );
 
-    let schema =
-        parse_schema(path).map_err(|_| KiError::Message("Failed to load schematic".to_string()))?;
+    let schema = parse_schema(path, None)
+        .map_err(|_| KiError::Message("Failed to load schematic".to_string()))?;
     let nets = resolve_nets(&schema);
     let physical_groups = resolve_physical_groups(&schema);
     let resolved_symbol_libs = load_project_symbol_libraries(input);
@@ -1348,7 +1348,7 @@ fn load_project_symbol_libraries(schematic_path: &Path) -> ProjectSymbolLibraryI
     );
 
     let mut referenced_libraries = BTreeSet::new();
-    collect_referenced_symbol_libraries(schematic_path, &mut referenced_libraries);
+    collect_referenced_symbol_libraries(schematic_path, None, &mut referenced_libraries);
     referenced_libraries.retain(|name| !index.library_names.contains(name));
 
     if let Ok(global) = sym_lib::load_named_global_symbol_libraries(referenced_libraries, false) {
@@ -1359,8 +1359,12 @@ fn load_project_symbol_libraries(schematic_path: &Path) -> ProjectSymbolLibraryI
     index
 }
 
-fn collect_referenced_symbol_libraries(schematic_path: &Path, out: &mut BTreeSet<String>) {
-    if let Ok(schema) = parse_schema(schematic_path.to_string_lossy().as_ref()) {
+fn collect_referenced_symbol_libraries(
+    schematic_path: &Path,
+    current_instance_path: Option<&str>,
+    out: &mut BTreeSet<String>,
+) {
+    if let Ok(schema) = parse_schema(schematic_path.to_string_lossy().as_ref(), current_instance_path) {
         out.extend(
             schema
                 .symbols
@@ -1373,11 +1377,11 @@ fn collect_referenced_symbol_libraries(schematic_path: &Path, out: &mut BTreeSet
         return;
     };
 
-    if let Ok(sheet_refs) = sheet_refs(schematic_path) {
+    if let Ok(sheet_refs) = sheet_refs(schematic_path, current_instance_path) {
         for sheet in sheet_refs {
             let child_path = root_dir.join(&sheet.file);
             if child_path.exists() {
-                collect_referenced_symbol_libraries(&child_path, out);
+                collect_referenced_symbol_libraries(&child_path, Some(&sheet.instance_path), out);
             }
         }
     }
@@ -1449,20 +1453,21 @@ fn global_footprint_library_dirs() -> Vec<std::path::PathBuf> {
 
 fn child_sheet_paths(schematic_path: &Path) -> Result<Vec<String>, KiError> {
     let mut paths = Vec::new();
-    collect_child_sheet_paths(schematic_path, "/", &mut paths)?;
+    collect_child_sheet_paths(schematic_path, "/", None, &mut paths)?;
     Ok(paths)
 }
 
 fn collect_child_sheet_paths(
     schematic_path: &Path,
     current_sheet_path: &str,
+    current_instance_path: Option<&str>,
     out: &mut Vec<String>,
 ) -> Result<(), KiError> {
     let Some(root_dir) = schematic_path.parent() else {
         return Ok(());
     };
 
-    for sheet in sheet_refs(schematic_path)? {
+    for sheet in sheet_refs(schematic_path, current_instance_path)? {
         let child_path = root_dir.join(&sheet.file);
         if !child_path.exists() {
             continue;
@@ -1475,7 +1480,7 @@ fn collect_child_sheet_paths(
         };
 
         out.push(child_sheet_path.clone());
-        collect_child_sheet_paths(&child_path, &child_sheet_path, out)?;
+        collect_child_sheet_paths(&child_path, &child_sheet_path, Some(&sheet.instance_path), out)?;
     }
 
     Ok(())
@@ -1484,6 +1489,9 @@ fn collect_child_sheet_paths(
 struct SheetRef {
     path: String,
     file: String,
+    instance_path: String,
+    page: Option<String>,
+    text_vars: BTreeMap<String, String>,
     pins: std::collections::BTreeSet<String>,
 }
 
@@ -1497,7 +1505,10 @@ impl SheetRef {
     }
 }
 
-fn sheet_refs(schematic_path: &Path) -> Result<Vec<SheetRef>, KiError> {
+fn sheet_refs(
+    schematic_path: &Path,
+    current_instance_path: Option<&str>,
+) -> Result<Vec<SheetRef>, KiError> {
     let text = fs::read_to_string(schematic_path)
         .map_err(|_| KiError::Message("Failed to load schematic".to_string()))?;
     let cst =
@@ -1506,11 +1517,27 @@ fn sheet_refs(schematic_path: &Path) -> Result<Vec<SheetRef>, KiError> {
         return Ok(Vec::new());
     };
 
-    Ok(items
+    let Some(parent_instance_path) = current_instance_path
+        .map(ToOwned::to_owned)
+        .or_else(|| schematic_root_instance_path(items))
+    else {
+        return Ok(Vec::new());
+    };
+
+    let mut refs = items
         .iter()
         .filter(|item| head_of(item) == Some("sheet"))
         .filter_map(|sheet| {
             let name = sheet_name(sheet)?;
+            let uuid = child_items(sheet)
+                .iter()
+                .find(|item| head_of(item) == Some("uuid"))
+                .and_then(|item| nth_atom_string(item, 1))?;
+            let text_vars = child_items(sheet)
+                .iter()
+                .filter(|item| head_of(item) == Some("property"))
+                .filter_map(|item| Some((nth_atom_string(item, 1)?, nth_atom_string(item, 2)?)))
+                .collect::<BTreeMap<_, _>>();
             let file = child_items(sheet)
                 .iter()
                 .filter(|item| head_of(item) == Some("property"))
@@ -1520,18 +1547,90 @@ fn sheet_refs(schematic_path: &Path) -> Result<Vec<SheetRef>, KiError> {
                         .then(|| nth_atom_string(item, 2))
                         .flatten()
                 })?;
+            let page = child_items(sheet)
+                .iter()
+                .find(|item| head_of(item) == Some("instances"))
+                .and_then(|instances| {
+                    child_items(instances)
+                        .iter()
+                        .find(|child| head_of(child) == Some("project"))
+                })
+                .and_then(|project| {
+                    child_items(project)
+                        .iter()
+                        .find(|child| head_of(child) == Some("path"))
+                })
+                .and_then(|path| {
+                    child_items(path)
+                        .iter()
+                        .find(|child| head_of(child) == Some("page"))
+                        .and_then(|page| nth_atom_string(page, 1))
+                });
             let pins = child_items(sheet)
                 .iter()
                 .filter(|item| head_of(item) == Some("pin"))
                 .filter_map(|item| nth_atom_string(item, 1))
+                .map(|pin| resolve_sheet_text_vars(&pin, &text_vars, page.as_deref()))
                 .collect::<std::collections::BTreeSet<_>>();
             Some(SheetRef {
                 path: format!("/{name}/"),
                 file,
+                instance_path: if parent_instance_path == "/" {
+                    format!("/{uuid}")
+                } else {
+                    format!("{parent_instance_path}/{uuid}")
+                },
+                page,
+                text_vars,
                 pins,
             })
         })
-        .collect())
+        .collect::<Vec<_>>();
+    refs.sort_by(|left, right| {
+        page_sort_key(left.page.as_deref())
+            .cmp(&page_sort_key(right.page.as_deref()))
+            .then_with(|| left.path.cmp(&right.path))
+    });
+    Ok(refs)
+}
+
+fn schematic_root_instance_path(items: &[Node]) -> Option<String> {
+    items.iter()
+        .find(|item| head_of(item) == Some("uuid"))
+        .and_then(|item| nth_atom_string(item, 1))
+        .map(|uuid| format!("/{uuid}"))
+        .or_else(|| {
+            items.iter()
+                .any(|item| head_of(item) == Some("sheet_instances"))
+                .then(|| "/".to_string())
+        })
+}
+
+fn page_sort_key(page: Option<&str>) -> (i64, String) {
+    page.and_then(|value| value.parse::<i64>().ok())
+        .map(|number| (number, String::new()))
+        .unwrap_or_else(|| (i64::MAX, page.unwrap_or_default().to_string()))
+}
+
+fn resolve_sheet_text_vars(
+    text: &str,
+    text_vars: &BTreeMap<String, String>,
+    page: Option<&str>,
+) -> String {
+    let mut out = text.to_string();
+    for (key, value) in text_vars {
+        out = out.replace(&format!("${{{key}}}"), value);
+    }
+    if let Some(page) = page {
+        out = out.replace("${#}", page);
+    }
+    out
+}
+
+fn apply_sheet_text_vars(schema: &mut ParsedSchema, sheet: &SheetRef) {
+    for label in &mut schema.labels {
+        label.text = resolve_sheet_text_vars(&label.text, &sheet.text_vars, sheet.page.as_deref());
+    }
 }
 
 fn sheet_pin_points(schematic_path: &Path) -> Result<Vec<Point>, KiError> {
@@ -2037,21 +2136,42 @@ fn hierarchical_sheet_violations(
     project_rule_severities: &std::collections::HashMap<String, String>,
 ) -> Result<BTreeMap<String, Vec<PendingViolation>>, KiError> {
     let mut out = BTreeMap::<String, Vec<PendingViolation>>::new();
-    collect_hierarchical_sheet_violations(schematic_path, "/", project_rule_severities, &mut out)?;
+    let mut root_screen_violations = BTreeMap::<String, Vec<PendingViolation>>::new();
+    collect_hierarchical_sheet_violations(
+        schematic_path,
+        "/",
+        None,
+        project_rule_severities,
+        &mut root_screen_violations,
+        &mut out,
+    )?;
+    out.entry("/".to_string())
+        .or_default()
+        .extend(root_screen_violations.into_values().flatten());
     Ok(out)
 }
 
 fn collect_hierarchical_sheet_violations(
     schematic_path: &Path,
     current_sheet_path: &str,
+    current_instance_path: Option<&str>,
     project_rule_severities: &std::collections::HashMap<String, String>,
+    root_screen_violations: &mut BTreeMap<String, Vec<PendingViolation>>,
     out: &mut BTreeMap<String, Vec<PendingViolation>>,
 ) -> Result<(), KiError> {
     let Some(root_dir) = schematic_path.parent() else {
         return Ok(());
     };
 
-    for sheet in sheet_refs(schematic_path)? {
+    let sheet_refs = sheet_refs(schematic_path, current_instance_path)?;
+    let repeated_files = sheet_refs
+        .iter()
+        .fold(BTreeMap::<String, usize>::new(), |mut counts, sheet| {
+            *counts.entry(sheet.file.clone()).or_default() += 1;
+            counts
+        });
+
+    for sheet in sheet_refs {
         let child_path = root_dir.join(&sheet.file);
         if !child_path.exists() {
             continue;
@@ -2062,8 +2182,9 @@ fn collect_hierarchical_sheet_violations(
             format!("{}{}/", current_sheet_path, sheet.path.trim_matches('/'))
         };
 
-        let child_schema = parse_schema(&child_path.to_string_lossy())
+        let mut child_schema = parse_schema(&child_path.to_string_lossy(), Some(&sheet.instance_path))
             .map_err(|_| KiError::Message("Failed to load schematic".to_string()))?;
+        apply_sheet_text_vars(&mut child_schema, &sheet);
         let isolated_hier_labels = child_schema
             .labels
             .iter()
@@ -2137,7 +2258,7 @@ fn collect_hierarchical_sheet_violations(
                         ),
                         violation_type: "hier_label_mismatch".to_string(),
                         items: vec![PendingItem {
-                            description: format!("Hierarchical Label '{}'", label.text),
+                            description: format!("Hierarchical Label '{}'", label.raw_text),
                             x_mm: label.x,
                             y_mm: label.y,
                         }],
@@ -2145,10 +2266,10 @@ fn collect_hierarchical_sheet_violations(
                 }),
         );
 
+        let mut root_violations = Vec::new();
+
         if !sheet.uses_prefixed_bus_alias_pins() {
-            out.entry("/".to_string())
-                .or_default()
-                .extend(isolated_hier_labels.iter().map(|label| PendingViolation {
+            root_violations.extend(isolated_hier_labels.iter().map(|label| PendingViolation {
                     severity: Severity::Warning,
                     description: "Label connected to only one pin".to_string(),
                     violation_type: "isolated_pin_label".to_string(),
@@ -2158,9 +2279,7 @@ fn collect_hierarchical_sheet_violations(
                         y_mm: label.y,
                     }],
                 }));
-            out.entry("/".to_string())
-                .or_default()
-                .extend(isolated_local_labels.iter().map(|label| PendingViolation {
+            root_violations.extend(isolated_local_labels.iter().map(|label| PendingViolation {
                     severity: Severity::Warning,
                     description: "Label connected to only one pin".to_string(),
                     violation_type: "isolated_pin_label".to_string(),
@@ -2172,9 +2291,7 @@ fn collect_hierarchical_sheet_violations(
                 }));
         }
 
-        out.entry("/".to_string())
-            .or_default()
-            .extend(dangling_labels.iter().map(|label| PendingViolation {
+        root_violations.extend(dangling_labels.iter().map(|label| PendingViolation {
                 severity: Severity::Error,
                 description: "Label not connected".to_string(),
                 violation_type: "label_dangling".to_string(),
@@ -2185,7 +2302,7 @@ fn collect_hierarchical_sheet_violations(
                 }],
             }));
 
-        out.entry("/".to_string()).or_default().extend(
+        root_violations.extend(
             child_schema
                 .wires
                 .iter()
@@ -2219,11 +2336,16 @@ fn collect_hierarchical_sheet_violations(
                 })
                 .flatten(),
         );
+        if repeated_files.get(&sheet.file).copied().unwrap_or(0) <= 1 {
+            root_screen_violations.insert(child_path.to_string_lossy().into_owned(), root_violations);
+        }
 
         collect_hierarchical_sheet_violations(
             &child_path,
             &child_sheet_path,
+            Some(&sheet.instance_path),
             project_rule_severities,
+            root_screen_violations,
             out,
         )?;
     }
@@ -2237,28 +2359,42 @@ fn descendant_sheet_violations(
     project_rule_severities: &std::collections::HashMap<String, String>,
 ) -> Result<BTreeMap<String, Vec<PendingViolation>>, KiError> {
     let mut out = BTreeMap::<String, Vec<PendingViolation>>::new();
+    let mut root_screen_violations = BTreeMap::<String, Vec<PendingViolation>>::new();
+    let mut child_screen_violations = BTreeMap::<String, (String, Vec<PendingViolation>)>::new();
     collect_descendant_sheet_violations(
         schematic_path,
         "/",
+        None,
         symbol_libs,
         project_rule_severities,
+        &mut root_screen_violations,
+        &mut child_screen_violations,
         &mut out,
     )?;
+    out.entry("/".to_string())
+        .or_default()
+        .extend(root_screen_violations.into_values().flatten());
+    for (sheet_path, violations) in child_screen_violations.into_values() {
+        out.entry(sheet_path).or_default().extend(violations);
+    }
     Ok(out)
 }
 
 fn collect_descendant_sheet_violations(
     schematic_path: &Path,
     current_sheet_path: &str,
+    current_instance_path: Option<&str>,
     symbol_libs: &ProjectSymbolLibraryIndex,
     project_rule_severities: &std::collections::HashMap<String, String>,
+    root_screen_violations: &mut BTreeMap<String, Vec<PendingViolation>>,
+    child_screen_violations: &mut BTreeMap<String, (String, Vec<PendingViolation>)>,
     out: &mut BTreeMap<String, Vec<PendingViolation>>,
 ) -> Result<(), KiError> {
     let Some(root_dir) = schematic_path.parent() else {
         return Ok(());
     };
 
-    for sheet in sheet_refs(schematic_path)? {
+    for sheet in sheet_refs(schematic_path, current_instance_path)? {
         let child_path = root_dir.join(&sheet.file);
         if !child_path.exists() {
             continue;
@@ -2269,26 +2405,25 @@ fn collect_descendant_sheet_violations(
             format!("{}{}/", current_sheet_path, sheet.path.trim_matches('/'))
         };
 
-        let child_schema = parse_schema(&child_path.to_string_lossy())
+        let mut child_schema = parse_schema(&child_path.to_string_lossy(), Some(&sheet.instance_path))
             .map_err(|_| KiError::Message("Failed to load schematic".to_string()))?;
+        apply_sheet_text_vars(&mut child_schema, &sheet);
         let child_nets = resolve_nets(&child_schema);
 
-        out.entry(child_sheet_path.clone())
-            .or_default()
-            .extend(power_pin_not_driven_violations(&child_schema, &child_nets));
-        out.entry(child_sheet_path.clone())
-            .or_default()
-            .extend(multiple_net_names_violations(
+        let child_violations = power_pin_not_driven_violations(&child_schema, &child_nets)
+            .into_iter()
+            .chain(multiple_net_names_violations(
                 &child_schema,
                 &child_nets,
                 project_rule_severities,
-            ));
-        out.entry("/".to_string())
-            .or_default()
-            .extend(endpoint_off_grid_violations(&child_schema));
-        out.entry("/".to_string())
-            .or_default()
-            .extend(child_schema.symbols.iter().filter_map(|symbol| {
+            ))
+            .collect::<Vec<_>>();
+        child_screen_violations.insert(
+            child_path.to_string_lossy().into_owned(),
+            (child_sheet_path.clone(), child_violations),
+        );
+        let mut root_violations = endpoint_off_grid_violations(&child_schema);
+        root_violations.extend(child_schema.symbols.iter().filter_map(|symbol| {
                 build_lib_symbol_issue(symbol, symbol_libs).map(|item| PendingViolation {
                     severity: Severity::Warning,
                     description: format!(
@@ -2299,7 +2434,7 @@ fn collect_descendant_sheet_violations(
                     items: vec![item],
                 })
             }));
-        out.entry("/".to_string()).or_default().extend(
+        root_violations.extend(
             lib_symbol_mismatch_violations(&child_schema, symbol_libs, project_rule_severities)
                 .into_iter()
                 .filter(|violation| {
@@ -2309,12 +2444,16 @@ fn collect_descendant_sheet_violations(
                         .any(|item| item.description.starts_with("Symbol #PWR? ["))
                 }),
         );
+        root_screen_violations.insert(child_path.to_string_lossy().into_owned(), root_violations);
 
         collect_descendant_sheet_violations(
             &child_path,
             &child_sheet_path,
+            Some(&sheet.instance_path),
             symbol_libs,
             project_rule_severities,
+            root_screen_violations,
+            child_screen_violations,
             out,
         )?;
     }
@@ -2560,7 +2699,13 @@ fn multiple_net_names_violations(
 ) -> Vec<PendingViolation> {
     nets.iter()
         .filter_map(|net| {
-            let mut drivers = net
+            let net_points = net
+                .labels
+                .iter()
+                .map(|label| (label.point, label.label_type.as_str(), label.text.as_str()))
+                .collect::<BTreeSet<_>>();
+
+            let mut drivers = schema
                 .labels
                 .iter()
                 .filter(|label| {
@@ -2570,12 +2715,25 @@ fn multiple_net_names_violations(
                     )
                 })
                 .filter(|label| !is_generated_power_label(label, schema))
+                .filter(|label| {
+                    net_points.contains(&(label.point, label.label_type.as_str(), label.text.as_str()))
+                })
                 .collect::<Vec<_>>();
             if drivers.len() < 2 {
                 return None;
             }
 
-            drivers.sort_by_key(|label| label_sort_priority(&label.label_type));
+            if drivers
+                .iter()
+                .all(|label| label.label_type == "hierarchical_label")
+            {
+                drivers.sort_by(|left, right| {
+                    left.point
+                        .x
+                        .cmp(&right.point.x)
+                        .then_with(|| left.point.y.cmp(&right.point.y))
+                });
+            }
 
             let primary = drivers[0];
             let secondary = drivers
@@ -2600,12 +2758,12 @@ fn multiple_net_names_violations(
                 violation_type: "multiple_net_names".to_string(),
                 items: vec![
                     PendingItem {
-                        description: format!("Label '{}'", primary.text),
+                        description: format_label_item_description(primary),
                         x_mm: primary.x,
                         y_mm: primary.y,
                     },
                     PendingItem {
-                        description: format!("Label '{}'", secondary.text),
+                        description: format_label_item_description(secondary),
                         x_mm: secondary.x,
                         y_mm: secondary.y,
                     },
@@ -2858,9 +3016,9 @@ fn format_symbol_item_description(symbol: &PlacedSymbol) -> String {
 
 fn format_label_item_description(label: &LabelInfo) -> String {
     match label.label_type.as_str() {
-        "hierarchical_label" => format!("Hierarchical Label '{}'", label.text),
-        "global_label" => format!("Global Label '{}'", label.text),
-        _ => format!("Label '{}'", label.text),
+        "hierarchical_label" => format!("Hierarchical Label '{}'", label.raw_text),
+        "global_label" => format!("Global Label '{}'", label.raw_text),
+        _ => format!("Label '{}'", label.raw_text),
     }
 }
 
@@ -3328,19 +3486,10 @@ fn segment_length_mm(segment: &Segment) -> f64 {
 }
 
 fn segment_anchor_mm(segment: &Segment) -> (f64, f64) {
-    let point = if segment.a.x == segment.b.x {
-        if segment.a.y <= segment.b.y {
-            segment.a
-        } else {
-            segment.b
-        }
-    } else if segment.a.x <= segment.b.x {
-        segment.a
-    } else {
-        segment.b
-    };
-
-    (point.x as f64 / 10_000.0, point.y as f64 / 10_000.0)
+    (
+        segment.a.x as f64 / 10_000.0,
+        segment.a.y as f64 / 10_000.0,
+    )
 }
 
 fn format_segment_item_description(segment: &Segment) -> String {
@@ -3695,15 +3844,6 @@ fn format_pin_type_name(pin_type: Option<&str>) -> &str {
         Some("unspecified") => "Unspecified",
         Some(other) => other,
         None => "?",
-    }
-}
-
-fn label_sort_priority(kind: &str) -> i32 {
-    match kind {
-        "global_label" => 0,
-        "hierarchical_label" => 1,
-        "label" => 2,
-        _ => 3,
     }
 }
 

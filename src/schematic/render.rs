@@ -115,6 +115,7 @@ pub(crate) struct BusEntry {
 
 #[derive(Clone, Debug)]
 pub(crate) struct LabelInfo {
+    pub(crate) raw_text: String,
     pub(crate) text: String,
     pub(crate) point: Point,
     pub(crate) x: f64,
@@ -253,10 +254,10 @@ impl ResolvedNet {
     }
 }
 
-pub(crate) fn parse_schema(path: &str) -> Result<ParsedSchema, String> {
+pub(crate) fn parse_schema(path: &str, instance_path: Option<&str>) -> Result<ParsedSchema, String> {
     let text = fs::read_to_string(path).map_err(|err| err.to_string())?;
     let cst = parse_one(&text).map_err(|err| err.to_string())?;
-    parse_schema_nodes(&cst.nodes)
+    parse_schema_nodes(&cst.nodes, instance_path)
 }
 
 pub(crate) fn resolve_nets(schema: &ParsedSchema) -> Vec<ResolvedNet> {
@@ -307,10 +308,14 @@ pub(crate) fn cmp_pin_numbers(a: &str, b: &str) -> Ordering {
         .unwrap_or_else(|| a.cmp(b))
 }
 
-fn parse_schema_nodes(nodes: &[Node]) -> Result<ParsedSchema, String> {
+fn parse_schema_nodes(nodes: &[Node], instance_path: Option<&str>) -> Result<ParsedSchema, String> {
     let Some(Node::List { items, .. }) = nodes.first() else {
         return Err("missing schematic root".to_string());
     };
+    let default_instance_path = instance_path
+        .map(ToOwned::to_owned)
+        .or_else(|| schematic_instance_path(items));
+    let instance_path = default_instance_path.as_deref();
 
     let mut embedded_symbols = HashMap::new();
     let mut raw_symbols = Vec::new();
@@ -329,7 +334,7 @@ fn parse_schema_nodes(nodes: &[Node]) -> Result<ParsedSchema, String> {
                 embedded_symbols = parse_embedded_symbols(item);
             }
             Some("symbol") => {
-                raw_symbols.push(parse_placed_symbol(item, raw_symbols.len())?);
+                raw_symbols.push(parse_placed_symbol(item, raw_symbols.len(), instance_path)?);
             }
             Some("sheet") => {
                 sheet_pins.extend(parse_sheet_pins(item));
@@ -390,6 +395,18 @@ fn parse_schema_nodes(nodes: &[Node]) -> Result<ParsedSchema, String> {
         no_connects,
         pin_nodes,
     })
+}
+
+fn schematic_instance_path(items: &[Node]) -> Option<String> {
+    child_items_from(items)
+        .iter()
+        .find(|item| head_of(item) == Some("uuid"))
+        .and_then(|uuid| nth_atom_string(uuid, 1))
+        .map(|uuid| format!("/{uuid}"))
+}
+
+fn child_items_from(items: &[Node]) -> &[Node] {
+    items
 }
 
 fn build_pin_nodes(
@@ -495,6 +512,7 @@ fn build_power_labels(
             let world = translate(symbol.at, symbol.transform.apply(pin.root));
             let (x, y) = (world.x as f64 / COORD_SCALE, world.y as f64 / COORD_SCALE);
             labels.push(LabelInfo {
+                raw_text: text.clone(),
                 text: text.clone(),
                 point: world,
                 x,
@@ -1011,7 +1029,11 @@ fn parse_sheet_pins(node: &Node) -> Vec<Point> {
         .collect()
 }
 
-fn parse_placed_symbol(node: &Node, order: usize) -> Result<PlacedSymbol, String> {
+fn parse_placed_symbol(
+    node: &Node,
+    order: usize,
+    instance_path: Option<&str>,
+) -> Result<PlacedSymbol, String> {
     let lib_id = nth_atom_string(node, 1)
         .filter(|head| head != "symbol")
         .or_else(|| {
@@ -1075,14 +1097,18 @@ fn parse_placed_symbol(node: &Node, order: usize) -> Result<PlacedSymbol, String
         .iter()
         .find(|child| head_of(child) == Some("instances"))
         .and_then(|instances| {
-            child_items(instances)
+            let paths = child_items(instances)
                 .iter()
                 .find(|child| head_of(child) == Some("project"))
-                .and_then(|project| {
-                    child_items(project)
-                        .iter()
-                        .find(|child| head_of(child) == Some("path"))
+                .map(child_items)?;
+            let matching_path = instance_path.and_then(|wanted| {
+                paths.iter().find(|child| {
+                    head_of(child) == Some("path")
+                        && nth_atom_string(child, 1).as_deref() == Some(wanted)
                 })
+            });
+            matching_path
+                .or_else(|| paths.iter().find(|child| head_of(child) == Some("path")))
                 .and_then(|path| {
                     child_items(path)
                         .iter()
@@ -1162,6 +1188,7 @@ fn parse_label(node: &Node) -> Option<LabelInfo> {
     let x = nth_atom_f64(at, 1)?;
     let y = nth_atom_f64(at, 2)?;
     Some(LabelInfo {
+        raw_text: text.clone(),
         text,
         point: Point::new(x, y),
         x,
@@ -1412,5 +1439,20 @@ impl Dsu {
         if root_a != root_b {
             self.parent[root_b] = root_a;
         }
+    }
+}
+
+#[cfg(test)]
+mod tests {
+    use super::parse_schema;
+
+    #[test]
+    fn parse_schema_handles_extract_resistor_gnd_fixture() {
+        let path = concat!(
+            env!("CARGO_MANIFEST_DIR"),
+            "/tests/fixtures/extract/resistor_gnd.kicad_sch"
+        );
+        let parsed = parse_schema(path, None);
+        assert!(parsed.is_ok(), "{parsed:?}");
     }
 }

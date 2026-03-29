@@ -10,7 +10,10 @@ release:
     cargo build --release
 
 test:
-    cargo test
+    cargo test --all-targets
+
+test-all:
+    cargo test --all-targets
 
 run *args:
     cargo run -- {{args}}

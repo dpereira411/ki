@@ -19,7 +19,7 @@ pub const EXTRACT_SCHEMA_VERSION: u32 = 2;
 pub fn extract_from_schematic(path: &str) -> Result<ExtractedNetlist, String> {
     let prepared = prepare_schematic_for_extract(path)?;
     let (tool, version) = schematic_metadata(prepared.path())?;
-    let schema = parse_schematic_schema(prepared.path().to_str().unwrap())?;
+    let schema = parse_schematic_schema(prepared.path().to_str().unwrap(), None)?;
 
     let components = build_components(&schema.symbols, &schema.embedded_symbols);
     let lib_parts = build_lib_parts(&schema.embedded_symbols, &components);
@@ -430,4 +430,19 @@ fn build_nets(groups: Vec<ResolvedNet>) -> Vec<Net> {
         net.code = idx as i32 + 1;
     }
     nets
+}
+
+#[cfg(test)]
+mod tests {
+    use super::extract_from_schematic;
+
+    #[test]
+    fn extract_from_schematic_handles_resistor_gnd_fixture() {
+        let path = concat!(
+            env!("CARGO_MANIFEST_DIR"),
+            "/tests/fixtures/extract/resistor_gnd.kicad_sch"
+        );
+        let extracted = extract_from_schematic(path);
+        assert!(extracted.is_ok(), "{extracted:?}");
+    }
 }

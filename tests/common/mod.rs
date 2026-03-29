@@ -423,7 +423,52 @@ fn normalize_erc_item_description(description: &str) -> String {
 fn format_decimal(value: Option<f64>) -> String {
     value
         .map(|number| {
-            let mut rendered = format!("{number:.4}");
+            let negative = number.is_sign_negative();
+            let rendered = format!("{:.8}", number.abs());
+            let (whole, frac) = rendered.split_once('.').unwrap_or((&rendered, ""));
+            let mut frac_digits = frac.chars().collect::<Vec<_>>();
+            while frac_digits.len() < 5 {
+                frac_digits.push('0');
+            }
+
+            let mut keep = frac_digits[..4]
+                .iter()
+                .map(|ch| ch.to_digit(10).unwrap_or(0))
+                .collect::<Vec<_>>();
+            let next = frac_digits[4].to_digit(10).unwrap_or(0);
+            let rest_nonzero = frac_digits[5..]
+                .iter()
+                .any(|ch| ch.to_digit(10).unwrap_or(0) != 0);
+
+            let round_up = next > 5
+                || (next == 5
+                    && (rest_nonzero || keep.last().copied().unwrap_or(0) % 2 == 1));
+
+            let mut whole_value = whole.parse::<u64>().unwrap_or(0);
+
+            if round_up {
+                let mut carry = 1;
+                for digit in keep.iter_mut().rev() {
+                    let updated = *digit + carry;
+                    *digit = updated % 10;
+                    carry = updated / 10;
+                    if carry == 0 {
+                        break;
+                    }
+                }
+                if carry > 0 {
+                    whole_value += carry as u64;
+                }
+            }
+
+            let mut rendered = format!(
+                "{}{}.{}",
+                if negative { "-" } else { "" },
+                whole_value,
+                keep.iter()
+                    .map(|digit| char::from_digit(*digit, 10).unwrap())
+                    .collect::<String>()
+            );
             while rendered.contains('.') && rendered.ends_with('0') {
                 rendered.pop();
             }
