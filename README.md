@@ -1,28 +1,51 @@
 # ki
 
-Rust CLI for KiCad IPC refresh operations and direct KiCad file editing.
+`ki` is a Rust CLI for KiCad project, schematic, PCB, symbol-library, and library-table
+operations.
+
+KiCad is still primarily built around the interactive editor, not the CLI, so
+`kicad-cli` is useful but not the center of the project. `ki` treats CLI compatibility as a
+baseline and then fills in the gaps that matter for scripted and agent-driven workflows.
+
 
 ## Scope
 
-`ki` now combines:
+Intent:
 
-- IPC refresh support via `kicad-ipc-rs`
-- file editing commands backed by the sibling `kiutils-rs` library
+- match `kicad-cli` funccionlaity for the implemented command surfaces and data paths
+- provide additional automation and agent workflow commands on top of that compatibility baseline
+
+Current Features:
+
+- inspect, validate, and modify KiCad files directly
+- drive KiCad editor refresh through IPC (for machine-human feedback loops)
+
+Parsing, validation, and command behavior are derived from upstream KiCad where this tool aims to
+be compatible.
+
+
+## Command Surface
 
 Current top-level commands:
 
 - `ki refresh`
-- `ki extract ...`
-- `ki project ...`
-- `ki schematic ...`
-- `ki symbol-lib ...`
-- `ki pcb ...`
-- `ki lib-table ...`
+- `ki extract`
+- `ki project`
+- `ki schematic`
+- `ki symbol-lib`
+- `ki pcb`
+- `ki lib-table`
 
-## Development dependency
+## Repository Layout
 
-This repo depends on the local sibling checkout at `../kiutils-rs/crates/kiutils`.
-That repo is treated as the library source of truth and is not modified by this CLI.
+This CLI depends on the local sibling checkout:
+
+```text
+../kiutils-rs/crates/kiutils
+```
+
+`kiutils-rs` provides the file-model and editing primitives used by this CLI. This repository
+contains the CLI layer, validation logic, parity tests, and command behavior.
 
 ## Build
 
@@ -30,7 +53,7 @@ That repo is treated as the library source of truth and is not modified by this 
 just build
 ```
 
-## Examples
+## Common Commands
 
 Refresh the PCB editor through KiCad IPC:
 
@@ -44,18 +67,23 @@ Inspect a schematic as JSON:
 just run schematic inspect path/to/file.kicad_sch --json
 ```
 
-Extract a schematic netlist/topology as JSON:
+Extract schematic netlist/topology data as JSON:
 
 ```bash
 just run extract path/to/file.kicad_sch --pretty
 ```
 
-Extract output semantics:
+Run ERC with JSON output:
 
-- `lib_parts[*].fields` contains library/class symbol properties
-- `components[*].properties` contains instance-only overrides and instance-only custom properties
-- `components[*].footprint` and `components[*].datasheet` are also instance overrides only; inherited library defaults live under the matching `lib_parts[*]`
-- reconstruct full effective properties by overlaying `components[*].properties` on top of the matching `lib_parts[*].fields`
+```bash
+just run schematic erc path/to/file.kicad_sch --json
+```
+
+Validate a project:
+
+```bash
+just run project validate path/to/project.kicad_pro --json
+```
 
 Add a PCB trace:
 
@@ -63,38 +91,75 @@ Add a PCB trace:
 just run pcb add-trace board.kicad_pcb 10 10 20 10 0.25 F.Cu 1
 ```
 
-Validate a project:
+## Extract Output Semantics
 
-```bash
-just run project validate project.kicad_pro --json
-```
+`ki extract` separates library-level symbol data from instance-level overrides.
 
-## Output and exit codes
+- `lib_parts[*].fields` contains library or class symbol properties
+- `components[*].properties` contains instance-only overrides and instance-only custom properties
+- `components[*].footprint` and `components[*].datasheet` are instance overrides only
+- inherited library defaults remain on the matching `lib_parts[*]`
 
-File-editing commands support:
+To reconstruct the effective property set for a component, overlay
+`components[*].properties` onto the corresponding `lib_parts[*].fields`.
+
+## Schema Validation
+
+`ki extract` validates `.kicad_sch` input before extraction. The validator is intended to follow
+the accept/reject behavior of KiCad's schematic parser on the implemented file-format surface.
+Invalid schematics fail with the same top-level `Failed to load schematic` message shape used by
+`kicad-cli`.
+
+Validation currently covers the main schematic object families and shared parser branches used by
+extract parity, including:
+
+- top-level schematic structure
+- properties and mandatory-field aliases
+- symbols, sheets, instances, variants, and default instances
+- pins, labels, text, text boxes, tables, rule areas, and images
+- embedded files, groups, bus aliases, UUID/token-class constraints, and legacy compatibility forms
+
+The authoritative parity record for extract validation lives in:
+
+- [tests/extract_parity/cases.json](/Users/Daniel/Desktop/modular/tools/ki-validation-wt/tests/extract_parity/cases.json)
+- [tests/extract_parity/kicad_inventory.md](/Users/Daniel/Desktop/modular/tools/ki-validation-wt/tests/extract_parity/kicad_inventory.md)
+
+## Output Modes
+
+File-oriented commands support some combination of:
 
 - `--json` for machine-readable stdout
-- `--diagnostics` for JSON diagnostics on stderr
-- `--hierarchical` on schematic net/unconnected queries
+- `--pretty` for formatted JSON
+- `--diagnostics` for machine-readable diagnostics
+- `--include-diagnostics` to embed diagnostics in extract output
+- `--hierarchical` for schematic net and unconnected queries
 
-File-editing exit codes:
+Command-specific availability depends on the subcommand.
+
+## Exit Codes
+
+File-editing and validation-oriented commands:
 
 - `0` success
-- `1` validation warnings or errors found
-- `2` parse or IO error
+- `1` validation findings
+- `2` parse or I/O failure
 
-Project behavior:
+Extract command:
 
-- `project open` is informational and still exits `0` when library-table diagnostics are present
-- `project validate` is the command that promotes diagnostics/load errors to exit `1`
+- `3` failed schematic load
 
-Refresh exit behavior:
+Project commands:
 
-- `0` on success
-- `1` on KiCad IPC connection failures or API errors
-- `refresh --silent` suppresses refresh output and returns `0` even on refresh errors
+- `project open` is informational and exits `0` even when library-table diagnostics are present
+- `project validate` promotes load and validation diagnostics to exit `1`
 
-## Justfile
+Refresh command:
+
+- `0` success
+- `1` IPC connection or API failure
+- `refresh --silent` suppresses refresh output and still exits `0` on refresh failure
+
+## Development Commands
 
 ```bash
 just build
@@ -102,7 +167,11 @@ just release
 just test
 just check
 just fmt
-just run refresh --frame pcb
-just run schematic inspect ../kiutils-rs/crates/kiutils_kicad/tests/fixtures/sample.kicad_sch --json
 just install
+```
+
+Example inspection command against the sibling fixture set:
+
+```bash
+just run schematic inspect ../kiutils-rs/crates/kiutils_kicad/tests/fixtures/sample.kicad_sch --json
 ```

@@ -1,0 +1,14 @@
+(kicad_sch
+  (version 20260101)
+  (generator "eeschema")
+  (uuid "valid-rule-area-on-board-root")
+  (paper "A4")
+  (rule_area
+    (on_board yes)
+    (polyline
+      (pts (xy 0 0) (xy 10 0) (xy 10 10) (xy 0 10) (xy 0 0))
+      (stroke (width 0.1524) (type solid))
+      (fill (type none))
+      (uuid "ra1")))
+  (sheet_instances
+    (path "/" (page "1"))))

@@ -1,0 +1,8 @@
+(kicad_sch
+  (version 20260101)
+  (generator "eeschema")
+  (uuid "group-uuid-symbol-root")
+  (paper "A4")
+  (group "G" (uuid foo))
+  (sheet_instances
+    (path "/" (page "1"))))

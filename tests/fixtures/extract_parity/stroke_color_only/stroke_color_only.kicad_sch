@@ -1,0 +1,15 @@
+(kicad_sch
+  (version 20260101)
+  (generator "eeschema")
+  (uuid "stroke-color-only-root")
+  (paper "A4")
+  (sheet
+    (at 10 10)
+    (size 20 20)
+    (stroke (color 0 0 0 0))
+    (fill (color 0 0 0 0))
+    (uuid "sheet-1")
+    (property "Sheetname" "Child" (at 10 8 0) (effects (font (size 1.27 1.27))))
+    (property "Sheetfile" "child.kicad_sch" (at 10 32 0) (effects (font (size 1.27 1.27)))))
+  (sheet_instances
+    (path "/" (page "1"))))

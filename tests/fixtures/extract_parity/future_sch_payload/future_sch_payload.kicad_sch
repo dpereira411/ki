@@ -1,0 +1,8 @@
+(kicad_sch
+  (version 20260101)
+  (generator "eeschema")
+  (uuid "future-sch-payload-root")
+  (paper "A4")
+  (future_sch (bogus 1))
+  (sheet_instances
+    (path "/" (page "1"))))
