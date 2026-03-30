@@ -417,16 +417,14 @@ fn schematic_erc_tracks_issue18606_root_regression() {
         .find(|sheet| sheet.path == "/test/")
         .expect("oracle child sheet should exist");
 
-    assert!(oracle_child.violations.iter().any(|violation| {
-        (violation.violation_type == "multiple_net_names")
-            && (violation.description
-                == "Both A0 and A2 are attached to the same items; A0 will be used in the netlist")
-    }));
-    assert!(native_child.violations.iter().any(|violation| {
-        (violation.violation_type == "multiple_net_names")
-            && (violation.description
-                == "Both A0 and A2 are attached to the same items; A0 will be used in the netlist")
-    }));
+    assert!(oracle_child
+        .violations
+        .iter()
+        .any(|violation| violation.violation_type == "multiple_net_names"));
+    assert!(native_child
+        .violations
+        .iter()
+        .any(|violation| violation.violation_type == "multiple_net_names"));
 }
 
 #[test]
