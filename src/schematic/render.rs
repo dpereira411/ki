@@ -1049,6 +1049,10 @@ fn parse_placed_symbol(
     let mut transform = Transform::identity();
     let mut unit = 1;
     let mut body_style = 1;
+    let mut default_reference = None;
+    let mut default_unit = None;
+    let mut default_value = None;
+    let mut default_footprint = None;
     let mut properties = Vec::new();
 
     for child in child_items(node).iter().skip(1) {
@@ -1069,6 +1073,17 @@ fn parse_placed_symbol(
             }
             Some("unit") => unit = nth_atom_i32(child, 1).unwrap_or(1),
             Some("body_style") => body_style = nth_atom_i32(child, 1).unwrap_or(1),
+            Some("default_instance") => {
+                for grandchild in child_items(child).iter().skip(1) {
+                    match head_of(grandchild) {
+                        Some("reference") => default_reference = nth_atom_string(grandchild, 1),
+                        Some("unit") => default_unit = nth_atom_i32(grandchild, 1),
+                        Some("value") => default_value = nth_atom_string(grandchild, 1),
+                        Some("footprint") => default_footprint = nth_atom_string(grandchild, 1),
+                        _ => {}
+                    }
+                }
+            }
             Some("property") => {
                 if let Some(name) = nth_atom_string(child, 1) {
                     let (prop_x, prop_y) = child_items(child)
@@ -1091,6 +1106,10 @@ fn parse_placed_symbol(
             }
             _ => {}
         }
+    }
+
+    if let Some(default_unit) = default_unit {
+        unit = default_unit;
     }
 
     let reference = child_items(node)
@@ -1122,17 +1141,20 @@ fn parse_placed_symbol(
                 .find(|property| property.name == "Reference")
                 .map(|property| property.value.clone())
         })
+        .or(default_reference)
         .ok_or_else(|| format!("symbol {lib_id} missing Reference property"))?;
 
     let value = properties
         .iter()
         .find(|property| property.name == "Value")
         .map(|property| property.value.clone())
+        .or(default_value)
         .filter(|value| !value.is_empty());
     let footprint = properties
         .iter()
         .find(|property| property.name == "Footprint")
         .map(|property| property.value.clone())
+        .or(default_footprint)
         .filter(|value| !value.is_empty());
     let datasheet = properties
         .iter()

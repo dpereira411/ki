@@ -1,0 +1,9 @@
+(kicad_sch
+  (version 20260101)
+  (generator "eeschema")
+  (uuid "bezier-pts-only-root")
+  (paper "A4")
+  (bezier
+    (pts (xy 0 0) (xy 10 0) (xy 10 10) (xy 0 10)))
+  (sheet_instances
+    (path "/" (page "1"))))

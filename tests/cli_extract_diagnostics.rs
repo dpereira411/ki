@@ -4,12 +4,14 @@ use std::collections::HashSet;
 use std::fs;
 use std::path::Path;
 
+use assert_cmd::Command;
+use serde::Deserialize;
 use serde_json::Value;
 use tempfile::TempDir;
 
 use common::{
     extract_parity_fixture, ki_extract_diagnostics, ki_extract_raw, kicad_cli_extract_diagnostics,
-    kicad_cli_extract_raw,
+    kicad_cli_extract_raw, normalize_output_messages,
 };
 
 fn assert_no_visible_diagnostics(schematic: &Path) {
@@ -43,6 +45,82 @@ fn assert_failed_load_message(schematic: &Path) {
 
     assert_eq!(kicad.messages, vec!["Failed to load schematic".to_string()]);
     assert_eq!(ki.messages, kicad.messages);
+}
+
+fn safe_ki_extract_diagnostics(schematic: &Path) -> common::DiagnosticOracle {
+    let output = Command::cargo_bin("ki")
+        .expect("binary should build")
+        .args([
+            "extract",
+            schematic.to_str().unwrap(),
+            "--include-diagnostics",
+        ])
+        .output()
+        .expect("native extract should run");
+
+    let exit_code = output.status.code().unwrap_or(1);
+
+    let messages = serde_json::from_slice::<Value>(&output.stdout)
+        .ok()
+        .and_then(|json| {
+            json["diagnostics"].as_array().map(|diagnostics| {
+                diagnostics
+                    .iter()
+                    .filter_map(|diag| diag["message"].as_str().map(ToOwned::to_owned))
+                    .collect::<Vec<_>>()
+            })
+        })
+        .unwrap_or_else(|| normalize_output_messages(&output.stdout, &output.stderr));
+
+    common::DiagnosticOracle {
+        exit_code,
+        messages,
+    }
+}
+
+#[derive(Debug, Deserialize)]
+struct ExtractParityCase {
+    id: String,
+    fixture_dir: Option<String>,
+    expected_exit_code: i32,
+    expected_messages: Vec<String>,
+}
+
+fn load_extract_parity_cases() -> Vec<ExtractParityCase> {
+    let path = Path::new(env!("CARGO_MANIFEST_DIR"))
+        .join("tests")
+        .join("extract_parity")
+        .join("cases.json");
+    serde_json::from_str(&fs::read_to_string(path).expect("manifest should read"))
+        .expect("manifest should deserialize")
+}
+
+fn extract_case_schematic(case: &ExtractParityCase) -> std::path::PathBuf {
+    let dir = Path::new(env!("CARGO_MANIFEST_DIR"))
+        .join(case.fixture_dir.as_ref().expect("case should define fixture_dir"));
+    let fixture_name = dir
+        .file_name()
+        .and_then(|name| name.to_str())
+        .expect("fixture dir should have a name");
+    let primary = dir.join(format!("{fixture_name}.kicad_sch"));
+
+    if primary.exists() {
+        return primary;
+    }
+
+    let mut schematics = fs::read_dir(&dir)
+        .expect("fixture dir should read")
+        .filter_map(|entry| entry.ok().map(|entry| entry.path()))
+        .filter(|path| path.extension().is_some_and(|ext| ext == "kicad_sch"))
+        .collect::<Vec<_>>();
+    schematics.sort();
+    assert_eq!(
+        schematics.len(),
+        1,
+        "fixture dir should contain exactly one schematic: {}",
+        dir.display()
+    );
+    schematics.remove(0)
 }
 
 #[test]
@@ -96,15 +174,9 @@ fn extract_matches_kicad_cli_invalid_symbol_library_id_no_visible_diagnostics() 
 }
 
 #[test]
-fn extract_matches_kicad_cli_missing_sheet_name_no_visible_diagnostics() {
+fn extract_matches_kicad_cli_missing_sheet_name_failed_load_message() {
     let schematic = extract_parity_fixture("missing_sheet_name/missing_sheet_name.kicad_sch");
-    let Some(kicad) = kicad_cli_extract_raw(&schematic) else {
-        return;
-    };
-    let ki = ki_extract_raw(&schematic);
-
-    assert_eq!(kicad.exit_code, ki.exit_code);
-    assert_eq!(ki.messages, kicad.messages);
+    assert_failed_load_message(&schematic);
 }
 
 #[test]
@@ -467,6 +539,19 @@ fn extract_matches_kicad_cli_invalid_text_string_failed_load_message() {
 }
 
 #[test]
+fn extract_matches_kicad_cli_valid_text_plain_no_visible_diagnostics() {
+    let schematic = extract_parity_fixture("valid_text_plain/valid_text_plain.kicad_sch");
+    assert_no_visible_diagnostics(&schematic);
+}
+
+#[test]
+fn extract_matches_kicad_cli_valid_text_repeated_effects_no_visible_diagnostics() {
+    let schematic =
+        extract_parity_fixture("valid_text_repeated_effects/valid_text_repeated_effects.kicad_sch");
+    assert_no_visible_diagnostics(&schematic);
+}
+
+#[test]
 fn extract_matches_kicad_cli_invalid_global_label_shape_failed_load_message() {
     let schematic =
         extract_parity_fixture("invalid_global_label_shape/invalid_global_label_shape.kicad_sch");
@@ -608,6 +693,13 @@ fn extract_matches_kicad_cli_invalid_pin_type_failed_load_message() {
 }
 
 #[test]
+fn extract_matches_kicad_cli_valid_no_connect_pin_type_no_visible_diagnostics() {
+    let schematic =
+        extract_parity_fixture("valid_no_connect_pin_type/valid_no_connect_pin_type.kicad_sch");
+    assert_no_visible_diagnostics(&schematic);
+}
+
+#[test]
 fn extract_matches_kicad_cli_invalid_pin_shape_failed_load_message() {
     let schematic = extract_parity_fixture("invalid_pin_shape/invalid_pin_shape.kicad_sch");
     let Some(kicad) = kicad_cli_extract_raw(&schematic) else {
@@ -656,6 +748,27 @@ fn extract_matches_kicad_cli_invalid_text_box_string_failed_load_message() {
 
     assert_eq!(kicad.messages, vec!["Failed to load schematic".to_string()]);
     assert_eq!(ki.messages, kicad.messages);
+}
+
+#[test]
+fn extract_matches_kicad_cli_valid_text_box_plain_no_visible_diagnostics() {
+    let schematic = extract_parity_fixture("valid_text_box_plain/valid_text_box_plain.kicad_sch");
+    assert_no_visible_diagnostics(&schematic);
+}
+
+#[test]
+fn extract_matches_kicad_cli_valid_text_box_margins_no_visible_diagnostics() {
+    let schematic =
+        extract_parity_fixture("valid_text_box_margins/valid_text_box_margins.kicad_sch");
+    assert_no_visible_diagnostics(&schematic);
+}
+
+#[test]
+fn extract_matches_kicad_cli_valid_text_box_repeated_effects_no_visible_diagnostics() {
+    let schematic = extract_parity_fixture(
+        "valid_text_box_repeated_effects/valid_text_box_repeated_effects.kicad_sch",
+    );
+    assert_no_visible_diagnostics(&schematic);
 }
 
 #[test]
@@ -1570,6 +1683,13 @@ fn extract_matches_kicad_cli_default_instance_reference_tilde_no_visible_diagnos
 }
 
 #[test]
+fn extract_matches_kicad_cli_default_instance_valid_only_matching_diagnostics() {
+    let schematic =
+        extract_parity_fixture("default_instance_valid_only/default_instance_valid_only.kicad_sch");
+    assert_matching_diagnostics(&schematic);
+}
+
+#[test]
 fn extract_matches_kicad_cli_default_instance_unknown_child_failed_load_message() {
     let schematic = extract_parity_fixture(
         "default_instance_unknown_child/default_instance_unknown_child.kicad_sch",
@@ -1704,16 +1824,10 @@ fn extract_matches_kicad_cli_empty_sheet_pin_name_failed_load_message() {
 }
 
 #[test]
-fn extract_matches_kicad_cli_polyline_too_few_points_no_visible_diagnostics() {
+fn extract_matches_kicad_cli_polyline_too_few_points_failed_load_message() {
     let schematic =
         extract_parity_fixture("polyline_too_few_points/polyline_too_few_points.kicad_sch");
-    let Some(kicad) = kicad_cli_extract_raw(&schematic) else {
-        return;
-    };
-    let ki = ki_extract_raw(&schematic);
-
-    assert_eq!(kicad.exit_code, ki.exit_code);
-    assert_eq!(ki.messages, kicad.messages);
+    assert_failed_load_message(&schematic);
 }
 
 #[test]
@@ -1976,6 +2090,13 @@ fn extract_matches_kicad_cli_invalid_text_fields_autoplaced_token_failed_load_me
 }
 
 #[test]
+fn extract_matches_kicad_cli_bare_text_fields_autoplaced_no_visible_diagnostics() {
+    let schematic =
+        extract_parity_fixture("bare_text_fields_autoplaced/bare_text_fields_autoplaced.kicad_sch");
+    assert_no_visible_diagnostics(&schematic);
+}
+
+#[test]
 fn extract_matches_kicad_cli_label_invalid_fields_autoplaced_token_failed_load_message() {
     let schematic = extract_parity_fixture(
         "label_invalid_fields_autoplaced_token/label_invalid_fields_autoplaced_token.kicad_sch",
@@ -1987,6 +2108,14 @@ fn extract_matches_kicad_cli_label_invalid_fields_autoplaced_token_failed_load_m
 
     assert_eq!(kicad.messages, vec!["Failed to load schematic".to_string()]);
     assert_eq!(ki.messages, kicad.messages);
+}
+
+#[test]
+fn extract_matches_kicad_cli_bare_label_fields_autoplaced_no_visible_diagnostics() {
+    let schematic = extract_parity_fixture(
+        "bare_label_fields_autoplaced/bare_label_fields_autoplaced.kicad_sch",
+    );
+    assert_no_visible_diagnostics(&schematic);
 }
 
 #[test]
@@ -2004,6 +2133,14 @@ fn extract_matches_kicad_cli_global_label_invalid_fields_autoplaced_token_failed
 }
 
 #[test]
+fn extract_matches_kicad_cli_bare_global_label_fields_autoplaced_no_visible_diagnostics() {
+    let schematic = extract_parity_fixture(
+        "bare_global_label_fields_autoplaced/bare_global_label_fields_autoplaced.kicad_sch",
+    );
+    assert_no_visible_diagnostics(&schematic);
+}
+
+#[test]
 fn extract_matches_kicad_cli_hier_label_invalid_fields_autoplaced_token_failed_load_message() {
     let schematic = extract_parity_fixture(
         "hier_label_invalid_fields_autoplaced_token/hier_label_invalid_fields_autoplaced_token.kicad_sch",
@@ -2018,6 +2155,20 @@ fn extract_matches_kicad_cli_hier_label_invalid_fields_autoplaced_token_failed_l
 }
 
 #[test]
+fn extract_matches_kicad_cli_bare_hier_label_fields_autoplaced_no_visible_diagnostics() {
+    let schematic = extract_parity_fixture(
+        "bare_hier_label_fields_autoplaced/bare_hier_label_fields_autoplaced.kicad_sch",
+    );
+    assert_no_visible_diagnostics(&schematic);
+}
+
+#[test]
+fn extract_matches_kicad_cli_bare_show_name_no_visible_diagnostics() {
+    let schematic = extract_parity_fixture("bare_show_name/bare_show_name.kicad_sch");
+    assert_no_visible_diagnostics(&schematic);
+}
+
+#[test]
 fn extract_matches_kicad_cli_invalid_show_name_token_failed_load_message() {
     let schematic =
         extract_parity_fixture("invalid_show_name_token/invalid_show_name_token.kicad_sch");
@@ -2028,6 +2179,14 @@ fn extract_matches_kicad_cli_invalid_show_name_token_failed_load_message() {
 
     assert_eq!(kicad.messages, vec!["Failed to load schematic".to_string()]);
     assert_eq!(ki.messages, kicad.messages);
+}
+
+#[test]
+fn extract_matches_kicad_cli_bare_do_not_autoplace_no_visible_diagnostics() {
+    let schematic = extract_parity_fixture(
+        "bare_do_not_autoplace/bare_do_not_autoplace.kicad_sch",
+    );
+    assert_no_visible_diagnostics(&schematic);
 }
 
 #[test]
@@ -2362,6 +2521,191 @@ fn extract_matches_kicad_cli_bare_sheet_variant_exclude_from_sim_failed_load_mes
 }
 
 #[test]
+fn extract_matches_kicad_cli_valid_sheet_variant_exclude_from_sim_no_visible_diagnostics() {
+    let schematic = extract_parity_fixture(
+        "valid_sheet_variant_exclude_from_sim/valid_sheet_variant_exclude_from_sim.kicad_sch",
+    );
+    assert_no_visible_diagnostics(&schematic);
+}
+
+#[test]
+fn extract_matches_kicad_cli_valid_sheet_variant_field_symbols_no_visible_diagnostics() {
+    let schematic = extract_parity_fixture(
+        "valid_sheet_variant_field_symbols/valid_sheet_variant_field_symbols.kicad_sch",
+    );
+    assert_no_visible_diagnostics(&schematic);
+}
+
+#[test]
+fn extract_matches_kicad_cli_sheet_variant_field_value_list_child_failed_load_message() {
+    let schematic = extract_parity_fixture(
+        "sheet_variant_field_value_list_child/sheet_variant_field_value_list_child.kicad_sch",
+    );
+    assert_failed_load_message(&schematic);
+}
+
+#[test]
+fn extract_matches_kicad_cli_sheet_variant_numeric_name_failed_load_message() {
+    let schematic =
+        extract_parity_fixture("sheet_variant_numeric_name/sheet_variant_numeric_name.kicad_sch");
+    assert_failed_load_message(&schematic);
+}
+
+#[test]
+fn extract_matches_kicad_cli_sheet_variant_field_numeric_name_failed_load_message() {
+    let schematic = extract_parity_fixture(
+        "sheet_variant_field_numeric_name/sheet_variant_field_numeric_name.kicad_sch",
+    );
+    assert_failed_load_message(&schematic);
+}
+
+#[test]
+fn extract_matches_kicad_cli_sheet_variant_field_numeric_value_failed_load_message() {
+    let schematic = extract_parity_fixture(
+        "sheet_variant_field_numeric_value/sheet_variant_field_numeric_value.kicad_sch",
+    );
+    assert_failed_load_message(&schematic);
+}
+
+#[test]
+fn extract_matches_kicad_cli_sheet_variant_field_name_list_child_failed_load_message() {
+    let schematic = extract_parity_fixture(
+        "sheet_variant_field_name_list_child/sheet_variant_field_name_list_child.kicad_sch",
+    );
+    assert_failed_load_message(&schematic);
+}
+
+#[test]
+fn extract_matches_kicad_cli_sheet_variant_field_duplicate_name_no_visible_diagnostics() {
+    let schematic = extract_parity_fixture(
+        "sheet_variant_field_duplicate_name/sheet_variant_field_duplicate_name.kicad_sch",
+    );
+    assert_no_visible_diagnostics(&schematic);
+}
+
+#[test]
+fn extract_matches_kicad_cli_sheet_variant_field_value_only_no_visible_diagnostics() {
+    let schematic = extract_parity_fixture(
+        "sheet_variant_field_value_only/sheet_variant_field_value_only.kicad_sch",
+    );
+    assert_no_visible_diagnostics(&schematic);
+}
+
+#[test]
+fn extract_matches_kicad_cli_sheet_variant_field_duplicate_value_no_visible_diagnostics() {
+    let schematic = extract_parity_fixture(
+        "sheet_variant_field_duplicate_value/sheet_variant_field_duplicate_value.kicad_sch",
+    );
+    assert_no_visible_diagnostics(&schematic);
+}
+
+#[test]
+fn extract_matches_kicad_cli_sheet_variant_unknown_child_failed_load_message() {
+    let schematic =
+        extract_parity_fixture("sheet_variant_unknown_child/sheet_variant_unknown_child.kicad_sch");
+    assert_failed_load_message(&schematic);
+}
+
+#[test]
+fn extract_matches_kicad_cli_sheet_variant_extra_bare_atom_failed_load_message() {
+    let schematic = extract_parity_fixture(
+        "sheet_variant_extra_bare_atom/sheet_variant_extra_bare_atom.kicad_sch",
+    );
+    assert_failed_load_message(&schematic);
+}
+
+#[test]
+fn extract_matches_kicad_cli_invalid_sheet_variant_in_pos_files_token_failed_load_message() {
+    let schematic = extract_parity_fixture(
+        "invalid_sheet_variant_in_pos_files_token/invalid_sheet_variant_in_pos_files_token.kicad_sch",
+    );
+    assert_failed_load_message(&schematic);
+}
+
+#[test]
+fn extract_matches_kicad_cli_bare_sheet_variant_in_pos_files_failed_load_message() {
+    let schematic = extract_parity_fixture(
+        "bare_sheet_variant_in_pos_files/bare_sheet_variant_in_pos_files.kicad_sch",
+    );
+    assert_failed_load_message(&schematic);
+}
+
+#[test]
+fn extract_matches_kicad_cli_valid_sheet_variant_in_pos_files_no_visible_diagnostics() {
+    let schematic = extract_parity_fixture(
+        "valid_sheet_variant_in_pos_files/valid_sheet_variant_in_pos_files.kicad_sch",
+    );
+    assert_no_visible_diagnostics(&schematic);
+}
+
+#[test]
+fn extract_matches_kicad_cli_invalid_sheet_variant_dnp_token_failed_load_message() {
+    let schematic = extract_parity_fixture(
+        "invalid_sheet_variant_dnp_token/invalid_sheet_variant_dnp_token.kicad_sch",
+    );
+    assert_failed_load_message(&schematic);
+}
+
+#[test]
+fn extract_matches_kicad_cli_bare_sheet_variant_dnp_failed_load_message() {
+    let schematic =
+        extract_parity_fixture("bare_sheet_variant_dnp/bare_sheet_variant_dnp.kicad_sch");
+    assert_failed_load_message(&schematic);
+}
+
+#[test]
+fn extract_matches_kicad_cli_valid_sheet_variant_dnp_no_visible_diagnostics() {
+    let schematic =
+        extract_parity_fixture("valid_sheet_variant_dnp/valid_sheet_variant_dnp.kicad_sch");
+    assert_no_visible_diagnostics(&schematic);
+}
+
+#[test]
+fn extract_matches_kicad_cli_invalid_sheet_variant_in_bom_token_failed_load_message() {
+    let schematic = extract_parity_fixture(
+        "invalid_sheet_variant_in_bom_token/invalid_sheet_variant_in_bom_token.kicad_sch",
+    );
+    assert_failed_load_message(&schematic);
+}
+
+#[test]
+fn extract_matches_kicad_cli_bare_sheet_variant_in_bom_failed_load_message() {
+    let schematic =
+        extract_parity_fixture("bare_sheet_variant_in_bom/bare_sheet_variant_in_bom.kicad_sch");
+    assert_failed_load_message(&schematic);
+}
+
+#[test]
+fn extract_matches_kicad_cli_valid_sheet_variant_in_bom_no_visible_diagnostics() {
+    let schematic =
+        extract_parity_fixture("valid_sheet_variant_in_bom/valid_sheet_variant_in_bom.kicad_sch");
+    assert_no_visible_diagnostics(&schematic);
+}
+
+#[test]
+fn extract_matches_kicad_cli_invalid_sheet_variant_on_board_token_failed_load_message() {
+    let schematic = extract_parity_fixture(
+        "invalid_sheet_variant_on_board_token/invalid_sheet_variant_on_board_token.kicad_sch",
+    );
+    assert_failed_load_message(&schematic);
+}
+
+#[test]
+fn extract_matches_kicad_cli_bare_sheet_variant_on_board_failed_load_message() {
+    let schematic =
+        extract_parity_fixture("bare_sheet_variant_on_board/bare_sheet_variant_on_board.kicad_sch");
+    assert_failed_load_message(&schematic);
+}
+
+#[test]
+fn extract_matches_kicad_cli_valid_sheet_variant_on_board_no_visible_diagnostics() {
+    let schematic = extract_parity_fixture(
+        "valid_sheet_variant_on_board/valid_sheet_variant_on_board.kicad_sch",
+    );
+    assert_no_visible_diagnostics(&schematic);
+}
+
+#[test]
 fn extract_matches_kicad_cli_invalid_sheet_in_bom_token_failed_load_message() {
     let schematic =
         extract_parity_fixture("invalid_sheet_in_bom_token/invalid_sheet_in_bom_token.kicad_sch");
@@ -2580,6 +2924,22 @@ fn extract_matches_kicad_cli_invalid_rule_area_exclude_from_sim_token_failed_loa
 }
 
 #[test]
+fn extract_matches_kicad_cli_valid_rule_area_exclude_from_sim_no_visible_diagnostics() {
+    let schematic = extract_parity_fixture(
+        "valid_rule_area_exclude_from_sim/valid_rule_area_exclude_from_sim.kicad_sch",
+    );
+    assert_no_visible_diagnostics(&schematic);
+}
+
+#[test]
+fn extract_matches_kicad_cli_bare_rule_area_exclude_from_sim_failed_load_message() {
+    let schematic = extract_parity_fixture(
+        "bare_rule_area_exclude_from_sim/bare_rule_area_exclude_from_sim.kicad_sch",
+    );
+    assert_failed_load_message(&schematic);
+}
+
+#[test]
 fn extract_matches_kicad_cli_invalid_rule_area_dnp_token_failed_load_message() {
     let schematic =
         extract_parity_fixture("invalid_rule_area_dnp_token/invalid_rule_area_dnp_token.kicad_sch");
@@ -2590,6 +2950,67 @@ fn extract_matches_kicad_cli_invalid_rule_area_dnp_token_failed_load_message() {
 
     assert_eq!(kicad.messages, vec!["Failed to load schematic".to_string()]);
     assert_eq!(ki.messages, kicad.messages);
+}
+
+#[test]
+fn extract_matches_kicad_cli_valid_rule_area_dnp_no_visible_diagnostics() {
+    let schematic = extract_parity_fixture("valid_rule_area_dnp/valid_rule_area_dnp.kicad_sch");
+    assert_no_visible_diagnostics(&schematic);
+}
+
+#[test]
+fn extract_matches_kicad_cli_bare_rule_area_dnp_failed_load_message() {
+    let schematic = extract_parity_fixture("bare_rule_area_dnp/bare_rule_area_dnp.kicad_sch");
+    assert_failed_load_message(&schematic);
+}
+
+#[test]
+fn extract_matches_kicad_cli_valid_rule_area_plain_no_visible_diagnostics() {
+    let schematic = extract_parity_fixture("valid_rule_area_plain/valid_rule_area_plain.kicad_sch");
+    assert_no_visible_diagnostics(&schematic);
+}
+
+#[test]
+fn extract_matches_kicad_cli_invalid_rule_area_in_bom_token_failed_load_message() {
+    let schematic = extract_parity_fixture(
+        "invalid_rule_area_in_bom_token/invalid_rule_area_in_bom_token.kicad_sch",
+    );
+    assert_failed_load_message(&schematic);
+}
+
+#[test]
+fn extract_matches_kicad_cli_bare_rule_area_in_bom_failed_load_message() {
+    let schematic = extract_parity_fixture("bare_rule_area_in_bom/bare_rule_area_in_bom.kicad_sch");
+    assert_failed_load_message(&schematic);
+}
+
+#[test]
+fn extract_matches_kicad_cli_valid_rule_area_in_bom_no_visible_diagnostics() {
+    let schematic =
+        extract_parity_fixture("valid_rule_area_in_bom/valid_rule_area_in_bom.kicad_sch");
+    assert_no_visible_diagnostics(&schematic);
+}
+
+#[test]
+fn extract_matches_kicad_cli_invalid_rule_area_on_board_token_failed_load_message() {
+    let schematic = extract_parity_fixture(
+        "invalid_rule_area_on_board_token/invalid_rule_area_on_board_token.kicad_sch",
+    );
+    assert_failed_load_message(&schematic);
+}
+
+#[test]
+fn extract_matches_kicad_cli_bare_rule_area_on_board_failed_load_message() {
+    let schematic =
+        extract_parity_fixture("bare_rule_area_on_board/bare_rule_area_on_board.kicad_sch");
+    assert_failed_load_message(&schematic);
+}
+
+#[test]
+fn extract_matches_kicad_cli_valid_rule_area_on_board_no_visible_diagnostics() {
+    let schematic =
+        extract_parity_fixture("valid_rule_area_on_board/valid_rule_area_on_board.kicad_sch");
+    assert_no_visible_diagnostics(&schematic);
 }
 
 #[test]
@@ -2659,6 +3080,50 @@ fn extract_matches_kicad_cli_invalid_variant_in_bom_token_failed_load_message() 
 
     assert_eq!(kicad.messages, vec!["Failed to load schematic".to_string()]);
     assert_eq!(ki.messages, kicad.messages);
+}
+
+#[test]
+fn extract_matches_kicad_cli_invalid_variant_in_pos_files_token_failed_load_message() {
+    let schematic = extract_parity_fixture(
+        "invalid_variant_in_pos_files_token/invalid_variant_in_pos_files_token.kicad_sch",
+    );
+    assert_failed_load_message(&schematic);
+}
+
+#[test]
+fn extract_matches_kicad_cli_bare_variant_in_pos_files_failed_load_message() {
+    let schematic =
+        extract_parity_fixture("bare_variant_in_pos_files/bare_variant_in_pos_files.kicad_sch");
+    assert_failed_load_message(&schematic);
+}
+
+#[test]
+fn extract_matches_kicad_cli_valid_variant_in_pos_files_no_visible_diagnostics() {
+    let schematic =
+        extract_parity_fixture("valid_variant_in_pos_files/valid_variant_in_pos_files.kicad_sch");
+    assert_no_visible_diagnostics(&schematic);
+}
+
+#[test]
+fn extract_matches_kicad_cli_invalid_variant_on_board_token_failed_load_message() {
+    let schematic = extract_parity_fixture(
+        "invalid_variant_on_board_token/invalid_variant_on_board_token.kicad_sch",
+    );
+    assert_failed_load_message(&schematic);
+}
+
+#[test]
+fn extract_matches_kicad_cli_bare_variant_on_board_failed_load_message() {
+    let schematic =
+        extract_parity_fixture("bare_variant_on_board/bare_variant_on_board.kicad_sch");
+    assert_failed_load_message(&schematic);
+}
+
+#[test]
+fn extract_matches_kicad_cli_valid_variant_on_board_no_visible_diagnostics() {
+    let schematic =
+        extract_parity_fixture("valid_variant_on_board/valid_variant_on_board.kicad_sch");
+    assert_no_visible_diagnostics(&schematic);
 }
 
 #[test]
@@ -3148,6 +3613,12 @@ fn extract_matches_kicad_cli_bezier_too_many_points_failed_load_message() {
 }
 
 #[test]
+fn extract_matches_kicad_cli_bezier_pts_only_no_visible_diagnostics() {
+    let schematic = extract_parity_fixture("bezier_pts_only/bezier_pts_only.kicad_sch");
+    assert_no_visible_diagnostics(&schematic);
+}
+
+#[test]
 fn extract_matches_kicad_cli_symbol_bezier_too_many_points_failed_load_message() {
     let schematic = extract_parity_fixture(
         "symbol_bezier_too_many_points/symbol_bezier_too_many_points.kicad_sch",
@@ -3362,6 +3833,14 @@ fn extract_matches_kicad_cli_embedded_files_file_data_before_name_failed_load_me
 }
 
 #[test]
+fn extract_matches_kicad_cli_embedded_files_file_data_bare_ok_no_visible_diagnostics() {
+    let schematic = extract_parity_fixture(
+        "embedded_files_file_data_bare_ok/embedded_files_file_data_bare_ok.kicad_sch",
+    );
+    assert_no_visible_diagnostics(&schematic);
+}
+
+#[test]
 fn extract_matches_kicad_cli_embedded_files_unknown_child_payload_failed_load_message() {
     let schematic = extract_parity_fixture(
         "embedded_files_unknown_child_payload/embedded_files_unknown_child_payload.kicad_sch",
@@ -3373,6 +3852,37 @@ fn extract_matches_kicad_cli_embedded_files_unknown_child_payload_failed_load_me
 
     assert_eq!(kicad.messages, vec!["Failed to load schematic".to_string()]);
     assert_eq!(ki.messages, kicad.messages);
+}
+
+#[test]
+fn extract_matches_kicad_cli_embedded_files_bogus_ok_no_visible_diagnostics() {
+    let schematic =
+        extract_parity_fixture("embedded_files_bogus_ok/embedded_files_bogus_ok.kicad_sch");
+    assert_no_visible_diagnostics(&schematic);
+}
+
+#[test]
+fn extract_matches_kicad_cli_embedded_files_file_empty_ok_no_visible_diagnostics() {
+    let schematic = extract_parity_fixture(
+        "embedded_files_file_empty_ok/embedded_files_file_empty_ok.kicad_sch",
+    );
+    assert_no_visible_diagnostics(&schematic);
+}
+
+#[test]
+fn extract_matches_kicad_cli_embedded_files_file_bogus_child_ok_no_visible_diagnostics() {
+    let schematic = extract_parity_fixture(
+        "embedded_files_file_bogus_child_ok/embedded_files_file_bogus_child_ok.kicad_sch",
+    );
+    assert_no_visible_diagnostics(&schematic);
+}
+
+#[test]
+fn extract_matches_kicad_cli_embedded_files_file_type_bogus_ok_no_visible_diagnostics() {
+    let schematic = extract_parity_fixture(
+        "embedded_files_file_type_bogus_ok/embedded_files_file_type_bogus_ok.kicad_sch",
+    );
+    assert_no_visible_diagnostics(&schematic);
 }
 
 #[test]
@@ -3413,6 +3923,32 @@ fn extract_matches_kicad_cli_future_sch_bare_failed_load_message() {
 
     assert_eq!(kicad.messages, vec!["Failed to load schematic".to_string()]);
     assert_eq!(ki.messages, kicad.messages);
+}
+
+#[test]
+fn extract_matches_kicad_cli_future_sch_payload_failed_load_message() {
+    let schematic = extract_parity_fixture("future_sch_payload/future_sch_payload.kicad_sch");
+    assert_failed_load_message(&schematic);
+}
+
+#[test]
+fn extract_matches_kicad_cli_private_sheet_name_ok_no_visible_diagnostics() {
+    let schematic = extract_parity_fixture("private_sheet_name_ok/private_sheet_name_ok.kicad_sch");
+    assert_no_visible_diagnostics(&schematic);
+}
+
+#[test]
+fn extract_matches_kicad_cli_private_intersheetrefs_ok_no_visible_diagnostics() {
+    let schematic =
+        extract_parity_fixture("private_intersheetrefs_ok/private_intersheetrefs_ok.kicad_sch");
+    assert_no_visible_diagnostics(&schematic);
+}
+
+#[test]
+fn extract_matches_kicad_cli_text_box_duplicate_end_ok_no_visible_diagnostics() {
+    let schematic =
+        extract_parity_fixture("text_box_duplicate_end_ok/text_box_duplicate_end_ok.kicad_sch");
+    assert_no_visible_diagnostics(&schematic);
 }
 
 #[test]
@@ -3513,6 +4049,12 @@ fn extract_matches_kicad_cli_fill_bare_atom_failed_load_message() {
 }
 
 #[test]
+fn extract_matches_kicad_cli_fill_color_only_no_visible_diagnostics() {
+    let schematic = extract_parity_fixture("fill_color_only/fill_color_only.kicad_sch");
+    assert_no_visible_diagnostics(&schematic);
+}
+
+#[test]
 fn extract_matches_kicad_cli_stroke_bare_atom_failed_load_message() {
     let schematic = extract_parity_fixture("stroke_bare_atom/stroke_bare_atom.kicad_sch");
     let Some(kicad) = kicad_cli_extract_raw(&schematic) else {
@@ -3522,6 +4064,12 @@ fn extract_matches_kicad_cli_stroke_bare_atom_failed_load_message() {
 
     assert_eq!(kicad.messages, vec!["Failed to load schematic".to_string()]);
     assert_eq!(ki.messages, kicad.messages);
+}
+
+#[test]
+fn extract_matches_kicad_cli_stroke_color_only_no_visible_diagnostics() {
+    let schematic = extract_parity_fixture("stroke_color_only/stroke_color_only.kicad_sch");
+    assert_no_visible_diagnostics(&schematic);
 }
 
 #[test]
@@ -3948,6 +4496,12 @@ fn extract_matches_kicad_cli_group_name_list_child_failed_load_message() {
 }
 
 #[test]
+fn extract_matches_kicad_cli_group_uuid_symbol_ok_no_visible_diagnostics() {
+    let schematic = extract_parity_fixture("group_uuid_symbol_ok/group_uuid_symbol_ok.kicad_sch");
+    assert_no_visible_diagnostics(&schematic);
+}
+
+#[test]
 fn extract_matches_kicad_cli_bus_alias_name_list_child_failed_load_message() {
     let schematic =
         extract_parity_fixture("bus_alias_name_list_child/bus_alias_name_list_child.kicad_sch");
@@ -4095,6 +4649,111 @@ fn extract_matches_kicad_cli_variant_field_name_list_child_failed_load_message()
 }
 
 #[test]
+fn extract_matches_kicad_cli_valid_variant_field_symbols_no_visible_diagnostics() {
+    let schematic = extract_parity_fixture(
+        "valid_variant_field_symbols/valid_variant_field_symbols.kicad_sch",
+    );
+    assert_no_visible_diagnostics(&schematic);
+}
+
+#[test]
+fn extract_matches_kicad_cli_variant_field_duplicate_name_no_visible_diagnostics() {
+    let schematic = extract_parity_fixture(
+        "variant_field_duplicate_name/variant_field_duplicate_name.kicad_sch",
+    );
+    assert_no_visible_diagnostics(&schematic);
+}
+
+#[test]
+fn extract_matches_kicad_cli_variant_field_name_only_no_visible_diagnostics() {
+    let schematic =
+        extract_parity_fixture("variant_field_name_only/variant_field_name_only.kicad_sch");
+    assert_no_visible_diagnostics(&schematic);
+}
+
+#[test]
+fn extract_matches_kicad_cli_variant_field_value_only_no_visible_diagnostics() {
+    let schematic =
+        extract_parity_fixture("variant_field_value_only/variant_field_value_only.kicad_sch");
+    assert_no_visible_diagnostics(&schematic);
+}
+
+#[test]
+fn extract_matches_kicad_cli_variant_field_duplicate_value_no_visible_diagnostics() {
+    let schematic = extract_parity_fixture(
+        "variant_field_duplicate_value/variant_field_duplicate_value.kicad_sch",
+    );
+    assert_no_visible_diagnostics(&schematic);
+}
+
+#[test]
+fn extract_matches_kicad_cli_variant_field_value_list_child_failed_load_message() {
+    let schematic = extract_parity_fixture(
+        "variant_field_value_list_child/variant_field_value_list_child.kicad_sch",
+    );
+    assert_failed_load_message(&schematic);
+}
+
+#[test]
+fn extract_matches_kicad_cli_variant_field_unknown_child_failed_load_message() {
+    let schematic = extract_parity_fixture(
+        "variant_field_unknown_child/variant_field_unknown_child.kicad_sch",
+    );
+    assert_failed_load_message(&schematic);
+}
+
+#[test]
+fn extract_matches_kicad_cli_global_legacy_intersheetrefs_bare_show_name_no_visible_diagnostics() {
+    let schematic = extract_parity_fixture(
+        "global_legacy_intersheetrefs_bare_show_name/global_legacy_intersheetrefs_bare_show_name.kicad_sch",
+    );
+    assert_no_visible_diagnostics(&schematic);
+}
+
+#[test]
+fn extract_matches_kicad_cli_sheet_legacy_sheet_name_bare_show_name_no_visible_diagnostics() {
+    let schematic = extract_parity_fixture(
+        "sheet_legacy_sheet_name_bare_show_name/sheet_legacy_sheet_name_bare_show_name.kicad_sch",
+    );
+    assert_no_visible_diagnostics(&schematic);
+}
+
+#[test]
+fn extract_matches_kicad_cli_global_legacy_intersheetrefs_bare_do_not_autoplace_no_visible_diagnostics(
+) {
+    let schematic = extract_parity_fixture(
+        "global_legacy_intersheetrefs_bare_do_not_autoplace/global_legacy_intersheetrefs_bare_do_not_autoplace.kicad_sch",
+    );
+    assert_no_visible_diagnostics(&schematic);
+}
+
+#[test]
+fn extract_matches_kicad_cli_sheet_legacy_sheet_file_bare_show_name_no_visible_diagnostics() {
+    let schematic = extract_parity_fixture(
+        "sheet_legacy_sheet_file_bare_show_name/sheet_legacy_sheet_file_bare_show_name.kicad_sch",
+    );
+    assert_no_visible_diagnostics(&schematic);
+}
+
+#[test]
+fn extract_matches_kicad_cli_sheet_legacy_sheet_name_bare_do_not_autoplace_no_visible_diagnostics(
+) {
+    let schematic = extract_parity_fixture(
+        "sheet_legacy_sheet_name_bare_do_not_autoplace/sheet_legacy_sheet_name_bare_do_not_autoplace.kicad_sch",
+    );
+    assert_no_visible_diagnostics(&schematic);
+}
+
+#[test]
+fn extract_matches_kicad_cli_sheet_legacy_sheet_file_bare_do_not_autoplace_no_visible_diagnostics(
+) {
+    let schematic = extract_parity_fixture(
+        "sheet_legacy_sheet_file_bare_do_not_autoplace/sheet_legacy_sheet_file_bare_do_not_autoplace.kicad_sch",
+    );
+    assert_no_visible_diagnostics(&schematic);
+}
+
+#[test]
 fn extract_parity_manifest_is_well_formed() {
     let path = concat!(
         env!("CARGO_MANIFEST_DIR"),
@@ -4129,5 +4788,48 @@ fn extract_parity_manifest_is_well_formed() {
                 path.display()
             );
         }
+    }
+}
+
+#[test]
+fn extract_parity_manifest_matches_kicad_cli_and_ki_raw() {
+    let cases = load_extract_parity_cases();
+    let first_fixture_case = cases
+        .iter()
+        .find(|case| case.fixture_dir.is_some())
+        .expect("manifest should contain at least one fixture-backed case");
+    let Some(_) = kicad_cli_extract_raw(&extract_case_schematic(first_fixture_case)) else {
+        return;
+    };
+
+    for case in &cases {
+        if case.fixture_dir.is_none() {
+            continue;
+        }
+        let schematic = extract_case_schematic(case);
+        let (kicad, ki) = if case.expected_exit_code == 0 {
+            (
+                kicad_cli_extract_diagnostics(&schematic).expect("kicad-cli should be available"),
+                safe_ki_extract_diagnostics(&schematic),
+            )
+        } else {
+            (
+                kicad_cli_extract_raw(&schematic).expect("kicad-cli should be available"),
+                ki_extract_raw(&schematic),
+            )
+        };
+
+        assert_eq!(
+            kicad.exit_code, case.expected_exit_code,
+            "KiCad exit code drift for case {}",
+            case.id
+        );
+        assert_eq!(
+            kicad.messages, case.expected_messages,
+            "KiCad message drift for case {}",
+            case.id
+        );
+        assert_eq!(ki.exit_code, kicad.exit_code, "ki exit code drift for case {}", case.id);
+        assert_eq!(ki.messages, kicad.messages, "ki message drift for case {}", case.id);
     }
 }

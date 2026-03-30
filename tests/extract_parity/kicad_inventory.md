@@ -425,6 +425,19 @@ parity against KiCad netlist export.
 - Severity: error
 - Export behavior: fails before export
 
+### `valid_no_connect_pin_type`
+
+- Relevant KiCad sources:
+  - `/Users/Daniel/Desktop/kicad/eeschema/sch_io/kicad_sexpr/sch_io_kicad_sexpr_parser.cpp:1602`
+  - `/Users/Daniel/Desktop/kicad/eeschema/sch_io/kicad_sexpr/sch_io_kicad_sexpr_parser.cpp:1646`
+- Internal parser branch:
+  `parseType( token )` maps both `unconnected` and `no_connect` to `PT_NC`
+- Observation:
+  a library symbol pin using the `no_connect` electrical type exports through `kicad-cli` with
+  exit 0 and no visible diagnostics
+- Severity: none
+- Export behavior: succeeds
+
 ### `invalid_pin_shape`
 
 - Relevant KiCad source:
@@ -483,6 +496,32 @@ parity against KiCad netlist export.
 - Severity: error
 - Export behavior: fails before export
 
+### `valid_text_plain`
+
+- Relevant KiCad source:
+  - `/Users/Daniel/Desktop/kicad/eeschema/sch_io/kicad_sexpr/sch_io_kicad_sexpr_parser.cpp:4625`
+  - `/Users/Daniel/Desktop/kicad/eeschema/sch_io/kicad_sexpr/sch_io_kicad_sexpr_parser.cpp:4713`
+  - `/Users/Daniel/Desktop/kicad/eeschema/sch_io/kicad_sexpr/sch_io_kicad_sexpr_parser.cpp:4733`
+- Internal parser path:
+  plain schematic `text` accepts `at`, `effects`, and `uuid`
+- Observation:
+  a plain valid schematic `text` exports through `kicad-cli` with exit 0 and no visible
+  diagnostics, and `ki extract` matches that accepted form
+- Severity: none
+- Export behavior: succeeds
+
+### `valid_text_repeated_effects`
+
+- Relevant KiCad source:
+  - `/Users/Daniel/Desktop/kicad/eeschema/sch_io/kicad_sexpr/sch_io_kicad_sexpr_parser.cpp:4713`
+- Internal parser path:
+  repeated `effects` blocks on plain schematic `text` are accepted and parsed in sequence
+- Observation:
+  a plain schematic `text` with repeated `effects` exports through `kicad-cli` with exit 0 and no
+  visible diagnostics, and `ki extract` matches that accepted form
+- Severity: none
+- Export behavior: succeeds
+
 ### `invalid_text_box_size_arity`
 
 - Relevant KiCad source:
@@ -495,6 +534,44 @@ parity against KiCad netlist export.
   only the generic message `Failed to load schematic`
 - Severity: error
 - Export behavior: fails before export
+
+### `valid_text_box_plain`
+
+- Relevant KiCad source:
+  - `/Users/Daniel/Desktop/kicad/eeschema/sch_io/kicad_sexpr/sch_io_kicad_sexpr_parser.cpp:4828`
+  - `/Users/Daniel/Desktop/kicad/eeschema/sch_io/kicad_sexpr/sch_io_kicad_sexpr_parser.cpp:4852`
+  - `/Users/Daniel/Desktop/kicad/eeschema/sch_io/kicad_sexpr/sch_io_kicad_sexpr_parser.cpp:4892`
+- Internal parser path:
+  plain schematic `text_box` accepts `at`, `size`, `stroke`, `fill`, `effects`, and `uuid`
+- Observation:
+  a plain valid schematic `text_box` exports through `kicad-cli` with exit 0 and no visible
+  diagnostics, and `ki extract` matches that accepted form
+- Severity: none
+- Export behavior: succeeds
+
+### `valid_text_box_margins`
+
+- Relevant KiCad source:
+  - `/Users/Daniel/Desktop/kicad/eeschema/sch_io/kicad_sexpr/sch_io_kicad_sexpr_parser.cpp:4884`
+- Internal parser path:
+  plain schematic `text_box` accepts explicit `margins`
+- Observation:
+  a plain valid schematic `text_box` with `(margins 1 2 3 4)` exports through `kicad-cli` with
+  exit 0 and no visible diagnostics, and `ki extract` matches that accepted form
+- Severity: none
+- Export behavior: succeeds
+
+### `valid_text_box_repeated_effects`
+
+- Relevant KiCad source:
+  - `/Users/Daniel/Desktop/kicad/eeschema/sch_io/kicad_sexpr/sch_io_kicad_sexpr_parser.cpp:4892`
+- Internal parser path:
+  repeated `effects` blocks on plain schematic `text_box` are accepted and parsed in sequence
+- Observation:
+  a plain schematic `text_box` with repeated `effects` exports through `kicad-cli` with exit 0 and
+  no visible diagnostics, and `ki extract` matches that accepted form
+- Severity: none
+- Export behavior: succeeds
 
 ### `invalid_text_effects_font_size_arity`
 
@@ -1085,6 +1162,96 @@ parity against KiCad netlist export.
 - Severity: error
 - Export behavior: fails before export
 
+### `valid_variant_field_symbols`
+
+- Relevant KiCad source:
+  - `/Users/Daniel/Desktop/kicad/eeschema/sch_io/kicad_sexpr/sch_io_kicad_sexpr_parser.cpp:3445`
+  - `/Users/Daniel/Desktop/kicad/eeschema/sch_io/kicad_sexpr/sch_io_kicad_sexpr_parser.cpp:3450`
+  - `/Users/Daniel/Desktop/kicad/eeschema/sch_io/kicad_sexpr/sch_io_kicad_sexpr_parser.cpp:3455`
+- Internal parser path:
+  a placed-symbol instance `variant` accepts a symbol-atom `name` plus `field/name` and
+  `field/value` children parsed through `NeedSYMBOL()`
+- Observation:
+  a placed-symbol instance variant written as `(variant (name V1) (field (name MPN) (value X123)))`
+  exports through `kicad-cli` without visible diagnostics, and `ki extract` matches that accepted form
+- Severity: none
+- Export behavior: exports successfully with no visible diagnostics
+
+### `variant_field_duplicate_name`
+
+- Relevant KiCad source:
+  - `/Users/Daniel/Desktop/kicad/eeschema/sch_io/kicad_sexpr/sch_io_kicad_sexpr_parser.cpp:3449`
+  - `/Users/Daniel/Desktop/kicad/eeschema/sch_io/kicad_sexpr/sch_io_kicad_sexpr_parser.cpp:3455`
+- Internal parser path:
+  a placed-symbol instance `variant/field` allows repeated `name` entries and keeps parsing until
+  the closing `field`
+- Observation:
+  a variant field written as `(field (name MPN) (name ALT) (value X123))` still exports through
+  `kicad-cli` without visible diagnostics, and `ki extract` matches that accepted form
+- Severity: none
+- Export behavior: exports successfully with no visible diagnostics
+
+### `variant_field_name_only`
+
+- Relevant KiCad source:
+  - `/Users/Daniel/Desktop/kicad/eeschema/sch_io/kicad_sexpr/sch_io_kicad_sexpr_parser.cpp:3449`
+- Internal parser path:
+  a placed-symbol instance `variant/field` accepts a `name` without a matching `value`
+- Observation:
+  a variant field written as `(field (name MPN))` still exports through `kicad-cli` without
+  visible diagnostics, and `ki extract` matches that accepted form
+- Severity: none
+- Export behavior: exports successfully with no visible diagnostics
+
+### `variant_field_value_only`
+
+- Relevant KiCad source:
+  - `/Users/Daniel/Desktop/kicad/eeschema/sch_io/kicad_sexpr/sch_io_kicad_sexpr_parser.cpp:3455`
+- Internal parser path:
+  a placed-symbol instance `variant/field` accepts a `value` without a matching `name`
+- Observation:
+  a variant field written as `(field (value X123))` still exports through `kicad-cli` without
+  visible diagnostics, and `ki extract` matches that accepted form
+- Severity: none
+- Export behavior: exports successfully with no visible diagnostics
+
+### `variant_field_duplicate_value`
+
+- Relevant KiCad source:
+  - `/Users/Daniel/Desktop/kicad/eeschema/sch_io/kicad_sexpr/sch_io_kicad_sexpr_parser.cpp:3455`
+- Internal parser path:
+  a placed-symbol instance `variant/field` allows repeated `value` entries and keeps parsing until
+  the closing `field`
+- Observation:
+  a variant field written as `(field (name MPN) (value X123) (value ALT))` still exports through
+  `kicad-cli` without visible diagnostics, and `ki extract` matches that accepted form
+- Severity: none
+- Export behavior: exports successfully with no visible diagnostics
+
+### `variant_field_value_list_child`
+
+- Relevant KiCad source:
+  - `/Users/Daniel/Desktop/kicad/eeschema/sch_io/kicad_sexpr/sch_io_kicad_sexpr_parser.cpp:3455`
+- Internal parser path:
+  variant field `value` requires a symbol atom via `NeedSYMBOL()`
+- Observation:
+  a placed-symbol instance variant with a nested list in `field/value` fails through `kicad-cli`
+  and surfaces only the generic message `Failed to load schematic`
+- Severity: error
+- Export behavior: fails before export
+
+### `variant_field_unknown_child`
+
+- Relevant KiCad source:
+  - `/Users/Daniel/Desktop/kicad/eeschema/sch_io/kicad_sexpr/sch_io_kicad_sexpr_parser.cpp:3461`
+- Internal parser path:
+  a `variant/field` accepts only `name` and `value` children
+- Observation:
+  a placed-symbol instance variant with an unexpected child inside `field` fails through
+  `kicad-cli` and surfaces only the generic message `Failed to load schematic`
+- Severity: error
+- Export behavior: fails before export
+
 ### `variant_unknown_child`
 
 - Relevant KiCad source:
@@ -1230,6 +1397,22 @@ parity against KiCad netlist export.
 - Parity implication:
   `ki extract` should remain silent and succeed for this outward case
 
+### `default_instance_valid_only`
+
+- Relevant KiCad source:
+  - `/Users/Daniel/Desktop/kicad/eeschema/sch_io/kicad_sexpr/sch_io_kicad_sexpr_parser.cpp:3268`
+  - `/Users/Daniel/Desktop/kicad/eeschema/sch_io/kicad_sexpr/sch_io_kicad_sexpr_parser.cpp:3277`
+  - `/Users/Daniel/Desktop/kicad/eeschema/sch_io/kicad_sexpr/sch_io_kicad_sexpr_parser.cpp:3286`
+- Internal parser path:
+  valid placed-symbol `default_instance` data populates reference, unit, value, and footprint
+  directly on the symbol even without duplicated placed-property fields
+- Observation:
+  a symbol that relies on valid `default_instance` fields exports through `kicad-cli sch export netlist`
+  with exit code `0` and no visible diagnostics when the normal instance reference path is present
+- Parity implication:
+  `ki extract` must use valid `default_instance` content as a fallback source instead of failing
+  load or dropping symbol metadata when placed `Value` and `Footprint` properties are absent
+
 ### `default_instance_unknown_child`
 
 - Relevant KiCad source:
@@ -1298,10 +1481,10 @@ parity against KiCad netlist export.
 - Internal parser message:
   `Missing sheet name property`
 - Observation:
-  a sheet missing its `Sheetname` property still exported through `kicad-cli sch export netlist`
-  with exit code `0` and no visible stdout/stderr diagnostics
-- Parity implication:
-  `ki extract --include-diagnostics` should remain silent for this case in parity mode
+  a sheet missing its `Sheetname` property fails through `kicad-cli` and surfaces only the generic
+  message `Failed to load schematic`
+- Severity: error
+- Export behavior: fails before export
 
 ### `missing_sheet_file`
 
@@ -1623,10 +1806,10 @@ parity against KiCad netlist export.
 - Internal parser message:
   `Schematic polyline has too few points`
 - Observation:
-  a one-point schematic polyline exported with exit code `0` and no visible stdout/stderr
-  diagnostics
-- Parity implication:
-  `ki extract --include-diagnostics` should remain silent for this case in parity mode
+  a one-point schematic polyline fails through `kicad-cli` and surfaces only the generic message
+  `Failed to load schematic`
+- Severity: error
+- Export behavior: fails before export
 
 ### `invalid_group_library_id`
 
@@ -2106,6 +2289,314 @@ parity against KiCad netlist export.
 - Severity: error
 - Export behavior: fails before export
 
+### `valid_sheet_variant_exclude_from_sim`
+
+- Relevant KiCad source:
+  - `/Users/Daniel/Desktop/kicad/eeschema/sch_io/kicad_sexpr/sch_io_kicad_sexpr_parser.cpp:3838`
+  - `/Users/Daniel/Desktop/kicad/eeschema/sch_io/kicad_sexpr/sch_io_kicad_sexpr_parser.cpp:3878`
+- Internal parser path:
+  nested sheet `instances/path` accepts `page` and `variant`, and a valid
+  `variant/exclude_from_sim yes` routes through `parseBool()`
+- Observation:
+  a sheet instance with `variant (name "V1") (exclude_from_sim yes)` exports through `kicad-cli`
+  with exit code `0` and no visible diagnostics
+- Parity implication:
+  `ki extract` must accept the sheet-instance `page or variant` grammar instead of applying the
+  symbol-instance child set there
+
+### `valid_sheet_variant_field_symbols`
+
+- Relevant KiCad source:
+  - `/Users/Daniel/Desktop/kicad/eeschema/sch_io/kicad_sexpr/sch_io_kicad_sexpr_parser.cpp:3838`
+  - `/Users/Daniel/Desktop/kicad/eeschema/sch_io/kicad_sexpr/sch_io_kicad_sexpr_parser.cpp:3916`
+  - `/Users/Daniel/Desktop/kicad/eeschema/sch_io/kicad_sexpr/sch_io_kicad_sexpr_parser.cpp:3921`
+  - `/Users/Daniel/Desktop/kicad/eeschema/sch_io/kicad_sexpr/sch_io_kicad_sexpr_parser.cpp:3926`
+- Internal parser path:
+  nested sheet `instances/path` accepts `page` and `variant`, and a sheet-instance
+  `variant/field/name|value` uses `NeedSYMBOL()`
+- Observation:
+  a sheet instance variant written as `(variant (name V1) (field (name MPN) (value X123)))`
+  exports through `kicad-cli` with exit code `0` and no visible diagnostics, and `ki extract`
+  matches that accepted form
+- Severity: none
+- Export behavior: exports successfully with no visible diagnostics
+
+### `sheet_variant_field_value_list_child`
+
+- Relevant KiCad source:
+  - `/Users/Daniel/Desktop/kicad/eeschema/sch_io/kicad_sexpr/sch_io_kicad_sexpr_parser.cpp:3926`
+- Internal parser path:
+  sheet-instance variant field `value` requires a symbol atom via `NeedSYMBOL()`
+- Observation:
+  a sheet instance variant with a nested list in `field/value` fails through `kicad-cli` and
+  surfaces only the generic message `Failed to load schematic`
+- Severity: error
+- Export behavior: fails before export
+
+### `sheet_variant_numeric_name`
+
+- Relevant KiCad source:
+  - `/Users/Daniel/Desktop/kicad/eeschema/sch_io/kicad_sexpr/sch_io_kicad_sexpr_parser.cpp:3916`
+- Internal parser path:
+  sheet-instance `variant/name` requires a non-numeric atom via `NeedSYMBOL()`
+- Observation:
+  a sheet instance variant with numeric `name` fails through `kicad-cli` and surfaces only the
+  generic message `Failed to load schematic`
+- Severity: error
+- Export behavior: fails before export
+
+### `sheet_variant_field_numeric_name`
+
+- Relevant KiCad source:
+  - `/Users/Daniel/Desktop/kicad/eeschema/sch_io/kicad_sexpr/sch_io_kicad_sexpr_parser.cpp:3921`
+- Internal parser path:
+  sheet-instance variant field `name` requires a non-numeric atom via `NeedSYMBOL()`
+- Observation:
+  a sheet instance variant with numeric `field/name` fails through `kicad-cli` and surfaces only
+  the generic message `Failed to load schematic`
+- Severity: error
+- Export behavior: fails before export
+
+### `sheet_variant_field_numeric_value`
+
+- Relevant KiCad source:
+  - `/Users/Daniel/Desktop/kicad/eeschema/sch_io/kicad_sexpr/sch_io_kicad_sexpr_parser.cpp:3926`
+- Internal parser path:
+  sheet-instance variant field `value` requires a non-numeric atom via `NeedSYMBOL()`
+- Observation:
+  a sheet instance variant with numeric `field/value` fails through `kicad-cli` and surfaces only
+  the generic message `Failed to load schematic`
+- Severity: error
+- Export behavior: fails before export
+
+### `sheet_variant_field_name_list_child`
+
+- Relevant KiCad source:
+  - `/Users/Daniel/Desktop/kicad/eeschema/sch_io/kicad_sexpr/sch_io_kicad_sexpr_parser.cpp:3932`
+- Internal parser path:
+  a sheet-instance `variant/field` rejects a nested list in place of the field name atom
+- Observation:
+  `(field (name (foo)) (value X123))` inside a sheet variant fails through `kicad-cli` and
+  surfaces only the generic message `Failed to load schematic`
+- Severity: error
+- Export behavior: fails before export
+
+### `sheet_variant_field_duplicate_name`
+
+- Relevant KiCad source:
+  - `/Users/Daniel/Desktop/kicad/eeschema/sch_io/kicad_sexpr/sch_io_kicad_sexpr_parser.cpp:3921`
+  - `/Users/Daniel/Desktop/kicad/eeschema/sch_io/kicad_sexpr/sch_io_kicad_sexpr_parser.cpp:3926`
+- Internal parser path:
+  a sheet-instance `variant/field` allows repeated `name` entries and keeps parsing until the
+  closing `field`
+- Observation:
+  a sheet variant field written as `(field (name MPN) (name ALT) (value X123))` still exports
+  through `kicad-cli` without visible diagnostics, and `ki extract` matches that accepted form
+- Severity: none
+- Export behavior: exports successfully with no visible diagnostics
+
+### `sheet_variant_field_value_only`
+
+- Relevant KiCad source:
+  - `/Users/Daniel/Desktop/kicad/eeschema/sch_io/kicad_sexpr/sch_io_kicad_sexpr_parser.cpp:3926`
+- Internal parser path:
+  a sheet-instance `variant/field` accepts a `value` without a matching `name`
+- Observation:
+  a sheet variant field written as `(field (value X123))` still exports through `kicad-cli`
+  without visible diagnostics, and `ki extract` matches that accepted form
+- Severity: none
+- Export behavior: exports successfully with no visible diagnostics
+
+### `sheet_variant_field_duplicate_value`
+
+- Relevant KiCad source:
+  - `/Users/Daniel/Desktop/kicad/eeschema/sch_io/kicad_sexpr/sch_io_kicad_sexpr_parser.cpp:3926`
+- Internal parser path:
+  a sheet-instance `variant/field` allows repeated `value` entries and keeps parsing until the
+  closing `field`
+- Observation:
+  a sheet variant field written as `(field (name MPN) (value X123) (value ALT))` still exports
+  through `kicad-cli` without visible diagnostics, and `ki extract` matches that accepted form
+- Severity: none
+- Export behavior: exports successfully with no visible diagnostics
+
+### `sheet_variant_unknown_child`
+
+- Relevant KiCad source:
+  - `/Users/Daniel/Desktop/kicad/eeschema/sch_io/kicad_sexpr/sch_io_kicad_sexpr_parser.cpp:3932`
+- Internal parser path:
+  a sheet-instance `variant` accepts only `name`, boolean flags, and `field` children
+- Observation:
+  a sheet instance variant with an unexpected child fails through `kicad-cli` and surfaces only
+  the generic message `Failed to load schematic`
+- Severity: error
+- Export behavior: fails before export
+
+### `sheet_variant_extra_bare_atom`
+
+- Relevant KiCad source:
+  - `/Users/Daniel/Desktop/kicad/eeschema/sch_io/kicad_sexpr/sch_io_kicad_sexpr_parser.cpp:3885`
+- Internal parser path:
+  a sheet-instance `variant` requires list children and rejects a trailing bare atom via
+  `Expecting( T_LEFT )`
+- Observation:
+  `(variant (name V1) foo)` inside a sheet instance fails through `kicad-cli` and surfaces only
+  the generic message `Failed to load schematic`
+- Severity: error
+- Export behavior: fails before export
+
+### `invalid_sheet_variant_in_pos_files_token`
+
+- Relevant KiCad source:
+  - `/Users/Daniel/Desktop/kicad/eeschema/sch_io/kicad_sexpr/sch_io_kicad_sexpr_parser.cpp:3909`
+- Internal parser path:
+  `parseBool()` for sheet-instance `variant/in_pos_files`
+- Observation:
+  an invalid sheet-variant `in_pos_files` payload fails through `kicad-cli` and surfaces only the
+  generic message `Failed to load schematic`
+- Severity: error
+- Export behavior: fails before export
+
+### `bare_sheet_variant_in_pos_files`
+
+- Relevant KiCad source:
+  - `/Users/Daniel/Desktop/kicad/eeschema/sch_io/kicad_sexpr/sch_io_kicad_sexpr_parser.cpp:3909`
+- Internal parser path:
+  `parseBool()` for sheet-instance `variant/in_pos_files`
+- Observation:
+  bare sheet-variant `in_pos_files` also fails through `kicad-cli` and surfaces only the generic
+  message `Failed to load schematic`
+- Severity: error
+- Export behavior: fails before export
+
+### `valid_sheet_variant_in_pos_files`
+
+- Relevant KiCad source:
+  - `/Users/Daniel/Desktop/kicad/eeschema/sch_io/kicad_sexpr/sch_io_kicad_sexpr_parser.cpp:3838`
+  - `/Users/Daniel/Desktop/kicad/eeschema/sch_io/kicad_sexpr/sch_io_kicad_sexpr_parser.cpp:3909`
+- Internal parser path:
+  nested sheet `instances/path` accepts `page` and `variant`, and a valid
+  `variant/in_pos_files yes` routes through `parseBool()`
+- Observation:
+  a sheet instance with `variant (name V1) (in_pos_files yes)` exports through `kicad-cli`
+  with exit code `0` and no visible diagnostics
+- Severity: none
+- Export behavior: exports successfully with no visible diagnostics
+
+### `invalid_sheet_variant_dnp_token`
+
+- Relevant KiCad source:
+  - `/Users/Daniel/Desktop/kicad/eeschema/sch_io/kicad_sexpr/sch_io_kicad_sexpr_parser.cpp:3890`
+- Internal parser path:
+  `parseBool()` for sheet-instance `variant/dnp`
+- Observation:
+  an invalid sheet-variant `dnp` payload fails through `kicad-cli` and surfaces only the generic
+  message `Failed to load schematic`
+- Severity: error
+- Export behavior: fails before export
+
+### `bare_sheet_variant_dnp`
+
+- Relevant KiCad source:
+  - `/Users/Daniel/Desktop/kicad/eeschema/sch_io/kicad_sexpr/sch_io_kicad_sexpr_parser.cpp:3890`
+- Internal parser path:
+  `parseBool()` for sheet-instance `variant/dnp`
+- Observation:
+  bare sheet-variant `dnp` also fails through `kicad-cli` and surfaces only the generic message
+  `Failed to load schematic`
+- Severity: error
+- Export behavior: fails before export
+
+### `valid_sheet_variant_dnp`
+
+- Relevant KiCad source:
+  - `/Users/Daniel/Desktop/kicad/eeschema/sch_io/kicad_sexpr/sch_io_kicad_sexpr_parser.cpp:3838`
+  - `/Users/Daniel/Desktop/kicad/eeschema/sch_io/kicad_sexpr/sch_io_kicad_sexpr_parser.cpp:3890`
+- Internal parser path:
+  nested sheet `instances/path` accepts `page` and `variant`, and a valid `variant/dnp yes`
+  routes through `parseBool()`
+- Observation:
+  a sheet instance with `variant (name V1) (dnp yes)` exports through `kicad-cli` with exit code
+  `0` and no visible diagnostics
+- Severity: none
+- Export behavior: exports successfully with no visible diagnostics
+
+### `invalid_sheet_variant_in_bom_token`
+
+- Relevant KiCad source:
+  - `/Users/Daniel/Desktop/kicad/eeschema/sch_io/kicad_sexpr/sch_io_kicad_sexpr_parser.cpp:3894`
+- Internal parser path:
+  `parseBool()` for sheet-instance `variant/in_bom`
+- Observation:
+  an invalid sheet-variant `in_bom` payload fails through `kicad-cli` and surfaces only the
+  generic message `Failed to load schematic`
+- Severity: error
+- Export behavior: fails before export
+
+### `bare_sheet_variant_in_bom`
+
+- Relevant KiCad source:
+  - `/Users/Daniel/Desktop/kicad/eeschema/sch_io/kicad_sexpr/sch_io_kicad_sexpr_parser.cpp:3894`
+- Internal parser path:
+  `parseBool()` for sheet-instance `variant/in_bom`
+- Observation:
+  bare sheet-variant `in_bom` also fails through `kicad-cli` and surfaces only the generic
+  message `Failed to load schematic`
+- Severity: error
+- Export behavior: fails before export
+
+### `valid_sheet_variant_in_bom`
+
+- Relevant KiCad source:
+  - `/Users/Daniel/Desktop/kicad/eeschema/sch_io/kicad_sexpr/sch_io_kicad_sexpr_parser.cpp:3838`
+  - `/Users/Daniel/Desktop/kicad/eeschema/sch_io/kicad_sexpr/sch_io_kicad_sexpr_parser.cpp:3894`
+- Internal parser path:
+  nested sheet `instances/path` accepts `page` and `variant`, and a valid `variant/in_bom yes`
+  routes through `parseBool()`
+- Observation:
+  a sheet instance with `variant (name V1) (in_bom yes)` exports through `kicad-cli` with exit code
+  `0` and no visible diagnostics
+- Severity: none
+- Export behavior: exports successfully with no visible diagnostics
+
+### `invalid_sheet_variant_on_board_token`
+
+- Relevant KiCad source:
+  - `/Users/Daniel/Desktop/kicad/eeschema/sch_io/kicad_sexpr/sch_io_kicad_sexpr_parser.cpp:3902`
+- Internal parser path:
+  `parseBool()` for sheet-instance `variant/on_board`
+- Observation:
+  an invalid sheet-variant `on_board` payload fails through `kicad-cli` and surfaces only the
+  generic message `Failed to load schematic`
+- Severity: error
+- Export behavior: fails before export
+
+### `bare_sheet_variant_on_board`
+
+- Relevant KiCad source:
+  - `/Users/Daniel/Desktop/kicad/eeschema/sch_io/kicad_sexpr/sch_io_kicad_sexpr_parser.cpp:3902`
+- Internal parser path:
+  `parseBool()` for sheet-instance `variant/on_board`
+- Observation:
+  bare sheet-variant `on_board` also fails through `kicad-cli` and surfaces only the generic
+  message `Failed to load schematic`
+- Severity: error
+- Export behavior: fails before export
+
+### `valid_sheet_variant_on_board`
+
+- Relevant KiCad source:
+  - `/Users/Daniel/Desktop/kicad/eeschema/sch_io/kicad_sexpr/sch_io_kicad_sexpr_parser.cpp:3838`
+  - `/Users/Daniel/Desktop/kicad/eeschema/sch_io/kicad_sexpr/sch_io_kicad_sexpr_parser.cpp:3902`
+- Internal parser path:
+  nested sheet `instances/path` accepts `page` and `variant`, and a valid `variant/on_board yes`
+  routes through `parseBool()`
+- Observation:
+  a sheet instance with `variant (name V1) (on_board yes)` exports through `kicad-cli` with exit
+  code `0` and no visible diagnostics
+- Severity: none
+- Export behavior: exports successfully with no visible diagnostics
+
 ### `invalid_sheet_in_bom_token`
 
 - Relevant KiCad source:
@@ -2226,6 +2717,30 @@ parity against KiCad netlist export.
 - Severity: error
 - Export behavior: fails before export
 
+### `valid_rule_area_exclude_from_sim`
+
+- Relevant KiCad source:
+  - `/Users/Daniel/Desktop/kicad/eeschema/sch_io/kicad_sexpr/sch_io_kicad_sexpr_parser.cpp:4505`
+- Internal parser path:
+  `parseBool()` for `rule_area/exclude_from_sim`
+- Observation:
+  a valid `rule_area/exclude_from_sim yes` payload exports through `kicad-cli` with exit 0 and no
+  visible diagnostics
+- Severity: none
+- Export behavior: succeeds
+
+### `bare_rule_area_exclude_from_sim`
+
+- Relevant KiCad source:
+  - `/Users/Daniel/Desktop/kicad/eeschema/sch_io/kicad_sexpr/sch_io_kicad_sexpr_parser.cpp:4505`
+- Internal parser path:
+  `parseBool()` for `rule_area/exclude_from_sim`
+- Observation:
+  a bare `rule_area/exclude_from_sim` without a boolean value fails through `kicad-cli` and
+  surfaces only the generic message `Failed to load schematic`
+- Severity: error
+- Export behavior: fails before export
+
 ### `invalid_rule_area_dnp_token`
 
 - Relevant KiCad source:
@@ -2237,6 +2752,114 @@ parity against KiCad netlist export.
   message `Failed to load schematic`
 - Severity: error
 - Export behavior: fails before export
+
+### `valid_rule_area_dnp`
+
+- Relevant KiCad source:
+  - `/Users/Daniel/Desktop/kicad/eeschema/sch_io/kicad_sexpr/sch_io_kicad_sexpr_parser.cpp:4520`
+- Internal parser path:
+  `parseBool()` for `rule_area/dnp`
+- Observation:
+  a valid `rule_area/dnp yes` payload exports through `kicad-cli` with exit 0 and no visible
+  diagnostics
+- Severity: none
+- Export behavior: succeeds
+
+### `bare_rule_area_dnp`
+
+- Relevant KiCad source:
+  - `/Users/Daniel/Desktop/kicad/eeschema/sch_io/kicad_sexpr/sch_io_kicad_sexpr_parser.cpp:4520`
+- Internal parser path:
+  `parseBool()` for `rule_area/dnp`
+- Observation:
+  a bare `rule_area/dnp` without a boolean value fails through `kicad-cli` and surfaces only the
+  generic message `Failed to load schematic`
+- Severity: error
+- Export behavior: fails before export
+
+### `valid_rule_area_plain`
+
+- Relevant KiCad source:
+  - `/Users/Daniel/Desktop/kicad/eeschema/sch_io/kicad_sexpr/sch_io_kicad_sexpr_parser.cpp:4478`
+- Internal parser path:
+  `parseSchRuleArea()` requires a child `polyline`
+- Observation:
+  a plain valid `rule_area` with only a `polyline` exports through `kicad-cli` with exit 0 and no
+  visible diagnostics
+- Severity: none
+- Export behavior: succeeds
+
+### `invalid_rule_area_in_bom_token`
+
+- Relevant KiCad source:
+  - `/Users/Daniel/Desktop/kicad/eeschema/sch_io/kicad_sexpr/sch_io_kicad_sexpr_parser.cpp:4510`
+- Internal parser path:
+  `parseBool()` for `rule_area/in_bom`
+- Observation:
+  an invalid `rule_area/in_bom` payload fails through `kicad-cli` and surfaces only the generic
+  message `Failed to load schematic`
+- Severity: error
+- Export behavior: fails before export
+
+### `bare_rule_area_in_bom`
+
+- Relevant KiCad source:
+  - `/Users/Daniel/Desktop/kicad/eeschema/sch_io/kicad_sexpr/sch_io_kicad_sexpr_parser.cpp:4510`
+- Internal parser path:
+  `parseBool()` for `rule_area/in_bom`
+- Observation:
+  a bare `rule_area/in_bom` without a boolean value fails through `kicad-cli` and surfaces only the
+  generic message `Failed to load schematic`
+- Severity: error
+- Export behavior: fails before export
+
+### `valid_rule_area_in_bom`
+
+- Relevant KiCad source:
+  - `/Users/Daniel/Desktop/kicad/eeschema/sch_io/kicad_sexpr/sch_io_kicad_sexpr_parser.cpp:4510`
+- Internal parser path:
+  `parseBool()` for `rule_area/in_bom`
+- Observation:
+  a valid `rule_area/in_bom` payload exports through `kicad-cli` with exit 0 and no visible
+  diagnostics
+- Severity: none
+- Export behavior: succeeds
+
+### `invalid_rule_area_on_board_token`
+
+- Relevant KiCad source:
+  - `/Users/Daniel/Desktop/kicad/eeschema/sch_io/kicad_sexpr/sch_io_kicad_sexpr_parser.cpp:4515`
+- Internal parser path:
+  `parseBool()` for `rule_area/on_board`
+- Observation:
+  an invalid `rule_area/on_board` payload fails through `kicad-cli` and surfaces only the generic
+  message `Failed to load schematic`
+- Severity: error
+- Export behavior: fails before export
+
+### `bare_rule_area_on_board`
+
+- Relevant KiCad source:
+  - `/Users/Daniel/Desktop/kicad/eeschema/sch_io/kicad_sexpr/sch_io_kicad_sexpr_parser.cpp:4515`
+- Internal parser path:
+  `parseBool()` for `rule_area/on_board`
+- Observation:
+  a bare `rule_area/on_board` without a boolean value fails through `kicad-cli` and surfaces only
+  the generic message `Failed to load schematic`
+- Severity: error
+- Export behavior: fails before export
+
+### `valid_rule_area_on_board`
+
+- Relevant KiCad source:
+  - `/Users/Daniel/Desktop/kicad/eeschema/sch_io/kicad_sexpr/sch_io_kicad_sexpr_parser.cpp:4515`
+- Internal parser path:
+  `parseBool()` for `rule_area/on_board`
+- Observation:
+  a valid `rule_area/on_board` payload exports through `kicad-cli` with exit 0 and no visible
+  diagnostics
+- Severity: none
+- Export behavior: succeeds
 
 ### `invalid_lib_symbol_exclude_from_sim_token`
 
@@ -2383,6 +3006,18 @@ parity against KiCad netlist export.
 - Severity: error
 - Export behavior: fails before export
 
+### `bare_show_name`
+
+- Relevant KiCad source:
+  - `/Users/Daniel/Desktop/kicad/eeschema/sch_io/kicad_sexpr/sch_io_kicad_sexpr_parser.cpp:1143`
+  - `/Users/Daniel/Desktop/kicad/eeschema/sch_io/kicad_sexpr/sch_io_kicad_sexpr_parser.cpp:2411`
+- Internal parser path:
+  bare property `show_name` routes through `parseMaybeAbsentBool( true )`
+- Observation:
+  bare property `show_name` is accepted through `kicad-cli` with no visible diagnostics
+- Severity: none
+- Export behavior: exports successfully
+
 ### `invalid_text_exclude_from_sim_token`
 
 - Relevant KiCad source:
@@ -2467,6 +3102,17 @@ parity against KiCad netlist export.
 - Severity: error
 - Export behavior: fails before export
 
+### `bare_text_fields_autoplaced`
+
+- Relevant KiCad source:
+  - `/Users/Daniel/Desktop/kicad/eeschema/sch_io/kicad_sexpr/sch_io_kicad_sexpr_parser.cpp:4708`
+- Internal parser path:
+  bare plain-text `fields_autoplaced` routes through `parseMaybeAbsentBool( true )`
+- Observation:
+  bare plain-text `fields_autoplaced` is accepted through `kicad-cli` with no visible diagnostics
+- Severity: none
+- Export behavior: exports successfully
+
 ### `label_invalid_fields_autoplaced_token`
 
 - Relevant KiCad source:
@@ -2478,6 +3124,17 @@ parity against KiCad netlist export.
   surfaces only the generic message `Failed to load schematic`
 - Severity: error
 - Export behavior: fails before export
+
+### `bare_label_fields_autoplaced`
+
+- Relevant KiCad source:
+  - `/Users/Daniel/Desktop/kicad/eeschema/sch_io/kicad_sexpr/sch_io_kicad_sexpr_parser.cpp:4708`
+- Internal parser path:
+  bare local-label `fields_autoplaced` routes through `parseMaybeAbsentBool( true )`
+- Observation:
+  bare local-label `fields_autoplaced` is accepted through `kicad-cli` with no visible diagnostics
+- Severity: none
+- Export behavior: exports successfully
 
 ### `global_label_invalid_fields_autoplaced_token`
 
@@ -2491,6 +3148,17 @@ parity against KiCad netlist export.
 - Severity: error
 - Export behavior: fails before export
 
+### `bare_global_label_fields_autoplaced`
+
+- Relevant KiCad source:
+  - `/Users/Daniel/Desktop/kicad/eeschema/sch_io/kicad_sexpr/sch_io_kicad_sexpr_parser.cpp:4708`
+- Internal parser path:
+  bare global-label `fields_autoplaced` routes through `parseMaybeAbsentBool( true )`
+- Observation:
+  bare global-label `fields_autoplaced` is accepted through `kicad-cli` with no visible diagnostics
+- Severity: none
+- Export behavior: exports successfully
+
 ### `hier_label_invalid_fields_autoplaced_token`
 
 - Relevant KiCad source:
@@ -2502,6 +3170,18 @@ parity against KiCad netlist export.
   surfaces only the generic message `Failed to load schematic`
 - Severity: error
 - Export behavior: fails before export
+
+### `bare_hier_label_fields_autoplaced`
+
+- Relevant KiCad source:
+  - `/Users/Daniel/Desktop/kicad/eeschema/sch_io/kicad_sexpr/sch_io_kicad_sexpr_parser.cpp:4708`
+- Internal parser path:
+  bare hierarchical-label `fields_autoplaced` routes through `parseMaybeAbsentBool( true )`
+- Observation:
+  bare hierarchical-label `fields_autoplaced` is accepted through `kicad-cli` with no visible
+  diagnostics
+- Severity: none
+- Export behavior: exports successfully
 
 ### `invalid_do_not_autoplace_token`
 
@@ -2515,6 +3195,18 @@ parity against KiCad netlist export.
   generic message `Failed to load schematic`
 - Severity: error
 - Export behavior: fails before export
+
+### `bare_do_not_autoplace`
+
+- Relevant KiCad source:
+  - `/Users/Daniel/Desktop/kicad/eeschema/sch_io/kicad_sexpr/sch_io_kicad_sexpr_parser.cpp:1150`
+  - `/Users/Daniel/Desktop/kicad/eeschema/sch_io/kicad_sexpr/sch_io_kicad_sexpr_parser.cpp:2418`
+- Internal parser path:
+  bare property `do_not_autoplace` routes through `parseMaybeAbsentBool( true )`
+- Observation:
+  bare property `do_not_autoplace` is accepted through `kicad-cli` with no visible diagnostics
+- Severity: none
+- Export behavior: exports successfully
 
 ### `invalid_top_embedded_fonts_token`
 
@@ -2565,6 +3257,78 @@ parity against KiCad netlist export.
   message `Failed to load schematic`
 - Severity: error
 - Export behavior: fails before export
+
+### `invalid_variant_in_pos_files_token`
+
+- Relevant KiCad source:
+  - `/Users/Daniel/Desktop/kicad/eeschema/sch_io/kicad_sexpr/sch_io_kicad_sexpr_parser.cpp:3441`
+- Internal parser path:
+  `parseBool()` for schematic-symbol `variant/in_pos_files`
+- Observation:
+  an invalid symbol-variant `in_pos_files` payload fails through `kicad-cli` and surfaces only the
+  generic message `Failed to load schematic`
+- Severity: error
+- Export behavior: fails before export
+
+### `bare_variant_in_pos_files`
+
+- Relevant KiCad source:
+  - `/Users/Daniel/Desktop/kicad/eeschema/sch_io/kicad_sexpr/sch_io_kicad_sexpr_parser.cpp:3441`
+- Internal parser path:
+  `parseBool()` for schematic-symbol `variant/in_pos_files`
+- Observation:
+  bare symbol-variant `in_pos_files` also fails through `kicad-cli` and surfaces only the generic
+  message `Failed to load schematic`
+- Severity: error
+- Export behavior: fails before export
+
+### `valid_variant_in_pos_files`
+
+- Relevant KiCad source:
+  - `/Users/Daniel/Desktop/kicad/eeschema/sch_io/kicad_sexpr/sch_io_kicad_sexpr_parser.cpp:3441`
+- Internal parser path:
+  a valid schematic-symbol `variant/in_pos_files yes` routes through `parseBool()`
+- Observation:
+  a placed symbol with `variant (name V1) (in_pos_files yes)` exports through `kicad-cli`
+  with exit code `0` and no visible diagnostics
+- Severity: none
+- Export behavior: exports successfully with no visible diagnostics
+
+### `invalid_variant_on_board_token`
+
+- Relevant KiCad source:
+  - `/Users/Daniel/Desktop/kicad/eeschema/sch_io/kicad_sexpr/sch_io_kicad_sexpr_parser.cpp:3439`
+- Internal parser path:
+  `parseBool()` for schematic-symbol `variant/on_board`
+- Observation:
+  an invalid symbol-variant `on_board` payload fails through `kicad-cli` and surfaces only the
+  generic message `Failed to load schematic`
+- Severity: error
+- Export behavior: fails before export
+
+### `bare_variant_on_board`
+
+- Relevant KiCad source:
+  - `/Users/Daniel/Desktop/kicad/eeschema/sch_io/kicad_sexpr/sch_io_kicad_sexpr_parser.cpp:3439`
+- Internal parser path:
+  `parseBool()` for schematic-symbol `variant/on_board`
+- Observation:
+  bare symbol-variant `on_board` also fails through `kicad-cli` and surfaces only the generic
+- message `Failed to load schematic`
+- Severity: error
+- Export behavior: fails before export
+
+### `valid_variant_on_board`
+
+- Relevant KiCad source:
+  - `/Users/Daniel/Desktop/kicad/eeschema/sch_io/kicad_sexpr/sch_io_kicad_sexpr_parser.cpp:3439`
+- Internal parser path:
+  a valid schematic-symbol `variant/on_board yes` routes through `parseBool()`
+- Observation:
+  a placed symbol with `variant (name V1) (on_board yes)` exports through `kicad-cli`
+  with exit code `0` and no visible diagnostics
+- Severity: none
+- Export behavior: exports successfully with no visible diagnostics
 
 ### `invalid_variant_name`
 
@@ -3663,6 +4427,18 @@ token-boundary and interaction bugs.
 - Severity: error
 - Export behavior: fails before export
 
+### `group_uuid_symbol_ok`
+
+- Relevant KiCad source:
+  - `/Users/Daniel/Desktop/kicad/eeschema/sch_io/kicad_sexpr/sch_io_kicad_sexpr_parser.cpp:5173`
+- Internal parser path:
+  `group/uuid` accepts a symbol token and routes it through `parseKIID()`
+- Observation:
+  `group "G" (uuid foo)` still exports through `kicad-cli` with exit 0 and no visible diagnostics,
+  and `ki extract` matches that accepted form
+- Severity: none
+- Export behavior: succeeds
+
 ### `rule_area_uuid_numeric`
 
 - Relevant KiCad source:
@@ -4144,12 +4920,12 @@ token-boundary and interaction bugs.
 - Relevant KiCad sources:
   - `/Users/Daniel/Desktop/kicad/eeschema/sch_io/kicad_sexpr/sch_io_kicad_sexpr_parser.cpp:4877`
 - Internal parser path:
-  repeated `fill` children on `text_box` are not accepted on the export load path
+  repeated `fill` children on `text_box` are accepted on the export load path
 - Observation:
-  a `text_box` with duplicate `fill` children fails through `kicad-cli` and surfaces only the
-  generic message `Failed to load schematic`
-- Severity: error
-- Export behavior: fails before export
+  a `text_box` with duplicate `fill` children exports through `kicad-cli` with exit 0 and no
+  visible diagnostics
+- Severity: none
+- Export behavior: succeeds
 
 ### `text_box_duplicate_span`
 
@@ -4169,36 +4945,36 @@ token-boundary and interaction bugs.
 - Relevant KiCad sources:
   - `/Users/Daniel/Desktop/kicad/eeschema/sch_io/kicad_sexpr/sch_io_kicad_sexpr_parser.cpp:4872`
 - Internal parser path:
-  repeated `stroke` children on `text_box` are rejected by the export load path
+  repeated `stroke` children on `text_box` are accepted by the export load path
 - Observation:
-  a `text_box` with duplicate `stroke` children fails through `kicad-cli` and surfaces only the
-  generic message `Failed to load schematic`
-- Severity: error
-- Export behavior: fails before export
+  a `text_box` with duplicate `stroke` children exports through `kicad-cli` with exit 0 and no
+  visible diagnostics
+- Severity: none
+- Export behavior: succeeds
 
 ### `text_box_duplicate_margins`
 
 - Relevant KiCad sources:
   - `/Users/Daniel/Desktop/kicad/eeschema/sch_io/kicad_sexpr/sch_io_kicad_sexpr_parser.cpp:4884`
 - Internal parser path:
-  repeated `margins` children on `text_box` fail on the export load path
+  repeated `margins` children on `text_box` are accepted on the export load path
 - Observation:
-  a `text_box` with duplicate `margins` children fails through `kicad-cli` and surfaces only the
-  generic message `Failed to load schematic`
-- Severity: error
-- Export behavior: fails before export
+  a `text_box` with duplicate `margins` children exports through `kicad-cli` with exit 0 and no
+  visible diagnostics
+- Severity: none
+- Export behavior: succeeds
 
 ### `text_box_duplicate_exclude_from_sim`
 
 - Relevant KiCad sources:
   - `/Users/Daniel/Desktop/kicad/eeschema/sch_io/kicad_sexpr/sch_io_kicad_sexpr_parser.cpp:4830`
 - Internal parser path:
-  repeated `exclude_from_sim` on `text_box` is rejected by the export load path
+  repeated `exclude_from_sim` on `text_box` is accepted by the export load path
 - Observation:
-  a `text_box` with duplicate `exclude_from_sim` children fails through `kicad-cli` and surfaces
-  only the generic message `Failed to load schematic`
-- Severity: error
-- Export behavior: fails before export
+  a `text_box` with duplicate `exclude_from_sim` children exports through `kicad-cli` with exit 0
+  and no visible diagnostics
+- Severity: none
+- Export behavior: succeeds
 
 ### `table_cell_duplicate_at`
 
@@ -4206,12 +4982,12 @@ token-boundary and interaction bugs.
   - `/Users/Daniel/Desktop/kicad/eeschema/sch_io/kicad_sexpr/sch_io_kicad_sexpr_parser.cpp:4846`
   - `/Users/Daniel/Desktop/kicad/eeschema/sch_io/kicad_sexpr/sch_io_kicad_sexpr_parser.cpp:4905`
 - Internal parser path:
-  repeated `at` children on `table_cell` are rejected even though plain `text_box` tolerates them
+  repeated `at` children on `table_cell` are accepted on the export load path
 - Observation:
-  a `table_cell` with duplicate `at` children fails through `kicad-cli` and surfaces only the
-  generic message `Failed to load schematic`
-- Severity: error
-- Export behavior: fails before export
+  a `table_cell` with duplicate `at` children exports through `kicad-cli` with exit 0 and no
+  visible diagnostics
+- Severity: none
+- Export behavior: succeeds
 
 ### `table_cell_duplicate_fill`
 
@@ -4219,12 +4995,12 @@ token-boundary and interaction bugs.
   - `/Users/Daniel/Desktop/kicad/eeschema/sch_io/kicad_sexpr/sch_io_kicad_sexpr_parser.cpp:4877`
   - `/Users/Daniel/Desktop/kicad/eeschema/sch_io/kicad_sexpr/sch_io_kicad_sexpr_parser.cpp:4905`
 - Internal parser path:
-  repeated `fill` children on `table_cell` are rejected on the export load path
+  repeated `fill` children on `table_cell` are accepted on the export load path
 - Observation:
-  a `table_cell` with duplicate `fill` children fails through `kicad-cli` and surfaces only the
-  generic message `Failed to load schematic`
-- Severity: error
-- Export behavior: fails before export
+  a `table_cell` with duplicate `fill` children exports through `kicad-cli` with exit 0 and no
+  visible diagnostics
+- Severity: none
+- Export behavior: succeeds
 
 ### `table_cell_duplicate_size`
 
@@ -4232,13 +5008,12 @@ token-boundary and interaction bugs.
   - `/Users/Daniel/Desktop/kicad/eeschema/sch_io/kicad_sexpr/sch_io_kicad_sexpr_parser.cpp:4852`
   - `/Users/Daniel/Desktop/kicad/eeschema/sch_io/kicad_sexpr/sch_io_kicad_sexpr_parser.cpp:4905`
 - Internal parser path:
-  repeated `size` children on `table_cell` are rejected even though plain `text_box` tolerates
-  them
+  repeated `size` children on `table_cell` are accepted on the export load path
 - Observation:
-  a `table_cell` with duplicate `size` children fails through `kicad-cli` and surfaces only the
-  generic message `Failed to load schematic`
-- Severity: error
-- Export behavior: fails before export
+  a `table_cell` with duplicate `size` children exports through `kicad-cli` with exit 0 and no
+  visible diagnostics
+- Severity: none
+- Export behavior: succeeds
 
 ### `table_cell_duplicate_span`
 
@@ -4246,12 +5021,12 @@ token-boundary and interaction bugs.
   - `/Users/Daniel/Desktop/kicad/eeschema/sch_io/kicad_sexpr/sch_io_kicad_sexpr_parser.cpp:4858`
   - `/Users/Daniel/Desktop/kicad/eeschema/sch_io/kicad_sexpr/sch_io_kicad_sexpr_parser.cpp:4905`
 - Internal parser path:
-  repeated `span` children on `table_cell` are rejected on the export load path
+  repeated `span` children on `table_cell` are accepted on the export load path
 - Observation:
-  a `table_cell` with duplicate `span` children fails through `kicad-cli` and surfaces only the
-  generic message `Failed to load schematic`
-- Severity: error
-- Export behavior: fails before export
+  a `table_cell` with duplicate `span` children exports through `kicad-cli` with exit 0 and no
+  visible diagnostics
+- Severity: none
+- Export behavior: succeeds
 
 ### `table_cell_duplicate_stroke`
 
@@ -4259,12 +5034,12 @@ token-boundary and interaction bugs.
   - `/Users/Daniel/Desktop/kicad/eeschema/sch_io/kicad_sexpr/sch_io_kicad_sexpr_parser.cpp:4872`
   - `/Users/Daniel/Desktop/kicad/eeschema/sch_io/kicad_sexpr/sch_io_kicad_sexpr_parser.cpp:4905`
 - Internal parser path:
-  repeated `stroke` children on `table_cell` are rejected on the export load path
+  repeated `stroke` children on `table_cell` are accepted on the export load path
 - Observation:
-  a `table_cell` with duplicate `stroke` children fails through `kicad-cli` and surfaces only the
-  generic message `Failed to load schematic`
-- Severity: error
-- Export behavior: fails before export
+  a `table_cell` with duplicate `stroke` children exports through `kicad-cli` with exit 0 and no
+  visible diagnostics
+- Severity: none
+- Export behavior: succeeds
 
 ### `table_border_duplicate_external`
 
@@ -4272,12 +5047,12 @@ token-boundary and interaction bugs.
   - `/Users/Daniel/Desktop/kicad/eeschema/sch_io/kicad_sexpr/sch_io_kicad_sexpr_parser.cpp:4993`
   - `/Users/Daniel/Desktop/kicad/eeschema/sch_io/kicad_sexpr/sch_io_kicad_sexpr_parser.cpp:5003`
 - Internal parser path:
-  duplicate `external` entries inside a table `border` block are rejected on the export load path
+  duplicate `external` entries inside a table `border` block are accepted on the export load path
 - Observation:
-  a table `border` block with duplicate `external` children fails through `kicad-cli` and
-  surfaces only the generic message `Failed to load schematic`
-- Severity: error
-- Export behavior: fails before export
+  a table `border` block with duplicate `external` children exports through `kicad-cli` with
+  exit 0 and no visible diagnostics
+- Severity: none
+- Export behavior: succeeds
 
 ### `table_border_duplicate_stroke`
 
@@ -4285,24 +5060,24 @@ token-boundary and interaction bugs.
   - `/Users/Daniel/Desktop/kicad/eeschema/sch_io/kicad_sexpr/sch_io_kicad_sexpr_parser.cpp:4993`
   - `/Users/Daniel/Desktop/kicad/eeschema/sch_io/kicad_sexpr/sch_io_kicad_sexpr_parser.cpp:5013`
 - Internal parser path:
-  duplicate `stroke` entries inside a table `border` block are rejected on the export load path
+  duplicate `stroke` entries inside a table `border` block are accepted on the export load path
 - Observation:
-  a table `border` block with duplicate `stroke` children fails through `kicad-cli` and surfaces
-  only the generic message `Failed to load schematic`
-- Severity: error
-- Export behavior: fails before export
+  a table `border` block with duplicate `stroke` children exports through `kicad-cli` with exit
+  0 and no visible diagnostics
+- Severity: none
+- Export behavior: succeeds
 
 ### `table_duplicate_uuid`
 
 - Relevant KiCad sources:
   - `/Users/Daniel/Desktop/kicad/eeschema/sch_io/kicad_sexpr/sch_io_kicad_sexpr_parser.cpp:5059`
 - Internal parser path:
-  duplicate top-level `uuid` children on `table` are rejected on the export load path
+  duplicate top-level `uuid` children on `table` are accepted on the export load path
 - Observation:
-  a table with duplicate `uuid` children fails through `kicad-cli` and surfaces only the generic
-  message `Failed to load schematic`
-- Severity: error
-- Export behavior: fails before export
+  a table with duplicate `uuid` children exports through `kicad-cli` with exit 0 and no visible
+  diagnostics
+- Severity: none
+- Export behavior: succeeds
 
 ### `table_separators_duplicate_stroke`
 
@@ -4310,13 +5085,13 @@ token-boundary and interaction bugs.
   - `/Users/Daniel/Desktop/kicad/eeschema/sch_io/kicad_sexpr/sch_io_kicad_sexpr_parser.cpp:5026`
   - `/Users/Daniel/Desktop/kicad/eeschema/sch_io/kicad_sexpr/sch_io_kicad_sexpr_parser.cpp:5046`
 - Internal parser path:
-  duplicate `stroke` entries inside a table `separators` block are rejected on the export load
+  duplicate `stroke` entries inside a table `separators` block are accepted on the export load
   path
 - Observation:
-  a table `separators` block with duplicate `stroke` children fails through `kicad-cli` and
-  surfaces only the generic message `Failed to load schematic`
-- Severity: error
-- Export behavior: fails before export
+  a table `separators` block with duplicate `stroke` children exports through `kicad-cli` with
+  exit 0 and no visible diagnostics
+- Severity: none
+- Export behavior: succeeds
 
 ### `invalid_table_cell_at_arity`
 
@@ -4384,12 +5159,12 @@ token-boundary and interaction bugs.
 - Relevant KiCad sources:
   - `/Users/Daniel/Desktop/kicad/eeschema/sch_io/kicad_sexpr/sch_io_kicad_sexpr_parser.cpp:4835`
 - Internal parser path:
-  the legacy `text_box/start` compatibility branch rejects duplicate `start` children
+  the legacy `text_box/start` compatibility branch accepts duplicate `start` children
 - Observation:
-  a `text_box` with duplicate legacy `start` children fails through `kicad-cli` and surfaces only
-  the generic message `Failed to load schematic`
-- Severity: error
-- Export behavior: fails before export
+  a `text_box` with duplicate legacy `start` children exports through `kicad-cli` with exit 0 and
+  no visible diagnostics
+- Severity: none
+- Export behavior: succeeds
 
 ### `text_box_start_arity`
 
@@ -4420,13 +5195,13 @@ token-boundary and interaction bugs.
 - Relevant KiCad sources:
   - `/Users/Daniel/Desktop/kicad/eeschema/sch_io/kicad_sexpr/sch_io_kicad_sexpr_parser.cpp:4835`
 - Internal parser path:
-  the shared legacy `start` compatibility branch also rejects duplicate `start` children inside
+  the shared legacy `start` compatibility branch tolerates duplicate `start` children inside
   modern `table_cell` content
 - Observation:
-  a modern-syntax `table_cell` with duplicate legacy `start` children fails through `kicad-cli`
-  and surfaces only the generic message `Failed to load schematic`
-- Severity: error
-- Export behavior: fails before export
+  a modern-syntax `table_cell` with duplicate legacy `start` children exports through `kicad-cli`
+  with exit 0 and no visible diagnostics
+- Severity: none
+- Export behavior: succeeds
 
 ### `table_cell_start_arity`
 
@@ -4484,13 +5259,13 @@ token-boundary and interaction bugs.
   - `/Users/Daniel/Desktop/kicad/eeschema/sch_io/kicad_sexpr/sch_io_kicad_sexpr_parser.cpp:4744`
   - `/Users/Daniel/Desktop/kicad/eeschema/sch_io/kicad_sexpr/sch_io_kicad_sexpr_parser.cpp:4747`
 - Internal parser path:
-  duplicate mandatory global-label `Intersheetrefs` properties fail on the special replacement
-  branch that copies mandatory fields into the existing label field slot
+  duplicate mandatory global-label `Intersheetrefs` properties are accepted on the special
+  replacement branch that copies mandatory fields into the existing label field slot
 - Observation:
-  a global label with duplicate mandatory `Intersheetrefs` properties fails through `kicad-cli`
-  and surfaces only the generic message `Failed to load schematic`
-- Severity: error
-- Export behavior: fails before export
+  a global label with duplicate mandatory `Intersheetrefs` properties exports through `kicad-cli`
+  with exit 0 and no visible diagnostics
+- Severity: none
+- Export behavior: succeeds
 
 ### `invalid_image_at_arity`
 
@@ -4536,13 +5311,12 @@ token-boundary and interaction bugs.
   - `/Users/Daniel/Desktop/kicad/eeschema/sch_io/kicad_sexpr/sch_io_kicad_sexpr_parser.cpp:4747`
 - Internal parser path:
   the legacy global-label field-name alias `Intersheet References` maps into the same mandatory
-  replacement branch, and duplicate mandatory intersheet-ref properties fail on that path
+  replacement branch, and duplicate mandatory intersheet-ref properties are accepted on that path
 - Observation:
   a global label carrying both `Intersheetrefs` and legacy `Intersheet References` mandatory
-  properties fails through `kicad-cli` and surfaces only the generic message
-  `Failed to load schematic`
-- Severity: error
-- Export behavior: fails before export
+  properties exports through `kicad-cli` with exit 0 and no visible diagnostics
+- Severity: none
+- Export behavior: succeeds
 
 ### `sheet_legacy_sheet_name_at_arity`
 
@@ -4586,6 +5360,20 @@ token-boundary and interaction bugs.
 - Severity: error
 - Export behavior: fails before export
 
+### `global_legacy_intersheetrefs_bare_show_name`
+
+- Relevant KiCad sources:
+  - `/Users/Daniel/Desktop/kicad/eeschema/sch_io/kicad_sexpr/sch_io_kicad_sexpr_parser.cpp:2370`
+  - `/Users/Daniel/Desktop/kicad/eeschema/sch_io/kicad_sexpr/sch_io_kicad_sexpr_parser.cpp:2410`
+- Internal parser path:
+  the legacy global-label `Intersheet References` alias still parses through the field loader, and
+  bare `show_name` uses the same `parseMaybeAbsentBool( true )` branch
+- Observation:
+  a global label using legacy `Intersheet References` with bare `show_name` is accepted through
+  `kicad-cli` with no visible diagnostics
+- Severity: none
+- Export behavior: exports successfully
+
 ### `sheet_legacy_sheet_name_hide_token`
 
 - Relevant KiCad sources:
@@ -4614,6 +5402,20 @@ token-boundary and interaction bugs.
 - Severity: error
 - Export behavior: fails before export
 
+### `sheet_legacy_sheet_name_bare_show_name`
+
+- Relevant KiCad sources:
+  - `/Users/Daniel/Desktop/kicad/eeschema/sch_io/kicad_sexpr/sch_io_kicad_sexpr_parser.cpp:2353`
+  - `/Users/Daniel/Desktop/kicad/eeschema/sch_io/kicad_sexpr/sch_io_kicad_sexpr_parser.cpp:2410`
+- Internal parser path:
+  the legacy sheet mandatory field-name alias `Sheet name` still parses through the field loader,
+  and bare `show_name` uses the same `parseMaybeAbsentBool( true )` branch
+- Observation:
+  a sheet using legacy `Sheet name` with bare `show_name` is accepted through `kicad-cli` with no
+  visible diagnostics
+- Severity: none
+- Export behavior: exports successfully
+
 ### `global_legacy_intersheetrefs_do_not_autoplace_token`
 
 - Relevant KiCad sources:
@@ -4627,6 +5429,20 @@ token-boundary and interaction bugs.
   `kicad-cli` and surfaces only the generic message `Failed to load schematic`
 - Severity: error
 - Export behavior: fails before export
+
+### `global_legacy_intersheetrefs_bare_do_not_autoplace`
+
+- Relevant KiCad sources:
+  - `/Users/Daniel/Desktop/kicad/eeschema/sch_io/kicad_sexpr/sch_io_kicad_sexpr_parser.cpp:2370`
+  - `/Users/Daniel/Desktop/kicad/eeschema/sch_io/kicad_sexpr/sch_io_kicad_sexpr_parser.cpp:2417`
+- Internal parser path:
+  the legacy global-label `Intersheet References` alias still parses through the field loader, and
+  bare `do_not_autoplace` uses the same `parseMaybeAbsentBool( true )` branch
+- Observation:
+  a global label using legacy `Intersheet References` with bare `do_not_autoplace` is accepted
+  through `kicad-cli` with no visible diagnostics
+- Severity: none
+- Export behavior: exports successfully
 
 ### `sheet_legacy_sheet_file_hide_token`
 
@@ -4656,6 +5472,20 @@ token-boundary and interaction bugs.
 - Severity: error
 - Export behavior: fails before export
 
+### `sheet_legacy_sheet_file_bare_show_name`
+
+- Relevant KiCad sources:
+  - `/Users/Daniel/Desktop/kicad/eeschema/sch_io/kicad_sexpr/sch_io_kicad_sexpr_parser.cpp:2355`
+  - `/Users/Daniel/Desktop/kicad/eeschema/sch_io/kicad_sexpr/sch_io_kicad_sexpr_parser.cpp:2410`
+- Internal parser path:
+  the legacy sheet mandatory field-name alias `Sheet file` still parses through the field loader,
+  and bare `show_name` uses the same `parseMaybeAbsentBool( true )` branch
+- Observation:
+  a sheet using legacy `Sheet file` with bare `show_name` is accepted through `kicad-cli` with no
+  visible diagnostics
+- Severity: none
+- Export behavior: exports successfully
+
 ### `sheet_legacy_sheet_name_do_not_autoplace_token`
 
 - Relevant KiCad sources:
@@ -4669,6 +5499,20 @@ token-boundary and interaction bugs.
   surfaces only the generic message `Failed to load schematic`
 - Severity: error
 - Export behavior: fails before export
+
+### `sheet_legacy_sheet_name_bare_do_not_autoplace`
+
+- Relevant KiCad sources:
+  - `/Users/Daniel/Desktop/kicad/eeschema/sch_io/kicad_sexpr/sch_io_kicad_sexpr_parser.cpp:2353`
+  - `/Users/Daniel/Desktop/kicad/eeschema/sch_io/kicad_sexpr/sch_io_kicad_sexpr_parser.cpp:2417`
+- Internal parser path:
+  the legacy sheet mandatory field-name alias `Sheet name` still parses through the field loader,
+  and bare `do_not_autoplace` uses the same `parseMaybeAbsentBool( true )` branch
+- Observation:
+  a sheet using legacy `Sheet name` with bare `do_not_autoplace` is accepted through `kicad-cli`
+  with no visible diagnostics
+- Severity: none
+- Export behavior: exports successfully
 
 ### `global_legacy_intersheetrefs_id_token`
 
@@ -4698,6 +5542,20 @@ token-boundary and interaction bugs.
 - Severity: error
 - Export behavior: fails before export
 
+### `sheet_legacy_sheet_file_bare_do_not_autoplace`
+
+- Relevant KiCad sources:
+  - `/Users/Daniel/Desktop/kicad/eeschema/sch_io/kicad_sexpr/sch_io_kicad_sexpr_parser.cpp:2355`
+  - `/Users/Daniel/Desktop/kicad/eeschema/sch_io/kicad_sexpr/sch_io_kicad_sexpr_parser.cpp:2417`
+- Internal parser path:
+  the legacy sheet mandatory field-name alias `Sheet file` still parses through the field loader,
+  and bare `do_not_autoplace` uses the same `parseMaybeAbsentBool( true )` branch
+- Observation:
+  a sheet using legacy `Sheet file` with bare `do_not_autoplace` is accepted through `kicad-cli`
+  with no visible diagnostics
+- Severity: none
+- Export behavior: exports successfully
+
 ### `sheet_legacy_sheet_file_id_token`
 
 - Relevant KiCad sources:
@@ -4717,24 +5575,24 @@ token-boundary and interaction bugs.
 - Relevant KiCad sources:
   - `/Users/Daniel/Desktop/kicad/eeschema/sch_io/kicad_sexpr/sch_io_kicad_sexpr_parser.cpp:5108`
 - Internal parser path:
-  a `bus_alias` with an empty `members` list fails on the current alias parser path
+  a `bus_alias` with an empty `members` list is accepted on the current alias parser path
 - Observation:
-  a `bus_alias` with empty `members` fails through `kicad-cli` and surfaces only the generic
-  message `Failed to load schematic`
-- Severity: error
-- Export behavior: fails before export
+  a `bus_alias` with empty `members` exports through `kicad-cli` with exit 0 and no visible
+  diagnostics
+- Severity: none
+- Export behavior: succeeds
 
 ### `bus_alias_duplicate_member`
 
 - Relevant KiCad sources:
   - `/Users/Daniel/Desktop/kicad/eeschema/sch_io/kicad_sexpr/sch_io_kicad_sexpr_parser.cpp:5108`
 - Internal parser path:
-  duplicate `members` entries on `bus_alias` fail on the current alias parser path
+  duplicate `members` entries on `bus_alias` are accepted on the current alias parser path
 - Observation:
-  a `bus_alias` with duplicate members fails through `kicad-cli` and surfaces only the generic
-  message `Failed to load schematic`
-- Severity: error
-- Export behavior: fails before export
+  a `bus_alias` with duplicate members exports through `kicad-cli` with exit 0 and no visible
+  diagnostics
+- Severity: none
+- Export behavior: succeeds
 
 ### `bus_alias_extra_child`
 
@@ -4753,24 +5611,25 @@ token-boundary and interaction bugs.
 - Relevant KiCad sources:
   - `/Users/Daniel/Desktop/kicad/eeschema/sch_io/kicad_sexpr/sch_io_kicad_sexpr_parser.cpp:5129`
 - Internal parser path:
-  duplicate member UUIDs inside a `group/members` list fail on the current group parser path
+  duplicate member UUIDs inside a `group/members` list are accepted on the current group parser
+  path
 - Observation:
-  a `group` with duplicate member UUIDs fails through `kicad-cli` and surfaces only the generic
-  message `Failed to load schematic`
-- Severity: error
-- Export behavior: fails before export
+  a `group` with duplicate member UUIDs exports through `kicad-cli` with exit 0 and no visible
+  diagnostics
+- Severity: none
+- Export behavior: succeeds
 
 ### `group_empty_members`
 
 - Relevant KiCad sources:
   - `/Users/Daniel/Desktop/kicad/eeschema/sch_io/kicad_sexpr/sch_io_kicad_sexpr_parser.cpp:5129`
 - Internal parser path:
-  an empty `group/members` list fails on the current group parser path
+  an empty `group/members` list is accepted on the current group parser path
 - Observation:
-  a `group` with empty members fails through `kicad-cli` and surfaces only the generic message
-  `Failed to load schematic`
-- Severity: error
-- Export behavior: fails before export
+  a `group` with empty members exports through `kicad-cli` with exit 0 and no visible
+  diagnostics
+- Severity: none
+- Export behavior: succeeds
 
 ### `group_missing_member_uuid`
 
@@ -4778,12 +5637,13 @@ token-boundary and interaction bugs.
   - `/Users/Daniel/Desktop/kicad/eeschema/sch_io/kicad_sexpr/sch_io_kicad_sexpr_parser.cpp:5129`
   - `/Users/Daniel/Desktop/kicad/eeschema/sch_io/kicad_sexpr/sch_io_kicad_sexpr_parser.cpp:5266`
 - Internal parser path:
-  unresolved member UUIDs fail during the post-parse group resolution path
+  unresolved member UUIDs are accepted during the current schematic group parse/load path used by
+  `kicad-cli sch export netlist`
 - Observation:
-  a `group` whose members reference a missing UUID fails through `kicad-cli` and surfaces only the
-  generic message `Failed to load schematic`
-- Severity: error
-- Export behavior: fails before export
+  a `group` whose members reference a missing UUID exports through `kicad-cli` with exit 0 and no
+  visible diagnostics
+- Severity: none
+- Export behavior: succeeds
 
 ### `bus_entry_extra_child`
 
@@ -5535,6 +6395,20 @@ token-boundary and interaction bugs.
 - Severity: error
 - Export behavior: fails before export
 
+### `bezier_pts_only`
+
+- Relevant KiCad sources:
+  - `/Users/Daniel/Desktop/kicad/eeschema/sch_io/kicad_sexpr/sch_io_kicad_sexpr_parser.cpp:4552`
+  - `/Users/Daniel/Desktop/kicad/eeschema/sch_io/kicad_sexpr/sch_io_kicad_sexpr_parser.cpp:4603`
+- Internal parser path:
+  top-level schematic `bezier` accepts a `pts` block without requiring explicit `stroke`, `fill`,
+  or `uuid`
+- Observation:
+  a top-level `bezier` with only `pts` exports through `kicad-cli` with exit 0 and no visible
+  diagnostics, and `ki extract` matches that accepted form
+- Severity: none
+- Export behavior: succeeds
+
 ### `symbol_bezier_too_many_points`
 
 - Relevant KiCad sources:
@@ -5667,6 +6541,20 @@ token-boundary and interaction bugs.
 - Severity: error
 - Export behavior: fails before export
 
+### `embedded_files_file_data_bare_ok`
+
+- Relevant KiCad sources:
+  - `/Users/Daniel/Desktop/kicad/common/embedded_files.cpp:440`
+  - `/Users/Daniel/Desktop/kicad/eeschema/sch_io/kicad_sexpr/sch_io_kicad_sexpr_parser.cpp:3048`
+- Internal parser path:
+  a bare symbol token in `embedded_files/file/data` is tolerated by the schematic-level
+  embedded-files wrapper and does not surface as a visible diagnostic
+- Observation:
+  `(embedded_files (file (name foo.txt) (data abc)))` still exports through `kicad-cli` with exit
+  0 and no visible diagnostics, and `ki extract` matches that accepted form
+- Severity: none
+- Export behavior: succeeds
+
 ### `embedded_files_unknown_child_payload`
 
 - Relevant KiCad sources:
@@ -5679,6 +6567,61 @@ token-boundary and interaction bugs.
   `Failed to load schematic`
 - Severity: error
 - Export behavior: fails before export
+
+### `embedded_files_bogus_ok`
+
+- Relevant KiCad sources:
+  - `/Users/Daniel/Desktop/kicad/common/embedded_files.cpp:399`
+  - `/Users/Daniel/Desktop/kicad/eeschema/sch_io/kicad_sexpr/sch_io_kicad_sexpr_parser.cpp:3048`
+- Internal parser path:
+  top-level `embedded_files` parse errors are caught by the schematic parser and downgraded to
+  non-visible warnings
+- Observation:
+  `(embedded_files (bogus))` still exports through `kicad-cli` with exit 0 and no visible
+  diagnostics, and `ki extract` matches that accepted form
+- Severity: none
+- Export behavior: succeeds
+
+### `embedded_files_file_empty_ok`
+
+- Relevant KiCad sources:
+  - `/Users/Daniel/Desktop/kicad/common/embedded_files.cpp:399`
+  - `/Users/Daniel/Desktop/kicad/common/embedded_files.cpp:434`
+- Internal parser path:
+  an empty `(file)` block inside top-level `embedded_files` is tolerated and dropped
+- Observation:
+  `(embedded_files (file))` still exports through `kicad-cli` with exit 0 and no visible
+  diagnostics, and `ki extract` matches that accepted form
+- Severity: none
+- Export behavior: succeeds
+
+### `embedded_files_file_bogus_child_ok`
+
+- Relevant KiCad sources:
+  - `/Users/Daniel/Desktop/kicad/common/embedded_files.cpp:474`
+  - `/Users/Daniel/Desktop/kicad/eeschema/sch_io/kicad_sexpr/sch_io_kicad_sexpr_parser.cpp:3048`
+- Internal parser path:
+  an unknown child after `name` inside an embedded file is tolerated by the schematic-level
+  embedded-files wrapper and does not surface as a visible diagnostic
+- Observation:
+  `(embedded_files (file (name foo.txt) (bogus)))` still exports through `kicad-cli` with exit 0
+  and no visible diagnostics, and `ki extract` matches that accepted form
+- Severity: none
+- Export behavior: succeeds
+
+### `embedded_files_file_type_bogus_ok`
+
+- Relevant KiCad sources:
+  - `/Users/Daniel/Desktop/kicad/common/embedded_files.cpp:474`
+  - `/Users/Daniel/Desktop/kicad/eeschema/sch_io/kicad_sexpr/sch_io_kicad_sexpr_parser.cpp:3048`
+- Internal parser path:
+  an invalid `type` token inside an embedded file is tolerated by the schematic-level
+  embedded-files wrapper and does not surface as a visible diagnostic
+- Observation:
+  `(embedded_files (file (name foo.txt) (type bogus)))` still exports through `kicad-cli` with
+  exit 0 and no visible diagnostics, and `ki extract` matches that accepted form
+- Severity: none
+- Export behavior: succeeds
 
 ### `embedded_files_file_unknown_after_name`
 
@@ -5716,6 +6659,61 @@ token-boundary and interaction bugs.
   generic message `Failed to load schematic`
 - Severity: error
 - Export behavior: fails before export
+
+### `future_sch_payload`
+
+- Relevant KiCad sources:
+  - `/Users/Daniel/Desktop/kicad/eeschema/sch_io/kicad_sexpr/sch_io_kicad_sexpr_parser.cpp:3057`
+- Internal parser path:
+  `future_sch` is not a loadable top-level schematic object on the export path, even with payload
+- Observation:
+  a schematic containing `(future_sch (bogus 1))` fails through `kicad-cli` and surfaces only the
+  generic message `Failed to load schematic`
+- Severity: error
+- Export behavior: fails before export
+
+### `private_sheet_name_ok`
+
+- Relevant KiCad sources:
+  - `/Users/Daniel/Desktop/kicad/eeschema/sch_io/kicad_sexpr/sch_io_kicad_sexpr_parser.cpp:2289`
+  - `/Users/Daniel/Desktop/kicad/eeschema/sch_io/kicad_sexpr/sch_io_kicad_sexpr_parser.cpp:2353`
+  - `/Users/Daniel/Desktop/kicad/eeschema/sch_io/kicad_sexpr/sch_io_kicad_sexpr_parser.cpp:3759`
+- Internal parser path:
+  `parseSchField()` accepts the `private` prefix before the legacy sheet mandatory-field alias
+  `Sheet name`
+- Observation:
+  `property private "Sheet name" ...` on a schematic sheet exports through `kicad-cli` with exit 0
+  and no visible diagnostics; `ki extract` now matches that accepted form
+- Severity: none
+- Export behavior: succeeds
+
+### `private_intersheetrefs_ok`
+
+- Relevant KiCad sources:
+  - `/Users/Daniel/Desktop/kicad/eeschema/sch_io/kicad_sexpr/sch_io_kicad_sexpr_parser.cpp:2289`
+  - `/Users/Daniel/Desktop/kicad/eeschema/sch_io/kicad_sexpr/sch_io_kicad_sexpr_parser.cpp:2370`
+  - `/Users/Daniel/Desktop/kicad/eeschema/sch_io/kicad_sexpr/sch_io_kicad_sexpr_parser.cpp:4744`
+- Internal parser path:
+  `parseSchField()` accepts the `private` prefix before the legacy global-label alias
+  `Intersheet References`
+- Observation:
+  `property private "Intersheet References" ...` on a global label exports through `kicad-cli`
+  with exit 0 and no visible diagnostics, and `ki extract` matches that accepted form
+- Severity: none
+- Export behavior: succeeds
+
+### `text_box_duplicate_end_ok`
+
+- Relevant KiCad sources:
+  - `/Users/Daniel/Desktop/kicad/eeschema/sch_io/kicad_sexpr/sch_io_kicad_sexpr_parser.cpp:4835`
+  - `/Users/Daniel/Desktop/kicad/eeschema/sch_io/kicad_sexpr/sch_io_kicad_sexpr_parser.cpp:4840`
+- Internal parser path:
+  legacy `text_box/start` and repeated `text_box/end` are accepted on the modern text-box loader
+- Observation:
+  a `text_box` with repeated legacy `end` children still exports through `kicad-cli` with exit 0
+  and no visible diagnostics, and `ki extract` matches that accepted form
+- Severity: none
+- Export behavior: succeeds
 
 ### `text_box_background`
 
@@ -5813,6 +6811,20 @@ token-boundary and interaction bugs.
 - Severity: error
 - Export behavior: fails before export
 
+### `fill_color_only`
+
+- Relevant KiCad sources:
+  - `/Users/Daniel/Desktop/kicad/eeschema/sch_io/kicad_sexpr/sch_io_kicad_sexpr_parser.cpp:706`
+  - `/Users/Daniel/Desktop/kicad/eeschema/sch_io/kicad_sexpr/sch_io_kicad_sexpr_parser.cpp:744`
+- Internal parser path:
+  `parseFill()` initializes defaults and accepts a `color` child without requiring an explicit
+  `type`
+- Observation:
+  a sheet using `fill (color 0 0 0 0)` exports through `kicad-cli` with exit code `0` and no
+  visible diagnostics
+- Parity implication:
+  `ki extract` should accept color-only `fill` blocks, not just `type`-bearing forms
+
 ### `stroke_bare_atom`
 
 - Relevant KiCad sources:
@@ -5824,6 +6836,18 @@ token-boundary and interaction bugs.
   generic message `Failed to load schematic`
 - Severity: error
 - Export behavior: fails before export
+
+### `stroke_color_only`
+
+- Relevant KiCad source:
+  - `/Users/Daniel/Desktop/kicad/eeschema/sch_io/kicad_sexpr/sch_io_kicad_sexpr_parser.cpp:696`
+- Internal parser path:
+  `parseStroke()` accepts sparse stroke blocks, including a lone `color` child
+- Observation:
+  a sheet using `stroke (color 0 0 0 0)` exports through `kicad-cli` with exit code `0` and no
+  visible diagnostics
+- Parity implication:
+  `ki extract` should accept color-only `stroke` blocks
 
 ### `effects_font_bare_atom`
 
@@ -6358,22 +7382,11 @@ Observed accepted forms on this branch:
 - `effects (font (size 1.27 1.27))` still exports normally
 - standard symbol properties with only `at` and `effects` still export normally
 - `group (uuid foo)` still exports in both KiCad and `ki`
-- KiCad also exports valid full-symbol fixtures that use `default_instance` and `variant`
-  instance data, but `ki extract` still fails them after CST validation. This appears to be a
-  downstream extract implementation gap rather than a parser/preflight mismatch and is not yet
-  represented as a passing parity manifest case.
-- KiCad also exports valid schematic `text` objects such as `(text "x" (at 10 10 0) (effects ...))`,
-  but `ki extract` still fails them while `ki schematic inspect` parses them successfully. This is
-  a downstream extract implementation gap on the `parseSchText()` acceptance path and is not yet
-  represented as a passing parity manifest case. The same gap also covers KiCad-accepted repeated
-  `at`, repeated `uuid`, repeated `effects`, and bare `fields_autoplaced` variants on plain
-  `text`.
-- KiCad also exports valid schematic `text_box` objects, including plain `(text_box "x" ...)` and
-  `text_box` with valid `(margins ...)`, but `ki extract` still fails them while
-  `ki schematic inspect` parses them successfully. This is a downstream extract implementation gap
-  on the `parseSchTextBoxContent()` acceptance path and is not yet represented as a passing parity
-  manifest case. The same gap also covers KiCad-accepted repeated `at`, repeated `size`, repeated
-  `uuid`, and repeated `effects` variants on plain `text_box`.
+- valid placed-symbol `default_instance` fallback now exports through `ki extract`, including the
+  `default_instance_valid_only` parity case
+- valid plain schematic `text` now exports through `ki extract`, including repeated `effects`
+- valid plain schematic `text_box` now exports through `ki extract`, including valid
+  `(margins ...)` and repeated `effects`
 - `netclass_flag` accepts generic `property` names like `"P"` as well as `"Netclass"` and
   `"Component Class"`
 - top-level `bezier (pts)` still exports

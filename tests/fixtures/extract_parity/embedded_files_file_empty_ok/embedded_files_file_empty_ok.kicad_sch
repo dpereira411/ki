@@ -1,0 +1,8 @@
+(kicad_sch
+  (version 20260101)
+  (generator "eeschema")
+  (uuid "embedded-files-file-empty-root")
+  (paper "A4")
+  (embedded_files (file))
+  (sheet_instances
+    (path "/" (page "1"))))

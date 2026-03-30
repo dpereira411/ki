@@ -1,0 +1,24 @@
+(kicad_sch
+  (version 20260101)
+  (generator "eeschema")
+  (uuid "root-sheet-variant")
+  (paper "A4")
+  (sheet
+    (at 20 20)
+    (size 20 10)
+    (exclude_from_sim no)
+    (in_bom yes)
+    (on_board yes)
+    (dnp no)
+    (stroke (width 0) (type solid))
+    (fill (color 0 0 0 0))
+    (uuid "sheet-a")
+    (property "Sheetname" "Child" (at 20 18 0) (show_name no) (do_not_autoplace no) (effects (font (size 1.27 1.27))))
+    (property "Sheetfile" "child.kicad_sch" (at 20 31 0) (show_name no) (do_not_autoplace no) (effects (font (size 1.27 1.27))))
+    (instances
+      (project "valid_sheet_variant_on_board"
+        (path "/root-sheet-variant"
+          (page "2")
+          (variant (name V1) (on_board yes))))))
+  (sheet_instances
+    (path "/" (page "1"))))

@@ -1,4 +1,3 @@
-use std::collections::BTreeSet;
 use std::fs;
 
 use base64::Engine;
@@ -21,6 +20,7 @@ const VALID_PIN_TYPES: &[&str] = &[
     "open_collector",
     "open_emitter",
     "unconnected",
+    "no_connect",
 ];
 const VALID_PIN_SHAPES: &[&str] = &[
     "line",
@@ -224,9 +224,7 @@ fn validate_node(
             validate_text_box(raw, node)?;
         }
         Some("rule_area") => {
-            validate_pts_xy(node)?;
             validate_rule_area(node)?;
-            validate_uuid_child(raw, node, "invalid rule_area uuid")?;
         }
         Some("fill") => validate_fill(node)?,
         Some("stroke") => validate_stroke(node)?,
@@ -328,13 +326,13 @@ fn validate_sheet(raw: &str, node: &Node) -> Result<(), String> {
                 Some(Node::Atom { .. }) => {}
                 _ => return Err("invalid sheet uuid".to_string()),
             },
-            Some("instances") => validate_instances(raw, child)?,
+            Some("instances") => validate_sheet_nested_instances(raw, child)?,
             Some("stroke" | "fill" | "property" | "pin" | "at" | "size") => {}
             _ => return Err("invalid sheet child".to_string()),
         }
 
         if head_of(child) == Some("property")
-            && matches!(nth_atom_string(child, 1).as_deref(), Some("Sheetname"))
+            && matches!(property_name(child).as_deref(), Some("Sheetname" | "Sheet name"))
         {
             saw_sheet_name = true;
         }
@@ -465,7 +463,16 @@ fn validate_property(raw: &str, node: &Node) -> Result<(), String> {
         None => Ok(()),
     }?;
 
-    for child in payload_children(node, name_index + 2) {
+    validate_field_payload(payload_children(node, name_index + 2))?;
+
+    Ok(())
+}
+
+fn validate_field_payload<'a, I>(payload: I) -> Result<(), String>
+where
+    I: IntoIterator<Item = &'a Node>,
+{
+    for child in payload {
         match head_of(child) {
             Some("href") => return Err("invalid hyperlink url".to_string()),
             Some("at") if !list_has_exact_symbol_numeric_arity(child, 3) => {
@@ -476,6 +483,9 @@ fn validate_property(raw: &str, node: &Node) -> Result<(), String> {
                 validate_bool_flag(child, true, "invalid property boolean flag")?;
             }
             Some("hide") => validate_bool_flag(child, false, "invalid property boolean flag")?,
+            Some("id") if !list_has_exact_symbol_numeric_arity(child, 1) => {
+                return Err("invalid property value".to_string());
+            }
             Some("effects" | "id") => {}
             Some(_) | None => return Err("invalid property value".to_string()),
         }
@@ -607,14 +617,22 @@ fn validate_uuid_child(raw: &str, node: &Node, err: &str) -> Result<(), String> 
     Ok(())
 }
 
-fn validate_text_box(raw: &str, node: &Node) -> Result<(), String> {
-    let mut saw_exclude_from_sim = false;
-    let mut saw_fill = false;
-    let mut saw_margins = false;
+fn validate_text_box_content<'a, I>(
+    raw: &str,
+    payload: I,
+    allow_span: bool,
+    allow_duplicate_span: bool,
+    allow_duplicate_effects: bool,
+    allow_duplicate_uuid: bool,
+) -> Result<(), String>
+where
+    I: IntoIterator<Item = &'a Node>,
+{
     let mut saw_span = false;
-    let mut saw_stroke = false;
+    let mut saw_effects = false;
+    let mut saw_uuid = false;
 
-    for child in child_items(node).iter().skip(1) {
+    for child in payload {
         let Some(head) = head_of(child) else {
             continue;
         };
@@ -630,7 +648,7 @@ fn validate_text_box(raw: &str, node: &Node) -> Result<(), String> {
                 | "start"
                 | "stroke"
                 | "uuid"
-        ) || (head == "span" && head_of(node) == Some("table_cell"));
+        ) || (head == "span" && allow_span);
 
         if !allowed {
             return if head == "href" {
@@ -641,15 +659,16 @@ fn validate_text_box(raw: &str, node: &Node) -> Result<(), String> {
         }
 
         if head == "exclude_from_sim" {
-            if saw_exclude_from_sim {
-                return Err("invalid text_box exclude_from_sim".to_string());
-            }
-
-            saw_exclude_from_sim = true;
             validate_bool_flag(child, false, "invalid text_box exclude_from_sim")?;
         }
 
         if head == "uuid" {
+            if saw_uuid && !allow_duplicate_uuid {
+                return Err("invalid text_box uuid".to_string());
+            }
+
+            saw_uuid = true;
+
             match child_items(child).get(1) {
                 Some(Node::Atom {
                     atom: Atom::Symbol(_),
@@ -666,20 +685,22 @@ fn validate_text_box(raw: &str, node: &Node) -> Result<(), String> {
             return Err("invalid text_box size".to_string());
         }
 
+        if head == "at" && !list_has_exact_symbol_numeric_arity(child, 3) {
+            return Err("invalid text_box size".to_string());
+        }
+
+        if matches!(head, "start" | "end") && !list_has_exact_symbol_numeric_arity(child, 2) {
+            return Err("invalid text_box size".to_string());
+        }
+
         if head == "margins" {
-            if saw_margins {
-                return Err("invalid text_box margins".to_string());
-            }
-
-            saw_margins = true;
-
             if !list_has_exact_numeric_arity(child, 4) {
                 return Err("invalid text_box margins".to_string());
             }
         }
 
         if head == "span" {
-            if saw_span {
+            if saw_span && !allow_duplicate_span {
                 return Err("invalid text_box span".to_string());
             }
 
@@ -690,23 +711,13 @@ fn validate_text_box(raw: &str, node: &Node) -> Result<(), String> {
             }
         }
 
-        if head == "fill" {
-            if saw_fill {
-                return Err("invalid text_box size".to_string());
-            }
-
-            saw_fill = true;
-        }
-
-        if head == "stroke" {
-            if saw_stroke {
-                return Err("invalid text_box size".to_string());
-            }
-
-            saw_stroke = true;
-        }
-
         if head == "effects" {
+            if saw_effects && !allow_duplicate_effects {
+                return Err("invalid text_box size".to_string());
+            }
+
+            saw_effects = true;
+
             for grandchild in child_items(child).iter().skip(1) {
                 if head_of(grandchild) == Some("href") {
                     return Err("invalid hyperlink url".to_string());
@@ -716,6 +727,10 @@ fn validate_text_box(raw: &str, node: &Node) -> Result<(), String> {
     }
 
     Ok(())
+}
+
+fn validate_text_box(raw: &str, node: &Node) -> Result<(), String> {
+    validate_text_box_content(raw, child_items(node).iter().skip(1), false, false, true, true)
 }
 
 fn validate_fill(node: &Node) -> Result<(), String> {
@@ -728,6 +743,7 @@ fn validate_fill(node: &Node) -> Result<(), String> {
             Some("color") if !list_has_exact_symbol_numeric_arity(child, 4) => {
                 return Err("invalid fill color".to_string());
             }
+            Some("color") => {}
             Some("type") => {
                 let Some(fill_type) = nth_atom_string(child, 1) else {
                     return Err("invalid fill type".to_string());
@@ -904,8 +920,6 @@ fn validate_directive_label(node: &Node) -> Result<(), String> {
 }
 
 fn validate_label_fields(raw: &str, node: &Node) -> Result<(), String> {
-    let mut saw_intersheetrefs = false;
-
     for child in child_items(node).iter().skip(1) {
         if !matches!(child, Node::List { .. } | Node::Atom { .. }) {
             continue;
@@ -959,19 +973,6 @@ fn validate_label_fields(raw: &str, node: &Node) -> Result<(), String> {
             }
             Some("property") => {
                 validate_property(raw, child)?;
-                let property_name = nth_atom_string(child, 1).unwrap_or_default();
-                let is_intersheetrefs = matches!(
-                    property_name.as_str(),
-                    "Intersheetrefs" | "Intersheet References"
-                );
-
-                if head_of(node) == Some("global_label") && is_intersheetrefs {
-                    if saw_intersheetrefs {
-                        return Err("invalid label child".to_string());
-                    }
-
-                    saw_intersheetrefs = true;
-                }
             }
             Some("at" | "shape") => {}
             _ => {
@@ -988,14 +989,22 @@ fn validate_label_fields(raw: &str, node: &Node) -> Result<(), String> {
 }
 
 fn validate_rule_area(node: &Node) -> Result<(), String> {
+    let mut saw_polyline = false;
+
     for child in child_items(node).iter().skip(1) {
         match head_of(child) {
-            Some("pts" | "uuid") => {}
+            Some("polyline") => {
+                saw_polyline = true;
+            }
             Some("exclude_from_sim" | "in_bom" | "on_board" | "dnp") => {
                 validate_bool_flag(child, false, "invalid rule_area boolean flag")?;
             }
             _ => return Err("invalid rule_area child".to_string()),
         }
+    }
+
+    if !saw_polyline {
+        return Err("invalid rule_area child".to_string());
     }
 
     Ok(())
@@ -1511,11 +1520,7 @@ fn validate_image(raw: &str, node: &Node) -> Result<(), String> {
                 return Err("invalid image at".to_string());
             }
             Some("scale") => {
-                let Some(value) = nth_atom_string(child, 1) else {
-                    return Err("invalid image scale".to_string());
-                };
-
-                if value.parse::<f64>().is_err() {
+                if !list_has_exact_symbol_numeric_arity(child, 1) {
                     return Err("invalid image scale".to_string());
                 }
             }
@@ -1557,27 +1562,22 @@ fn validate_table(raw: &str, node: &Node) -> Result<(), String> {
     let mut saw_border = false;
     let mut saw_cells = false;
     let mut saw_col_widths = false;
-    let mut saw_column = false;
+    let mut saw_column_count = false;
     let mut saw_headers = false;
-    let mut saw_row = false;
     let mut saw_row_heights = false;
     let mut saw_separators = false;
     let mut saw_stroke = false;
 
     for child in child_items(node).iter().skip(1) {
         match head_of(child) {
-            Some("column") if saw_column || !list_has_exact_numeric_arity(child, 1) => {
+            Some("column_count") if saw_column_count || !list_has_exact_numeric_arity(child, 1) => {
                 return Err("invalid table dimensions".to_string());
             }
-            Some("column") => saw_column = true,
-            Some("row") if saw_row || !list_has_exact_numeric_arity(child, 1) => {
-                return Err("invalid table dimensions".to_string());
-            }
-            Some("row") => saw_row = true,
-            Some("col_widths") if saw_col_widths => {
+            Some("column_count") => saw_column_count = true,
+            Some("column_widths") if saw_col_widths => {
                 return Err("invalid table sizes".to_string());
             }
-            Some("col_widths") => {
+            Some("column_widths") => {
                 saw_col_widths = true;
 
                 for value in child_items(child).iter().skip(1) {
@@ -1638,28 +1638,13 @@ fn validate_table(raw: &str, node: &Node) -> Result<(), String> {
             }
             Some("border") => {
                 saw_border = true;
-                let mut saw_external = false;
-                let mut saw_header = false;
-                let mut saw_border_stroke = false;
 
                 for config in child_items(child).iter().skip(1) {
                     match head_of(config) {
                         Some("external" | "header") => {
-                            if head_of(config) == Some("external") && saw_external {
-                                return Err("invalid table border flag".to_string());
-                            }
-                            if head_of(config) == Some("header") && saw_header {
-                                return Err("invalid table border flag".to_string());
-                            }
-
-                            saw_external |= head_of(config) == Some("external");
-                            saw_header |= head_of(config) == Some("header");
                             validate_bool_flag(config, false, "invalid table border flag")?;
                         }
-                        Some("stroke") if saw_border_stroke => {
-                            return Err("invalid stroke width".to_string());
-                        }
-                        Some("stroke") => saw_border_stroke = true,
+                        Some("stroke") => {}
                         _ => return Err("invalid table border flag".to_string()),
                     }
                 }
@@ -1669,30 +1654,16 @@ fn validate_table(raw: &str, node: &Node) -> Result<(), String> {
             }
             Some("separators") => {
                 saw_separators = true;
-                let mut saw_cols = false;
-                let mut saw_rows = false;
-                let mut saw_sep_stroke = false;
 
                 for config in child_items(child).iter().skip(1) {
                     match head_of(config) {
-                        Some("rows") if saw_rows => {
-                            return Err("invalid table separators".to_string());
-                        }
                         Some("rows") => {
-                            saw_rows = true;
                             validate_bool_flag(config, false, "invalid table separators")?;
-                        }
-                        Some("cols") if saw_cols => {
-                            return Err("invalid table separators".to_string());
                         }
                         Some("cols") => {
-                            saw_cols = true;
                             validate_bool_flag(config, false, "invalid table separators")?;
                         }
-                        Some("stroke") if saw_sep_stroke => {
-                            return Err("invalid table separators".to_string());
-                        }
-                        Some("stroke") => saw_sep_stroke = true,
+                        Some("stroke") => {}
                         _ => return Err("invalid table separators".to_string()),
                     }
                 }
@@ -1724,122 +1695,7 @@ fn validate_table(raw: &str, node: &Node) -> Result<(), String> {
 }
 
 fn validate_table_cell(raw: &str, node: &Node) -> Result<(), String> {
-    let mut saw_at = false;
-    let mut saw_effects = false;
-    let mut saw_fill = false;
-    let mut saw_size = false;
-    let mut saw_span = false;
-    let mut saw_stroke = false;
-    let mut saw_uuid = false;
-
-    for child in child_items(node).iter().skip(1) {
-        if head_of(child) == Some("href") {
-            return Err("invalid hyperlink url".to_string());
-        }
-
-        if head_of(child) == Some("at") {
-            if saw_at || !list_has_exact_symbol_numeric_arity(child, 3) {
-                return Err("invalid text_box size".to_string());
-            }
-
-            saw_at = true;
-        }
-
-        if head_of(child) == Some("size") {
-            if saw_size || !list_has_exact_symbol_numeric_arity(child, 2) {
-                return Err("invalid text_box size".to_string());
-            }
-
-            saw_size = true;
-        }
-
-        if head_of(child) == Some("span") {
-            if saw_span || !list_has_exact_numeric_arity(child, 2) {
-                return Err("invalid text_box size".to_string());
-            }
-
-            saw_span = true;
-        }
-
-        if head_of(child) == Some("fill") {
-            if saw_fill {
-                return Err("invalid text_box size".to_string());
-            }
-
-            saw_fill = true;
-        }
-
-        if head_of(child) == Some("stroke") {
-            if saw_stroke {
-                return Err("invalid text_box size".to_string());
-            }
-
-            saw_stroke = true;
-        }
-
-        if head_of(child) == Some("uuid") {
-            if saw_uuid {
-                return Err("invalid text_box uuid".to_string());
-            }
-
-            saw_uuid = true;
-
-            match child_items(child).get(1) {
-                Some(Node::Atom {
-                    atom: Atom::Symbol(_),
-                    span,
-                }) if raw_token_is_numeric(raw, *span) => {
-                    return Err("invalid text_box uuid".to_string());
-                }
-                Some(Node::Atom { .. }) => {}
-                _ => return Err("invalid text_box uuid".to_string()),
-            }
-        }
-
-        if head_of(child) == Some("effects") {
-            if saw_effects {
-                return Err("invalid text_box size".to_string());
-            }
-
-            saw_effects = true;
-
-            for grandchild in child_items(child).iter().skip(1) {
-                if head_of(grandchild) == Some("href") {
-                    return Err("invalid hyperlink url".to_string());
-                }
-            }
-
-            continue;
-        }
-
-        if matches!(head_of(child), Some("exclude_from_sim"))
-            && validate_bool_flag(child, false, "invalid text_box exclude_from_sim").is_ok()
-        {
-            continue;
-        }
-
-        if matches!(head_of(child), Some("margins")) && list_has_exact_numeric_arity(child, 4) {
-            continue;
-        }
-
-        if !matches!(
-            head_of(child),
-            Some(
-                "at" | "size"
-                    | "span"
-                    | "stroke"
-                    | "fill"
-                    | "effects"
-                    | "uuid"
-                    | "exclude_from_sim"
-                    | "margins"
-            )
-        ) {
-            return Err("invalid text_box size".to_string());
-        }
-    }
-
-    Ok(())
+    validate_text_box_content(raw, payload_children(node, 2), true, true, false, false)
 }
 
 fn validate_title_block(node: &Node) -> Result<(), String> {
@@ -1879,7 +1735,6 @@ fn validate_bus_alias(raw: &str, node: &Node) -> Result<(), String> {
     }
 
     let mut saw_members = false;
-    let mut seen_members = BTreeSet::new();
 
     for child in payload_children(node, 2) {
         if head_of(child) != Some("members") {
@@ -1888,12 +1743,8 @@ fn validate_bus_alias(raw: &str, node: &Node) -> Result<(), String> {
 
         saw_members = true;
 
-        if child_items(child).len() <= 1 {
-            return Err("invalid bus alias members".to_string());
-        }
-
         for member in child_items(child).iter().skip(1) {
-            let Some(value) = atom_string(member) else {
+            let Some(_) = atom_string(member) else {
                 return Err("invalid bus alias members".to_string());
             };
 
@@ -1905,10 +1756,6 @@ fn validate_bus_alias(raw: &str, node: &Node) -> Result<(), String> {
                 if raw_token_is_numeric(raw, *span) {
                     return Err("invalid bus alias members".to_string());
                 }
-            }
-
-            if !seen_members.insert(value.to_string()) {
-                return Err("invalid bus alias members".to_string());
             }
         }
     }
@@ -2270,13 +2117,66 @@ fn validate_instances(raw: &str, node: &Node) -> Result<(), String> {
     Ok(())
 }
 
+fn validate_sheet_nested_instances(raw: &str, node: &Node) -> Result<(), String> {
+    for child in child_items(node).iter().skip(1) {
+        if !matches!(child, Node::List { .. }) {
+            continue;
+        }
+
+        if head_of(child) != Some("project") {
+            return Err("invalid project instance child".to_string());
+        }
+
+        if !is_non_numeric_atom(child_items(child).get(1), raw) {
+            return Err("invalid project instance name".to_string());
+        }
+
+        for project_child in child_items(child).iter().skip(1) {
+            if !matches!(project_child, Node::List { .. }) {
+                continue;
+            }
+
+            if head_of(project_child) != Some("path") {
+                return Err("invalid project instance child".to_string());
+            }
+
+            if !is_non_numeric_atom(child_items(project_child).get(1), raw) {
+                return Err("invalid project instance path".to_string());
+            }
+
+            for path_child in child_items(project_child).iter().skip(1) {
+                if !matches!(path_child, Node::List { .. }) {
+                    continue;
+                }
+
+                match head_of(path_child) {
+                    Some("page") if !is_non_numeric_atom(child_items(path_child).get(1), raw) => {
+                        return Err("invalid project instance page".to_string());
+                    }
+                    Some("page") => {}
+                    Some("variant") => validate_variant(raw, path_child)?,
+                    _ => return Err("invalid project instance child".to_string()),
+                }
+            }
+        }
+    }
+
+    Ok(())
+}
+
 fn validate_variant(raw: &str, node: &Node) -> Result<(), String> {
     for child in child_items(node).iter().skip(1) {
         match head_of(child) {
-            Some("name") if !matches!(child_items(child).get(1), Some(Node::Atom { .. })) => {
-                return Err("invalid variant name".to_string());
-            }
-            Some("name") => {}
+            Some("name") => match child_items(child).get(1) {
+                Some(Node::Atom {
+                    atom: Atom::Symbol(_),
+                    span,
+                }) if raw_token_is_numeric(raw, *span) => {
+                    return Err("invalid variant name".to_string());
+                }
+                Some(Node::Atom { .. }) => {}
+                _ => return Err("invalid variant name".to_string()),
+            },
             Some("dnp" | "exclude_from_sim" | "in_bom" | "on_board" | "in_pos_files") => {
                 validate_bool_flag(child, false, "invalid variant boolean flag")?;
             }
@@ -2291,20 +2191,19 @@ fn validate_variant(raw: &str, node: &Node) -> Result<(), String> {
 fn validate_variant_field(raw: &str, node: &Node) -> Result<(), String> {
     for child in child_items(node).iter().skip(1) {
         match head_of(child) {
-            Some("name" | "value") if child_items(child).get(1).is_none() => {
-                return Err("invalid variant field".to_string());
-            }
-            Some("name" | "value") => {
-                if let Some(Node::Atom {
+            Some("name" | "value") => match child_items(child).get(1) {
+                Some(Node::Atom {
                     atom: Atom::Symbol(_),
                     span,
-                }) = child_items(child).get(1)
-                {
-                    if raw_token_is_numeric(raw, *span) {
-                        return Err("invalid variant field".to_string());
-                    }
+                }) if raw_token_is_numeric(raw, *span) => {
+                    return Err("invalid variant field".to_string());
                 }
-            }
+                Some(Node::Atom {
+                    atom: Atom::Symbol(_),
+                    ..
+                }) => {}
+                _ => return Err("invalid variant field".to_string()),
+            },
             _ => return Err("invalid variant field child".to_string()),
         }
     }
@@ -2349,6 +2248,16 @@ fn nth_atom_string(node: &Node, index: usize) -> Option<String> {
         }) => Some(value.clone()),
         _ => None,
     }
+}
+
+fn property_name(node: &Node) -> Option<String> {
+    let name_index = if nth_atom_string(node, 1).as_deref() == Some("private") {
+        2
+    } else {
+        1
+    };
+
+    nth_atom_string(node, name_index)
 }
 
 fn list_has_exact_atom_arity(node: &Node, atom_count: usize) -> bool {
@@ -2405,7 +2314,7 @@ fn atom_string(node: &Node) -> Option<&str> {
 
 #[cfg(test)]
 mod tests {
-    use super::{preflight, validate_effects};
+    use super::{preflight, validate_effects, validate_fill};
     use kiutils_sexpr::{parse_one, Node};
     use std::fs;
 
@@ -2444,10 +2353,25 @@ mod tests {
     }
 
     #[test]
+    fn preflight_accepts_legacy_sheet_name_alias() {
+        let path = "tests/fixtures/extract_parity/sheet_legacy_sheet_name_bare_show_name/sheet_legacy_sheet_name_bare_show_name.kicad_sch";
+        let result = preflight(path);
+        assert!(result.is_ok(), "{result:?}");
+    }
+
+    #[test]
     fn validate_effects_accepts_simple_font_size() {
         let cst = parse_one("(effects (font (size 1.27 1.27)))").unwrap();
         let effects = &cst.nodes[0];
         let result = validate_effects(effects);
+        assert!(result.is_ok(), "{result:?}");
+    }
+
+    #[test]
+    fn validate_fill_accepts_color_only() {
+        let cst = parse_one("(fill (color 0 0 0 0))").unwrap();
+        let fill = &cst.nodes[0];
+        let result = validate_fill(fill);
         assert!(result.is_ok(), "{result:?}");
     }
 

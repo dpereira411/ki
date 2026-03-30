@@ -65,7 +65,10 @@ fn has_duplicate_sheet_names(path: &str) -> Result<bool, String> {
             .iter()
             .find(|child| {
                 head_of(child) == Some("property")
-                    && nth_atom_string(child, 1).as_deref() == Some("Sheetname")
+                    && matches!(
+                        nth_atom_string(child, 1).as_deref(),
+                        Some("Sheetname" | "Sheet name")
+                    )
             })
             .and_then(|property| nth_atom_string(property, 2))
             .filter(|value| !value.is_empty())
