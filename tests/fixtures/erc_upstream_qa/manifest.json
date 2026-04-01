@@ -745,15 +745,21 @@
       "mode": "exact",
       "note": "Exact upstream equality regression"
     },
-    {
-      "id": "issue17771_sub3",
-      "relative_path": "issue17771/sub3.kicad_sch",
-      "mode": "exact",
-      "note": "Exact upstream equality regression"
-    },
-    {
-      "id": "test_hier_renaming_led_matrix_x6",
-      "relative_path": "netlists/test_hier_renaming/LED_matrix_x6.kicad_sch",
+      {
+        "id": "issue17771_sub3",
+        "relative_path": "issue17771/sub3.kicad_sch",
+        "mode": "exact",
+        "note": "Exact upstream equality regression"
+      },
+      {
+        "id": "issue17870",
+        "relative_path": "issue17870.kicad_sch",
+        "mode": "exact",
+        "note": "Exact upstream equality regression"
+      },
+      {
+        "id": "test_hier_renaming_led_matrix_x6",
+        "relative_path": "netlists/test_hier_renaming/LED_matrix_x6.kicad_sch",
       "mode": "exact",
       "note": "Exact upstream equality regression"
     },

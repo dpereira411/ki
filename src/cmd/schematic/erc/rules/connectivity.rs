@@ -1,13 +1,15 @@
 use std::collections::{BTreeMap, BTreeSet, HashMap, HashSet};
 
 use crate::schematic::render::{
-    embedded_symbol_for, pins_are_stacked, ParsedSchema, PhysicalGroup, PinNode, ResolvedNet,
+    embedded_symbol_for, pins_are_stacked, ParsedSchema, PhysicalGroup, PinNode, Point,
+    ResolvedNet,
 };
 
 use super::super::connectivity::{
     bus_members_for_name_with_aliases, bus_name_for_entry, bus_segment_for_entry,
-    format_bus_item_description, looks_like_bus_name, net_name_for_bus_entry,
-    pin_library_is_power, power_kind_for_pin,
+    connected_bus_segments, connected_wire_segments, format_bus_item_description,
+    looks_like_bus_name, net_name_for_bus_entry, pin_library_is_power, power_kind_for_pin,
+    segment_key,
 };
 use super::super::format::{
     duplicate_pin_fallback_net_name,
@@ -254,12 +256,23 @@ pub(crate) fn bus_to_net_conflict_violations(
         return Vec::new();
     };
 
+    let net_segment_conflicts = nets
+        .iter()
+        .filter_map(|net| mixed_bus_net_segment_conflict(net, schema, severity))
+        .collect::<Vec<_>>();
+
     let mut pending = schema
         .buses
         .iter()
         .filter_map(|bus| {
             let wire = schema.wires.iter().find(|wire| segments_touch(bus, wire))?;
             if bus_wire_touch_is_via_bus_entry(bus, wire, schema) {
+                return None;
+            }
+            if net_segment_conflicts.iter().any(|conflict| {
+                conflict.wire_segments.contains(&segment_key(wire))
+                    && conflict.bus_segments.contains(&segment_key(bus))
+            }) {
                 return None;
             }
             let (wire_x_mm, wire_y_mm) = segment_anchor_mm(wire);
@@ -276,6 +289,8 @@ pub(crate) fn bus_to_net_conflict_violations(
             ))
         })
         .collect::<Vec<_>>();
+
+    pending.extend(net_segment_conflicts.into_iter().map(|conflict| conflict.violation));
 
     pending.extend(nets.iter().filter_map(|net| {
         let bus_label = net.labels.iter().find(|label| {
@@ -300,6 +315,83 @@ pub(crate) fn bus_to_net_conflict_violations(
     }));
 
     pending
+}
+
+struct MixedBusNetSegmentConflict {
+    violation: PendingViolation,
+    wire_segments: BTreeSet<(Point, Point)>,
+    bus_segments: BTreeSet<(Point, Point)>,
+}
+
+fn mixed_bus_net_segment_conflict(
+    net: &ResolvedNet,
+    schema: &ParsedSchema,
+    severity: Severity,
+) -> Option<MixedBusNetSegmentConflict> {
+    let wire_segments = net
+        .nodes
+        .iter()
+        .filter(|pin| schema.wires.iter().any(|segment| point_on_segment(pin.point, segment)))
+        .flat_map(|pin| connected_wire_segments(pin.point, schema))
+        .chain(net.labels.iter().flat_map(|label| {
+            schema
+                .wires
+                .iter()
+                .any(|segment| point_on_segment(label.point, segment))
+                .then(|| connected_wire_segments(label.point, schema))
+                .into_iter()
+                .flatten()
+        }))
+        .collect::<Vec<_>>();
+
+    let bus_segments = net
+        .nodes
+        .iter()
+        .filter(|pin| schema.buses.iter().any(|segment| point_on_segment(pin.point, segment)))
+        .flat_map(|pin| connected_bus_segments(pin.point, schema))
+        .chain(net.labels.iter().flat_map(|label| {
+            schema
+                .buses
+                .iter()
+                .any(|segment| point_on_segment(label.point, segment))
+                .then(|| connected_bus_segments(label.point, schema))
+                .into_iter()
+                .flatten()
+        }))
+        .collect::<Vec<_>>();
+
+    let wire = schema
+        .wires
+        .iter()
+        .find(|candidate| {
+            wire_segments
+                .iter()
+                .any(|segment| segment_key(segment) == segment_key(candidate))
+        })
+        ?;
+    let bus = schema
+        .buses
+        .iter()
+        .find(|candidate| {
+            bus_segments
+                .iter()
+                .any(|segment| segment_key(segment) == segment_key(candidate))
+        })
+        .cloned()?;
+
+    Some(MixedBusNetSegmentConflict {
+        violation: PendingViolation::new(
+            severity,
+            "bus_to_net_conflict",
+            "Invalid connection between bus and net items",
+            vec![
+                segment_item(&wire, segment_anchor_mm(&wire).0, segment_anchor_mm(&wire).1),
+                bus_item(&bus, segment_anchor_mm(&bus).0, segment_anchor_mm(&bus).1),
+            ],
+        ),
+        wire_segments: wire_segments.iter().map(segment_key).collect(),
+        bus_segments: bus_segments.iter().map(segment_key).collect(),
+    })
 }
 
 fn bus_wire_touch_is_via_bus_entry(bus: &crate::schematic::render::Segment, wire: &crate::schematic::render::Segment, schema: &ParsedSchema) -> bool {

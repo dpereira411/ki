@@ -762,6 +762,11 @@ fn schematic_erc_matches_upstream_issue17771_sub3_fixture() {
 }
 
 #[test]
+fn schematic_erc_matches_upstream_issue17870_fixture() {
+    assert_exact_upstream_erc_match(&upstream_erc_fixture("issue17870.kicad_sch"));
+}
+
+#[test]
 fn schematic_erc_matches_upstream_erc_wire_endpoints_fixture() {
     let schematic = upstream_erc_fixture("erc_wire_endpoints.kicad_sch");
     if !schematic.exists() {

@@ -2100,7 +2100,7 @@ mod tests {
 
     use crate::extract::sym_lib;
 
-    use super::{parse_schema, resolve_nets, resolve_physical_groups};
+    use super::parse_schema;
 
     #[test]
     fn parse_schema_handles_extract_resistor_gnd_fixture() {
@@ -2482,88 +2482,6 @@ mod tests {
         assert!(power02_pin.drives_net);
         assert!(power03_pin.drives_net);
         assert!(power04_pin.drives_net);
-    }
-
-    #[test]
-    fn debug_issue17870_groups() {
-        let path = "/Users/Daniel/Desktop/kicad/qa/data/eeschema/issue17870.kicad_sch";
-        let parsed = parse_schema(path, None).expect("schema should parse");
-        let groups = resolve_physical_groups(&parsed);
-        let nets = resolve_nets(&parsed);
-
-        for group in &groups {
-            let interesting = group.nodes.iter().any(|pin| {
-                matches!(
-                    pin.reference.as_str(),
-                    "#PWR01" | "#PWR02" | "#PWR03" | "#PWR04" | "#PWR08"
-                )
-            });
-
-            if !interesting {
-                continue;
-            }
-
-            println!("GROUP");
-            for pin in &group.nodes {
-                println!(
-                    "  pin {} {} point=({}, {}) type={:?} drives={}",
-                    pin.reference,
-                    pin.pin,
-                    pin.point.x,
-                    pin.point.y,
-                    pin.pin_type,
-                    pin.drives_net
-                );
-            }
-            for label in &group.labels {
-                println!(
-                    "  label {} {} point=({}, {})",
-                    label.label_type, label.text, label.point.x, label.point.y
-                );
-            }
-            for segment in &group.segments {
-                println!(
-                    "  segment ({}, {}) -> ({}, {})",
-                    segment.a.x, segment.a.y, segment.b.x, segment.b.y
-                );
-            }
-            for pin in &group.nodes {
-                for bus in parsed
-                    .buses
-                    .iter()
-                    .filter(|segment| super::point_on_segment(pin.point, segment))
-                {
-                    println!(
-                        "  bus-touch {} ({}, {}) -> ({}, {})",
-                        pin.reference, bus.a.x, bus.a.y, bus.b.x, bus.b.y
-                    );
-                }
-            }
-        }
-
-        for net in &nets {
-            let interesting = net.nodes.iter().any(|pin| {
-                matches!(pin.reference.as_str(), "#PWR01" | "#PWR02" | "#PWR08")
-            });
-
-            if !interesting {
-                continue;
-            }
-
-            println!("NET {}", net.name);
-            for pin in &net.nodes {
-                println!(
-                    "  pin {} {} point=({}, {}) type={:?}",
-                    pin.reference, pin.pin, pin.point.x, pin.point.y, pin.pin_type
-                );
-            }
-            for label in &net.labels {
-                println!(
-                    "  label {} {} point=({}, {})",
-                    label.label_type, label.text, label.point.x, label.point.y
-                );
-            }
-        }
     }
 
 }
