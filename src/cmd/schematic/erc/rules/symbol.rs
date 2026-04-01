@@ -164,6 +164,12 @@ fn normalize_signature_node(
         return None;
     }
 
+    if normalize_power
+        && matches!(head, Some("exclude_from_sim") if nth_atom_string(node, 1).as_deref() == Some("no"))
+    {
+        return None;
+    }
+
     if normalize_metadata && head == Some("fill") {
         let is_none = items.iter().any(|child| {
             head_of(child) == Some("type") && nth_atom_string(child, 1).as_deref() == Some("none")
@@ -187,6 +193,9 @@ fn normalize_signature_node(
                 && !(normalize_metadata && head == Some("pin_names")
                     && head_of(child) == Some("hide")
                     && nth_atom_string(child, 1).as_deref() == Some("yes"))
+                && !(normalize_power && head == Some("pin_numbers")
+                    && head_of(child) == Some("hide")
+                    && nth_atom_string(child, 1).as_deref() == Some("yes"))
                 && !(normalize_metadata && head == Some("stroke")
                     && head_of(child) == Some("type")
                     && nth_atom_string(child, 1).as_deref() == Some("default"))
@@ -198,6 +207,20 @@ fn normalize_signature_node(
         .collect::<Vec<_>>();
 
     if normalize_metadata && head == Some("property") {
+        normalized_items.retain(|item| {
+            !matches!(
+                item,
+                Node::Atom {
+                    atom: Atom::Symbol(symbol),
+                    ..
+                } if symbol == "hide"
+            ) && !(head_of(item) == Some("hide")
+                && nth_atom_string(item, 1).as_deref() == Some("yes"))
+        });
+        for item in &mut normalized_items {
+            strip_effects_hide_yes(item);
+        }
+
         if let Some(Node::Atom { atom: Atom::Quoted(name), .. }) = normalized_items.get_mut(1) {
             if name == "ki_description" {
                 *name = "Description".to_string();
@@ -217,16 +240,6 @@ fn normalize_signature_node(
                 if value == "~" {
                     *value = String::new();
                 }
-            }
-        }
-
-        if normalize_power && property_name.as_deref() == Some("Value") {
-            normalized_items.retain(|item| {
-                !(head_of(item) == Some("hide")
-                    && nth_atom_string(item, 1).as_deref() == Some("yes"))
-            });
-            for item in &mut normalized_items {
-                strip_effects_hide_yes(item);
             }
         }
     }
@@ -351,7 +364,13 @@ fn strip_effects_hide_yes(node: &mut Node) {
 
     if head.as_deref() == Some("effects") {
         items.retain(|child| {
-            !(head_of(child) == Some("hide")
+            !matches!(
+                child,
+                Node::Atom {
+                    atom: Atom::Symbol(symbol),
+                    ..
+                } if symbol == "hide"
+            ) && !(head_of(child) == Some("hide")
                 && nth_atom_string(child, 1).as_deref() == Some("yes"))
         });
     }
@@ -449,6 +468,52 @@ mod tests {
         assert_ne!(
             normalize_signature_for_compare(legacy_vcc, true, true, Some("VCC")),
             normalize_signature_for_compare(current_vcc, true, true, Some("VCC"))
+        );
+    }
+
+    #[test]
+    fn issue12814_gnd_signature_matches_global_library_after_compare_normalization() {
+        let path = Path::new("/Users/Daniel/Desktop/kicad/qa/data/eeschema/issue12814_1.kicad_sch");
+        let schema = parse_schema(path.to_string_lossy().as_ref(), None).expect("schema");
+        let embedded = schema
+            .embedded_symbols
+            .get("power:GND")
+            .expect("embedded GND should exist");
+        let libs = load_project_symbol_libraries(path);
+        let external = libs
+            .parts
+            .get(&(String::from("power"), String::from("GND")))
+            .expect("global GND should exist");
+
+        let embedded = normalize_signature_for_compare(&embedded.signature, true, true, Some("GND"));
+        let external = normalize_signature_for_compare(&external.signature, true, true, Some("GND"));
+
+        if embedded != external {
+            eprintln!("embedded:\n{embedded}");
+            eprintln!("external:\n{external}");
+        }
+
+        assert_eq!(embedded, external);
+    }
+
+    #[test]
+    fn potentiometers_gnd_signature_stays_mismatched_after_compare_normalization() {
+        let path =
+            Path::new("/Users/Daniel/Desktop/kicad/qa/data/eeschema/spice_netlists/potentiometers/potentiometers.kicad_sch");
+        let schema = parse_schema(path.to_string_lossy().as_ref(), None).expect("schema");
+        let embedded = schema
+            .embedded_symbols
+            .get("power:GND")
+            .expect("embedded GND should exist");
+        let libs = load_project_symbol_libraries(path);
+        let external = libs
+            .parts
+            .get(&(String::from("power"), String::from("GND")))
+            .expect("global GND should exist");
+
+        assert_ne!(
+            normalize_signature_for_compare(&embedded.signature, true, true, Some("GND")),
+            normalize_signature_for_compare(&external.signature, true, true, Some("GND"))
         );
     }
 }

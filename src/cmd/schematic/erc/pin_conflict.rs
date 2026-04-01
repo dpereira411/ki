@@ -87,6 +87,13 @@ fn upstream_pin_conflict_level(
 pub(super) fn pin_conflict_level(left: &PinNode, right: &PinNode) -> Option<PinConflictLevel> {
     let left_type = pin_electrical_type(left.pin_type.as_deref()?)?;
     let right_type = pin_electrical_type(right.pin_type.as_deref()?)?;
+
+    if matches!(left_type, PinElectricalType::NoConnect)
+        || matches!(right_type, PinElectricalType::NoConnect)
+    {
+        return None;
+    }
+
     upstream_pin_conflict_level(left_type, right_type)
 }
 

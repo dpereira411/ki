@@ -685,6 +685,10 @@ fn build_pin_nodes(
                     .and_then(|name| symbol_name_counts.get(&symbol.order)?.get(name))
                     .is_some_and(|count| *count > 1),
                 drives_net: !pin.hidden
+                    && !matches!(
+                        effective_pin_type.as_deref(),
+                        Some("no_connect" | "not_connected" | "unconnected")
+                    )
                     && (matches!(
                         effective_pin_type.as_deref(),
                         Some("power_in") | Some("power_out")
@@ -1116,10 +1120,11 @@ fn normalize_embedded_symbol_signature_node(
             "Reference"
                 | "Footprint"
                 | "Datasheet"
-                | "ki_description"
-                | "ki_keywords"
                 | "ki_fp_filters"
         ) {
+            return None;
+        }
+        if !preserve_value_property && matches!(key.as_str(), "ki_description" | "ki_keywords") {
             return None;
         }
         if key == "Value" && !preserve_value_property {
@@ -2482,6 +2487,26 @@ mod tests {
         assert!(power02_pin.drives_net);
         assert!(power03_pin.drives_net);
         assert!(power04_pin.drives_net);
+    }
+
+    #[test]
+    fn parse_schema_does_not_treat_no_connect_pins_as_drivers_noconnects() {
+        let path = "/Users/Daniel/Desktop/kicad/qa/data/eeschema/netlists/noconnects/noconnects.kicad_sch";
+        let parsed = parse_schema(path, None).expect("schema should parse");
+
+        let ptnc_pin = parsed
+            .pin_nodes
+            .iter()
+            .find(|pin| pin.reference == "U1" && pin.pin == "16")
+            .expect("PTNC pin should exist");
+        let hidden_nc_pin = parsed
+            .pin_nodes
+            .iter()
+            .find(|pin| pin.reference == "U1" && pin.pin == "15")
+            .expect("hidden NC pin should exist");
+
+        assert!(!ptnc_pin.drives_net);
+        assert!(!hidden_nc_pin.drives_net);
     }
 
 }

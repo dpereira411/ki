@@ -623,10 +623,11 @@ fn normalize_symbol_signature_node(
             "Reference"
                 | "Footprint"
                 | "Datasheet"
-                | "ki_description"
-                | "ki_keywords"
                 | "ki_fp_filters"
         ) {
+            return None;
+        }
+        if !preserve_value_property && matches!(key.as_str(), "ki_description" | "ki_keywords") {
             return None;
         }
         if key == "Value" && !preserve_value_property {

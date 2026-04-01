@@ -462,6 +462,10 @@ pub(crate) fn power_pin_not_driven_violations_with_global_drivers(
 ) -> Vec<PendingViolation> {
     nets.iter()
         .flat_map(|net| {
+            if net.no_connect {
+                return Vec::new();
+            }
+
             let is_power_net = net
                 .nodes
                 .iter()

@@ -297,6 +297,15 @@ pub(super) fn wire_component_has_driver(
     schema: &ParsedSchema,
     attached_points: &[Point],
 ) -> bool {
+    let component_has_no_connect_pin = component.iter().any(|segment| {
+        schema.pin_nodes.iter().any(|pin| {
+            matches!(
+                pin.pin_type.as_deref(),
+                Some("no_connect" | "not_connected" | "unconnected")
+            ) && point_on_segment_local(pin.point, segment)
+        })
+    });
+
     component.iter().any(|segment| {
         schema.pin_nodes.iter().any(|pin| {
             pin.drives_net && (pin.point == segment.a || pin.point == segment.b)
@@ -313,10 +322,11 @@ pub(super) fn wire_component_has_driver(
                     || entry.wire_point == segment.a
                     || entry.wire_point == segment.b
             })
-            || schema
-                .labels
-                .iter()
-                .any(|label| point_on_segment(label.point, segment))
+            || (!component_has_no_connect_pin
+                && schema
+                    .labels
+                    .iter()
+                    .any(|label| point_on_segment(label.point, segment)))
     })
 }
 
