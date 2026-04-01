@@ -91,6 +91,42 @@ fn label_exports_through_sheet_bus(label: &LabelInfo, schema: &ParsedSchema) -> 
     })
 }
 
+fn root_label_isolated(
+    label: &LabelInfo,
+    schema: &ParsedSchema,
+    logical_nets: &[ResolvedNet],
+) -> bool {
+    let Some(net) = logical_nets.iter().find(|net| {
+        net.labels.iter().any(|other| {
+            other.point == label.point
+                && other.label_type == label.label_type
+                && other.text == label.text
+        })
+    }) else {
+        return false;
+    };
+
+    if net.labels.iter().any(|other| {
+        other.point != label.point && looks_like_bus_name(&other.text)
+    }) {
+        return false;
+    }
+
+    if net.nodes.is_empty() && net.labels.len() > 1 {
+        return false;
+    }
+
+    if net.nodes.is_empty() {
+        if connected_pin_like_count_for_label(label, schema) != 1 {
+            return false;
+        }
+
+        return label.label_type == "hierarchical_label";
+    }
+
+    net.nodes.len() == 1
+}
+
 pub(crate) fn collect_root_violations(
     input: &Path,
     schema: &ParsedSchema,
@@ -609,6 +645,10 @@ fn append_misc_root_violations(
                             && other.text == label.text
                     })
                 }) {
+                    if root_label_isolated(label, schema, &logical_nets) {
+                        return false;
+                    }
+
                     return net.nodes.is_empty()
                         && !global_label_has_same_text_local_on_same_wire(label, schema);
                 }
@@ -663,26 +703,7 @@ fn append_misc_root_violations(
             .filter(|label| !label_has_no_connect_across_nets(label, &logical_nets))
             .filter(|label| !looks_like_bus_name(&label.text))
             .filter(|label| !label_exports_through_sheet_bus(label, schema))
-            .filter(|label| {
-                if let Some(net) = logical_nets.iter().find(|net| {
-                    net.labels.iter().any(|other| {
-                        other.point == label.point
-                            && other.label_type == label.label_type
-                            && other.text == label.text
-                    })
-                }) {
-                    if net.labels.iter().any(|other| {
-                        other.point != label.point && looks_like_bus_name(&other.text)
-                    })
-                    {
-                        return false;
-                    }
-
-                    return net.nodes.len() == 1;
-                }
-
-                connected_pin_like_count_for_label(label, schema) == 1
-            })
+            .filter(|label| root_label_isolated(label, schema, &logical_nets))
             .map(|label| PendingViolation {
                 severity: Severity::Warning,
                 description: "Label connected to only one pin".to_string(),

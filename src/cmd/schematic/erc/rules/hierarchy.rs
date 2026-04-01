@@ -581,6 +581,21 @@ fn label_is_bus_member_stub(
         })
 }
 
+fn label_exports_through_sheet_bus_member(
+    label: &crate::schematic::render::LabelInfo,
+    schema: &crate::schematic::render::ParsedSchema,
+    sheet: &SheetRef,
+) -> bool {
+    label.label_type == "label"
+        && label_is_bus_member_stub(label, schema)
+        && sheet.pins.iter().any(|pin| {
+            looks_like_bus_name(pin)
+                && bus_members_for_name_with_aliases(pin, schema).iter().any(|member| {
+                    member == &label.text || member == &format!("/{}", label.text)
+                })
+        })
+}
+
 fn logical_label_net_exports_to_parent(
     label: &crate::schematic::render::LabelInfo,
     schema: &crate::schematic::render::ParsedSchema,
@@ -599,11 +614,13 @@ fn logical_label_net_exports_to_parent(
                 })
             })
             .is_some_and(|net| {
-                net.labels.iter().any(|other| {
-                    other.label_type == "hierarchical_label" && sheet.pins.contains(&other.text)
+                !net.nodes.is_empty()
+                    && net.labels.iter().any(|other| {
+                    other.label_type == "hierarchical_label"
+                        && other.text == label.text
+                        && sheet.pins.contains(&other.text)
                 })
-            })
-            || (allow_bus_member_export && label_is_bus_member_stub(label, schema));
+            });
     }
 
     if !allow_bus_member_export
@@ -991,7 +1008,17 @@ fn collect_hierarchical_sheet_violations(
         let child_logical_nets = resolve_nets(&child_schema);
         let allow_bus_member_export =
             repeated_files.get(&sheet.file).copied().unwrap_or(0) <= 1;
+        let parent_has_expanded_bus_members =
+            parent_has_expanded_bus_member_labels_for_sheet(&parent_schema, &sheet);
+        let label_exports_through_sheet_bus = |label: &crate::schematic::render::LabelInfo| {
+            allow_bus_member_export
+                && label_exports_through_sheet_bus_member(label, &child_schema, &sheet)
+        };
         let label_has_single_pin_like_connection = |label: &crate::schematic::render::LabelInfo| {
+            if label_exports_through_sheet_bus(label) {
+                return true;
+            }
+
             if let Some(net) = child_logical_nets.iter().find(|net| {
                 net.labels.iter().any(|other| {
                     other.point == label.point
@@ -999,7 +1026,15 @@ fn collect_hierarchical_sheet_violations(
                         && other.text == label.text
                 })
             }) {
-                return net.nodes.len() == 1;
+                if net.nodes.is_empty()
+                    && net.labels.len() > 1
+                    && !net.labels.iter().any(|other| {
+                        other.point != label.point && looks_like_bus_name(&other.text)
+                    })
+                    && !label_exports_through_sheet_bus(label)
+                {
+                    return false;
+                }
             }
 
             connected_pin_like_count_for_label(label, &child_schema) == 1
@@ -1102,9 +1137,7 @@ fn collect_hierarchical_sheet_violations(
         let mut root_violations = Vec::new();
 
         if !sheet.uses_prefixed_bus_alias_pins() || !parent_has_multiple_bus_sheets {
-            root_violations.extend(isolated_hier_labels.iter().filter(|label| {
-                !sheet.pins.contains(&label.text)
-            }).map(|label| {
+            root_violations.extend(isolated_hier_labels.iter().map(|label| {
                 PendingViolation::single(
                     Severity::Warning,
                     "isolated_pin_label",
@@ -1120,6 +1153,8 @@ fn collect_hierarchical_sheet_violations(
                     &child_schema,
                     parent_has_multiple_bus_sheets,
                 ) || label_net_exports_to_parent(label)
+                    || (parent_has_expanded_bus_members
+                        && label_is_bus_member_stub(label, &child_schema))
                     || child_has_prefixed_descendants
                     || (child_has_prefixed_descendants
                         && label_is_bus_member_stub(label, &child_schema))
@@ -1158,6 +1193,9 @@ fn collect_hierarchical_sheet_violations(
                 &sheet,
                 allow_bus_member_export,
             )
+                && !(parent_has_expanded_bus_members
+                    && label.label_type == "label"
+                    && label_is_bus_member_stub(label, &child_schema))
                 && !child_logical_nets.iter().any(|net| {
                     net.labels.iter().any(|other| {
                         other.point == label.point
@@ -1503,21 +1541,19 @@ fn collect_descendant_sheet_violations(
             })
             .collect::<Vec<_>>()
         }));
-        if current_sheet_path == "/" && parent_has_multiple_bus_sheets {
-            root_violations.extend(
-                lib_symbol_mismatch_violations(
-                    &child_schema,
-                    &child_symbol_libs,
-                    project_rule_severities,
-                )
-                    .into_iter()
-                    .filter(|violation| {
-                        helper_power_symbol_label(violation).is_some_and(|label| {
-                            grouped_global_power_violations.contains_key(&label)
-                        })
-                    }),
-            );
-        }
+        root_violations.extend(
+            lib_symbol_mismatch_violations(
+                &child_schema,
+                &child_symbol_libs,
+                project_rule_severities,
+            )
+                .into_iter()
+                .filter(|violation| {
+                    helper_power_symbol_label(violation).is_some_and(|label| {
+                        grouped_global_power_violations.contains_key(&label)
+                    })
+                }),
+        );
         if !root_violations.is_empty() {
             root_screen_violations.insert(child_path.to_string_lossy().into_owned(), root_violations);
         }
