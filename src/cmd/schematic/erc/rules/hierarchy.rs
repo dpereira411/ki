@@ -1167,6 +1167,20 @@ fn collect_hierarchical_sheet_violations(
                 allow_bus_member_export,
             )
         };
+        let root_hier_label_is_represented_by_parent = |label: &crate::schematic::render::LabelInfo| {
+            current_sheet_path == "/"
+                && sheet.pins.contains(&label.text)
+                && child_logical_nets
+                    .iter()
+                    .find(|net| {
+                        net.labels.iter().any(|other| {
+                            other.point == label.point
+                                && other.label_type == label.label_type
+                                && other.text == label.text
+                        })
+                    })
+                    .is_some_and(|net| !net.nodes.is_empty())
+        };
         let isolated_hier_labels = child_schema
             .labels
             .iter()
@@ -1259,6 +1273,7 @@ fn collect_hierarchical_sheet_violations(
         if !sheet.uses_prefixed_bus_alias_pins() || !parent_has_multiple_bus_sheets {
             root_violations.extend(isolated_hier_labels.iter().filter(|label| {
                 !label_net_exports_to_parent(label)
+                    && !root_hier_label_is_represented_by_parent(label)
             }).map(|label| {
                 PendingViolation::single(
                     Severity::Warning,
