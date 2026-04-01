@@ -969,6 +969,13 @@ fn schematic_erc_matches_upstream_test_global_promotion_2_subsheet_fixture() {
 }
 
 #[test]
+fn schematic_erc_matches_upstream_test_global_promotion_2_fixture_exactly() {
+    assert_exact_upstream_erc_match(&upstream_erc_project(
+        "netlists/test_global_promotion_2/test_global_promotion_2.kicad_sch",
+    ));
+}
+
+#[test]
 fn schematic_erc_matches_upstream_issue14818_sub_fixture() {
     assert_exact_upstream_erc_match(&upstream_erc_fixture(
         "netlists/issue14818/issue14818_sub.kicad_sch",

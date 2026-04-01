@@ -132,6 +132,10 @@ fn root_label_isolated(
         return label.label_type == "hierarchical_label";
     }
 
+    if connected_pin_like_count_for_label(label, schema) != 1 {
+        return false;
+    }
+
     net.nodes.len() == 1
 }
 
