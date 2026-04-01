@@ -1109,9 +1109,10 @@ fn collect_hierarchical_sheet_violations(
             .collect::<Vec<_>>();
         let dangling_segments = dangling_labels
             .iter()
+            .filter(|_| sheet.uses_prefixed_bus_alias_pins())
+            .filter(|label| label_is_bus_member_stub(label, &child_schema))
             .flat_map(|label| connected_wire_segments(label.point, &child_schema))
             .map(|segment| segment_key(&segment))
-            .filter(|_| sheet.uses_prefixed_bus_alias_pins())
             .collect::<BTreeSet<_>>();
 
         out.entry(child_sheet_path.clone()).or_default().extend(

@@ -788,6 +788,22 @@ fn schematic_erc_matches_upstream_issue17771_sub3_fixture() {
 }
 
 #[test]
+fn schematic_erc_matches_upstream_issue17771_fixture_exactly() {
+    let schematic = upstream_erc_project("issue17771/issue1771.kicad_sch");
+    let oracle_path = upstream_erc_oracle("issue17771/issue1771.erc.json");
+
+    if !schematic.exists() || !oracle_path.exists() {
+        return;
+    }
+
+    let oracle = load_oracle(&oracle_path);
+    let native = ki_erc_json(&schematic, &[]);
+
+    assert_eq!(native.exit_code, oracle.exit_code);
+    assert_eq!(native.report, oracle.report);
+}
+
+#[test]
 fn schematic_erc_matches_upstream_issue17870_fixture() {
     assert_exact_upstream_erc_match(&upstream_erc_fixture("issue17870.kicad_sch"));
 }
