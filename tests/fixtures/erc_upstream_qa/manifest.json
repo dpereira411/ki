@@ -780,6 +780,18 @@
       "relative_path": "spice_netlists/npn_ce_amp/npn_ce_amp.kicad_sch",
       "mode": "exact",
       "note": "Exact upstream equality regression"
+    },
+    {
+      "id": "spice_netlists_cmos_not",
+      "relative_path": "spice_netlists/cmos_not/cmos_not.kicad_sch",
+      "mode": "exact",
+      "note": "Exact upstream equality regression"
+    },
+    {
+      "id": "spice_netlists_rectifier",
+      "relative_path": "spice_netlists/rectifier/rectifier.kicad_sch",
+      "mode": "exact",
+      "note": "Exact upstream equality regression"
     }
   ]
 }

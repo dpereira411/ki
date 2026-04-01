@@ -376,7 +376,9 @@ pub(crate) fn collect_root_violations(
             .properties
             .iter()
             .filter(|property| !property.name.starts_with("Sim."))
-            .filter(|property| property_contains_unresolved_variable(&property.value))
+            .filter(|property| {
+                property_contains_unresolved_variable(&property.value, &symbol.properties)
+            })
             .map(|_| PendingViolation {
                 severity: Severity::Error,
                 description: "Unresolved text variable".to_string(),

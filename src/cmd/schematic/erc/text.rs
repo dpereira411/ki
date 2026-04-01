@@ -1,4 +1,5 @@
 use crate::cmd::schematic::erc::Severity;
+use crate::extract::model::Property;
 
 pub(crate) struct ErcAssertion {
     pub(crate) severity: Severity,
@@ -6,10 +7,16 @@ pub(crate) struct ErcAssertion {
     pub(crate) violation_type: &'static str,
 }
 
-pub(crate) fn property_contains_unresolved_variable(value: &str) -> bool {
+pub(crate) fn property_contains_unresolved_variable(
+    value: &str,
+    symbol_properties: &[Property],
+) -> bool {
     value.contains("${")
         && parse_erc_assertion(value).is_none()
-        && !contains_supported_text_variable(value)
+        && unresolved_variable_names(value).into_iter().any(|name| {
+            !contains_supported_text_variable_name(name)
+                && !symbol_properties.iter().any(|property| property.name == name)
+        })
 }
 
 pub(crate) fn parse_erc_assertion(value: &str) -> Option<ErcAssertion> {
@@ -79,10 +86,27 @@ pub(crate) fn resembles_invalid_stacked_pin(pin: &str) -> bool {
     !saw_any
 }
 
-fn contains_supported_text_variable(value: &str) -> bool {
-    const KNOWN: &[&str] = &["${INTERSHEET_REFS}", "${SHEETNAME}", "${SHEETPATH}", "${#}"];
+fn unresolved_variable_names(value: &str) -> Vec<&str> {
+    let mut names = Vec::new();
+    let mut rest = value;
 
-    KNOWN.iter().any(|known| value.contains(known))
+    while let Some(start) = rest.find("${") {
+        let after_start = &rest[start + 2..];
+        let Some(end) = after_start.find('}') else {
+            break;
+        };
+        let name = after_start[..end].trim();
+        if !name.is_empty() {
+            names.push(name);
+        }
+        rest = &after_start[end + 1..];
+    }
+
+    names
+}
+
+fn contains_supported_text_variable_name(name: &str) -> bool {
+    matches!(name, "INTERSHEET_REFS" | "SHEETNAME" | "SHEETPATH" | "#")
 }
 
 fn parse_alphanumeric_pin(text: &str) -> (String, Option<i64>) {
@@ -98,4 +122,43 @@ fn parse_alphanumeric_pin(text: &str) -> (String, Option<i64>) {
     }
 
     (prefix.to_string(), number.parse::<i64>().ok())
+}
+
+#[cfg(test)]
+mod tests {
+    use super::property_contains_unresolved_variable;
+    use crate::extract::model::Property;
+
+    fn property(name: &str, value: &str) -> Property {
+        Property {
+            name: name.to_string(),
+            value: value.to_string(),
+            x: None,
+            y: None,
+        }
+    }
+
+    #[test]
+    fn symbol_property_references_are_not_unresolved_variables() {
+        let properties = vec![
+            property("Value", "${Sim.Device} ${Sim.Type}"),
+            property("Sim.Device", "V"),
+            property("Sim.Type", "SIN"),
+        ];
+
+        assert!(!property_contains_unresolved_variable(
+            "${Sim.Device} ${Sim.Type}",
+            &properties,
+        ));
+    }
+
+    #[test]
+    fn missing_symbol_property_references_still_report_unresolved_variables() {
+        let properties = vec![property("Value", "${Sim.Device} ${Sim.Kind}")];
+
+        assert!(property_contains_unresolved_variable(
+            "${Sim.Device} ${Sim.Kind}",
+            &properties,
+        ));
+    }
 }
