@@ -26,15 +26,6 @@ pub(crate) fn format_label_item_description(label: &LabelInfo) -> String {
     }
 }
 
-pub(crate) fn format_units_list(units: &[i32]) -> String {
-    let names = units
-        .iter()
-        .map(|unit| unit_suffix(*unit))
-        .collect::<Vec<_>>()
-        .join(", ");
-    format!("[ {names} ]")
-}
-
 pub(crate) fn duplicate_pin_fallback_net_name(pin: &PinNode, no_connect: bool) -> String {
     let prefix = if no_connect { "unconnected-(" } else { "Net-(" };
 

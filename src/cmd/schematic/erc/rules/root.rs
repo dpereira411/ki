@@ -23,7 +23,7 @@ use super::super::connectivity::{
 };
 use super::super::format::{
     format_label_item_description, format_pin_item_description, format_pin_type_name,
-    format_symbol_item_description, format_units_list, unit_suffix,
+    format_symbol_item_description, unit_suffix,
 };
 use super::super::hierarchy::FootprintLibraryIndex;
 use super::super::geom::{point_on_segment, same_segment, segment_anchor_mm, segment_length_mm};
@@ -463,6 +463,9 @@ fn append_multi_unit_violations(pending: &mut Vec<PendingViolation>, schema: &Pa
         let missing_units = (1..=embedded.unit_count)
             .filter(|unit| !present_units.contains(unit))
             .collect::<Vec<_>>();
+        let format_missing_units = |units: &[i32]| {
+            format_embedded_units_list(units, &embedded.unit_names)
+        };
 
         let mut footprint_symbols = symbols
             .iter()
@@ -512,7 +515,7 @@ fn append_multi_unit_violations(pending: &mut Vec<PendingViolation>, schema: &Pa
             description: format!(
                 "Symbol {} has unplaced units {}",
                 representative.reference,
-                format_units_list(&missing_units)
+                format_missing_units(&missing_units)
             ),
             violation_type: "missing_unit".to_string(),
             items: vec![PendingItem::from_point(
@@ -551,7 +554,7 @@ fn append_multi_unit_violations(pending: &mut Vec<PendingViolation>, schema: &Pa
                     "Symbol {} has {} in units {} that are not placed",
                     representative.reference,
                     description,
-                    format_units_list(units)
+                    format_missing_units(units)
                 ),
                 violation_type: violation_type.to_string(),
                 items: vec![PendingItem::from_point(
@@ -561,6 +564,27 @@ fn append_multi_unit_violations(pending: &mut Vec<PendingViolation>, schema: &Pa
             });
         }
     }
+}
+
+fn format_embedded_units_list(units: &[i32], unit_names: &BTreeMap<i32, String>) -> String {
+    let mut names = Vec::new();
+
+    for (idx, unit) in units.iter().enumerate() {
+        if idx == 3 {
+            names.push(".".to_string());
+            break;
+        }
+
+        names.push(
+            unit_names
+                .get(unit)
+                .cloned()
+                .unwrap_or_else(|| unit_suffix(*unit)),
+        );
+    }
+
+    let names = names.join(", ");
+    format!("[ {names} ]")
 }
 
 fn append_misc_root_violations(

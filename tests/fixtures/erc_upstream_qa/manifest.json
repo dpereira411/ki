@@ -828,6 +828,12 @@
       "relative_path": "netlists/test_global_promotion_2/test_global_promotion_2.kicad_sch",
       "mode": "exact",
       "note": "Exact upstream equality regression"
+    },
+    {
+      "id": "issue21980",
+      "relative_path": "issue21980/issue21980.kicad_sch",
+      "mode": "exact",
+      "note": "Exact upstream equality regression"
     }
   ]
 }

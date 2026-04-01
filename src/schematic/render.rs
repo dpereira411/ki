@@ -176,6 +176,7 @@ pub(crate) struct EmbeddedSymbol {
     pub(crate) power_kind: Option<String>,
     pub(crate) duplicate_pin_numbers_are_jumpers: bool,
     pub(crate) unit_count: i32,
+    pub(crate) unit_names: BTreeMap<i32, String>,
     pub(crate) description: Option<String>,
     pub(crate) docs: Option<String>,
     pub(crate) footprints: Vec<String>,
@@ -1101,6 +1102,8 @@ fn parse_embedded_symbols(node: &Node) -> HashMap<String, EmbeddedSymbol> {
         let mut pins = Vec::new();
         collect_embedded_pins(child, &local_name, &mut pins);
         let unit_count = collect_embedded_unit_count(child, &local_name).max(1);
+        let mut unit_names = BTreeMap::new();
+        collect_embedded_unit_names(child, &local_name, &mut unit_names);
 
         let embedded = EmbeddedSymbol {
             lib: lib.unwrap_or_default(),
@@ -1109,6 +1112,7 @@ fn parse_embedded_symbols(node: &Node) -> HashMap<String, EmbeddedSymbol> {
             power_kind,
             duplicate_pin_numbers_are_jumpers,
             unit_count,
+            unit_names,
             description,
             docs,
             footprints,
@@ -1489,6 +1493,30 @@ fn collect_embedded_unit_count(node: &Node, local_name: &str) -> i32 {
     }
 
     max_unit
+}
+
+fn collect_embedded_unit_names(node: &Node, local_name: &str, out: &mut BTreeMap<i32, String>) {
+    let Node::List { items, .. } = node else {
+        return;
+    };
+
+    if let Some((unit, _)) = nested_symbol_identity(node, local_name) {
+        if unit > 0 {
+            if let Some(unit_name) = child_items(node).iter().find_map(|child| {
+                (head_of(child) == Some("unit_name"))
+                    .then(|| nth_atom_string(child, 1))
+                    .flatten()
+            }) {
+                out.insert(unit, unit_name);
+            }
+        }
+    }
+
+    for child in items.iter().skip(1) {
+        if head_of(child) == Some("symbol") {
+            collect_embedded_unit_names(child, local_name, out);
+        }
+    }
 }
 
 fn parse_embedded_pin(node: &Node, unit: i32, body_style: i32) -> Option<EmbeddedPin> {
@@ -2187,6 +2215,25 @@ mod tests {
         assert_eq!(
             cmp_reference_designators("U2A", "U2B"),
             std::cmp::Ordering::Less
+        );
+    }
+
+    #[test]
+    fn parse_schema_captures_embedded_unit_names_issue21980() {
+        let path = "/Users/Daniel/Desktop/kicad/qa/data/eeschema/issue21980/issue21980.kicad_sch";
+        let parsed = parse_schema(path, None).expect("schema should parse");
+        let embedded = parsed
+            .embedded_symbols
+            .get("Texas_instrument_Me:LAUNCHXL-F280039C_symbol")
+            .expect("embedded symbol should exist");
+
+        assert_eq!(
+            embedded.unit_names.get(&2).map(String::as_str),
+            Some("TopRight_UnderSide")
+        );
+        assert_eq!(
+            embedded.unit_names.get(&17).map(String::as_str),
+            Some("VREF")
         );
     }
 
