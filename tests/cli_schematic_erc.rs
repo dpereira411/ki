@@ -607,8 +607,13 @@ fn schematic_erc_matches_upstream_issue12814_hierarchical_behavior() {
             .iter()
             .map(|sheet| (sheet.path.as_str(), sheet.violations.len()))
             .collect::<Vec<_>>(),
-        vec![("/", 0), ("/Drive/", 0), ("/Usage/", 0)]
+        vec![("/", 3), ("/Drive/", 0), ("/Usage/", 0)]
     );
+}
+
+#[test]
+fn schematic_erc_matches_upstream_issue12814_fixture_exactly() {
+    assert_exact_upstream_erc_match(&upstream_erc_project("issue12814.kicad_sch"));
 }
 
 #[test]

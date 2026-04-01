@@ -15,8 +15,7 @@ use super::super::connectivity::{
 use super::super::format::{format_pin_item_description, format_pin_type_name};
 use super::super::geom::{point_on_segment, point_on_segment_local, segment_anchor_mm};
 use super::super::hierarchy::{
-    apply_sheet_text_vars, load_project_footprint_libraries, load_project_symbol_libraries,
-    sheet_refs, SheetRef,
+    apply_sheet_text_vars, load_project_footprint_libraries, sheet_refs, SheetRef,
 };
 use super::super::items::{bus_item, label_item, point_item, segment_item};
 use super::super::pin_conflict::{
@@ -1475,7 +1474,7 @@ fn collect_descendant_sheet_violations(
                 &parent_schema,
                 &sheet,
             );
-        let child_symbol_libs = load_project_symbol_libraries(&child_path);
+        let child_symbol_libs = symbol_libs.clone();
         let child_footprint_libs = load_project_footprint_libraries(&child_path);
         let child_nets = resolve_nets(&child_schema);
         let child_physical_groups = resolve_physical_groups(&child_schema);

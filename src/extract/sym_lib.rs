@@ -151,43 +151,9 @@ fn resolve_sym_lib_project_path(schematic_path: &Path) -> Option<PathBuf> {
     let direct_project_path = schematic_path
         .file_stem()
         .and_then(|stem| stem.to_str())
-        .map(|stem| project_dir.join(format!("{stem}.kicad_pro")));
+        .map(|stem| project_dir.join(format!("{stem}.kicad_pro")))?;
 
-    if let Some(path) = direct_project_path.filter(|path| path.exists()) {
-        return Some(path);
-    }
-
-    let mut candidates = std::fs::read_dir(project_dir)
-        .ok()?
-        .filter_map(Result::ok)
-        .map(|entry| entry.path())
-        .filter(|path| path.extension().and_then(|ext| ext.to_str()) == Some("kicad_pro"))
-        .collect::<Vec<_>>();
-    candidates.sort();
-
-    if candidates.len() == 1 {
-        return Some(candidates.remove(0));
-    }
-
-    let child_name = schematic_path.file_name()?.to_str()?;
-    let mut referencing_projects = candidates
-        .into_iter()
-        .filter(|project_path| {
-            let Some(project_stem) = project_path.file_stem().and_then(|stem| stem.to_str()) else {
-                return false;
-            };
-            let schematic_candidate = project_dir.join(format!("{project_stem}.kicad_sch"));
-            let Ok(raw) = std::fs::read_to_string(schematic_candidate) else {
-                return false;
-            };
-
-            raw.contains(&format!("(file \"{child_name}\")"))
-                || raw.contains(&format!("(property \"Sheetfile\" \"{child_name}\""))
-        })
-        .collect::<Vec<_>>();
-    referencing_projects.sort();
-
-    (referencing_projects.len() == 1).then(|| referencing_projects.remove(0))
+    direct_project_path.exists().then_some(direct_project_path)
 }
 
 pub fn load_project_symbol_libraries(
