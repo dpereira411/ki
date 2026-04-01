@@ -539,6 +539,24 @@ fn parent_no_connects_for_sheet_pin(
         .collect()
 }
 
+fn parent_sheet_exposes_matching_hier_label(
+    parent_schema: &crate::schematic::render::ParsedSchema,
+    pin: &crate::cmd::schematic::erc::hierarchy::SheetPinRef,
+) -> bool {
+    let connected_segments = connected_wire_segments(pin.point, parent_schema);
+    if connected_segments.is_empty() {
+        return false;
+    }
+
+    parent_schema.labels.iter().any(|label| {
+        label.label_type == "hierarchical_label"
+            && label.text == pin.name
+            && connected_segments
+                .iter()
+                .any(|segment| point_on_segment_local(label.point, segment))
+    })
+}
+
 fn child_net_has_multiple_unique_pins_for_sheet_pin(
     child_nets: &[crate::schematic::render::ResolvedNet],
     pin_name: &str,
@@ -1169,17 +1187,29 @@ fn collect_hierarchical_sheet_violations(
         };
         let root_hier_label_is_represented_by_parent = |label: &crate::schematic::render::LabelInfo| {
             current_sheet_path == "/"
-                && sheet.pins.contains(&label.text)
-                && child_logical_nets
+                && sheet
+                    .pin_refs
                     .iter()
-                    .find(|net| {
-                        net.labels.iter().any(|other| {
-                            other.point == label.point
-                                && other.label_type == label.label_type
-                                && other.text == label.text
-                        })
+                    .find(|pin| pin.name == label.text)
+                    .is_some_and(|pin| {
+                        let parent_has_hierarchical_labels = parent_schema
+                            .labels
+                            .iter()
+                            .any(|other| other.label_type == "hierarchical_label");
+                        ((!parent_has_hierarchical_labels
+                            && sheet.pins.contains(&label.text))
+                            || parent_sheet_exposes_matching_hier_label(&parent_schema, pin))
+                            && child_logical_nets
+                                .iter()
+                                .find(|net| {
+                                    net.labels.iter().any(|other| {
+                                        other.point == label.point
+                                            && other.label_type == label.label_type
+                                            && other.text == label.text
+                                    })
+                                })
+                                .is_some_and(|net| !net.nodes.is_empty())
                     })
-                    .is_some_and(|net| !net.nodes.is_empty())
         };
         let isolated_hier_labels = child_schema
             .labels
