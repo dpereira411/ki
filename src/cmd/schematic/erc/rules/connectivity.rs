@@ -470,28 +470,6 @@ pub(crate) fn power_pin_not_driven_violations_with_global_drivers(
                 return Vec::new();
             }
 
-            let mut has_other_connections = !net.labels.is_empty() || !net.segments.is_empty();
-
-            if !has_other_connections {
-                let pins = net.nodes.iter().collect::<Vec<_>>();
-
-                if pins.len() > 1 && !pins_are_stacked(&net.nodes) {
-                    has_other_connections = true;
-                }
-            }
-
-            if !has_other_connections {
-                return Vec::new();
-            }
-
-            let has_local_power_driver = net.nodes.iter().any(|node| {
-                node.pin_type.as_deref() == Some("power_out")
-            });
-            let has_external_global_power_driver = externally_driven_global_nets.contains(&net.name)
-                && net
-                    .labels
-                    .iter()
-                    .any(|label| label.label_type == "global_label");
             let pins_needing_drivers = net
                 .nodes
                 .iter()
@@ -509,6 +487,26 @@ pub(crate) fn power_pin_not_driven_violations_with_global_drivers(
                 .copied()
                 .filter(|node| !is_helper_power_symbol(node))
                 .collect::<Vec<_>>();
+
+            let mut has_other_connections = !net.labels.is_empty() || !net.segments.is_empty();
+
+            if !has_other_connections {
+                let pins = net.nodes.iter().collect::<Vec<_>>();
+
+                if pins.len() > 1 && !pins_are_stacked(&net.nodes) {
+                    has_other_connections = true;
+                }
+            }
+
+            if !has_other_connections && non_helper_pins.is_empty() {
+                return Vec::new();
+            }
+
+            let has_local_power_driver = net.nodes.iter().any(|node| {
+                node.pin_type.as_deref() == Some("power_out")
+            });
+            let has_external_global_power_driver =
+                externally_driven_global_nets.contains(&net.name);
 
             if has_local_power_driver || has_external_global_power_driver {
                 return Vec::new();

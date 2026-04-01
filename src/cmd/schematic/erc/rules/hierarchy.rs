@@ -207,7 +207,10 @@ fn helper_power_symbol_label(violation: &PendingViolation) -> Option<String> {
     }
 
     let (_, rest) = item.description.split_once('[')?;
-    let (label, _) = rest.split_once(']')?;
+    let label = rest
+        .split_once(',')
+        .map(|(label, _)| label)
+        .or_else(|| rest.split_once(']').map(|(label, _)| label))?;
     Some(label.trim().to_string())
 }
 
@@ -1370,6 +1373,11 @@ fn collect_descendant_sheet_violations(
                     .entry(label)
                     .and_modify(|(_, grouped)| *grouped = violation.clone())
                     .or_insert_with(|| (child_sheet_path.clone(), violation));
+            } else if violation.violation_type == "pin_not_connected"
+                && helper_power_symbol_label(&violation)
+                    .is_some_and(|label| global_power_drivers.contains(&label))
+            {
+                continue;
             } else if repeated_files.get(&sheet.file).copied().unwrap_or(0) > 1
                 && is_repeated_hierarchical_multiple_net_names(&violation)
             {
