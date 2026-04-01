@@ -1341,6 +1341,15 @@ fn collect_hierarchical_sheet_violations(
                     parent_label.label_type == "global_label"
                         && !is_generated_power_label(parent_label, &parent_schema)
                         && parent_label.text == label.text
+                }) && !child_logical_nets.iter().any(|net| {
+                    net.labels.iter().any(|other| {
+                        other.point == label.point
+                            && other.label_type == label.label_type
+                            && other.text == label.text
+                    }) && net
+                        .nodes
+                        .iter()
+                        .any(crate::cmd::schematic::erc::is_helper_power_symbol)
                 })
             }).map(|label| {
                 PendingViolation::single(
