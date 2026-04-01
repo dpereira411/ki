@@ -80,6 +80,22 @@ pub fn discover_project_sym_libs(schematic_path: &Path, verbose: bool) -> Vec<St
     let Some(project_dir) = schematic_path.parent() else {
         return Vec::new();
     };
+    let has_any_project_file = std::fs::read_dir(project_dir)
+        .ok()
+        .into_iter()
+        .flatten()
+        .filter_map(Result::ok)
+        .map(|entry| entry.path())
+        .any(|path| path.extension().and_then(|ext| ext.to_str()) == Some("kicad_pro"));
+    let direct_project_path = schematic_path
+        .file_stem()
+        .and_then(|stem| stem.to_str())
+        .map(|stem| project_dir.join(format!("{stem}.kicad_pro")));
+
+    if has_any_project_file && !direct_project_path.as_ref().is_some_and(|path| path.exists()) {
+        return Vec::new();
+    }
+
     let table_path = project_dir.join("sym-lib-table");
     if !table_path.exists() {
         return Vec::new();
@@ -896,6 +912,28 @@ mod tests {
         let libs = discover_project_sym_libs(Path::new(path), false);
         enrich(&mut netlist, &libs).expect("sym-lib enrich should succeed");
         diagnostics::collect(path, &netlist).expect("diagnostics should succeed");
+    }
+
+    #[test]
+    fn direct_sym_lib_table_fallback_loads_without_project_file() {
+        let path = concat!(
+            env!("CARGO_MANIFEST_DIR"),
+            "/tests/fixtures/erc_parity/footprint_filter/footprint_filter.kicad_sch"
+        );
+
+        let libs = discover_project_sym_libs(Path::new(path), false);
+
+        assert_eq!(libs.len(), 1);
+        assert!(libs[0].ends_with("LocalLib.kicad_sym"));
+    }
+
+    #[test]
+    fn direct_sym_lib_table_fallback_does_not_cross_into_parent_project() {
+        let path = "/Users/Daniel/Desktop/kicad/qa/data/eeschema/netlists/test_hier_no_connect/sub1.kicad_sch";
+
+        let libs = discover_project_sym_libs(Path::new(path), false);
+
+        assert!(libs.is_empty());
     }
 
     #[test]
