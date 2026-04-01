@@ -608,6 +608,12 @@
       "note": "Exact upstream equality regression"
     },
     {
+      "id": "test_hier_no_connect",
+      "relative_path": "netlists/test_hier_no_connect/test_hier_no_connect.kicad_sch",
+      "mode": "exact",
+      "note": "Exact upstream equality regression"
+    },
+    {
       "id": "test_multiunit_reannotate_2",
       "relative_path": "netlists/test_multiunit_reannotate_2/test_multiunit_reannotate_2.kicad_sch",
       "mode": "exact",

@@ -13,8 +13,7 @@ use crate::schematic::render::{
 use super::super::connectivity::{
     bus_members_for_name_with_aliases, connected_bus_segments, connected_pin_like_count_for_label,
     connected_pins_for_no_connect,
-    connected_wire_segments,
-    connected_pins_for_no_connect_across_nets,
+    connected_wire_segments, unique_no_connect_pins_across_nets,
     dangling_segment_endpoint_count, format_segment_item_description, is_dangling_label,
     is_dangling_logical_label, is_dangling_no_connect, label_has_no_connect,
     label_has_no_connect_across_nets,
@@ -955,39 +954,51 @@ fn append_misc_root_violations(
             });
         }
 
-        let connected_pins =
-            connected_pins_for_no_connect_across_nets(*point, schema, &logical_nets);
-        let connected_pins = if connected_pins.is_empty() {
-            connected_pins_for_no_connect(*point, schema)
-                .into_iter()
-                .cloned()
-                .collect()
-        } else {
-            connected_pins
-        };
-        if connected_pins.len() <= 1 {
+        let unique_connected_pins =
+            unique_no_connect_pins_across_nets(*point, schema, &logical_nets);
+        if unique_connected_pins.len() <= 1 {
             return None;
         }
-        let primary_pin = connected_pins
+
+        let mut direct_connected_pins = Vec::new();
+        for candidate in connected_pins_for_no_connect(*point, schema) {
+            if direct_connected_pins.iter().any(|other: &&PinNode| {
+                other.reference == candidate.reference && other.point == candidate.point
+            }) {
+                continue;
+            }
+
+            direct_connected_pins.push(candidate);
+        }
+
+        let primary_pin = direct_connected_pins
             .iter()
             .find(|pin| pin.point == *point)
             .or_else(|| {
-                connected_pins.iter().max_by_key(|pin| {
+                direct_connected_pins.iter().max_by_key(|pin| {
                     let dx = pin.point.x - point.x;
                     let dy = pin.point.y - point.y;
                     dx * dx + dy * dy
                 })
-            })
-            .unwrap_or(&connected_pins[0]);
+            });
 
-        Some(PendingViolation {
-            severity: Severity::Warning,
-            description: "A pin with a \"no connection\" flag is connected".to_string(),
-            violation_type: "no_connect_connected".to_string(),
-            items: vec![
-                PendingItem::from_point(format_pin_item_description(primary_pin), primary_pin.point),
-                PendingItem::from_point("No Connect", *point),
-            ],
+        Some(if let Some(primary_pin) = primary_pin {
+            PendingViolation {
+                severity: Severity::Warning,
+                description: "A pin with a \"no connection\" flag is connected".to_string(),
+                violation_type: "no_connect_connected".to_string(),
+                items: vec![
+                    PendingItem::from_point(format_pin_item_description(primary_pin), primary_pin.point),
+                    PendingItem::from_point("No Connect", *point),
+                ],
+            }
+        } else {
+            PendingViolation {
+                severity: Severity::Warning,
+                description: "A pin with a \"no connection\" flag is connected".to_string(),
+                violation_type: "no_connect_connected".to_string(),
+                items: vec![PendingItem::from_point("No Connect", *point)],
+            }
         })
     }));
 

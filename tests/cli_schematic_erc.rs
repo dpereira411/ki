@@ -1077,6 +1077,13 @@ fn schematic_erc_matches_upstream_test_hier_no_connect_sub3_fixture() {
 }
 
 #[test]
+fn schematic_erc_matches_upstream_test_hier_no_connect_fixture() {
+    assert_exact_upstream_erc_match(&upstream_erc_fixture(
+        "netlists/test_hier_no_connect/test_hier_no_connect.kicad_sch",
+    ));
+}
+
+#[test]
 fn schematic_erc_matches_upstream_test_multiunit_reannotate_2_fixture() {
     assert_exact_upstream_erc_match(&upstream_erc_fixture(
         "netlists/test_multiunit_reannotate_2/test_multiunit_reannotate_2.kicad_sch",

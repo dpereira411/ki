@@ -236,6 +236,24 @@ pub(super) fn connected_pins_for_no_connect_across_nets(
     pins
 }
 
+pub(super) fn unique_no_connect_pins_across_nets(
+    point: Point,
+    schema: &ParsedSchema,
+    nets: &[ResolvedNet],
+) -> Vec<PinNode> {
+    let mut pins = connected_pins_for_no_connect_across_nets(point, schema, nets);
+    pins.sort_by(|a, b| {
+        a.reference
+            .cmp(&b.reference)
+            .then_with(|| a.point.x.cmp(&b.point.x))
+            .then_with(|| a.point.y.cmp(&b.point.y))
+            .then_with(|| a.pin.cmp(&b.pin))
+            .then_with(|| a.order.cmp(&b.order))
+    });
+    pins.dedup_by(|a, b| a.reference == b.reference && a.point == b.point);
+    pins
+}
+
 pub(super) fn segment_connects_no_connect(
     point: Point,
     segment: &Segment,

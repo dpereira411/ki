@@ -490,6 +490,76 @@ fn rewrite_descendant_net_not_bus_member_violation(
     violation
 }
 
+fn project_descendant_symbol_reference(
+    mut violation: PendingViolation,
+    child_schema: &crate::schematic::render::ParsedSchema,
+    sheet: &SheetRef,
+) -> PendingViolation {
+    let Some(item) = violation.items.first_mut() else {
+        return violation;
+    };
+    let Some((reference, suffix)) = item
+        .description
+        .strip_prefix("Symbol ")
+        .and_then(|desc| desc.split_once(" ["))
+    else {
+        return violation;
+    };
+
+    let Some(instance_suffix) = sheet.instance_path.rsplit('/').next() else {
+        return violation;
+    };
+    let Some(projected_reference) =
+        projected_reference_for_symbol_suffix(child_schema, reference, instance_suffix)
+    else {
+        return violation;
+    };
+
+    item.description = format!("Symbol {projected_reference} [{suffix}");
+    violation
+}
+
+fn parent_no_connects_for_sheet_pin(
+    parent_schema: &crate::schematic::render::ParsedSchema,
+    pin: &crate::cmd::schematic::erc::hierarchy::SheetPinRef,
+) -> Vec<crate::schematic::render::Point> {
+    let connected_segments = connected_wire_segments(pin.point, parent_schema);
+    if connected_segments.is_empty() {
+        return Vec::new();
+    }
+
+    parent_schema
+        .no_connects
+        .iter()
+        .copied()
+        .filter(|point| {
+            connected_segments
+                .iter()
+                .any(|segment| point_on_segment(*point, segment))
+        })
+        .collect()
+}
+
+fn child_net_has_multiple_unique_pins_for_sheet_pin(
+    child_nets: &[crate::schematic::render::ResolvedNet],
+    pin_name: &str,
+) -> bool {
+    let Some(net) = child_nets.iter().find(|net| {
+        net.labels.iter().any(|label| {
+            label.label_type == "hierarchical_label" && label.text == pin_name
+        })
+    }) else {
+        return false;
+    };
+
+    let mut unique = BTreeSet::new();
+    for node in &net.nodes {
+        unique.insert((node.reference.clone(), node.point));
+    }
+
+    unique.len() > 1
+}
+
 fn synthetic_leaf_prefixed_bus_member_conflicts(
     child_schema: &crate::schematic::render::ParsedSchema,
     child_sheet_path: &str,
@@ -1601,12 +1671,42 @@ fn collect_descendant_sheet_violations(
                 project_rule_severities,
             )
                 .into_iter()
-                .filter(|violation| {
-                    helper_power_symbol_label(violation).is_some_and(|label| {
+                .filter_map(|violation| {
+                    if helper_power_symbol_label(&violation).is_some_and(|label| {
                         grouped_global_power_violations.contains_key(&label)
-                    })
+                    }) {
+                        return Some(violation);
+                    }
+
+                    if repeated_files.get(&sheet.file).copied().unwrap_or(0) > 1 {
+                        return None;
+                    }
+
+                    Some(project_descendant_symbol_reference(
+                        violation,
+                        &child_schema,
+                        &sheet,
+                    ))
                 }),
         );
+        if repeated_files.get(&sheet.file).copied().unwrap_or(0) <= 1 {
+            for pin_ref in &sheet.pin_refs {
+                if child_net_has_multiple_unique_pins_for_sheet_pin(&child_nets, &pin_ref.name) {
+                    root_violations.extend(
+                        parent_no_connects_for_sheet_pin(&parent_schema, pin_ref)
+                            .into_iter()
+                            .map(|point| {
+                                PendingViolation::single(
+                                    Severity::Warning,
+                                    "no_connect_connected",
+                                    "A pin with a \"no connection\" flag is connected",
+                                    point_item("No Connect", point),
+                                )
+                            }),
+                    );
+                }
+            }
+        }
         if !root_violations.is_empty() {
             root_screen_violations.insert(child_path.to_string_lossy().into_owned(), root_violations);
         }
