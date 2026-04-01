@@ -95,14 +95,6 @@ fn root_label_isolated(
     schema: &ParsedSchema,
     logical_nets: &[ResolvedNet],
 ) -> bool {
-    if label.label_type == "label"
-        && schema.labels.iter().any(|other| {
-            other.label_type == "hierarchical_label" && other.text == label.text
-        })
-    {
-        return false;
-    }
-
     let Some(net) = logical_nets.iter().find(|net| {
         net.labels.iter().any(|other| {
             other.point == label.point
@@ -124,31 +116,11 @@ fn root_label_isolated(
     }
 
     if net.nodes.is_empty() {
-        if label.label_type == "hierarchical_label"
-            && schema.sheet_pins.iter().any(|sheet_pin| {
-                connected_wire_segments(label.point, schema)
-                    .iter()
-                    .any(|segment| point_on_segment(*sheet_pin, segment))
-            })
-        {
-            return false;
-        }
-
         if connected_pin_like_count_for_label(label, schema) != 1 {
             return false;
         }
 
         return label.label_type == "hierarchical_label";
-    }
-
-    if label.label_type == "hierarchical_label"
-        && schema.sheet_pins.iter().any(|sheet_pin| {
-            connected_wire_segments(label.point, schema)
-                .iter()
-                .any(|segment| point_on_segment(*sheet_pin, segment))
-        })
-    {
-        return false;
     }
 
     if connected_pin_like_count_for_label(label, schema) != 1 {

@@ -574,7 +574,22 @@ pub(super) fn connected_wire_segments(point: Point, schema: &ParsedSchema) -> Ve
 pub(super) fn connected_pin_like_count_for_label(label: &LabelInfo, schema: &ParsedSchema) -> usize {
     let segments = connected_wire_segments(label.point, schema);
     if segments.is_empty() {
-        return 0;
+        let mut points = BTreeSet::new();
+        points.extend(
+            schema
+                .pin_nodes
+                .iter()
+                .filter(|pin| pin.point == label.point)
+                .map(|pin| pin.point),
+        );
+        points.extend(
+            schema
+                .sheet_pins
+                .iter()
+                .copied()
+                .filter(|point| *point == label.point),
+        );
+        return points.len();
     }
 
     let mut points = BTreeSet::new();
@@ -596,19 +611,6 @@ pub(super) fn connected_pin_like_count_for_label(label: &LabelInfo, schema: &Par
             .iter()
             .any(|segment| point_on_segment(*point, segment))
     }));
-
-    points.extend(
-        schema
-            .labels
-            .iter()
-            .filter(|other| {
-                other.point != label.point
-                    && segments
-                        .iter()
-                        .any(|segment| point_on_segment(other.point, segment))
-            })
-            .map(|other| other.point),
-    );
 
     points.len()
 }

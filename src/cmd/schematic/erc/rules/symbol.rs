@@ -201,6 +201,7 @@ fn normalize_signature_node(
             !(normalize_metadata && head == Some("property")
                 && ((head_of(child) == Some("show_name")
                     && nth_atom_string(child, 1).as_deref() == Some("no"))
+                    || (head_of(child) == Some("id"))
                     || (head_of(child) == Some("do_not_autoplace")
                         && nth_atom_string(child, 1).as_deref() == Some("no"))))
                 && !(normalize_metadata && head == Some("pin_names")
