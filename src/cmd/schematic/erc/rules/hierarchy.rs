@@ -589,7 +589,21 @@ fn logical_label_net_exports_to_parent(
     allow_bus_member_export: bool,
 ) -> bool {
     if label.label_type == "label" {
-        return allow_bus_member_export && label_is_bus_member_stub(label, schema);
+        return nets
+            .iter()
+            .find(|net| {
+                net.labels.iter().any(|other| {
+                    other.point == label.point
+                        && other.label_type == label.label_type
+                        && other.text == label.text
+                })
+            })
+            .is_some_and(|net| {
+                net.labels.iter().any(|other| {
+                    other.label_type == "hierarchical_label" && sheet.pins.contains(&other.text)
+                })
+            })
+            || (allow_bus_member_export && label_is_bus_member_stub(label, schema));
     }
 
     if !allow_bus_member_export

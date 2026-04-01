@@ -11,7 +11,7 @@ use crate::schematic::render::{
 };
 
 use super::super::connectivity::{
-    bus_members_for_name_with_aliases, connected_pin_like_count_for_label,
+    bus_members_for_name_with_aliases, connected_bus_segments, connected_pin_like_count_for_label,
     connected_pins_for_no_connect,
     connected_wire_segments,
     connected_pins_for_no_connect_across_nets,
@@ -67,7 +67,22 @@ fn label_exports_through_sheet_bus(label: &LabelInfo, schema: &ParsedSchema) -> 
         return false;
     }
 
-    schema.labels.iter().any(|other| {
+    let touches_exporting_sheet_bus = schema.bus_entries.iter().any(|entry| {
+        connected_segments
+            .iter()
+            .any(|segment| point_on_segment(entry.wire_point, segment))
+            && {
+                let bus_segments = connected_bus_segments(entry.bus_point, schema);
+                !bus_segments.is_empty()
+                    && schema.sheet_pins.iter().any(|sheet_pin| {
+                        bus_segments
+                            .iter()
+                            .any(|segment| point_on_segment(*sheet_pin, segment))
+                    })
+            }
+    });
+
+    touches_exporting_sheet_bus && schema.labels.iter().any(|other| {
         other.label_type == "label"
             && looks_like_bus_name(&other.text)
             && bus_members_for_name_with_aliases(&other.text, schema).iter().any(|member| {
@@ -658,7 +673,8 @@ fn append_misc_root_violations(
                 }) {
                     if net.labels.iter().any(|other| {
                         other.point != label.point && looks_like_bus_name(&other.text)
-                    }) {
+                    })
+                    {
                         return false;
                     }
 

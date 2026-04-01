@@ -645,7 +645,6 @@ pub(crate) fn pin_not_connected_violations(
             if !has_other_connections
                 && pins.len() > 1
                 && !pins_are_stacked(pins)
-                && !pins.iter().all(|pin| pin_library_is_power(pin, schema))
             {
                 has_other_connections = true;
             }
@@ -699,6 +698,22 @@ pub(crate) fn pin_not_connected_violations(
                 ))
             {
                 has_other_connections = true;
+            }
+
+            if !has_other_connections && is_helper_power_symbol(pin) {
+                let connected_segments = connected_wire_segments(pin.point, schema);
+
+                if !connected_segments.is_empty()
+                    && schema.pin_nodes.iter().any(|other| {
+                        other.order != pin.order
+                            && is_helper_power_symbol(other)
+                            && connected_segments
+                                .iter()
+                                .any(|segment| point_on_segment(other.point, segment))
+                    })
+                {
+                    has_other_connections = true;
+                }
             }
 
             (!has_other_connections
