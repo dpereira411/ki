@@ -1148,6 +1148,7 @@ fn collect_hierarchical_sheet_violations(
                             && other.text == label.text
                     }) && net.nodes.is_empty()
                         && !net.labels.is_empty()
+                        && net.labels.len() > 1
                         && net
                             .labels
                             .iter()
