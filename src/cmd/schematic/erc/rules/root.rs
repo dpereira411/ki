@@ -11,7 +11,9 @@ use crate::schematic::render::{
 };
 
 use super::super::connectivity::{
-    connected_pin_like_count_for_label, connected_pins_for_no_connect,
+    bus_members_for_name_with_aliases, connected_pin_like_count_for_label,
+    connected_pins_for_no_connect,
+    connected_wire_segments,
     connected_pins_for_no_connect_across_nets,
     dangling_segment_endpoint_count, format_segment_item_description, is_dangling_label,
     is_dangling_logical_label, is_dangling_no_connect, label_has_no_connect,
@@ -44,6 +46,35 @@ use super::super::rules::symbol::{
 use super::super::sexpr::{child_items, head_of, nth_atom_f64, nth_atom_string};
 use super::super::text::{parse_erc_assertion, property_contains_unresolved_variable, resembles_invalid_stacked_pin};
 use super::super::{is_generated_power_label, is_helper_power_symbol, PendingItem, PendingViolation, Severity};
+
+fn label_exports_through_sheet_bus(label: &LabelInfo, schema: &ParsedSchema) -> bool {
+    if label.label_type != "label" || looks_like_bus_name(&label.text) {
+        return false;
+    }
+
+    let connected_segments = connected_wire_segments(label.point, schema);
+    if connected_segments.is_empty() {
+        return false;
+    }
+
+    let touches_bus_entry = schema.bus_entries.iter().any(|entry| {
+        connected_segments
+            .iter()
+            .any(|segment| point_on_segment(entry.wire_point, segment))
+    });
+
+    if !touches_bus_entry {
+        return false;
+    }
+
+    schema.labels.iter().any(|other| {
+        other.label_type == "label"
+            && looks_like_bus_name(&other.text)
+            && bus_members_for_name_with_aliases(&other.text, schema).iter().any(|member| {
+                member == &label.text || member == &format!("/{}", label.text)
+            })
+    })
+}
 
 pub(crate) fn collect_root_violations(
     input: &Path,
@@ -616,6 +647,7 @@ fn append_misc_root_violations(
             .filter(|label| !label_has_no_connect(label, schema))
             .filter(|label| !label_has_no_connect_across_nets(label, &logical_nets))
             .filter(|label| !looks_like_bus_name(&label.text))
+            .filter(|label| !label_exports_through_sheet_bus(label, schema))
             .filter(|label| {
                 if let Some(net) = logical_nets.iter().find(|net| {
                     net.labels.iter().any(|other| {

@@ -578,6 +578,40 @@ fn label_is_bus_member_stub(
         })
 }
 
+fn logical_label_net_exports_to_parent(
+    label: &crate::schematic::render::LabelInfo,
+    schema: &crate::schematic::render::ParsedSchema,
+    nets: &[crate::schematic::render::ResolvedNet],
+    sheet: &SheetRef,
+    allow_bus_member_export: bool,
+) -> bool {
+    if label.label_type == "label" {
+        return allow_bus_member_export && label_is_bus_member_stub(label, schema);
+    }
+
+    if !allow_bus_member_export
+        || label.label_type != "hierarchical_label"
+        || !sheet.pins.contains(&label.text)
+    {
+        return false;
+    }
+
+    nets.iter()
+        .find(|net| {
+            net.labels.iter().any(|other| {
+                other.point == label.point
+                    && other.label_type == label.label_type
+                    && other.text == label.text
+            })
+        })
+        .is_some_and(|net| {
+            net.labels
+                .iter()
+                .filter(|other| other.label_type == "label")
+                .any(|other| label_is_bus_member_stub(other, schema))
+        })
+}
+
 fn child_has_prefixed_bus_alias_descendants(child_path: &Path, sheet: &SheetRef) -> bool {
     sheet_refs(child_path, Some(&sheet.instance_path))
         .map(|refs| refs.iter().any(SheetRef::uses_prefixed_bus_alias_pins))
@@ -938,6 +972,8 @@ fn collect_hierarchical_sheet_violations(
             child_has_prefixed_bus_alias_descendants(&child_path, &sheet);
 
         let child_logical_nets = resolve_nets(&child_schema);
+        let allow_bus_member_export =
+            repeated_files.get(&sheet.file).copied().unwrap_or(0) <= 1;
         let label_has_single_pin_like_connection = |label: &crate::schematic::render::LabelInfo| {
             if let Some(net) = child_logical_nets.iter().find(|net| {
                 net.labels.iter().any(|other| {
@@ -951,21 +987,15 @@ fn collect_hierarchical_sheet_violations(
 
             connected_pin_like_count_for_label(label, &child_schema) == 1
         };
-        let label_net_exports_to_parent =
-            |label: &crate::schematic::render::LabelInfo| {
-                child_logical_nets.iter().find(|net| {
-                    net.labels.iter().any(|other| {
-                        other.point == label.point
-                            && other.label_type == label.label_type
-                            && other.text == label.text
-                    })
-                }).is_some_and(|net| {
-                    net.labels.iter().any(|other| {
-                        other.label_type == "hierarchical_label"
-                            && sheet.pins.contains(&other.text)
-                    })
-                })
-            };
+        let label_net_exports_to_parent = |label: &crate::schematic::render::LabelInfo| {
+            logical_label_net_exports_to_parent(
+                label,
+                &child_schema,
+                &child_logical_nets,
+                &sheet,
+                allow_bus_member_export,
+            )
+        };
         let isolated_hier_labels = child_schema
             .labels
             .iter()
@@ -1104,22 +1134,29 @@ fn collect_hierarchical_sheet_violations(
         }
 
         root_violations.extend(dangling_labels.iter().filter(|label| {
-            !child_logical_nets.iter().any(|net| {
-                net.labels.iter().any(|other| {
-                    other.point == label.point
-                        && other.label_type == label.label_type
-                        && other.text == label.text
-                }) && net.nodes.is_empty()
-                    && !net.labels.is_empty()
-                    && net
-                        .labels
-                        .iter()
-                        .all(|other| other.label_type == "hierarchical_label")
-                    && net
-                        .labels
-                        .iter()
-                        .all(|other| sheet.pins.contains(&other.text))
-            })
+            !logical_label_net_exports_to_parent(
+                label,
+                &child_schema,
+                &child_logical_nets,
+                &sheet,
+                allow_bus_member_export,
+            )
+                && !child_logical_nets.iter().any(|net| {
+                    net.labels.iter().any(|other| {
+                        other.point == label.point
+                            && other.label_type == label.label_type
+                            && other.text == label.text
+                    }) && net.nodes.is_empty()
+                        && !net.labels.is_empty()
+                        && net
+                            .labels
+                            .iter()
+                            .all(|other| other.label_type == "hierarchical_label")
+                        && net
+                            .labels
+                            .iter()
+                            .all(|other| sheet.pins.contains(&other.text))
+                })
         }).map(|label| {
             PendingViolation::single(
                 Severity::Error,

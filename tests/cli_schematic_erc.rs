@@ -497,6 +497,11 @@ fn schematic_erc_matches_upstream_issue18346_fixture() {
 }
 
 #[test]
+fn schematic_erc_matches_upstream_issue18119_fixture() {
+    assert_exact_upstream_erc_match(&upstream_erc_fixture("issue18119/issue18119.kicad_sch"));
+}
+
+#[test]
 fn schematic_erc_matches_upstream_issue18119_sub_fixture() {
     assert_exact_upstream_erc_match(&upstream_erc_fixture("issue18119/sub.kicad_sch"));
 }
