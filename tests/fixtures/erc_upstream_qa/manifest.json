@@ -764,6 +764,12 @@
         "note": "Exact upstream equality regression"
       },
       {
+        "id": "issue19646_f28p65x_osc_reset_debug",
+        "relative_path": "issue19646/f28p65x_osc_reset_debug.kicad_sch",
+        "mode": "exact",
+        "note": "Exact upstream equality regression"
+      },
+      {
         "id": "issue17870",
         "relative_path": "issue17870.kicad_sch",
         "mode": "exact",

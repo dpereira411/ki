@@ -96,6 +96,14 @@ fn root_label_isolated(
     schema: &ParsedSchema,
     logical_nets: &[ResolvedNet],
 ) -> bool {
+    if label.label_type == "label"
+        && schema.labels.iter().any(|other| {
+            other.label_type == "hierarchical_label" && other.text == label.text
+        })
+    {
+        return false;
+    }
+
     let Some(net) = logical_nets.iter().find(|net| {
         net.labels.iter().any(|other| {
             other.point == label.point
