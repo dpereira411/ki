@@ -11,7 +11,8 @@ use crate::schematic::render::{
 };
 
 use super::super::connectivity::{
-    bus_members_for_name_with_aliases, connected_bus_segments, connected_pin_like_count_for_label,
+    bus_members_for_name_with_aliases, connected_bus_segments,
+    connected_pin_like_count_for_label,
     connected_pins_for_no_connect,
     connected_wire_segments, unique_no_connect_pins_across_nets,
     dangling_segment_endpoint_count, format_segment_item_description, is_dangling_label,
@@ -92,7 +93,7 @@ fn label_exports_through_sheet_bus(label: &LabelInfo, schema: &ParsedSchema) -> 
 
 fn root_label_isolated(
     label: &LabelInfo,
-    schema: &ParsedSchema,
+    _schema: &ParsedSchema,
     logical_nets: &[ResolvedNet],
 ) -> bool {
     let Some(net) = logical_nets.iter().find(|net| {
@@ -111,23 +112,28 @@ fn root_label_isolated(
         return false;
     }
 
-    if net.nodes.is_empty() && net.labels.len() > 1 {
+    let all_pins = logical_nets
+        .iter()
+        .filter(|other| other.name == net.name)
+        .map(|other| other.nodes.len())
+        .sum::<usize>();
+
+    let has_no_connect = logical_nets
+        .iter()
+        .filter(|other| other.name == net.name)
+        .any(|other| other.no_connect);
+
+    if has_no_connect {
         return false;
     }
 
-    if net.nodes.is_empty() {
-        if connected_pin_like_count_for_label(label, schema) != 1 {
-            return false;
-        }
-
-        return label.label_type == "hierarchical_label";
+    if all_pins == 1 {
+        return true;
     }
 
-    if connected_pin_like_count_for_label(label, schema) != 1 {
-        return false;
-    }
-
-    net.nodes.len() == 1
+    label.label_type == "hierarchical_label"
+        && all_pins == 0
+        && connected_pin_like_count_for_label(label, _schema) == 1
 }
 
 pub(crate) fn collect_root_violations(
@@ -679,7 +685,13 @@ fn append_misc_root_violations(
                         return false;
                     }
 
-                    return net.nodes.is_empty()
+                    let all_pins = logical_nets
+                        .iter()
+                        .filter(|other| other.name == net.name)
+                        .map(|other| other.nodes.len())
+                        .sum::<usize>();
+
+                    return all_pins == 0
                         && !global_label_has_same_text_local_on_same_wire(label, schema);
                 }
 

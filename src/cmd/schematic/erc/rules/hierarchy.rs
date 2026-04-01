@@ -757,6 +757,9 @@ fn logical_label_net_exports_to_parent(
         .is_some_and(|net| {
             net.labels
                 .iter()
+                .any(|other| other.label_type == "label" && other.text == label.text)
+                || net.labels
+                .iter()
                 .filter(|other| other.label_type == "label")
                 .any(|other| label_is_bus_member_stub(other, schema))
         })
@@ -1254,7 +1257,9 @@ fn collect_hierarchical_sheet_violations(
         let mut root_violations = Vec::new();
 
         if !sheet.uses_prefixed_bus_alias_pins() || !parent_has_multiple_bus_sheets {
-            root_violations.extend(isolated_hier_labels.iter().map(|label| {
+            root_violations.extend(isolated_hier_labels.iter().filter(|label| {
+                !label_net_exports_to_parent(label)
+            }).map(|label| {
                 PendingViolation::single(
                     Severity::Warning,
                     "isolated_pin_label",
