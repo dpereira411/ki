@@ -131,15 +131,41 @@ pub(crate) struct NetclassFlagInfo {
     pub(crate) y: f64,
 }
 
+#[derive(Clone, Debug, Default, PartialEq, Eq)]
+pub(crate) struct SymbolVariantOverride {
+    pub(crate) dnp: Option<bool>,
+    pub(crate) exclude_from_sim: Option<bool>,
+    pub(crate) in_bom: Option<bool>,
+    pub(crate) on_board: Option<bool>,
+    pub(crate) in_pos_files: Option<bool>,
+    pub(crate) fields: BTreeMap<String, String>,
+}
+
+#[derive(Clone, Debug, Default, PartialEq, Eq)]
+pub(crate) struct SymbolInstanceOverride {
+    pub(crate) reference: Option<String>,
+    pub(crate) value: Option<String>,
+    pub(crate) footprint: Option<String>,
+    pub(crate) unit: Option<i32>,
+    pub(crate) variants: BTreeMap<String, SymbolVariantOverride>,
+}
+
+#[derive(Clone, Debug)]
+pub(crate) struct EmbeddedPinAlternate {
+    pub(crate) name: String,
+    pub(crate) electrical_type: Option<String>,
+}
+
 #[derive(Clone, Debug)]
 pub(crate) struct EmbeddedPin {
     pub(crate) num: String,
     pub(crate) name: Option<String>,
     pub(crate) electrical_type: Option<String>,
+    pub(crate) alternates: BTreeMap<String, EmbeddedPinAlternate>,
     pub(crate) hidden: bool,
     pub(crate) unit: i32,
     pub(crate) body_style: i32,
-    pub(crate) root: Point,
+    pub(crate) position: Point,
 }
 
 #[derive(Clone, Debug)]
@@ -160,19 +186,55 @@ pub(crate) struct EmbeddedSymbol {
 #[derive(Clone, Debug)]
 pub(crate) struct PlacedSymbol {
     pub(crate) reference: String,
+    pub(crate) symbol_uuid: Option<String>,
+    pub(crate) instance_references: BTreeMap<String, String>,
+    pub(crate) instance_overrides: BTreeMap<String, SymbolInstanceOverride>,
     pub(crate) lib: Option<String>,
     pub(crate) part: Option<String>,
     pub(crate) lib_id: String,
+    pub(crate) embedded_lib_name: Option<String>,
     pub(crate) value: Option<String>,
     pub(crate) footprint: Option<String>,
     pub(crate) datasheet: Option<String>,
     pub(crate) sheet_path: Option<String>,
+    pub(crate) exclude_from_sim: bool,
+    pub(crate) in_bom: bool,
+    pub(crate) on_board: bool,
+    pub(crate) dnp: bool,
+    pub(crate) in_pos_files: Option<bool>,
+    pub(crate) annotated_on_current_sheet: bool,
     pub(crate) properties: Vec<crate::extract::model::Property>,
     pub(crate) at: Point,
     pub(crate) unit: i32,
     pub(crate) body_style: i32,
+    pub(crate) pin_alternates: BTreeMap<String, String>,
     transform: Transform,
     pub(crate) order: usize,
+}
+
+pub(crate) fn embedded_symbol_for<'a>(
+    symbol: &PlacedSymbol,
+    embedded_symbols: &'a HashMap<String, EmbeddedSymbol>,
+) -> Option<&'a EmbeddedSymbol> {
+    embedded_symbols
+        .get(symbol.embedded_lib_name.as_ref().unwrap_or(&symbol.lib_id))
+        .or_else(|| embedded_symbols.get(&symbol.lib_id))
+}
+
+pub(crate) fn projected_reference_for_symbol_suffix(
+    schema: &ParsedSchema,
+    reference: &str,
+    suffix: &str,
+) -> Option<String> {
+    schema
+        .symbols
+        .iter()
+        .find(|symbol| symbol.reference == reference)
+        .into_iter()
+        .flat_map(|symbol| symbol.instance_references.iter())
+        .filter(|(path, _)| path.rsplit('/').next().is_some_and(|tail| tail == suffix))
+        .map(|(_, reference)| reference.clone())
+        .max()
 }
 
 #[derive(Clone, Debug)]
@@ -187,6 +249,7 @@ pub(crate) struct PinNode {
     pub(crate) point: Point,
     pub(crate) order: usize,
     pub(crate) has_multiple_names: bool,
+    pub(crate) drives_net: bool,
 }
 
 #[derive(Clone, Debug)]
@@ -207,11 +270,15 @@ pub(crate) struct PhysicalGroup {
 
 #[derive(Clone, Debug)]
 pub(crate) struct ParsedSchema {
+    pub(crate) version: i64,
     pub(crate) embedded_symbols: HashMap<String, EmbeddedSymbol>,
+    pub(crate) symbol_instance_overrides: BTreeMap<String, SymbolInstanceOverride>,
     pub(crate) symbols: Vec<PlacedSymbol>,
+    pub(crate) bus_aliases: BTreeMap<String, Vec<String>>,
     pub(crate) wires: Vec<Segment>,
     pub(crate) buses: Vec<Segment>,
     pub(crate) bus_entries: Vec<BusEntry>,
+    pub(crate) rule_area_borders: Vec<Segment>,
     pub(crate) sheet_pins: Vec<Point>,
     pub(crate) labels: Vec<LabelInfo>,
     pub(crate) netclass_flags: Vec<NetclassFlagInfo>,
@@ -264,6 +331,7 @@ pub(crate) fn resolve_nets(schema: &ParsedSchema) -> Vec<ResolvedNet> {
     let groups = build_groups(schema, true);
     let mut nets = groups
         .into_iter()
+        .filter(|group| !group.labels.is_empty() || !group.nodes.is_empty())
         .map(|group| {
             let name = choose_net_name(&group);
             let mut nodes = group.nodes;
@@ -291,6 +359,7 @@ pub(crate) fn resolve_nets(schema: &ParsedSchema) -> Vec<ResolvedNet> {
 pub(crate) fn resolve_physical_groups(schema: &ParsedSchema) -> Vec<PhysicalGroup> {
     build_groups(schema, false)
         .into_iter()
+        .filter(|group| !group.nodes.is_empty())
         .map(|group| PhysicalGroup {
             labels: group.labels,
             nodes: group.nodes,
@@ -317,16 +386,26 @@ fn parse_schema_nodes(nodes: &[Node], instance_path: Option<&str>) -> Result<Par
         .or_else(|| schematic_instance_path(items));
     let instance_path = default_instance_path.as_deref();
 
+    let version = child_items_from(items)
+        .iter()
+        .find(|item| head_of(item) == Some("version"))
+        .and_then(|item| nth_atom_string(item, 1))
+        .and_then(|value| value.parse::<i64>().ok())
+        .unwrap_or_default();
+
     let mut embedded_symbols = HashMap::new();
     let mut raw_symbols = Vec::new();
+    let mut bus_aliases = BTreeMap::new();
     let mut wires = Vec::new();
     let mut buses = Vec::new();
     let mut bus_entries = Vec::new();
+    let mut rule_area_borders = Vec::new();
     let mut sheet_pins = Vec::new();
     let mut labels = Vec::new();
     let mut netclass_flags = Vec::new();
     let mut junctions = Vec::new();
     let mut no_connects = Vec::new();
+    let symbol_instance_overrides = parse_symbol_instances(items);
 
     for item in items.iter().skip(1) {
         match head_of(item) {
@@ -334,7 +413,17 @@ fn parse_schema_nodes(nodes: &[Node], instance_path: Option<&str>) -> Result<Par
                 embedded_symbols = parse_embedded_symbols(item);
             }
             Some("symbol") => {
-                raw_symbols.push(parse_placed_symbol(item, raw_symbols.len(), instance_path)?);
+                raw_symbols.push(parse_placed_symbol(
+                    item,
+                    raw_symbols.len(),
+                    instance_path,
+                    &symbol_instance_overrides,
+                )?);
+            }
+            Some("bus_alias") => {
+                if let Some((name, members)) = parse_bus_alias(item) {
+                    bus_aliases.insert(name, members);
+                }
             }
             Some("sheet") => {
                 sheet_pins.extend(parse_sheet_pins(item));
@@ -353,6 +442,9 @@ fn parse_schema_nodes(nodes: &[Node], instance_path: Option<&str>) -> Result<Par
                 if let Some(entry) = parse_bus_entry(item) {
                     bus_entries.push(entry);
                 }
+            }
+            Some("rule_area") => {
+                rule_area_borders.extend(parse_rule_area_borders(item));
             }
             Some("label") | Some("global_label") | Some("hierarchical_label") => {
                 if let Some(label) = parse_label(item) {
@@ -383,11 +475,15 @@ fn parse_schema_nodes(nodes: &[Node], instance_path: Option<&str>) -> Result<Par
     labels.extend(power_labels);
 
     Ok(ParsedSchema {
+        version,
         embedded_symbols,
+        symbol_instance_overrides,
         symbols: raw_symbols,
+        bus_aliases,
         wires,
         buses,
         bus_entries,
+        rule_area_borders,
         sheet_pins,
         labels,
         netclass_flags,
@@ -397,12 +493,120 @@ fn parse_schema_nodes(nodes: &[Node], instance_path: Option<&str>) -> Result<Par
     })
 }
 
+fn parse_bus_alias(node: &Node) -> Option<(String, Vec<String>)> {
+    let name = nth_atom_string(node, 1)?;
+    let members = child_items(node)
+        .iter()
+        .find(|child| head_of(child) == Some("members"))
+        .map(|members_node| {
+            child_items(members_node)
+                .iter()
+                .filter_map(atom_as_string)
+                .collect::<Vec<_>>()
+        })
+        .unwrap_or_default();
+    Some((name, members))
+}
+
 fn schematic_instance_path(items: &[Node]) -> Option<String> {
     child_items_from(items)
         .iter()
         .find(|item| head_of(item) == Some("uuid"))
         .and_then(|uuid| nth_atom_string(uuid, 1))
         .map(|uuid| format!("/{uuid}"))
+}
+
+fn parse_symbol_instances(items: &[Node]) -> BTreeMap<String, SymbolInstanceOverride> {
+    let mut out = BTreeMap::new();
+    let Some(symbol_instances) = items
+        .iter()
+        .find(|item| head_of(item) == Some("symbol_instances"))
+    else {
+        return out;
+    };
+
+    for path in child_items(symbol_instances)
+        .iter()
+        .filter(|child| head_of(child) == Some("path"))
+    {
+        let Some(instance_path) = nth_atom_string(path, 1) else {
+            continue;
+        };
+
+        let override_data = SymbolInstanceOverride {
+            reference: child_items(path)
+                .iter()
+                .find(|child| head_of(child) == Some("reference"))
+                .and_then(|child| nth_atom_string(child, 1)),
+            value: child_items(path)
+                .iter()
+                .find(|child| head_of(child) == Some("value"))
+                .and_then(|child| nth_atom_string(child, 1)),
+            footprint: child_items(path)
+                .iter()
+                .find(|child| head_of(child) == Some("footprint"))
+                .and_then(|child| nth_atom_string(child, 1)),
+            unit: child_items(path)
+                .iter()
+                .find(|child| head_of(child) == Some("unit"))
+                .and_then(|child| nth_atom_i32(child, 1)),
+            variants: child_items(path)
+                .iter()
+                .filter(|child| head_of(child) == Some("variant"))
+                .filter_map(parse_variant_override)
+                .collect(),
+        };
+
+        out.insert(instance_path, override_data);
+    }
+
+    out
+}
+
+fn parse_variant_override(node: &Node) -> Option<(String, SymbolVariantOverride)> {
+    let name = child_items(node)
+        .iter()
+        .find(|child| head_of(child) == Some("name"))
+        .and_then(|child| nth_atom_string(child, 1))?;
+    let mut variant = SymbolVariantOverride::default();
+
+    for child in child_items(node).iter().skip(1) {
+        match head_of(child) {
+            Some("dnp") => variant.dnp = parse_bool_flag(child),
+            Some("exclude_from_sim") => variant.exclude_from_sim = parse_bool_flag(child),
+            Some("in_bom") => variant.in_bom = parse_bool_flag(child),
+            Some("on_board") => variant.on_board = parse_bool_flag(child),
+            Some("in_pos_files") => variant.in_pos_files = parse_bool_flag(child),
+            Some("field") => {
+                let Some(field_name) = child_items(child)
+                    .iter()
+                    .find(|grandchild| head_of(grandchild) == Some("name"))
+                    .and_then(|grandchild| nth_atom_string(grandchild, 1))
+                else {
+                    continue;
+                };
+                let Some(field_value) = child_items(child)
+                    .iter()
+                    .find(|grandchild| head_of(grandchild) == Some("value"))
+                    .and_then(|grandchild| nth_atom_string(grandchild, 1))
+                else {
+                    continue;
+                };
+                variant.fields.insert(field_name, field_value);
+            }
+            _ => {}
+        }
+    }
+
+    Some((name, variant))
+}
+
+fn parse_bool_flag(node: &Node) -> Option<bool> {
+    match nth_atom_string(node, 1).as_deref() {
+        Some("yes") => Some(true),
+        Some("no") => Some(false),
+        _ => None,
+    }
 }
 
 fn child_items_from(items: &[Node]) -> &[Node] {
@@ -423,7 +627,7 @@ fn build_pin_nodes(
             .or_default()
             .insert(symbol.unit);
 
-        let Some(embedded) = embedded_symbols.get(&symbol.lib_id) else {
+        let Some(embedded) = embedded_symbol_for(symbol, embedded_symbols) else {
             continue;
         };
 
@@ -431,7 +635,8 @@ fn build_pin_nodes(
             (pin.unit == 0 || pin.unit == symbol.unit)
                 && (pin.body_style == 0 || pin.body_style == symbol.body_style)
         }) {
-            if let Some(name) = pin.name.as_ref().filter(|name| !name.is_empty()) {
+            let effective_name = effective_pin_name(symbol, pin);
+            if let Some(name) = effective_name.as_ref().filter(|name| !name.is_empty()) {
                 *symbol_name_counts
                     .entry(symbol.order)
                     .or_default()
@@ -442,7 +647,7 @@ fn build_pin_nodes(
     }
 
     for symbol in symbols {
-        let Some(embedded) = embedded_symbols.get(&symbol.lib_id) else {
+        let Some(embedded) = embedded_symbol_for(symbol, embedded_symbols) else {
             continue;
         };
 
@@ -450,7 +655,9 @@ fn build_pin_nodes(
             (pin.unit == 0 || pin.unit == symbol.unit)
                 && (pin.body_style == 0 || pin.body_style == symbol.body_style)
         }) {
-            let world = translate(symbol.at, symbol.transform.apply(pin.root));
+            let world = translate(symbol.at, symbol.transform.apply(pin.position));
+            let effective_name = effective_pin_name(symbol, pin);
+            let effective_pin_type = effective_pin_type(symbol, pin);
             let needs_unit = pin
                 .name
                 .as_ref()
@@ -468,21 +675,44 @@ fn build_pin_nodes(
                 },
                 unit: symbol.unit,
                 pin: pin.num.clone(),
-                pin_function: pin.name.clone(),
-                pin_type: pin.electrical_type.clone(),
+                pin_function: effective_name.clone(),
+                pin_type: effective_pin_type.clone(),
                 hidden: pin.hidden,
                 point: world,
                 order: symbol.order,
-                has_multiple_names: pin
-                    .name
+                has_multiple_names: effective_name
                     .as_ref()
                     .and_then(|name| symbol_name_counts.get(&symbol.order)?.get(name))
                     .is_some_and(|count| *count > 1),
+                drives_net: !pin.hidden
+                    && (matches!(
+                        effective_pin_type.as_deref(),
+                        Some("power_in") | Some("power_out")
+                    ) || (symbol.on_board
+                        && symbol.annotated_on_current_sheet
+                        && !symbol.reference.starts_with('#'))),
             });
         }
     }
 
     nodes
+}
+
+fn effective_pin_name(symbol: &PlacedSymbol, pin: &EmbeddedPin) -> Option<String> {
+    symbol
+        .pin_alternates
+        .get(&pin.num)
+        .cloned()
+        .or_else(|| pin.name.clone())
+}
+
+fn effective_pin_type(symbol: &PlacedSymbol, pin: &EmbeddedPin) -> Option<String> {
+    symbol
+        .pin_alternates
+        .get(&pin.num)
+        .and_then(|alternate| pin.alternates.get(alternate))
+        .and_then(|alternate| alternate.electrical_type.clone())
+        .or_else(|| pin.electrical_type.clone())
 }
 
 fn build_power_labels(
@@ -498,7 +728,7 @@ fn build_power_labels(
         let Some(text) = symbol.value.clone().filter(|value| !value.is_empty()) else {
             continue;
         };
-        let Some(embedded) = embedded_symbols.get(&symbol.lib_id) else {
+        let Some(embedded) = embedded_symbol_for(symbol, embedded_symbols) else {
             continue;
         };
         let Some(power_kind) = embedded.power_kind.as_deref() else {
@@ -509,7 +739,7 @@ fn build_power_labels(
             (pin.unit == 0 || pin.unit == symbol.unit)
                 && (pin.body_style == 0 || pin.body_style == symbol.body_style)
         }) {
-            let world = translate(symbol.at, symbol.transform.apply(pin.root));
+            let world = translate(symbol.at, symbol.transform.apply(pin.position));
             let (x, y) = (world.x as f64 / COORD_SCALE, world.y as f64 / COORD_SCALE);
             labels.push(LabelInfo {
                 raw_text: text.clone(),
@@ -653,7 +883,6 @@ fn build_groups(schema: &ParsedSchema, merge_labels_by_name: bool) -> Vec<GroupI
 
     groups
         .into_values()
-        .filter(|group| !group.nodes.is_empty())
         .collect()
 }
 
@@ -812,29 +1041,40 @@ fn parse_embedded_symbols(node: &Node) -> HashMap<String, EmbeddedSymbol> {
         collect_embedded_pins(child, &local_name, &mut pins);
         let unit_count = collect_embedded_unit_count(child, &local_name).max(1);
 
-        result.insert(
-            lib_id,
-            EmbeddedSymbol {
-                lib: lib.unwrap_or_default(),
-                part: part.unwrap_or_default(),
-                signature,
-                power_kind,
-                duplicate_pin_numbers_are_jumpers,
-                unit_count,
-                description,
-                docs,
-                footprints,
-                fields: properties,
-                pins,
-            },
-        );
+        let embedded = EmbeddedSymbol {
+            lib: lib.unwrap_or_default(),
+            part: part.unwrap_or_default(),
+            signature,
+            power_kind,
+            duplicate_pin_numbers_are_jumpers,
+            unit_count,
+            description,
+            docs,
+            footprints,
+            fields: properties,
+            pins,
+        };
+
+        if local_name != lib_id {
+            result.insert(local_name, embedded.clone());
+        }
+
+        result.insert(lib_id, embedded);
     }
 
     result
 }
 
 fn normalized_embedded_symbol_signature(node: &Node, part_name: &str) -> String {
-    let normalized = normalize_embedded_symbol_signature_node(node, Some(part_name), true)
+    let preserve_value_property = child_items(node)
+        .iter()
+        .any(|child| matches!(head_of(child), Some("power")));
+    let normalized = normalize_embedded_symbol_signature_node(
+        node,
+        Some(part_name),
+        true,
+        preserve_value_property,
+    )
         .unwrap_or_else(|| node.clone());
 
     CstDocument {
@@ -848,27 +1088,63 @@ fn normalize_embedded_symbol_signature_node(
     node: &Node,
     top_symbol_name: Option<&str>,
     top_level_symbol: bool,
+    preserve_value_property: bool,
 ) -> Option<Node> {
     let Node::List { items, span } = node else {
         return Some(node.clone());
     };
 
     let head = head_of(node);
+    if head == Some("power") {
+        let mut normalized_items = vec![items[0].clone()];
+        if nth_atom_string(node, 1).as_deref() == Some("local") {
+            normalized_items.push(Node::Atom {
+                atom: Atom::Symbol("local".to_string()),
+                span: Span { start: 0, end: 0 },
+            });
+        }
+        return Some(Node::List {
+            items: normalized_items,
+            span: *span,
+        });
+    }
+
     if head == Some("property") {
         let key = nth_atom_string(node, 1).unwrap_or_default();
         if matches!(
             key.as_str(),
             "Reference"
-                | "Value"
                 | "Footprint"
                 | "Datasheet"
-                | "Description"
+                | "ki_description"
                 | "ki_keywords"
                 | "ki_fp_filters"
         ) {
             return None;
         }
+        if key == "Value" && !preserve_value_property {
+            return None;
+        }
     }
+
+    if head == Some("exclude_from_sim")
+        && nth_atom_string(node, 1).as_deref() == Some("no")
+    {
+        return None;
+    }
+
+    let pin_hidden = head == Some("pin")
+        && items.iter().any(|child| {
+            matches!(
+                child,
+                Node::Atom {
+                    atom: Atom::Symbol(value),
+                    ..
+                } if value == "hide"
+            )
+        });
+    let property_hidden = head == Some("property")
+        && property_has_hide_marker(items);
 
     let mut normalized_items = Vec::new();
 
@@ -898,13 +1174,70 @@ fn normalize_embedded_symbol_signature_node(
             }
         }
 
+        if pin_hidden && matches!(head_of(child), Some("name")) {
+            normalized_items.push(normalize_hidden_pin_name_node(child));
+            continue;
+        }
+
+        if head == Some("property")
+            && matches!(head_of(child), Some("show_name" | "do_not_autoplace"))
+        {
+            continue;
+        }
+
+        if property_hidden && head_of(child) == Some("hide") {
+            continue;
+        }
+
+        if head == Some("pin_names")
+            && matches!(
+                child,
+                Node::Atom {
+                    atom: Atom::Symbol(value),
+                    ..
+                } if value == "hide"
+            )
+        {
+            continue;
+        }
+
+        if head == Some("pin_names") && matches!(head_of(child), Some("hide")) {
+            continue;
+        }
+
+        if matches!(head, Some("pin_names" | "pin_numbers"))
+            && matches!(
+                child,
+                Node::Atom {
+                    atom: Atom::Symbol(value),
+                    ..
+                } if value == "hide"
+            )
+        {
+            normalized_items.push(Node::List {
+                items: vec![
+                    Node::Atom {
+                        atom: Atom::Symbol("hide".to_string()),
+                        span: Span { start: 0, end: 0 },
+                    },
+                    Node::Atom {
+                        atom: Atom::Symbol("yes".to_string()),
+                        span: Span { start: 0, end: 0 },
+                    },
+                ],
+                span: Span { start: 0, end: 0 },
+            });
+            continue;
+        }
+
         if matches!(
             child,
             Node::List { .. }
                 if matches!(
                     head_of(child),
                     Some(
-                        "in_pos_files"
+                        "exclude_from_sim"
+                            | "in_pos_files"
                             | "duplicate_pin_numbers_are_jumpers"
                             | "pin_numbers"
                             | "embedded_fonts"
@@ -914,17 +1247,149 @@ fn normalize_embedded_symbol_signature_node(
             continue;
         }
 
+        if head == Some("stroke")
+            && matches!(head_of(child), Some("type"))
+            && nth_atom_string(child, 1).as_deref() == Some("default")
+        {
+            continue;
+        }
+
+        if head == Some("stroke") && is_default_stroke_color_node(child) {
+            continue;
+        }
+
+        if property_hidden && head == Some("property") && head_of(child) == Some("effects") {
+            normalized_items.push(strip_hide_from_effects_node(child));
+            continue;
+        }
+
         if let Some(normalized_child) =
-            normalize_embedded_symbol_signature_node(child, top_symbol_name, false)
+            normalize_embedded_symbol_signature_node(
+                child,
+                top_symbol_name,
+                false,
+                preserve_value_property,
+            )
         {
             normalized_items.push(normalized_child);
         }
+    }
+
+    if property_hidden && head == Some("property") {
+        let insert_at = normalized_items
+            .iter()
+            .position(|child| head_of(child) == Some("effects"))
+            .unwrap_or(normalized_items.len());
+        normalized_items.insert(insert_at, canonical_hide_yes_node());
+    }
+
+    if head == Some("symbol") && normalized_items.len() > 2 {
+        let mut suffix = normalized_items.split_off(2);
+        suffix.sort_by_cached_key(symbol_signature_sort_key);
+        normalized_items.extend(suffix);
     }
 
     Some(Node::List {
         items: normalized_items,
         span: *span,
     })
+}
+
+fn symbol_signature_sort_key(node: &Node) -> (u8, String, String) {
+    let head = head_of(node).unwrap_or_default().to_string();
+    let bucket = match head.as_str() {
+        "power" => 0,
+        "pin_numbers" => 1,
+        "pin_names" => 2,
+        "property" => 3,
+        "symbol" => 4,
+        _ => 5,
+    };
+
+    (
+        bucket,
+        head,
+        CstDocument {
+            raw: String::new(),
+            nodes: vec![node.clone()],
+        }
+        .to_canonical_string(),
+    )
+}
+
+fn property_has_hide_marker(items: &[Node]) -> bool {
+    items.iter().any(|child| {
+        head_of(child) == Some("hide") && nth_atom_string(child, 1).as_deref() == Some("yes")
+    }) || items.iter().any(effects_node_has_hide_marker)
+}
+
+fn effects_node_has_hide_marker(node: &Node) -> bool {
+    head_of(node) == Some("effects")
+        && child_items(node).iter().any(|child| {
+            head_of(child) == Some("hide") && nth_atom_string(child, 1).as_deref() == Some("yes")
+        })
+}
+
+fn strip_hide_from_effects_node(node: &Node) -> Node {
+    let Node::List { items, span } = node else {
+        return node.clone();
+    };
+
+    Node::List {
+        items: items
+            .iter()
+            .filter(|child| {
+                !(head_of(child) == Some("hide")
+                    && nth_atom_string(child, 1).as_deref() == Some("yes"))
+            })
+            .cloned()
+            .collect(),
+        span: *span,
+    }
+}
+
+fn canonical_hide_yes_node() -> Node {
+    Node::List {
+        items: vec![
+            Node::Atom {
+                atom: Atom::Symbol("hide".to_string()),
+                span: Span { start: 0, end: 0 },
+            },
+            Node::Atom {
+                atom: Atom::Symbol("yes".to_string()),
+                span: Span { start: 0, end: 0 },
+            },
+        ],
+        span: Span { start: 0, end: 0 },
+    }
+}
+
+fn normalize_hidden_pin_name_node(node: &Node) -> Node {
+    let Node::List { items, span } = node else {
+        return node.clone();
+    };
+
+    let mut normalized_items = Vec::with_capacity(items.len());
+    for (idx, child) in items.iter().enumerate() {
+        if idx == 1 {
+            normalized_items.push(Node::Atom {
+                atom: Atom::Quoted(String::new()),
+                span: Span { start: 0, end: 0 },
+            });
+        } else {
+            normalized_items.push(child.clone());
+        }
+    }
+
+    Node::List {
+        items: normalized_items,
+        span: *span,
+    }
+}
+
+fn is_default_stroke_color_node(node: &Node) -> bool {
+    head_of(node) == Some("color")
+        && (1..=4).all(|idx| nth_atom_string(node, idx).as_deref() == Some("0"))
 }
 
 fn collect_embedded_pins(node: &Node, local_name: &str, out: &mut Vec<EmbeddedPin>) {
@@ -973,7 +1438,8 @@ fn parse_embedded_pin(node: &Node, unit: i32, body_style: i32) -> Option<Embedde
                 atom: Atom::Symbol(value),
                 ..
             } if value == "hide"
-        )
+        ) || (head_of(child) == Some("hide")
+            && nth_atom_string(child, 1).as_deref() != Some("no"))
     });
     let mut x = None;
     let mut y = None;
@@ -981,6 +1447,7 @@ fn parse_embedded_pin(node: &Node, unit: i32, body_style: i32) -> Option<Embedde
     let mut length = Some(0.0);
     let mut name = None;
     let mut number = None;
+    let mut alternates = BTreeMap::new();
 
     for child in child_items(node).iter().skip(3) {
         match head_of(child) {
@@ -998,21 +1465,33 @@ fn parse_embedded_pin(node: &Node, unit: i32, body_style: i32) -> Option<Embedde
             Some("number") => {
                 number = nth_atom_string(child, 1);
             }
+            Some("alternate") => {
+                if let Some(alternate_name) = nth_atom_string(child, 1) {
+                    alternates.insert(
+                        alternate_name.clone(),
+                        EmbeddedPinAlternate {
+                            name: alternate_name,
+                            electrical_type: nth_atom_string(child, 2),
+                        },
+                    );
+                }
+            }
             _ => {}
         }
     }
 
-    let (x, y, angle, length, number) = (x?, y?, angle?, length?, number?);
-    let root = pin_root(x, y, angle, length);
+    let (x, y, _angle, _length, number) = (x?, y?, angle?, length?, number?);
+    let position = Point::new(x, -y);
 
     Some(EmbeddedPin {
         num: number,
         name,
         electrical_type,
+        alternates,
         hidden,
         unit,
         body_style,
-        root,
+        position,
     })
 }
 
@@ -1033,6 +1512,7 @@ fn parse_placed_symbol(
     node: &Node,
     order: usize,
     instance_path: Option<&str>,
+    symbol_instance_overrides: &BTreeMap<String, SymbolInstanceOverride>,
 ) -> Result<PlacedSymbol, String> {
     let lib_id = nth_atom_string(node, 1)
         .filter(|head| head != "symbol")
@@ -1044,12 +1524,26 @@ fn parse_placed_symbol(
         })
         .ok_or_else(|| "symbol missing lib_id".to_string())?;
     let (lib, part) = split_lib_id(&lib_id);
+    let embedded_lib_name = child_items(node)
+        .iter()
+        .find(|child| head_of(child) == Some("lib_name"))
+        .and_then(|child| nth_atom_string(child, 1));
     let mut x = 0.0;
     let mut y = 0.0;
     let mut transform = Transform::identity();
     let mut unit = 1;
     let mut body_style = 1;
+    let mut exclude_from_sim = false;
+    let mut in_bom = true;
+    let mut on_board = true;
+    let mut dnp = false;
+    let mut in_pos_files = None;
     let mut properties = Vec::new();
+    let mut pin_alternates = BTreeMap::new();
+    let symbol_uuid = child_items(node)
+        .iter()
+        .find(|child| head_of(child) == Some("uuid"))
+        .and_then(|child| nth_atom_string(child, 1));
 
     for child in child_items(node).iter().skip(1) {
         match head_of(child) {
@@ -1069,6 +1563,13 @@ fn parse_placed_symbol(
             }
             Some("unit") => unit = nth_atom_i32(child, 1).unwrap_or(1),
             Some("body_style") => body_style = nth_atom_i32(child, 1).unwrap_or(1),
+            Some("exclude_from_sim") => {
+                exclude_from_sim = parse_bool_flag(child).unwrap_or(exclude_from_sim)
+            }
+            Some("in_bom") => in_bom = parse_bool_flag(child).unwrap_or(in_bom),
+            Some("on_board") => on_board = parse_bool_flag(child).unwrap_or(on_board),
+            Some("dnp") => dnp = parse_bool_flag(child).unwrap_or(dnp),
+            Some("in_pos_files") => in_pos_files = parse_bool_flag(child),
             Some("property") => {
                 if let Some(name) = nth_atom_string(child, 1) {
                     let (prop_x, prop_y) = child_items(child)
@@ -1089,31 +1590,94 @@ fn parse_placed_symbol(
                     });
                 }
             }
+            Some("pin") => {
+                if let Some(number) = nth_atom_string(child, 1) {
+                    if let Some(alternate) = child_items(child)
+                        .iter()
+                        .find(|grandchild| head_of(grandchild) == Some("alternate"))
+                        .and_then(|alternate| nth_atom_string(alternate, 1))
+                    {
+                        pin_alternates.insert(number, alternate);
+                    }
+                }
+            }
             _ => {}
         }
     }
 
-    let reference = child_items(node)
+    let direct_override_data = symbol_uuid.as_deref().and_then(|uuid| {
+        let rooted = format!("/{uuid}");
+        instance_path
+            .map(|base| {
+                if base == "/" {
+                    rooted.clone()
+                } else {
+                    format!("{}/{}", base.trim_end_matches('/'), uuid)
+                }
+            })
+            .and_then(|path| symbol_instance_overrides.get(&path))
+            .or_else(|| symbol_instance_overrides.get(&rooted))
+    });
+    let direct_instance_reference = direct_override_data.and_then(|data| data.reference.clone());
+    let matching_node_instance_reference = child_items(node)
         .iter()
         .find(|child| head_of(child) == Some("instances"))
         .and_then(|instances| {
             let paths = child_items(instances)
                 .iter()
-                .find(|child| head_of(child) == Some("project"))
-                .map(child_items)?;
-            let matching_path = instance_path.and_then(|wanted| {
-                paths.iter().find(|child| {
-                    head_of(child) == Some("path")
-                        && nth_atom_string(child, 1).as_deref() == Some(wanted)
+                .filter(|child| head_of(child) == Some("project"))
+                .flat_map(child_items)
+                .filter(|child| head_of(child) == Some("path"))
+                .cloned()
+                .collect::<Vec<_>>();
+            instance_path
+                .and_then(|wanted| {
+                    paths.iter().find(|child| {
+                        head_of(child) == Some("path")
+                            && nth_atom_string(child, 1).as_deref() == Some(wanted)
+                    })
                 })
-            });
-            matching_path
-                .or_else(|| paths.iter().find(|child| head_of(child) == Some("path")))
                 .and_then(|path| {
                     child_items(path)
                         .iter()
                         .find(|child| head_of(child) == Some("reference"))
                         .and_then(|reference| nth_atom_string(reference, 1))
+                })
+        });
+    let annotated_on_current_sheet = direct_instance_reference
+        .as_deref()
+        .or(matching_node_instance_reference.as_deref())
+        .is_some_and(|reference| !reference.is_empty() && !reference.ends_with('?'));
+    let override_data = direct_override_data;
+
+    let reference = override_data
+        .and_then(|data| data.reference.clone())
+        .or_else(|| {
+            child_items(node)
+                .iter()
+                .find(|child| head_of(child) == Some("instances"))
+                .and_then(|instances| {
+                    let paths = child_items(instances)
+                        .iter()
+                        .filter(|child| head_of(child) == Some("project"))
+                        .flat_map(child_items)
+                        .filter(|child| head_of(child) == Some("path"))
+                        .cloned()
+                        .collect::<Vec<_>>();
+                    let matching_path = instance_path.and_then(|wanted| {
+                        paths.iter().find(|child| {
+                            head_of(child) == Some("path")
+                                && nth_atom_string(child, 1).as_deref() == Some(wanted)
+                        })
+                    });
+                    matching_path
+                        .or_else(|| paths.iter().find(|child| head_of(child) == Some("path")))
+                        .and_then(|path| {
+                            child_items(path)
+                                .iter()
+                                .find(|child| head_of(child) == Some("reference"))
+                                .and_then(|reference| nth_atom_string(reference, 1))
+                        })
                 })
         })
         .or_else(|| {
@@ -1123,16 +1687,69 @@ fn parse_placed_symbol(
                 .map(|property| property.value.clone())
         })
         .ok_or_else(|| format!("symbol {lib_id} missing Reference property"))?;
+    let instance_overrides = child_items(node)
+        .iter()
+        .find(|child| head_of(child) == Some("instances"))
+        .map(|instances| {
+            child_items(instances)
+                .iter()
+                .filter(|child| head_of(child) == Some("project"))
+                .flat_map(child_items)
+                .filter(|child| head_of(child) == Some("path"))
+                .filter_map(|path| {
+                    let instance_path = nth_atom_string(path, 1)?;
+                    let override_data = SymbolInstanceOverride {
+                        reference: child_items(path)
+                            .iter()
+                            .find(|child| head_of(child) == Some("reference"))
+                            .and_then(|child| nth_atom_string(child, 1)),
+                        value: child_items(path)
+                            .iter()
+                            .find(|child| head_of(child) == Some("value"))
+                            .and_then(|child| nth_atom_string(child, 1)),
+                        footprint: child_items(path)
+                            .iter()
+                            .find(|child| head_of(child) == Some("footprint"))
+                            .and_then(|child| nth_atom_string(child, 1)),
+                        unit: child_items(path)
+                            .iter()
+                            .find(|child| head_of(child) == Some("unit"))
+                            .and_then(|child| nth_atom_i32(child, 1)),
+                        variants: child_items(path)
+                            .iter()
+                            .filter(|child| head_of(child) == Some("variant"))
+                            .filter_map(parse_variant_override)
+                            .collect(),
+                    };
+                    Some((instance_path, override_data))
+                })
+                .collect::<BTreeMap<_, _>>()
+        })
+        .unwrap_or_default();
+    let instance_references = instance_overrides
+        .iter()
+        .filter_map(|(path, override_data)| {
+            Some((path.clone(), override_data.reference.clone()?))
+        })
+        .collect::<BTreeMap<_, _>>();
 
-    let value = properties
-        .iter()
-        .find(|property| property.name == "Value")
-        .map(|property| property.value.clone())
+    let value = override_data
+        .and_then(|data| data.value.clone())
+        .or_else(|| {
+            properties
+                .iter()
+                .find(|property| property.name == "Value")
+                .map(|property| property.value.clone())
+        })
         .filter(|value| !value.is_empty());
-    let footprint = properties
-        .iter()
-        .find(|property| property.name == "Footprint")
-        .map(|property| property.value.clone())
+    let footprint = override_data
+        .and_then(|data| data.footprint.clone())
+        .or_else(|| {
+            properties
+                .iter()
+                .find(|property| property.name == "Footprint")
+                .map(|property| property.value.clone())
+        })
         .filter(|value| !value.is_empty());
     let datasheet = properties
         .iter()
@@ -1146,17 +1763,28 @@ fn parse_placed_symbol(
 
     Ok(PlacedSymbol {
         reference,
+        symbol_uuid,
+        instance_references,
+        instance_overrides,
         lib,
         part,
         lib_id,
+        embedded_lib_name,
         value,
         footprint,
         datasheet,
         sheet_path,
+        exclude_from_sim,
+        in_bom,
+        on_board,
+        dnp,
+        in_pos_files,
+        annotated_on_current_sheet,
         properties,
         at: Point::new(x, y),
         unit,
         body_style,
+        pin_alternates,
         transform,
         order,
     })
@@ -1240,16 +1868,40 @@ fn parse_bus_entry(node: &Node) -> Option<BusEntry> {
     })
 }
 
+fn parse_rule_area_borders(node: &Node) -> Vec<Segment> {
+    child_items(node)
+        .iter()
+        .filter(|child| head_of(child) == Some("polyline"))
+        .flat_map(|polyline| {
+            let Some(pts) = child_items(polyline)
+                .iter()
+                .find(|child| head_of(child) == Some("pts"))
+            else {
+                return Vec::new();
+            };
+
+            let points = child_items(pts)
+                .iter()
+                .filter(|child| head_of(child) == Some("xy"))
+                .filter_map(|xy| Some(Point::new(nth_atom_f64(xy, 1)?, nth_atom_f64(xy, 2)?)))
+                .collect::<Vec<_>>();
+
+            points
+                .windows(2)
+                .map(|window| Segment {
+                    a: window[0],
+                    b: window[1],
+                })
+                .collect::<Vec<_>>()
+        })
+        .collect()
+}
+
 fn parse_at_point(node: &Node) -> Option<Point> {
     let at = child_items(node)
         .iter()
         .find(|child| head_of(child) == Some("at"))?;
     Some(Point::new(nth_atom_f64(at, 1)?, nth_atom_f64(at, 2)?))
-}
-
-fn pin_root(x: f64, y: f64, angle: i32, length: f64) -> Point {
-    let _ = (angle, length);
-    Point::new(x, -y)
 }
 
 fn split_lib_id(lib_id: &str) -> (Option<String>, Option<String>) {
@@ -1444,7 +2096,11 @@ impl Dsu {
 
 #[cfg(test)]
 mod tests {
-    use super::parse_schema;
+    use tempfile::TempDir;
+
+    use crate::extract::sym_lib;
+
+    use super::{parse_schema, resolve_nets, resolve_physical_groups};
 
     #[test]
     fn parse_schema_handles_extract_resistor_gnd_fixture() {
@@ -1455,4 +2111,459 @@ mod tests {
         let parsed = parse_schema(path, None);
         assert!(parsed.is_ok(), "{parsed:?}");
     }
+
+    #[test]
+    fn embedded_testpoint_signature_matches_global_library_fixture() {
+        let path = concat!(
+            env!("CARGO_MANIFEST_DIR"),
+            "/tests/fixtures/erc_upstream_qa/projects/NoConnectOnLine.kicad_sch"
+        );
+        let parsed = parse_schema(path, None).expect("schema should parse");
+        let embedded = parsed
+            .embedded_symbols
+            .get("Connector:TestPoint")
+            .expect("embedded Connector:TestPoint should exist");
+
+        assert!(
+            !embedded.signature.is_empty(),
+            "embedded signature should not be empty"
+        );
+
+        let libs = sym_lib::load_named_global_symbol_libraries([String::from("Connector")], false)
+            .expect("connector library should load");
+        let external = libs
+            .parts
+            .get(&(String::from("Connector"), String::from("TestPoint")))
+            .expect("global test point should exist");
+
+        assert_eq!(embedded.signature, external.signature);
+    }
+
+    #[test]
+    fn embedded_testpoint_signature_matches_global_library_global_label_fixture() {
+        let path = concat!(
+            env!("CARGO_MANIFEST_DIR"),
+            "/tests/fixtures/erc_upstream_qa/projects/NoConnectOnLineWithGlobalLabel.kicad_sch"
+        );
+        let parsed = parse_schema(path, None).expect("schema should parse");
+        let embedded = parsed
+            .embedded_symbols
+            .get("Connector:TestPoint")
+            .expect("embedded Connector:TestPoint should exist");
+
+        let libs = sym_lib::load_named_global_symbol_libraries([String::from("Connector")], false)
+            .expect("connector library should load");
+        let external = libs
+            .parts
+            .get(&(String::from("Connector"), String::from("TestPoint")))
+            .expect("global test point should exist");
+
+        assert_eq!(embedded.signature, external.signature);
+    }
+
+    #[test]
+    fn embedded_power_signatures_match_global_library_fixtures() {
+        let path = concat!(
+            env!("CARGO_MANIFEST_DIR"),
+            "/tests/fixtures/erc_upstream_qa/projects/erc_multiple_pin_to_pin.kicad_sch"
+        );
+        let parsed = parse_schema(path, None).expect("schema should parse");
+        let libs = sym_lib::load_named_global_symbol_libraries([String::from("power")], false)
+            .expect("power library should load");
+
+        for part in ["GND", "VCC"] {
+            let embedded = parsed
+                .embedded_symbols
+                .get(&format!("power:{part}"))
+                .expect("embedded power symbol should exist");
+            let external = libs
+                .parts
+                .get(&(String::from("power"), part.to_string()))
+                .expect("global power symbol should exist");
+            assert_eq!(embedded.signature, external.signature);
+        }
+    }
+
+    #[test]
+    fn embedded_power_vcc_signature_preserves_legacy_value_position_issue12814() {
+        let path = concat!(
+            env!("CARGO_MANIFEST_DIR"),
+            "/tests/fixtures/erc_upstream_qa/projects/issue12814_2.kicad_sch"
+        );
+        let parsed = parse_schema(path, None).expect("schema should parse");
+        let libs = sym_lib::load_named_global_symbol_libraries([String::from("power")], false)
+            .expect("power library should load");
+        let embedded = parsed
+            .embedded_symbols
+            .get("power:VCC")
+            .expect("embedded VCC symbol should exist");
+        let external = libs
+            .parts
+            .get(&(String::from("power"), String::from("VCC")))
+            .expect("global VCC symbol should exist");
+        assert_ne!(embedded.signature, external.signature);
+    }
+
+    #[test]
+    fn embedded_device_d_signature_matches_global_library_issue23346_fixture() {
+        let path = concat!(
+            env!("CARGO_MANIFEST_DIR"),
+            "/tests/fixtures/erc_upstream_qa/projects/issue23346/A.kicad_sch"
+        );
+        let parsed = parse_schema(path, None).expect("schema should parse");
+        let embedded = parsed
+            .embedded_symbols
+            .get("Device:D")
+            .expect("embedded Device:D should exist");
+
+        let libs = sym_lib::load_named_global_symbol_libraries([String::from("Device")], false)
+            .expect("device library should load");
+        let external = libs
+            .parts
+            .get(&(String::from("Device"), String::from("D")))
+            .expect("global Device:D should exist");
+
+        assert_eq!(embedded.signature, external.signature);
+    }
+
+    #[test]
+    fn embedded_tl072_signature_matches_global_library_component_classes_fixture() {
+        let path = concat!(
+            env!("CARGO_MANIFEST_DIR"),
+            "/tests/fixtures/erc_upstream_qa/projects/netlists/component_classes/component_classes.kicad_sch"
+        );
+        let parsed = parse_schema(path, None).expect("schema should parse");
+        let embedded = parsed
+            .embedded_symbols
+            .get("Amplifier_Operational:TL072")
+            .expect("embedded Amplifier_Operational:TL072 should exist");
+
+        let libs = sym_lib::load_named_global_symbol_libraries(
+            [String::from("Amplifier_Operational")],
+            false,
+        )
+        .expect("amplifier library should load");
+        let external = libs
+            .parts
+            .get(&(String::from("Amplifier_Operational"), String::from("TL072")))
+            .expect("global Amplifier_Operational:TL072 should exist");
+
+        assert_eq!(embedded.signature, external.signature);
+    }
+
+    #[test]
+    fn parse_schema_captures_symbol_instance_variant_attributes() {
+        let temp = TempDir::new().expect("tempdir should exist");
+        let path = temp.path().join("variant_instance.kicad_sch");
+        std::fs::write(
+            &path,
+            r#"(kicad_sch
+  (version 20260101)
+  (generator "eeschema")
+  (uuid "variant-instance-root")
+  (paper "A4")
+  (lib_symbols
+    (symbol "Device:R"
+      (pin_numbers (hide yes))
+      (pin_names (offset 0))
+      (exclude_from_sim no)
+      (in_bom yes)
+      (on_board yes)
+      (in_pos_files yes)
+      (property "Reference" "R" (at 0 0 0) (effects (font (size 1.27 1.27))))
+      (property "Value" "R" (at 0 0 0) (effects (font (size 1.27 1.27))))
+      (property "Footprint" "" (at 0 0 0) (effects (font (size 1.27 1.27))))
+      (symbol "R_1_1"
+        (pin passive line (at 0 3.81 270) (length 1.27) (name "" (effects (font (size 1.27 1.27)))) (number "1" (effects (font (size 1.27 1.27)))))
+        (pin passive line (at 0 -3.81 90) (length 1.27) (name "" (effects (font (size 1.27 1.27)))) (number "2" (effects (font (size 1.27 1.27))))))))
+  (symbol
+    (lib_id "Device:R")
+    (at 10 10 0)
+    (unit 1)
+    (body_style 1)
+    (exclude_from_sim no)
+    (in_bom yes)
+    (on_board yes)
+    (in_pos_files yes)
+    (dnp no)
+    (uuid "sym-r1")
+    (property "Reference" "R?" (at 10 10 0) (effects (font (size 1.27 1.27))))
+    (property "Value" "10k" (at 10 10 0) (effects (font (size 1.27 1.27))))
+    (property "Footprint" "" (at 10 10 0) (effects (font (size 1.27 1.27))))
+    (pin "1" (uuid "pin-1"))
+    (pin "2" (uuid "pin-2"))
+    (instances
+      (project "proj"
+        (path "/variant-instance-root"
+          (reference "R1")
+          (unit 1)
+          (variant (name "ALT") (dnp yes) (in_bom no) (on_board no) (exclude_from_sim yes) (in_pos_files no)
+            (field (name "Footprint") (value "Pkg:R_0402")))
+          (variant (name "DEV")
+            (field (name "MPN") (value "ABC123")))))))
+  (sheet_instances
+    (path "/" (page "1"))))"#,
+        )
+        .expect("fixture should write");
+
+        let parsed = parse_schema(path.to_str().expect("utf8 path"), None).expect("schema should parse");
+        let symbol = parsed
+            .symbols
+            .iter()
+            .find(|symbol| symbol.reference == "R1")
+            .expect("symbol should be parsed");
+
+        assert!(!symbol.exclude_from_sim);
+        assert!(symbol.in_bom);
+        assert!(symbol.on_board);
+        assert!(!symbol.dnp);
+        assert_eq!(symbol.in_pos_files, Some(true));
+
+        let instance = symbol
+            .instance_overrides
+            .get("/variant-instance-root")
+            .expect("instance override should exist");
+
+        assert_eq!(instance.reference.as_deref(), Some("R1"));
+        assert_eq!(instance.unit, Some(1));
+
+        let alt = instance
+            .variants
+            .get("ALT")
+            .expect("ALT variant should be present");
+        assert_eq!(alt.dnp, Some(true));
+        assert_eq!(alt.in_bom, Some(false));
+        assert_eq!(alt.on_board, Some(false));
+        assert_eq!(alt.exclude_from_sim, Some(true));
+        assert_eq!(alt.in_pos_files, Some(false));
+        assert_eq!(alt.fields.get("Footprint").map(String::as_str), Some("Pkg:R_0402"));
+
+        let dev = instance
+            .variants
+            .get("DEV")
+            .expect("DEV variant should be present");
+        assert_eq!(dev.fields.get("MPN").map(String::as_str), Some("ABC123"));
+    }
+
+    #[test]
+    fn parse_schema_uses_matching_symbol_instance_reference_across_multiple_projects() {
+        let temp = TempDir::new().expect("tempdir should exist");
+        let path = temp.path().join("shared_project_instance.kicad_sch");
+        std::fs::write(
+            &path,
+            r#"(kicad_sch
+  (version 20231120)
+  (generator "eeschema")
+  (uuid "root-uuid")
+  (paper "A4")
+  (lib_symbols
+    (symbol "Device:R"
+      (property "Reference" "R" (at 0 0 0) (effects (font (size 1.27 1.27))))
+      (property "Value" "R" (at 0 0 0) (effects (font (size 1.27 1.27))))
+      (symbol "R_1_1"
+        (pin passive line
+          (at 0 3.81 270)
+          (length 1.27)
+          (name "~" (effects (font (size 1.27 1.27))))
+          (number "1" (effects (font (size 1.27 1.27))))))))
+  (symbol
+    (lib_id "Device:R")
+    (at 10 10 0)
+    (unit 1)
+    (uuid "sym-shared")
+    (property "Reference" "R101" (at 10 10 0) (effects (font (size 1.27 1.27))))
+    (property "Value" "R" (at 10 10 0) (effects (font (size 1.27 1.27))))
+    (instances
+      (project ""
+        (path "/6efaae0e-12b2-4c38-9785-e69c7bf0187e"
+          (reference "R101")
+          (unit 1)))
+      (project ""
+        (path "/b3f257ad-640c-4beb-bc70-dea79d3e6f3f/03fd8cff-6eb0-4392-9ef3-50dc68f78e90"
+          (reference "R201")
+          (unit 1)))))
+  (sheet_instances
+    (path "/" (page "1"))))"#,
+        )
+        .expect("fixture should write");
+
+        let parsed = parse_schema(
+            path.to_str().expect("utf8 path"),
+            Some("/b3f257ad-640c-4beb-bc70-dea79d3e6f3f/03fd8cff-6eb0-4392-9ef3-50dc68f78e90"),
+        )
+        .expect("schema should parse");
+        let symbol = parsed.symbols.first().expect("symbol should be parsed");
+
+        assert_eq!(symbol.reference, "R201");
+        assert_eq!(
+            symbol
+                .instance_overrides
+                .get("/b3f257ad-640c-4beb-bc70-dea79d3e6f3f/03fd8cff-6eb0-4392-9ef3-50dc68f78e90")
+                .and_then(|instance| instance.reference.as_deref()),
+            Some("R201")
+        );
+    }
+
+    #[test]
+    fn parse_schema_marks_shared_screen_symbols_unannotated_for_current_sheet_issue20173() {
+        let path = "/Users/Daniel/Desktop/kicad/qa/data/eeschema/issue20173/Kicad 9 - multi channel test.kicad_sch";
+        let parsed = parse_schema(path, None).expect("schema should parse");
+
+        let passive_pin = parsed
+            .pin_nodes
+            .iter()
+            .find(|pin| pin.reference == "R1" && pin.pin == "2")
+            .expect("R1 pin 2 should exist");
+        let power_pin = parsed
+            .pin_nodes
+            .iter()
+            .find(|pin| pin.reference == "#PWR0201" && pin.pin == "1")
+            .expect("power pin should exist");
+
+        assert!(!passive_pin.drives_net);
+        assert!(power_pin.drives_net);
+    }
+
+    #[test]
+    fn parse_schema_marks_matching_instance_symbols_annotated_for_current_sheet_issue1768() {
+        let path = "/Users/Daniel/Desktop/kicad/qa/data/eeschema/issue1768/issue1768.kicad_sch";
+        let parsed = parse_schema(path, None).expect("schema should parse");
+
+        let passive_pin = parsed
+            .pin_nodes
+            .iter()
+            .find(|pin| pin.reference == "VD1" && pin.pin == "1")
+            .expect("VD1 pin 1 should exist");
+
+        assert!(passive_pin.drives_net);
+    }
+
+    #[test]
+    fn parse_schema_marks_blank_project_instances_annotated_for_current_sheet_issue17870() {
+        let path = "/Users/Daniel/Desktop/kicad/qa/data/eeschema/issue17870.kicad_sch";
+        let parsed = parse_schema(path, None).expect("schema should parse");
+
+        let power02 = parsed
+            .symbols
+            .iter()
+            .find(|symbol| symbol.reference == "#PWR02")
+            .expect("#PWR02 should exist");
+        let power03 = parsed
+            .symbols
+            .iter()
+            .find(|symbol| symbol.reference == "#PWR03")
+            .expect("#PWR03 should exist");
+        let power04 = parsed
+            .symbols
+            .iter()
+            .find(|symbol| symbol.reference == "#PWR04")
+            .expect("#PWR04 should exist");
+
+        assert!(power02.annotated_on_current_sheet);
+        assert!(power03.annotated_on_current_sheet);
+        assert!(power04.annotated_on_current_sheet);
+
+        let power02_pin = parsed
+            .pin_nodes
+            .iter()
+            .find(|pin| pin.reference == "#PWR02" && pin.pin == "1")
+            .expect("#PWR02 pin should exist");
+        let power03_pin = parsed
+            .pin_nodes
+            .iter()
+            .find(|pin| pin.reference == "#PWR03" && pin.pin == "1")
+            .expect("#PWR03 pin should exist");
+        let power04_pin = parsed
+            .pin_nodes
+            .iter()
+            .find(|pin| pin.reference == "#PWR04" && pin.pin == "1")
+            .expect("#PWR04 pin should exist");
+
+        assert!(power02_pin.drives_net);
+        assert!(power03_pin.drives_net);
+        assert!(power04_pin.drives_net);
+    }
+
+    #[test]
+    fn debug_issue17870_groups() {
+        let path = "/Users/Daniel/Desktop/kicad/qa/data/eeschema/issue17870.kicad_sch";
+        let parsed = parse_schema(path, None).expect("schema should parse");
+        let groups = resolve_physical_groups(&parsed);
+        let nets = resolve_nets(&parsed);
+
+        for group in &groups {
+            let interesting = group.nodes.iter().any(|pin| {
+                matches!(
+                    pin.reference.as_str(),
+                    "#PWR01" | "#PWR02" | "#PWR03" | "#PWR04" | "#PWR08"
+                )
+            });
+
+            if !interesting {
+                continue;
+            }
+
+            println!("GROUP");
+            for pin in &group.nodes {
+                println!(
+                    "  pin {} {} point=({}, {}) type={:?} drives={}",
+                    pin.reference,
+                    pin.pin,
+                    pin.point.x,
+                    pin.point.y,
+                    pin.pin_type,
+                    pin.drives_net
+                );
+            }
+            for label in &group.labels {
+                println!(
+                    "  label {} {} point=({}, {})",
+                    label.label_type, label.text, label.point.x, label.point.y
+                );
+            }
+            for segment in &group.segments {
+                println!(
+                    "  segment ({}, {}) -> ({}, {})",
+                    segment.a.x, segment.a.y, segment.b.x, segment.b.y
+                );
+            }
+            for pin in &group.nodes {
+                for bus in parsed
+                    .buses
+                    .iter()
+                    .filter(|segment| super::point_on_segment(pin.point, segment))
+                {
+                    println!(
+                        "  bus-touch {} ({}, {}) -> ({}, {})",
+                        pin.reference, bus.a.x, bus.a.y, bus.b.x, bus.b.y
+                    );
+                }
+            }
+        }
+
+        for net in &nets {
+            let interesting = net.nodes.iter().any(|pin| {
+                matches!(pin.reference.as_str(), "#PWR01" | "#PWR02" | "#PWR08")
+            });
+
+            if !interesting {
+                continue;
+            }
+
+            println!("NET {}", net.name);
+            for pin in &net.nodes {
+                println!(
+                    "  pin {} {} point=({}, {}) type={:?}",
+                    pin.reference, pin.pin, pin.point.x, pin.point.y, pin.pin_type
+                );
+            }
+            for label in &net.labels {
+                println!(
+                    "  label {} {} point=({}, {})",
+                    label.label_type, label.text, label.point.x, label.point.y
+                );
+            }
+        }
+    }
+
 }

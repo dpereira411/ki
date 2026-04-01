@@ -8,10 +8,94 @@
       "note": "Broad exact upstream equality regression"
     },
     {
+      "id": "erc_dynamic_power_symbol_test",
+      "relative_path": "ERC_dynamic_power_symbol_test.kicad_sch",
+      "mode": "exact",
+      "note": "Exact upstream equality regression"
+    },
+    {
+      "id": "no_connect_on_line",
+      "relative_path": "NoConnectOnLine.kicad_sch",
+      "mode": "exact",
+      "note": "Exact upstream equality regression"
+    },
+    {
+      "id": "no_connect_on_line_with_global_label",
+      "relative_path": "NoConnectOnLineWithGlobalLabel.kicad_sch",
+      "mode": "exact",
+      "note": "Exact upstream equality regression"
+    },
+    {
+      "id": "no_connect_on_line_with_hierarchical_label",
+      "relative_path": "NoConnectOnLineWithHierarchicalLabel.kicad_sch",
+      "mode": "exact",
+      "note": "Exact upstream equality regression"
+    },
+    {
+      "id": "no_connect_on_line_with_label",
+      "relative_path": "NoConnectOnLineWithLabel.kicad_sch",
+      "mode": "exact",
+      "note": "Exact upstream equality regression"
+    },
+    {
+      "id": "no_connect_on_pin",
+      "relative_path": "NoConnectOnPin.kicad_sch",
+      "mode": "exact",
+      "note": "Exact upstream equality regression"
+    },
+    {
+      "id": "no_connect_pins_connected_by_label",
+      "relative_path": "NoConnectPinsConnectedByLabel.kicad_sch",
+      "mode": "exact",
+      "note": "Exact upstream equality regression"
+    },
+    {
+      "id": "no_connect_pins_connected_by_line",
+      "relative_path": "NoConnectPinsConnectedByLine.kicad_sch",
+      "mode": "exact",
+      "note": "Exact upstream equality regression"
+    },
+    {
+      "id": "erc_directive_label_not_connected",
+      "relative_path": "erc_directive_label_not_connected.kicad_sch",
+      "mode": "exact",
+      "note": "Exact upstream equality regression"
+    },
+    {
+      "id": "erc_label_test",
+      "relative_path": "erc_label_test.kicad_sch",
+      "mode": "exact",
+      "note": "Exact upstream equality regression"
+    },
+    {
+      "id": "erc_pin_not_connected_basic",
+      "relative_path": "erc_pin_not_connected_basic.kicad_sch",
+      "mode": "exact",
+      "note": "Exact upstream equality regression"
+    },
+    {
+      "id": "incremental_test",
+      "relative_path": "incremental_test.kicad_sch",
+      "mode": "exact",
+      "note": "Exact upstream equality regression"
+    },
+    {
       "id": "top_level_hier_pins",
       "relative_path": "netlists/top_level_hier_pins/top_level_hier_pins.kicad_sch",
       "mode": "exact",
       "note": "Broad exact hierarchical regression"
+    },
+    {
+      "id": "top_level_hier_pins_subsheet",
+      "relative_path": "netlists/top_level_hier_pins/subsheet.kicad_sch",
+      "mode": "exact",
+      "note": "Exact upstream equality regression"
+    },
+    {
+      "id": "top_level_hier_pins_subsubsheet",
+      "relative_path": "netlists/top_level_hier_pins/subsubsheet.kicad_sch",
+      "mode": "exact",
+      "note": "Exact upstream equality regression"
     },
     {
       "id": "issue18606",
@@ -20,22 +104,670 @@
       "note": "Broad exact hierarchy plus multiple-net-names regression"
     },
     {
+      "id": "issue18606_child_test",
+      "relative_path": "issue18606/test.kicad_sch",
+      "mode": "exact",
+      "note": "Exact upstream equality regression"
+    },
+    {
       "id": "prefix_bus_alias",
       "relative_path": "netlists/prefix_bus_alias/prefix_bus_alias.kicad_sch",
       "mode": "exact",
       "note": "Broad exact bus-alias regression"
     },
     {
+      "id": "prefix_bus_alias_subsheet1",
+      "relative_path": "netlists/prefix_bus_alias/subsheet1.kicad_sch",
+      "mode": "exact",
+      "note": "Exact upstream equality regression"
+    },
+    {
+      "id": "prefix_bus_alias_subsheet2",
+      "relative_path": "netlists/prefix_bus_alias/subsheet2.kicad_sch",
+      "mode": "exact",
+      "note": "Exact upstream equality regression"
+    },
+    {
       "id": "bus_connection",
       "relative_path": "netlists/bus_connection/bus_connection.kicad_sch",
-      "mode": "targeted",
-      "note": "Counts and key items match; 0.0001 mm item-description drift remains on four endpoint_off_grid entries"
+      "mode": "exact",
+      "note": "Exact upstream equality regression"
+    },
+    {
+      "id": "bus_connection_child_a",
+      "relative_path": "netlists/bus_connection/a.kicad_sch",
+      "mode": "exact",
+      "note": "Exact upstream equality regression"
+    },
+    {
+      "id": "bus_connection_child_a2",
+      "relative_path": "netlists/bus_connection/a2.kicad_sch",
+      "mode": "exact",
+      "note": "Exact upstream equality regression"
+    },
+    {
+      "id": "bus_connection_child_b",
+      "relative_path": "netlists/bus_connection/b.kicad_sch",
+      "mode": "exact",
+      "note": "Exact upstream equality regression"
+    },
+    {
+      "id": "issue10430",
+      "relative_path": "issue10430.kicad_sch",
+      "mode": "exact",
+      "note": "Exact upstream equality regression"
+    },
+    {
+      "id": "issue12505",
+      "relative_path": "issue12505.kicad_sch",
+      "mode": "exact",
+      "note": "Exact upstream equality regression"
+    },
+    {
+      "id": "issue6588",
+      "relative_path": "issue6588.kicad_sch",
+      "mode": "exact",
+      "note": "Exact upstream equality regression"
+    },
+    {
+      "id": "issue16897",
+      "relative_path": "issue16897.kicad_sch",
+      "mode": "exact",
+      "note": "Exact upstream equality regression"
+    },
+    {
+      "id": "issue1768",
+      "relative_path": "issue1768/issue1768.kicad_sch",
+      "mode": "exact",
+      "note": "Exact upstream equality regression"
+    },
+    {
+      "id": "issue18092",
+      "relative_path": "issue18092/issue18092.kicad_sch",
+      "mode": "exact",
+      "note": "Exact upstream equality regression"
+    },
+    {
+      "id": "issue18092_sub_18092",
+      "relative_path": "issue18092/sub_18092.kicad_sch",
+      "mode": "exact",
+      "note": "Exact upstream equality regression"
+    },
+    {
+      "id": "issue9367",
+      "relative_path": "issue9367.kicad_sch",
+      "mode": "exact",
+      "note": "Exact upstream equality regression"
+    },
+    {
+      "id": "issue18299",
+      "relative_path": "issue18299/issue18299.kicad_sch",
+      "mode": "exact",
+      "note": "Exact upstream equality regression"
+    },
+    {
+      "id": "issue18299_test",
+      "relative_path": "issue18299/test.kicad_sch",
+      "mode": "exact",
+      "note": "Exact upstream equality regression"
+    },
+    {
+      "id": "issue18346",
+      "relative_path": "issue18346.kicad_sch",
+      "mode": "exact",
+      "note": "Exact upstream equality regression"
+    },
+    {
+      "id": "issue20173",
+      "relative_path": "issue20173/issue20173.kicad_sch",
+      "mode": "exact",
+      "note": "Exact upstream equality regression"
+    },
+    {
+      "id": "issue20173_kicad_9_multi_channel",
+      "relative_path": "issue20173/Kicad 9 - multi channel test.kicad_sch",
+      "mode": "exact",
+      "note": "Exact upstream equality regression"
+    },
+    {
+      "id": "issue13212",
+      "relative_path": "issue13212.kicad_sch",
+      "mode": "exact",
+      "note": "Exact upstream equality regression"
+    },
+    {
+      "id": "issue13212_subsheet_1",
+      "relative_path": "issue13212_subsheet_1.kicad_sch",
+      "mode": "exact",
+      "note": "Exact upstream equality regression"
+    },
+    {
+      "id": "issue13212_subsheet_2",
+      "relative_path": "issue13212_subsheet_2.kicad_sch",
+      "mode": "exact",
+      "note": "Exact upstream equality regression"
+    },
+    {
+      "id": "issue13431",
+      "relative_path": "issue13431.kicad_sch",
+      "mode": "exact",
+      "note": "Exact upstream equality regression"
+    },
+    {
+      "id": "issue13591",
+      "relative_path": "issue13591.kicad_sch",
+      "mode": "exact",
+      "note": "Exact upstream equality regression"
+    },
+    {
+      "id": "issue10926_1",
+      "relative_path": "issue10926_1.kicad_sch",
+      "mode": "exact",
+      "note": "Exact upstream equality regression"
+    },
+    {
+      "id": "issue10926_1_subsheet_1_1",
+      "relative_path": "issue10926_1_subsheet_1_1.kicad_sch",
+      "mode": "exact",
+      "note": "Exact upstream equality regression"
+    },
+    {
+      "id": "issue10926_1_subsheet_1",
+      "relative_path": "issue10926_1_subsheet_1.kicad_sch",
+      "mode": "exact",
+      "note": "Exact upstream equality regression"
+    },
+    {
+      "id": "issue12814_1",
+      "relative_path": "issue12814_1.kicad_sch",
+      "mode": "exact",
+      "note": "Exact upstream equality regression"
+    },
+    {
+      "id": "issue12814_2",
+      "relative_path": "issue12814_2.kicad_sch",
+      "mode": "exact",
+      "note": "Exact upstream equality regression"
+    },
+    {
+      "id": "issue22286_bugtest",
+      "relative_path": "issue22286/bugtest.kicad_sch",
+      "mode": "exact",
+      "note": "Exact upstream equality regression"
+    },
+    {
+      "id": "groups_load_save",
+      "relative_path": "groups_load_save.kicad_sch",
+      "mode": "exact",
+      "note": "Exact upstream equality regression"
+    },
+    {
+      "id": "issue22872",
+      "relative_path": "issue22872/issue22872.kicad_sch",
+      "mode": "exact",
+      "note": "Exact upstream equality regression"
+    },
+    {
+      "id": "issue22873",
+      "relative_path": "issue22873/issue22873.kicad_sch",
+      "mode": "exact",
+      "note": "Exact upstream equality regression"
+    },
+    {
+      "id": "issue22854_test",
+      "relative_path": "issue22854/test.kicad_sch",
+      "mode": "exact",
+      "note": "Exact upstream equality regression"
+    },
+    {
+      "id": "issue22864_test_move_grid",
+      "relative_path": "issue22864/Test_Move_Grid.kicad_sch",
+      "mode": "exact",
+      "note": "Exact upstream equality regression"
+    },
+    {
+      "id": "issue22864_sheet1",
+      "relative_path": "issue22864/sheet1.kicad_sch",
+      "mode": "exact",
+      "note": "Exact upstream equality regression"
+    },
+    {
+      "id": "issue22864_sheet2",
+      "relative_path": "issue22864/sheet2.kicad_sch",
+      "mode": "exact",
+      "note": "Exact upstream equality regression"
+    },
+    {
+      "id": "issue22938_anschluss",
+      "relative_path": "issue22938/Anschluss.kicad_sch",
+      "mode": "exact",
+      "note": "Exact upstream equality regression"
+    },
+    {
+      "id": "issue22938_kompressor",
+      "relative_path": "issue22938/Kompressor.kicad_sch",
+      "mode": "exact",
+      "note": "Exact upstream equality regression"
+    },
+    {
+      "id": "issue22938_schrittmotor",
+      "relative_path": "issue22938/Schrittmotor.kicad_sch",
+      "mode": "exact",
+      "note": "Exact upstream equality regression"
+    },
+    {
+      "id": "netlists_group_bus_matching_subsheet1",
+      "relative_path": "netlists/group_bus_matching/subsheet1.kicad_sch",
+      "mode": "exact",
+      "note": "Exact upstream equality regression"
+    },
+    {
+      "id": "netlists_group_bus_matching_subsheet2",
+      "relative_path": "netlists/group_bus_matching/subsheet2.kicad_sch",
+      "mode": "exact",
+      "note": "Exact upstream equality regression"
+    },
+    {
+      "id": "netlists_group_bus_matching",
+      "relative_path": "netlists/group_bus_matching/group_bus_matching.kicad_sch",
+      "mode": "exact",
+      "note": "Exact upstream equality regression"
+    },
+    {
+      "id": "netlists_jumpers",
+      "relative_path": "netlists/jumpers/jumpers.kicad_sch",
+      "mode": "exact",
+      "note": "Exact upstream equality regression"
+    },
+    {
+      "id": "netlists_hierarchy_aliases_sub2",
+      "relative_path": "netlists/hierarchy_aliases/sub2.kicad_sch",
+      "mode": "exact",
+      "note": "Exact upstream equality regression"
+    },
+    {
+      "id": "netlists_hierarchy_aliases_sub1",
+      "relative_path": "netlists/hierarchy_aliases/sub1.kicad_sch",
+      "mode": "exact",
+      "note": "Exact upstream equality regression"
+    },
+    {
+      "id": "netlists_issue14494_subsheet1",
+      "relative_path": "netlists/issue14494/issue14494_subsheet1.kicad_sch",
+      "mode": "exact",
+      "note": "Exact upstream equality regression"
+    },
+    {
+      "id": "issue22938_thermorelay_8_largeconn_1206",
+      "relative_path": "issue22938/ThermoRelay_8_LargeConn_1206.kicad_sch",
+      "mode": "exact",
+      "note": "Exact upstream equality regression"
+    },
+    {
+      "id": "issue23058",
+      "relative_path": "issue23058/issue23058.kicad_sch",
+      "mode": "exact",
+      "note": "Exact upstream equality regression"
+    },
+    {
+      "id": "component_classes",
+      "relative_path": "netlists/component_classes/component_classes.kicad_sch",
+      "mode": "exact",
+      "note": "Exact upstream equality regression"
+    },
+    {
+      "id": "issue23346",
+      "relative_path": "issue23346/issue23346.kicad_sch",
+      "mode": "exact",
+      "note": "Exact upstream equality regression"
+    },
+    {
+      "id": "issue23346_a",
+      "relative_path": "issue23346/A.kicad_sch",
+      "mode": "exact",
+      "note": "Exact upstream equality regression"
+    },
+    {
+      "id": "issue23403_root",
+      "relative_path": "issue23403/issue23403.kicad_sch",
+      "mode": "exact",
+      "note": "Exact upstream equality regression"
+    },
+    {
+      "id": "issue23403_shared1",
+      "relative_path": "issue23403/shared1.kicad_sch",
+      "mode": "exact",
+      "note": "Exact upstream equality regression"
+    },
+    {
+      "id": "issue23403_top_level_sheet_1",
+      "relative_path": "issue23403/top_level_sheet_1.kicad_sch",
+      "mode": "exact",
+      "note": "Exact upstream equality regression"
+    },
+    {
+      "id": "issue7203",
+      "relative_path": "issue7203.kicad_sch",
+      "mode": "exact",
+      "note": "Exact upstream equality regression"
+    },
+    {
+      "id": "issue11926",
+      "relative_path": "issue11926.kicad_sch",
+      "mode": "exact",
+      "note": "Exact upstream equality regression"
+    },
+    {
+      "id": "ground_pin_test_mixed",
+      "relative_path": "ground_pin_test_mixed.kicad_sch",
+      "mode": "exact",
+      "note": "Exact upstream equality regression"
+    },
+    {
+      "id": "ground_pin_test_ok",
+      "relative_path": "ground_pin_test_ok.kicad_sch",
+      "mode": "exact",
+      "note": "Exact upstream equality regression"
+    },
+    {
+      "id": "ground_pin_test_no_ground_net",
+      "relative_path": "ground_pin_test_no_ground_net.kicad_sch",
+      "mode": "exact",
+      "note": "Exact upstream equality regression"
+    },
+    {
+      "id": "ground_pin_test_error",
+      "relative_path": "ground_pin_test_error.kicad_sch",
+      "mode": "exact",
+      "note": "Exact upstream equality regression"
+    },
+    {
+      "id": "erc_wire_endpoints",
+      "relative_path": "erc_wire_endpoints.kicad_sch",
+      "mode": "exact",
+      "note": "Exact upstream equality regression"
+    },
+    {
+      "id": "stacked_pin_nomenclature",
+      "relative_path": "stacked_pin_nomenclature.kicad_sch",
+      "mode": "exact",
+      "note": "Exact upstream equality regression"
+    },
+    {
+      "id": "unconnected_bus_entry_qa",
+      "relative_path": "unconnected_bus_entry_qa.kicad_sch",
+      "mode": "exact",
+      "note": "Exact upstream equality regression"
+    },
+    {
+      "id": "bus_entries",
+      "relative_path": "netlists/bus_entries/bus_entries.kicad_sch",
+      "mode": "exact",
+      "note": "Exact upstream equality regression"
+    },
+    {
+      "id": "bus_junctions",
+      "relative_path": "netlists/bus_junctions/bus_junctions.kicad_sch",
+      "mode": "exact",
+      "note": "Exact upstream equality regression"
+    },
+    {
+      "id": "hierarchical_component_classes_sheet_3",
+      "relative_path": "netlists/hierarchical_component_classes/sheet_3.kicad_sch",
+      "mode": "exact",
+      "note": "Exact upstream equality regression"
+    },
+    {
+      "id": "hierarchical_component_classes_subsheet_1",
+      "relative_path": "netlists/hierarchical_component_classes/subsheet_1.kicad_sch",
+      "mode": "exact",
+      "note": "Exact upstream equality regression"
+    },
+    {
+      "id": "hierarchical_component_classes_another_sheet",
+      "relative_path": "netlists/hierarchical_component_classes/another_sheet.kicad_sch",
+      "mode": "exact",
+      "note": "Exact upstream equality regression"
+    },
+    {
+      "id": "issue14657_2",
+      "relative_path": "netlists/issue14657/issue14657_2.kicad_sch",
+      "mode": "exact",
+      "note": "Exact upstream equality regression"
+    },
+    {
+      "id": "issue14657_1",
+      "relative_path": "netlists/issue14657/issue14657_1.kicad_sch",
+      "mode": "exact",
+      "note": "Exact upstream equality regression"
+    },
+    {
+      "id": "issue14657",
+      "relative_path": "netlists/issue14657/issue14657.kicad_sch",
+      "mode": "exact",
+      "note": "Exact upstream equality regression"
+    },
+    {
+      "id": "test_global_promotion_2_subsheet",
+      "relative_path": "netlists/test_global_promotion_2/subsheet.kicad_sch",
+      "mode": "exact",
+      "note": "Exact upstream equality regression"
+    },
+    {
+      "id": "issue14818_sub",
+      "relative_path": "netlists/issue14818/issue14818_sub.kicad_sch",
+      "mode": "exact",
+      "note": "Exact upstream equality regression"
+    },
+    {
+      "id": "issue14818",
+      "relative_path": "netlists/issue14818/issue14818.kicad_sch",
+      "mode": "exact",
+      "note": "Exact upstream equality regression"
+    },
+    {
+      "id": "issue16003_untitled",
+      "relative_path": "netlists/issue16003/untitled.kicad_sch",
+      "mode": "exact",
+      "note": "Exact upstream equality regression"
+    },
+    {
+      "id": "issue16003_untitled2",
+      "relative_path": "netlists/issue16003/untitled2.kicad_sch",
+      "mode": "exact",
+      "note": "Exact upstream equality regression"
+    },
+    {
+      "id": "issue16439",
+      "relative_path": "netlists/issue16439/issue16439.kicad_sch",
+      "mode": "exact",
+      "note": "Exact upstream equality regression"
+    },
+    {
+      "id": "test_global_promotion_sub",
+      "relative_path": "netlists/test_global_promotion/Sub.kicad_sch",
+      "mode": "exact",
+      "note": "Exact upstream equality regression"
+    },
+    {
+      "id": "test_hier_no_connect_sub1",
+      "relative_path": "netlists/test_hier_no_connect/sub1.kicad_sch",
+      "mode": "exact",
+      "note": "Exact upstream equality regression"
+    },
+    {
+      "id": "test_hier_no_connect_sub2",
+      "relative_path": "netlists/test_hier_no_connect/sub2.kicad_sch",
+      "mode": "exact",
+      "note": "Exact upstream equality regression"
+    },
+    {
+      "id": "test_hier_no_connect_sub3",
+      "relative_path": "netlists/test_hier_no_connect/sub3.kicad_sch",
+      "mode": "exact",
+      "note": "Exact upstream equality regression"
+    },
+    {
+      "id": "test_multiunit_reannotate_2",
+      "relative_path": "netlists/test_multiunit_reannotate_2/test_multiunit_reannotate_2.kicad_sch",
+      "mode": "exact",
+      "note": "Exact upstream equality regression"
+    },
+    {
+      "id": "test_multiunit_reannotate_same_value",
+      "relative_path": "netlists/test_multiunit_reannotate_same_value/test_multiunit_reannotate_same_value.kicad_sch",
+      "mode": "exact",
+      "note": "Exact upstream equality regression"
+    },
+    {
+      "id": "weak_vector_bus_disambiguation",
+      "relative_path": "netlists/weak_vector_bus_disambiguation/weak_vector_bus_disambiguation.kicad_sch",
+      "mode": "exact",
+      "note": "Exact upstream equality regression"
+    },
+    {
+      "id": "weak_vector_bus_disambiguation_merge",
+      "relative_path": "netlists/weak_vector_bus_disambiguation/merge.kicad_sch",
+      "mode": "exact",
+      "note": "Exact upstream equality regression"
+    },
+    {
+      "id": "weak_vector_bus_disambiguation_sub1",
+      "relative_path": "netlists/weak_vector_bus_disambiguation/sub1.kicad_sch",
+      "mode": "exact",
+      "note": "Exact upstream equality regression"
+    },
+    {
+      "id": "weak_vector_bus_disambiguation_sub2",
+      "relative_path": "netlists/weak_vector_bus_disambiguation/sub2.kicad_sch",
+      "mode": "exact",
+      "note": "Exact upstream equality regression"
+    },
+    {
+      "id": "noconnects",
+      "relative_path": "netlists/noconnects/noconnects.kicad_sch",
+      "mode": "exact",
+      "note": "Exact upstream equality regression"
     },
     {
       "id": "multinetclasses",
       "relative_path": "netlists/multinetclasses/multinetclasses.kicad_sch",
-      "mode": "targeted",
-      "note": "Native keeps R7 Pin 1; official KiCad omits it due to upstream marker-provider bug"
+      "mode": "exact",
+      "note": "Exact upstream equality regression"
+    },
+    {
+      "id": "same_local_global_label_subsheet",
+      "relative_path": "same_local_global_label_subsheet.kicad_sch",
+      "mode": "exact",
+      "note": "Exact upstream equality regression"
+    },
+    {
+      "id": "same_local_global_label",
+      "relative_path": "same_local_global_label.kicad_sch",
+      "mode": "exact",
+      "note": "Exact upstream equality regression"
+    },
+    {
+      "id": "spice_netlists_chirp",
+      "relative_path": "spice_netlists/chirp/chirp.kicad_sch",
+      "mode": "exact",
+      "note": "Exact upstream equality regression"
+    },
+    {
+      "id": "spice_netlists_legacy_pot",
+      "relative_path": "spice_netlists/legacy_pot/legacy_pot.kicad_sch",
+      "mode": "exact",
+      "note": "Exact upstream equality regression"
+    },
+    {
+      "id": "spice_netlists_legacy_rectifier",
+      "relative_path": "spice_netlists/legacy_rectifier/legacy_rectifier.kicad_sch",
+      "mode": "exact",
+      "note": "Exact upstream equality regression"
+    },
+    {
+      "id": "spice_netlists_potentiometers",
+      "relative_path": "spice_netlists/potentiometers/potentiometers.kicad_sch",
+      "mode": "exact",
+      "note": "Exact upstream equality regression"
+    },
+    {
+      "id": "spice_netlists_sources",
+      "relative_path": "spice_netlists/sources/sources.kicad_sch",
+      "mode": "exact",
+      "note": "Exact upstream equality regression"
+    },
+    {
+      "id": "variant_test",
+      "relative_path": "variant_test/variant_test.kicad_sch",
+      "mode": "exact",
+      "note": "Exact upstream equality regression"
+    },
+    {
+      "id": "schematic_object_not_shared_by_multiple_projects",
+      "relative_path": "schematic_object_tests/not_shared_by_multiple_projects/not_shared_by_multiple_projects.kicad_sch",
+      "mode": "exact",
+      "note": "Exact upstream equality regression"
+    },
+    {
+      "id": "schematic_object_shared_by_multiple_projects_project_a",
+      "relative_path": "schematic_object_tests/shared_by_multiple_projects/project_a/project_a.kicad_sch",
+      "mode": "exact",
+      "note": "Exact upstream equality regression"
+    },
+    {
+      "id": "schematic_object_shared_by_multiple_projects_project_b",
+      "relative_path": "schematic_object_tests/shared_by_multiple_projects/project_b/project_b.kicad_sch",
+      "mode": "exact",
+      "note": "Exact upstream equality regression"
+    },
+    {
+      "id": "issue18119_sub",
+      "relative_path": "issue18119/sub.kicad_sch",
+      "mode": "exact",
+      "note": "Exact upstream equality regression"
+    },
+    {
+      "id": "issue16538",
+      "relative_path": "issue16538/issue16538.kicad_sch",
+      "mode": "exact",
+      "note": "Exact upstream equality regression"
+    },
+    {
+      "id": "issue17771_sub",
+      "relative_path": "issue17771/sub.kicad_sch",
+      "mode": "exact",
+      "note": "Exact upstream equality regression"
+    },
+    {
+      "id": "issue17771_sub2",
+      "relative_path": "issue17771/sub2.kicad_sch",
+      "mode": "exact",
+      "note": "Exact upstream equality regression"
+    },
+    {
+      "id": "issue17771_sub3",
+      "relative_path": "issue17771/sub3.kicad_sch",
+      "mode": "exact",
+      "note": "Exact upstream equality regression"
+    },
+    {
+      "id": "test_hier_renaming_led_matrix_x6",
+      "relative_path": "netlists/test_hier_renaming/LED_matrix_x6.kicad_sch",
+      "mode": "exact",
+      "note": "Exact upstream equality regression"
+    },
+    {
+      "id": "spice_netlists_fliege_filter",
+      "relative_path": "spice_netlists/fliege_filter/fliege_filter.kicad_sch",
+      "mode": "exact",
+      "note": "Exact upstream equality regression"
+    },
+    {
+      "id": "spice_netlists_npn_ce_amp",
+      "relative_path": "spice_netlists/npn_ce_amp/npn_ce_amp.kicad_sch",
+      "mode": "exact",
+      "note": "Exact upstream equality regression"
     }
   ]
 }

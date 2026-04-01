@@ -17,7 +17,7 @@ const COMMON_IGNORED_CHECKS: [(&str, &str); 4] = [
         "four_way_junction",
         "Four connection points are joined together",
     ),
-    ("footprint_link_issues", "Footprint link issue"),
+    ("simulation_model_issue", "SPICE model issue"),
     (
         "footprint_filter",
         "Assigned footprint doesn't match footprint filters",
@@ -88,11 +88,19 @@ pub(crate) fn filter_and_sort_violation_map(
 
 pub(crate) fn sort_violations(violations: &mut [PendingViolation]) {
     violations.sort_by(|a, b| {
-        a.violation_type
-            .cmp(&b.violation_type)
-            .then_with(|| a.description.cmp(&b.description))
-            .then_with(|| a.items[0].description.cmp(&b.items[0].description))
+        severity_rank(a.severity)
+            .cmp(&severity_rank(b.severity))
+            .then_with(|| a.items[0].x_mm.total_cmp(&b.items[0].x_mm))
+            .then_with(|| a.items[0].y_mm.total_cmp(&b.items[0].y_mm))
     });
+}
+
+fn severity_rank(severity: crate::cmd::schematic::erc::Severity) -> i32 {
+    match severity {
+        crate::cmd::schematic::erc::Severity::Error => 0,
+        crate::cmd::schematic::erc::Severity::Warning => 1,
+        crate::cmd::schematic::erc::Severity::Exclusion => 2,
+    }
 }
 
 pub(crate) fn build_report(

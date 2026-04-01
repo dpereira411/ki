@@ -2,7 +2,7 @@ This folder catalogs the upstream KiCad QA schematics we use for maintained ERC 
 
 The actual schematic files remain in the local KiCad checkout under:
 
-- `/Users/Daniel/Desktop/kicad/qa/data/eeschema`
+- `kicad/qa/data/eeschema`
 
 `manifest.json` is the sync source of truth for:
 

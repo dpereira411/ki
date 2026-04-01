@@ -13,16 +13,21 @@ mod text;
 use std::path::Path;
 
 use self::hierarchy::{
-    child_sheet_paths, load_project_footprint_libs, load_project_symbol_libraries,
+    child_sheet_paths, descendant_global_label_texts, load_project_footprint_libraries,
+    load_project_symbol_libraries, sheet_refs,
     sheet_pin_points,
 };
-use self::project::{load_project_netclasses, load_project_rule_severities};
+use self::project::{
+    load_project_connection_grid_mm, load_project_netclass_assignments, load_project_netclasses,
+    load_project_parameterized_netclasses, load_project_rule_severities,
+};
 use self::report::{
     build_report, filter_and_sort_violation_map, filter_and_sort_violations, sort_violations,
     write_report,
 };
 use self::rules::hierarchy::{
     descendant_sheet_violations, hierarchical_sheet_violations, merge_pending_maps,
+    same_local_global_label_hierarchy_violations,
 };
 use self::rules::root::collect_root_violations;
 use crate::error::KiError;
@@ -82,8 +87,186 @@ impl Units {
     }
 
     pub(crate) fn json_pos(self, value_mm: f64) -> f64 {
-        self.from_mm(value_mm) / 100.0
+        let value = self.from_mm(value_mm) / 100.0;
+        round_half_even(value, 4)
     }
+}
+
+fn round_half_even(value: f64, decimals: usize) -> f64 {
+    let factor = 10_f64.powi(decimals as i32);
+    let scaled = value * factor;
+    let lower = scaled.floor();
+    let upper = scaled.ceil();
+    let diff = scaled - lower;
+
+    let rounded = if diff < 0.5 {
+        lower
+    } else if diff > 0.5 {
+        upper
+    } else if (lower as i64) % 2 == 0 {
+        lower
+    } else {
+        upper
+    };
+
+    rounded / factor
+}
+
+fn bus_group_suffix(name: &str) -> Option<&str> {
+    let trimmed = name.trim_start_matches('/');
+    let start = trimmed.find('{')?;
+    trimmed.get(start..)
+}
+
+fn net_not_bus_member_violation_bus_name(description: &str) -> Option<&str> {
+    let prefix = "Net ";
+    let infix = " is graphically connected to bus ";
+    let suffix = " but is not a member of that bus";
+    let rest = description.strip_prefix(prefix)?;
+    let (_, rest) = rest.split_once(infix)?;
+    rest.strip_suffix(suffix)
+}
+
+fn net_not_bus_member_violation_net_name(description: &str) -> Option<&str> {
+    let prefix = "Net ";
+    let infix = " is graphically connected to bus ";
+    let rest = description.strip_prefix(prefix)?;
+    let (net_name, _) = rest.split_once(infix)?;
+    Some(net_name)
+}
+
+fn suppress_intermediate_prefixed_bus_alias_root_violations(
+    input: &Path,
+    pending: &mut Vec<PendingViolation>,
+) {
+    let direct_child_bus_suffixes = match sheet_refs(input, None) {
+        Ok(refs) => refs
+            .iter()
+            .filter(|sheet| sheet.uses_prefixed_bus_alias_pins())
+            .flat_map(|sheet| sheet.pins.iter())
+            .filter_map(|pin| bus_group_suffix(pin).map(str::to_string))
+            .collect::<Vec<_>>(),
+        Err(_) => Vec::new(),
+    };
+
+    if direct_child_bus_suffixes.is_empty() {
+        return;
+    }
+
+    let suppressed_bus_items = pending
+        .iter()
+        .filter(|violation| violation.violation_type == "net_not_bus_member")
+        .filter(|violation| {
+            let is_direct_child_surface = net_not_bus_member_violation_net_name(&violation.description)
+                .is_some_and(|net_name| net_name.trim_start_matches('/').split('/').count() == 1);
+            is_direct_child_surface
+                && net_not_bus_member_violation_bus_name(&violation.description)
+                    .and_then(bus_group_suffix)
+                    .is_some_and(|suffix| direct_child_bus_suffixes.iter().any(|entry| entry == suffix))
+        })
+        .filter_map(|violation| violation.items.get(1))
+        .map(|item| (item.description.clone(), item.x_mm.to_bits(), item.y_mm.to_bits()))
+        .collect::<Vec<_>>();
+
+    pending.retain(|violation| {
+        if violation.violation_type == "net_not_bus_member" {
+            let is_direct_child_surface = net_not_bus_member_violation_net_name(&violation.description)
+                .is_some_and(|net_name| net_name.trim_start_matches('/').split('/').count() == 1);
+            return !is_direct_child_surface
+                || net_not_bus_member_violation_bus_name(&violation.description)
+                    .and_then(bus_group_suffix)
+                    .is_none_or(|suffix| !direct_child_bus_suffixes.iter().any(|entry| entry == suffix));
+        }
+
+        if violation.violation_type == "bus_to_net_conflict" {
+            return !violation.items.iter().any(|item| {
+                suppressed_bus_items.iter().any(|suppressed| {
+                    suppressed.0 == item.description
+                        && suppressed.1 == item.x_mm.to_bits()
+                        && suppressed.2 == item.y_mm.to_bits()
+                })
+            });
+        }
+
+        true
+    });
+}
+
+fn collapse_duplicate_root_net_not_bus_member_violations(
+    pending: &mut Vec<PendingViolation>,
+) {
+    let mut chosen = std::collections::BTreeMap::<
+        (String, String, String),
+        PendingViolation,
+    >::new();
+
+    for violation in pending
+        .iter()
+        .filter(|violation| violation.violation_type == "net_not_bus_member")
+    {
+        let key = (
+            violation.severity.as_str().to_string(),
+            violation.violation_type.clone(),
+            violation.description.clone(),
+        );
+
+        chosen
+            .entry(key)
+            .and_modify(|existing| {
+                let candidate_items = violation
+                    .items
+                    .iter()
+                    .map(|item| {
+                        (
+                            item.description.clone(),
+                            item.x_mm.to_bits(),
+                            item.y_mm.to_bits(),
+                        )
+                    })
+                    .collect::<Vec<_>>();
+                let existing_items = existing
+                    .items
+                    .iter()
+                    .map(|item| {
+                        (
+                            item.description.clone(),
+                            item.x_mm.to_bits(),
+                            item.y_mm.to_bits(),
+                        )
+                    })
+                    .collect::<Vec<_>>();
+
+                if candidate_items < existing_items {
+                    *existing = violation.clone();
+                }
+            })
+            .or_insert_with(|| violation.clone());
+    }
+
+    pending.retain(|violation| {
+        if violation.violation_type != "net_not_bus_member" {
+            return true;
+        }
+
+        let key = (
+            violation.severity.as_str().to_string(),
+            violation.violation_type.clone(),
+            violation.description.clone(),
+        );
+
+        chosen.get(&key).is_some_and(|selected| {
+            selected.items.len() == violation.items.len()
+                && selected
+                    .items
+                    .iter()
+                    .zip(&violation.items)
+                    .all(|(left, right)| {
+                        left.description == right.description
+                            && left.x_mm == right.x_mm
+                            && left.y_mm == right.y_mm
+                    })
+        })
+    });
 }
 
 #[derive(Debug, Clone, Copy)]
@@ -235,9 +418,13 @@ pub fn run_erc(
     let nets = resolve_nets(&schema);
     let physical_groups = resolve_physical_groups(&schema);
     let resolved_symbol_libs = load_project_symbol_libraries(input);
-    let available_footprint_libs = load_project_footprint_libs(input);
+    let available_footprint_libs = load_project_footprint_libraries(input);
     let defined_netclasses = load_project_netclasses(input);
+    let project_netclass_assignments = load_project_netclass_assignments(input);
+    let parameterized_netclasses = load_project_parameterized_netclasses(input);
     let project_rule_severities = load_project_rule_severities(input);
+    let connection_grid_mm = load_project_connection_grid_mm(input);
+    let descendant_global_labels = descendant_global_label_texts(input)?;
     let mut root_attached_points = sheet_pin_points(input)?;
     root_attached_points.extend(schema.bus_entries.iter().map(|entry| entry.wire_point));
     let mut child_sheet_violations =
@@ -245,6 +432,10 @@ pub fn run_erc(
     merge_pending_maps(
         &mut child_sheet_violations,
         descendant_sheet_violations(input, &resolved_symbol_libs, &project_rule_severities)?,
+    );
+    merge_pending_maps(
+        &mut child_sheet_violations,
+        same_local_global_label_hierarchy_violations(input, &project_rule_severities)?,
     );
 
     let mut pending = collect_root_violations(
@@ -255,15 +446,22 @@ pub fn run_erc(
         &resolved_symbol_libs,
         &available_footprint_libs,
         &defined_netclasses,
+        &project_netclass_assignments,
+        &parameterized_netclasses,
         &project_rule_severities,
+        connection_grid_mm,
         &root_attached_points,
+        &descendant_global_labels,
     )?;
+    suppress_intermediate_prefixed_bus_alias_root_violations(input, &mut pending);
 
     filter_and_sort_violations(&mut pending, severity_filter);
     filter_and_sort_violation_map(&mut child_sheet_violations, severity_filter);
 
     if let Some(root_child_violations) = child_sheet_violations.remove("/") {
         pending.extend(root_child_violations);
+        suppress_intermediate_prefixed_bus_alias_root_violations(input, &mut pending);
+        collapse_duplicate_root_net_not_bus_member_violations(&mut pending);
         sort_violations(&mut pending);
     }
 
@@ -293,7 +491,15 @@ pub(super) fn is_generated_power_label(label: &LabelInfo, schema: &ParsedSchema)
     schema
         .pin_nodes
         .iter()
-        .any(|pin| is_helper_power_symbol(pin) && pin.point == label.point)
+        .any(|pin| {
+            let pin_name = pin.pin_function.as_deref().unwrap_or("");
+            is_helper_power_symbol(pin)
+                && pin.point == label.point
+                && (pin_name.is_empty()
+                    || pin_name == "~"
+                    || pin_name == label.text
+                    || pin_name == label.raw_text)
+        })
 }
 
 

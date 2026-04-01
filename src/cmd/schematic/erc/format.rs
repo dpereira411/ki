@@ -83,8 +83,14 @@ pub(crate) fn format_pin_type_name<'a>(pin_type: Option<&'a str>) -> Cow<'a, str
         Some("input") => Cow::Borrowed("Input"),
         Some("output") => Cow::Borrowed("Output"),
         Some("bidirectional") => Cow::Borrowed("Bidirectional"),
+        Some("tri_state") => Cow::Borrowed("Tri-state"),
         Some("passive") => Cow::Borrowed("Passive"),
         Some("unspecified") => Cow::Borrowed("Unspecified"),
+        Some("open_collector") => Cow::Borrowed("Open collector"),
+        Some("open_emitter") => Cow::Borrowed("Open emitter"),
+        Some("unconnected") | Some("not_connected") | Some("no_connect") => {
+            Cow::Borrowed("Unconnected")
+        }
         Some(other) => Cow::Borrowed(other),
         None => Cow::Borrowed("?"),
     }

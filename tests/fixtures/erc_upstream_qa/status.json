@@ -1,13 +1,4 @@
 {
   "version": 1,
-  "cases": [
-    {
-      "id": "ERC_dynamic_power_symbol_test",
-      "relative_path": "ERC_dynamic_power_symbol_test.kicad_sch",
-      "oracle_path": "ERC_dynamic_power_symbol_test.erc.json",
-      "status": "upstream-bug",
-      "native_test": "schematic_erc_documents_upstream_dynamic_power_symbol_line_marker_bug",
-      "note": "KiCad 10.0.0 omits one root endpoint_off_grid marker for a horizontal wire even though upstream ERC source would report it."
-    }
-  ]
+  "cases": []
 }

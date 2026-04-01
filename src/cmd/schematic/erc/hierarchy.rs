@@ -9,6 +9,18 @@ use crate::extract::sym_lib::{self, ProjectSymbolLibraryIndex};
 use crate::schematic::render::{parse_schema, ParsedSchema, Point};
 
 #[derive(Clone)]
+pub(crate) struct SheetPinRef {
+    pub(crate) name: String,
+    pub(crate) point: Point,
+}
+
+#[derive(Clone, Default)]
+pub(crate) struct FootprintLibraryIndex {
+    pub(crate) enabled_names: HashSet<String>,
+    pub(crate) library_dirs: BTreeMap<String, Vec<PathBuf>>,
+}
+
+#[derive(Clone)]
 pub(crate) struct SheetRef {
     pub(crate) path: String,
     pub(crate) file: String,
@@ -16,6 +28,7 @@ pub(crate) struct SheetRef {
     pub(crate) page: Option<String>,
     pub(crate) text_vars: BTreeMap<String, String>,
     pub(crate) pins: BTreeSet<String>,
+    pub(crate) pin_refs: Vec<SheetPinRef>,
 }
 
 impl SheetRef {
@@ -52,6 +65,14 @@ pub(crate) fn child_sheet_paths(schematic_path: &Path) -> Result<Vec<String>, Ki
     let mut paths = Vec::new();
     collect_child_sheet_paths(schematic_path, "/", None, &mut paths)?;
     Ok(paths)
+}
+
+pub(crate) fn descendant_global_label_texts(
+    schematic_path: &Path,
+) -> Result<BTreeSet<String>, KiError> {
+    let mut labels = BTreeSet::new();
+    collect_descendant_global_label_texts(schematic_path, None, &mut labels)?;
+    Ok(labels)
 }
 
 pub(crate) fn sheet_refs(
@@ -121,6 +142,18 @@ pub(crate) fn sheet_refs(
                 .filter_map(|item| nth_atom_string(item, 1))
                 .map(|pin| resolve_sheet_text_vars(&pin, &text_vars, page.as_deref()))
                 .collect::<BTreeSet<_>>();
+            let pin_refs = child_items(sheet)
+                .iter()
+                .filter(|item| head_of(item) == Some("pin"))
+                .filter_map(|item| {
+                    let name = nth_atom_string(item, 1)?;
+                    let point = sheet_pin_at_point(item)?;
+                    Some(SheetPinRef {
+                        name: resolve_sheet_text_vars(&name, &text_vars, page.as_deref()),
+                        point,
+                    })
+                })
+                .collect::<Vec<_>>();
             Some(SheetRef {
                 path: format!("/{name}/"),
                 file,
@@ -132,6 +165,7 @@ pub(crate) fn sheet_refs(
                 page,
                 text_vars,
                 pins,
+                pin_refs,
             })
         })
         .collect::<Vec<_>>();
@@ -176,48 +210,55 @@ pub(crate) fn sheet_pin_points(schematic_path: &Path) -> Result<Vec<Point>, KiEr
         .collect())
 }
 
-pub(crate) fn load_project_footprint_libs(schematic_path: &Path) -> HashSet<String> {
-    let mut names = HashSet::new();
+pub(crate) fn load_project_footprint_libraries(schematic_path: &Path) -> FootprintLibraryIndex {
+    let mut index = FootprintLibraryIndex::default();
 
     if let Some(dir) = schematic_path.parent() {
         let table_path = dir.join("fp-lib-table");
         if let Ok(doc) = kiutils_rs::FpLibTableFile::read(&table_path) {
-            names.extend(
-                doc.ast()
-                    .libraries
-                    .iter()
-                    .filter(|lib| !lib.disabled)
-                    .filter_map(|lib| lib.name.clone()),
-            );
+            for lib in doc.ast().libraries.iter().filter(|lib| !lib.disabled) {
+                let Some(name) = lib.name.clone() else {
+                    continue;
+                };
+                index.enabled_names.insert(name.clone());
+                if let Some(uri) = lib.uri.as_deref() {
+                    let resolved = resolve_footprint_lib_uri(uri, dir);
+                    if resolved.extension().and_then(|ext| ext.to_str()) == Some("pretty") {
+                        index.library_dirs.entry(name).or_default().push(resolved);
+                    }
+                }
+            }
         }
     }
 
-    names.extend(global_footprint_library_names());
-    names
+    for (name, dir) in global_footprint_library_dirs_with_names() {
+        index.enabled_names.insert(name.clone());
+        index.library_dirs.entry(name).or_default().push(dir);
+    }
+
+    index
 }
 
-fn global_footprint_library_names() -> HashSet<String> {
-    let mut names = HashSet::new();
+fn global_footprint_library_dirs_with_names() -> Vec<(String, PathBuf)> {
+    let mut dirs_with_names = Vec::new();
 
     for dir in global_footprint_library_dirs() {
         let Ok(entries) = fs::read_dir(dir) else {
             continue;
         };
 
-        names.extend(entries.filter_map(|entry| {
+        dirs_with_names.extend(entries.filter_map(|entry| {
             let entry = entry.ok()?;
             let path = entry.path();
-            (path.extension().and_then(|ext| ext.to_str()) == Some("pretty"))
-                .then(|| {
-                    path.file_stem()
-                        .and_then(|name| name.to_str())
-                        .map(ToOwned::to_owned)
-                })
-                .flatten()
+            if path.extension().and_then(|ext| ext.to_str()) != Some("pretty") {
+                return None;
+            }
+            let name = path.file_stem().and_then(|name| name.to_str())?.to_string();
+            Some((name, path))
         }));
     }
 
-    names
+    dirs_with_names
 }
 
 fn global_footprint_library_dirs() -> Vec<PathBuf> {
@@ -238,6 +279,35 @@ fn global_footprint_library_dirs() -> Vec<PathBuf> {
     ));
 
     dirs
+}
+
+fn resolve_footprint_lib_uri(uri: &str, project_dir: &Path) -> PathBuf {
+    let expanded = expand_path_vars(uri, project_dir);
+    let path = PathBuf::from(expanded);
+    if path.is_absolute() || uri.contains("${") {
+        path
+    } else {
+        project_dir.join(path)
+    }
+}
+
+fn expand_path_vars(uri: &str, project_dir: &Path) -> String {
+    let mut expanded = uri.replace("${KIPRJMOD}", &project_dir.to_string_lossy());
+    let mut idx = 0;
+
+    while let Some(start_rel) = expanded[idx..].find("${") {
+        let start = idx + start_rel;
+        let Some(end_rel) = expanded[start + 2..].find('}') else {
+            break;
+        };
+        let end = start + 2 + end_rel;
+        let key = &expanded[start + 2..end];
+        let value = std::env::var(key).unwrap_or_default();
+        expanded.replace_range(start..=end, &value);
+        idx = start + value.len();
+    }
+
+    expanded
 }
 
 fn collect_referenced_symbol_libraries(
@@ -297,6 +367,41 @@ fn collect_child_sheet_paths(
     Ok(())
 }
 
+fn collect_descendant_global_label_texts(
+    schematic_path: &Path,
+    current_instance_path: Option<&str>,
+    out: &mut BTreeSet<String>,
+) -> Result<(), KiError> {
+    let Some(root_dir) = schematic_path.parent() else {
+        return Ok(());
+    };
+
+    for sheet in sheet_refs(schematic_path, current_instance_path)? {
+        let child_path = root_dir.join(&sheet.file);
+        if !child_path.exists() {
+            continue;
+        }
+
+        let mut child_schema =
+            parse_schema(&child_path.to_string_lossy(), Some(&sheet.instance_path))
+                .map_err(|_| KiError::Message("Failed to load schematic".to_string()))?;
+        apply_sheet_text_vars(&mut child_schema, &sheet);
+
+        out.extend(child_schema.labels.iter().filter_map(|label| {
+            (label.label_type == "global_label"
+                && !child_schema
+                    .pin_nodes
+                    .iter()
+                    .any(|pin| pin.reference.starts_with("#PWR") && pin.point == label.point))
+                .then(|| label.text.clone())
+        }));
+
+        collect_descendant_global_label_texts(&child_path, Some(&sheet.instance_path), out)?;
+    }
+
+    Ok(())
+}
+
 fn schematic_root_instance_path(items: &[Node]) -> Option<String> {
     items.iter()
         .find(|item| head_of(item) == Some("uuid"))
@@ -307,6 +412,7 @@ fn schematic_root_instance_path(items: &[Node]) -> Option<String> {
                 .any(|item| head_of(item) == Some("sheet_instances"))
                 .then(|| "/".to_string())
         })
+        .or_else(|| Some("/".to_string()))
 }
 
 fn page_sort_key(page: Option<&str>) -> (i64, String) {

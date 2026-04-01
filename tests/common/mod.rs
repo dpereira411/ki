@@ -3,6 +3,7 @@
 use std::fs;
 use std::path::{Path, PathBuf};
 use std::process::Command as StdCommand;
+use std::sync::{Mutex, OnceLock};
 
 use assert_cmd::Command;
 use roxmltree::Document;
@@ -101,6 +102,11 @@ pub fn upstream_erc_oracle(path: &str) -> PathBuf {
 fn kicad_cli() -> Option<&'static str> {
     let candidate = "/Applications/KiCad/KiCad.app/Contents/MacOS/kicad-cli";
     Path::new(candidate).exists().then_some(candidate)
+}
+
+fn erc_test_process_lock() -> &'static Mutex<()> {
+    static LOCK: OnceLock<Mutex<()>> = OnceLock::new();
+    LOCK.get_or_init(|| Mutex::new(()))
 }
 
 #[derive(Debug, Clone, PartialEq, Eq)]
@@ -299,6 +305,7 @@ pub fn kicad_cli_erc_json(
     extra_args: &[&str],
     output_path: Option<&Path>,
 ) -> Option<ErcOracle> {
+    let _guard = erc_test_process_lock().lock().unwrap();
     let kicad_cli = kicad_cli()?;
     let temp = TempDir::new().expect("tempdir should exist");
     let oracle_path = temp.path().join("oracle.json");
@@ -324,6 +331,7 @@ pub fn kicad_cli_erc_json(
 }
 
 pub fn ki_erc_json(schematic: &Path, extra_args: &[&str]) -> ErcOracle {
+    let _guard = erc_test_process_lock().lock().unwrap();
     let output = Command::cargo_bin("ki")
         .expect("binary should build")
         .args(["schematic", "erc", schematic.to_str().unwrap(), "--json"])

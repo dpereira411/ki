@@ -1,4 +1,4 @@
-use std::collections::{BTreeMap, HashSet};
+use std::collections::{BTreeMap, BTreeSet, HashSet};
 use std::path::Path;
 
 use kiutils_sexpr::{parse_one, Node};
@@ -6,30 +6,36 @@ use kiutils_sexpr::{parse_one, Node};
 use crate::error::KiError;
 use crate::extract::sym_lib::ProjectSymbolLibraryIndex;
 use crate::schematic::render::{
-    cmp_pin_numbers, LabelInfo, ParsedSchema, PhysicalGroup, PinNode, PlacedSymbol, Point,
+    LabelInfo, ParsedSchema, PhysicalGroup, PinNode, PlacedSymbol, Point,
     ResolvedNet, Segment,
 };
 
 use super::super::connectivity::{
     connected_pin_like_count_for_label, connected_pins_for_no_connect,
+    connected_pins_for_no_connect_across_nets,
     dangling_segment_endpoint_count, format_segment_item_description, is_dangling_label,
-    is_dangling_no_connect, symbol_for_pin, wire_component_has_attachment,
-    wire_only_components,
+    is_dangling_logical_label, is_dangling_no_connect, label_has_no_connect,
+    label_has_no_connect_across_nets,
+    looks_like_bus_name,
+    symbol_for_pin, wire_component_has_driver, wire_only_components,
 };
 use super::super::format::{
     format_label_item_description, format_pin_item_description, format_pin_type_name,
     format_symbol_item_description, format_units_list, unit_suffix,
 };
-use super::super::geom::{point_on_segment, segment_anchor_mm, segment_length_mm};
+use super::super::hierarchy::FootprintLibraryIndex;
+use super::super::geom::{point_on_segment, same_segment, segment_anchor_mm, segment_length_mm};
 use super::super::pin_conflict::{
-    order_pin_conflict_description, order_pin_conflict_items, pin_conflict,
-    pin_conflict_distance,
+    order_pin_conflict_description, order_pin_conflict_items, reduced_pin_conflicts,
+    PinConflictLevel,
 };
-use super::super::project::{project_rule_severity, RuleSeverityMap};
+use super::super::project::{
+    project_rule_severity, NetclassAssignmentMap, RuleSeverityMap,
+};
 use super::super::rules::connectivity::{
     bus_to_net_conflict_violations, different_unit_net_violations, duplicate_pin_violations,
     endpoint_off_grid_violations, multiple_net_names_violations, net_not_bus_member_violations,
-    pin_not_connected_violations, power_pin_not_driven_violations,
+    pin_is_no_connect_type, pin_not_connected_violations, power_pin_not_driven_violations,
 };
 use super::super::rules::symbol::{
     build_footprint_link_issues, build_lib_symbol_issue, lib_symbol_mismatch_violations,
@@ -45,15 +51,23 @@ pub(crate) fn collect_root_violations(
     nets: &[ResolvedNet],
     physical_groups: &[PhysicalGroup],
     resolved_symbol_libs: &ProjectSymbolLibraryIndex,
-    available_footprint_libs: &HashSet<String>,
+    available_footprint_libs: &FootprintLibraryIndex,
     defined_netclasses: &HashSet<String>,
+    project_netclass_assignments: &NetclassAssignmentMap,
+    parameterized_netclasses: &HashSet<String>,
     project_rule_severities: &RuleSeverityMap,
+    connection_grid_mm: f64,
     root_attached_points: &[Point],
+    descendant_global_labels: &BTreeSet<String>,
 ) -> Result<Vec<PendingViolation>, KiError> {
     let mut pending = power_pin_not_driven_violations(schema, nets);
 
     pending.extend(duplicate_sheet_name_violations(input, project_rule_severities)?);
-    pending.extend(bus_to_net_conflict_violations(schema, project_rule_severities));
+    pending.extend(bus_to_net_conflict_violations(
+        schema,
+        nets,
+        project_rule_severities,
+    ));
     pending.extend(net_not_bus_member_violations(schema, project_rule_severities));
     pending.extend(multiple_net_names_violations(
         schema,
@@ -63,6 +77,14 @@ pub(crate) fn collect_root_violations(
 
     pending.extend(nets.iter().filter_map(|net| {
         if net.no_connect {
+            return None;
+        }
+
+        if net
+            .nodes
+            .iter()
+            .any(|node| node.pin_type.as_deref() == Some("power_in"))
+        {
             return None;
         }
 
@@ -94,55 +116,41 @@ pub(crate) fn collect_root_violations(
         })
     }));
 
-    pending.extend(nets.iter().filter_map(|net| {
-        let mut conflicts = net
-            .nodes
-            .iter()
-            .enumerate()
-            .flat_map(|(index, node)| {
-                net.nodes
-                    .iter()
-                    .skip(index + 1)
-                    .filter_map(move |other| pin_conflict(node, other))
+    pending.extend(nets.iter().flat_map(|net| {
+        let pins = net.nodes.iter().collect::<Vec<_>>();
+
+        reduced_pin_conflicts(&pins)
+            .into_iter()
+            .filter_map(|(first, second, level)| {
+                let (primary, other) = order_pin_conflict_items(first, second);
+                let (description_first, description_second) =
+                    order_pin_conflict_description(first, second);
+
+                let default_severity = match level {
+                    PinConflictLevel::Warning => Severity::Warning,
+                    PinConflictLevel::Error => Severity::Error,
+                };
+                let severity = project_rule_severity(
+                    project_rule_severities,
+                    "pin_to_pin",
+                    default_severity,
+                )?;
+
+                Some(PendingViolation {
+                    severity,
+                    description: format!(
+                        "Pins of type {} and {} are connected",
+                        format_pin_type_name(description_first.pin_type.as_deref()),
+                        format_pin_type_name(description_second.pin_type.as_deref())
+                    ),
+                    violation_type: "pin_to_pin".to_string(),
+                    items: vec![
+                        PendingItem::from_point(format_pin_item_description(primary), primary.point),
+                        PendingItem::from_point(format_pin_item_description(other), other.point),
+                    ],
+                })
             })
-            .collect::<Vec<_>>();
-
-        if conflicts.is_empty() {
-            return None;
-        }
-
-        conflicts.sort_by(|(left_a, left_b), (right_a, right_b)| {
-            pin_conflict_distance(left_a, left_b)
-                .cmp(&pin_conflict_distance(right_a, right_b))
-                .then_with(|| left_a.reference.cmp(&right_a.reference))
-                .then_with(|| cmp_pin_numbers(&left_a.pin, &right_a.pin))
-                .then_with(|| left_b.reference.cmp(&right_b.reference))
-                .then_with(|| cmp_pin_numbers(&left_b.pin, &right_b.pin))
-        });
-
-        let (first, second) = conflicts.remove(0);
-        let (primary, other) = order_pin_conflict_items(first, second);
-        let (description_first, description_second) = order_pin_conflict_description(first, second);
-
-        let Some(severity) =
-            project_rule_severity(project_rule_severities, "pin_to_pin", Severity::Warning)
-        else {
-            return None;
-        };
-
-        Some(PendingViolation {
-            severity,
-            description: format!(
-                "Pins of type {} and {} are connected",
-                format_pin_type_name(description_first.pin_type.as_deref()),
-                format_pin_type_name(description_second.pin_type.as_deref())
-            ),
-            violation_type: "pin_to_pin".to_string(),
-            items: vec![
-                PendingItem::from_point(format_pin_item_description(primary), primary.point),
-                PendingItem::from_point(format_pin_item_description(other), other.point),
-            ],
-        })
+            .collect::<Vec<_>>()
     }));
 
     let net_names_by_point = nets
@@ -172,7 +180,19 @@ pub(crate) fn collect_root_violations(
             continue;
         }
 
+        let Some(severity) = project_rule_severity(
+            project_rule_severities,
+            "ground_pin_not_ground",
+            Severity::Warning,
+        ) else {
+            continue;
+        };
+
         for pin in symbol_power_pins {
+            if is_helper_power_symbol(pin) {
+                continue;
+            }
+
             let pin_name = pin.pin_function.as_deref().unwrap_or_default();
             let pin_name_is_ground = pin_name.to_ascii_uppercase().contains("GND");
             let net_is_ground = net_names_by_point
@@ -184,7 +204,7 @@ pub(crate) fn collect_root_violations(
             }
 
             pending.push(PendingViolation {
-                severity: Severity::Warning,
+                severity,
                 description: format!("Pin {} not connected to ground net", pin_name),
                 violation_type: "ground_pin_not_ground".to_string(),
                 items: vec![PendingItem::from_point(
@@ -195,17 +215,23 @@ pub(crate) fn collect_root_violations(
         }
     }
 
-    pending.extend(pin_not_connected_violations(schema, physical_groups, nets));
+    pending.extend(pin_not_connected_violations(
+        schema,
+        physical_groups,
+        nets,
+        project_netclass_assignments,
+        parameterized_netclasses,
+    ));
 
     pending.extend(schema.symbols.iter().filter_map(|symbol| {
-        build_lib_symbol_issue(symbol, resolved_symbol_libs).map(|item| PendingViolation {
+        build_lib_symbol_issue(symbol, resolved_symbol_libs).map(|description| PendingViolation {
             severity: Severity::Warning,
-            description: format!(
-                "The current configuration does not include the symbol library '{}'",
-                symbol.lib.as_deref().unwrap_or_default()
-            ),
+            description,
             violation_type: "lib_symbol_issues".to_string(),
-            items: vec![item],
+            items: vec![PendingItem::from_point(
+                format_symbol_item_description(symbol),
+                symbol.at,
+            )],
         })
     }));
 
@@ -267,6 +293,7 @@ pub(crate) fn collect_root_violations(
         symbol
             .properties
             .iter()
+            .filter(|property| !property.name.starts_with("Sim."))
             .filter(|property| property_contains_unresolved_variable(&property.value))
             .map(|_| PendingViolation {
                 severity: Severity::Error,
@@ -302,7 +329,16 @@ pub(crate) fn collect_root_violations(
         .collect::<Vec<_>>()
     }));
 
-    append_misc_root_violations(&mut pending, schema, root_attached_points);
+    append_misc_root_violations(
+        &mut pending,
+        schema,
+        root_attached_points,
+        project_rule_severities,
+        project_netclass_assignments,
+        parameterized_netclasses,
+        connection_grid_mm,
+        descendant_global_labels,
+    );
 
     Ok(pending)
 }
@@ -434,7 +470,13 @@ fn append_misc_root_violations(
     pending: &mut Vec<PendingViolation>,
     schema: &ParsedSchema,
     root_attached_points: &[Point],
+    project_rule_severities: &RuleSeverityMap,
+    project_netclass_assignments: &NetclassAssignmentMap,
+    parameterized_netclasses: &HashSet<String>,
+    connection_grid_mm: f64,
+    descendant_global_labels: &BTreeSet<String>,
 ) {
+    let logical_nets = crate::schematic::render::resolve_nets(schema);
     pending.extend(schema.symbols.iter().flat_map(|symbol| {
         symbol
             .properties
@@ -459,49 +501,80 @@ fn append_misc_root_violations(
             .collect::<Vec<_>>()
     }));
 
-    let mut global_labels = BTreeMap::<String, Vec<&LabelInfo>>::new();
-    for label in &schema.labels {
-        if label.label_type == "global_label" && !is_generated_power_label(label, schema) {
-            global_labels.entry(label.text.clone()).or_default().push(label);
-        }
-    }
+    let single_global_label_severity = match project_rule_severities
+        .get("single_global_label")
+        .map(String::as_str)
+    {
+        Some("error") => Some(Severity::Error),
+        Some("warning") => Some(Severity::Warning),
+        Some("exclude") | Some("exclusion") => Some(Severity::Exclusion),
+        Some("ignore") | None => None,
+        Some(_) => None,
+    };
 
-    pending.extend(global_labels.into_iter().filter_map(|(text, labels)| {
-        if labels.len() != 1 {
-            return None;
+    if let Some(single_global_label_severity) = single_global_label_severity {
+        let mut global_labels = BTreeMap::<String, Vec<&LabelInfo>>::new();
+        for label in &schema.labels {
+            if label.label_type == "global_label" && !is_generated_power_label(label, schema) {
+                global_labels.entry(label.text.clone()).or_default().push(label);
+            }
         }
-        if schema
-            .labels
-            .iter()
-            .any(|label| label.label_type == "label" && label.text == text)
-        {
-            return None;
-        }
-        let label = labels[0];
-        Some(PendingViolation {
-            severity: Severity::Warning,
-            description: "Global label only appears once in the schematic".to_string(),
-            violation_type: "single_global_label".to_string(),
-            items: vec![PendingItem {
-                description: format!("Global Label '{text}'"),
-                x_mm: label.x,
-                y_mm: label.y,
-            }],
-        })
-    }));
+
+        pending.extend(global_labels.into_iter().filter_map(|(text, labels)| {
+            if labels.len() != 1 {
+                return None;
+            }
+            if schema
+                .labels
+                .iter()
+                .any(|label| label.label_type == "label" && label.text == text)
+            {
+                return None;
+            }
+            let label = labels[0];
+            Some(PendingViolation {
+                severity: single_global_label_severity,
+                description: "Global label only appears once in the schematic".to_string(),
+                violation_type: "single_global_label".to_string(),
+                items: vec![PendingItem {
+                    description: format!("Global Label '{text}'"),
+                    x_mm: label.x,
+                    y_mm: label.y,
+                }],
+            })
+        }));
+    }
 
     pending.extend(
         schema
             .labels
             .iter()
-            .filter(|label| label.label_type == "label")
-            .filter(|label| is_dangling_label(label, schema))
+            .filter(|label| !is_generated_power_label(label, schema))
+            .filter(|label| !looks_like_bus_name(&label.text))
+            .filter(|label| {
+                label.label_type != "global_label"
+                    || !descendant_global_labels.contains(&label.text)
+            })
+            .filter(|label| {
+                if let Some(net) = logical_nets.iter().find(|net| {
+                    net.labels.iter().any(|other| {
+                        other.point == label.point
+                            && other.label_type == label.label_type
+                            && other.text == label.text
+                    })
+                }) {
+                    return net.nodes.is_empty()
+                        && !global_label_has_same_text_local_on_same_wire(label, schema);
+                }
+
+                is_dangling_logical_label(label, schema, &logical_nets)
+            })
             .map(|label| PendingViolation {
                 severity: Severity::Error,
                 description: "Label not connected".to_string(),
                 violation_type: "label_dangling".to_string(),
                 items: vec![PendingItem {
-                    description: format!("Label '{}'", label.text),
+                    description: format_label_item_description(label),
                     x_mm: label.x,
                     y_mm: label.y,
                 }],
@@ -510,11 +583,58 @@ fn append_misc_root_violations(
 
     pending.extend(
         schema
+            .netclass_flags
+            .iter()
+            .filter(|flag| is_dangling_netclass_flag(flag, schema))
+            .map(|flag| PendingViolation::single(
+                Severity::Error,
+                "label_dangling",
+                "Label not connected",
+                PendingItem::new(
+                    format!("Directive Label [Net Class {}]", flag.netclass),
+                    flag.x,
+                    flag.y,
+                ),
+            )),
+    );
+
+    pending.extend(
+        schema
             .labels
             .iter()
-            .filter(|label| matches!(label.label_type.as_str(), "label" | "hierarchical_label"))
+            .filter(|label| {
+                matches!(
+                    label.label_type.as_str(),
+                    "label" | "global_label" | "hierarchical_label"
+                )
+            })
             .filter(|label| !is_generated_power_label(label, schema))
-            .filter(|label| connected_pin_like_count_for_label(label, schema) == 1)
+            .filter(|label| {
+                label.label_type != "global_label"
+                    || !descendant_global_labels.contains(&label.text)
+            })
+            .filter(|label| !label_has_no_connect(label, schema))
+            .filter(|label| !label_has_no_connect_across_nets(label, &logical_nets))
+            .filter(|label| !looks_like_bus_name(&label.text))
+            .filter(|label| {
+                if let Some(net) = logical_nets.iter().find(|net| {
+                    net.labels.iter().any(|other| {
+                        other.point == label.point
+                            && other.label_type == label.label_type
+                            && other.text == label.text
+                    })
+                }) {
+                    if net.labels.iter().any(|other| {
+                        other.point != label.point && looks_like_bus_name(&other.text)
+                    }) {
+                        return false;
+                    }
+
+                    return net.nodes.len() == 1;
+                }
+
+                connected_pin_like_count_for_label(label, schema) == 1
+            })
             .map(|label| PendingViolation {
                 severity: Severity::Warning,
                 description: "Label connected to only one pin".to_string(),
@@ -529,10 +649,56 @@ fn append_misc_root_violations(
 
     pending.extend(
         schema
-            .labels
+            .bus_entries
             .iter()
-            .filter(|label| label.label_type == "hierarchical_label")
-            .filter(|label| connected_pin_like_count_for_label(label, schema) == 1)
+            .filter(|entry| {
+                let touches_wire = |point| {
+                    schema
+                        .wires
+                        .iter()
+                        .any(|segment| point_on_segment(point, segment))
+                };
+
+                !touches_wire(entry.bus_point)
+                    && !touches_wire(entry.wire_point)
+            })
+            .flat_map(|entry| {
+                [
+                    PendingViolation {
+                        severity: Severity::Warning,
+                        description: "Unconnected wire to bus entry".to_string(),
+                        violation_type: "unconnected_wire_endpoint".to_string(),
+                        items: vec![PendingItem::from_point("Bus to wire entry", entry.bus_point)],
+                    },
+                    PendingViolation {
+                        severity: Severity::Error,
+                        description: "Wires not connected to anything".to_string(),
+                        violation_type: "wire_dangling".to_string(),
+                        items: vec![PendingItem::from_point("Bus to wire entry", entry.bus_point)],
+                    },
+                ]
+            }),
+    );
+
+    pending.extend(
+        logical_nets
+            .iter()
+            .flat_map(|net| {
+                if root_hierarchical_label_should_follow_project_netclass(
+                    net,
+                    project_netclass_assignments,
+                    parameterized_netclasses,
+                ) {
+                    return Vec::new();
+                }
+
+                net.labels.iter()
+                    .filter(|label| {
+                        label.label_type == "hierarchical_label" && !is_generated_power_label(label, schema)
+                    })
+                    .cloned()
+                    .collect::<Vec<_>>()
+            })
             .map(|label| PendingViolation {
                 severity: Severity::Error,
                 description: format!(
@@ -541,7 +707,7 @@ fn append_misc_root_violations(
                 ),
                 violation_type: "pin_not_connected".to_string(),
                 items: vec![PendingItem {
-                    description: format_label_item_description(label),
+                    description: format_label_item_description(&label),
                     x_mm: label.x,
                     y_mm: label.y,
                 }],
@@ -651,29 +817,6 @@ fn append_misc_root_violations(
             }),
     );
 
-    let local_labels = schema.labels.iter().filter(|label| label.label_type == "label").collect::<Vec<_>>();
-    let global_labels = schema
-        .labels
-        .iter()
-        .filter(|label| label.label_type == "global_label" && !is_generated_power_label(label, schema))
-        .collect::<Vec<_>>();
-
-    pending.extend(global_labels.iter().flat_map(|global| {
-        local_labels
-            .iter()
-            .filter(move |local| local.text == global.text)
-            .map(move |local| PendingViolation {
-                severity: Severity::Warning,
-                description: "Local and global labels have same name".to_string(),
-                violation_type: "same_local_global_label".to_string(),
-                items: vec![
-                    PendingItem { description: format!("Global Label '{}'", global.text), x_mm: global.x, y_mm: global.y },
-                    PendingItem { description: format!("Label '{}'", local.text), x_mm: local.x, y_mm: local.y },
-                ],
-            })
-            .collect::<Vec<_>>()
-    }));
-
     pending.extend(schema.no_connects.iter().filter_map(|point| {
         if is_dangling_no_connect(*point, schema) {
             return Some(PendingViolation {
@@ -684,15 +827,30 @@ fn append_misc_root_violations(
             });
         }
 
-        let connected_pins = connected_pins_for_no_connect(*point, schema);
+        let connected_pins =
+            connected_pins_for_no_connect_across_nets(*point, schema, &logical_nets);
+        let connected_pins = if connected_pins.is_empty() {
+            connected_pins_for_no_connect(*point, schema)
+                .into_iter()
+                .cloned()
+                .collect()
+        } else {
+            connected_pins
+        };
         if connected_pins.len() <= 1 {
             return None;
         }
         let primary_pin = connected_pins
             .iter()
             .find(|pin| pin.point == *point)
-            .copied()
-            .unwrap_or(connected_pins[0]);
+            .or_else(|| {
+                connected_pins.iter().max_by_key(|pin| {
+                    let dx = pin.point.x - point.x;
+                    let dy = pin.point.y - point.y;
+                    dx * dx + dy * dy
+                })
+            })
+            .unwrap_or(&connected_pins[0]);
 
         Some(PendingViolation {
             severity: Severity::Warning,
@@ -705,7 +863,28 @@ fn append_misc_root_violations(
         })
     }));
 
-    pending.extend(endpoint_off_grid_violations(schema));
+    pending.extend(schema.pin_nodes.iter().filter_map(|pin| {
+        if !pin_is_no_connect_type(pin.pin_type.as_deref()) {
+            return None;
+        }
+
+        let wire = schema
+            .wires
+            .iter()
+            .find(|segment| segment.a == pin.point || segment.b == pin.point)?;
+
+        Some(PendingViolation {
+            severity: Severity::Warning,
+            description: "Pin with 'no connection' type is connected".to_string(),
+            violation_type: "no_connect_connected".to_string(),
+            items: vec![
+                PendingItem::from_point(format_segment_item_description(wire), wire.a),
+                PendingItem::from_point(format_pin_item_description(pin), pin.point),
+            ],
+        })
+    }));
+
+    pending.extend(endpoint_off_grid_violations(schema, connection_grid_mm));
 
     pending.extend(
         schema
@@ -771,12 +950,18 @@ fn append_misc_root_violations(
             violation_type: "four_way_junction".to_string(),
             items: vec![
                 PendingItem {
-                    description: format!("Horizontal Wire, length {:.4} mm", segment_length_mm(horizontal) / 100.0),
+                    description: format!(
+                        "Horizontal Wire, length {:.4} mm",
+                        segment_length_mm(horizontal) / 100.0
+                    ),
                     x_mm: horizontal_pos.x as f64 / 10_000.0,
                     y_mm: horizontal_pos.y as f64 / 10_000.0,
                 },
                 PendingItem {
-                    description: format!("Vertical Wire, length {:.4} mm", segment_length_mm(vertical) / 100.0),
+                    description: format!(
+                        "Vertical Wire, length {:.4} mm",
+                        segment_length_mm(vertical) / 100.0
+                    ),
                     x_mm: point.x as f64 / 10_000.0,
                     y_mm: point.y as f64 / 10_000.0,
                 },
@@ -816,23 +1001,80 @@ fn append_misc_root_violations(
         wire_only_components(schema)
             .into_iter()
             .filter_map(|component| {
-                if wire_component_has_attachment(&component, schema, root_attached_points) {
+                if wire_component_has_driver(&component, schema, root_attached_points) {
                     return None;
                 }
-                let segment = component[0];
-                let (x_mm, y_mm) = segment_anchor_mm(segment);
+                let ordered_segments = schema
+                    .wires
+                    .iter()
+                    .filter(|candidate| component.iter().any(|segment| same_segment(candidate, segment)))
+                    .collect::<Vec<_>>();
+                let items = ordered_segments
+                    .into_iter()
+                    .take(2)
+                    .map(|segment| {
+                        let (x_mm, y_mm) = segment_anchor_mm(segment);
+                        PendingItem {
+                            description: format_segment_item_description(segment),
+                            x_mm,
+                            y_mm,
+                        }
+                    })
+                    .collect::<Vec<_>>();
                 Some(PendingViolation {
                     severity: Severity::Error,
                     description: "Wires not connected to anything".to_string(),
                     violation_type: "wire_dangling".to_string(),
-                    items: vec![PendingItem {
-                        description: format_segment_item_description(segment),
-                        x_mm,
-                        y_mm,
-                    }],
+                    items,
                 })
             }),
     );
+}
+
+fn root_hierarchical_label_should_follow_project_netclass(
+    net: &ResolvedNet,
+    project_netclass_assignments: &NetclassAssignmentMap,
+    parameterized_netclasses: &HashSet<String>,
+) -> bool {
+    let _ = parameterized_netclasses;
+    let assignments = project_netclass_assignments
+        .get(&net.name)
+        .or_else(|| net.name.rsplit('/').next().and_then(|leaf| project_netclass_assignments.get(leaf)));
+    let Some(assignments) = assignments else {
+        return false;
+    };
+
+    assignments.len() == 1
+}
+
+fn is_dangling_netclass_flag(
+    flag: &crate::schematic::render::NetclassFlagInfo,
+    schema: &ParsedSchema,
+) -> bool {
+    if schema
+        .rule_area_borders
+        .iter()
+        .any(|border| point_on_segment(flag.point, border))
+        || schema
+            .buses
+            .iter()
+            .any(|segment| point_on_segment(flag.point, segment))
+    {
+        return false;
+    }
+
+    use crate::schematic::render::LabelInfo;
+
+    let pseudo = LabelInfo {
+        label_type: "directive_label".to_string(),
+        text: flag.netclass.clone(),
+        raw_text: flag.netclass.clone(),
+        point: flag.point,
+        x: flag.x,
+        y: flag.y,
+    };
+
+    is_dangling_label(&pseudo, schema)
 }
 
 fn duplicate_sheet_name_violations(
@@ -902,4 +1144,27 @@ fn duplicate_sheet_name_violations(
             )
         })
         .collect())
+}
+
+fn global_label_has_same_text_local_on_same_wire(label: &LabelInfo, schema: &ParsedSchema) -> bool {
+    if label.label_type != "global_label" {
+        return false;
+    }
+
+    let segments = super::super::connectivity::connected_wire_segments(label.point, schema);
+
+    if segments.is_empty() {
+        return schema
+            .labels
+            .iter()
+            .any(|other| other.label_type == "label" && other.text == label.text);
+    }
+
+    schema.labels.iter().any(|other| {
+        other.label_type == "label"
+            && other.text == label.text
+            && segments
+                .iter()
+                .any(|segment| point_on_segment(other.point, segment))
+    })
 }
