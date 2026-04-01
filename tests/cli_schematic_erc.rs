@@ -334,6 +334,13 @@ fn schematic_erc_matches_upstream_switches_fixture() {
 }
 
 #[test]
+fn schematic_erc_matches_upstream_instance_params_fixture() {
+    assert_exact_upstream_erc_match(&upstream_erc_project(
+        "spice_netlists/instance_params/instance_params.kicad_sch",
+    ));
+}
+
+#[test]
 fn schematic_erc_matches_upstream_fliege_filter_fixture() {
     assert_exact_upstream_erc_match(&upstream_erc_fixture(
         "spice_netlists/fliege_filter/fliege_filter.kicad_sch",
@@ -818,6 +825,7 @@ fn schematic_erc_matches_upstream_issue19646_f28p65x_osc_reset_debug_fixture_exa
     assert_eq!(native.exit_code, oracle.exit_code);
     assert_eq!(native.report, oracle.report);
 }
+
 
 #[test]
 fn schematic_erc_matches_upstream_issue17870_fixture() {

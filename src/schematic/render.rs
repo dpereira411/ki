@@ -336,8 +336,7 @@ pub(crate) fn resolve_nets(schema: &ParsedSchema) -> Vec<ResolvedNet> {
             let name = choose_net_name(&group);
             let mut nodes = group.nodes;
             nodes.sort_by(|a, b| {
-                a.reference
-                    .cmp(&b.reference)
+                cmp_reference_designators(&a.reference, &b.reference)
                     .then_with(|| cmp_pin_numbers(&a.pin, &b.pin))
             });
             nodes.dedup_by(|a, b| a.reference == b.reference && a.pin == b.pin);
@@ -938,8 +937,66 @@ fn compare_driver_candidates(a: &PinNode, b: &PinNode, no_connect: bool) -> Orde
             driver_candidate_name(a, no_connect).cmp(&driver_candidate_name(b, no_connect))
         })
         .then_with(|| a.order.cmp(&b.order))
-        .then_with(|| a.reference.cmp(&b.reference))
+        .then_with(|| cmp_reference_designators(&a.reference, &b.reference))
         .then_with(|| cmp_pin_numbers(&a.pin, &b.pin))
+}
+
+pub(crate) fn cmp_reference_designators(lhs: &str, rhs: &str) -> Ordering {
+    let mut lhs_chars = lhs.chars().peekable();
+    let mut rhs_chars = rhs.chars().peekable();
+
+    loop {
+        match (lhs_chars.peek().copied(), rhs_chars.peek().copied()) {
+            (None, None) => return Ordering::Equal,
+            (None, Some(_)) => return Ordering::Less,
+            (Some(_), None) => return Ordering::Greater,
+            (Some(lc), Some(rc)) if lc.is_ascii_digit() && rc.is_ascii_digit() => {
+                let lhs_digits = take_digit_run(&mut lhs_chars);
+                let rhs_digits = take_digit_run(&mut rhs_chars);
+
+                let lhs_trimmed = lhs_digits.trim_start_matches('0');
+                let rhs_trimmed = rhs_digits.trim_start_matches('0');
+                let lhs_norm = if lhs_trimmed.is_empty() { "0" } else { lhs_trimmed };
+                let rhs_norm = if rhs_trimmed.is_empty() { "0" } else { rhs_trimmed };
+
+                match lhs_norm.len().cmp(&rhs_norm.len()) {
+                    Ordering::Equal => match lhs_norm.cmp(rhs_norm) {
+                        Ordering::Equal => match lhs_digits.len().cmp(&rhs_digits.len()) {
+                            Ordering::Equal => {}
+                            non_eq => return non_eq.reverse(),
+                        },
+                        non_eq => return non_eq,
+                    },
+                    non_eq => return non_eq,
+                }
+            }
+            (Some(lc), Some(rc)) => match lc.cmp(&rc) {
+                Ordering::Equal => {
+                    lhs_chars.next();
+                    rhs_chars.next();
+                }
+                non_eq => return non_eq,
+            },
+        }
+    }
+}
+
+fn take_digit_run<I>(chars: &mut std::iter::Peekable<I>) -> String
+where
+    I: Iterator<Item = char>,
+{
+    let mut digits = String::new();
+
+    while let Some(ch) = chars.peek().copied() {
+        if !ch.is_ascii_digit() {
+            break;
+        }
+
+        digits.push(ch);
+        chars.next();
+    }
+
+    digits
 }
 
 fn driver_candidate_name(node: &PinNode, no_connect: bool) -> String {
@@ -2105,7 +2162,7 @@ mod tests {
 
     use crate::extract::sym_lib;
 
-    use super::parse_schema;
+    use super::{cmp_reference_designators, parse_schema};
 
     #[test]
     fn parse_schema_handles_extract_resistor_gnd_fixture() {
@@ -2115,6 +2172,22 @@ mod tests {
         );
         let parsed = parse_schema(path, None);
         assert!(parsed.is_ok(), "{parsed:?}");
+    }
+
+    #[test]
+    fn cmp_reference_designators_uses_numeric_suffix_ordering() {
+        assert_eq!(
+            cmp_reference_designators("M5", "M11"),
+            std::cmp::Ordering::Less
+        );
+        assert_eq!(
+            cmp_reference_designators("R099", "R100"),
+            std::cmp::Ordering::Less
+        );
+        assert_eq!(
+            cmp_reference_designators("U2A", "U2B"),
+            std::cmp::Ordering::Less
+        );
     }
 
     #[test]

@@ -810,6 +810,12 @@
       "relative_path": "spice_netlists/switches/switches.kicad_sch",
       "mode": "exact",
       "note": "Exact upstream equality regression"
+    },
+    {
+      "id": "spice_netlists_instance_params",
+      "relative_path": "spice_netlists/instance_params/instance_params.kicad_sch",
+      "mode": "exact",
+      "note": "Exact upstream equality regression"
     }
   ]
 }
