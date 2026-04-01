@@ -15,3 +15,7 @@ also check how many QA upsrteam scenarios are left and not yet on tests/cli_sche
 ---
 
 what is video about
+
+---
+
+all
