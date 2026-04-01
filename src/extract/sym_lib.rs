@@ -18,6 +18,7 @@ pub struct ExternalLibPart {
 #[derive(Clone)]
 pub struct ProjectSymbolLibraryIndex {
     pub library_names: BTreeSet<String>,
+    pub missing_library_paths: BTreeMap<String, String>,
     pub parts: BTreeMap<(String, String), ExternalLibPart>,
 }
 
@@ -77,16 +78,23 @@ pub fn enrich(netlist: &mut ExtractedNetlist, sym_lib_paths: &[String]) -> Resul
 }
 
 pub fn discover_project_sym_libs(schematic_path: &Path, verbose: bool) -> Vec<String> {
+    discover_project_sym_libs_with_missing_paths(schematic_path, verbose).0
+}
+
+fn discover_project_sym_libs_with_missing_paths(
+    schematic_path: &Path,
+    verbose: bool,
+) -> (Vec<String>, BTreeMap<String, String>) {
     let Some(project_path) = resolve_sym_lib_project_path(schematic_path) else {
-        return Vec::new();
+        return (Vec::new(), BTreeMap::new());
     };
     let Some(project_dir) = project_path.parent() else {
-        return Vec::new();
+        return (Vec::new(), BTreeMap::new());
     };
 
     let table_path = project_dir.join("sym-lib-table");
     if !table_path.exists() {
-        return Vec::new();
+        return (Vec::new(), BTreeMap::new());
     }
 
     let doc = match SymLibTableFile::read(&table_path) {
@@ -98,15 +106,19 @@ pub fn discover_project_sym_libs(schematic_path: &Path, verbose: bool) -> Vec<St
                     table_path, err
                 );
             }
-            return Vec::new();
+            return (Vec::new(), BTreeMap::new());
         }
     };
 
     let mut discovered = Vec::new();
+    let mut missing_library_paths = BTreeMap::new();
     for lib in &doc.ast().libraries {
         if lib.disabled {
             continue;
         }
+        let Some(lib_name) = lib.name.clone() else {
+            continue;
+        };
         let Some(uri) = lib.uri.as_deref() else {
             continue;
         };
@@ -118,9 +130,10 @@ pub fn discover_project_sym_libs(schematic_path: &Path, verbose: bool) -> Vec<St
             if verbose {
                 eprintln!(
                     "warn: project sym-lib entry {:?} resolved to missing path {:?}",
-                    lib.name, resolved
+                    lib_name, resolved
                 );
             }
+            missing_library_paths.insert(lib_name, resolved.to_string_lossy().into_owned());
             continue;
         }
         let path = resolved.to_string_lossy().into_owned();
@@ -130,7 +143,7 @@ pub fn discover_project_sym_libs(schematic_path: &Path, verbose: bool) -> Vec<St
         discovered.push(path);
     }
 
-    discovered
+    (discovered, missing_library_paths)
 }
 
 fn resolve_sym_lib_project_path(schematic_path: &Path) -> Option<PathBuf> {
@@ -181,7 +194,8 @@ pub fn load_project_symbol_libraries(
     schematic_path: &Path,
     verbose: bool,
 ) -> Result<ProjectSymbolLibraryIndex, Error> {
-    let paths = discover_project_sym_libs(schematic_path, verbose);
+    let (paths, missing_library_paths) =
+        discover_project_sym_libs_with_missing_paths(schematic_path, verbose);
     let mut library_names = BTreeSet::new();
     let mut parts = BTreeMap::new();
 
@@ -193,6 +207,7 @@ pub fn load_project_symbol_libraries(
 
     Ok(ProjectSymbolLibraryIndex {
         library_names,
+        missing_library_paths,
         parts,
     })
 }
@@ -220,6 +235,7 @@ pub fn load_named_global_symbol_libraries(
 
     Ok(ProjectSymbolLibraryIndex {
         library_names: loaded_library_names,
+        missing_library_paths: BTreeMap::new(),
         parts,
     })
 }
@@ -293,6 +309,7 @@ fn load_symbol_lib(path: &str) -> Result<ProjectSymbolLibraryIndex, Error> {
 
     Ok(ProjectSymbolLibraryIndex {
         library_names,
+        missing_library_paths: BTreeMap::new(),
         parts,
     })
 }

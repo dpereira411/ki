@@ -45,6 +45,7 @@ pub(crate) fn load_project_symbol_libraries(schematic_path: &Path) -> ProjectSym
     let mut index = sym_lib::load_project_symbol_libraries(schematic_path, false).unwrap_or(
         ProjectSymbolLibraryIndex {
             library_names: BTreeSet::new(),
+            missing_library_paths: BTreeMap::new(),
             parts: BTreeMap::new(),
         },
     );
@@ -55,6 +56,7 @@ pub(crate) fn load_project_symbol_libraries(schematic_path: &Path) -> ProjectSym
 
     if let Ok(global) = sym_lib::load_named_global_symbol_libraries(referenced_libraries, false) {
         index.library_names.extend(global.library_names);
+        index.missing_library_paths.extend(global.missing_library_paths);
         index.parts.extend(global.parts);
     }
 

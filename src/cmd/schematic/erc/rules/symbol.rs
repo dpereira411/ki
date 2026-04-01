@@ -15,10 +15,23 @@ pub(crate) fn build_lib_symbol_issue(
 ) -> Option<String> {
     let lib_name = symbol.lib.as_deref()?;
     if !symbol_libs.library_names.contains(lib_name) {
-        return Some(format!(
-            "The current configuration does not include the symbol library '{}'",
-            lib_name
-        ));
+        return Some(
+            symbol_libs
+                .missing_library_paths
+                .get(lib_name)
+                .map(|path| {
+                    format!(
+                        "The symbol library '{}' was not found at '{}'",
+                        lib_name, path
+                    )
+                })
+                .unwrap_or_else(|| {
+                    format!(
+                        "The current configuration does not include the symbol library '{}'",
+                        lib_name
+                    )
+                }),
+        );
     }
 
     let part_name = symbol.part.as_deref()?;
