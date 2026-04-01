@@ -1568,7 +1568,10 @@ fn collect_descendant_sheet_violations(
                     .is_some_and(|label| global_power_drivers.contains(&label))
             {
                 continue;
-            } else if shared_instance_pin_not_connected_is_non_primary(&violation, &child_schema) {
+            } else if (current_instance_path.is_some()
+                || repeated_files.get(&sheet.file).copied().unwrap_or(0) > 1)
+                && shared_instance_pin_not_connected_is_non_primary(&violation, &child_schema)
+            {
                 continue;
             } else if repeated_files.get(&sheet.file).copied().unwrap_or(0) > 1
                 && is_repeated_hierarchical_multiple_net_names(&violation)
