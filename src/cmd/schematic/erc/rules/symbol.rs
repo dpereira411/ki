@@ -107,10 +107,7 @@ fn signatures_match(
         return true;
     }
 
-    if !contains_explicit_empty_description(&embedded)
-        && !contains_explicit_empty_description(&external)
-        && strip_description_property(&embedded) == strip_description_property(&external)
-    {
+    if strip_description_property(&embedded) == strip_description_property(&external) {
         return true;
     }
 
@@ -202,6 +199,7 @@ fn normalize_signature_node(
                 && ((head_of(child) == Some("show_name")
                     && nth_atom_string(child, 1).as_deref() == Some("no"))
                     || (head_of(child) == Some("id"))
+                    || (head_of(child) == Some("effects"))
                     || (head_of(child) == Some("do_not_autoplace")
                         && nth_atom_string(child, 1).as_deref() == Some("no"))))
                 && !(normalize_metadata && head == Some("pin_names")
@@ -327,14 +325,6 @@ fn strip_description_property(signature: &str) -> String {
     .to_canonical_string()
 }
 
-fn contains_explicit_empty_description(signature: &str) -> bool {
-    let Ok(cst) = parse_one(signature) else {
-        return false;
-    };
-
-    cst.nodes.iter().any(node_has_explicit_empty_description)
-}
-
 fn strip_description_property_node(node: &Node) -> Option<Node> {
     let Node::List { items, span } = node else {
         return Some(node.clone());
@@ -352,21 +342,6 @@ fn strip_description_property_node(node: &Node) -> Option<Node> {
             .collect::<Vec<_>>(),
         span: *span,
     })
-}
-
-fn node_has_explicit_empty_description(node: &Node) -> bool {
-    let Node::List { items, .. } = node else {
-        return false;
-    };
-
-    if head_of(node) == Some("property")
-        && nth_atom_string(node, 1).as_deref() == Some("Description")
-        && nth_atom_string(node, 2).as_deref() == Some("")
-    {
-        return true;
-    }
-
-    items.iter().any(node_has_explicit_empty_description)
 }
 
 fn strip_effects_hide_yes(node: &mut Node) {
@@ -519,6 +494,34 @@ mod tests {
                 "Symbol V3 [VDC]".to_string(),
                 "Symbol VIN1 [VSIN]".to_string(),
             ]
+        );
+    }
+
+    #[test]
+    fn legacy_device_r_signature_ignores_missing_description_property() {
+        let path = Path::new(
+            "/Users/Daniel/Desktop/modular/tools/ki-erc-refactor-wt/tests/fixtures/erc_upstream_qa/projects/netlists/test_global_promotion_2/subsheet.kicad_sch",
+        );
+        let schema = parse_schema(path.to_string_lossy().as_ref(), None).expect("schema");
+        let libs = load_project_symbol_libraries(path);
+        let symbol = schema
+            .symbols
+            .iter()
+            .find(|symbol| symbol.reference == "R3")
+            .expect("symbol");
+        let embedded = embedded_symbol_for(symbol, &schema.embedded_symbols).expect("embedded");
+        let external = libs
+            .parts
+            .get(&("Device".to_string(), "R".to_string()))
+            .expect("external");
+        let normalized_embedded =
+            normalize_signature_for_compare(&embedded.signature, true, false, None);
+        let normalized_external =
+            normalize_signature_for_compare(&external.signature, true, false, None);
+
+        assert_eq!(
+            strip_description_property(&normalized_embedded),
+            strip_description_property(&normalized_external)
         );
     }
 
