@@ -1,0 +1,21 @@
+run the full upstream QA project test suite and report results
+
+---
+
+Continue with your current approach. Quick reminders: ERC zero errors is the exit condition — keep going until then. Treat upstream as the single spec, no invented abstractions. Don't pause between cases, process them in sequence. Commit after each logical unit (e.g., one case fixed and verified). If upstream behavior is ambiguous, flag it in a comment and keep moving.
+
+---
+
+the cli_schematic_erc contains more than upstream QA tests right? can you identify those vs non upstream QA and report separate?
+
+---
+
+also check how many QA upsrteam scenarios are left and not yet on tests/cli_schematic_erc.rs
+
+---
+
+what is video about
+
+---
+
+all
