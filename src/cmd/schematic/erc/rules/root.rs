@@ -26,6 +26,7 @@ use super::super::format::{
     format_symbol_item_description, unit_suffix,
 };
 use super::super::hierarchy::FootprintLibraryIndex;
+use crate::cmd::schematic::erc::hierarchy::sheet_refs;
 use super::super::geom::{point_on_segment, same_segment, segment_anchor_mm, segment_length_mm};
 use super::super::pin_conflict::{
     order_pin_conflict_description, order_pin_conflict_items, reduced_pin_conflicts,
@@ -95,6 +96,7 @@ fn root_label_isolated(
     label: &LabelInfo,
     _schema: &ParsedSchema,
     logical_nets: &[ResolvedNet],
+    root_sheet_pin_names: &BTreeMap<Point, BTreeSet<String>>,
 ) -> bool {
     let Some(net) = logical_nets.iter().find(|net| {
         net.labels.iter().any(|other| {
@@ -127,6 +129,21 @@ fn root_label_isolated(
         return false;
     }
 
+    let connected_sheet_pin_names = connected_root_sheet_pin_names(
+        label,
+        _schema,
+        root_sheet_pin_names,
+    );
+
+    if !connected_sheet_pin_names.is_empty() {
+        if label.label_type != "hierarchical_label" {
+            return false;
+        }
+
+        return !connected_sheet_pin_names.contains(&label.text)
+            && connected_pin_like_count_for_label(label, _schema) == 1;
+    }
+
     if all_pins == 1 {
         return true;
     }
@@ -134,6 +151,26 @@ fn root_label_isolated(
     label.label_type == "hierarchical_label"
         && all_pins == 0
         && connected_pin_like_count_for_label(label, _schema) == 1
+}
+
+fn connected_root_sheet_pin_names(
+    label: &LabelInfo,
+    schema: &ParsedSchema,
+    root_sheet_pin_names: &BTreeMap<Point, BTreeSet<String>>,
+) -> BTreeSet<String> {
+    let segments = connected_wire_segments(label.point, schema);
+    if segments.is_empty() {
+        return root_sheet_pin_names
+            .get(&label.point)
+            .cloned()
+            .unwrap_or_default();
+    }
+
+    root_sheet_pin_names
+        .iter()
+        .filter(|(point, _)| segments.iter().any(|segment| point_on_segment(**point, segment)))
+        .flat_map(|(_, names)| names.iter().cloned())
+        .collect()
 }
 
 pub(crate) fn collect_root_violations(
@@ -151,6 +188,21 @@ pub(crate) fn collect_root_violations(
     root_attached_points: &[Point],
     descendant_global_labels: &BTreeSet<String>,
 ) -> Result<Vec<PendingViolation>, KiError> {
+    let root_sheet_pin_names = sheet_refs(input, None)
+        .unwrap_or_default()
+        .into_iter()
+        .flat_map(|sheet| {
+            sheet
+                .pin_refs
+                .into_iter()
+                .map(|pin| (pin.point, pin.name))
+                .collect::<Vec<_>>()
+        })
+        .fold(BTreeMap::<Point, BTreeSet<String>>::new(), |mut acc, (point, name)| {
+            acc.entry(point).or_default().insert(name);
+            acc
+        });
+
     let mut pending = power_pin_not_driven_violations(schema, nets);
 
     pending.extend(duplicate_sheet_name_violations(input, project_rule_severities)?);
@@ -427,6 +479,7 @@ pub(crate) fn collect_root_violations(
         &mut pending,
         schema,
         root_attached_points,
+        &root_sheet_pin_names,
         project_rule_severities,
         project_netclass_assignments,
         parameterized_netclasses,
@@ -588,6 +641,7 @@ fn append_misc_root_violations(
     pending: &mut Vec<PendingViolation>,
     schema: &ParsedSchema,
     root_attached_points: &[Point],
+    root_sheet_pin_names: &BTreeMap<Point, BTreeSet<String>>,
     project_rule_severities: &RuleSeverityMap,
     project_netclass_assignments: &NetclassAssignmentMap,
     parameterized_netclasses: &HashSet<String>,
@@ -681,7 +735,7 @@ fn append_misc_root_violations(
                             && other.text == label.text
                     })
                 }) {
-                    if root_label_isolated(label, schema, &logical_nets) {
+                    if root_label_isolated(label, schema, &logical_nets, &root_sheet_pin_names) {
                         return false;
                     }
 
@@ -745,7 +799,9 @@ fn append_misc_root_violations(
             .filter(|label| !label_has_no_connect_across_nets(label, &logical_nets))
             .filter(|label| !looks_like_bus_name(&label.text))
             .filter(|label| !label_exports_through_sheet_bus(label, schema))
-            .filter(|label| root_label_isolated(label, schema, &logical_nets))
+            .filter(|label| {
+                root_label_isolated(label, schema, &logical_nets, &root_sheet_pin_names)
+            })
             .map(|label| PendingViolation {
                 severity: Severity::Warning,
                 description: "Label connected to only one pin".to_string(),
