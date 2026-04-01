@@ -80,13 +80,6 @@ pub fn discover_project_sym_libs(schematic_path: &Path, verbose: bool) -> Vec<St
     let Some(project_dir) = schematic_path.parent() else {
         return Vec::new();
     };
-    let Some(stem) = schematic_path.file_stem().and_then(|stem| stem.to_str()) else {
-        return Vec::new();
-    };
-    let project_file = project_dir.join(format!("{stem}.kicad_pro"));
-    if !project_file.exists() {
-        return Vec::new();
-    }
     let table_path = project_dir.join("sym-lib-table");
     if !table_path.exists() {
         return Vec::new();
