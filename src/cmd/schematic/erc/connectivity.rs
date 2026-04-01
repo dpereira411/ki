@@ -196,6 +196,46 @@ pub(super) fn connected_pins_for_no_connect_across_nets(
     pins
 }
 
+pub(super) fn connected_pins_for_no_connect<'a>(
+    point: Point,
+    schema: &'a ParsedSchema,
+) -> Vec<&'a PinNode> {
+    if is_dangling_no_connect(point, schema) {
+        return Vec::new();
+    }
+
+    let mut frontier = vec![point];
+    let mut visited_points = BTreeSet::from([point]);
+
+    while let Some(current) = frontier.pop() {
+        for segment in &schema.wires {
+            if !segment_connects_no_connect(current, segment, schema) {
+                continue;
+            }
+
+            for endpoint in [segment.a, segment.b] {
+                if visited_points.insert(endpoint) {
+                    frontier.push(endpoint);
+                }
+            }
+        }
+    }
+
+    let mut pins = schema
+        .pin_nodes
+        .iter()
+        .filter(|pin| visited_points.contains(&pin.point))
+        .collect::<Vec<_>>();
+    pins.sort_by(|a, b| {
+        a.reference
+            .cmp(&b.reference)
+            .then_with(|| a.pin.cmp(&b.pin))
+            .then_with(|| a.order.cmp(&b.order))
+    });
+    pins.dedup_by(|a, b| a.reference == b.reference && a.pin == b.pin);
+    pins
+}
+
 pub(super) fn unique_no_connect_pins_across_nets(
     point: Point,
     schema: &ParsedSchema,

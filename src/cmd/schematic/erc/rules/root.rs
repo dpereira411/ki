@@ -12,6 +12,7 @@ use crate::schematic::render::{
 
 use super::super::connectivity::{
     bus_members_for_name_with_aliases, connected_bus_segments, connected_pin_like_count_for_label,
+    connected_pins_for_no_connect,
     connected_wire_segments, unique_no_connect_pins_across_nets,
     dangling_segment_endpoint_count, format_segment_item_description, is_dangling_label,
     is_dangling_logical_label, is_dangling_no_connect, label_has_no_connect,
@@ -931,11 +932,36 @@ fn append_misc_root_violations(
             return None;
         }
 
-        let primary_pin = unique_connected_pins.iter().max_by_key(|pin| {
-            let dx = pin.point.x - point.x;
-            let dy = pin.point.y - point.y;
-            dx * dx + dy * dy
-        });
+        let mut direct_connected_pins = Vec::new();
+        for candidate in connected_pins_for_no_connect(*point, schema) {
+            if direct_connected_pins.iter().any(|other: &&PinNode| {
+                other.reference == candidate.reference && other.point == candidate.point
+            }) {
+                continue;
+            }
+
+            direct_connected_pins.push(candidate);
+        }
+
+        let primary_pin = if unique_connected_pins.len() > direct_connected_pins.len() {
+            unique_connected_pins.iter().max_by_key(|pin| {
+                let dx = pin.point.x - point.x;
+                let dy = pin.point.y - point.y;
+                dx * dx + dy * dy
+            })
+        } else {
+            direct_connected_pins
+                .iter()
+                .find(|pin| pin.point == *point)
+                .copied()
+                .or_else(|| {
+                    direct_connected_pins.iter().max_by_key(|pin| {
+                        let dx = pin.point.x - point.x;
+                        let dy = pin.point.y - point.y;
+                        dx * dx + dy * dy
+                    }).copied()
+                })
+        };
 
         Some(if let Some(primary_pin) = primary_pin {
             PendingViolation {
