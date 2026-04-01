@@ -455,6 +455,60 @@ mod tests {
     }
 
     #[test]
+    fn legacy_opamp_reports_embedded_opamp_and_ground_mismatches() {
+        let path = Path::new("/Users/Daniel/Desktop/kicad/qa/data/eeschema/spice_netlists/legacy_opamp/legacy_opamp.kicad_sch");
+        let schema = parse_schema(path.to_string_lossy().as_ref(), None).expect("schema");
+        let libs = load_project_symbol_libraries(path);
+        let severities = load_project_rule_severities(path);
+        let mut items = lib_symbol_mismatch_violations(&schema, &libs, &severities)
+            .iter()
+            .map(|violation| violation.items[0].description.clone())
+            .collect::<Vec<_>>();
+        items.sort();
+
+        assert_eq!(
+            items,
+            vec![
+                "Symbol #PWR01 [GND]".to_string(),
+                "Symbol #PWR02 [GND]".to_string(),
+                "Symbol #PWR03 [GND]".to_string(),
+                "Symbol #PWR04 [GND]".to_string(),
+                "Symbol U1 [AD797]".to_string(),
+                "Symbol V2 [VDC]".to_string(),
+                "Symbol V3 [VDC]".to_string(),
+                "Symbol VIN1 [VSIN]".to_string(),
+            ]
+        );
+    }
+
+    #[test]
+    fn opamp_reports_embedded_opamp_and_ground_mismatches() {
+        let path = Path::new("/Users/Daniel/Desktop/kicad/qa/data/eeschema/spice_netlists/opamp/opamp.kicad_sch");
+        let schema = parse_schema(path.to_string_lossy().as_ref(), None).expect("schema");
+        let libs = load_project_symbol_libraries(path);
+        let severities = load_project_rule_severities(path);
+        let mut items = lib_symbol_mismatch_violations(&schema, &libs, &severities)
+            .iter()
+            .map(|violation| violation.items[0].description.clone())
+            .collect::<Vec<_>>();
+        items.sort();
+
+        assert_eq!(
+            items,
+            vec![
+                "Symbol #PWR01 [GND]".to_string(),
+                "Symbol #PWR02 [GND]".to_string(),
+                "Symbol #PWR03 [GND]".to_string(),
+                "Symbol #PWR04 [GND]".to_string(),
+                "Symbol U1 [MCP6001-OT]".to_string(),
+                "Symbol V2 [VDC]".to_string(),
+                "Symbol V3 [VDC]".to_string(),
+                "Symbol VIN1 [VSIN]".to_string(),
+            ]
+        );
+    }
+
+    #[test]
     fn power_signature_normalization_ignores_legacy_value_visibility_but_keeps_vcc_position_delta() {
         let hidden_plus_5v = r#"(symbol "power:+5V"
   (power)

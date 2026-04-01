@@ -937,6 +937,20 @@ fn schematic_erc_matches_upstream_issue13162_fixture_exactly() {
 }
 
 #[test]
+fn schematic_erc_matches_upstream_legacy_opamp_fixture() {
+    assert_exact_upstream_erc_match(&upstream_erc_fixture(
+        "spice_netlists/legacy_opamp/legacy_opamp.kicad_sch",
+    ));
+}
+
+#[test]
+fn schematic_erc_matches_upstream_opamp_fixture() {
+    assert_exact_upstream_erc_match(&upstream_erc_fixture(
+        "spice_netlists/opamp/opamp.kicad_sch",
+    ));
+}
+
+#[test]
 fn schematic_erc_matches_upstream_hierarchical_component_classes_sheet_3_fixture() {
     assert_exact_upstream_erc_match(&upstream_erc_fixture(
         "netlists/hierarchical_component_classes/sheet_3.kicad_sch",

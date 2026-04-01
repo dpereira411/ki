@@ -88,7 +88,7 @@ impl Units {
 
     pub(crate) fn json_pos(self, value_mm: f64) -> f64 {
         let value = self.from_mm(value_mm) / 100.0;
-        round_half_even(value, 4)
+        round_half_even(value, 5)
     }
 }
 
