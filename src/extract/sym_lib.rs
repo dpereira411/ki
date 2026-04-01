@@ -618,19 +618,10 @@ fn normalize_symbol_signature_node(
 
     if head == Some("property") {
         let key = nth_atom_string(node, 1).unwrap_or_default();
-        if matches!(
-            key.as_str(),
-            "Reference"
-                | "Footprint"
-                | "Datasheet"
-                | "ki_fp_filters"
-        ) {
+        if matches!(key.as_str(), "Footprint" | "Datasheet" | "ki_fp_filters") {
             return None;
         }
         if !preserve_value_property && matches!(key.as_str(), "ki_description" | "ki_keywords") {
-            return None;
-        }
-        if key == "Value" && !preserve_value_property {
             return None;
         }
     }
