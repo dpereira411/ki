@@ -792,6 +792,12 @@
       "relative_path": "spice_netlists/rectifier/rectifier.kicad_sch",
       "mode": "exact",
       "note": "Exact upstream equality regression"
+    },
+    {
+      "id": "spice_netlists_switches",
+      "relative_path": "spice_netlists/switches/switches.kicad_sch",
+      "mode": "exact",
+      "note": "Exact upstream equality regression"
     }
   ]
 }

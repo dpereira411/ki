@@ -327,6 +327,13 @@ fn schematic_erc_matches_upstream_rectifier_fixture() {
 }
 
 #[test]
+fn schematic_erc_matches_upstream_switches_fixture() {
+    assert_exact_upstream_erc_match(&upstream_erc_fixture(
+        "spice_netlists/switches/switches.kicad_sch",
+    ));
+}
+
+#[test]
 fn schematic_erc_matches_upstream_fliege_filter_fixture() {
     assert_exact_upstream_erc_match(&upstream_erc_fixture(
         "spice_netlists/fliege_filter/fliege_filter.kicad_sch",
