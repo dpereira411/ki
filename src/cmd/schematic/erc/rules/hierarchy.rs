@@ -3,7 +3,8 @@ use std::path::Path;
 
 use crate::extract::sym_lib::ProjectSymbolLibraryIndex;
 use crate::schematic::render::{
-    parse_schema, projected_reference_for_symbol_suffix, resolve_nets, resolve_physical_groups,
+    cmp_reference_designators, parse_schema, projected_reference_for_symbol_suffix, resolve_nets,
+    resolve_physical_groups,
 };
 use super::super::connectivity::{
     bus_members_for_name_with_aliases, bus_segment_for_entry, connected_bus_segments,
@@ -39,6 +40,48 @@ use crate::error::KiError;
 use crate::cmd::schematic::erc::is_generated_power_label;
 
 type ChildScreenViolationMap = BTreeMap<String, (String, Vec<PendingViolation>)>;
+
+fn shared_instance_pin_not_connected_is_non_primary(
+    violation: &PendingViolation,
+    schema: &crate::schematic::render::ParsedSchema,
+) -> bool {
+    if violation.violation_type != "pin_not_connected" {
+        return false;
+    }
+
+    let Some(item) = violation.items.first() else {
+        return false;
+    };
+    let Some(reference) = item
+        .description
+        .strip_prefix("Symbol ")
+        .and_then(|desc| desc.split_once(" Pin "))
+        .map(|(reference, _)| reference)
+    else {
+        return false;
+    };
+
+    let Some(symbol) = schema.symbols.iter().find(|symbol| symbol.reference == reference) else {
+        return false;
+    };
+
+    let distinct_refs = symbol
+        .instance_references
+        .values()
+        .collect::<BTreeSet<_>>();
+
+    if distinct_refs.len() <= 1 {
+        return false;
+    }
+
+    let selected = distinct_refs
+        .iter()
+        .max_by(|lhs, rhs| cmp_reference_designators(lhs, rhs))
+        .copied()
+        .map_or(reference, |value| value.as_str());
+
+    reference != selected
+}
 
 fn dedup_pending_violations(violations: &mut Vec<PendingViolation>) {
     let mut seen = BTreeSet::new();
@@ -1435,6 +1478,8 @@ fn collect_descendant_sheet_violations(
                 && helper_power_symbol_label(&violation)
                     .is_some_and(|label| global_power_drivers.contains(&label))
             {
+                continue;
+            } else if shared_instance_pin_not_connected_is_non_primary(&violation, &child_schema) {
                 continue;
             } else if repeated_files.get(&sheet.file).copied().unwrap_or(0) > 1
                 && is_repeated_hierarchical_multiple_net_names(&violation)

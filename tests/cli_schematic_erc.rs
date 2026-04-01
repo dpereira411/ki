@@ -920,6 +920,13 @@ fn schematic_erc_matches_upstream_hierarchical_component_classes_another_sheet_f
 }
 
 #[test]
+fn schematic_erc_matches_upstream_hierarchical_component_classes_fixture_exactly() {
+    assert_exact_upstream_erc_match(&upstream_erc_project(
+        "netlists/hierarchical_component_classes/hierarchical_component_classes.kicad_sch",
+    ));
+}
+
+#[test]
 fn schematic_erc_matches_upstream_hierarchical_component_classes_sheet_3_fixture() {
     assert_exact_upstream_erc_match(&upstream_erc_fixture(
         "netlists/hierarchical_component_classes/sheet_3.kicad_sch",

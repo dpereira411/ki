@@ -816,6 +816,12 @@
       "relative_path": "spice_netlists/instance_params/instance_params.kicad_sch",
       "mode": "exact",
       "note": "Exact upstream equality regression"
+    },
+    {
+      "id": "hierarchical_component_classes",
+      "relative_path": "netlists/hierarchical_component_classes/hierarchical_component_classes.kicad_sch",
+      "mode": "exact",
+      "note": "Exact upstream equality regression"
     }
   ]
 }
