@@ -1,0 +1,25 @@
+{
+  "cli_version": "0.5.2",
+  "checkpoint_id": "7dfa91f27d1d",
+  "strategy": "manual-commit",
+  "branch": "main",
+  "checkpoints_count": 2,
+  "files_touched": [
+    "src/cmd/schematic/erc/rules/hierarchy.rs"
+  ],
+  "sessions": [
+    {
+      "metadata": "/7d/fa91f27d1d/0/metadata.json",
+      "transcript": "/7d/fa91f27d1d/0/full.jsonl",
+      "content_hash": "/7d/fa91f27d1d/0/content_hash.txt",
+      "prompt": "/7d/fa91f27d1d/0/prompt.txt"
+    }
+  ],
+  "token_usage": {
+    "input_tokens": 439794365,
+    "cache_creation_tokens": 0,
+    "cache_read_tokens": 419520768,
+    "output_tokens": 1788191,
+    "api_call_count": 3712
+  }
+}
