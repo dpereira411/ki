@@ -567,9 +567,18 @@ pub(crate) fn pin_not_connected_violations(
     schema: &ParsedSchema,
     physical_groups: &[PhysicalGroup],
     nets: &[ResolvedNet],
+    project_rule_severities: &RuleSeverityMap,
     project_netclass_assignments: &NetclassAssignmentMap,
     parameterized_netclasses: &HashSet<String>,
 ) -> Vec<PendingViolation> {
+    let Some(severity) = project_rule_severity(
+        project_rule_severities,
+        "pin_not_connected",
+        Severity::Error,
+    ) else {
+        return Vec::new();
+    };
+
     let conflicting_helper_power_pin_keys = nets
         .iter()
         .flat_map(|net| {
@@ -711,7 +720,7 @@ pub(crate) fn pin_not_connected_violations(
                 && !pin_is_no_connect_type(pin.pin_type.as_deref()))
             .then(|| {
                 PendingViolation::single(
-                    Severity::Error,
+                    severity,
                     "pin_not_connected",
                     "Pin not connected",
                     pin_item(pin),

@@ -1375,6 +1375,7 @@ fn collect_descendant_sheet_violations(
                 &child_schema,
                 &child_physical_groups,
                 &child_nets,
+                project_rule_severities,
                 &child_netclass_assignments,
                 &child_parameterized_netclasses,
             ))

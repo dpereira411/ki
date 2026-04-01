@@ -301,6 +301,7 @@ pub(crate) fn collect_root_violations(
         schema,
         physical_groups,
         nets,
+        project_rule_severities,
         project_netclass_assignments,
         parameterized_netclasses,
     ));

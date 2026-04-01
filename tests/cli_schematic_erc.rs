@@ -1538,6 +1538,14 @@ fn schematic_erc_tracks_issue18606_root_regression() {
         .violations
         .iter()
         .any(|violation| violation.violation_type == "multiple_net_names"));
+    assert!(!oracle_child
+        .violations
+        .iter()
+        .any(|violation| violation.violation_type == "pin_not_connected"));
+    assert!(!native_child
+        .violations
+        .iter()
+        .any(|violation| violation.violation_type == "pin_not_connected"));
 }
 
 #[test]
