@@ -153,7 +153,14 @@ fn resolve_sym_lib_project_path(schematic_path: &Path) -> Option<PathBuf> {
         .and_then(|stem| stem.to_str())
         .map(|stem| project_dir.join(format!("{stem}.kicad_pro")))?;
 
-    direct_project_path.exists().then_some(direct_project_path)
+    if direct_project_path.exists() {
+        return Some(direct_project_path);
+    }
+
+    project_dir
+        .join("sym-lib-table")
+        .exists()
+        .then_some(project_dir.join(".sym-lib-table-anchor"))
 }
 
 pub fn load_project_symbol_libraries(
