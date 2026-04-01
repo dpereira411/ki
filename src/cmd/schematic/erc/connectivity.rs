@@ -445,12 +445,9 @@ pub(super) fn bus_segment_for_entry(entry: &BusEntry, schema: &ParsedSchema) -> 
     schema
         .buses
         .iter()
+        .rev()
         .filter(|segment| point_on_segment_local(bus_point, segment))
-        .min_by_key(|segment| {
-            let dx = (segment.b.x - segment.a.x).abs();
-            let dy = (segment.b.y - segment.a.y).abs();
-            (dx + dy, if dx == 0 { 0 } else { 1 })
-        })
+        .next()
         .cloned()
 }
 

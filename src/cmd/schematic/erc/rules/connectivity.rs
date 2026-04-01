@@ -936,44 +936,44 @@ pub(crate) fn endpoint_off_grid_violations(
     }
 
     out.extend(schema.wires.iter().filter_map(|segment| {
-        let anchor = if !is_on_connection_grid(segment.a.x, connection_grid_mm)
+        if !is_on_connection_grid(segment.a.x, connection_grid_mm)
             || !is_on_connection_grid(segment.a.y, connection_grid_mm)
         {
-            Some(segment.a)
         } else if !is_on_connection_grid(segment.b.x, connection_grid_mm)
             || !is_on_connection_grid(segment.b.y, connection_grid_mm)
         {
-            Some(segment.b)
         } else {
-            None
-        }?;
+            return None;
+        }
 
+        let x_mm = segment.a.x as f64 / 10_000.0;
+        let y_mm = segment.a.y as f64 / 10_000.0;
         Some(PendingViolation::single(
             Severity::Warning,
             "endpoint_off_grid",
             "Symbol pin or wire end off connection grid",
-            segment_item(segment, anchor.x as f64 / 10_000.0, anchor.y as f64 / 10_000.0),
+            segment_item(segment, x_mm, y_mm),
         ))
     }));
 
     out.extend(schema.buses.iter().filter_map(|segment| {
-        let anchor = if !is_on_connection_grid(segment.a.x, connection_grid_mm)
+        if !is_on_connection_grid(segment.a.x, connection_grid_mm)
             || !is_on_connection_grid(segment.a.y, connection_grid_mm)
         {
-            Some(segment.a)
         } else if !is_on_connection_grid(segment.b.x, connection_grid_mm)
             || !is_on_connection_grid(segment.b.y, connection_grid_mm)
         {
-            Some(segment.b)
         } else {
-            None
-        }?;
+            return None;
+        }
 
+        let x_mm = segment.a.x as f64 / 10_000.0;
+        let y_mm = segment.a.y as f64 / 10_000.0;
         Some(PendingViolation::single(
             Severity::Warning,
             "endpoint_off_grid",
             "Symbol pin or wire end off connection grid",
-            bus_item(segment, anchor.x as f64 / 10_000.0, anchor.y as f64 / 10_000.0),
+            bus_item(segment, x_mm, y_mm),
         ))
     }));
 
@@ -984,12 +984,12 @@ pub(crate) fn endpoint_off_grid_violations(
                 !is_on_connection_grid(point.x, connection_grid_mm)
                     || !is_on_connection_grid(point.y, connection_grid_mm)
             })
-            .map(|point| {
+            .map(|_point| {
                 PendingViolation::single(
                     Severity::Warning,
                     "endpoint_off_grid",
                     "Symbol pin or wire end off connection grid",
-                    point_item("Bus to wire entry", point),
+                    point_item("Bus to wire entry", entry.bus_point),
                 )
             })
             .collect::<Vec<_>>()

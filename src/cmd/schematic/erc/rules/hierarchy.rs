@@ -43,6 +43,10 @@ type ChildScreenViolationMap = BTreeMap<String, (String, Vec<PendingViolation>)>
 fn dedup_pending_violations(violations: &mut Vec<PendingViolation>) {
     let mut seen = BTreeSet::new();
     violations.retain(|violation| {
+        if violation.violation_type == "endpoint_off_grid" {
+            return true;
+        }
+
         seen.insert((
             violation.severity.as_str().to_string(),
             violation.violation_type.clone(),

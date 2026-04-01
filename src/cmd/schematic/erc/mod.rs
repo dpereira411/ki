@@ -12,6 +12,7 @@ mod text;
 
 use std::path::Path;
 
+use self::connectivity::{bus_members_for_name, bus_members_for_name_with_aliases};
 use self::hierarchy::{
     child_sheet_paths, descendant_global_label_texts, load_project_footprint_libraries,
     load_project_symbol_libraries, sheet_refs,
@@ -98,10 +99,11 @@ fn round_half_even(value: f64, decimals: usize) -> f64 {
     let lower = scaled.floor();
     let upper = scaled.ceil();
     let diff = scaled - lower;
+    let halfway = (diff - 0.5).abs() < 1e-9;
 
-    let rounded = if diff < 0.5 {
+    let rounded = if diff < 0.5 && !halfway {
         lower
-    } else if diff > 0.5 {
+    } else if diff > 0.5 && !halfway {
         upper
     } else if (lower as i64) % 2 == 0 {
         lower
@@ -139,6 +141,7 @@ fn suppress_intermediate_prefixed_bus_alias_root_violations(
     input: &Path,
     pending: &mut Vec<PendingViolation>,
 ) {
+    let schema = parse_schema(&input.to_string_lossy(), None).ok();
     let direct_child_bus_suffixes = match sheet_refs(input, None) {
         Ok(refs) => refs
             .iter()
@@ -161,8 +164,16 @@ fn suppress_intermediate_prefixed_bus_alias_root_violations(
                 .is_some_and(|net_name| net_name.trim_start_matches('/').split('/').count() == 1);
             is_direct_child_surface
                 && net_not_bus_member_violation_bus_name(&violation.description)
-                    .and_then(bus_group_suffix)
-                    .is_some_and(|suffix| direct_child_bus_suffixes.iter().any(|entry| entry == suffix))
+                    .is_some_and(|bus_name| {
+                        bus_group_suffix(bus_name)
+                            .is_some_and(|suffix| {
+                                direct_child_bus_suffixes.iter().any(|entry| entry == suffix)
+                            })
+                            && schema.as_ref().is_some_and(|schema| {
+                                bus_members_for_name_with_aliases(bus_name, schema).len()
+                                    > bus_members_for_name(bus_name).len()
+                            })
+                    })
         })
         .filter_map(|violation| violation.items.get(1))
         .map(|item| (item.description.clone(), item.x_mm.to_bits(), item.y_mm.to_bits()))
@@ -174,8 +185,14 @@ fn suppress_intermediate_prefixed_bus_alias_root_violations(
                 .is_some_and(|net_name| net_name.trim_start_matches('/').split('/').count() == 1);
             return !is_direct_child_surface
                 || net_not_bus_member_violation_bus_name(&violation.description)
-                    .and_then(bus_group_suffix)
-                    .is_none_or(|suffix| !direct_child_bus_suffixes.iter().any(|entry| entry == suffix));
+                    .is_none_or(|bus_name| {
+                        !bus_group_suffix(bus_name).is_some_and(|suffix| {
+                            direct_child_bus_suffixes.iter().any(|entry| entry == suffix)
+                        }) || schema.as_ref().is_none_or(|schema| {
+                            bus_members_for_name_with_aliases(bus_name, schema).len()
+                                <= bus_members_for_name(bus_name).len()
+                        })
+                    });
         }
 
         if violation.violation_type == "bus_to_net_conflict" {
