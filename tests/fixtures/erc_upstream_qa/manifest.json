@@ -852,6 +852,12 @@
       "relative_path": "spice_netlists/opamp/opamp.kicad_sch",
       "mode": "exact",
       "note": "Exact upstream equality regression"
+    },
+    {
+      "id": "netlists_issue14494",
+      "relative_path": "netlists/issue14494/issue14494.kicad_sch",
+      "mode": "exact",
+      "note": "Exact upstream equality regression"
     }
   ]
 }

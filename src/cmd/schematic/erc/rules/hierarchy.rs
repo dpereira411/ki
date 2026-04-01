@@ -1185,7 +1185,9 @@ fn collect_hierarchical_sheet_violations(
         let mut root_violations = Vec::new();
 
         if !sheet.uses_prefixed_bus_alias_pins() || !parent_has_multiple_bus_sheets {
-            root_violations.extend(isolated_hier_labels.iter().map(|label| {
+            root_violations.extend(isolated_hier_labels.iter().filter(|label| {
+                !sheet.pins.contains(&label.text)
+            }).map(|label| {
                 PendingViolation::single(
                     Severity::Warning,
                     "isolated_pin_label",
