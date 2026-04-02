@@ -215,7 +215,13 @@ pub(crate) fn sheet_pin_points(schematic_path: &Path) -> Result<Vec<Point>, KiEr
 pub(crate) fn load_project_footprint_libraries(schematic_path: &Path) -> FootprintLibraryIndex {
     let mut index = FootprintLibraryIndex::default();
 
-    if let Some(dir) = schematic_path.parent() {
+    let project_dir = schematic_path.parent().and_then(|dir| {
+        let stem = schematic_path.file_stem()?.to_str()?;
+        let project_path = dir.join(format!("{stem}.kicad_pro"));
+        project_path.exists().then_some(dir)
+    });
+
+    if let Some(dir) = project_dir {
         let table_path = dir.join("fp-lib-table");
         if let Ok(doc) = kiutils_rs::FpLibTableFile::read(&table_path) {
             for lib in doc.ast().libraries.iter().filter(|lib| !lib.disabled) {

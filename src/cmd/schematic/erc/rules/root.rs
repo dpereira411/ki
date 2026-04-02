@@ -144,6 +144,35 @@ fn root_label_isolated(
             && connected_pin_like_count_for_label(label, _schema) == 1;
     }
 
+    if label.label_type == "label"
+        && _schema
+            .labels
+            .iter()
+            .filter(|other| other.label_type == "label" && other.text == label.text)
+            .count()
+            == 1
+        && _schema.labels.iter().any(|other| {
+            other.label_type == "hierarchical_label"
+                && other.text == label.text
+                && other.point != label.point
+        })
+    {
+        let connected_segments = connected_wire_segments(label.point, _schema);
+        let shares_direct_segment = !connected_segments.is_empty()
+            && _schema.labels.iter().any(|other| {
+                other.label_type == "hierarchical_label"
+                    && other.text == label.text
+                    && other.point != label.point
+                    && connected_segments
+                        .iter()
+                        .any(|segment| point_on_segment(other.point, segment))
+            });
+
+        if !shares_direct_segment {
+            return false;
+        }
+    }
+
     if all_pins == 1 {
         return true;
     }

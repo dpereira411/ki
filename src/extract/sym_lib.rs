@@ -148,19 +148,11 @@ fn discover_project_sym_libs_with_missing_paths(
 
 fn resolve_sym_lib_project_path(schematic_path: &Path) -> Option<PathBuf> {
     let project_dir = schematic_path.parent()?;
-    let direct_project_path = schematic_path
+    schematic_path
         .file_stem()
         .and_then(|stem| stem.to_str())
-        .map(|stem| project_dir.join(format!("{stem}.kicad_pro")))?;
-
-    if direct_project_path.exists() {
-        return Some(direct_project_path);
-    }
-
-    project_dir
-        .join("sym-lib-table")
-        .exists()
-        .then_some(project_dir.join(".sym-lib-table-anchor"))
+        .map(|stem| project_dir.join(format!("{stem}.kicad_pro")))
+        .filter(|path| path.exists())
 }
 
 pub fn load_project_symbol_libraries(

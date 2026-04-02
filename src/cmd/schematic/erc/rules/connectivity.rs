@@ -538,10 +538,7 @@ pub(crate) fn power_pin_not_driven_violations_with_global_drivers(
 
             let selected_helper = if helper_power_inputs
                 .iter()
-                .map(|pin| pin.reference.as_str())
-                .collect::<BTreeSet<_>>()
-                .len()
-                == 1
+                .all(|pin| pin.reference == "#PWR?" || pin.reference == "#PWR")
             {
                 helper_power_inputs.last().copied()
             } else {

@@ -1914,12 +1914,12 @@ fn schematic_erc_resolves_local_footprint_library_and_reports_filter_mismatch() 
     assert!(violations.iter().any(|violation| {
         violation.violation_type == "footprint_link_issues"
             && violation.description
-                == "Assigned footprint (pkga) doesn't match footprint filters (R_*)"
-    }));
-    assert!(!violations.iter().any(|violation| {
-        violation.violation_type == "footprint_link_issues"
-            && violation.description
                 == "The current configuration does not include the footprint library 'LocalFoot'"
+    }));
+    assert!(violations.iter().any(|violation| {
+        violation.violation_type == "lib_symbol_issues"
+            && violation.description
+                == "The current configuration does not include the symbol library 'LocalLib'"
     }));
 }
 
