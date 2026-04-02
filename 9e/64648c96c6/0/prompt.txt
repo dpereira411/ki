@@ -1,0 +1,113 @@
+Continue with your current approach. Quick reminders: ERC zero errors is the exit condition — keep going until then. Treat upstream as the single spec, no invented abstractions. Don't pause between cases, process them in sequence. Commit after each logical unit (e.g., one case fixed and verified). If upstream behavior is ambiguous, flag it in a comment and keep moving.
+
+---
+
+Continue with your current approach. Quick reminders: ERC zero errors is the exit condition — keep going until then. Treat upstream as the single spec, no invented abstractions. Don't pause between cases, process them in sequence. Commit after each logical unit (e.g., one case fixed and verified). If upstream behavior is ambiguous, flag it in a comment and keep moving.
+
+---
+
+Continue with your current approach. Quick reminders: ERC zero errors is the exit condition — keep going until then. Treat upstream as the single spec, no invented abstractions. Don't pause between cases, process them in sequence. Commit after each logical unit (e.g., one case fixed and verified). If upstream behavior is ambiguous, flag it in a comment and keep moving.
+
+---
+
+Continue with your current approach. Quick reminders: ERC zero errors is the exit condition — keep going until then. Treat upstream as the single spec, no invented abstractions. Don't pause between cases, process them in sequence. Commit after each logical unit (e.g., one case fixed and verified). If upstream behavior is ambiguous, flag it in a comment and keep moving.
+
+---
+
+Continue with your current approach. Quick reminders: ERC zero errors is the exit condition — keep going until then. Treat upstream as the single spec, no invented abstractions. Don't pause between cases, process them in sequence. Commit after each logical unit (e.g., one case fixed and verified). If upstream behavior is ambiguous, flag it in a comment and keep moving.
+
+---
+
+Continue with your current approach. Quick reminders: ERC zero errors is the exit condition — keep going until then. Treat upstream as the single spec, no invented abstractions. Don't pause between cases, process them in sequence. Commit after each logical unit (e.g., one case fixed and verified). If upstream behavior is ambiguous, flag it in a comment and keep moving.
+
+---
+
+Continue with your current approach. Quick reminders: ERC zero errors is the exit condition — keep going until then. Treat upstream as the single spec, no invented abstractions. Don't pause between cases, process them in sequence. Commit after each logical unit (e.g., one case fixed and verified). If upstream behavior is ambiguous, flag it in a comment and keep moving.
+
+---
+
+Continue with your current approach. Quick reminders: ERC zero errors is the exit condition — keep going until then. Treat upstream as the single spec, no invented abstractions. Don't pause between cases, process them in sequence. Commit after each logical unit (e.g., one case fixed and verified). If upstream behavior is ambiguous, flag it in a comment and keep moving.
+
+---
+
+Continue with your current approach. Quick reminders: ERC zero errors is the exit condition — keep going until then. Treat upstream as the single spec, no invented abstractions. Don't pause between cases, process them in sequence. Commit after each logical unit (e.g., one case fixed and verified). If upstream behavior is ambiguous, flag it in a comment and keep moving.
+
+---
+
+Continue with your current approach. Quick reminders: upstream-qa parity is the exit condition — keep going until then. Treat upstream as the single spec, no invented abstractions. Don't pause between cases, process them in sequence. Commit after each logical unit (e.g., one case fixed and verified). If upstream behavior is ambiguous, flag it in a comment and keep moving.
+
+---
+
+Continue with your current approach. Quick reminders: upstream-qa parity is the exit condition — keep going until then. Treat upstream as the single spec, no invented abstractions. Don't pause between cases, process them in sequence. Commit after each logical unit (e.g., one case fixed and verified). If upstream behavior is ambiguous, flag it in a comment and keep moving.
+
+---
+
+Continue with your current approach. Quick reminders: ERC zero errors is the exit condition — keep going until then. Treat upstream as the single spec, no invented abstractions. Don't pause between cases, process them in sequence. Commit after each logical unit (e.g., one case fixed and verified). If upstream behavior is ambiguous, flag it in a comment and keep moving.
+
+---
+
+Continue with your current approach. Quick reminders: upstream-qa parity is the exit condition — keep going until then. Treat upstream as the single spec, no invented abstractions. Don't pause between cases, process them in sequence. Commit after each logical unit (e.g., one case fixed and verified). If upstream behavior is ambiguous, flag it in a comment and keep moving.
+
+---
+
+Continue with your current approach. Quick reminders: upstream-qa parity is the exit condition — keep going until then. Treat upstream as the single spec, no invented abstractions. Don't pause between cases, process them in sequence. Commit after each logical unit (e.g., one case fixed and verified). If upstream behavior is ambiguous, flag it in a comment and keep moving.
+
+---
+
+play afplay /System/Library/Sounds/Morse.aiff when you finish your current work
+
+---
+
+Continue with your current approach. Quick reminders: upstream-qa parity is the exit condition — keep going until then. Treat upstream as the single spec, no invented abstractions. Local implenentation should be grounded on upstream implementation. Don't pause between cases, process them in sequence. Commit after each logical unit (e.g., one case fixed and verified). If upstream behavior is ambiguous, flag it in a comment and keep moving.
+
+---
+
+Continue with your current approach. Quick reminders: upstream-qa parity is the exit condition — keep going until then. Treat upstream as the single spec, no invented abstractions. Local implenentation should be grounded on upstream implementation. Don't pause between cases, process them in sequence. Commit after each logical unit (e.g., one case fixed and verified). If upstream behavior is ambiguous, flag it in a comment and keep moving.
+
+---
+
+Continue with your current approach. Quick reminders: upstream-qa parity is the exit condition — keep going until then. Treat upstream as the single spec, no invented abstractions. Local implenentation should be grounded on upstream implementation. Don't pause between cases, process them in sequence. Commit after each logical unit (e.g., one case fixed and verified). If upstream behavior is ambiguous, flag it in a comment and keep moving.
+
+---
+
+Continue with your current approach. Quick reminders: upstream-qa parity is the exit condition — keep going until then. Treat upstream as the single spec, no invented abstractions. Local implenentation should be grounded on upstream implementation. Don't pause between cases, process them in sequence. Commit after each logical unit (e.g., one case fixed and verified). If upstream behavior is ambiguous, flag it in a comment and keep moving.
+
+---
+
+Continue with your current approach. Quick reminders: upstream-qa parity is the exit condition — keep going until then. Treat upstream as the single spec, no invented abstractions. Local implenentation should be grounded on upstream implementation. Don't pause between cases, process them in sequence. Commit after each logical unit (e.g., one case fixed and verified). If upstream behavior is ambiguous, flag it in a comment and keep moving.
+
+---
+
+Continue with your current approach. Quick reminders: upstream-qa parity is the exit condition — keep going until then. Treat upstream as the single spec, no invented abstractions. Local implenentation should be grounded on upstream implementation. Don't pause between cases, process them in sequence. Commit after each logical unit (e.g., one case fixed and verified). If upstream behavior is ambiguous, flag it in a comment and keep moving.
+
+---
+
+why --test-threads=1?
+
+---
+
+go on
+
+---
+
+• The copied maintained fixture directory only has .kicad_sch files, while upstream raw data has both sym-lib-table and TEST_LIB.kicad_sym. That means the current
+  adjacent sym-lib-table anchor logic is not the cause here. I’m checking the test harness path and the symbol-compare fallback next, because TEST_LIB must be coming
+  from a broader fallback path rather than the copied project folder itself.
+
+if you need more files from upstream please copy them to the test fixtures folder
+
+---
+
+Continue with your current approach. Quick reminders: upstream-qa parity is the exit condition — keep going until then. Treat upstream as the single spec, no invented abstractions. Local implenentation should be grounded on upstream implementation. Don't pause between cases, process them in sequence. Commit after each logical unit (e.g., one case fixed and verified). If upstream behavior is ambiguous, flag it in a comment and keep moving.
+
+---
+
+Continue with your current approach. Quick reminders: upstream-qa parity is the exit condition — keep going until then. Treat upstream as the single spec, no invented abstractions. Local implenentation should be grounded on upstream implementation. Don't pause between cases, process them in sequence. Commit after each logical unit (e.g., one case fixed and verified). If upstream behavior is ambiguous, flag it in a comment and keep moving.
+
+---
+
+Continue with your current approach. Quick reminders: upstream-qa parity is the exit condition — keep going until then. Treat upstream as the single spec, no invented abstractions. Local implenentation should be grounded on upstream implementation. Don't pause between cases, process them in sequence. Commit after each logical unit (e.g., one case fixed and verified). If upstream behavior is ambiguous, flag it in a comment and keep moving.
+
+---
+
+Continue with your current approach. Quick reminders: upstream-qa parity is the exit condition — keep going until then. Treat upstream as the single spec, no invented abstractions. Local implenentation should be grounded on upstream implementation. Don't pause between cases, process them in sequence. Commit after each logical unit (e.g., one case fixed and verified). If upstream behavior is ambiguous, flag it in a comment and keep moving.
