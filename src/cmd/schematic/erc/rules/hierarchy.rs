@@ -1236,6 +1236,31 @@ fn collect_hierarchical_sheet_violations(
             .filter(|label| label_has_single_pin_like_connection(label))
             .cloned()
             .collect::<Vec<_>>();
+        let isolated_local_label_projects_as_wire_only =
+            |label: &crate::schematic::render::LabelInfo| {
+                current_sheet_path == "/"
+                    && child_logical_nets
+                        .iter()
+                        .find(|net| {
+                            net.labels.iter().any(|other| {
+                                other.point == label.point
+                                    && other.label_type == label.label_type
+                                    && other.text == label.text
+                            })
+                        })
+                        .is_some_and(|net| {
+                            net.labels.len() > 1
+                                && connected_wire_segments(label.point, &child_schema)
+                                    .iter()
+                                    .any(|segment| {
+                                        dangling_segment_endpoint_count(
+                                            segment,
+                                            &child_schema,
+                                            &[],
+                                        ) > 0
+                                    })
+                        })
+            };
         let isolated_hier_points = isolated_hier_labels
             .iter()
             .map(|label| label.point)
@@ -1251,6 +1276,7 @@ fn collect_hierarchical_sheet_violations(
             .collect::<BTreeSet<_>>();
         let isolated_local_segments = isolated_local_labels
             .iter()
+            .filter(|label| !isolated_local_label_projects_as_wire_only(label))
             .flat_map(|label| connected_wire_segments(label.point, &child_schema))
             .map(|segment| segment_key(&segment))
             .collect::<BTreeSet<_>>();
@@ -1320,6 +1346,7 @@ fn collect_hierarchical_sheet_violations(
                     &child_schema,
                     parent_has_multiple_bus_sheets,
                 ) || label_net_exports_to_parent(label)
+                    || isolated_local_label_projects_as_wire_only(label)
                     || (parent_has_expanded_bus_members
                         && label_is_bus_member_stub(label, &child_schema))
                     || child_has_prefixed_descendants

@@ -572,6 +572,12 @@
       "note": "Exact upstream equality regression"
     },
     {
+      "id": "issue16003",
+      "relative_path": "netlists/issue16003/issue16003.kicad_sch",
+      "mode": "exact",
+      "note": "Exact upstream equality regression"
+    },
+    {
       "id": "issue16003_untitled",
       "relative_path": "netlists/issue16003/untitled.kicad_sch",
       "mode": "exact",
