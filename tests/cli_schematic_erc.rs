@@ -1108,6 +1108,16 @@ fn schematic_erc_matches_upstream_issue13112_fixture_exactly() {
 }
 
 #[test]
+fn schematic_erc_matches_upstream_test1243_fixture_exactly() {
+    assert_exact_upstream_erc_match(&upstream_erc_fixture("test1243/test1243.kicad_sch"));
+}
+
+#[test]
+fn schematic_erc_matches_upstream_variants_pic_sockets_fixture_exactly() {
+    assert_exact_upstream_erc_match(&upstream_erc_fixture("variants/pic_sockets.kicad_sch"));
+}
+
+#[test]
 fn schematic_erc_matches_upstream_weak_vector_bus_disambiguation_fixture() {
     let schematic = upstream_erc_fixture(
         "netlists/weak_vector_bus_disambiguation/weak_vector_bus_disambiguation.kicad_sch",

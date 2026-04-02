@@ -876,6 +876,18 @@
       "relative_path": "issue13112.kicad_sch",
       "mode": "exact",
       "note": "Exact upstream equality regression"
+    },
+    {
+      "id": "test1243",
+      "relative_path": "test1243/test1243.kicad_sch",
+      "mode": "exact",
+      "note": "Exact upstream equality regression"
+    },
+    {
+      "id": "variants_pic_sockets",
+      "relative_path": "variants/pic_sockets.kicad_sch",
+      "mode": "exact",
+      "note": "Exact upstream equality regression"
     }
   ]
 }
