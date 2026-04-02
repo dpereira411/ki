@@ -95,8 +95,9 @@ fn signatures_match(
         return true;
     }
 
-    let normalize_metadata = symbol.lib.as_deref() != Some("power") || schema.version >= 20230121;
-    let normalize_power = symbol.lib.as_deref() == Some("power") && schema.version >= 20230121;
+    let normalize_power = symbol.lib.as_deref() == Some("power");
+    let normalize_metadata =
+        symbol.lib.as_deref() != Some("power") || schema.version >= 20230121 || normalize_power;
     let power_part = normalize_power.then_some(symbol.part.as_deref().unwrap_or_default());
     let embedded =
         normalize_signature_for_compare(embedded, normalize_metadata, normalize_power, power_part);

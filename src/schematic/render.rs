@@ -470,6 +470,8 @@ fn parse_schema_nodes(nodes: &[Node], instance_path: Option<&str>) -> Result<Par
         }
     }
 
+    fix_legacy_global_power_symbol_value_mismatches(&mut raw_symbols, &embedded_symbols);
+
     let pin_nodes = build_pin_nodes(&raw_symbols, &embedded_symbols);
     let power_labels = build_power_labels(&raw_symbols, &embedded_symbols);
     labels.extend(power_labels);
@@ -506,6 +508,37 @@ fn parse_bus_alias(node: &Node) -> Option<(String, Vec<String>)> {
         })
         .unwrap_or_default();
     Some((name, members))
+}
+
+fn fix_legacy_global_power_symbol_value_mismatches(
+    symbols: &mut [PlacedSymbol],
+    embedded_symbols: &HashMap<String, EmbeddedSymbol>,
+) {
+    for symbol in symbols {
+        let Some(embedded) = embedded_symbol_for(symbol, embedded_symbols) else {
+            continue;
+        };
+
+        if embedded.power_kind.as_deref() != Some("global") {
+            continue;
+        }
+
+        let Some(legacy_pin_name) = embedded
+            .pins
+            .iter()
+            .filter(|pin| {
+                (pin.unit == 0 || pin.unit == symbol.unit)
+                    && (pin.body_style == 0 || pin.body_style == symbol.body_style)
+            })
+            .find(|pin| pin.hidden && pin.electrical_type.as_deref() == Some("power_in"))
+            .and_then(|pin| pin.name.clone())
+            .filter(|name| !name.is_empty())
+        else {
+            continue;
+        };
+
+        symbol.value = Some(legacy_pin_name);
+    }
 }
 
 fn schematic_instance_path(items: &[Node]) -> Option<String> {
@@ -836,6 +869,19 @@ fn build_groups(schema: &ParsedSchema, merge_labels_by_name: bool) -> Vec<GroupI
                 named_points.insert(key, root);
             }
         }
+
+        for pin in &schema.pin_nodes {
+            let Some(key) = hidden_global_power_connectivity_key(pin, schema) else {
+                continue;
+            };
+            let point = point_index[&pin.point];
+            let root = dsu.find(point);
+            if let Some(existing) = named_points.get(&key).copied() {
+                dsu.union(existing, root);
+            } else {
+                named_points.insert(key, root);
+            }
+        }
     }
 
     let mut groups = BTreeMap::<usize, GroupInfo>::new();
@@ -905,6 +951,29 @@ fn connectivity_key(label: &LabelInfo) -> String {
         "hierarchical_label" => format!("hier:{}", label.text),
         _ => format!("local:{}", label.text),
     }
+}
+
+fn hidden_global_power_connectivity_key(pin: &PinNode, schema: &ParsedSchema) -> Option<String> {
+    if pin.pin_type.as_deref() != Some("power_in") || !pin.hidden {
+        return None;
+    }
+
+    let symbol = schema
+        .symbols
+        .iter()
+        .find(|symbol| symbol.reference == pin.reference)?;
+    let embedded = embedded_symbol_for(symbol, &schema.embedded_symbols)?;
+
+    if embedded.power_kind.as_deref() == Some("local") {
+        return None;
+    }
+
+    let name = pin.pin_function.as_deref()?.trim();
+    if name.is_empty() {
+        return None;
+    }
+
+    Some(format!("global:{name}"))
 }
 
 fn choose_net_name(group: &GroupInfo) -> String {

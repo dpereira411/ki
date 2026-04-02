@@ -1031,6 +1031,13 @@ fn schematic_erc_matches_upstream_netlists_issue14494_fixture() {
 }
 
 #[test]
+fn schematic_erc_matches_upstream_legacy_power_fixture_exactly() {
+    assert_exact_upstream_erc_match(&upstream_erc_fixture(
+        "netlists/legacy_power/legacy_power.kicad_sch",
+    ));
+}
+
+#[test]
 fn schematic_erc_matches_upstream_issue16003_fixture_exactly() {
     assert_exact_upstream_erc_match(&upstream_erc_fixture(
         "netlists/issue16003/issue16003.kicad_sch",

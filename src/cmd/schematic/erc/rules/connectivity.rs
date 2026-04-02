@@ -519,7 +519,13 @@ pub(crate) fn power_pin_not_driven_violations_with_global_drivers(
             if let Some(pin) = visible_non_helper_pins
                 .first()
                 .copied()
-                .or_else(|| non_helper_pins.first().copied())
+                .or_else(|| {
+                    non_helper_pins
+                        .iter()
+                        .any(|pin| !pin.hidden)
+                        .then(|| non_helper_pins.first().copied())
+                        .flatten()
+                })
             {
                 return vec![PendingViolation::single(
                     Severity::Error,
@@ -684,6 +690,11 @@ pub(crate) fn pin_not_connected_violations(
                 let local_name = net_name.trim_start_matches('/').to_string();
 
                 if global_label_cache.contains(&net_name) || local_label_cache.contains(&local_name)
+                    || (pin.hidden
+                        && pin.pin_type.as_deref() == Some("power_in")
+                        && schema.labels.iter().any(|label| {
+                            label.label_type == "global_label" && label.text == net_name
+                        }))
                 {
                     has_other_connections = true;
                 }
