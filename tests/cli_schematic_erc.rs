@@ -1103,6 +1103,11 @@ fn schematic_erc_matches_upstream_test_multiunit_reannotate_same_value_fixture()
 }
 
 #[test]
+fn schematic_erc_matches_upstream_issue13112_fixture_exactly() {
+    assert_exact_upstream_erc_match(&upstream_erc_fixture("issue13112.kicad_sch"));
+}
+
+#[test]
 fn schematic_erc_matches_upstream_weak_vector_bus_disambiguation_fixture() {
     let schematic = upstream_erc_fixture(
         "netlists/weak_vector_bus_disambiguation/weak_vector_bus_disambiguation.kicad_sch",

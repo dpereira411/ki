@@ -870,6 +870,12 @@
       "relative_path": "netlists/issue14494/issue14494.kicad_sch",
       "mode": "exact",
       "note": "Exact upstream equality regression"
+    },
+    {
+      "id": "issue13112",
+      "relative_path": "issue13112.kicad_sch",
+      "mode": "exact",
+      "note": "Exact upstream equality regression"
     }
   ]
 }
