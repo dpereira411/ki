@@ -533,7 +533,7 @@ pub(crate) fn power_pin_not_driven_violations_with_global_drivers(
                 .iter()
                 .filter(|node| node.pin_type.as_deref() == Some("power_in"))
                 .filter(|node| is_helper_power_symbol(node))
-                .filter(|node| power_kind_for_pin(node, schema) == Some("global"))
+                .filter(|node| power_kind_for_pin(node, schema).is_some())
                 .collect::<Vec<_>>();
 
             let selected_helper = if helper_power_inputs

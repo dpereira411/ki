@@ -697,6 +697,11 @@ fn schematic_erc_matches_upstream_issue22938_schrittmotor_fixture() {
 }
 
 #[test]
+fn schematic_erc_matches_upstream_issue22938_spannungsversorgung_fixture_exactly() {
+    assert_exact_upstream_erc_match(&upstream_erc_fixture("issue22938/Spannungsversorgung.kicad_sch"));
+}
+
+#[test]
 fn schematic_erc_matches_upstream_netlists_group_bus_matching_subsheet1_fixture() {
     assert_exact_upstream_erc_match(&upstream_erc_fixture("netlists/group_bus_matching/subsheet1.kicad_sch"));
 }

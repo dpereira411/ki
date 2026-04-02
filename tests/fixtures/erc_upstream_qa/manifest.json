@@ -356,6 +356,12 @@
       "note": "Exact upstream equality regression"
     },
     {
+      "id": "issue22938_spannungsversorgung",
+      "relative_path": "issue22938/Spannungsversorgung.kicad_sch",
+      "mode": "exact",
+      "note": "Exact upstream equality regression"
+    },
+    {
       "id": "netlists_group_bus_matching_subsheet1",
       "relative_path": "netlists/group_bus_matching/subsheet1.kicad_sch",
       "mode": "exact",
