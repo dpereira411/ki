@@ -888,6 +888,12 @@
       "relative_path": "variants/pic_sockets.kicad_sch",
       "mode": "exact",
       "note": "Exact upstream equality regression"
+    },
+    {
+      "id": "spice_netlists_tlines",
+      "relative_path": "spice_netlists/tlines/tlines.kicad_sch",
+      "mode": "exact",
+      "note": "Exact upstream equality regression"
     }
   ]
 }

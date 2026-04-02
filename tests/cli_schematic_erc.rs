@@ -1118,6 +1118,11 @@ fn schematic_erc_matches_upstream_variants_pic_sockets_fixture_exactly() {
 }
 
 #[test]
+fn schematic_erc_matches_upstream_tlines_fixture_exactly() {
+    assert_exact_upstream_erc_match(&upstream_erc_fixture("spice_netlists/tlines/tlines.kicad_sch"));
+}
+
+#[test]
 fn schematic_erc_matches_upstream_weak_vector_bus_disambiguation_fixture() {
     let schematic = upstream_erc_fixture(
         "netlists/weak_vector_bus_disambiguation/weak_vector_bus_disambiguation.kicad_sch",
